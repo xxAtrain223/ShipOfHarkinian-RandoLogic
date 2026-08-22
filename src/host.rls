@@ -1,0 +1,24 @@
+# Builtin type extensions
+extern enum Region { RR_* }
+extern enum Location { RC_* }
+extern enum Event { LOGIC_* }
+
+# SoH specific enums
+extern enum Item { RG_* }
+extern enum Enemy { RE_* }
+extern enum Distance { ED_* }
+extern enum Trick { RT_* }
+extern enum Scene { SCENE_* }
+extern enum Dungeon { DUNGEON_* }
+extern enum Area { RA_* }
+extern enum Trial { TK_* }
+extern enum Setting { RSK_*, RO_* }
+
+enum TimePasses {
+    Auto,
+    Yes,
+    No
+}
+
+extern define is_child() -> Bool
+extern define is_adult() -> Bool

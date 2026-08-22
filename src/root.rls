@@ -1,0 +1,48 @@
+region RR_ROOT {
+    name: "Root"
+    scene: SCENE_ID_MAX
+    timePasses: TimePasses.No
+    areas: [RA_LINKS_POCKET]
+
+    locations {
+        RC_LINKS_POCKET: always
+    }
+
+    exits {
+        RR_ROOT_EXITS: always
+    }
+}
+
+region RR_ROOT_EXITS {
+    name: "Root Exits"
+    scene: SCENE_ID_MAX
+    timePasses: TimePasses.No
+    areas: [RA_LINKS_POCKET]
+
+    exits {
+        RR_CHILD_SPAWN: is_child()
+        RR_ADULT_SPAWN: is_adult()
+    }
+}
+
+region RR_CHILD_SPAWN {
+    name: "Child Spawn"
+    scene: SCENE_ID_MAX
+    timePasses: TimePasses.No
+    areas: [RA_LINKS_POCKET]
+
+    exits {
+        # RR_KF_LINKS_HOUSE: always
+    }
+}
+
+region RR_ADULT_SPAWN {
+    name: "Adult Spawn"
+    scene: SCENE_ID_MAX
+    timePasses: TimePasses.No
+    areas: [RA_LINKS_POCKET]
+
+    exits {
+        # RR_TEMPLE_OF_TIME: always
+    }
+}
