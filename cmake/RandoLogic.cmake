@@ -180,17 +180,32 @@ function(rls_add_logic_generation)
 
     # RLS places the executable under console/. Multi-configuration
     # generators add the selected configuration as another directory.
-    if(CMAKE_CONFIGURATION_TYPES)
-        set(
-            RLS_COMPILER_EXECUTABLE
-            "${RLS_COMPILER_BUILD_DIR}/console/Release/RandoLogicScript${CMAKE_EXECUTABLE_SUFFIX}"
-        )
-    else()
-        set(
-            RLS_COMPILER_EXECUTABLE
-            "${RLS_COMPILER_BUILD_DIR}/console/RandoLogicScript${CMAKE_EXECUTABLE_SUFFIX}"
-        )
-    endif()
+    #
+    # Do not test CMAKE_CONFIGURATION_TYPES here. Shipwright can set that
+    # variable even when CMake is using a single-config generator such as
+    # Ninja. Query the active generator directly instead.
+    get_property(
+        RLS_IS_MULTI_CONFIG
+        GLOBAL
+        PROPERTY GENERATOR_IS_MULTI_CONFIG
+    )
+
+    if(RLS_IS_MULTI_CONFIG)
+         set(
+             RLS_COMPILER_EXECUTABLE
+             "${RLS_COMPILER_BUILD_DIR}/console/Release/RandoLogicScript${CMAKE_EXECUTABLE_SUFFIX}"
+         )
+     else()
+         set(
+             RLS_COMPILER_EXECUTABLE
+             "${RLS_COMPILER_BUILD_DIR}/console/RandoLogicScript${CMAKE_EXECUTABLE_SUFFIX}"
+         )
+     endif()
+
+    message(
+        STATUS
+        "RLS compiler executable: ${RLS_COMPILER_EXECUTABLE}"
+    )
 
     # CONFIGURE_DEPENDS makes CMake reconfigure if a new logic file is added.
     file(
