@@ -1,0 +1,19 @@
+# CMake build directories
+/build/
+/build-*/
+/cmake-build-*/
+
+# RandoLogicScript generated output
+/generated/
+
+# Visual Studio
+/.vs/
+
+# Visual Studio Code CMake Tools
+/out/
+
+# CLion
+/.idea/
+
+# macOS
+.DS_Store
