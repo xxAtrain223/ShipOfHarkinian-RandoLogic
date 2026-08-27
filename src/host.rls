@@ -22,3 +22,8 @@ enum TimePasses {
 
 extern define is_child() -> Bool
 extern define is_adult() -> Bool
+
+extern define setting(key: Setting) -> Int
+extern define can_use(item: Item) -> Bool
+
+extern define collected_triforce_pieces() -> Int

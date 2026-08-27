@@ -1,0 +1,5 @@
+extend region RR_ROOT {
+	events {
+        LOGIC_FREED_EPONA: setting(RSK_SKIP_EPONA_RACE)
+	}
+}

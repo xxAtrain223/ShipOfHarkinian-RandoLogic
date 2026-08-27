@@ -1,0 +1,5 @@
+extend region RR_ROOT {
+	events {
+        LOGIC_KAKARIKO_GATE_OPEN: setting(RSK_KAK_GATE) is RO_KAK_GATE_OPEN
+	}
+}
