@@ -3,3 +3,171 @@ define can_climb_ladder():
 
 define can_open_storms_grotto():
 	can_use(RG_SONG_OF_STORMS) and (has(RG_STONE_OF_AGONY) or trick(RT_GROTTOS_WITHOUT_AGONY))
+
+define can_break_mud_walls():
+	blast_or_smash() or (trick(RT_BLUE_FIRE_MUD_WALLS) and blue_fire())
+
+define can_get_deku_baba_sticks():
+	can_use_sword() or can_use(RG_BOOMERANG)
+
+define can_get_deku_baba_nuts():
+	can_jumpslash() or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW) or has_explosives() or can_use(RG_DINS_FIRE)
+
+define can_hit_eye_targets():
+	can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT)
+
+define can_detonoate_bomb_flowers():
+	can_use(RG_FAIRY_BOW) or has_explosives() or can_use(RG_DINS_FIRE)
+
+define can_detonate_upright_bomb_flower():
+	can_detonoate_bomb_flowers() or has(RG_GORONS_BRACELET) or
+	(trick(RT_BLUE_FIRE_MUD_WALLS) and can_use(RG_BOTTLE_WITH_BLUE_FIRE) and (effective_health() != 1 or can_use(RG_NAYRUS_LOVE)))
+
+define can_hammer_recoil_hover(needShield: Bool):
+	can_use(RG_HOVER_BOOTS) and trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_MEGATON_HAMMER) and 
+	(not needShield or can_standing_shield())
+
+define water_3f_central_to_high_emblem():
+	(is_adult() and (can_use(RG_HOVER_BOOTS) or 
+	(trick(RT_DAMAGE_BOOST_SIMPLE) and can_use(RG_BOMB_BAG) and take_damage()))) or
+	can_middair_ground_jump() or (flag(LOGIC_WATER_SCARECROW) and can_use(RG_HOOKSHOT))
+
+define has_bottle():
+	bottle_count() >= 1
+
+define can_use_sword():
+	can_use(RG_KOKIRI_SWORD) or can_use(RG_MASTER_SWORD) or can_use(RG_BIGGORON_SWORD)
+
+define can_jumpslash_except_hammer():
+	can_use(RG_STICKS) or can_use_sword()
+
+define can_jumpslash():
+	can_jumpslash_except_hammer() or can_use(RG_MEGATON_HAMMER)
+
+define can_clear_stalagmite():
+	can_jumpslash() or has_explosives() or can_use(RG_GIANTS_KNIFE) or (trick(RT_ICE_STALAGMITE_HOOKSHOT) and can_use(RG_HOOKSHOT))
+
+define can_hit_switch(distance: Distance = ED_CLOSE, inWater: Bool = false):
+	match distance {
+		ED_CLOSE or
+		ED_SHORT_JUMPSLASH:        can_use(RG_KOKIRI_SWORD) or can_use(RG_MEGATON_HAMMER) or can_use(RG_GIANTS_KNIFE) or
+		ED_MASTER_SWORD_JUMPSLASH: can_use(RG_MASTER_SWORD) or
+		ED_LONG_JUMPSLASH:         can_use(RG_BIGGORON_SWORD) or can_use(RG_STICKS) or
+		ED_BOMB_THROW:             (not inWater and can_use(RG_BOMB_BAG)) or
+		ED_BOOMERANG:              can_use(RG_BOOMERANG) or
+		ED_HOOKSHOT:               can_use(RG_HOOKSHOT) or can_use(RG_BOMBCHU_5) or
+		ED_LONGSHOT:               can_use(RG_LONGSHOT) or
+		ED_FAR:                    can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW)
+	}
+
+define can_damage():
+	can_use(RG_FAIRY_SLINGSHOT) or can_jumpslash() or has_explosives() or can_use(RG_DINS_FIRE) or can_use(RG_FAIRY_BOW)
+
+define can_attack():
+	can_damage() or can_use(RG_BOOMERANG) or can_use(RG_HOOKSHOT)
+
+define bombchu_refill():
+	flag(LOGIC_BUY_BOMBCHUS) or flag(LOGIC_COULD_PLAY_BOWLING) or flag(LOGIC_CARPET_MERCHANT) or setting(RSK_ENABLE_BOMBCHU_DROPS) is RO_AMMO_DROPS_ON
+
+define hookshot_or_boomerang():
+	can_use(RG_HOOKSHOT) or can_use(RG_BOOMERANG)
+
+define scarecrows_song():
+	(setting(RSK_SKIP_SCARECROWS_SONG) and has(RG_FAIRY_OCARINA) and ocarina_buttons() >= 2) or
+	(flag(LOGIC_CHILD_SCARECROW) and flag(LOGIC_ADULT_SCARECROW))
+
+define blue_fire():
+	can_use(RG_BOTTLE_WITH_BLUE_FIRE) or (setting(RSK_BLUE_FIRE_ARROWS) and can_use(RG_ICE_ARROWS))
+
+define can_break_pots(distance: Distance, wallOrFloor: Bool, inWater: Bool):
+	match distance {
+		ED_CLOSE: has(RG_POWER_BRACELET) or
+		ED_SHORT_JUMPSLASH: can_use(RG_KOKIRI_SWORD) or can_use(RG_MEGATON_HAMMER) or can_use(RG_GIANTS_KNIFE) or
+		ED_MASTER_SWORD_JUMPSLASH: can_use(RG_MASTER_SWORD) or
+		ED_LONG_JUMPSLASH: can_use(RG_BIGGORON_SWORD) or can_use(RG_STICKS) or
+		ED_BOMB_THROW: (not inWater and can_use(RG_BOMB_BAG)) or
+		ED_BOOMERANG: can_use(RG_BOOMERANG) or
+		ED_HOOKSHOT: can_use(RG_HOOKSHOT) or
+		ED_LONGSHOT: can_use(RG_LONGSHOT) or
+		ED_FAR: can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW)
+	} or (wallOrFloor and can_use(RG_BOMBCHU_5))
+
+define blast_or_smash():
+	has_explosives() or can_use(RG_MEGATON_HAMMER)
+
+define can_break_crates():
+	always
+
+define can_break_small_crates():
+	can_jumpslash() or has_explosives() or has(RG_POWER_BRACELET)
+
+define can_bonk_trees():
+	always
+
+define can_spawn_soil_skull(bean: Item):
+	is_child() and can_use(RG_BOTTLE_WITH_BUGS) and has(bean)
+
+define can_reflect_nuts():
+	can_use(RG_DEKU_SHIELD) or (is_adult() and has(RG_HYLIAN_SHIELD))
+
+define can_cut_shrubs():
+	can_use(RG_KOKIRI_SWORD) or can_use(RG_BOOMERANG) or has_explosives() or can_use(RG_MASTER_SWORD) or
+	can_use(RG_MEGATON_HAMMER) or can_use(RG_BIGGORON_SWORD) or can_use(RG_GIANTS_KNIFE) or
+	has(RG_GORONS_BRACELET)
+
+define can_stun_deku():
+	can_attack() or can_use(RG_NUTS) or can_reflect_nuts()
+
+define call_gossip_fairy_except_suns():
+	can_use(RG_ZELDAS_LULLABY) or can_use(RG_EPONAS_SONG) or can_use(RG_SONG_OF_TIME)
+
+define call_gossip_fairy():
+	call_gossip_fairy_except_suns() or can_use(RG_SUNS_SONG)
+
+define has_explosives():
+	can_use(RG_BOMB_BAG) or can_use(RG_BOMBCHU_5)
+
+define take_damage():
+	can_use(RG_BOTTLE_WITH_FAIRY) or effective_health() != 1 or can_use(RG_NAYRUS_LOVE)
+
+define can_open_bomb_grotto():
+	blast_or_smash() and (has(RG_STONE_OF_AGONY) or trick(RT_GROTTOS_WITHOUT_AGONY))
+
+define can_get_night_time_gs():
+	at_night() and (can_use(RG_SUNS_SONG) or not setting(RSK_SKULLS_SUNS_SONG))
+
+define can_break_upper_beehives():
+	hookshot_or_boomerang() or (trick(RT_BOMBCHU_BEEHIVES) and can_use(RG_BOMBCHU_5)) or
+	(setting(RSK_SLINGBOW_BREAK_BEEHIVES) and (can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT)))
+
+define can_break_lower_beehives():
+	can_break_upper_beehives() or can_use(RG_BOMB_BAG)
+
+define has_fire_source():
+	can_use(RG_DINS_FIRE) or can_use(RG_FIRE_ARROWS)
+
+define has_fire_source_with_torch():
+	has_fire_source() or can_use(RG_STICKS)
+
+define sunlight_arrows():
+	setting(RSK_SUNLIGHT_ARROWS) and can_use(RG_LIGHT_ARROWS)
+define can_standing_shield():
+	can_use(RG_MIRROR_SHIELD) or (is_adult() and has(RG_HYLIAN_SHIELD)) or can_use(RG_DEKU_SHIELD)
+
+define can_shield():
+	can_use(RG_MIRROR_SHIELD) or has(RG_HYLIAN_SHIELD) or can_use(RG_DEKU_SHIELD)
+
+define can_use_projectile():
+	has_explosives() or can_use(RG_FAIRY_BOW) or can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_SLINGSHOT) or
+	can_use(RG_BOOMERANG)
+
+define has_projectile(age: HasProjectileAge):
+	has_explosives() or
+	(age is Child and (can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_BOOMERANG))) or
+	(age is Adult and (can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW))) or
+	(age is Both and (can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_BOOMERANG)) and (can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW))) or
+	(age is Either and (can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_BOOMERANG) or can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW)))
+
+define can_middair_ground_jump(hasBombflower: Bool = false):
+	trick(RT_GROUND_JUMP_HARD) and can_standing_shield() and can_use(RG_HOVER_BOOTS) and
+	(can_use(RG_BOMB_BAG) or (hasBombflower and has(RG_GORONS_BRACELET)))
