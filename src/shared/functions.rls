@@ -1,0 +1,5 @@
+define can_climb_ladder():
+	has(RG_CLIMB) or (trick(RT_HOOKSHOT_LADDERS) and can_use(RG_HOOKSHOT))
+
+define can_open_storms_grotto():
+	can_use(RG_SONG_OF_STORMS) and (has(RG_STONE_OF_AGONY) or trick(RT_GROTTOS_WITHOUT_AGONY))
