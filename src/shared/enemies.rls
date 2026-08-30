@@ -1,15 +1,184 @@
 define can_kill(e: Enemy, distance = ED_CLOSE, wall_or_floor = true, quantity = 1, timer = false, in_water = false):
     match e {
+        RE_GERUDO_GUARD or
+        RE_BREAK_ROOM_GUARD: never
+
         RE_GOLD_SKULLTULA: _can_kill_gold_skulltula(distance, wall_or_floor)
+
+        RE_GOHMA_LARVA or
+        RE_MAD_SCRUB or
+        RE_DEKU_BABA or
+        RE_POE: can_attack()
+
+        RE_BIG_SKULLTULA: _can_kill_big_skulltula(distance, wall_or_floor)
+        RE_DODONGO: can_use_sword() or can_use(RG_MEGATON_HAMMER) or (quantity <= 5 and can_use(RG_STICKS)) or has_explosives() or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW)
+        RE_LIZALFOS: can_jumpslash() or has_explosives() or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW)
+        
+        RE_KEESE or
+        RE_FIRE_KEESE or
+        RE_GUAY: _can_kill_guay_keese_skulltula(e, distance, wall_or_floor, in_water)
+
+        RE_BLUE_BUBBLE: blast_or_smash() or can_use(RG_FAIRY_BOW) or ((can_jumpslash_except_hammer() or can_use(RG_FAIRY_SLINGSHOT)) and (can_use(RG_NUTS) or hookshot_or_boomerang() or can_standing_shield()))
+        RE_DEAD_HAND: can_use_sword() or (can_use(RG_STICKS) and trick(RT_BOTW_CHILD_DEADHAND))
+        RE_WITHERED_DEKU_BABA: can_use_sword() or can_use(RG_BOOMERANG)
+        
+        RE_LIKE_LIKE or
+        RE_FLOORMASTER: can_damage()
+
+        RE_STALFOS: _can_kill_stalfos(distance, wall_or_floor, quantity, timer, in_water)
+        RE_IRON_KNUCKLE: can_use_sword() or can_use(RG_MEGATON_HAMMER) or has_explosives()
+        RE_FLARE_DANCER: can_use(RG_MEGATON_HAMMER) or can_use(RG_HOOKSHOT) or (has_explosives() and (can_jumpslash_except_hammer() or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_BOOMERANG)))
+
+        RE_WOLFOS or
+        RE_WHITE_WOLFOS or
+        RE_WALLMASTER: can_jumpslash() or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_BOMBCHU_5) or can_use(RG_DINS_FIRE) or (can_use(RG_BOMB_BAG) and (can_use(RG_NUTS) or can_use(RG_HOOKSHOT) or can_use(RG_BOOMERANG)))
+
+        RE_GERUDO_WARRIOR: can_jumpslash() or can_use(RG_FAIRY_BOW) or (trick(RT_GF_WARRIOR_WITH_DIFFICULT_WEAPON) and (can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_BOMBCHU_5)))
+
+        RE_GIBDO or
+        RE_REDEAD: can_jumpslash() or can_use(RG_DINS_FIRE)
+
+        RE_MEG: can_use(RG_FAIRY_BOW) or can_use(RG_HOOKSHOT) or has_explosives()
+        RE_ARMOS: blast_or_smash() or can_use(RG_MASTER_SWORD) or can_use(RG_BIGGORON_SWORD) or can_use(RG_STICKS) or can_use(RG_FAIRY_BOW) or ((can_use(RG_NUTS) or can_use(RG_HOOKSHOT) or can_use(RG_BOOMERANG)) and (can_use(RG_KOKIRI_SWORD) or can_use(RG_FAIRY_SLINGSHOT)))
+        RE_GREEN_BUBBLE: can_jumpslash() or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT) or has_explosives()
+        RE_DINOLFOS: can_jumpslash() or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT) or (not timer and can_use(RG_BOMBCHU_5))
+        RE_TORCH_SLUG: can_jumpslash() or has_explosives() or can_use(RG_FAIRY_BOW)
+        RE_FREEZARD: can_use(RG_MASTER_SWORD) or can_use(RG_BIGGORON_SWORD) or can_use(RG_MEGATON_HAMMER) or can_use(RG_STICKS) or has_explosives() or can_use(RG_HOOKSHOT) or can_use(RG_DINS_FIRE) or can_use(RG_FIRE_ARROWS)
+        RE_SHELL_BLADE: can_jumpslash() or has_explosives() or can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW) or can_use(RG_DINS_FIRE)
+        RE_SPIKE: can_use(RG_MASTER_SWORD) or can_use(RG_BIGGORON_SWORD) or can_use(RG_MEGATON_HAMMER) or can_use(RG_STICKS) or has_explosives() or can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW) or can_use(RG_DINS_FIRE)
+        RE_STINGER: _can_kill_stinger(distance, wall_or_floor, in_water)
+        RE_BIG_OCTO: can_use(RG_KOKIRI_SWORD) or can_use(RG_STICKS) or can_use(RG_MASTER_SWORD)
+
+        RE_GOHMA: has_boss_soul(RG_GOHMA_SOUL) and can_jumpslash() and (can_use(RG_NUTS) or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW) or hookshot_or_boomerang())
+        RE_KING_DODONGO: has_boss_soul(RG_KING_DODONGO_SOUL) and can_jumpslash() and (can_use(RG_BOMB_BAG) or has(RG_GORONS_BRACELET) or (trick(RT_DC_DODONGO_CHU) and is_adult() and can_use(RG_BOMBCHU_5)))
+        RE_BARINADE: has_boss_soul(RG_BARINADE_SOUL) and can_use(RG_BOOMERANG) and (can_jumpslash_except_hammer() or (trick(RT_JABU_BARINADE_POTS) and has(RG_POWER_BRACELET)))
+        RE_PHANTOM_GANON: has_boss_soul(RG_PHANTOM_GANON_SOUL) and can_use_sword() and (can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT))
+        RE_VOLVAGIA: has_boss_soul(RG_VOLVAGIA_SOUL) and can_use(RG_MEGATON_HAMMER)
+        RE_MORPHA: has_boss_soul(RG_MORPHA_SOUL) and (can_use(RG_HOOKSHOT) or (trick(RT_WATER_MORPHA_WITHOUT_HOOKSHOT) and has(RG_BRONZE_SCALE))) and (can_use_sword() or can_use(RG_MEGATON_HAMMER))
+        RE_BONGO_BONGO: has_boss_soul(RG_BONGO_BONGO_SOUL) and (can_use(RG_LENS_OF_TRUTH) or trick(RT_LENS_BONGO)) and can_use_sword() and (can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT) or trick(RT_SHADOW_BONGO))
+        RE_TWINROVA: has_boss_soul(RG_TWINROVA_SOUL) and can_use(RG_MIRROR_SHIELD) and (can_use_sword() or can_use(RG_MEGATON_HAMMER))
+        RE_GANONDORF: has_boss_soul(RG_GANON_SOUL) and can_use(RG_LIGHT_ARROWS) and can_use_sword()
+        RE_GANON: has_boss_soul(RG_GANON_SOUL) and can_use(RG_MASTER_SWORD)
+
+        RE_DARK_LINK: can_use_sword() or (can_use(RG_BOOMERANG) and (can_use(RG_FAIRY_BOW) or can_use(RG_STICKS) or can_use(RG_MEGATON_HAMMER) or has_explosives())) or (can_use(RG_NUTS) and (can_use(RG_STICKS) or can_use(RG_MEGATON_HAMMER)))
+        RE_ANUBIS: has_fire_source()
+        RE_BEAMOS: has_explosives()
+        RE_PURPLE_LEEVER: can_use(RG_MASTER_SWORD) or can_use(RG_BIGGORON_SWORD)
+        RE_TENTACLE: can_use(RG_BOOMERANG)
+        RE_BARI: hookshot_or_boomerang() or can_use(RG_FAIRY_BOW) or has_explosives() or can_use(RG_MEGATON_HAMMER) or can_use(RG_STICKS) or can_use(RG_DINS_FIRE) or (take_damage() and can_use_sword())
+        RE_SHABOM: can_use(RG_BOOMERANG) or can_use(RG_NUTS) or can_jumpslash() or can_use(RG_DINS_FIRE) or can_use(RG_ICE_ARROWS) or effective_health() >= quantity / 2 + 1
+        RE_OCTOROK: can_reflect_nuts() or hookshot_or_boomerang() or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_BOMB_BAG) or (wall_or_floor and can_use(RG_BOMBCHU_5))
+        RE_WALLTULA: _can_kill_walltula(distance, in_water)
+
+        _: never
     }
 
 define can_pass(e: Enemy, distance = ED_CLOSE, wall_or_floor = true):
     can_kill(e, distance, wall_or_floor) or
     match e {
-        RE_GOLD_SKULLTULA: always
+        RE_GOLD_SKULLTULA or
+        RE_GOHMA_LARVA or
+        RE_LIZALFOS or
+        RE_DODONGO or
+        RE_MAD_SCRUB or
+        RE_KEESE or
+        RE_FIRE_KEESE or
+        RE_BLUE_BUBBLE or
+        RE_DEAD_HAND or
+        RE_DEKU_BABA or
+        RE_WITHERED_DEKU_BABA or
+        RE_STALFOS or
+        RE_FLARE_DANCER or
+        RE_WOLFOS or
+        RE_WHITE_WOLFOS or
+        RE_FLOORMASTER or
+        RE_MEG or
+        RE_ARMOS or
+        RE_FREEZARD or
+        RE_SPIKE or
+        RE_DARK_LINK or
+        RE_ANUBIS or
+        RE_WALLMASTER or
+        RE_PURPLE_LEEVER or
+        RE_OCTOROK: always
+
+        RE_GERUDO_GUARD: trick(RT_PASS_GUARDS_WITH_NOTHING) or has(RG_GERUDO_MEMBERSHIP_CARD) or can_use(RG_FAIRY_BOW) or can_use(RG_HOOKSHOT)
+        RE_BREAK_ROOM_GUARD: has(RG_GERUDO_MEMBERSHIP_CARD) or can_use(RG_FAIRY_BOW) or can_use(RG_HOOKSHOT)
+        RE_BIG_SKULLTULA: can_use(RG_NUTS) or can_use(RG_BOOMERANG) or (trick(RT_BIG_SKULLTULA_PAUSE_LIFT) and wall_or_floor and distance is ED_CLOSE)
+        RE_LIKE_LIKE: can_use(RG_HOOKSHOT) or can_use(RG_BOOMERANG)
+
+        RE_GIBDO or
+        RE_REDEAD: always
+
+        RE_IRON_KNUCKLE or
+        RE_BIG_OCTO or
+        RE_WALLTULA: never
+
+        RE_GREEN_BUBBLE: take_damage() or can_use(RG_NUTS) or can_use(RG_BOOMERANG) or can_use(RG_HOOKSHOT)
+
+        _: never
     }
 
-define _can_kill_gold_skulltula(distance, wall_or_floor):
+define can_avoid(e: Enemy, grounded = false, quantity = 1):
+    can_kill(e, ED_CLOSE, true, quantity) or
+    match e {
+        RE_GOLD_SKULLTULA or
+        RE_GOHMA_LARVA or
+        RE_LIZALFOS or
+        RE_DODONGO or
+        RE_BIG_SKULLTULA or
+        RE_DEAD_HAND or
+        RE_DEKU_BABA or
+        RE_WITHERED_DEKU_BABA or
+        RE_LIKE_LIKE or
+        RE_STALFOS or
+        RE_IRON_KNUCKLE or
+        RE_FLARE_DANCER or
+        RE_WOLFOS or
+        RE_WHITE_WOLFOS or
+        RE_FLOORMASTER or
+        RE_REDEAD or
+        RE_MEG or
+        RE_ARMOS or
+        RE_GREEN_BUBBLE or
+        RE_FREEZARD or
+        RE_SHELL_BLADE or
+        RE_SPIKE or
+        RE_BIG_OCTO or
+        RE_GIBDO or
+        RE_DARK_LINK or
+        RE_WALLMASTER or
+        RE_ANUBIS or
+        RE_PURPLE_LEEVER or
+        RE_WALLTULA: always
+
+        RE_BEAMOS: not grounded or can_use(RG_NUTS) or can_use(RG_DINS_FIRE) or (quantity == 1 and (can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT)))
+        RE_MAD_SCRUB: not grounded or can_use(RG_NUTS)
+
+        RE_KEESE or
+        RE_FIRE_KEESE or
+        RE_GUAY: can_use(RG_NUTS) or can_use(RG_SKULL_MASK)
+
+        RE_BLUE_BUBBLE: not grounded or can_use(RG_NUTS) or hookshot_or_boomerang() or can_standing_shield()
+        RE_TORCH_SLUG: not grounded or can_use(RG_NUTS) or can_use(RG_HOOKSHOT) or can_use(RG_DINS_FIRE)
+
+        _: never
+    }
+
+define can_get_drop(e: Enemy, distance = ED_CLOSE, above_link = false):
+    can_kill(e, distance) and
+    (distance <= ED_MASTER_SWORD_JUMPSLASH or
+    match e {
+        RE_GOLD_SKULLTULA: _gold_skulltula_drop(distance)
+
+        RE_KEESE or
+        RE_FIRE_KEESE or
+        RE_GUAY: always
+
+        _: above_link or (distance <= ED_BOOMERANG and can_use(RG_BOOMERANG))
+    })
+
+define _can_kill_gold_skulltula(distance: Distance, wall_or_floor: Bool):
     match distance {
         ED_CLOSE:                  can_use(RG_MEGATON_HAMMER) or
         ED_SHORT_JUMPSLASH:        can_use(RG_KOKIRI_SWORD) or
@@ -20,4 +189,82 @@ define _can_kill_gold_skulltula(distance, wall_or_floor):
         ED_HOOKSHOT:               can_use(RG_HOOKSHOT) or
         ED_LONGSHOT:               can_use(RG_LONGSHOT) or (wall_or_floor and can_use(RG_BOMBCHU_5)) or
         ED_FAR:                    can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW)
+    }
+
+define _can_kill_big_skulltula(distance: Distance, wall_or_floor: Bool):
+    match distance {
+        ED_CLOSE:                  can_use(RG_MEGATON_HAMMER) or
+        ED_SHORT_JUMPSLASH:        can_use(RG_KOKIRI_SWORD) or
+        ED_MASTER_SWORD_JUMPSLASH: can_use(RG_MASTER_SWORD) or
+        ED_LONG_JUMPSLASH:         can_use(RG_BIGGORON_SWORD) or can_use(RG_STICKS) or
+        ED_BOMB_THROW:             can_use(RG_BOMB_BAG) or can_use(RG_DINS_FIRE) or
+        ED_BOOMERANG or
+        ED_HOOKSHOT:               can_use(RG_HOOKSHOT) or (wall_or_floor and can_use(RG_BOMBCHU_5)) or
+        ED_LONGSHOT:               can_use(RG_LONGSHOT) or
+        ED_FAR:                    can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW)
+    }
+
+define _can_kill_guay_keese_skulltula(enemy: Enemy, distance: Distance, wall_or_floor: Bool, in_water: Bool):
+    match distance {
+        ED_CLOSE or
+        ED_SHORT_JUMPSLASH:        can_use(RG_MEGATON_HAMMER) or can_use(RG_KOKIRI_SWORD) or
+        ED_MASTER_SWORD_JUMPSLASH: can_use(RG_MASTER_SWORD) or
+        ED_LONG_JUMPSLASH:         can_use(RG_BIGGORON_SWORD) or can_use(RG_STICKS) or
+        ED_BOMB_THROW:             (not in_water and can_use(RG_BOMB_BAG)) or (enemy is RE_GUAY and can_use(RG_DINS_FIRE)) or
+        ED_BOOMERANG:              can_use(RG_BOOMERANG) or
+        ED_HOOKSHOT:               can_use(RG_HOOKSHOT) or (wall_or_floor and can_use(RG_BOMBCHU_5)) or
+        ED_LONGSHOT:               can_use(RG_LONGSHOT) or
+        ED_FAR:                    can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW)
+    }
+
+define _can_kill_stalfos(distance: Distance, wall_or_floor: Bool, quantity: Int, timer: Int, in_water: Bool):
+    match distance {
+        ED_CLOSE or
+        ED_SHORT_JUMPSLASH:        can_use(RG_MEGATON_HAMMER) or can_use(RG_KOKIRI_SWORD) or
+        ED_MASTER_SWORD_JUMPSLASH: can_use(RG_MASTER_SWORD) or
+        ED_LONG_JUMPSLASH:         can_use(RG_BIGGORON_SWORD) or (quantity <= 1 and can_use(RG_STICKS)) or
+        ED_BOMB_THROW:             (quantity <= 2 and not timer and not in_water and (can_use(RG_NUTS) or hookshot_or_boomerang()) and can_use(RG_BOMB_BAG)) or
+        ED_BOOMERANG or
+        ED_HOOKSHOT:               (wall_or_floor and can_use(RG_BOMBCHU_5)) or
+        ED_LONGSHOT or
+        ED_FAR:                    can_use(RG_FAIRY_BOW)
+    }
+
+define _can_kill_stinger(distance: Distance, wall_or_floor: Bool, in_water: Bool):
+    match distance {
+        ED_CLOSE or
+        ED_SHORT_JUMPSLASH:        can_use(RG_MEGATON_HAMMER) or can_use(RG_KOKIRI_SWORD) or
+        ED_MASTER_SWORD_JUMPSLASH: can_use(RG_MASTER_SWORD) or
+        ED_LONG_JUMPSLASH:         can_use(RG_BIGGORON_SWORD) or can_use(RG_STICKS) or
+        ED_BOMB_THROW:             (not in_water and can_use(RG_BOMB_BAG)) or
+        ED_BOOMERANG or
+        ED_HOOKSHOT:               can_use(RG_HOOKSHOT) or (wall_or_floor and can_use(RG_BOMBCHU_5)) or
+        ED_LONGSHOT:               can_use(RG_LONGSHOT) or
+        ED_FAR:                    can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW)
+    }
+
+define _can_kill_walltula(distance: Distance, in_water: Bool):
+    match distance {
+        ED_CLOSE or
+        ED_SHORT_JUMPSLASH:        can_use(RG_KOKIRI_SWORD) or
+        ED_MASTER_SWORD_JUMPSLASH: can_use(RG_MASTER_SWORD) or
+        ED_LONG_JUMPSLASH:         can_use(RG_BIGGORON_SWORD) or can_use(RG_STICKS) or
+        ED_BOMB_THROW:             (not in_water and can_use(RG_BOMB_BAG)) or can_use(RG_DINS_FIRE) or
+        ED_BOOMERANG:              can_use(RG_BOOMERANG) or
+        ED_HOOKSHOT:               can_use(RG_HOOKSHOT) or can_use(RG_BOMBCHU_5) or can_use(RG_MEGATON_HAMMER) or
+        ED_LONGSHOT:               can_use(RG_LONGSHOT) or
+        ED_FAR:                    can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW)
+    }
+
+define _gold_skulltula_drop(distance: Distance):
+    match distance {
+        ED_CLOSE or
+        ED_SHORT_JUMPSLASH or
+        ED_MASTER_SWORD_JUMPSLASH or
+        ED_LONG_JUMPSLASH or
+        ED_BOMB_THROW or
+        ED_BOOMERANG:              can_use(RG_BOOMERANG) or
+        ED_HOOKSHOT:               can_use(RG_HOOKSHOT) or
+        ED_LONGSHOT:               can_use(RG_LONGSHOT) or
+        ED_FAR:                    never
     }
