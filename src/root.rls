@@ -6,7 +6,7 @@ region RR_ROOT {
     
     locations {
         RC_LINKS_POCKET: always
-        RC_TRIFORCE_COMPLETED: collected_triforce_pieces() >= setting(RSK_TRIFORCE_HUNT_PIECES_REQUIRED) + 1
+        RC_TRIFORCE_COMPLETED: collected_triforce_pieces() >= required_triforce_pieces()
 
         RC_SARIA_SONG_HINT: can_use(RG_SARIAS_SONG)
         RC_SONG_FROM_IMPA: setting(RSK_SKIP_CHILD_ZELDA)

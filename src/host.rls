@@ -20,6 +20,21 @@ enum TimePasses {
     No
 }
 
+enum WaterLevel {
+    WL_LOW,
+    WL_MID,
+    WL_HIGH,
+    WL_LOW_OR_MID,
+    WL_HIGH_OR_MID
+}
+
+enum HasProjectileAge {
+    Child,
+    Adult,
+    Both,
+    Either
+}
+
 extern define setting(key: Setting) -> Int
 extern define has(item: Item) -> Bool
 extern define flag(key: Event) -> Bool
@@ -28,7 +43,26 @@ extern define trick(key: Trick) -> Bool
 extern define is_child() -> Bool
 extern define is_adult() -> Bool
 
+extern define at_day() -> Bool
+extern define at_night() -> Bool
+
 extern define can_use(item: Item) -> Bool
 extern define can_plant_bean(reg: Region, bean: Item) -> Bool
+extern define bottle_count() -> Int
+extern define ocarina_buttons() -> Int
+extern define bombchus_enabled() -> Bool
+extern define effective_health() -> Int
+extern define hearts() -> Int
+extern define dungeon_count() -> Int
+extern define stone_count() -> Int
+extern define medallion_count() -> Int
+extern define fire_timer() -> Int
+extern define water_timer() -> Int
+extern define get_gs_count() -> Int
 
+extern define can_build_rainbow_bridge() -> Bool
+extern define can_trigger_lacs() -> Bool
+extern define small_keys(scene: Scene, requiredAmount: Int) -> Bool
+
+extern define required_triforce_pieces() -> Int
 extern define collected_triforce_pieces() -> Int
