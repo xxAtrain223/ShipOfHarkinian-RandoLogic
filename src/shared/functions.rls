@@ -328,3 +328,9 @@ define statue_room_mq_key_logic():
 	((is_child() and flag(LOGIC_REVERSE_SPIRIT_CHILD) and can_hit_switch() and
 	(has(RG_CLIMB) or can_use(RG_LONGSHOT))) and small_keys(SCENE_SPIRIT_TEMPLE, 6)) or
 	small_keys(SCENE_SPIRIT_TEMPLE, 7)
+
+define wallet_capacity():
+    has(RG_TYCOON_WALLET) ? 999 :
+    has(RG_GIANT_WALLET) ? 500 :
+    has(RG_ADULT_WALLET) ? 200 :
+    has(RG_CHILD_WALLET) ? 99 : 0

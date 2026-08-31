@@ -2,6 +2,10 @@ region RR_KOKIRI_FOREST {
     name: "Kokiri Forest"
     scene: SCENE_KOKIRI_FOREST
 
+    events {
+        LOGIC_SHOWED_MIDO_SWORD_AND_SHIELD: is_child() and has(RG_SPEAK_KOKIRI) and can_use(RG_KOKIRI_SWORD) and can_use(RG_DEKU_SHIELD)
+    }
+
     exits {
         RR_KF_BOULDER_LOOP: can_use(RG_CRAWL)
         RR_KF_LINKS_PORCH:
@@ -30,6 +34,10 @@ region RR_KF_BOULDER_LOOP {
     name: "KF Boulder Loop"
     scene: SCENE_KOKIRI_FOREST
 
+    locations {
+        RC_KF_KOKIRI_SWORD_CHEST: is_child() and has(RG_OPEN_CHEST)
+    }
+
     exits {
         RR_KOKIRI_FOREST: can_use(RG_CRAWL)
     }
@@ -38,6 +46,13 @@ region RR_KF_BOULDER_LOOP {
 region RR_KF_OUTSIDE_DEKU_TREE {
     name: "KF Outside Deku Tree"
     scene: SCENE_KOKIRI_FOREST
+
+    events {
+        LOGIC_STICK_ACCESS: can_get_deku_baba_sticks()
+        LOGIC_NUT_ACCESS: can_get_deku_baba_nuts()
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy_except_suns()
+        LOGIC_SHOWED_MIDO_SWORD_AND_SHIELD: is_child() and has(RG_SPEAK_KOKIRI) and can_use(RG_KOKIRI_SWORD) and can_use(RG_DEKU_SHIELD)
+    }
 
     exits {
         RR_DEKU_TREE_ENTRYWAY:
@@ -72,6 +87,13 @@ region RR_KF_LINKS_HOUSE {
 region RR_KF_MIDOS_HOUSE {
     name: "KF Mido's House"
     scene: SCENE_MIDOS_HOUSE
+
+    locations {
+        RC_KF_MIDOS_TOP_LEFT_CHEST:     has(RG_OPEN_CHEST)
+        RC_KF_MIDOS_TOP_RIGHT_CHEST:    has(RG_OPEN_CHEST)
+        RC_KF_MIDOS_BOTTOM_LEFT_CHEST:  has(RG_OPEN_CHEST)
+        RC_KF_MIDOS_BOTTOM_RIGHT_CHEST: has(RG_OPEN_CHEST)
+    }
 
     exits {
         RR_KOKIRI_FOREST: always
@@ -138,6 +160,10 @@ region RR_KF_RUPEE_ALCOVE {
 region RR_KF_STORMS_GROTTO {
     name: "KF Storms Grotto"
     scene: SCENE_GROTTOS
+
+    locations {
+        RC_KF_STORMS_GROTTO_CHEST: has(RG_OPEN_CHEST)
+    }
 
     exits {
         RR_KF_OUTSIDE_LOST_WOODS: always

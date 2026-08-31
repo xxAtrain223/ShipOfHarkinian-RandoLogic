@@ -59,6 +59,7 @@ extern define medallion_count() -> Int
 extern define fire_timer() -> Int
 extern define water_timer() -> Int
 extern define get_gs_count() -> Int
+extern define check_price(check: Location = RC_UNKNOWN_CHECK) -> Int
 
 extern define can_build_rainbow_bridge() -> Bool
 extern define can_trigger_lacs() -> Bool
