@@ -217,7 +217,7 @@ define _can_kill_guay_keese_skulltula(enemy: Enemy, distance: Distance, wall_or_
         ED_FAR:                    can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW)
     }
 
-define _can_kill_stalfos(distance: Distance, wall_or_floor: Bool, quantity: Int, timer: Int, in_water: Bool):
+define _can_kill_stalfos(distance: Distance, wall_or_floor: Bool, quantity: Int, timer: Bool, in_water: Bool):
     match distance {
         ED_CLOSE or
         ED_SHORT_JUMPSLASH:        can_use(RG_MEGATON_HAMMER) or can_use(RG_KOKIRI_SWORD) or
