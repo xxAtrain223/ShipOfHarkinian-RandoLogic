@@ -16,3 +16,20 @@ extend region RR_KF_STORMS_GROTTO {
         RC_KF_STORMS_GROTTO_GOSSIP_STONE: always
     }
 }
+
+extend region RR_TOT_ENTRANCE {
+    locations {
+        RC_TOT_LEFTMOST_GOSSIP_STONE: always
+        RC_TOT_LEFT_CENTER_GOSSIP_STONE: always
+        RC_TOT_RIGHT_CENTER_GOSSIP_STONE: always
+        RC_TOT_RIGHTMOST_GOSSIP_STONE: always
+    }
+}
+
+extend region RR_TEMPLE_OF_TIME {
+    locations {
+        RC_ALTAR_HINT_CHILD: is_child()
+        RC_ALTAR_HINT_ADULT: is_adult()
+        RC_TOT_SHEIK_HINT: is_adult() and has(RG_SPEAK_HYLIAN)
+    }
+}

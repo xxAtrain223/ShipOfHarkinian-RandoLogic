@@ -1,0 +1,38 @@
+region RR_TOT_ENTRANCE {
+    name: "ToT Entrance"
+    scene: SCENE_TEMPLE_OF_TIME_EXTERIOR_DAY
+
+    exits {
+        RR_THE_MARKET: always
+        RR_TEMPLE_OF_TIME: always
+    }
+}
+
+region RR_TEMPLE_OF_TIME{
+    name: "Temple of Time"
+    scene: SCENE_TEMPLE_OF_TIME
+
+    locations {
+        RC_TOT_LIGHT_ARROWS_CUTSCENE: is_adult() and can_trigger_lacs()        
+    }
+
+    exits {
+        RR_TOT_ENTRANCE: always
+        RR_TOT_BEYOND_DOOR_OF_TIME: setting(RSK_DOOR_OF_TIME) is RO_DOOROFTIME_OPEN or (can_use(RG_SONG_OF_TIME) and (setting(RSK_DOOR_OF_TIME) is RO_DOOROFTIME_SONGONLY or (stone_count() == 3 and has(RG_OCARINA_OF_TIME))))
+    }
+}
+
+region RR_TOT_BEYOND_DOOR_OF_TIME {
+    name: "Beyond Door of Time"
+    scene: SCENE_TEMPLE_OF_TIME
+
+    locations {
+        RC_TOT_MASTER_SWORD: is_adult()
+        RC_GIFT_FROM_RARU: is_adult()
+        RC_SHEIK_AT_TEMPLE: has(RG_FOREST_MEDALLION) and is_adult()
+    }
+
+    exits {
+        RR_TEMPLE_OF_TIME: always
+    }
+}
