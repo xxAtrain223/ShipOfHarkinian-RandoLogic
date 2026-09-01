@@ -150,6 +150,12 @@ region RR_KF_STORMS_GROTTO {
     name: "KF Storms Grotto"
     scene: SCENE_GROTTOS
 
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy() or can_use(RG_STICKS)
+        LOGIC_BUG_ACCESS: can_cut_shrubs()
+        LOGIC_FISH_ACCESS: always
+    }
+
     exits {
         RR_KF_OUTSIDE_LOST_WOODS: always
     }
