@@ -1,0 +1,5 @@
+extend region RR_THE_MARKET {
+    locations {
+        RC_MARKET_TREE: is_child() and can_bonk_trees()
+    }
+}

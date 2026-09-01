@@ -7,3 +7,9 @@ extend region RR_KOKIRI_FOREST {
 			 (trick(RT_KF_ADULT_GS) and can_use(RG_HOVER_BOOTS) and can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH)))
 	}
 }
+
+extend region RR_MARKET_GUARD_HOUSE {
+	locations {
+		RC_MARKET_GS_GUARD_HOUSE: is_child() and can_break_crates() and (has(RG_POWER_BRACELET) or can_kill(RE_GOLD_SKULLTULA))
+	}
+}

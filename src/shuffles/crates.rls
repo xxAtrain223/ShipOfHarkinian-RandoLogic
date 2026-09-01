@@ -1,0 +1,24 @@
+extend region RR_THE_MARKET {
+    locations {
+        RC_MK_NEAR_BAZAAR_CRATE_1: is_child() # and can_roll()
+        RC_MK_NEAR_BAZAAR_CRATE_2: is_child() # and can_roll()
+        RC_MK_SHOOTING_GALLERY_CRATE_1: is_child() # and can_roll()
+        RC_MK_SHOOTING_GALLERY_CRATE_2: is_child() # and can_roll()
+    }
+}
+
+extend region RR_MARKET_GUARD_HOUSE {
+    locations {
+        RC_MK_GUARD_HOUSE_CRATE_1: is_child() and can_break_crates()
+        RC_MK_GUARD_HOUSE_CRATE_2: is_child() and can_break_crates()
+        RC_MK_GUARD_HOUSE_CRATE_3: is_child() and can_break_crates()
+        RC_MK_GUARD_HOUSE_CRATE_4: is_child() and can_break_crates()
+        RC_MK_GUARD_HOUSE_CRATE_5: is_child() and can_break_crates()
+    }
+}
+
+extend region RR_MARKET_DOG_LADY_HOUSE {
+    locations {
+        RC_MK_LOST_DOG_HOUSE_CRATE:can_break_crates()
+    }
+}

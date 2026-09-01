@@ -51,3 +51,16 @@ extend region RR_KF_STORMS_GROTTO {
         RC_KF_STORMS_GROTTO_GRASS_4: can_cut_shrubs()
     }
 }
+
+extend region RR_THE_MARKET {
+    locations {
+        RC_MARKET_GRASS_1: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+        RC_MARKET_GRASS_2: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+        RC_MARKET_GRASS_3: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+        RC_MARKET_GRASS_4: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+        RC_MARKET_GRASS_5: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+        RC_MARKET_GRASS_6: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+        RC_MARKET_GRASS_7: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+        RC_MARKET_GRASS_8: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+    }
+}

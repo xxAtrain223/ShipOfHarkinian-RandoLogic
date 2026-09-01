@@ -10,3 +10,42 @@ extend region RR_KF_KOKIRI_SHOP {
 		RC_KF_SHOP_ITEM_8: has(RG_SPEAK_KOKIRI) and check_price() <= wallet_capacity()
 	}
 }
+
+extend region RR_MARKET_BAZAAR {
+	locations {
+		RC_MARKET_BAZAAR_ITEM_1: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_BAZAAR_ITEM_2: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_BAZAAR_ITEM_3: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_BAZAAR_ITEM_4: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_BAZAAR_ITEM_5: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_BAZAAR_ITEM_6: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_BAZAAR_ITEM_7: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_BAZAAR_ITEM_8: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+	}
+}
+
+extend region RR_MARKET_POTION_SHOP {
+	locations {
+		RC_MARKET_POTION_SHOP_ITEM_1: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_POTION_SHOP_ITEM_2: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_POTION_SHOP_ITEM_3: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_POTION_SHOP_ITEM_4: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_POTION_SHOP_ITEM_5: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_POTION_SHOP_ITEM_6: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_POTION_SHOP_ITEM_7: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_POTION_SHOP_ITEM_8: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()	
+	}
+}
+
+extend region RR_MARKET_BOMBCHU_SHOP {
+	locations {
+		RC_MARKET_BOMBCHU_SHOP_ITEM_1: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_BOMBCHU_SHOP_ITEM_2: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_BOMBCHU_SHOP_ITEM_3: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_BOMBCHU_SHOP_ITEM_4: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_BOMBCHU_SHOP_ITEM_5: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_BOMBCHU_SHOP_ITEM_6: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_BOMBCHU_SHOP_ITEM_7: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+		RC_MARKET_BOMBCHU_SHOP_ITEM_8: has(RG_SPEAK_HYLIAN)and check_price() <= wallet_capacity()
+	}
+}

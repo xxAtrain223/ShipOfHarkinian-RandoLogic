@@ -1,0 +1,177 @@
+region RR_MARKET_ENTRANCE {
+    name: "Market Entrance"
+    scene: SCENE_MARKET_ENTRANCE
+
+    exits {
+        RR_HYRULE_FIELD: is_adult() or at_day()
+        RR_THE_MARKET: always
+        RR_MARKET_GUARD_HOUSE: can_open_overworld_door(RG_GUARD_HOUSE_KEY)
+    }
+}
+
+region RR_THE_MARKET {
+    name: "Market"
+    scene: SCENE_MARKET_DAY
+
+    exits {
+        RR_MARKET_ENTRANCE: always
+        RR_TOT_ENTRANCE: always
+        RR_CASTLE_GROUNDS: always
+        RR_MARKET_BAZAAR: is_child() and at_day() and can_open_overworld_door(RG_MARKET_BAZAAR_KEY)
+        RR_MARKET_MASK_SHOP: is_child() and at_day() and can_open_overworld_door(RG_MASK_SHOP_KEY)
+        RR_MARKET_SHOOTING_GALLERY: is_child() and at_day()  and can_open_overworld_door(RG_MARKET_SHOOTING_GALLERY_KEY)
+        RR_MARKET_BOMBCHU_BOWLING: is_child() and can_open_overworld_door(RG_BOMBCHU_BOWLING_KEY)
+        RR_MARKET_TREASURE_CHEST_GAME: is_child() and at_night() and can_open_overworld_door(RG_TREASURE_CHEST_GAME_BUILDING_KEY)
+        RR_MARKET_POTION_SHOP: is_child() and at_day() and can_open_overworld_door(RG_MARKET_POTION_SHOP_KEY)
+        RR_MARKET_BACK_ALLEY: is_child()
+    }
+}
+
+region RR_MARKET_BACK_ALLEY {
+    name: "Market Back Alley"
+    scene: SCENE_BACK_ALLEY_DAY
+
+    exits {
+        RR_THE_MARKET: always
+        RR_MARKET_BOMBCHU_SHOP: at_night() and can_open_overworld_door(RG_BOMBCHU_SHOP_KEY)
+        RR_MARKET_DOG_LADY_HOUSE: can_open_overworld_door(RG_RICHARDS_HOUSE_KEY)
+        RR_MARKET_MAN_IN_GREEN_HOUSE: at_night() and can_open_overworld_door(RG_ALLEY_HOUSE_KEY)
+    }
+}
+
+region RR_MARKET_GUARD_HOUSE {
+    name: "Market Guard House"
+    scene: SCENE_MARKET_GUARD_HOUSE
+
+    events {
+        LOGIC_CAN_EMPTY_BIG_POES: is_adult()
+    }
+
+    locations {
+        RC_MARKET_10_BIG_POES: is_adult() and has(RG_SPEAK_HYLIAN) and (flag(LOGIC_BIG_POE_KILL) or get_big_poe_count() >= setting(RSK_BIG_POE_COUNT))
+    }
+
+    exits {
+        RR_MARKET_ENTRANCE: always
+    }
+}
+
+region RR_MARKET_BAZAAR {
+    name: "Market Bazaar"
+    scene: SCENE_BAZAAR
+
+    exits {
+        RR_THE_MARKET: always
+    }
+}
+
+region RR_MARKET_MASK_SHOP {
+    name: "Market Mask Shop"
+    scene: SCENE_HAPPY_MASK_SHOP
+
+    events {
+        LOGIC_CAN_BORROW_MASKS: has(RG_ZELDAS_LETTER) and has(RG_SPEAK_HYLIAN) and flag(LOGIC_KAKARIKO_GATE_OPEN)
+        LOGIC_BORROW_SKULL_MASK: setting(RSK_MASK_QUEST) is RO_MASK_QUEST_COMPLETED and has(RG_SPEAK_HYLIAN) and flag(LOGIC_CAN_BORROW_MASKS)
+        LOGIC_BORROW_SPOOKY_MASK: setting(RSK_MASK_QUEST) is RO_MASK_QUEST_COMPLETED and has(RG_SPEAK_HYLIAN) and flag(LOGIC_CAN_BORROW_MASKS)
+        LOGIC_BORROW_BUNNY_HOOD: setting(RSK_MASK_QUEST) is RO_MASK_QUEST_COMPLETED and has(RG_SPEAK_HYLIAN) and flag(LOGIC_CAN_BORROW_MASKS)
+        LOGIC_BORROW_RIGHT_MASKS: setting(RSK_MASK_QUEST) is RO_MASK_QUEST_COMPLETED and has(RG_SPEAK_HYLIAN) and flag(LOGIC_CAN_BORROW_MASKS)
+    }
+
+    exits {
+        RR_THE_MARKET: always
+    }
+}
+
+region RR_MARKET_SHOOTING_GALLERY {
+    name: "Market Shooting Gallery"
+    scene: SCENE_SHOOTING_GALLERY
+
+    locations {
+        RC_MARKET_SHOOTING_GALLERY_REWARD: is_child() and has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN)
+    }
+
+    exits {
+        RR_THE_MARKET: always
+    }
+}
+
+region RR_MARKET_BOMBCHU_BOWLING {
+    name: "Market Bombchu Bowling"
+    scene: SCENE_BOMBCHU_BOWLING_ALLEY
+
+    events {
+        LOGIC_COULD_PLAY_BOWLING: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN)
+    }
+
+    locations {
+        RC_MARKET_BOMBCHU_BOWLING_FIRST_PRIZE: flag(LOGIC_COULD_PLAY_BOWLING) and bombchus_enabled()
+        RC_MARKET_BOMBCHU_BOWLING_SECOND_PRIZE: flag(LOGIC_COULD_PLAY_BOWLING) and bombchus_enabled()
+    }
+
+    exits {
+        RR_THE_MARKET: always
+    }
+}
+
+region RR_MARKET_POTION_SHOP {
+    name: "Market Potion Shop"
+    scene: SCENE_POTION_SHOP_MARKET
+    
+    exits {
+        RR_THE_MARKET: always
+    }
+}
+
+region RR_MARKET_TREASURE_CHEST_GAME {
+    name: "Market Treasure Chest Game"
+    scene: SCENE_TREASURE_CHEST_SHOP
+
+    locations {
+        RC_MARKET_TREASURE_CHEST_GAME_REWARD: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and has(RG_OPEN_CHEST) and ((can_use(RG_LENS_OF_TRUTH) and not setting(RSK_SHUFFLE_CHEST_MINIGAME)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_SINGLE_KEYS and small_keys(SCENE_TREASURE_BOX_SHOP, 6)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_PACK and small_keys(SCENE_TREASURE_BOX_SHOP, 1))) 
+        RC_MARKET_TREASURE_CHEST_GAME_KEY_1: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and has(RG_OPEN_CHEST) and ((can_use(RG_LENS_OF_TRUTH) and not setting(RSK_SHUFFLE_CHEST_MINIGAME)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_SINGLE_KEYS and small_keys(SCENE_TREASURE_BOX_SHOP, 1)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_PACK and small_keys(SCENE_TREASURE_BOX_SHOP, 1))) 
+        RC_MARKET_TREASURE_CHEST_GAME_ITEM_1: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and has(RG_OPEN_CHEST) and ((can_use(RG_LENS_OF_TRUTH) and not setting(RSK_SHUFFLE_CHEST_MINIGAME)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_SINGLE_KEYS and small_keys(SCENE_TREASURE_BOX_SHOP, 1)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_PACK and small_keys(SCENE_TREASURE_BOX_SHOP, 1))) 
+        RC_MARKET_TREASURE_CHEST_GAME_KEY_2: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and has(RG_OPEN_CHEST) and ((can_use(RG_LENS_OF_TRUTH) and not setting(RSK_SHUFFLE_CHEST_MINIGAME)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_SINGLE_KEYS and small_keys(SCENE_TREASURE_BOX_SHOP, 2)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_PACK and small_keys(SCENE_TREASURE_BOX_SHOP, 1))) 
+        RC_MARKET_TREASURE_CHEST_GAME_ITEM_2: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and has(RG_OPEN_CHEST) and ((can_use(RG_LENS_OF_TRUTH) and not setting(RSK_SHUFFLE_CHEST_MINIGAME)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_SINGLE_KEYS and small_keys(SCENE_TREASURE_BOX_SHOP, 2)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_PACK and small_keys(SCENE_TREASURE_BOX_SHOP, 1)))  
+        RC_MARKET_TREASURE_CHEST_GAME_KEY_3: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and has(RG_OPEN_CHEST) and ((can_use(RG_LENS_OF_TRUTH) and not setting(RSK_SHUFFLE_CHEST_MINIGAME)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_SINGLE_KEYS and small_keys(SCENE_TREASURE_BOX_SHOP, 3)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_PACK and small_keys(SCENE_TREASURE_BOX_SHOP, 1)))  
+        RC_MARKET_TREASURE_CHEST_GAME_ITEM_3: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and has(RG_OPEN_CHEST) and ((can_use(RG_LENS_OF_TRUTH) and not setting(RSK_SHUFFLE_CHEST_MINIGAME)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_SINGLE_KEYS and small_keys(SCENE_TREASURE_BOX_SHOP, 3)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_PACK and small_keys(SCENE_TREASURE_BOX_SHOP, 1)))  
+        RC_MARKET_TREASURE_CHEST_GAME_KEY_4: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and has(RG_OPEN_CHEST) and ((can_use(RG_LENS_OF_TRUTH) and not setting(RSK_SHUFFLE_CHEST_MINIGAME)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_SINGLE_KEYS and small_keys(SCENE_TREASURE_BOX_SHOP, 4)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_PACK and small_keys(SCENE_TREASURE_BOX_SHOP, 1)))  
+        RC_MARKET_TREASURE_CHEST_GAME_ITEM_4: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and has(RG_OPEN_CHEST) and ((can_use(RG_LENS_OF_TRUTH) and not setting(RSK_SHUFFLE_CHEST_MINIGAME)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_SINGLE_KEYS and small_keys(SCENE_TREASURE_BOX_SHOP, 4)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_PACK and small_keys(SCENE_TREASURE_BOX_SHOP, 1)))  
+        RC_MARKET_TREASURE_CHEST_GAME_KEY_5: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and has(RG_OPEN_CHEST) and ((can_use(RG_LENS_OF_TRUTH) and not setting(RSK_SHUFFLE_CHEST_MINIGAME)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_SINGLE_KEYS and small_keys(SCENE_TREASURE_BOX_SHOP, 5)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_PACK and small_keys(SCENE_TREASURE_BOX_SHOP, 1)))  
+        RC_MARKET_TREASURE_CHEST_GAME_ITEM_5: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and has(RG_OPEN_CHEST) and ((can_use(RG_LENS_OF_TRUTH) and not setting(RSK_SHUFFLE_CHEST_MINIGAME)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_SINGLE_KEYS and small_keys(SCENE_TREASURE_BOX_SHOP, 5)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_PACK and small_keys(SCENE_TREASURE_BOX_SHOP, 1)))  
+    }
+
+    exits {
+        RR_THE_MARKET: always
+    }
+}
+
+region RR_MARKET_BOMBCHU_SHOP {
+    name: "Market Bombchu Shop"
+    scene: SCENE_BOMBCHU_SHOP
+
+    exits {
+        RR_MARKET_BACK_ALLEY: always
+    }
+}
+
+region RR_MARKET_DOG_LADY_HOUSE {
+    name: "Market Dog Lady House"
+    scene: SCENE_DOG_LADY_HOUSE
+
+    locations {
+        RC_MARKET_LOST_DOG: is_child() and at_night() and has(RG_SPEAK_HYLIAN)
+    }
+
+    exits {
+        RR_MARKET_BACK_ALLEY: always
+    }
+}
+
+region RR_MARKET_MAN_IN_GREEN_HOUSE {
+    name: "Market Man in Green House"
+    scene: SCENE_BACK_ALLEY_HOUSE
+
+    exits {
+        RR_MARKET_BACK_ALLEY: always
+    }
+}
