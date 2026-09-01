@@ -1,0 +1,20 @@
+extend region RR_KF_BOULDER_LOOP {
+    locations {
+        RC_KF_KOKIRI_SWORD_CHEST: is_child() and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_KF_MIDOS_HOUSE {
+    locations {
+        RC_KF_MIDOS_TOP_LEFT_CHEST:     has(RG_OPEN_CHEST)
+        RC_KF_MIDOS_TOP_RIGHT_CHEST:    has(RG_OPEN_CHEST)
+        RC_KF_MIDOS_BOTTOM_LEFT_CHEST:  has(RG_OPEN_CHEST)
+        RC_KF_MIDOS_BOTTOM_RIGHT_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_KF_STORMS_GROTTO {
+    locations {
+        RC_KF_STORMS_GROTTO_CHEST: has(RG_OPEN_CHEST)
+    }
+}

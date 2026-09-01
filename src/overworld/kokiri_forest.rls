@@ -33,11 +33,7 @@ region RR_KOKIRI_FOREST {
 region RR_KF_BOULDER_LOOP {
     name: "KF Boulder Loop"
     scene: SCENE_KOKIRI_FOREST
-
-    locations {
-        RC_KF_KOKIRI_SWORD_CHEST: is_child() and has(RG_OPEN_CHEST)
-    }
-
+    
     exits {
         RR_KOKIRI_FOREST: can_use(RG_CRAWL)
     }
@@ -87,14 +83,7 @@ region RR_KF_LINKS_HOUSE {
 region RR_KF_MIDOS_HOUSE {
     name: "KF Mido's House"
     scene: SCENE_MIDOS_HOUSE
-
-    locations {
-        RC_KF_MIDOS_TOP_LEFT_CHEST:     has(RG_OPEN_CHEST)
-        RC_KF_MIDOS_TOP_RIGHT_CHEST:    has(RG_OPEN_CHEST)
-        RC_KF_MIDOS_BOTTOM_LEFT_CHEST:  has(RG_OPEN_CHEST)
-        RC_KF_MIDOS_BOTTOM_RIGHT_CHEST: has(RG_OPEN_CHEST)
-    }
-
+    
     exits {
         RR_KOKIRI_FOREST: always
     }
@@ -160,10 +149,6 @@ region RR_KF_RUPEE_ALCOVE {
 region RR_KF_STORMS_GROTTO {
     name: "KF Storms Grotto"
     scene: SCENE_GROTTOS
-
-    locations {
-        RC_KF_STORMS_GROTTO_CHEST: has(RG_OPEN_CHEST)
-    }
 
     exits {
         RR_KF_OUTSIDE_LOST_WOODS: always
