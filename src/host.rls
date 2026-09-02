@@ -46,6 +46,11 @@ extern define is_adult() -> Bool
 extern define at_day() -> Bool
 extern define at_night() -> Bool
 
+extern define is_vanilla() -> Bool
+extern define is_mq() -> Bool
+
+extern define any_age(condition: Condition) -> Bool
+
 extern define can_use(item: Item) -> Bool
 extern define can_plant_bean(reg: Region, bean: Item) -> Bool
 extern define bottle_count() -> Int

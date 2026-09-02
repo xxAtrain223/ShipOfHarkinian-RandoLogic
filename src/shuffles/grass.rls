@@ -64,3 +64,92 @@ extend region RR_THE_MARKET {
         RC_MARKET_GRASS_8: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
     }
 }
+
+extend region RR_DEKU_TREE_LOBBY {
+    locations {
+        RC_DEKU_TREE_LOBBY_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_LOBBY_GRASS_2: can_cut_shrubs()
+        RC_DEKU_TREE_LOBBY_GRASS_3: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_LOBBY_2F {
+    locations {
+        RC_DEKU_TREE_2F_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_2F_GRASS_2: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_SLINGSHOT_ROOM {
+    locations {
+        RC_DEKU_TREE_SLINGSHOT_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_SLINGSHOT_GRASS_2: can_cut_shrubs()
+        RC_DEKU_TREE_SLINGSHOT_GRASS_3: can_cut_shrubs()
+        RC_DEKU_TREE_SLINGSHOT_GRASS_4: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_COMPASS_ROOM {
+    locations {
+        RC_DEKU_TREE_COMPASS_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_COMPASS_GRASS_2: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_BASEMENT_LOWER {
+    locations {
+        RC_DEKU_TREE_BASEMENT_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_BASEMENT_GRASS_2: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_BASEMENT_SCRUB_ROOM {
+    locations {
+        RC_DEKU_TREE_BASEMENT_SCRUB_ROOM_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_BASEMENT_SCRUB_ROOM_GRASS_2: can_cut_shrubs()
+        RC_DEKU_TREE_BASEMENT_SCRUB_ROOM_GRASS_3: can_cut_shrubs()
+        RC_DEKU_TREE_BASEMENT_SCRUB_ROOM_GRASS_4: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_BASEMENT_WATER_ROOM_BACK {
+    locations {
+        RC_DEKU_TREE_BASEMENT_SPIKE_ROLLER_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_BASEMENT_SPIKE_ROLLER_GRASS_2: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_BASEMENT_TORCH_ROOM {
+    locations {
+        RC_DEKU_TREE_BASEMENT_TORCHES_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_BASEMENT_TORCHES_GRASS_2: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_BASEMENT_BACK_LOBBY {
+    locations {
+        RC_DEKU_TREE_BASEMENT_LARVAE_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_BASEMENT_LARVAE_GRASS_2: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_OUTSIDE_BOSS_ROOM {
+    locations {
+        RC_DEKU_TREE_BEFORE_BOSS_GRASS_1: can_cut_shrubs() and has_fire_source_with_torch()
+        RC_DEKU_TREE_BEFORE_BOSS_GRASS_2: can_cut_shrubs() and has_fire_source_with_torch()
+        RC_DEKU_TREE_BEFORE_BOSS_GRASS_3: can_cut_shrubs() and has_fire_source_with_torch()
+    }
+}
+
+extend region RR_DEKU_TREE_BOSS_ROOM {
+    locations {
+        RC_DEKU_TREE_QUEEN_GOHMA_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_QUEEN_GOHMA_GRASS_2: can_cut_shrubs()
+        RC_DEKU_TREE_QUEEN_GOHMA_GRASS_3: can_cut_shrubs()
+        RC_DEKU_TREE_QUEEN_GOHMA_GRASS_4: can_cut_shrubs()
+        RC_DEKU_TREE_QUEEN_GOHMA_GRASS_5: can_cut_shrubs()
+        RC_DEKU_TREE_QUEEN_GOHMA_GRASS_6: can_cut_shrubs()
+        RC_DEKU_TREE_QUEEN_GOHMA_GRASS_7: can_cut_shrubs()
+        RC_DEKU_TREE_QUEEN_GOHMA_GRASS_8: can_cut_shrubs()
+    }
+}

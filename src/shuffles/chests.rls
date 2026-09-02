@@ -18,3 +18,29 @@ extend region RR_KF_STORMS_GROTTO {
         RC_KF_STORMS_GROTTO_CHEST: has(RG_OPEN_CHEST)
     }
 }
+
+extend region RR_DEKU_TREE_LOBBY_2F {
+    locations {
+        RC_DEKU_TREE_MAP_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DEKU_TREE_SLINGSHOT_ROOM {
+    locations {
+        RC_DEKU_TREE_SLINGSHOT_CHEST: has(RG_OPEN_CHEST)
+        RC_DEKU_TREE_SLINGSHOT_ROOM_SIDE_CHEST: (has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DEKU_TREE_COMPASS_ROOM {
+    locations {
+        RC_DEKU_TREE_COMPASS_CHEST: has(RG_OPEN_CHEST)
+        RC_DEKU_TREE_COMPASS_ROOM_SIDE_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DEKU_TREE_BASEMENT_LOWER {
+    locations {
+        RC_DEKU_TREE_BASEMENT_CHEST: has(RG_OPEN_CHEST)
+    }
+}

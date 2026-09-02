@@ -13,3 +13,24 @@ extend region RR_MARKET_GUARD_HOUSE {
 		RC_MARKET_GS_GUARD_HOUSE: is_child() and can_break_crates() and (has(RG_POWER_BRACELET) or can_kill(RE_GOLD_SKULLTULA))
 	}
 }
+
+extend region RR_DEKU_TREE_COMPASS_ROOM {
+    locations {
+        RC_DEKU_TREE_GS_COMPASS_ROOM: can_attack()
+    }
+}
+
+extend region RR_DEKU_TREE_BASEMENT_LOWER {
+    locations {
+        RC_DEKU_TREE_GS_BASEMENT_GATE: can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH)
+        RC_DEKU_TREE_GS_BASEMENT_VINES:
+            can_kill(RE_GOLD_SKULLTULA, trick(RT_DEKU_MQ_COMPASS_GS) ? ED_SHORT_JUMPSLASH : ED_BOMB_THROW) and
+            (has(RG_CLIMB) or can_use(RG_HOOKSHOT) or can_use(RG_BOOMERANG))
+    }
+}
+
+extend region RR_DEKU_TREE_BASEMENT_BACK_ROOM {
+    locations {
+        RC_DEKU_TREE_GS_BASEMENT_BACK_ROOM: hookshot_or_boomerang()
+    }
+}
