@@ -1,0 +1,224 @@
+region RR_CASTLE_GROUNDS {
+    name: "Castle Grounds"
+    scene: SCENE_OUTSIDE_GANONS_CASTLE
+    timePasses: TimePasses.No
+    areas: [RA_CASTLE_GROUNDS]
+
+    exits {
+        RR_THE_MARKET: always
+        RR_HC_GATE: is_child()
+        RR_GANONS_CASTLE_GROUNDS: is_adult()
+    }
+}
+
+region RR_CASTLE_GROUNDS_FROM_GREAT_FAIRY {
+    name: "Castle Grounds From Great Fairy"
+    scene: SCENE_OUTSIDE_GANONS_CASTLE
+    timePasses: TimePasses.No
+    areas: [RA_CASTLE_GROUNDS]
+
+    exits {
+        RR_HC_PAST_GATE: is_child()
+        RR_GANONS_CASTLE_GROUNDS: is_adult()
+    }
+}
+
+region RR_HC_GATE {
+    name: "Hyrule Castle Gate"
+    scene: SCENE_HYRULE_CASTLE
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy() or can_use(RG_STICKS)
+        LOGIC_BUG_ACCESS: has(RG_POWER_BRACELET)
+    }
+
+    locations {
+        RC_HC_MALON_EGG: has(RG_SPEAK_HYLIAN)
+    }
+
+    exits {
+        RR_CASTLE_GROUNDS: always
+        RR_HC_ABOVE_VINE: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
+        RR_HC_PAST_GATE: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN)
+    }
+}
+
+region RR_HC_ABOVE_VINE {
+    name: "Hyrule Castle Above Vine"
+    scene: SCENE_HYRULE_CASTLE
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy()
+    }
+
+    exits {
+        RR_HC_GATE: always
+        RR_HC_PAST_GATE: always
+    }
+}
+
+region RR_HC_PAST_GATE {
+    name: "Hyrule Castle Past Gate"
+    scene: SCENE_HYRULE_CASTLE
+
+    events {
+        LOGIC_FAIRY_ACCESS: can_use(RG_STICKS)
+    }
+
+    exits {
+        RR_HC_GATE: always
+        RR_HC_ABOVE_VINE: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
+        RR_HC_ABOVE_CLIMBABLE_ROCKS: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
+        RR_HC_GREAT_FAIRY_FOUNTAIN: blast_or_smash() and can_use(RG_CRAWL)
+    }
+}
+
+region RR_HC_ABOVE_CLIMBABLE_ROCKS {
+    name: "Hyrule Castle Above Climbable Rocks"
+    scene: SCENE_HYRULE_CASTLE
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy()
+    }
+
+    exits {
+        RR_HC_PAST_GATE: always
+        RR_HC_MOAT: always
+    }
+}
+
+region RR_HC_MOAT {
+    name: "Hyrule Castle Grounds"
+    scene: SCENE_HYRULE_CASTLE
+
+    exits {
+        RR_HC_GATE: always
+        RR_HC_STORMS_GROTTO: can_open_storms_grotto()
+        RR_HC_DRAIN_LEDGE:
+            (can_use(RG_WEIRD_EGG) and has(RG_POWER_BRACELET) and has(RG_SPEAK_HYLIAN)) or
+            (trick(RT_DAMAGE_BOOST_SIMPLE) and take_damage() and has_explosives() and can_jumpslash())
+    }
+}
+
+region RR_HC_DRAIN_LEDGE {
+    name: "Hyrule Castle Drain Ledge"
+    scene: SCENE_HYRULE_CASTLE
+
+    exits {
+        RR_HC_MOAT: always
+        RR_HC_GARDEN: can_use(RG_CRAWL)
+    }
+}
+
+region RR_HC_GARDEN {
+    name: "HC Garden"
+    scene: SCENE_CASTLE_COURTYARD_ZELDA
+
+    locations {
+        RC_HC_ZELDAS_LETTER: has(RG_SPEAK_HYLIAN)
+        RC_SONG_FROM_IMPA: has(RG_SPEAK_HYLIAN)
+    }
+
+    exits {
+        # if this ever gets shuffled leaving garden area should come out crawlspace
+        RR_HC_DRAIN_LEDGE: always
+    }
+}
+
+region RR_HC_GREAT_FAIRY_FOUNTAIN {
+    name: "HC Great Fairy Fountain"
+    scene: SCENE_GREAT_FAIRYS_FOUNTAIN_SPELLS
+
+    locations {
+        RC_HC_GREAT_FAIRY_REWARD: can_use(RG_ZELDAS_LULLABY)
+    }
+
+    exits {
+        RR_CASTLE_GROUNDS_FROM_GREAT_FAIRY: always
+    }
+}
+
+region RR_HC_STORMS_GROTTO {
+    name: "HC Storms Grotto"
+    scene: SCENE_GROTTOS
+
+    exits {
+        RR_CASTLE_GROUNDS_FROM_GROTTO: always
+        RR_HC_STORMS_GROTTO_BEHIND_WALLS: can_break_mud_walls()
+    }
+}
+
+region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
+    name: "HC Storms Grotto Behind Walls"
+    scene: SCENE_GROTTOS
+
+    events {
+        LOGIC_NUT_ACCESS: can_break_pots()
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy()
+        LOGIC_BUG_ACCESS: always
+    }
+
+    exits {
+        RR_HC_STORMS_GROTTO: always
+    }
+}
+
+region RR_CASTLE_GROUNDS_FROM_GROTTO {
+    name: "Castle Grounds From Grotto"
+    scene: SCENE_OUTSIDE_GANONS_CASTLE
+    timePasses: TimePasses.No
+    areas: [RA_CASTLE_GROUNDS]
+
+    exits {
+        RR_HC_MOAT: is_child()
+        RR_GANONS_CASTLE_GROUNDS: is_adult()
+    }
+}
+
+region RR_GANONS_CASTLE_GROUNDS {
+    name: "Ganon's Castle Grounds"
+    scene: SCENE_OUTSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_BUILD_RAINBOW_BRIDGE: can_build_rainbow_bridge()
+    }
+
+    exits {
+        RR_CASTLE_GROUNDS: at_night()
+        RR_OGC_GREAT_FAIRY_FOUNTAIN: can_use(RG_GOLDEN_GAUNTLETS) and at_night()
+        RR_GANONS_CASTLE_LEDGE: flag(LOGIC_BUILD_RAINBOW_BRIDGE)
+    }
+}
+
+region RR_OGC_GREAT_FAIRY_FOUNTAIN {
+    name: "OGC Great Fairy Fountain"
+    scene: SCENE_GREAT_FAIRYS_FOUNTAIN_MAGIC
+
+    locations {
+        RC_OGC_GREAT_FAIRY_REWARD: can_use(RG_ZELDAS_LULLABY)
+    }
+
+    exits {
+        RR_CASTLE_GROUNDS_FROM_GREAT_FAIRY: always
+    }
+}
+
+region RR_CASTLE_GROUNDS_FROM_GANONS_CASTLE {
+    name: "Castle Grounds From Ganon's Castle"
+    scene: SCENE_OUTSIDE_GANONS_CASTLE
+
+    exits {
+        RR_HC_DRAIN_LEDGE: is_child()
+        RR_GANONS_CASTLE_LEDGE: is_adult()
+    }
+}
+
+region RR_GANONS_CASTLE_LEDGE {
+    name: "Ganon's Castle Ledge"
+    scene: SCENE_OUTSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_GROUNDS: flag(LOGIC_BUILD_RAINBOW_BRIDGE)
+        RR_GANONS_CASTLE_ENTRYWAY: is_adult()
+    }
+}

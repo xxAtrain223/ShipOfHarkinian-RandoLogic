@@ -2,6 +2,10 @@ region RR_TOT_ENTRANCE {
     name: "ToT Entrance"
     scene: SCENE_TEMPLE_OF_TIME_EXTERIOR_DAY
 
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy_except_suns()
+    }
+
     exits {
         RR_THE_MARKET: always
         RR_TEMPLE_OF_TIME: always

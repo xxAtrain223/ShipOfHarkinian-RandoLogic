@@ -34,3 +34,31 @@ extend region RR_DEKU_TREE_BASEMENT_BACK_ROOM {
         RC_DEKU_TREE_GS_BASEMENT_BACK_ROOM: hookshot_or_boomerang()
     }
 }
+
+extend region RR_HC_GATE {
+	locations {
+		RC_HC_GS_TREE: can_bonk_trees() and can_kill(RE_GOLD_SKULLTULA, ED_CLOSE)
+	}
+}
+
+extend region RR_HC_STORMS_GROTTO {
+	locations {
+		RC_HC_GS_STORMS_GROTTO: can_use(RG_BOOMERANG) and trick(RT_HC_STORMS_GS)
+	}
+}
+
+extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
+	locations {
+		RC_HC_GS_STORMS_GROTTO: hookshot_or_boomerang()
+	}
+}
+
+extend region RR_GANONS_CASTLE_GROUNDS {
+	locations {
+		RC_OGC_GS:
+			can_jumpslash_except_hammer() or
+			can_use_projectile() or
+			(can_shield() and can_use(RG_MEGATON_HAMMER)) or
+			can_use(RG_DINS_FIRE)
+	}
+}

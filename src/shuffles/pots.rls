@@ -85,3 +85,11 @@ extend region RR_MARKET_MAN_IN_GREEN_HOUSE {
         RC_MK_BACK_ALLEY_HOUSE_POT_3: has(RG_POWER_BRACELET)
     }
 }
+extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
+    locations {
+        RC_HC_STORMS_GROTTO_POT_1: can_break_pots()
+        RC_HC_STORMS_GROTTO_POT_2: can_break_pots()
+        RC_HC_STORMS_GROTTO_POT_3: can_break_pots()
+        RC_HC_STORMS_GROTTO_POT_4: can_break_pots()
+    }
+}

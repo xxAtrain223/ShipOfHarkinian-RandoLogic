@@ -3,3 +3,27 @@ extend region RR_THE_MARKET {
         RC_MARKET_TREE: is_child() and can_bonk_trees()
     }
 }
+extend region RR_HC_GATE {
+    locations {
+        RC_HC_SKULLTULA_TREE: can_bonk_trees()
+    }
+}
+
+extend region RR_HC_PAST_GATE {
+    locations {
+        RC_HC_NEAR_GUARDS_TREE_1: can_bonk_trees()
+        RC_HC_NEAR_GUARDS_TREE_2: can_bonk_trees()
+        RC_HC_NEAR_GUARDS_TREE_3: can_bonk_trees()
+        RC_HC_NEAR_GUARDS_TREE_4: can_bonk_trees()
+        RC_HC_NEAR_GUARDS_TREE_5: can_bonk_trees()
+        RC_HC_NEAR_GUARDS_TREE_6: can_bonk_trees()
+        RC_HC_NL_TREE_1: never
+        RC_HC_NL_TREE_2: never
+    }
+}
+
+extend region RR_HC_MOAT {
+    locations {
+        RC_HC_GROTTO_TREE: can_bonk_trees()
+    }
+}

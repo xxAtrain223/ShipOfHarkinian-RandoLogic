@@ -1,10 +1,4 @@
 extend region RR_KOKIRI_FOREST {
-    events {
-        LOGIC_FAIRY_ACCESS: call_gossip_fairy_except_suns() or (is_child() and can_use(RG_MAGIC_BEAN) and has(RG_KOKIRI_FOREST_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS))
-    }
-}
-
-extend region RR_KOKIRI_FOREST {
     locations {
         RC_KF_BEAN_SPROUT_FAIRY_1: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_KOKIRI_FOREST_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
         RC_KF_BEAN_SPROUT_FAIRY_2: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_KOKIRI_FOREST_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
@@ -36,10 +30,6 @@ extend region RR_KF_STORMS_GROTTO {
 }
 
 extend region RR_TOT_ENTRANCE {
-    events {
-        LOGIC_FAIRY_ACCESS: call_gossip_fairy_except_suns()
-    }
-    
     locations {
         RC_TOT_LEFTMOST_GOSSIP_STONE_FAIRY: call_gossip_fairy_except_suns() or (can_use(RG_SUNS_SONG) and is_adult())
         RC_TOT_LEFTMOST_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_TIME)
@@ -49,5 +39,26 @@ extend region RR_TOT_ENTRANCE {
         RC_TOT_RIGHT_CENTER_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_TIME)
         RC_TOT_RIGHTMOST_GOSSIP_STONE_FAIRY: call_gossip_fairy_except_suns() or (can_use(RG_SUNS_SONG) and is_adult())
         RC_TOT_RIGHTMOST_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_TIME)
+    }
+}
+
+extend region RR_HC_ABOVE_VINE {
+    locations {
+        RC_HC_MALON_GOSSIP_STONE_FAIRY: call_gossip_fairy()
+        RC_HC_MALON_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_HC_ABOVE_CLIMBABLE_ROCKS {
+    locations {
+        RC_HC_ROCK_WALL_GOSSIP_STONE_FAIRY: call_gossip_fairy()
+        RC_HC_ROCK_WALL_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
+    locations {
+        RC_HC_STORMS_GROTTO_GOSSIP_STONE_FAIRY: call_gossip_fairy()
+        RC_HC_STORMS_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
     }
 }

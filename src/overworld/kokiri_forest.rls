@@ -3,6 +3,7 @@ region RR_KOKIRI_FOREST {
     scene: SCENE_KOKIRI_FOREST
 
     events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy_except_suns() or (is_child() and can_use(RG_MAGIC_BEAN) and has(RG_KOKIRI_FOREST_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS))
         LOGIC_SHOWED_MIDO_SWORD_AND_SHIELD: is_child() and has(RG_SPEAK_KOKIRI) and can_use(RG_KOKIRI_SWORD) and can_use(RG_DEKU_SHIELD)
     }
 

@@ -153,3 +153,9 @@ extend region RR_DEKU_TREE_BOSS_ROOM {
         RC_DEKU_TREE_QUEEN_GOHMA_GRASS_8: can_cut_shrubs()
     }
 }
+extend region RR_HC_MOAT {
+    locations {
+        RC_HC_GRASS_1: can_cut_shrubs()
+        RC_HC_GRASS_2: can_cut_shrubs()
+    }
+}

@@ -39,3 +39,20 @@ extend region RR_MARKET_MASK_SHOP {
         RC_MASK_SHOP_HINT: always
     }
 }
+extend region RR_HC_ABOVE_VINE {
+    locations {
+        RC_HC_MALON_GOSSIP_STONE: always
+    }
+}
+
+extend region RR_HC_ABOVE_CLIMBABLE_ROCKS {
+    locations {
+        RC_HC_ROCK_WALL_GOSSIP_STONE: always
+    }
+}
+
+extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
+    locations {
+        RC_HC_STORMS_GROTTO_GOSSIP_STONE: always
+    }
+}
