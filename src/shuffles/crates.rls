@@ -22,3 +22,16 @@ extend region RR_MARKET_DOG_LADY_HOUSE {
         RC_MK_LOST_DOG_HOUSE_CRATE:can_break_crates()
     }
 }
+
+extend region RR_DEKU_TREE_MQ_2F {
+    locations {
+        RC_DEKU_TREE_MQ_LOBBY_CRATE: can_break_crates()
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_SLINGSHOT_ROOM {
+    locations {
+        RC_DEKU_TREE_MQ_SLINGSHOT_ROOM_CRATE_1: can_break_crates()
+        RC_DEKU_TREE_MQ_SLINGSHOT_ROOM_CRATE_2: can_break_crates()
+    }
+}

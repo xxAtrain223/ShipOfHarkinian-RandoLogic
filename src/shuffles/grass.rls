@@ -153,6 +153,128 @@ extend region RR_DEKU_TREE_BOSS_ROOM {
         RC_DEKU_TREE_QUEEN_GOHMA_GRASS_8: can_cut_shrubs()
     }
 }
+
+extend region RR_DEKU_TREE_MQ_1F {
+    locations {
+        RC_DEKU_TREE_MQ_LOBBY_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_LOBBY_GRASS_2: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_LOBBY_GRASS_3: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_LOBBY_GRASS_4: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_LOBBY_GRASS_5: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_2F {
+    locations {
+        RC_DEKU_TREE_MQ_2F_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_2F_GRASS_2: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_SLINGSHOT_ROOM {
+    locations {
+        RC_DEKU_TREE_MQ_SLINGSHOT_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_SLINGSHOT_GRASS_2: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_SLINGSHOT_GRASS_3: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_SLINGSHOT_GRASS_4: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_EYE_TARGET_ROOM {
+    locations {
+        RC_DEKU_TREE_MQ_BEFORE_COMPASS_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BEFORE_COMPASS_GRASS_2: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BEFORE_COMPASS_GRASS_3: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BEFORE_COMPASS_GRASS_4: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BEFORE_COMPASS_GRASS_5: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BEFORE_COMPASS_GRASS_6: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BEFORE_COMPASS_GRASS_7: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_COMPASS_ROOM {
+    locations {
+        RC_DEKU_TREE_MQ_COMPASS_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_COMPASS_GRASS_2: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_COMPASS_GRASS_3: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_COMPASS_GRASS_4: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_BASEMENT {
+    locations {
+        RC_DEKU_TREE_MQ_BASEMENT_LOWER_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_LOWER_GRASS_2: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_LOWER_GRASS_3: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_LOWER_GRASS_4: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_BASEMENT_SOUTHEAST_ROOM {
+    locations {
+        RC_DEKU_TREE_MQ_BASEMENT_TORCHES_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_TORCHES_GRASS_2: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_TORCHES_GRASS_3: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_TORCHES_GRASS_4: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_BASEMENT_WATER_ROOM_FRONT {
+    locations {
+        RC_DEKU_TREE_MQ_BASEMENT_SPIKE_ROLLER_FRONT_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_SPIKE_ROLLER_FRONT_GRASS_2: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_SPIKE_ROLLER_FRONT_GRASS_3: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_BASEMENT_WATER_ROOM_BACK {
+    locations {
+        RC_DEKU_TREE_MQ_BASEMENT_SPIKE_ROLLER_BACK_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_SPIKE_ROLLER_BACK_GRASS_2: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_BASEMENT_SOUTHWEST_ROOM {
+    locations {
+        RC_DEKU_TREE_MQ_BASEMENT_LARVAE_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_LARVAE_GRASS_2: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_BASEMENT_GRAVE_ROOM {
+    locations {
+        RC_DEKU_TREE_MQ_BASEMENT_GRAVES_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_GRAVES_GRASS_2: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_GRAVES_GRASS_3: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_GRAVES_GRASS_4: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_GRAVES_GRASS_5: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_BASEMENT_BACK_ROOM {
+    locations {
+        RC_DEKU_TREE_MQ_BASEMENT_BACK_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_BACK_GRASS_2: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_BACK_GRASS_3: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_BASEMENT_LEDGE {
+    locations {
+        RC_DEKU_TREE_MQ_BASEMENT_UPPER_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_UPPER_GRASS_2: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BASEMENT_UPPER_GRASS_3: can_cut_shrubs()
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_OUTSIDE_BOSS_ROOM {
+    locations {
+        RC_DEKU_TREE_MQ_BEFORE_BOSS_GRASS_1: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BEFORE_BOSS_GRASS_2: can_cut_shrubs()
+        RC_DEKU_TREE_MQ_BEFORE_BOSS_GRASS_3: can_cut_shrubs()
+    }
+}
+
 extend region RR_HC_MOAT {
     locations {
         RC_HC_GRASS_1: can_cut_shrubs()

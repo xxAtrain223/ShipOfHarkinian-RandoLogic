@@ -35,6 +35,30 @@ extend region RR_DEKU_TREE_BASEMENT_BACK_ROOM {
     }
 }
 
+extend region RR_DEKU_TREE_MQ_2F {
+    locations {
+        RC_DEKU_TREE_MQ_GS_LOBBY: (can_break_crates() or trick(RT_VISIBLE_COLLISION)) and can_get_drop(RE_GOLD_SKULLTULA)
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_PAST_BOULDER_VINES {
+    locations {
+        RC_DEKU_TREE_MQ_GS_PAST_BOULDER_VINES: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_BASEMENT_GRAVE_ROOM {
+    locations {
+        RC_DEKU_TREE_MQ_GS_BASEMENT_GRAVES_ROOM: can_use(RG_LONGSHOT) or (can_use(RG_SONG_OF_TIME) and can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG))
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_BASEMENT_BACK_ROOM {
+    locations {
+        RC_DEKU_TREE_MQ_GS_BASEMENT_BACK_ROOM: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
 extend region RR_HC_GATE {
 	locations {
 		RC_HC_GS_TREE: can_bonk_trees() and can_kill(RE_GOLD_SKULLTULA, ED_CLOSE)

@@ -1,0 +1,5 @@
+extend region RR_DEKU_TREE_MQ_BASEMENT_LEDGE {
+    locations {
+        RC_DEKU_TREE_MQ_DEKU_SCRUB: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+    }
+}
