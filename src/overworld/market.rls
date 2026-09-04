@@ -1,6 +1,6 @@
 region RR_MARKET_ENTRANCE {
     name: "Market Entrance"
-    scene: SCENE_MARKET_ENTRANCE
+    scene: SCENE_MARKET_ENTRANCE_DAY
 
     exits {
         RR_HYRULE_FIELD: is_adult() or at_day()
@@ -124,7 +124,7 @@ region RR_MARKET_POTION_SHOP {
 
 region RR_MARKET_TREASURE_CHEST_GAME {
     name: "Market Treasure Chest Game"
-    scene: SCENE_TREASURE_CHEST_SHOP
+    scene: SCENE_TREASURE_BOX_SHOP
 
     locations {
         RC_MARKET_TREASURE_CHEST_GAME_REWARD: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and has(RG_OPEN_CHEST) and ((can_use(RG_LENS_OF_TRUTH) and not setting(RSK_SHUFFLE_CHEST_MINIGAME)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_SINGLE_KEYS and small_keys(SCENE_TREASURE_BOX_SHOP, 6)) or (setting(RSK_SHUFFLE_CHEST_MINIGAME) is RO_CHEST_GAME_PACK and small_keys(SCENE_TREASURE_BOX_SHOP, 1))) 
