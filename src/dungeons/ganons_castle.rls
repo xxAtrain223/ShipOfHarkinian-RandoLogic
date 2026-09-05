@@ -1,0 +1,129 @@
+region RR_GANONS_CASTLE_ENTRYWAY {
+    name: "Ganon's Castle Entryway"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_LOBBY: is_vanilla()
+        RR_GANONS_CASTLE_MQ_LOBBY: is_mq()
+        RR_CASTLE_GROUNDS_FROM_GANONS_CASTLE: always
+    }
+}
+
+region RR_GANONS_TOWER_ENTRYWAY {
+    name: "Ganon's Tower Entryway"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_LOBBY: is_vanilla()
+        RR_GANONS_CASTLE_MQ_MAIN: is_mq()
+        RR_GANONS_TOWER_STAIRS_1: always
+    }
+}
+
+region RR_GANONS_TOWER_STAIRS_1 {
+    name: "Ganon's Tower Stairs 1"
+    scene: SCENE_GANONS_TOWER
+
+    exits {
+        RR_GANONS_TOWER_ENTRYWAY: always
+        RR_GANONS_TOWER_FLOOR_1: always
+        RR_CASTLE_GROUNDS_FROM_GANONS_CASTLE: never
+    }
+}
+
+region RR_GANONS_TOWER_FLOOR_1{
+    name: "Ganon's Tower Floor 1"
+    scene: SCENE_GANONS_TOWER
+
+    exits {
+        RR_GANONS_TOWER_STAIRS_1: any_age(can_kill(RE_DINOLFOS, ED_CLOSE, true, 2))
+        RR_GANONS_TOWER_STAIRS_2: any_age(can_kill(RE_DINOLFOS, ED_CLOSE, true, 2))
+    }
+}
+
+region RR_GANONS_TOWER_STAIRS_2 {
+    name: "Ganon's Tower Stairs 2"
+    scene: SCENE_GANONS_TOWER
+
+    exits {
+        RR_GANONS_TOWER_FLOOR_1: always
+        RR_GANONS_TOWER_FLOOR_2: always
+    }
+}
+
+region RR_GANONS_TOWER_FLOOR_2 {
+    name: "Ganon's Tower Floor 2"
+    scene: SCENE_GANONS_TOWER
+
+    exits {
+        RR_GANONS_TOWER_STAIRS_2: any_age(can_kill(RE_STALFOS, ED_CLOSE, true, 2))
+        RR_GANONS_TOWER_STAIRS_3: any_age(can_kill(RE_STALFOS, ED_CLOSE, true, 2))
+    }
+}
+
+region RR_GANONS_TOWER_STAIRS_3 {
+    name: "Ganon's Tower Stairs 3"
+    scene: SCENE_GANONS_TOWER
+
+    exits {
+        RR_GANONS_TOWER_FLOOR_2: always
+        RR_GANONS_TOWER_FLOOR_3: always
+    }
+}
+
+region RR_GANONS_TOWER_FLOOR_3 {
+    name: "Ganon's Tower Floor 3"
+    scene: SCENE_GANONS_TOWER
+
+    exits {
+        RR_GANONS_TOWER_STAIRS_3: any_age(can_kill(RE_IRON_KNUCKLE, ED_CLOSE, true, 2))
+        RR_GANONS_TOWER_STAIRS_4: any_age(can_kill(RE_IRON_KNUCKLE, ED_CLOSE, true, 2))
+    }
+}
+
+region RR_GANONS_TOWER_STAIRS_4 {
+    name: "Ganon's Tower Stairs 4"
+    scene: SCENE_GANONS_TOWER
+
+    exits {
+        RR_GANONS_TOWER_FLOOR_3: always
+        RR_GANONS_TOWER_BEFORE_GANONDORF_LAIR: always
+    }
+}
+
+region RR_GANONS_TOWER_BEFORE_GANONDORF_LAIR {
+    name: "Ganon's Tower Before Ganondorf's Lair"
+    scene: SCENE_GANONS_TOWER
+
+    exits {
+        RR_GANONS_TOWER_FLOOR_3: any_age(always)
+        RR_GANONS_TOWER_GANONDORF_LAIR: any_age(has(RG_GANONS_CASTLE_BOSS_KEY))
+    }
+}
+
+region RR_GANONS_TOWER_GANONDORF_LAIR {
+    name: "Ganondorf's Lair"
+    scene: SCENE_GANONDORF_BOSS
+
+    exits {
+        RR_GANONS_CASTLE_ESCAPE: can_kill(RE_GANONDORF)
+    }
+}
+
+region RR_GANONS_CASTLE_ESCAPE {
+    name: "Ganon's Castle Escape"
+    scene: SCENE_GANONS_TOWER_COLLAPSE_EXTERIOR
+
+    exits {
+        RR_GANONS_CASTLE_GANON_ARENA: always
+    }
+}
+
+region RR_GANONS_CASTLE_GANON_ARENA {
+    name: "Ganon's Arena"
+    scene: SCENE_GANON_BOSS
+
+    locations {
+        RC_GANON: can_kill(RE_GANON)
+    }
+}

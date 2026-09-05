@@ -67,6 +67,8 @@ extern define get_gs_count() -> Int
 extern define get_big_poe_count() -> Int
 extern define check_price(check: Location = RC_UNKNOWN_CHECK) -> Int
 
+extern define trial_skipped(trial: Trial) -> Bool
+
 extern define can_build_rainbow_bridge() -> Bool
 extern define can_trigger_lacs() -> Bool
 extern define small_keys(scene: Scene, requiredAmount: Int) -> Bool

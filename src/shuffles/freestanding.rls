@@ -84,3 +84,35 @@ extend region RR_DEKU_TREE_OUTSIDE_BOSS_ROOM {
         RC_DEKU_TREE_BEFORE_BOSS_RIGHT_HEART:  has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
     }
 }
+extend region RR_GANONS_CASTLE_FIRE_TRIAL_FROM_OPEN {
+    locations {
+        RC_GANONS_CASTLE_FIRE_TRIAL_HEART: fire_timer() >= 16
+    }
+}
+
+extend region RR_GANONS_CASTLE_FIRE_TRIAL_FROM_BARRED {
+    locations {
+        RC_GANONS_CASTLE_FIRE_TRIAL_HEART: fire_timer() >= 16
+    }
+}
+
+extend region RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM {
+    locations {
+        RC_GANONS_CASTLE_SHADOW_TRIAL_HEART_1: trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_BOOMERANG)
+        RC_GANONS_CASTLE_SHADOW_TRIAL_HEART_2: trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_BOOMERANG)
+        RC_GANONS_CASTLE_SHADOW_TRIAL_HEART_3: trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_GANONS_CASTLE_SHADOW_TRIAL_END {
+    locations {
+        RC_GANONS_CASTLE_SHADOW_TRIAL_HEART_2: can_use(RG_HOVER_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GANONS_CASTLE_SHADOW_TRIAL_HEART_3: can_use(RG_HOVER_BOOTS) or can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_GANONS_CASTLE_SPIRIT_TRIAL_BEAMOS_ROOM {
+    locations {
+        RC_GANONS_CASTLE_SPIRIT_TRIAL_HEART: always
+    }
+}

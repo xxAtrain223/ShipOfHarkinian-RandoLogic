@@ -93,3 +93,87 @@ extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
         RC_HC_STORMS_GROTTO_POT_4: can_break_pots()
     }
 }
+
+extend region RR_GANONS_TOWER_BEFORE_GANONDORF_LAIR {
+    locations {
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_1: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_2: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_3: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_4: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_5: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_6: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_7: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_8: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_9: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_10: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_11: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_12: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_13: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_14: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_15: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_16: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_17: can_break_pots()
+        RC_GANONS_CASTLE_GANONS_TOWER_POT_18: can_break_pots()
+    }
+}
+
+extend region RR_GANONS_CASTLE_FOREST_TRIAL_FINAL_ROOM {
+    locations {
+        RC_GANONS_CASTLE_FOREST_TRIAL_POT_1: can_break_pots()
+        RC_GANONS_CASTLE_FOREST_TRIAL_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_GANONS_CASTLE_FIRE_TRIAL_FINAL_ROOM {
+    locations {
+        RC_GANONS_CASTLE_FIRE_TRIAL_POT_1: can_break_pots()
+        RC_GANONS_CASTLE_FIRE_TRIAL_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_GANONS_CASTLE_WATER_TRIAL_BLOCK_ROOM {
+    locations {
+        RC_GANONS_CASTLE_WATER_TRIAL_POT_3: can_break_pots()
+    }
+}
+
+extend region RR_GANONS_CASTLE_WATER_TRIAL_FINAL_ROOM {
+    locations {
+        RC_GANONS_CASTLE_WATER_TRIAL_POT_1: can_break_pots()
+        RC_GANONS_CASTLE_WATER_TRIAL_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM {
+    locations {
+        RC_GANONS_CASTLE_SHADOW_TRIAL_POT_1: can_break_pots()
+        RC_GANONS_CASTLE_SHADOW_TRIAL_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_GANONS_CASTLE_SHADOW_TRIAL_FINAL_ROOM {
+    locations {
+        RC_GANONS_CASTLE_SHADOW_TRIAL_POT_3: can_break_pots()
+        RC_GANONS_CASTLE_SHADOW_TRIAL_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_GANONS_CASTLE_SPIRIT_TRIAL_FINAL_ROOM {
+    locations {
+        RC_GANONS_CASTLE_SPIRIT_TRIAL_POT_1: can_break_pots()
+        RC_GANONS_CASTLE_SPIRIT_TRIAL_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_GANONS_CASTLE_LIGHT_TRIAL_BOULDER_ROOM {
+    locations {
+        RC_GANONS_CASTLE_LIGHT_TRIAL_BOULDER_POT_1: can_break_pots()
+    }
+}
+
+extend region RR_GANONS_CASTLE_LIGHT_TRIAL_FINAL_ROOM {
+    locations {
+        RC_GANONS_CASTLE_LIGHT_TRIAL_POT_1: can_break_pots() and (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH))
+        RC_GANONS_CASTLE_LIGHT_TRIAL_POT_2: can_break_pots() and (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH))
+    }
+}
