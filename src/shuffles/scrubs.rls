@@ -10,3 +10,12 @@ extend region RR_COLOSSUS_GROTTO {
         RC_COLOSSUS_DEKU_SCRUB_GROTTO_FRONT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
     }
 }
+
+extend region RR_GANONS_CASTLE_DEKU_SCRUBS {
+    locations {
+        RC_GANONS_CASTLE_DEKU_SCRUB_CENTER_LEFT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_GANONS_CASTLE_DEKU_SCRUB_CENTER_RIGHT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_GANONS_CASTLE_DEKU_SCRUB_RIGHT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_GANONS_CASTLE_DEKU_SCRUB_LEFT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+    }
+}
