@@ -56,3 +56,9 @@ extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
         RC_HC_STORMS_GROTTO_GOSSIP_STONE: always
     }
 }
+
+extend region RR_DESERT_COLOSSUS {
+    locations {
+        RC_COLOSSUS_GOSSIP_STONE: always
+    }
+}

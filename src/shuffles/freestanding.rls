@@ -122,3 +122,9 @@ extend region RR_DEKU_TREE_MQ_OUTSIDE_BOSS_ROOM {
         RC_DEKU_TREE_MQ_BEFORE_BOSS_RIGHT_HEART:  has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
     }
 }
+
+extend region RR_DESERT_COLOSSUS {
+    locations {
+        RC_COLOSSUS_FREESTANDING_POH: is_adult() and can_plant_bean(RR_DESERT_COLOSSUS, RG_DESERT_COLOSSUS_BEAN_SOUL)
+    }
+}

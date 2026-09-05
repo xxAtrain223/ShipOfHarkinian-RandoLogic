@@ -86,3 +86,14 @@ extend region RR_GANONS_CASTLE_GROUNDS {
 			can_use(RG_DINS_FIRE)
 	}
 }
+
+extend region RR_DESERT_COLOSSUS {
+    locations {
+        RC_COLOSSUS_GS_BEAN_PATCH: can_spawn_soil_skull(RG_DESERT_COLOSSUS_BEAN_SOUL) and can_attack()
+        RC_COLOSSUS_GS_TREE:       is_adult() and hookshot_or_boomerang() and can_get_night_time_gs()
+        RC_COLOSSUS_GS_HILL:       is_adult() and
+                                   ((can_plant_bean(RR_DESERT_COLOSSUS, RG_DESERT_COLOSSUS_BEAN_SOUL) and can_attack()) or
+                                    can_use(RG_LONGSHOT) or (trick(RT_COLOSSUS_GS) and can_use(RG_HOOKSHOT))) and
+                                   can_get_night_time_gs()
+    }
+}
