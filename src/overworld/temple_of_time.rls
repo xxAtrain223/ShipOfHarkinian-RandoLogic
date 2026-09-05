@@ -32,7 +32,7 @@ region RR_TOT_BEYOND_DOOR_OF_TIME {
 
     locations {
         RC_TOT_MASTER_SWORD: is_adult()
-        RC_GIFT_FROM_RARU: is_adult()
+        RC_GIFT_FROM_RAURU: is_adult()
         RC_SHEIK_AT_TEMPLE: has(RG_FOREST_MEDALLION) and is_adult()
     }
 

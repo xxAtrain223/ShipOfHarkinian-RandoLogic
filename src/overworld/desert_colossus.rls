@@ -1,0 +1,64 @@
+region RR_DESERT_COLOSSUS {
+    name: "Desert Colossus"
+    scene: SCENE_DESERT_COLOSSUS
+
+    events {
+        LOGIC_BUG_ACCESS: has(RG_POWER_BRACELET)
+    }
+
+    exits {
+        RR_DESERT_COLOSSUS_OASIS: can_use(RG_SONG_OF_STORMS) and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or has_bottle())
+        RR_COLOSSUS_GREAT_FAIRY_FOUNTAIN: has_explosives()
+        RR_SPIRIT_TEMPLE_ENTRYWAY: always
+        RR_WASTELAND_NEAR_COLOSSUS: always
+        RR_COLOSSUS_GROTTO: can_use(RG_SILVER_GAUNTLETS)
+    }
+}
+
+region RR_DESERT_COLOSSUS_OASIS {
+    name: "Desert Colossus Oasis"
+    scene: SCENE_DESERT_COLOSSUS
+
+    events {
+        LOGIC_FAIRY_ACCESS: always
+    }
+
+    exits {
+        RR_DESERT_COLOSSUS: always
+    }
+}
+
+region RR_DESERT_COLOSSUS_OUTSIDE_TEMPLE {
+    name: "Desert Colossus From Spirit Entryway"
+    scene: SCENE_DESERT_COLOSSUS
+
+    locations {
+        RC_SHEIK_AT_COLOSSUS: always
+    }
+
+    exits {
+        RR_DESERT_COLOSSUS: always
+    }
+}
+
+region RR_COLOSSUS_GREAT_FAIRY_FOUNTAIN {
+    name: "Colossus Great Fairy Fountain"
+    scene: SCENE_GREAT_FAIRYS_FOUNTAIN_SPELLS
+
+    locations {
+        RC_COLOSSUS_GREAT_FAIRY_REWARD: can_use(RG_ZELDAS_LULLABY)
+    }
+
+    exits {
+        RR_DESERT_COLOSSUS: always
+    }
+}
+
+region RR_COLOSSUS_GROTTO {
+    name: "Colossus Grotto"
+    scene: SCENE_GROTTOS
+
+    exits {
+        RR_DESERT_COLOSSUS: always
+    }
+}

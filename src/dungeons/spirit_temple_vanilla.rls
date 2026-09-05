@@ -1,0 +1,699 @@
+region RR_SPIRIT_TEMPLE_FOYER {
+    name: "Spirit Temple Foyer"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    events {
+        LOGIC_FORWARDS_SPIRIT_CHILD: never#TODO
+        LOGIC_FORWARDS_SPIRIT_ADULT: never#TODO
+    }
+
+    locations {
+        RC_SPIRIT_TEMPLE_LOBBY_POT_1: never#TODO
+        RC_SPIRIT_TEMPLE_LOBBY_POT_2: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_ENTRYWAY: never#TODO
+        RR_SPIRIT_TEMPLE_CHILD_SIDE_HUB: never#TODO
+        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_CHILD_SIDE_HUB {
+    name: "Spirit Temple Child Side Hub"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    events {
+        LOGIC_NUT_ACCESS: never#TODO
+        LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE_TORCHES: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_FOYER: never#TODO
+        RR_SPIRIT_TEMPLE_CHILD_BOXES: never#TODO
+        RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_SOUTH: never#TODO
+        RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_SOUTH: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_SOUTH {
+    name: "Spirit Temple Switch Bridge South"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    events {
+        LOGIC_SPIRIT_CHILD_SWITCH_BRIDGE: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_CHILD_SIDE_HUB: never#TODO
+        RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_NORTH: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_NORTH {
+    name: "Spirit Temple Switch Bridge North"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    events {
+        LOGIC_SPIRIT_CHILD_SWITCH_BRIDGE: never#TODO
+    }
+
+    locations {
+        RC_SPIRIT_TEMPLE_CHILD_BRIDGE_CHEST: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_SOUTH: never#TODO
+        RR_SPIRIT_TEMPLE_1F_ANUBIS: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_1F_ANUBIS {
+    name: "Spirit Temple 1F Anubis"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_ANUBIS_POT_1: never#TODO
+        RC_SPIRIT_TEMPLE_ANUBIS_POT_2: never#TODO
+        RC_SPIRIT_TEMPLE_ANUBIS_POT_3: never#TODO
+        RC_SPIRIT_TEMPLE_ANUBIS_POT_4: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_NORTH: never#TODO
+        RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH {
+    name: "Spirit Temple Rupee Bridge North"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    events {
+        LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE: never#TODO
+        LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE_TORCHES: never#TODO
+    }
+
+    locations {
+        RC_SPIRIT_TEMPLE_CHILD_EARLY_TORCHES_CHEST: never#TODO
+        RC_SPIRIT_TEMPLE_GS_METAL_FENCE: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_SOUTH: never#TODO
+        RR_SPIRIT_TEMPLE_1F_ANUBIS: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_SOUTH {
+    name: "Spirit Temple Rupee Bridge South"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    events {
+        LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE_TORCHES: never#TODO
+    }
+
+    locations {
+        RC_SPIRIT_TEMPLE_GS_METAL_FENCE: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_CHILD_SIDE_HUB: never#TODO
+        RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_CHILD_BOXES {
+    name: "Child Spirit Temple Before Climb"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_BEFORE_CHILD_CLIMB_SMALL_CRATE_1: never#TODO
+        RC_SPIRIT_TEMPLE_BEFORE_CHILD_CLIMB_SMALL_CRATE_2: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_CHILD_SIDE_HUB: never#TODO
+        RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_1F: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_1F {
+    name: "Spirit Temple Sun On Floor 1F"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_GS_SUN_ON_FLOOR_ROOM: never#TODO
+        RC_SPIRIT_TEMPLE_CHILD_CLIMB_POT_1: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_CHILD_BOXES: never#TODO
+        RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F {
+    name: "Spirit Temple Sun On Floor 2F"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_CHILD_CLIMB_NORTH_CHEST: never#TODO
+        RC_SPIRIT_TEMPLE_CHILD_CLIMB_EAST_CHEST: never#TODO
+        RC_SPIRIT_TEMPLE_GS_SUN_ON_FLOOR_ROOM: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_1F: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_ROOM: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB {
+    name: "Spirit Temple Adult Side Hub"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_FOYER: never#TODO
+        RR_SPIRIT_TEMPLE_SAND_PIT: never#TODO
+        RR_SPIRIT_TEMPLE_BOULDERS: never#TODO
+        RR_SPIRIT_TEMPLE_1F_MIRROR_ROOM: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_SAND_PIT {
+    name: "Spirit Temple Sand Pit"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_COMPASS_CHEST: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_ABOVE_BOULDERS {
+    name: "Spirit Temple Above Boulders"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    events {
+        LOGIC_SPIRIT_BOUNDERS_SILVERS: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: never#TODO
+        RR_SPIRIT_TEMPLE_BOULDERS: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_BOULDERS {
+    name: "Spirit Temple Boulders"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_GS_BOULDER_ROOM: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_ABOVE_BOULDERS: never#TODO
+        RR_SPIRIT_TEMPLE_PAST_BOULDERS: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_PAST_BOULDERS {
+    name: "Spirit Temple Past Boulders"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_EARLY_ADULT_RIGHT_CHEST: never#TODO
+        RC_SPIRIT_TEMPLE_BOULDER_ROOM_SUN_FAIRY: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_BOULDERS: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_1F_MIRROR_ROOM {
+    name: "Spirit Temple 1F Mirror Room"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: never#TODO
+        RR_SPIRIT_TEMPLE_2F_MIRROR_ROOM: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_2F_MIRROR_ROOM {
+    name: "Spirit Temple 2F Mirror Room"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_FIRST_MIRROR_LEFT_CHEST: never#TODO
+        RC_SPIRIT_TEMPLE_FIRST_MIRROR_RIGHT_CHEST: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_1F_MIRROR_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD {
+    name: "Spirit Temple Statue Rooom Child"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_MAP_CHEST: never#TODO
+        RC_SPIRIT_TEMPLE_GS_LOBBY: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F: never#TODO
+        RR_SPIRIT_TEMPLE_INNER_WEST_HAND: never#TODO
+        RR_SPIRIT_TEMPLE_GS_LEDGE: never#TODO
+        RR_SPIRIT_TEMPLE_PLATFORM: never#TODO
+        RR_SPIRIT_TEMPLE_EMPTY_STAIRS: never#TODO
+        RR_DESERT_COLOSSUS: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_INNER_WEST_HAND {
+    name: "Spirit Temple Inner West Hand"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_GS_LOBBY: never#TODO
+    }
+
+    exits {
+        RR_DESERT_COLOSSUS: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_GS_LEDGE {
+    name: "Spirit Temple GS ledge"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_GS_LOBBY: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD: never#TODO
+        RR_SPIRIT_TEMPLE_INNER_WEST_HAND: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_STATUE_ROOM {
+    name: "Spirit Temple Statue Room"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_MAP_CHEST: never#TODO
+        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_1: never#TODO
+        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_2: never#TODO
+        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_3: never#TODO
+        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_4: never#TODO
+        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_5: never#TODO
+        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_6: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD: never#TODO
+        RR_SPIRIT_TEMPLE_PLATFORM: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: never#TODO
+        RR_SPIRIT_TEMPLE_SHORTCUT: never#TODO
+        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_EMPTY_STAIRS {
+    name: "Spirit Temple Empty Stairs"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_STATUE_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_SUN_BLOCK_ROOM: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_SUN_BLOCK_ROOM {
+    name: "Spirit Temple Sun Block Room"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_EMPTY_STAIRS: never#TODO
+        RR_SPIRIT_TEMPLE_SUN_BLOCK_CHEST_LEDGE: never#TODO
+        RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_SUN_BLOCK_CHEST_LEDGE {
+    name: "Spirit Temple Sun Block Chest ledge"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    events {
+        LOGIC_SPIRIT_SUN_BLOCK_TORCH: never#TODO
+    }
+
+    locations {
+        RC_SPIRIT_TEMPLE_SUN_BLOCK_ROOM_CHEST: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_SUN_BLOCK_ROOM: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS {
+    name: "Spirit Temple Skulltula Stairs"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_GS_HALL_AFTER_SUN_BLOCK_ROOM: never#TODO
+        RC_SPIRIT_TEMPLE_AFTER_SUN_BLOCK_POT_1: never#TODO
+        RC_SPIRIT_TEMPLE_AFTER_SUN_BLOCK_POT_2: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_SUN_BLOCK_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_CHILD_THRONE: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_CHILD_THRONE {
+    name: "Spirit Temple Child Throne"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS: never#TODO
+        RR_SPIRIT_TEMPLE_RIGHT_HAND_EXIT: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_RIGHT_HAND_EXIT {
+    name: "Spirit Temple Right Hand Exit"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_CHILD_THRONE: never#TODO
+        RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND {
+    name: "Spirit Temple Outer Right Hand"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    events {
+        LOGIC_SPIRIT_NABOORU_KIDNAPPED: never#TODO
+    }
+
+    locations {
+        RC_SPIRIT_TEMPLE_SILVER_GAUNTLETS_CHEST: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_RIGHT_HAND_EXIT: never#TODO
+        RR_DESERT_COLOSSUS: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT {
+    name: "Spirit Temple Statue Room Adult"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_2F_MIRROR_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_INNER_LEFT_HAND: never#TODO
+        RR_SPIRIT_TEMPLE_SHORTCUT_SWITCH: never#TODO
+        RR_SPIRIT_TEMPLE_POT_STAIRS: never#TODO
+        RR_SPIRIT_TEMPLE_PLATFORM: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_INNER_LEFT_HAND {
+    name: "Spirit Temple Inner Left Hand"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_STATUE_ROOM_HAND_CHEST: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_STATUE_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: never#TODO
+        RR_SPIRIT_TEMPLE_SHORTCUT_SWITCH: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_SHORTCUT_SWITCH {
+    name: "Spirit Temple Shortcut Switch"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    events {
+        LOGIC_SPIRIT_STATUE_SOUTH_DOOR: never#TODO
+    }
+
+    locations {
+        RC_SPIRIT_TEMPLE_STATUE_ROOM_NORTHEAST_CHEST: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: never#TODO
+        RR_SPIRIT_TEMPLE_INNER_LEFT_HAND: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_SHORTCUT {
+    name: "Spirit Temple Shortcut"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_STATUE_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_FOYER: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_POT_STAIRS {
+    name: "Spirit Temple Pot Stairs"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_BEAMOS_HALL_POT_1: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: never#TODO
+        RR_SPIRIT_TEMPLE_BEAMOS_PITS: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_BEAMOS_PITS {
+    name: "Spirit Temple Beamos Pits"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_POT_STAIRS: never#TODO
+        RR_SPIRIT_TEMPLE_4_ARMOS: never#TODO
+        RR_SPIRIT_TEMPLE_BIG_WALL_BASE: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_4_ARMOS {
+    name: "Spirit Temple 4 Armos"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_NEAR_FOUR_ARMOS_CHEST: never#TODO
+        RC_SPIRIT_TEMPLE_ARMOS_ROOM_SUN_FAIRY: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_BEAMOS_PITS: never#TODO
+        RR_SPIRIT_TEMPLE_4_ARMOS_SIDE_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_CHEST_STAIRS: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_4_ARMOS_SIDE_ROOM {
+    name: "Spirit Temple 4 Armos Side Room"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_NEAR_FOUR_ARMOS_CHEST: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_4_ARMOS: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_CHEST_STAIRS {
+    name: "Spirit Temple Chest Stairs"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_HALLWAY_LEFT_INVISIBLE_CHEST: never#TODO
+        RC_SPIRIT_TEMPLE_HALLWAY_RIGHT_INVISIBLE_CHEST: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_4_ARMOS: never#TODO
+        RR_SPIRIT_TEMPLE_ADULT_THRONE: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_ADULT_THRONE {
+    name: "Spirit Temple Adult Throne"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_CHEST_STAIRS: never#TODO
+        RR_SPIRIT_TEMPLE_LEFT_HAND_EXIT: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_LEFT_HAND_EXIT {
+    name: "Spirit Temple Left Hand Exit"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_ADULT_THRONE: never#TODO
+        RR_SPIRIT_TEMPLE_OUTER_LEFT_HAND: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_OUTER_LEFT_HAND {
+    name: "Spirit Temple Outer Left Hand"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_MIRROR_SHIELD_CHEST: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_LEFT_HAND_EXIT: never#TODO
+        RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND: never#TODO
+        RR_DESERT_COLOSSUS: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_BIG_WALL_BASE {
+    name: "Spirit Temple Big Wall Base"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_BEAMOS_PITS: never#TODO
+        RR_SPIRIT_TEMPLE_BIG_WALL_UPPER: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_BIG_WALL_UPPER {
+    name: "Spirit Temple Big Wall Upper"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_ADULT_CLIMB_LEFT_HEART: never#TODO
+        RC_SPIRIT_TEMPLE_ADULT_CLIMB_RIGHT_HEART: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_BIG_WALL_BASE: never#TODO
+        RR_SPIRIT_TEMPLE_4F_CENTRAL: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_4F_CENTRAL {
+    name: "Spirit Temple 4F Central"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_BIG_WALL_UPPER: never#TODO
+        RR_SPIRIT_TEMPLE_FAKE_DOORS_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_BIG_MIRROR_ROOM: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_FAKE_DOORS_ROOM {
+    name: "Spirit Temple Fake Doors Room"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    locations {
+        RC_SPIRIT_TEMPLE_BOSS_KEY_CHEST: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_4F_CENTRAL: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_BIG_MIRROR_ROOM {
+    name: "Spirit Temple Big Mirror Room"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    events {
+        LOGIC_SPIRIT_4F_SWITCH: never#TODO
+        LOGIC_SPIRIT_PLATFORM_LOWERED: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_4F_CENTRAL: never#TODO
+        RR_SPIRIT_TEMPLE_BIG_MIRROR_CAVE: never#TODO
+        RR_SPIRIT_TEMPLE_PLATFORM: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_BIG_MIRROR_CAVE {
+    name: "Spirit Temple Big Mirror Cave"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    events {
+        LOGIC_SPIRIT_4F_SWITCH: never#TODO
+        LOGIC_SPIRIT_PUSHED_4F_MIRRORS: never#TODO
+    }
+
+    locations {
+        RC_SPIRIT_TEMPLE_TOPMOST_CHEST: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_BIG_MIRROR_ROOM: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_PLATFORM {
+    name: "Spirit Temple Lowered Platform"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_STATUE_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD: never#TODO
+        RR_SPIRIT_TEMPLE_INNER_WEST_HAND: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: never#TODO
+        RR_SPIRIT_TEMPLE_INNER_LEFT_HAND: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_HEAD: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_STATUE_HEAD {
+    name: "Spirit Temple Statue Head"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    events {
+        LOGIC_REVERSE_SPIRIT_CHILD: never#TODO
+        LOGIC_REVERSE_SPIRIT_ADULT: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_STATUE_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_INNER_WEST_HAND: never#TODO
+        RR_SPIRIT_TEMPLE_INNER_LEFT_HAND: never#TODO
+        RR_SPIRIT_TEMPLE_PLATFORM: never#TODO
+        RR_SPIRIT_TEMPLE_BOSS_ENTRYWAY: never#TODO
+    }
+}

@@ -27,14 +27,14 @@ extend region RR_DEKU_TREE_LOBBY_2F {
 
 extend region RR_DEKU_TREE_SLINGSHOT_ROOM {
     locations {
-        RC_DEKU_TREE_SLINGSHOT_CHEST: has(RG_OPEN_CHEST)
+        RC_DEKU_TREE_SLINGSHOT_CHEST:           has(RG_OPEN_CHEST)
         RC_DEKU_TREE_SLINGSHOT_ROOM_SIDE_CHEST: (has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and has(RG_OPEN_CHEST)
     }
 }
 
 extend region RR_DEKU_TREE_COMPASS_ROOM {
     locations {
-        RC_DEKU_TREE_COMPASS_CHEST: has(RG_OPEN_CHEST)
+        RC_DEKU_TREE_COMPASS_CHEST:           has(RG_OPEN_CHEST)
         RC_DEKU_TREE_COMPASS_ROOM_SIDE_CHEST: has(RG_OPEN_CHEST)
     }
 }
@@ -110,5 +110,42 @@ extend region RR_GANONS_CASTLE_LIGHT_TRIAL_CHESTS_ROOM {
 extend region RR_GANONS_CASTLE_LIGHT_TRIAL_TRIFORCE_ROOM {
     locations {
         RC_GANONS_CASTLE_LIGHT_TRIAL_LULLABY_CHEST: can_use(RG_ZELDAS_LULLABY) and has(RG_OPEN_CHEST)
+    }
+}
+extend region RR_DEKU_TREE_MQ_2F {
+    locations {
+        RC_DEKU_TREE_MQ_MAP_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_SLINGSHOT_ROOM {
+    locations {
+        RC_DEKU_TREE_MQ_SLINGSHOT_CHEST:           can_kill(RE_DEKU_BABA) and has(RG_OPEN_CHEST)
+        RC_DEKU_TREE_MQ_SLINGSHOT_ROOM_BACK_CHEST: (has_fire_source_with_torch() or (is_adult() and can_use(RG_FAIRY_BOW))) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_COMPASS_ROOM {
+    locations {
+        RC_DEKU_TREE_MQ_COMPASS_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_BASEMENT {
+    locations {
+        RC_DEKU_TREE_MQ_BASEMENT_CHEST: (has_fire_source_with_torch() or can_use(RG_FAIRY_BOW)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_BASEMENT_WATER_ROOM_FRONT {
+    locations {
+        RC_DEKU_TREE_MQ_BEFORE_SPINNING_LOG_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_BASEMENT_WATER_ROOM_BACK {
+    locations {
+        # it blocks the chest while stunned unless you stun it from afar while it's slightly off the ground
+        RC_DEKU_TREE_MQ_AFTER_SPINNING_LOG_CHEST: can_use(RG_SONG_OF_TIME) and can_pass(RE_BIG_SKULLTULA) and has(RG_OPEN_CHEST)
     }
 }

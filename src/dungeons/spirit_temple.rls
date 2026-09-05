@@ -1,0 +1,40 @@
+region RR_SPIRIT_TEMPLE_ENTRYWAY {
+    name: "Spirit Temple Entryway"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_FOYER: never#TODO
+        RR_SPIRIT_TEMPLE_MQ_FOYER: never#TODO
+        RR_DESERT_COLOSSUS_OUTSIDE_TEMPLE: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_BOSS_ENTRYWAY {
+    name: "Spirit Temple Boss Entryway"
+    scene: SCENE_SPIRIT_TEMPLE
+
+    exits {
+        RR_SPIRIT_TEMPLE_STATUE_HEAD: never#TODO
+        RR_SPIRIT_TEMPLE_MQ_STATUE_HEAD: never#TODO
+        RR_SPIRIT_TEMPLE_BOSS_ROOM: never#TODO
+    }
+}
+
+region RR_SPIRIT_TEMPLE_BOSS_ROOM {
+    name: "Spirit Temple Boss Room"
+    scene: SCENE_SPIRIT_TEMPLE_BOSS
+
+    events {
+        LOGIC_SPIRIT_TEMPLE_CLEAR: never#TODO
+    }
+
+    locations {
+        RC_SPIRIT_TEMPLE_TWINROVA_HEART: never#TODO
+        RC_TWINROVA: never#TODO
+    }
+
+    exits {
+        RR_SPIRIT_TEMPLE_BOSS_ENTRYWAY: never#TODO
+        RR_DESERT_COLOSSUS: never#TODO
+    }
+}
