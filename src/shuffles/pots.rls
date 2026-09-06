@@ -177,3 +177,45 @@ extend region RR_GANONS_CASTLE_LIGHT_TRIAL_FINAL_ROOM {
         RC_GANONS_CASTLE_LIGHT_TRIAL_POT_2: can_break_pots() and (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH))
     }
 }
+
+extend region RR_GANONS_CASTLE_MQ_FOREST_TRIAL_FINAL_ROOM {
+    locations {
+        RC_GANONS_CASTLE_MQ_FOREST_TRIAL_POT_1: can_break_pots()
+        RC_GANONS_CASTLE_MQ_FOREST_TRIAL_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_FIRE_TRIAL_FINAL_ROOM {
+    locations {
+        RC_GANONS_CASTLE_MQ_FIRE_TRIAL_POT_1: can_break_pots()
+        RC_GANONS_CASTLE_MQ_FIRE_TRIAL_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_WATER_TRIAL_FINAL_ROOM {
+    locations {
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_POT_1: can_break_pots()
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_FINAL_ROOM {
+    locations {
+        RC_GANONS_CASTLE_MQ_SHADOW_TRIAL_POT_1: can_break_pots()
+        RC_GANONS_CASTLE_MQ_SHADOW_TRIAL_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_SPIRIT_TRIAL_FINAL_ROOM {
+    locations {
+        RC_GANONS_CASTLE_MQ_SPIRIT_TRIAL_POT_1: can_break_pots()
+        RC_GANONS_CASTLE_MQ_SPIRIT_TRIAL_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_FINAL_ROOM {
+    locations {
+        RC_GANONS_CASTLE_MQ_LIGHT_TRIAL_POT_1: can_break_pots()
+        RC_GANONS_CASTLE_MQ_LIGHT_TRIAL_POT_2: can_break_pots()
+    }
+}

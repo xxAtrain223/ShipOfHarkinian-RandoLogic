@@ -103,3 +103,16 @@ extend region RR_DESERT_COLOSSUS_OASIS {
         RC_COLOSSUS_OASIS_FAIRY_8: always
     }
 }
+
+extend region RR_GANONS_CASTLE_MQ_DEKU_SCRUBS {
+    locations {
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_1: always
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_2: always
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_3: always
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_4: always
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_5: always
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_6: always
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_7: always
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_8: always
+    }
+}

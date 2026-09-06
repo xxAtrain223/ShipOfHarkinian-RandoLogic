@@ -1,0 +1,424 @@
+region RR_GANONS_CASTLE_MQ_LOBBY {
+    name: "Ganon's Castle MQ Lobby"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_ENTRYWAY: can_pass(RE_GREEN_BUBBLE) or any_age(can_kill(RE_IRON_KNUCKLE) and can_kill(RE_ARMOS))
+        RR_GANONS_CASTLE_MQ_MAIN: any_age(can_kill(RE_IRON_KNUCKLE) and can_kill(RE_ARMOS))
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_MAIN {
+    name: "Ganon's Castle MQ Main"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_MQ_LOBBY: always
+        RR_GANONS_CASTLE_MQ_FOREST_TRIAL_STALFOS_ROOM: not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_FOREST_MEDALLION)
+        RR_GANONS_CASTLE_MQ_FIRE_TRIAL_OPEN_DOOR: not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_FIRE_MEDALLION)
+        RR_GANONS_CASTLE_MQ_WATER_TRIAL_GEYSER_ROOM: not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_WATER_MEDALLION)
+        RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_STARTING_LEDGE: not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_SHADOW_MEDALLION)
+        RR_GANONS_CASTLE_MQ_SPIRIT_TRIAL_CHAIRS_ROOM: not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_SPIRIT_MEDALLION)
+        RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_DINOLFOS_ROOM:
+            any_age((not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_LIGHT_MEDALLION)) and can_use(RG_GOLDEN_GAUNTLETS))
+        RR_GANONS_TOWER_ENTRYWAY:
+            (flag(LOGIC_FOREST_TRIAL_CLEAR) or trial_skipped(TK_FOREST_TRIAL)) and
+            (flag(LOGIC_FIRE_TRIAL_CLEAR) or trial_skipped(TK_FIRE_TRIAL)) and
+            (flag(LOGIC_WATER_TRIAL_CLEAR) or trial_skipped(TK_WATER_TRIAL)) and
+            (flag(LOGIC_SHADOW_TRIAL_CLEAR) or trial_skipped(TK_SHADOW_TRIAL)) and
+            (flag(LOGIC_SPIRIT_TRIAL_CLEAR) or trial_skipped(TK_SPIRIT_TRIAL)) and
+            (flag(LOGIC_LIGHT_TRIAL_CLEAR) or trial_skipped(TK_LIGHT_TRIAL))
+        RR_GANONS_CASTLE_MQ_DEKU_SCRUBS: trick(RT_LENS_GANON_MQ) or can_use(RG_LENS_OF_TRUTH)
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_DEKU_SCRUBS {
+    name: "Ganon's Castle MQ Deku Scrubs"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_FAIRY_ACCESS: always
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_MAIN: always
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_FOREST_TRIAL_STALFOS_ROOM {
+    name: "Ganon's Castle MQ Forest Trial Stalfos Room"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    locations {
+        RC_GANONS_CASTLE_MQ_FOREST_TRIAL_FREESTANDING_KEY: hookshot_or_boomerang()
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_MAIN: always
+        RR_GANONS_CASTLE_MQ_FOREST_TRIAL_BEAMOS_ROOM: any_age(can_kill(RE_STALFOS, ED_CLOSE, true, 2))
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_FOREST_TRIAL_BEAMOS_ROOM {
+    name: "Ganon's Castle MQ Forest Trial Beamos Room"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_FOREST_TRIAL_MQ_SPAWN_BEAMOS_CHEST: can_hit_eye_targets()
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_FOREST_TRIAL_STALFOS_ROOM: always
+        RR_GANONS_CASTLE_MQ_FOREST_TRIAL_BEAMOS_ROOM_MIDDLE: always
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_FOREST_TRIAL_BEAMOS_ROOM_MIDDLE {
+    name: "Ganon's Castle MQ Forest Trial Beamos Room End"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_FOREST_TRIAL_MQ_SPAWN_BEAMOS_CHEST: can_hit_eye_targets()
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_FOREST_TRIAL_BEAMOS_ROOM:
+            flag(LOGIC_FOREST_TRIAL_MQ_SPAWN_BEAMOS_CHEST) and
+            (can_avoid(RE_BEAMOS) or can_kill(RE_ARMOS)) and
+            can_use(RG_LONGSHOT)
+        RR_GANONS_CASTLE_MQ_FOREST_TRIAL_BEAMOS_ROOM_END: is_adult() or can_ground_jump() or trick(RT_UNINTUITIVE_JUMPS)
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_FOREST_TRIAL_BEAMOS_ROOM_END {
+    name: "Ganon's Castle MQ Forest Trial Beamos Room Final Door"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_MQ_FOREST_TRIAL_BEAMOS_ROOM_MIDDLE: always
+        RR_GANONS_CASTLE_MQ_FOREST_TRIAL_FINAL_ROOM: can_use(RG_SONG_OF_TIME)
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_FOREST_TRIAL_FINAL_ROOM {
+    name: "Ganon's Castle MQ Forest Trial Final Room"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_FOREST_TRIAL_CLEAR: can_use(RG_LIGHT_ARROWS)
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_FOREST_TRIAL_BEAMOS_ROOM_END: always
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_FIRE_TRIAL_OPEN_DOOR {
+    name: "Ganon's Castle MQ Fire Trial Open Door"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_MQ_MAIN: always
+        RR_GANONS_CASTLE_MQ_FIRE_TRIAL_FROM_OPEN: always
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_FIRE_TRIAL_FROM_OPEN {
+    name: "Ganon's Castle MQ Fire Trial From Open Door"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_FIRE_TRIAL_SILVER_RUPEES: fire_timer() >= 72 and can_use(RG_GOLDEN_GAUNTLETS)
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_FIRE_TRIAL_OPEN_DOOR: always
+        RR_GANONS_CASTLE_MQ_FIRE_TRIAL_BARRED_DOOR:
+            fire_timer() >= 32 and
+            (can_use(RG_LONGSHOT) or
+             (can_use(RG_GOLDEN_GAUNTLETS) and
+              (can_use(RG_HOVER_BOOTS) or (trick(RT_GANON_MQ_FIRE_TRIAL) and is_adult() and can_use(RG_HOOKSHOT)))))
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_FIRE_TRIAL_FROM_BARRED {
+    name: "Ganon's Castle MQ Fire Trial From Barred Door"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_MQ_FIRE_TRIAL_BARRED_DOOR: always
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_FIRE_TRIAL_BARRED_DOOR {
+    name: "Ganon's Castle MQ Fire Trial Barred Door"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_MQ_FIRE_TRIAL_FINAL_ROOM: flag(LOGIC_FIRE_TRIAL_SILVER_RUPEES)
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_FIRE_TRIAL_FINAL_ROOM {
+    name: "Ganon's Castle MQ Fire Trial Final Room"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_FIRE_TRIAL_CLEAR: can_use(RG_LIGHT_ARROWS)
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_FIRE_TRIAL_OPEN_DOOR: always
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_WATER_TRIAL_GEYSER_ROOM {
+    name: "Ganon's Castle MQ Water Trial Geyser Room"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_BLUE_FIRE_ACCESS: can_jumpslash() or has_explosives()
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_MAIN: always
+        RR_GANONS_CASTLE_MQ_WATER_TRIAL_BLOCK_ROOM: small_keys(SCENE_INSIDE_GANONS_CASTLE, 3) and any_age(blue_fire())
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_WATER_TRIAL_BLOCK_ROOM {
+    name: "Ganon's Castle MQ Water Trial Block Room"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_WATER_TRIAL_MQ_SILVER_RUPEES: is_adult() and (has(RG_POWER_BRACELET) or can_middair_ground_jump()) and blue_fire()
+        LOGIC_WATER_TRIAL_MQ_MELTED_FINAL_DOOR_RED_ICE:
+            (setting(RSK_BLUE_FIRE_ARROWS) and can_use(RG_ICE_ARROWS)) or
+            ((is_adult() or can_use(RG_HOVER_BOOTS)) and has(RG_POWER_BRACELET) and can_use(RG_BOTTLE_WITH_BLUE_FIRE))
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_WATER_TRIAL_GEYSER_ROOM: small_keys(SCENE_INSIDE_GANONS_CASTLE, 3)
+        RR_GANONS_CASTLE_MQ_WATER_TRIAL_BLOCK_ROOM_END:
+            flag(LOGIC_WATER_TRIAL_MQ_MELTED_FINAL_DOOR_RED_ICE) and
+            (is_adult() or (can_use(RG_HOVER_BOOTS) and has(RG_POWER_BRACELET)) or can_ground_jump() or trick(RT_SLIDE_JUMP))
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_WATER_TRIAL_BLOCK_ROOM_END {
+    name: "Ganon's Castle MQ Water Trial Block Room End"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_WATER_TRIAL_MQ_MELTED_FINAL_DOOR_RED_ICE: blue_fire()
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_WATER_TRIAL_BLOCK_ROOM: flag(LOGIC_WATER_TRIAL_MQ_MELTED_FINAL_DOOR_RED_ICE)
+        RR_GANONS_CASTLE_MQ_WATER_TRIAL_FINAL_ROOM: flag(LOGIC_WATER_TRIAL_MQ_SILVER_RUPEES)
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_WATER_TRIAL_FINAL_ROOM {
+    name: "Ganon's Castle MQ Water Trial Final Room"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_WATER_TRIAL_CLEAR: can_use(RG_LIGHT_ARROWS)
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_WATER_TRIAL_BLOCK_ROOM_END: always
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_STARTING_LEDGE {
+    name: "Ganon's Castle MQ Shadow Trial Starting Ledge"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_SHADOW_TRIAL_FIRST_CHEST: can_use(RG_FAIRY_BOW)
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_MAIN: always
+        RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_CHEST_PLATFORM:
+            (flag(LOGIC_SHADOW_TRIAL_FIRST_CHEST) and can_use(RG_HOOKSHOT)) or (is_adult() and can_use(RG_HOVER_BOOTS))
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_CHEST_PLATFORM {
+    name: "Ganon's Castle MQ Shadow Trial Chest Platform"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_SHADOW_TRIAL_FIRST_CHEST: can_use(RG_FAIRY_BOW)
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_STARTING_LEDGE: can_use(RG_HOOKSHOT) or (is_adult() and can_use(RG_HOVER_BOOTS))
+        RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_MOVING_PLATFORM:
+            (trick(RT_LENS_GANON_MQ) or can_use(RG_LENS_OF_TRUTH)) and (is_adult() or can_use(RG_HOVER_BOOTS))
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_MOVING_PLATFORM {
+    name: "Ganon's Castle MQ Shadow Trial Moving Platform"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_SHADOW_TRIAL_FIRST_CHEST: can_detonate_upright_bomb_flower()
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_CHEST_PLATFORM: is_adult() or can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS)
+        RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_BEAMOS_TORCH: always
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_BEAMOS_TORCH {
+    name: "Ganon's Castle MQ Shadow Trial Beamos Torch"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_MOVING_PLATFORM: trick(RT_LENS_GANON_MQ) or can_use(RG_LENS_OF_TRUTH)
+        RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_FAR_SIDE:
+            has_fire_source() or can_use(RG_HOVER_BOOTS) or
+            (is_adult() and trick(RT_GANON_MQ_SHADOW_TRIAL) and can_use(RG_FAIRY_BOW))
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_FAR_SIDE {
+    name: "Ganon's Castle MQ Shadow Trial Far Side"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_BEAMOS_TORCH: can_use(RG_FIRE_ARROWS) or can_use(RG_HOVER_BOOTS)
+        RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_FINAL_ROOM: trick(RT_LENS_GANON_MQ) or can_use(RG_LENS_OF_TRUTH)
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_FINAL_ROOM {
+    name: "Ganon's Castle MQ Shadow Trial Final Room"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_SHADOW_TRIAL_CLEAR: can_use(RG_LIGHT_ARROWS)
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_FAR_SIDE: trick(RT_LENS_GANON_MQ) or can_use(RG_LENS_OF_TRUTH)
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_SPIRIT_TRIAL_CHAIRS_ROOM {
+    name: "Ganon's Castle MQ Spirit Trial Chairs Room"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_MQ_MAIN: always
+        RR_GANONS_CASTLE_MQ_SPIRIT_TRIAL_BEFORE_SWITCH:
+            any_age((can_hit_eye_targets() or trick(RT_VISIBLE_COLLISION)) and can_use(RG_MEGATON_HAMMER))
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_SPIRIT_TRIAL_BEFORE_SWITCH {
+    name: "Ganon's Castle MQ Spirit Trial Before Switch"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_MQ_SPIRIT_TRIAL_CHAIRS_ROOM: always
+        RR_GANONS_CASTLE_MQ_SPIRIT_TRIAL_AFTER_SWITCH: any_age(can_use(RG_BOMBCHU_5))
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_SPIRIT_TRIAL_AFTER_SWITCH {
+    name: "Ganon's Castle MQ Spirit Trial After Switch"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_MQ_SPIRIT_TRIAL_BEFORE_SWITCH: any_age(can_use(RG_BOMBCHU_5))
+        RR_GANONS_CASTLE_MQ_SPIRIT_TRIAL_FINAL_ROOM:
+            any_age(can_use(RG_FIRE_ARROWS) and can_use(RG_MIRROR_SHIELD)) or sunlight_arrows()
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_SPIRIT_TRIAL_FINAL_ROOM {
+    name: "Ganon's Castle MQ Spirit Trial Final Room"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_SPIRIT_TRIAL_CLEAR: can_use(RG_LIGHT_ARROWS)
+        LOGIC_NUT_ACCESS: can_break_pots()
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_SPIRIT_TRIAL_AFTER_SWITCH: always
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_DINOLFOS_ROOM {
+    name: "Ganon's Castle MQ Light Trial Dinolfos Room"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_MQ_MAIN: always
+        RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_TRIFORCE_ROOM: any_age(can_kill(RE_DINOLFOS) and can_kill(RE_TORCH_SLUG))
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_TRIFORCE_ROOM {
+    name: "Ganon's Castle MQ Light Trial Triforce Room"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_DINOLFOS_ROOM: always
+        RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_BOULDER_ROOM_FRONT: small_keys(SCENE_INSIDE_GANONS_CASTLE, 2)
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_BOULDER_ROOM_FRONT {
+    name: "Ganon's Castle MQ Light Trial Boulder Room Front"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_TRIFORCE_ROOM: small_keys(SCENE_INSIDE_GANONS_CASTLE, 2)
+        RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_BOULDER_ROOM_BACK:
+            can_use(RG_HOOKSHOT) or trick(RT_GANON_MQ_LIGHT_TRIAL) or (is_adult() and can_ground_jump())
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_BOULDER_ROOM_BACK {
+    name: "Ganon's Castle MQ Light Trial Boulder Room Back"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_BOULDER_ROOM_FRONT:
+            can_use(RG_HOOKSHOT) or trick(RT_GANON_MQ_LIGHT_TRIAL) or (is_adult() and can_ground_jump())
+        RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_FINAL_ROOM: small_keys(SCENE_INSIDE_GANONS_CASTLE, 3)
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_FAKE_FINAL_ROOM {
+    name: "Ganon's Castle MQ Light Trial Fake Final Room"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_BOULDER_ROOM_BACK: small_keys(SCENE_INSIDE_GANONS_CASTLE, 3)
+        RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_FINAL_ROOM:
+            (trick(RT_LENS_GANON_MQ) or can_use(RG_LENS_OF_TRUTH)) and (can_jumpslash() or can_use_projectile())
+    }
+}
+
+region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_FINAL_ROOM {
+    name: "Ganon's Castle MQ Light Trial Final Room"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_LIGHT_TRIAL_CLEAR: can_use(RG_LIGHT_ARROWS)
+    }
+
+    exits {
+        RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_BOULDER_ROOM_BACK: small_keys(SCENE_INSIDE_GANONS_CASTLE, 3)
+    }
+}

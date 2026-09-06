@@ -149,3 +149,60 @@ extend region RR_DEKU_TREE_MQ_BASEMENT_WATER_ROOM_BACK {
         RC_DEKU_TREE_MQ_AFTER_SPINNING_LOG_CHEST: can_use(RG_SONG_OF_TIME) and can_pass(RE_BIG_SKULLTULA) and has(RG_OPEN_CHEST)
     }
 }
+
+extend region RR_GANONS_CASTLE_MQ_FOREST_TRIAL_BEAMOS_ROOM {
+    locations {
+        RC_GANONS_CASTLE_MQ_FOREST_TRIAL_EYE_SWITCH_CHEST: flag(LOGIC_FOREST_TRIAL_MQ_SPAWN_BEAMOS_CHEST) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_FOREST_TRIAL_BEAMOS_ROOM_MIDDLE {
+    locations {
+        RC_GANONS_CASTLE_MQ_FOREST_TRIAL_FROZEN_EYE_SWITCH_CHEST: has_fire_source() and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_WATER_TRIAL_GEYSER_ROOM {
+    locations {
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_CHEST: blue_fire() and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_CHEST_PLATFORM {
+    locations {
+        RC_GANONS_CASTLE_MQ_SHADOW_TRIAL_BOMB_FLOWER_CHEST: flag(LOGIC_SHADOW_TRIAL_FIRST_CHEST) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_FAR_SIDE {
+    locations {
+        RC_GANONS_CASTLE_MQ_SHADOW_TRIAL_EYE_SWITCH_CHEST: can_hit_eye_targets() and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_SPIRIT_TRIAL_BEFORE_SWITCH {
+    locations {
+        RC_GANONS_CASTLE_MQ_SPIRIT_TRIAL_FIRST_CHEST: can_pass(RE_GREEN_BUBBLE) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_SPIRIT_TRIAL_AFTER_SWITCH {
+    locations {
+        RC_GANONS_CASTLE_MQ_SPIRIT_TRIAL_INVISIBLE_CHEST:
+            (trick(RT_LENS_GANON_MQ) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_MQ_SPIRIT_TRIAL_SUN_FRONT_LEFT_CHEST:
+            ((can_use(RG_FIRE_ARROWS) and can_use(RG_MIRROR_SHIELD)) or sunlight_arrows()) and has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_MQ_SPIRIT_TRIAL_SUN_BACK_LEFT_CHEST:
+            ((can_use(RG_FIRE_ARROWS) and can_use(RG_MIRROR_SHIELD)) or sunlight_arrows()) and has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_MQ_SPIRIT_TRIAL_GOLDEN_GAUNTLETS_CHEST:
+            ((can_use(RG_FIRE_ARROWS) and can_use(RG_MIRROR_SHIELD)) or sunlight_arrows()) and has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_MQ_SPIRIT_TRIAL_SUN_BACK_RIGHT_CHEST:
+            ((can_use(RG_FIRE_ARROWS) and can_use(RG_MIRROR_SHIELD)) or sunlight_arrows()) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_TRIFORCE_ROOM {
+    locations {
+        RC_GANONS_CASTLE_MQ_LIGHT_TRIAL_LULLABY_CHEST: can_use(RG_ZELDAS_LULLABY) and has(RG_OPEN_CHEST)
+    }
+}

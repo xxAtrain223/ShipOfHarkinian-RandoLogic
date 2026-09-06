@@ -160,3 +160,16 @@ extend region RR_DESERT_COLOSSUS {
         RC_COLOSSUS_FREESTANDING_POH: is_adult() and can_plant_bean(RR_DESERT_COLOSSUS, RG_DESERT_COLOSSUS_BEAN_SOUL)
     }
 }
+
+extend region RR_GANONS_CASTLE_MQ_WATER_TRIAL_GEYSER_ROOM {
+    locations {
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_HEART: blue_fire()
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_BOULDER_ROOM_BACK {
+    locations {
+        RC_GANONS_CASTLE_MQ_LIGHT_TRIAL_LEFT_HEART: always
+        RC_GANONS_CASTLE_MQ_LIGHT_TRIAL_RIGHT_HEART: always
+    }
+}
