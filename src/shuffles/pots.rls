@@ -266,3 +266,10 @@ extend region RR_SPIRIT_TEMPLE_POT_STAIRS {
         RC_SPIRIT_TEMPLE_BEAMOS_HALL_POT_1: can_break_pots()
     }
 }
+
+extend region RR_HF_COW_GROTTO_BEHIND_WEBS {
+    locations {
+        RC_HF_COW_GROTTO_POT_1: can_break_pots()
+        RC_HF_COW_GROTTO_POT_2: can_break_pots()
+    }
+}

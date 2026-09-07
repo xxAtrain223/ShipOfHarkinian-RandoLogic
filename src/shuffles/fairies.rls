@@ -128,3 +128,56 @@ extend region RR_SPIRIT_TEMPLE_4_ARMOS {
         RC_SPIRIT_TEMPLE_ARMOS_ROOM_SUN_FAIRY: has_explosives() and can_use(RG_SUNS_SONG)
     }
 }
+
+extend region RR_HYRULE_FIELD {
+    locations {
+        RC_HF_POND_STORMS_FAIRY: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_HF_SOUTHEAST_GROTTO {
+    locations {
+        RC_HF_SOUTHEAST_GROTTO_GOSSIP_STONE_FAIRY: call_gossip_fairy()
+        RC_HF_SOUTHEAST_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_HF_OPEN_GROTTO {
+    locations {
+        RC_HF_OPEN_GROTTO_GOSSIP_STONE_FAIRY: call_gossip_fairy()
+        RC_HF_OPEN_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_HF_INSIDE_FENCE_GROTTO {
+    locations {
+        RC_HF_FENCE_GROTTO_STORMS_FAIRY: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_HF_COW_GROTTO_BEHIND_WEBS {
+    locations {
+        RC_HF_COW_GROTTO_GOSSIP_STONE_FAIRY: call_gossip_fairy()
+        RC_HF_COW_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_HF_NEAR_MARKET_GROTTO {
+    locations {
+        RC_HF_NEAR_MARKET_GROTTO_GOSSIP_STONE_FAIRY: call_gossip_fairy()
+        RC_HF_NEAR_MARKET_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_HF_FAIRY_GROTTO {
+    locations {
+        RC_HF_FAIRY_GROTTO_FAIRY_1: always
+        RC_HF_FAIRY_GROTTO_FAIRY_2: always
+        RC_HF_FAIRY_GROTTO_FAIRY_3: always
+        RC_HF_FAIRY_GROTTO_FAIRY_4: always
+        RC_HF_FAIRY_GROTTO_FAIRY_5: always
+        RC_HF_FAIRY_GROTTO_FAIRY_6: always
+        RC_HF_FAIRY_GROTTO_FAIRY_7: always
+        RC_HF_FAIRY_GROTTO_FAIRY_8: always
+    }
+}

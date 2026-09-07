@@ -3,3 +3,8 @@ extend region RR_KF_LINKS_HOUSE {
         RC_KF_LINKS_HOUSE_COW: is_adult() and can_use(RG_EPONAS_SONG) and flag(LOGIC_LINKS_COW)
     }
 }
+extend region RR_HF_COW_GROTTO_BEHIND_WEBS {
+    locations {
+        RC_HF_COW_GROTTO_COW: can_use(RG_EPONAS_SONG)
+    }
+}

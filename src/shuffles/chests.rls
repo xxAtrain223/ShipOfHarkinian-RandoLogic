@@ -326,3 +326,21 @@ extend region RR_SPIRIT_TEMPLE_BIG_MIRROR_CAVE {
         RC_SPIRIT_TEMPLE_TOPMOST_CHEST: ((is_adult() and can_use(RG_MIRROR_SHIELD)) or sunlight_arrows()) and has(RG_OPEN_CHEST)
     }
 }
+
+extend region RR_HF_SOUTHEAST_GROTTO {
+    locations {
+        RC_HF_SOUTHEAST_GROTTO_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_HF_OPEN_GROTTO {
+    locations {
+        RC_HF_OPEN_GROTTO_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_HF_NEAR_MARKET_GROTTO {
+    locations {
+        RC_HF_NEAR_MARKET_GROTTO_CHEST: has(RG_OPEN_CHEST)
+    }
+}

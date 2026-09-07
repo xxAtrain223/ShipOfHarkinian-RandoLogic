@@ -10,3 +10,30 @@ extend region RR_COLOSSUS_GROTTO {
         RC_COLOSSUS_GROTTO_BEEHIVE: can_break_upper_beehives()
     }
 }
+
+extend region RR_HF_SOUTHEAST_GROTTO {
+    locations {
+        RC_HF_SOUTHEAST_GROTTO_BEEHIVE_LEFT: can_break_lower_beehives()
+        RC_HF_SOUTHEAST_GROTTO_BEEHIVE_RIGHT: can_break_lower_beehives()
+    }
+}
+
+extend region RR_HF_OPEN_GROTTO {
+    locations {
+        RC_HF_OPEN_GROTTO_BEEHIVE_LEFT: can_break_lower_beehives()
+        RC_HF_OPEN_GROTTO_BEEHIVE_RIGHT: can_break_lower_beehives()
+    }
+}
+
+extend region RR_HF_INSIDE_FENCE_GROTTO {
+    locations {
+        RC_HF_INSIDE_FENCE_GROTTO_BEEHIVE: can_break_lower_beehives()
+    }
+}
+
+extend region RR_HF_NEAR_MARKET_GROTTO {
+    locations {
+        RC_HF_NEAR_MARKET_GROTTO_BEEHIVE_LEFT: can_break_lower_beehives()
+        RC_HF_NEAR_MARKET_GROTTO_BEEHIVE_RIGHT: can_break_lower_beehives()
+    }
+}

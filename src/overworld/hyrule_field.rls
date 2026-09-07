@@ -1,0 +1,158 @@
+region RR_HYRULE_FIELD {
+    name: "Hyrule Field"
+    scene: SCENE_HYRULE_FIELD
+
+    events {
+        LOGIC_BIG_POE_KILL: has_bottle() and can_use(RG_FAIRY_BOW) and (summon_epona() or trick(RT_HF_BIG_POE_WITHOUT_EPONA))
+        LOGIC_BORROW_RIGHT_MASKS:
+            is_child() and flag(LOGIC_BORROW_BUNNY_HOOD) and
+            has(RG_KOKIRI_EMERALD) and has(RG_GORON_RUBY) and has(RG_ZORA_SAPPHIRE) and
+            has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN)
+    }
+
+    locations {
+        RC_HF_OCARINA_OF_TIME_ITEM: is_child() and stone_count() == 3 and has(RG_BRONZE_SCALE)
+        RC_SONG_FROM_OCARINA_OF_TIME: is_child() and stone_count() == 3 and has(RG_BRONZE_SCALE)
+    }
+
+    exits {
+        RR_LW_BRIDGE: always
+        RR_GERUDO_VALLEY: always
+        RR_MARKET_ENTRANCE: always
+        RR_KAKARIKO_VILLAGE: always
+        RR_ZR_FRONT: always
+        RR_LON_LON_RANCH: always
+        RR_HF_SOUTHEAST_GROTTO: any_age(blast_or_smash())
+        RR_HF_TO_LAKE_HYLIA: can_climb_ladder() or summon_epona()
+        RR_HF_OPEN_GROTTO: always
+        RR_HF_INSIDE_FENCE_GROTTO: can_open_bomb_grotto()
+        RR_HF_COW_GROTTO: (can_use(RG_MEGATON_HAMMER) or is_child()) and can_open_bomb_grotto()
+        RR_HF_NEAR_MARKET_GROTTO: any_age(blast_or_smash())
+        RR_HF_FAIRY_GROTTO: any_age(blast_or_smash())
+        RR_HF_NEAR_KAK_GROTTO: can_open_bomb_grotto()
+        RR_HF_TEKTITE_GROTTO: can_open_bomb_grotto()
+    }
+}
+
+region RR_HF_TO_LAKE_HYLIA {
+    name: "HF to Lake Hylia"
+    scene: SCENE_HYRULE_FIELD
+
+    exits {
+        RR_LAKE_HYLIA: always
+        RR_HYRULE_FIELD: can_climb_ladder() or summon_epona()
+    }
+}
+
+region RR_HF_SOUTHEAST_GROTTO {
+    name: "HF Southeast Grotto"
+    scene: SCENE_GROTTOS
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy() or can_use(RG_STICKS)
+        LOGIC_BUG_ACCESS: can_cut_shrubs()
+        LOGIC_FISH_ACCESS: always
+    }
+
+    exits {
+        RR_HYRULE_FIELD: always
+    }
+}
+
+region RR_HF_OPEN_GROTTO {
+    name: "HF Open Grotto"
+    scene: SCENE_GROTTOS
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy() or can_use(RG_STICKS)
+        LOGIC_BUG_ACCESS: can_cut_shrubs()
+        LOGIC_FISH_ACCESS: always
+    }
+
+    exits {
+        RR_HYRULE_FIELD: always
+    }
+}
+
+region RR_HF_INSIDE_FENCE_GROTTO {
+    name: "HF Inside Fence Grotto"
+    scene: SCENE_GROTTOS
+
+    exits {
+        RR_HYRULE_FIELD: always
+    }
+}
+
+region RR_HF_COW_GROTTO {
+    name: "HF Cow Grotto"
+    scene: SCENE_GROTTOS
+
+    exits {
+        RR_HYRULE_FIELD: always
+        RR_HF_COW_GROTTO_BEHIND_WEBS: has_fire_source()
+    }
+}
+
+region RR_HF_COW_GROTTO_BEHIND_WEBS {
+    name: "HF Cow Grotto Behind Webs"
+    scene: SCENE_GROTTOS
+
+    events {
+        LOGIC_BUG_ACCESS: can_cut_shrubs()
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy()
+    }
+
+    exits {
+        RR_HF_COW_GROTTO: always
+    }
+}
+
+region RR_HF_NEAR_MARKET_GROTTO {
+    name: "HF Near Market Grotto"
+    scene: SCENE_GROTTOS
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy() or can_use(RG_STICKS)
+        LOGIC_BUG_ACCESS: can_cut_shrubs()
+        LOGIC_FISH_ACCESS: always
+    }
+
+    exits {
+        RR_HYRULE_FIELD: always
+    }
+}
+
+region RR_HF_FAIRY_GROTTO {
+    name: "HF Fairy Grotto"
+    scene: SCENE_GROTTOS
+
+    events {
+        LOGIC_FAIRY_ACCESS: always
+    }
+
+    exits {
+        RR_HYRULE_FIELD: always
+    }
+}
+
+region RR_HF_NEAR_KAK_GROTTO {
+    name: "HF Near Kak Grotto"
+    scene: SCENE_GROTTOS
+
+    exits {
+        RR_HYRULE_FIELD: always
+    }
+}
+
+region RR_HF_TEKTITE_GROTTO {
+    name: "HF Tektite Grotto"
+    scene: SCENE_GROTTOS
+
+    locations {
+        RC_HF_TEKTITE_GROTTO_FREESTANDING_POH: has(RG_GOLDEN_SCALE) or can_use(RG_IRON_BOOTS)
+    }
+
+    exits {
+        RR_HYRULE_FIELD: always
+    }
+}

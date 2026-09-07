@@ -29,3 +29,8 @@ extend region RR_GANONS_CASTLE_MQ_DEKU_SCRUBS {
         RC_GANONS_CASTLE_MQ_DEKU_SCRUB_RIGHT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
     }
 }
+extend region RR_HF_INSIDE_FENCE_GROTTO {
+    locations {
+        RC_HF_DEKU_SCRUB_GROTTO: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+    }
+}

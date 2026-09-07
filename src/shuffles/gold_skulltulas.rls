@@ -161,3 +161,15 @@ extend region RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS {
         RC_SPIRIT_TEMPLE_GS_HALL_AFTER_SUN_BLOCK_ROOM: spirit_shared(RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS, can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG))
     }
 }
+
+extend region RR_HF_COW_GROTTO_BEHIND_WEBS {
+    locations {
+        RC_HF_GS_COW_GROTTO: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
+extend region RR_HF_NEAR_KAK_GROTTO {
+    locations {
+        RC_HF_GS_NEAR_KAK_GROTTO: hookshot_or_boomerang()
+    }
+}
