@@ -42,3 +42,35 @@ extend region RR_SPIRIT_TEMPLE_CHILD_BOXES {
         RC_SPIRIT_TEMPLE_BEFORE_CHILD_CLIMB_SMALL_CRATE_2: can_break_small_crates()
     }
 }
+
+extend region RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_CHILD {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_STATUE_SMALL_CRATE: spirit_shared(RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_CHILD, can_break_small_crates())
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_STATUE_CRATE_1:     spirit_shared(RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM, can_break_crates())
+        RC_SPIRIT_TEMPLE_MQ_STATUE_CRATE_2:     spirit_shared(RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM, can_break_crates())
+        # The drop sometimes flies off the block when the crate is blown up, but not always, so I added a rang requirement
+        # A trick to reload for it is plausible
+        RC_SPIRIT_TEMPLE_MQ_STATUE_SMALL_CRATE: spirit_shared(RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM, (can_use(RG_SONG_OF_TIME) and can_break_small_crates()) or
+                                                                                               (can_use(RG_BOOMERANG) and has_explosives()))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_BEAMOS_PITS {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_BEAMOS_SMALL_CRATE: can_avoid(RE_BEAMOS, true, 4) and can_use(RG_SONG_OF_TIME) and can_break_small_crates()
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_BIG_MIRROR_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_BIG_MIRROR_CRATE_1: can_break_crates()
+        RC_SPIRIT_TEMPLE_MQ_BIG_MIRROR_CRATE_4: can_break_crates()
+        RC_SPIRIT_TEMPLE_MQ_BIG_MIRROR_CRATE_2: can_break_crates()
+        RC_SPIRIT_TEMPLE_MQ_BIG_MIRROR_CRATE_3: can_break_crates()
+    }
+}

@@ -129,6 +129,12 @@ extend region RR_SPIRIT_TEMPLE_4_ARMOS {
     }
 }
 
+extend region RR_SPIRIT_TEMPLE_MQ_SOT_SUN_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_DINALFOS_ROOM_SUN_FAIRY: can_use(RG_SUNS_SONG)
+    }
+}
+
 extend region RR_HYRULE_FIELD {
     locations {
         RC_HF_POND_STORMS_FAIRY: can_use(RG_SONG_OF_STORMS)

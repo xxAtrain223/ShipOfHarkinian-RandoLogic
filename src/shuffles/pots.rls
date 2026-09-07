@@ -267,6 +267,107 @@ extend region RR_SPIRIT_TEMPLE_POT_STAIRS {
     }
 }
 
+extend region RR_SPIRIT_TEMPLE_MQ_FOYER {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_POT_1: can_break_pots()
+        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_POT_2: can_break_pots()
+        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_POT_3: can_break_pots()
+        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_CHILD_SIDE_HUB {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_CHILD_SLUGMA_POT: can_break_pots()
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_GIBDO_POTS {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_CHILD_GIBDO_POT_1: can_break_pots()
+        RC_SPIRIT_TEMPLE_MQ_CHILD_GIBDO_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_TURNTABLE {
+    locations {
+        # implies can_break_pots()
+        RC_SPIRIT_TEMPLE_MQ_CHILD_STALFOS_POT_1: can_use(RG_BOOMERANG) or can_kill(RE_STALFOS)
+        RC_SPIRIT_TEMPLE_MQ_CHILD_STALFOS_POT_2: can_use(RG_BOOMERANG) or can_kill(RE_STALFOS)
+        RC_SPIRIT_TEMPLE_MQ_CHILD_STALFOS_POT_3: can_use(RG_BOOMERANG) or can_kill(RE_STALFOS)
+        RC_SPIRIT_TEMPLE_MQ_CHILD_STALFOS_POT_4: can_use(RG_BOOMERANG) or can_kill(RE_STALFOS)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_UNDER_LIKE_LIKE {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_CHILD_LIKE_LIKE_POT: spirit_shared(RR_SPIRIT_TEMPLE_MQ_UNDER_LIKE_LIKE, can_break_pots())
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_POT_LEDGE {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_STATUE_3F_EAST_POT: spirit_shared(RR_SPIRIT_TEMPLE_MQ_POT_LEDGE, can_break_pots(), false,
+                                                              RR_SPIRIT_TEMPLE_MQ_INNER_RIGHT_HAND, can_use(RG_BOOMERANG))
+        RC_SPIRIT_TEMPLE_MQ_STATUE_3F_WEST_POT: spirit_shared(RR_SPIRIT_TEMPLE_MQ_POT_LEDGE, can_break_pots(), false,
+                                                              RR_SPIRIT_TEMPLE_MQ_INNER_RIGHT_HAND, trick(RT_SPIRIT_WEST_LEDGE) and can_use(RG_BOOMERANG))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_INNER_RIGHT_HAND {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_STATUE_3F_EAST_POT: spirit_shared(RR_SPIRIT_TEMPLE_MQ_INNER_RIGHT_HAND, can_use(RG_BOOMERANG), false,
+                                                              RR_SPIRIT_TEMPLE_MQ_POT_LEDGE, can_break_pots())
+        RC_SPIRIT_TEMPLE_MQ_STATUE_3F_WEST_POT: spirit_shared(RR_SPIRIT_TEMPLE_MQ_INNER_RIGHT_HAND, can_use(RG_BOOMERANG) and trick(RT_SPIRIT_WEST_LEDGE), false,
+                                                              RR_SPIRIT_TEMPLE_MQ_POT_LEDGE, can_break_pots())
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_STATUE_2F_CENTER_EAST_POT: spirit_shared(RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM, can_break_pots())
+        RC_SPIRIT_TEMPLE_MQ_STATUE_2F_WEST_POT:        spirit_shared(RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM, can_break_pots())
+        RC_SPIRIT_TEMPLE_MQ_STATUE_2F_EASTMOST_POT:    spirit_shared(RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM, can_break_pots())
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_SUN_BLOCK_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_SUN_BLOCKS_POT_1: spirit_shared(RR_SPIRIT_TEMPLE_MQ_SUN_BLOCK_ROOM, can_break_pots())
+        RC_SPIRIT_TEMPLE_MQ_SUN_BLOCKS_POT_2: spirit_shared(RR_SPIRIT_TEMPLE_MQ_SUN_BLOCK_ROOM, can_break_pots())
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_BEHIND_GEYSER {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_EARLY_ADULT_POT_1: can_break_pots()
+        RC_SPIRIT_TEMPLE_MQ_EARLY_ADULT_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_BIG_WALL_BASE {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_LONG_CLIMB_POT_1: can_break_pots()
+        RC_SPIRIT_TEMPLE_MQ_LONG_CLIMB_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_4F_CENTRAL {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_BEFORE_MIRROR_POT_1: can_break_pots()
+        RC_SPIRIT_TEMPLE_MQ_BEFORE_MIRROR_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_BIG_MIRROR_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_BIG_MIRROR_POT_1: can_break_pots()
+        RC_SPIRIT_TEMPLE_MQ_BIG_MIRROR_POT_2: can_break_pots()
+        RC_SPIRIT_TEMPLE_MQ_BIG_MIRROR_POT_3: can_break_pots()
+        RC_SPIRIT_TEMPLE_MQ_BIG_MIRROR_POT_4: can_break_pots()
+    }
+}
+
 extend region RR_HF_COW_GROTTO_BEHIND_WEBS {
     locations {
         RC_HF_COW_GROTTO_POT_1: can_break_pots()

@@ -327,6 +327,122 @@ extend region RR_SPIRIT_TEMPLE_BIG_MIRROR_CAVE {
     }
 }
 
+extend region RR_SPIRIT_TEMPLE_MQ_FOYER {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_FRONT_LEFT_CHEST:  has(RG_OPEN_CHEST)
+        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_BACK_LEFT_CHEST:   any_age(blast_or_smash()) and can_hit_eye_targets() and has(RG_OPEN_CHEST)
+        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_BACK_RIGHT_CHEST:  can_hit_switch(ED_BOOMERANG) and has(RG_OPEN_CHEST)
+        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_FRONT_RIGHT_CHEST: flag(LOGIC_SPIRIT_1F_SILVER_RUPEES) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_CHILD_SIDE_HUB {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_CHILD_HAMMER_SWITCH_CHEST: flag(LOGIC_SPIRIT_MQ_TIME_TRAVEL_CHEST) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_ANUBIS_BRIDGE_GRAVE {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_MAP_ROOM_ENEMY_CHEST: flag(LOGIC_SPIRIT_MQ_MAP_ROOM_ENEMIES) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_ANUBIS_BRIDGE_CHEST {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_MAP_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_SUN_ON_FLOOR {
+    locations {
+        # implies can_kill(RE_LIKE_LIKE)
+        RC_SPIRIT_TEMPLE_MQ_CHILD_CLIMB_NORTH_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_MQ_SUN_ON_FLOOR, can_kill(RE_BEAMOS) and has(RG_OPEN_CHEST))
+        # Sunlights only temp spawn this chest, which is unintuitive/a bug.
+        RC_SPIRIT_TEMPLE_MQ_CHILD_CLIMB_SOUTH_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_MQ_SUN_ON_FLOOR, (has_explosives() or sunlight_arrows()) and can_use(RG_HOOKSHOT) and has(RG_OPEN_CHEST))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_COMPASS_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM, can_hit_eye_targets() and has(RG_OPEN_CHEST))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_SUN_BLOCK_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_SUN_BLOCK_ROOM_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_MQ_SUN_BLOCK_ROOM, has(RG_POWER_BRACELET) and has(RG_OPEN_CHEST))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_OUTER_RIGHT_HAND {
+    locations {
+        RC_SPIRIT_TEMPLE_SILVER_GAUNTLETS_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_MQ_OUTER_RIGHT_HAND, has(RG_OPEN_CHEST))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_BIG_BLOCKS_DOOR {
+    locations {
+        # Hard child locked because pushing the block is a permanent flag that blocks the eye target and cannot be undone
+        # but it resets as Child as a rando QoL feature
+        RC_SPIRIT_TEMPLE_MQ_SILVER_BLOCK_HALLWAY_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_MQ_BIG_BLOCKS_DOOR, is_child() and can_hit_eye_targets() and has(RG_OPEN_CHEST))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_INNER_LEFT_HAND {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_STATUE_ROOM_LULLABY_CHEST: can_use(RG_ZELDAS_LULLABY) and can_break_crates() and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_CHEST_LEDGE {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_STATUE_ROOM_INVISIBLE_CHEST: (trick(RT_LENS_SPIRIT_MQ) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_SAND_PIT {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_LEEVER_ROOM_CHEST: can_kill(RE_PURPLE_LEEVER) and (can_use(RG_HOOKSHOT) or (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_SKULLTULA_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_SYMPHONY_ROOM_CHEST: can_pass(RE_BIG_SKULLTULA) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_BEAMOS_PITS {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_BEAMOS_ROOM_CHEST: can_kill(RE_BEAMOS) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_SOT_SUN_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_CHEST_SWITCH_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_OUTER_LEFT_HAND {
+    locations {
+        RC_SPIRIT_TEMPLE_MIRROR_SHIELD_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_3F_GIBDO_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_BOSS_KEY_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_BIG_MIRROR_CAVE {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_MIRROR_PUZZLE_INVISIBLE_CHEST: (trick(RT_LENS_SPIRIT_MQ) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+    }
+}
+
 extend region RR_HF_SOUTHEAST_GROTTO {
     locations {
         RC_HF_SOUTHEAST_GROTTO_CHEST: has(RG_OPEN_CHEST)

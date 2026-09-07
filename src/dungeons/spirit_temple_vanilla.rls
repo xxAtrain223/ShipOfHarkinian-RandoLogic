@@ -57,7 +57,7 @@ region RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_NORTH {
 
     exits {
         RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_SOUTH: can_use(RG_HOVER_BOOTS) or (flag(LOGIC_SPIRIT_CHILD_SWITCH_BRIDGE) and can_pass(RE_GREEN_BUBBLE, ED_CLOSE, false))
-        RR_SPIRIT_TEMPLE_1F_ANUBIS: always
+        RR_SPIRIT_TEMPLE_1F_ANUBIS:           always
     }
 }
 
@@ -171,7 +171,7 @@ region RR_SPIRIT_TEMPLE_BOULDERS {
 
     exits {
         RR_SPIRIT_TEMPLE_ABOVE_BOULDERS: is_adult() or has(RG_CLIMB) or can_use(RG_HOOKSHOT) or can_ground_jump()
-        RR_SPIRIT_TEMPLE_PAST_BOULDERS: flag(LOGIC_SPIRIT_BOUNDERS_SILVERS)
+        RR_SPIRIT_TEMPLE_PAST_BOULDERS:  flag(LOGIC_SPIRIT_BOUNDERS_SILVERS)
     }
 }
 
@@ -199,7 +199,7 @@ region RR_SPIRIT_TEMPLE_2F_MIRROR_ROOM {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_1F_MIRROR_ROOM: always
+        RR_SPIRIT_TEMPLE_1F_MIRROR_ROOM:    always
         RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: has(RG_POWER_BRACELET) or sunlight_arrows()
     }
 }
@@ -211,18 +211,18 @@ region RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD {
     exits {
         RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F: always
         RR_SPIRIT_TEMPLE_INNER_WEST_HAND: always
-        RR_SPIRIT_TEMPLE_GS_LEDGE: can_use(RG_HOVER_BOOTS) or reach_scarecrow()
+        RR_SPIRIT_TEMPLE_GS_LEDGE:        can_use(RG_HOVER_BOOTS) or reach_scarecrow()
         # RT_SPIRIT_PLATFORM_HOOKSHOT is currently disabled
-        RR_SPIRIT_TEMPLE_PLATFORM: flag(LOGIC_SPIRIT_PLATFORM_LOWERED) and
-                                   (can_use(RG_LONGSHOT) or (trick(RT_SPIRIT_PLATFORM_HOOKSHOT) and can_use(RG_HOOKSHOT)))
-        RR_SPIRIT_TEMPLE_EMPTY_STAIRS: has(RG_POWER_BRACELET)
+        RR_SPIRIT_TEMPLE_PLATFORM:        flag(LOGIC_SPIRIT_PLATFORM_LOWERED) and
+                                          (can_use(RG_LONGSHOT) or (trick(RT_SPIRIT_PLATFORM_HOOKSHOT) and can_use(RG_HOOKSHOT)))
+        RR_SPIRIT_TEMPLE_EMPTY_STAIRS:    has(RG_POWER_BRACELET)
         # !QUANTUM LOGIC!
         # When child enters spirit in reverse, has 4 keys, and dungeon entrance shuffle is off, 
         # Child cannot lock themselves out of desert colossus access as if they save the west hand lock for last
         # they will be able to exit the dungeon through the intended entrance and vice versa
         # for needing to open the west hand lock to block the intended child route
-        RR_DESERT_COLOSSUS: setting(RSK_SHUFFLE_DUNGEON_ENTRANCES) is RO_DUNGEON_ENTRANCE_SHUFFLE_OFF and has(RG_POWER_BRACELET) and
-                            can_use(RG_CRAWL) and small_keys(SCENE_SPIRIT_TEMPLE, 4) and can_kill(RE_IRON_KNUCKLE)
+        RR_DESERT_COLOSSUS:               setting(RSK_SHUFFLE_DUNGEON_ENTRANCES) is RO_DUNGEON_ENTRANCE_SHUFFLE_OFF and has(RG_POWER_BRACELET) and
+                                          can_use(RG_CRAWL) and small_keys(SCENE_SPIRIT_TEMPLE, 4) and can_kill(RE_IRON_KNUCKLE)
     }
 }
 
@@ -251,21 +251,21 @@ region RR_SPIRIT_TEMPLE_STATUE_ROOM {
 
     exits {
         RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
-        RR_SPIRIT_TEMPLE_PLATFORM: flag(LOGIC_SPIRIT_PLATFORM_LOWERED) and
-                                   (can_use(RG_LONGSHOT) or (trick(RT_SPIRIT_PLATFORM_HOOKSHOT) and can_use(RG_HOOKSHOT)))
+        RR_SPIRIT_TEMPLE_PLATFORM:          flag(LOGIC_SPIRIT_PLATFORM_LOWERED) and
+                                            (can_use(RG_LONGSHOT) or (trick(RT_SPIRIT_PLATFORM_HOOKSHOT) and can_use(RG_HOOKSHOT)))
         # explicit adult check here is a precaution against possible child logic leaking, child with a hookshot can do this
         RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: is_adult() and can_use(RG_HOOKSHOT)
-        RR_SPIRIT_TEMPLE_SHORTCUT: flag(LOGIC_SPIRIT_STATUE_SOUTH_DOOR)
+        RR_SPIRIT_TEMPLE_SHORTCUT:          flag(LOGIC_SPIRIT_STATUE_SOUTH_DOOR)
         # !QUANTUM LOGIC!
         # If dungeon entrance randomiser is off, Adult entered spirit in reverse, and they have str 2 to get there from the front and Explosives,
         # it is always possible for them to reach 1F_EAST with only 2 keys. This is because you can only waste 1 key (on the first child side lock)
         # before you either allow you to climb down through 2F mirror room, or give yourself access to a hand to jump down from.
         # If for whatever reason you can reach east hand but not west hand, this becomes possible with 3 keys instead.
         # If you do not have explosives to kill Beamos, but do have a way to defeat Iron Knuckles, this becomes possible with 4 keys instead.
-        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: setting(RSK_SHUFFLE_DUNGEON_ENTRANCES) is RO_DUNGEON_ENTRANCE_SHUFFLE_OFF and
-                                         can_use(RG_SILVER_GAUNTLETS) and is_adult() and
-                                         ((can_kill(RE_BEAMOS) and small_keys(SCENE_SPIRIT_TEMPLE, (has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and has(RG_POWER_BRACELET) ? 2 : 3)) or
-                                          ((has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and has(RG_POWER_BRACELET) and can_kill(RE_IRON_KNUCKLE) and small_keys(SCENE_SPIRIT_TEMPLE, 4)))
+        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB:    setting(RSK_SHUFFLE_DUNGEON_ENTRANCES) is RO_DUNGEON_ENTRANCE_SHUFFLE_OFF and
+                                            can_use(RG_SILVER_GAUNTLETS) and is_adult() and
+                                            ((can_kill(RE_BEAMOS) and small_keys(SCENE_SPIRIT_TEMPLE, (has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and has(RG_POWER_BRACELET) ? 2 : 3)) or
+                                             ((has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and has(RG_POWER_BRACELET) and can_kill(RE_IRON_KNUCKLE) and small_keys(SCENE_SPIRIT_TEMPLE, 4)))
     }
 }
 
@@ -274,7 +274,7 @@ region RR_SPIRIT_TEMPLE_EMPTY_STAIRS {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_STATUE_ROOM: always
+        RR_SPIRIT_TEMPLE_STATUE_ROOM:    always
         RR_SPIRIT_TEMPLE_SUN_BLOCK_ROOM: always
     }
 }
@@ -284,10 +284,10 @@ region RR_SPIRIT_TEMPLE_SUN_BLOCK_ROOM {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_EMPTY_STAIRS: has(RG_POWER_BRACELET) or sunlight_arrows()
+        RR_SPIRIT_TEMPLE_EMPTY_STAIRS:          has(RG_POWER_BRACELET) or sunlight_arrows()
         # The blocks can be used to get onto this ledge itemless
         RR_SPIRIT_TEMPLE_SUN_BLOCK_CHEST_LEDGE: spirit_sun_block_south_ledge()
-        RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS: has(RG_POWER_BRACELET) or sunlight_arrows()
+        RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS:      has(RG_POWER_BRACELET) or sunlight_arrows()
     }
 }
 
@@ -310,7 +310,7 @@ region RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS {
 
     exits {
         RR_SPIRIT_TEMPLE_SUN_BLOCK_ROOM: always
-        RR_SPIRIT_TEMPLE_CHILD_THRONE: small_keys(SCENE_SPIRIT_TEMPLE, 3)
+        RR_SPIRIT_TEMPLE_CHILD_THRONE:   small_keys(SCENE_SPIRIT_TEMPLE, 3)
     }
 }
 
@@ -344,7 +344,7 @@ region RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND {
 
     exits {
         RR_SPIRIT_TEMPLE_RIGHT_HAND_EXIT: always
-        RR_DESERT_COLOSSUS: spirit_certain_access(RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND)
+        RR_DESERT_COLOSSUS:               spirit_certain_access(RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND)
     }
 }
 

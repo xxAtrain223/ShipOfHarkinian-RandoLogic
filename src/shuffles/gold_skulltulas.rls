@@ -162,6 +162,34 @@ extend region RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS {
     }
 }
 
+extend region RR_SPIRIT_TEMPLE_MQ_SUN_BLOCK_ROOM {
+    locations {
+        # RT_SPIRIT_MQ_SUN_BLOCK_GS should probably be expanded to cover all ground based methods, as it can be hit with longshot because the skull hitbox is larger than the model
+        RC_SPIRIT_TEMPLE_MQ_GS_SUN_BLOCK_ROOM: spirit_shared(RR_SPIRIT_TEMPLE_MQ_SUN_BLOCK_ROOM, (can_use(RG_HOOKSHOT) and (has(RG_POWER_BRACELET) or sunlight_arrows())) or
+                                                                                                 (trick(RT_SPIRIT_MQ_SUN_BLOCK_GS) and can_use(RG_BOOMERANG)))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_SAND_PIT {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_GS_LEEVER_ROOM: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_SKULLTULA_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_GS_SYMPHONY_ROOM: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_9_THRONES_ROOM {
+    locations {
+        # These skulls rely on the iron knuckle existing without a trick to shoot through the chairs
+        RC_SPIRIT_TEMPLE_MQ_GS_NINE_THRONES_ROOM_WEST:  can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+        RC_SPIRIT_TEMPLE_MQ_GS_NINE_THRONES_ROOM_NORTH: can_get_drop(RE_GOLD_SKULLTULA)
+    }
+}
+
 extend region RR_HF_COW_GROTTO_BEHIND_WEBS {
     locations {
         RC_HF_GS_COW_GROTTO: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)

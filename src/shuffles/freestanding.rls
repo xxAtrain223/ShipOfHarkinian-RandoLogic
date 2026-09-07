@@ -169,7 +169,7 @@ extend region RR_GANONS_CASTLE_MQ_WATER_TRIAL_GEYSER_ROOM {
 
 extend region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_BOULDER_ROOM_BACK {
     locations {
-        RC_GANONS_CASTLE_MQ_LIGHT_TRIAL_LEFT_HEART: always
+        RC_GANONS_CASTLE_MQ_LIGHT_TRIAL_LEFT_HEART:  always
         RC_GANONS_CASTLE_MQ_LIGHT_TRIAL_RIGHT_HEART: always
     }
 }
@@ -178,5 +178,14 @@ extend region RR_SPIRIT_TEMPLE_BIG_WALL_UPPER {
     locations {
         RC_SPIRIT_TEMPLE_ADULT_CLIMB_LEFT_HEART:  can_use(RG_HOOKSHOT)
         RC_SPIRIT_TEMPLE_ADULT_CLIMB_RIGHT_HEART: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_CHILD_SIDE_HUB {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_CHILD_LEFT_HEART:  can_hit_eye_targets() or can_use(RG_BOOMERANG) or
+                                               (trick(RT_FIRE_RINGS) and trick(RT_VISIBLE_COLLISION) and take_damage() and can_jumpslash())
+        RC_SPIRIT_TEMPLE_MQ_CHILD_RIGHT_HEART: can_hit_eye_targets() or can_use(RG_BOOMERANG) or
+                                               (trick(RT_FIRE_RINGS) and trick(RT_VISIBLE_COLLISION) and take_damage() and can_jumpslash())
     }
 }
