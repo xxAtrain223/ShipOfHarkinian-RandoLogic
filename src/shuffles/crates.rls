@@ -35,3 +35,10 @@ extend region RR_DEKU_TREE_MQ_SLINGSHOT_ROOM {
         RC_DEKU_TREE_MQ_SLINGSHOT_ROOM_CRATE_2: can_break_crates()
     }
 }
+
+extend region RR_SPIRIT_TEMPLE_CHILD_BOXES {
+    locations {
+        RC_SPIRIT_TEMPLE_BEFORE_CHILD_CLIMB_SMALL_CRATE_1: can_break_small_crates()
+        RC_SPIRIT_TEMPLE_BEFORE_CHILD_CLIMB_SMALL_CRATE_2: can_break_small_crates()
+    }
+}

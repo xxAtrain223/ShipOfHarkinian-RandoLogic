@@ -85,6 +85,7 @@ extend region RR_MARKET_MAN_IN_GREEN_HOUSE {
         RC_MK_BACK_ALLEY_HOUSE_POT_3: has(RG_POWER_BRACELET)
     }
 }
+
 extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
     locations {
         RC_HC_STORMS_GROTTO_POT_1: can_break_pots()
@@ -217,5 +218,51 @@ extend region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_FINAL_ROOM {
     locations {
         RC_GANONS_CASTLE_MQ_LIGHT_TRIAL_POT_1: can_break_pots()
         RC_GANONS_CASTLE_MQ_LIGHT_TRIAL_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_FOYER {
+    locations {
+        RC_SPIRIT_TEMPLE_LOBBY_POT_1: can_break_pots()
+        RC_SPIRIT_TEMPLE_LOBBY_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_1F_ANUBIS {
+    locations {
+        RC_SPIRIT_TEMPLE_ANUBIS_POT_1: always
+        RC_SPIRIT_TEMPLE_ANUBIS_POT_2: always
+        RC_SPIRIT_TEMPLE_ANUBIS_POT_3: always
+        RC_SPIRIT_TEMPLE_ANUBIS_POT_4: always
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_1F {
+    locations {
+        RC_SPIRIT_TEMPLE_CHILD_CLIMB_POT_1: spirit_shared(RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_1F, can_break_pots())
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_STATUE_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_1: spirit_shared(RR_SPIRIT_TEMPLE_STATUE_ROOM, can_break_pots())
+        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_2: spirit_shared(RR_SPIRIT_TEMPLE_STATUE_ROOM, can_break_pots())
+        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_3: spirit_shared(RR_SPIRIT_TEMPLE_STATUE_ROOM, can_break_pots())
+        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_4: spirit_shared(RR_SPIRIT_TEMPLE_STATUE_ROOM, can_break_pots())
+        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_5: spirit_shared(RR_SPIRIT_TEMPLE_STATUE_ROOM, can_break_pots())
+        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_6: spirit_shared(RR_SPIRIT_TEMPLE_STATUE_ROOM, can_break_pots())
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS {
+    locations {
+        RC_SPIRIT_TEMPLE_AFTER_SUN_BLOCK_POT_1: spirit_shared(RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS, can_break_pots())
+        RC_SPIRIT_TEMPLE_AFTER_SUN_BLOCK_POT_2: spirit_shared(RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS, can_break_pots())
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_POT_STAIRS {
+    locations {
+        RC_SPIRIT_TEMPLE_BEAMOS_HALL_POT_1: can_break_pots()
     }
 }

@@ -50,6 +50,11 @@ extern define is_vanilla() -> Bool
 extern define is_mq() -> Bool
 
 extern define any_age(condition: Condition) -> Bool
+extern define spirit_shared(
+    first_region: Region, first_condition: Condition, any_age: Bool = false,
+    second_region: Region = RR_NONE, second_condition: Condition = false,
+    third_region: Region = RR_NONE, third_condition: Condition = false) -> Bool
+extern define spirit_certain_access(reg: Region) -> Bool
 
 extern define can_use(item: Item) -> Bool
 extern define can_plant_bean(reg: Region, bean: Item) -> Bool

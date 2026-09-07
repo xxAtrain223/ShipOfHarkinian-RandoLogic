@@ -206,3 +206,123 @@ extend region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_TRIFORCE_ROOM {
         RC_GANONS_CASTLE_MQ_LIGHT_TRIAL_LULLABY_CHEST: can_use(RG_ZELDAS_LULLABY) and has(RG_OPEN_CHEST)
     }
 }
+
+extend region RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_NORTH {
+    locations {
+        RC_SPIRIT_TEMPLE_CHILD_BRIDGE_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH {
+    locations {
+        RC_SPIRIT_TEMPLE_CHILD_EARLY_TORCHES_CHEST: flag(LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE_TORCHES) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F {
+    locations {
+        RC_SPIRIT_TEMPLE_CHILD_CLIMB_NORTH_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F, can_hit_switch(ED_BOMB_THROW) and has(RG_OPEN_CHEST))
+        RC_SPIRIT_TEMPLE_CHILD_CLIMB_EAST_CHEST:  spirit_shared(RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F, can_hit_switch(ED_BOMB_THROW) and has(RG_OPEN_CHEST))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_SAND_PIT {
+    locations {
+        RC_SPIRIT_TEMPLE_COMPASS_CHEST: can_use(RG_ZELDAS_LULLABY) and (can_use(RG_HOOKSHOT) or (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_PAST_BOULDERS {
+    locations {
+        RC_SPIRIT_TEMPLE_EARLY_ADULT_RIGHT_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_2F_MIRROR_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_FIRST_MIRROR_LEFT_CHEST:  spirit_shared(RR_SPIRIT_TEMPLE_2F_MIRROR_ROOM, has(RG_OPEN_CHEST) and (has(RG_POWER_BRACELET) or sunlight_arrows()))
+        RC_SPIRIT_TEMPLE_FIRST_MIRROR_RIGHT_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_2F_MIRROR_ROOM, has(RG_OPEN_CHEST) and (has(RG_POWER_BRACELET) or sunlight_arrows()))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD {
+    locations {
+        # Assumes RR_SPIRIT_TEMPLE_STATUE_ROOM access
+        RC_SPIRIT_TEMPLE_MAP_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD, has_fire_source_with_torch() or (trick(RT_SPIRIT_MAP_CHEST) and can_use(RG_FAIRY_BOW)), false,
+                                                  RR_SPIRIT_TEMPLE_STATUE_ROOM, has_fire_source()) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_STATUE_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_MAP_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_STATUE_ROOM, has_fire_source(), false,
+                                                  RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD, has_fire_source_with_torch() or (trick(RT_SPIRIT_MAP_CHEST) and can_use(RG_FAIRY_BOW))) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_SUN_BLOCK_CHEST_LEDGE {
+    locations {
+        RC_SPIRIT_TEMPLE_SUN_BLOCK_ROOM_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_SUN_BLOCK_CHEST_LEDGE,
+                                                             has_fire_source() or
+                                                             (flag(LOGIC_SPIRIT_SUN_BLOCK_TORCH) and
+                                                              (can_use(RG_STICKS) or (trick(RT_SPIRIT_SUN_CHEST) and can_use(RG_FAIRY_BOW))))) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND {
+    locations {
+        RC_SPIRIT_TEMPLE_SILVER_GAUNTLETS_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND, has(RG_OPEN_CHEST))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_INNER_LEFT_HAND {
+    locations {
+        # Assumes RR_SPIRIT_TEMPLE_INNER_WEST_HAND access via RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD and RR_SPIRIT_TEMPLE_STATUE_ROOM.
+        RC_SPIRIT_TEMPLE_STATUE_ROOM_HAND_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_INNER_LEFT_HAND, can_use(RG_ZELDAS_LULLABY) and (has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and has(RG_OPEN_CHEST))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_SHORTCUT_SWITCH {
+    locations {
+        RC_SPIRIT_TEMPLE_STATUE_ROOM_NORTHEAST_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_SHORTCUT_SWITCH, can_use(RG_ZELDAS_LULLABY) and has(RG_OPEN_CHEST))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_4_ARMOS {
+    locations {
+        RC_SPIRIT_TEMPLE_NEAR_FOUR_ARMOS_CHEST: (can_use(RG_MIRROR_SHIELD) or sunlight_arrows()) and has_explosives() and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_4_ARMOS_SIDE_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_NEAR_FOUR_ARMOS_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_CHEST_STAIRS {
+    locations {
+        RC_SPIRIT_TEMPLE_HALLWAY_LEFT_INVISIBLE_CHEST:  (trick(RT_LENS_SPIRIT) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+        RC_SPIRIT_TEMPLE_HALLWAY_RIGHT_INVISIBLE_CHEST: (trick(RT_LENS_SPIRIT) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_OUTER_LEFT_HAND {
+    locations {
+        RC_SPIRIT_TEMPLE_MIRROR_SHIELD_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_FAKE_DOORS_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_BOSS_KEY_CHEST: ((take_damage() and trick(RT_FIRE_RINGS)) or
+                                          (any_age(can_hit_eye_targets() and can_avoid(RE_TORCH_SLUG, true, 4)) and can_use(RG_HOOKSHOT))) and
+                                         has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_BIG_MIRROR_CAVE {
+    locations {
+        RC_SPIRIT_TEMPLE_TOPMOST_CHEST: ((is_adult() and can_use(RG_MIRROR_SHIELD)) or sunlight_arrows()) and has(RG_OPEN_CHEST)
+    }
+}

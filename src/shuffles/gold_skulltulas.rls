@@ -97,3 +97,67 @@ extend region RR_DESERT_COLOSSUS {
                                    can_get_night_time_gs()
     }
 }
+
+extend region RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH {
+    locations {
+        # possible to collect without lowering fence, should be a trick
+        RC_SPIRIT_TEMPLE_GS_METAL_FENCE: flag(LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE) and can_kill(RE_GOLD_SKULLTULA, ED_BOMB_THROW) and has(RG_CLIMB)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_SOUTH {
+    locations {
+        RC_SPIRIT_TEMPLE_GS_METAL_FENCE: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_1F {
+    locations {
+        RC_SPIRIT_TEMPLE_GS_SUN_ON_FLOOR_ROOM: spirit_shared(RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_1F, can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG), false,
+                                                             RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F, can_kill(RE_GOLD_SKULLTULA, take_damage() ? ED_SHORT_JUMPSLASH: ED_BOMB_THROW))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F {
+    locations {
+        RC_SPIRIT_TEMPLE_GS_SUN_ON_FLOOR_ROOM: spirit_shared(RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F, can_kill(RE_GOLD_SKULLTULA, take_damage() ? ED_SHORT_JUMPSLASH : ED_BOMB_THROW), false,
+                                                             RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_1F, can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_BOULDERS {
+    locations {
+        RC_SPIRIT_TEMPLE_GS_BOULDER_ROOM: can_use(RG_SONG_OF_TIME) and can_kill(RE_GOLD_SKULLTULA)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD {
+    locations {
+        RC_SPIRIT_TEMPLE_GS_LOBBY: spirit_shared(RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD, can_get_drop(RE_GOLD_SKULLTULA, ED_LONGSHOT), false,
+                                                 RR_SPIRIT_TEMPLE_INNER_WEST_HAND, can_get_drop(RE_GOLD_SKULLTULA, trick(RT_SPIRIT_WEST_LEDGE) ? ED_BOOMERANG : ED_HOOKSHOT),
+                                                 RR_SPIRIT_TEMPLE_GS_LEDGE, can_kill(RE_GOLD_SKULLTULA))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_INNER_WEST_HAND {
+    locations {
+        # You can hit the skull with normal hookshot from a specific spot on the forearm, which is in logic on N64 and 3DS, pretty questionable though
+        RC_SPIRIT_TEMPLE_GS_LOBBY: spirit_shared(RR_SPIRIT_TEMPLE_INNER_WEST_HAND, can_get_drop(RE_GOLD_SKULLTULA, trick(RT_SPIRIT_WEST_LEDGE) ? ED_BOOMERANG : ED_HOOKSHOT), false,
+                                                 RR_SPIRIT_TEMPLE_GS_LEDGE, can_kill(RE_GOLD_SKULLTULA),
+                                                 RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD, can_get_drop(RE_GOLD_SKULLTULA, ED_LONGSHOT))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_GS_LEDGE {
+    locations {
+        RC_SPIRIT_TEMPLE_GS_LOBBY: spirit_shared(RR_SPIRIT_TEMPLE_GS_LEDGE, can_kill(RE_GOLD_SKULLTULA), false,
+                                                 RR_SPIRIT_TEMPLE_INNER_WEST_HAND, can_get_drop(RE_GOLD_SKULLTULA, trick(RT_SPIRIT_WEST_LEDGE) ? ED_BOOMERANG : ED_HOOKSHOT),
+                                                 RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD, can_get_drop(RE_GOLD_SKULLTULA, ED_LONGSHOT))
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS {
+    locations {
+        RC_SPIRIT_TEMPLE_GS_HALL_AFTER_SUN_BLOCK_ROOM: spirit_shared(RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS, can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG))
+    }
+}

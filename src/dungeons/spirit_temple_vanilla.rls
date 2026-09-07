@@ -3,19 +3,14 @@ region RR_SPIRIT_TEMPLE_FOYER {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
-        LOGIC_FORWARDS_SPIRIT_CHILD: never#TODO
-        LOGIC_FORWARDS_SPIRIT_ADULT: never#TODO
-    }
-
-    locations {
-        RC_SPIRIT_TEMPLE_LOBBY_POT_1: never#TODO
-        RC_SPIRIT_TEMPLE_LOBBY_POT_2: never#TODO
+        LOGIC_FORWARDS_SPIRIT_CHILD: is_child()
+        LOGIC_FORWARDS_SPIRIT_ADULT: is_adult()
     }
 
     exits {
-        RR_SPIRIT_TEMPLE_ENTRYWAY: never#TODO
-        RR_SPIRIT_TEMPLE_CHILD_SIDE_HUB: never#TODO
-        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: never#TODO
+        RR_SPIRIT_TEMPLE_ENTRYWAY:       always
+        RR_SPIRIT_TEMPLE_CHILD_SIDE_HUB: (is_adult() or has(RG_SPEAK_GERUDO) or flag(LOGIC_SPIRIT_NABOORU_KIDNAPPED)) and can_use(RG_CRAWL)
+        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: can_use(RG_SILVER_GAUNTLETS)
     }
 }
 
@@ -24,15 +19,16 @@ region RR_SPIRIT_TEMPLE_CHILD_SIDE_HUB {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
-        LOGIC_NUT_ACCESS: never#TODO
-        LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE_TORCHES: never#TODO
+        LOGIC_NUT_ACCESS:                         can_break_small_crates()
+        LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE_TORCHES: any_age(can_kill(RE_ARMOS)) and can_use(RG_STICKS) # not usable in doorsanity
     }
 
     exits {
-        RR_SPIRIT_TEMPLE_FOYER: never#TODO
-        RR_SPIRIT_TEMPLE_CHILD_BOXES: never#TODO
-        RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_SOUTH: never#TODO
-        RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_SOUTH: never#TODO
+        RR_SPIRIT_TEMPLE_FOYER:               can_use(RG_CRAWL)
+        RR_SPIRIT_TEMPLE_CHILD_BOXES:         can_use(RG_CRAWL)
+        # Implies logic->CanKillEnemy(RE_KEESE)
+        RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_SOUTH: any_age(can_kill(RE_ARMOS))
+        RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_SOUTH:  any_age(can_kill(RE_ARMOS))
     }
 }
 
@@ -41,12 +37,13 @@ region RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_SOUTH {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
-        LOGIC_SPIRIT_CHILD_SWITCH_BRIDGE: never#TODO
+        LOGIC_SPIRIT_CHILD_SWITCH_BRIDGE: can_use(RG_BOOMERANG) or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW) or (can_use(RG_BOMBCHU_5) and trick(RT_SPIRIT_CHILD_CHU))
     }
 
     exits {
-        RR_SPIRIT_TEMPLE_CHILD_SIDE_HUB: never#TODO
-        RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_NORTH: never#TODO
+        RR_SPIRIT_TEMPLE_CHILD_SIDE_HUB:      always
+        RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_NORTH: (flag(LOGIC_SPIRIT_CHILD_SWITCH_BRIDGE) and can_pass(RE_GREEN_BUBBLE, ED_CLOSE, false)) or
+                                              can_use(RG_HOVER_BOOTS) or can_use(RG_LONGSHOT)
     }
 }
 
@@ -55,16 +52,12 @@ region RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_NORTH {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
-        LOGIC_SPIRIT_CHILD_SWITCH_BRIDGE: never#TODO
-    }
-
-    locations {
-        RC_SPIRIT_TEMPLE_CHILD_BRIDGE_CHEST: never#TODO
+        LOGIC_SPIRIT_CHILD_SWITCH_BRIDGE: can_hit_switch()
     }
 
     exits {
-        RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_SOUTH: never#TODO
-        RR_SPIRIT_TEMPLE_1F_ANUBIS: never#TODO
+        RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_SOUTH: can_use(RG_HOVER_BOOTS) or (flag(LOGIC_SPIRIT_CHILD_SWITCH_BRIDGE) and can_pass(RE_GREEN_BUBBLE, ED_CLOSE, false))
+        RR_SPIRIT_TEMPLE_1F_ANUBIS: always
     }
 }
 
@@ -72,16 +65,9 @@ region RR_SPIRIT_TEMPLE_1F_ANUBIS {
     name: "Spirit Temple 1F Anubis"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_ANUBIS_POT_1: never#TODO
-        RC_SPIRIT_TEMPLE_ANUBIS_POT_2: never#TODO
-        RC_SPIRIT_TEMPLE_ANUBIS_POT_3: never#TODO
-        RC_SPIRIT_TEMPLE_ANUBIS_POT_4: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_NORTH: never#TODO
-        RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH: never#TODO
+        RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_NORTH: any_age(can_hit_switch() or has(RG_POWER_BRACELET) or can_kill(RE_ANUBIS))
+        RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH:  any_age(can_hit_switch() or has(RG_POWER_BRACELET) or can_kill(RE_ANUBIS))
     }
 }
 
@@ -90,18 +76,13 @@ region RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
-        LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE: never#TODO
-        LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE_TORCHES: never#TODO
-    }
-
-    locations {
-        RC_SPIRIT_TEMPLE_CHILD_EARLY_TORCHES_CHEST: never#TODO
-        RC_SPIRIT_TEMPLE_GS_METAL_FENCE: never#TODO
+        LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE:         has(RG_CLIMB) or can_use(RG_HOOKSHOT)
+        LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE_TORCHES: (flag(LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE) and has_fire_source_with_torch()) or can_use(RG_DINS_FIRE)
     }
 
     exits {
-        RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_SOUTH: never#TODO
-        RR_SPIRIT_TEMPLE_1F_ANUBIS: never#TODO
+        RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_SOUTH: flag(LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE)
+        RR_SPIRIT_TEMPLE_1F_ANUBIS:          always
     }
 }
 
@@ -110,16 +91,12 @@ region RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_SOUTH {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
-        LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE_TORCHES: never#TODO
-    }
-
-    locations {
-        RC_SPIRIT_TEMPLE_GS_METAL_FENCE: never#TODO
+        LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE_TORCHES: has_fire_source()
     }
 
     exits {
-        RR_SPIRIT_TEMPLE_CHILD_SIDE_HUB: never#TODO
-        RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH: never#TODO
+        RR_SPIRIT_TEMPLE_CHILD_SIDE_HUB:     always
+        RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH: flag(LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE)
     }
 }
 
@@ -127,14 +104,9 @@ region RR_SPIRIT_TEMPLE_CHILD_BOXES {
     name: "Child Spirit Temple Before Climb"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_BEFORE_CHILD_CLIMB_SMALL_CRATE_1: never#TODO
-        RC_SPIRIT_TEMPLE_BEFORE_CHILD_CLIMB_SMALL_CRATE_2: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_CHILD_SIDE_HUB: never#TODO
-        RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_1F: never#TODO
+        RR_SPIRIT_TEMPLE_CHILD_SIDE_HUB:  can_use(RG_CRAWL)
+        RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_1F: small_keys(SCENE_SPIRIT_TEMPLE, 1)
     }
 }
 
@@ -142,14 +114,9 @@ region RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_1F {
     name: "Spirit Temple Sun On Floor 1F"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_GS_SUN_ON_FLOOR_ROOM: never#TODO
-        RC_SPIRIT_TEMPLE_CHILD_CLIMB_POT_1: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_CHILD_BOXES: never#TODO
-        RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F: never#TODO
+        RR_SPIRIT_TEMPLE_CHILD_BOXES:     small_keys(SCENE_SPIRIT_TEMPLE, 5)
+        RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F: has(RG_CLIMB) or can_use(RG_LONGSHOT)
     }
 }
 
@@ -157,15 +124,9 @@ region RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F {
     name: "Spirit Temple Sun On Floor 2F"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_CHILD_CLIMB_NORTH_CHEST: never#TODO
-        RC_SPIRIT_TEMPLE_CHILD_CLIMB_EAST_CHEST: never#TODO
-        RC_SPIRIT_TEMPLE_GS_SUN_ON_FLOOR_ROOM: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_1F: never#TODO
-        RR_SPIRIT_TEMPLE_STATUE_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_1F: always
+        RR_SPIRIT_TEMPLE_STATUE_ROOM:     has_explosives() or (setting(RSK_SUNLIGHT_ARROWS) and can_use(RG_LIGHT_ARROWS))
     }
 }
 
@@ -174,10 +135,10 @@ region RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_FOYER: never#TODO
-        RR_SPIRIT_TEMPLE_SAND_PIT: never#TODO
-        RR_SPIRIT_TEMPLE_BOULDERS: never#TODO
-        RR_SPIRIT_TEMPLE_1F_MIRROR_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_FOYER:          always
+        RR_SPIRIT_TEMPLE_SAND_PIT:       any_age(can_hit_switch(is_adult() and trick(RT_SPIRIT_LOWER_ADULT_SWITCH) ? ED_BOMB_THROW : ED_BOOMERANG))
+        RR_SPIRIT_TEMPLE_BOULDERS:       any_age(can_hit_switch(is_adult() and trick(RT_SPIRIT_LOWER_ADULT_SWITCH) ? ED_BOMB_THROW : ED_BOOMERANG))
+        RR_SPIRIT_TEMPLE_1F_MIRROR_ROOM: small_keys(SCENE_SPIRIT_TEMPLE, 1)
     }
 }
 
@@ -185,12 +146,8 @@ region RR_SPIRIT_TEMPLE_SAND_PIT {
     name: "Spirit Temple Sand Pit"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_COMPASS_CHEST: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: never#TODO
+        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: always
     }
 }
 
@@ -199,12 +156,12 @@ region RR_SPIRIT_TEMPLE_ABOVE_BOULDERS {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
-        LOGIC_SPIRIT_BOUNDERS_SILVERS: never#TODO
+        LOGIC_SPIRIT_BOUNDERS_SILVERS: can_use(RG_HOVER_BOOTS) or can_jumpslash() or can_use(RG_LONGSHOT)
     }
 
     exits {
-        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: never#TODO
-        RR_SPIRIT_TEMPLE_BOULDERS: never#TODO
+        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: always
+        RR_SPIRIT_TEMPLE_BOULDERS:       always
     }
 }
 
@@ -212,13 +169,9 @@ region RR_SPIRIT_TEMPLE_BOULDERS {
     name: "Spirit Temple Boulders"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_GS_BOULDER_ROOM: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_ABOVE_BOULDERS: never#TODO
-        RR_SPIRIT_TEMPLE_PAST_BOULDERS: never#TODO
+        RR_SPIRIT_TEMPLE_ABOVE_BOULDERS: is_adult() or has(RG_CLIMB) or can_use(RG_HOOKSHOT) or can_ground_jump()
+        RR_SPIRIT_TEMPLE_PAST_BOULDERS: flag(LOGIC_SPIRIT_BOUNDERS_SILVERS)
     }
 }
 
@@ -226,13 +179,8 @@ region RR_SPIRIT_TEMPLE_PAST_BOULDERS {
     name: "Spirit Temple Past Boulders"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_EARLY_ADULT_RIGHT_CHEST: never#TODO
-        RC_SPIRIT_TEMPLE_BOULDER_ROOM_SUN_FAIRY: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_BOULDERS: never#TODO
+        RR_SPIRIT_TEMPLE_BOULDERS: always
     }
 }
 
@@ -241,8 +189,8 @@ region RR_SPIRIT_TEMPLE_1F_MIRROR_ROOM {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: never#TODO
-        RR_SPIRIT_TEMPLE_2F_MIRROR_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: small_keys(SCENE_SPIRIT_TEMPLE, 5)
+        RR_SPIRIT_TEMPLE_2F_MIRROR_ROOM: has(RG_CLIMB) or can_use(RG_LONGSHOT)
     }
 }
 
@@ -250,14 +198,9 @@ region RR_SPIRIT_TEMPLE_2F_MIRROR_ROOM {
     name: "Spirit Temple 2F Mirror Room"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_FIRST_MIRROR_LEFT_CHEST: never#TODO
-        RC_SPIRIT_TEMPLE_FIRST_MIRROR_RIGHT_CHEST: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_1F_MIRROR_ROOM: never#TODO
-        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: never#TODO
+        RR_SPIRIT_TEMPLE_1F_MIRROR_ROOM: always
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: has(RG_POWER_BRACELET) or sunlight_arrows()
     }
 }
 
@@ -265,18 +208,21 @@ region RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD {
     name: "Spirit Temple Statue Rooom Child"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_MAP_CHEST: never#TODO
-        RC_SPIRIT_TEMPLE_GS_LOBBY: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F: never#TODO
-        RR_SPIRIT_TEMPLE_INNER_WEST_HAND: never#TODO
-        RR_SPIRIT_TEMPLE_GS_LEDGE: never#TODO
-        RR_SPIRIT_TEMPLE_PLATFORM: never#TODO
-        RR_SPIRIT_TEMPLE_EMPTY_STAIRS: never#TODO
-        RR_DESERT_COLOSSUS: never#TODO
+        RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F: always
+        RR_SPIRIT_TEMPLE_INNER_WEST_HAND: always
+        RR_SPIRIT_TEMPLE_GS_LEDGE: can_use(RG_HOVER_BOOTS) or reach_scarecrow()
+        # RT_SPIRIT_PLATFORM_HOOKSHOT is currently disabled
+        RR_SPIRIT_TEMPLE_PLATFORM: flag(LOGIC_SPIRIT_PLATFORM_LOWERED) and
+                                   (can_use(RG_LONGSHOT) or (trick(RT_SPIRIT_PLATFORM_HOOKSHOT) and can_use(RG_HOOKSHOT)))
+        RR_SPIRIT_TEMPLE_EMPTY_STAIRS: has(RG_POWER_BRACELET)
+        # !QUANTUM LOGIC!
+        # When child enters spirit in reverse, has 4 keys, and dungeon entrance shuffle is off, 
+        # Child cannot lock themselves out of desert colossus access as if they save the west hand lock for last
+        # they will be able to exit the dungeon through the intended entrance and vice versa
+        # for needing to open the west hand lock to block the intended child route
+        RR_DESERT_COLOSSUS: setting(RSK_SHUFFLE_DUNGEON_ENTRANCES) is RO_DUNGEON_ENTRANCE_SHUFFLE_OFF and has(RG_POWER_BRACELET) and
+                            can_use(RG_CRAWL) and small_keys(SCENE_SPIRIT_TEMPLE, 4) and can_kill(RE_IRON_KNUCKLE)
     }
 }
 
@@ -284,12 +230,8 @@ region RR_SPIRIT_TEMPLE_INNER_WEST_HAND {
     name: "Spirit Temple Inner West Hand"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_GS_LOBBY: never#TODO
-    }
-
     exits {
-        RR_DESERT_COLOSSUS: never#TODO
+        RR_DESERT_COLOSSUS: (is_child() and small_keys(SCENE_SPIRIT_TEMPLE, 5)) or (can_use(RG_SILVER_GAUNTLETS) and ((small_keys(SCENE_SPIRIT_TEMPLE, 3) and has_explosives()) or small_keys(SCENE_SPIRIT_TEMPLE, 5)))
     }
 }
 
@@ -297,13 +239,9 @@ region RR_SPIRIT_TEMPLE_GS_LEDGE {
     name: "Spirit Temple GS ledge"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_GS_LOBBY: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD: never#TODO
-        RR_SPIRIT_TEMPLE_INNER_WEST_HAND: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD: can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT)
+        RR_SPIRIT_TEMPLE_INNER_WEST_HAND:   always
     }
 }
 
@@ -311,22 +249,23 @@ region RR_SPIRIT_TEMPLE_STATUE_ROOM {
     name: "Spirit Temple Statue Room"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_MAP_CHEST: never#TODO
-        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_1: never#TODO
-        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_2: never#TODO
-        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_3: never#TODO
-        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_4: never#TODO
-        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_5: never#TODO
-        RC_SPIRIT_TEMPLE_CENTRAL_CHAMBER_POT_6: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD: never#TODO
-        RR_SPIRIT_TEMPLE_PLATFORM: never#TODO
-        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: never#TODO
-        RR_SPIRIT_TEMPLE_SHORTCUT: never#TODO
-        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
+        RR_SPIRIT_TEMPLE_PLATFORM: flag(LOGIC_SPIRIT_PLATFORM_LOWERED) and
+                                   (can_use(RG_LONGSHOT) or (trick(RT_SPIRIT_PLATFORM_HOOKSHOT) and can_use(RG_HOOKSHOT)))
+        # explicit adult check here is a precaution against possible child logic leaking, child with a hookshot can do this
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: is_adult() and can_use(RG_HOOKSHOT)
+        RR_SPIRIT_TEMPLE_SHORTCUT: flag(LOGIC_SPIRIT_STATUE_SOUTH_DOOR)
+        # !QUANTUM LOGIC!
+        # If dungeon entrance randomiser is off, Adult entered spirit in reverse, and they have str 2 to get there from the front and Explosives,
+        # it is always possible for them to reach 1F_EAST with only 2 keys. This is because you can only waste 1 key (on the first child side lock)
+        # before you either allow you to climb down through 2F mirror room, or give yourself access to a hand to jump down from.
+        # If for whatever reason you can reach east hand but not west hand, this becomes possible with 3 keys instead.
+        # If you do not have explosives to kill Beamos, but do have a way to defeat Iron Knuckles, this becomes possible with 4 keys instead.
+        RR_SPIRIT_TEMPLE_ADULT_SIDE_HUB: setting(RSK_SHUFFLE_DUNGEON_ENTRANCES) is RO_DUNGEON_ENTRANCE_SHUFFLE_OFF and
+                                         can_use(RG_SILVER_GAUNTLETS) and is_adult() and
+                                         ((can_kill(RE_BEAMOS) and small_keys(SCENE_SPIRIT_TEMPLE, (has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and has(RG_POWER_BRACELET) ? 2 : 3)) or
+                                          ((has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and has(RG_POWER_BRACELET) and can_kill(RE_IRON_KNUCKLE) and small_keys(SCENE_SPIRIT_TEMPLE, 4)))
     }
 }
 
@@ -335,8 +274,8 @@ region RR_SPIRIT_TEMPLE_EMPTY_STAIRS {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_STATUE_ROOM: never#TODO
-        RR_SPIRIT_TEMPLE_SUN_BLOCK_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_ROOM: always
+        RR_SPIRIT_TEMPLE_SUN_BLOCK_ROOM: always
     }
 }
 
@@ -345,9 +284,10 @@ region RR_SPIRIT_TEMPLE_SUN_BLOCK_ROOM {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_EMPTY_STAIRS: never#TODO
-        RR_SPIRIT_TEMPLE_SUN_BLOCK_CHEST_LEDGE: never#TODO
-        RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS: never#TODO
+        RR_SPIRIT_TEMPLE_EMPTY_STAIRS: has(RG_POWER_BRACELET) or sunlight_arrows()
+        # The blocks can be used to get onto this ledge itemless
+        RR_SPIRIT_TEMPLE_SUN_BLOCK_CHEST_LEDGE: spirit_sun_block_south_ledge()
+        RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS: has(RG_POWER_BRACELET) or sunlight_arrows()
     }
 }
 
@@ -356,15 +296,11 @@ region RR_SPIRIT_TEMPLE_SUN_BLOCK_CHEST_LEDGE {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
-        LOGIC_SPIRIT_SUN_BLOCK_TORCH: never#TODO
-    }
-
-    locations {
-        RC_SPIRIT_TEMPLE_SUN_BLOCK_ROOM_CHEST: never#TODO
+        LOGIC_SPIRIT_SUN_BLOCK_TORCH: spirit_shared(RR_SPIRIT_TEMPLE_SUN_BLOCK_CHEST_LEDGE, always, true)
     }
 
     exits {
-        RR_SPIRIT_TEMPLE_SUN_BLOCK_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_SUN_BLOCK_ROOM: always
     }
 }
 
@@ -372,15 +308,9 @@ region RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS {
     name: "Spirit Temple Skulltula Stairs"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_GS_HALL_AFTER_SUN_BLOCK_ROOM: never#TODO
-        RC_SPIRIT_TEMPLE_AFTER_SUN_BLOCK_POT_1: never#TODO
-        RC_SPIRIT_TEMPLE_AFTER_SUN_BLOCK_POT_2: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_SUN_BLOCK_ROOM: never#TODO
-        RR_SPIRIT_TEMPLE_CHILD_THRONE: never#TODO
+        RR_SPIRIT_TEMPLE_SUN_BLOCK_ROOM: always
+        RR_SPIRIT_TEMPLE_CHILD_THRONE: small_keys(SCENE_SPIRIT_TEMPLE, 3)
     }
 }
 
@@ -389,8 +319,8 @@ region RR_SPIRIT_TEMPLE_CHILD_THRONE {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS: never#TODO
-        RR_SPIRIT_TEMPLE_RIGHT_HAND_EXIT: never#TODO
+        RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS: small_keys(SCENE_SPIRIT_TEMPLE, 3)
+        RR_SPIRIT_TEMPLE_RIGHT_HAND_EXIT:  any_age(can_kill(RE_IRON_KNUCKLE))
     }
 }
 
@@ -399,8 +329,8 @@ region RR_SPIRIT_TEMPLE_RIGHT_HAND_EXIT {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_CHILD_THRONE: never#TODO
-        RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND: never#TODO
+        RR_SPIRIT_TEMPLE_CHILD_THRONE:     always
+        RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND: always
     }
 }
 
@@ -409,16 +339,12 @@ region RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
-        LOGIC_SPIRIT_NABOORU_KIDNAPPED: never#TODO
-    }
-
-    locations {
-        RC_SPIRIT_TEMPLE_SILVER_GAUNTLETS_CHEST: never#TODO
+        LOGIC_SPIRIT_NABOORU_KIDNAPPED: spirit_shared(RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND, has(RG_OPEN_CHEST))
     }
 
     exits {
-        RR_SPIRIT_TEMPLE_RIGHT_HAND_EXIT: never#TODO
-        RR_DESERT_COLOSSUS: never#TODO
+        RR_SPIRIT_TEMPLE_RIGHT_HAND_EXIT: always
+        RR_DESERT_COLOSSUS: spirit_certain_access(RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND)
     }
 }
 
@@ -427,12 +353,13 @@ region RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_2F_MIRROR_ROOM: never#TODO
-        RR_SPIRIT_TEMPLE_STATUE_ROOM: never#TODO
-        RR_SPIRIT_TEMPLE_INNER_LEFT_HAND: never#TODO
-        RR_SPIRIT_TEMPLE_SHORTCUT_SWITCH: never#TODO
-        RR_SPIRIT_TEMPLE_POT_STAIRS: never#TODO
-        RR_SPIRIT_TEMPLE_PLATFORM: never#TODO
+        RR_SPIRIT_TEMPLE_2F_MIRROR_ROOM:  always
+        RR_SPIRIT_TEMPLE_STATUE_ROOM:     always
+        RR_SPIRIT_TEMPLE_INNER_LEFT_HAND: always
+        RR_SPIRIT_TEMPLE_SHORTCUT_SWITCH: spirit_east_to_switch()
+        RR_SPIRIT_TEMPLE_POT_STAIRS:      small_keys(SCENE_SPIRIT_TEMPLE, 4)
+        RR_SPIRIT_TEMPLE_PLATFORM:        flag(LOGIC_SPIRIT_PLATFORM_LOWERED) and
+                                          (can_use(RG_LONGSHOT) or (trick(RT_SPIRIT_PLATFORM_HOOKSHOT) and can_use(RG_HOOKSHOT)))
     }
 }
 
@@ -440,14 +367,12 @@ region RR_SPIRIT_TEMPLE_INNER_LEFT_HAND {
     name: "Spirit Temple Inner Left Hand"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_STATUE_ROOM_HAND_CHEST: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_STATUE_ROOM: never#TODO
-        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: never#TODO
-        RR_SPIRIT_TEMPLE_SHORTCUT_SWITCH: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_ROOM:       always
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: can_use(RG_HOVER_BOOTS)
+        # Assumes RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT access via RR_SPIRIT_TEMPLE_STATUE_ROOM
+        RR_SPIRIT_TEMPLE_SHORTCUT_SWITCH:   (is_adult() and trick(RT_SPIRIT_STATUE_JUMP)) or
+                                            (can_use(RG_ZELDAS_LULLABY) and can_use(RG_HOOKSHOT))
     }
 }
 
@@ -456,16 +381,12 @@ region RR_SPIRIT_TEMPLE_SHORTCUT_SWITCH {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
-        LOGIC_SPIRIT_STATUE_SOUTH_DOOR: never#TODO
-    }
-
-    locations {
-        RC_SPIRIT_TEMPLE_STATUE_ROOM_NORTHEAST_CHEST: never#TODO
+        LOGIC_SPIRIT_STATUE_SOUTH_DOOR: spirit_shared(RR_SPIRIT_TEMPLE_SHORTCUT_SWITCH, can_use(RG_MEGATON_HAMMER))
     }
 
     exits {
-        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: never#TODO
-        RR_SPIRIT_TEMPLE_INNER_LEFT_HAND: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: always
+        RR_SPIRIT_TEMPLE_INNER_LEFT_HAND:   always
     }
 }
 
@@ -474,8 +395,10 @@ region RR_SPIRIT_TEMPLE_SHORTCUT {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_STATUE_ROOM: never#TODO
-        RR_SPIRIT_TEMPLE_FOYER: never#TODO
+        # If child can ever use silver gauntlets, there needs to be an event here to account for child entering in reverse
+        # opening the way for adult entering via the front.
+        RR_SPIRIT_TEMPLE_STATUE_ROOM: always
+        RR_SPIRIT_TEMPLE_FOYER:       can_use(RG_SILVER_GAUNTLETS) and can_use(RG_MEGATON_HAMMER)
     }
 }
 
@@ -483,13 +406,9 @@ region RR_SPIRIT_TEMPLE_POT_STAIRS {
     name: "Spirit Temple Pot Stairs"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_BEAMOS_HALL_POT_1: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: never#TODO
-        RR_SPIRIT_TEMPLE_BEAMOS_PITS: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: small_keys(SCENE_SPIRIT_TEMPLE, 4)
+        RR_SPIRIT_TEMPLE_BEAMOS_PITS:       always
     }
 }
 
@@ -498,9 +417,9 @@ region RR_SPIRIT_TEMPLE_BEAMOS_PITS {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_POT_STAIRS: never#TODO
-        RR_SPIRIT_TEMPLE_4_ARMOS: never#TODO
-        RR_SPIRIT_TEMPLE_BIG_WALL_BASE: never#TODO
+        RR_SPIRIT_TEMPLE_POT_STAIRS:    can_kill(RE_BEAMOS)
+        RR_SPIRIT_TEMPLE_4_ARMOS:       can_kill(RE_BEAMOS)
+        RR_SPIRIT_TEMPLE_BIG_WALL_BASE: small_keys(SCENE_SPIRIT_TEMPLE, 5)
     }
 }
 
@@ -508,15 +427,10 @@ region RR_SPIRIT_TEMPLE_4_ARMOS {
     name: "Spirit Temple 4 Armos"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_NEAR_FOUR_ARMOS_CHEST: never#TODO
-        RC_SPIRIT_TEMPLE_ARMOS_ROOM_SUN_FAIRY: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_BEAMOS_PITS: never#TODO
-        RR_SPIRIT_TEMPLE_4_ARMOS_SIDE_ROOM: never#TODO
-        RR_SPIRIT_TEMPLE_CHEST_STAIRS: never#TODO
+        RR_SPIRIT_TEMPLE_BEAMOS_PITS:       always
+        RR_SPIRIT_TEMPLE_4_ARMOS_SIDE_ROOM: can_use(RG_MIRROR_SHIELD) or sunlight_arrows()
+        RR_SPIRIT_TEMPLE_CHEST_STAIRS:      always
     }
 }
 
@@ -524,12 +438,8 @@ region RR_SPIRIT_TEMPLE_4_ARMOS_SIDE_ROOM {
     name: "Spirit Temple 4 Armos Side Room"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_NEAR_FOUR_ARMOS_CHEST: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_4_ARMOS: never#TODO
+        RR_SPIRIT_TEMPLE_4_ARMOS: always
     }
 }
 
@@ -537,14 +447,9 @@ region RR_SPIRIT_TEMPLE_CHEST_STAIRS {
     name: "Spirit Temple Chest Stairs"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_HALLWAY_LEFT_INVISIBLE_CHEST: never#TODO
-        RC_SPIRIT_TEMPLE_HALLWAY_RIGHT_INVISIBLE_CHEST: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_4_ARMOS: never#TODO
-        RR_SPIRIT_TEMPLE_ADULT_THRONE: never#TODO
+        RR_SPIRIT_TEMPLE_4_ARMOS:      always
+        RR_SPIRIT_TEMPLE_ADULT_THRONE: always
     }
 }
 
@@ -553,8 +458,8 @@ region RR_SPIRIT_TEMPLE_ADULT_THRONE {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_CHEST_STAIRS: never#TODO
-        RR_SPIRIT_TEMPLE_LEFT_HAND_EXIT: never#TODO
+        RR_SPIRIT_TEMPLE_CHEST_STAIRS:   any_age(can_kill(RE_IRON_KNUCKLE))
+        RR_SPIRIT_TEMPLE_LEFT_HAND_EXIT: any_age(can_kill(RE_IRON_KNUCKLE))
     }
 }
 
@@ -563,8 +468,8 @@ region RR_SPIRIT_TEMPLE_LEFT_HAND_EXIT {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_ADULT_THRONE: never#TODO
-        RR_SPIRIT_TEMPLE_OUTER_LEFT_HAND: never#TODO
+        RR_SPIRIT_TEMPLE_ADULT_THRONE:    always
+        RR_SPIRIT_TEMPLE_OUTER_LEFT_HAND: always
     }
 }
 
@@ -572,14 +477,10 @@ region RR_SPIRIT_TEMPLE_OUTER_LEFT_HAND {
     name: "Spirit Temple Outer Left Hand"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_MIRROR_SHIELD_CHEST: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_LEFT_HAND_EXIT: never#TODO
-        RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND: never#TODO
-        RR_DESERT_COLOSSUS: never#TODO
+        RR_SPIRIT_TEMPLE_LEFT_HAND_EXIT:   always
+        RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND: can_use(RG_LONGSHOT)
+        RR_DESERT_COLOSSUS:                always
     }
 }
 
@@ -588,8 +489,9 @@ region RR_SPIRIT_TEMPLE_BIG_WALL_BASE {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_BEAMOS_PITS: never#TODO
-        RR_SPIRIT_TEMPLE_BIG_WALL_UPPER: never#TODO
+        RR_SPIRIT_TEMPLE_BEAMOS_PITS:    always
+        RR_SPIRIT_TEMPLE_BIG_WALL_UPPER: (trick(RT_SPIRIT_WALL) or (can_avoid(RE_BEAMOS, true, 2) and can_pass(RE_WALLTULA, ED_BOOMERANG))) and
+                                         (has(RG_CLIMB) or can_use(RG_LONGSHOT))
     }
 }
 
@@ -597,14 +499,9 @@ region RR_SPIRIT_TEMPLE_BIG_WALL_UPPER {
     name: "Spirit Temple Big Wall Upper"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_ADULT_CLIMB_LEFT_HEART: never#TODO
-        RC_SPIRIT_TEMPLE_ADULT_CLIMB_RIGHT_HEART: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_BIG_WALL_BASE: never#TODO
-        RR_SPIRIT_TEMPLE_4F_CENTRAL: never#TODO
+        RR_SPIRIT_TEMPLE_BIG_WALL_BASE: always
+        RR_SPIRIT_TEMPLE_4F_CENTRAL:    always
     }
 }
 
@@ -613,9 +510,9 @@ region RR_SPIRIT_TEMPLE_4F_CENTRAL {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_BIG_WALL_UPPER: never#TODO
-        RR_SPIRIT_TEMPLE_FAKE_DOORS_ROOM: never#TODO
-        RR_SPIRIT_TEMPLE_BIG_MIRROR_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_BIG_WALL_UPPER:  always
+        RR_SPIRIT_TEMPLE_FAKE_DOORS_ROOM: can_use(RG_ZELDAS_LULLABY)
+        RR_SPIRIT_TEMPLE_BIG_MIRROR_ROOM: always
     }
 }
 
@@ -623,12 +520,8 @@ region RR_SPIRIT_TEMPLE_FAKE_DOORS_ROOM {
     name: "Spirit Temple Fake Doors Room"
     scene: SCENE_SPIRIT_TEMPLE
 
-    locations {
-        RC_SPIRIT_TEMPLE_BOSS_KEY_CHEST: never#TODO
-    }
-
     exits {
-        RR_SPIRIT_TEMPLE_4F_CENTRAL: never#TODO
+        RR_SPIRIT_TEMPLE_4F_CENTRAL: always
     }
 }
 
@@ -637,14 +530,17 @@ region RR_SPIRIT_TEMPLE_BIG_MIRROR_ROOM {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
-        LOGIC_SPIRIT_4F_SWITCH: never#TODO
-        LOGIC_SPIRIT_PLATFORM_LOWERED: never#TODO
+        LOGIC_SPIRIT_4F_SWITCH:        can_jumpslash() or has_explosives() or can_use(RG_GIANTS_KNIFE) or
+                                       (trick(RT_ITEM_EXTENSION) and ((is_adult() and can_use(RG_HOOKSHOT)) or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT)))
+        LOGIC_SPIRIT_PLATFORM_LOWERED: (flag(LOGIC_SPIRIT_PUSHED_4F_MIRRORS) and can_use(RG_MIRROR_SHIELD)) or sunlight_arrows()
     }
 
     exits {
-        RR_SPIRIT_TEMPLE_4F_CENTRAL: never#TODO
-        RR_SPIRIT_TEMPLE_BIG_MIRROR_CAVE: never#TODO
-        RR_SPIRIT_TEMPLE_PLATFORM: never#TODO
+        RR_SPIRIT_TEMPLE_4F_CENTRAL:      always
+        # Rang can hit the switch on the way back but that's a trick
+        RR_SPIRIT_TEMPLE_BIG_MIRROR_CAVE: flag(LOGIC_SPIRIT_4F_SWITCH)
+        # Assumes RR_SPIRIT_TEMPLE_BIG_MIRROR_CAVE access
+        RR_SPIRIT_TEMPLE_PLATFORM:        flag(LOGIC_SPIRIT_PLATFORM_LOWERED)
     }
 }
 
@@ -653,30 +549,27 @@ region RR_SPIRIT_TEMPLE_BIG_MIRROR_CAVE {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
-        LOGIC_SPIRIT_4F_SWITCH: never#TODO
-        LOGIC_SPIRIT_PUSHED_4F_MIRRORS: never#TODO
-    }
-
-    locations {
-        RC_SPIRIT_TEMPLE_TOPMOST_CHEST: never#TODO
+        LOGIC_SPIRIT_4F_SWITCH:         has_explosives()
+        LOGIC_SPIRIT_PUSHED_4F_MIRRORS: has_explosives() and has(RG_POWER_BRACELET)
     }
 
     exits {
-        RR_SPIRIT_TEMPLE_BIG_MIRROR_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_BIG_MIRROR_ROOM: always
     }
 }
 
+# Assumes a SpiritPlatformLowered check on entry
 region RR_SPIRIT_TEMPLE_PLATFORM {
     name: "Spirit Temple Lowered Platform"
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_STATUE_ROOM: never#TODO
-        RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD: never#TODO
-        RR_SPIRIT_TEMPLE_INNER_WEST_HAND: never#TODO
-        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: never#TODO
-        RR_SPIRIT_TEMPLE_INNER_LEFT_HAND: never#TODO
-        RR_SPIRIT_TEMPLE_STATUE_HEAD: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_ROOM:       always
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD: always
+        RR_SPIRIT_TEMPLE_INNER_WEST_HAND:   always
+        RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT: always
+        RR_SPIRIT_TEMPLE_INNER_LEFT_HAND:   always
+        RR_SPIRIT_TEMPLE_STATUE_HEAD:       flag(LOGIC_SPIRIT_PUSHED_4F_MIRRORS) and can_use(RG_MIRROR_SHIELD) and can_use(RG_HOOKSHOT)
     }
 }
 
@@ -685,15 +578,16 @@ region RR_SPIRIT_TEMPLE_STATUE_HEAD {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
-        LOGIC_REVERSE_SPIRIT_CHILD: never#TODO
-        LOGIC_REVERSE_SPIRIT_ADULT: never#TODO
+        # WARNING these events are not glitchproofed and assume you need all keys to reach from the front
+        LOGIC_REVERSE_SPIRIT_CHILD: is_child()
+        LOGIC_REVERSE_SPIRIT_ADULT: is_adult()
     }
 
     exits {
-        RR_SPIRIT_TEMPLE_STATUE_ROOM: never#TODO
-        RR_SPIRIT_TEMPLE_INNER_WEST_HAND: never#TODO
-        RR_SPIRIT_TEMPLE_INNER_LEFT_HAND: never#TODO
-        RR_SPIRIT_TEMPLE_PLATFORM: never#TODO
-        RR_SPIRIT_TEMPLE_BOSS_ENTRYWAY: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_ROOM:     always
+        RR_SPIRIT_TEMPLE_INNER_WEST_HAND: can_use(RG_HOVER_BOOTS)
+        RR_SPIRIT_TEMPLE_INNER_LEFT_HAND: can_use(RG_HOVER_BOOTS)
+        RR_SPIRIT_TEMPLE_PLATFORM:        flag(LOGIC_SPIRIT_PLATFORM_LOWERED) and (can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT))
+        RR_SPIRIT_TEMPLE_BOSS_ENTRYWAY:   always
     }
 }

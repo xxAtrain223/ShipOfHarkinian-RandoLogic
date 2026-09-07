@@ -3,9 +3,9 @@ region RR_SPIRIT_TEMPLE_ENTRYWAY {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_FOYER: never#TODO
-        RR_SPIRIT_TEMPLE_MQ_FOYER: never#TODO
-        RR_DESERT_COLOSSUS_OUTSIDE_TEMPLE: never#TODO
+        RR_SPIRIT_TEMPLE_FOYER: is_vanilla()
+        RR_SPIRIT_TEMPLE_MQ_FOYER: is_mq()
+        RR_DESERT_COLOSSUS_OUTSIDE_TEMPLE: always
     }
 }
 
@@ -14,9 +14,9 @@ region RR_SPIRIT_TEMPLE_BOSS_ENTRYWAY {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_STATUE_HEAD: never#TODO
-        RR_SPIRIT_TEMPLE_MQ_STATUE_HEAD: never#TODO
-        RR_SPIRIT_TEMPLE_BOSS_ROOM: never#TODO
+        RR_SPIRIT_TEMPLE_STATUE_HEAD: is_vanilla() and never
+        RR_SPIRIT_TEMPLE_MQ_STATUE_HEAD: is_mq() and never
+        RR_SPIRIT_TEMPLE_BOSS_ROOM: has(RG_SPIRIT_TEMPLE_BOSS_KEY)
     }
 }
 
@@ -25,16 +25,16 @@ region RR_SPIRIT_TEMPLE_BOSS_ROOM {
     scene: SCENE_SPIRIT_TEMPLE_BOSS
 
     events {
-        LOGIC_SPIRIT_TEMPLE_CLEAR: never#TODO
+        LOGIC_SPIRIT_TEMPLE_CLEAR: (has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and can_kill(RE_TWINROVA)
     }
 
     locations {
-        RC_SPIRIT_TEMPLE_TWINROVA_HEART: never#TODO
-        RC_TWINROVA: never#TODO
+        RC_SPIRIT_TEMPLE_TWINROVA_HEART: flag(LOGIC_SPIRIT_TEMPLE_CLEAR)
+        RC_TWINROVA:                     flag(LOGIC_SPIRIT_TEMPLE_CLEAR)
     }
 
     exits {
-        RR_SPIRIT_TEMPLE_BOSS_ENTRYWAY: never#TODO
-        RR_DESERT_COLOSSUS: never#TODO
+        RR_SPIRIT_TEMPLE_BOSS_ENTRYWAY: never
+        RR_DESERT_COLOSSUS:             flag(LOGIC_SPIRIT_TEMPLE_CLEAR)
     }
 }
