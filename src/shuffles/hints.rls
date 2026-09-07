@@ -1,44 +1,25 @@
-extend region RR_KF_OUTSIDE_DEKU_TREE {
+# dungeons/ganons_castle
+
+extend region RR_GANONS_TOWER_GANONDORF_LAIR {
     locations {
-        RC_KF_DEKU_TREE_LEFT_GOSSIP_STONE: always
-        RC_KF_DEKU_TREE_RIGHT_GOSSIP_STONE: always
+        RC_GANONDORF_HINT: has_boss_soul(RG_GANON_SOUL)
     }
 }
 
-extend region RR_KF_OUTSIDE_LOST_WOODS {
+extend region RR_GANONS_CASTLE_MAIN {
     locations {
-        RC_KF_GOSSIP_STONE: always
+        RC_SHEIK_HINT_GC: has(RG_SPEAK_HYLIAN)
     }
 }
 
-extend region RR_KF_STORMS_GROTTO {
+extend region RR_GANONS_CASTLE_MQ_MAIN {
     locations {
-        RC_KF_STORMS_GROTTO_GOSSIP_STONE: always
+        RC_SHEIK_HINT_MQ_GC: has(RG_SPEAK_HYLIAN)
     }
 }
 
-extend region RR_TOT_ENTRANCE {
-    locations {
-        RC_TOT_LEFTMOST_GOSSIP_STONE: always
-        RC_TOT_LEFT_CENTER_GOSSIP_STONE: always
-        RC_TOT_RIGHT_CENTER_GOSSIP_STONE: always
-        RC_TOT_RIGHTMOST_GOSSIP_STONE: always
-    }
-}
+# overworld/castle_grounds
 
-extend region RR_TEMPLE_OF_TIME {
-    locations {
-        RC_ALTAR_HINT_CHILD: is_child()
-        RC_ALTAR_HINT_ADULT: is_adult()
-        RC_TOT_SHEIK_HINT: is_adult() and has(RG_SPEAK_HYLIAN)
-    }
-}
-
-extend region RR_MARKET_MASK_SHOP {
-    locations {
-        RC_MASK_SHOP_HINT: always
-    }
-}
 extend region RR_HC_ABOVE_VINE {
     locations {
         RC_HC_MALON_GOSSIP_STONE: always
@@ -57,28 +38,15 @@ extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
     }
 }
 
-extend region RR_GANONS_TOWER_GANONDORF_LAIR {
-    locations {
-        RC_GANONDORF_HINT: has_boss_soul(RG_GANON_SOUL)
-    }
-}
+# overworld/desert_colossus
 
-extend region RR_GANONS_CASTLE_MAIN {
-    locations {
-        RC_SHEIK_HINT_GC: has(RG_SPEAK_HYLIAN)
-    }
-}
 extend region RR_DESERT_COLOSSUS {
     locations {
         RC_COLOSSUS_GOSSIP_STONE: always
     }
 }
 
-extend region RR_GANONS_CASTLE_MQ_MAIN {
-    locations {
-        RC_SHEIK_HINT_MQ_GC: has(RG_SPEAK_HYLIAN)
-    }
-}
+# overworld/hyrule_field
 
 extend region RR_HF_SOUTHEAST_GROTTO {
     locations {
@@ -101,5 +69,53 @@ extend region RR_HF_COW_GROTTO_BEHIND_WEBS {
 extend region RR_HF_NEAR_MARKET_GROTTO {
     locations {
         RC_HF_NEAR_MARKET_GROTTO_GOSSIP_STONE: always
+    }
+}
+
+# overworld/kokiri_forest
+
+extend region RR_KF_OUTSIDE_DEKU_TREE {
+    locations {
+        RC_KF_DEKU_TREE_LEFT_GOSSIP_STONE:  always
+        RC_KF_DEKU_TREE_RIGHT_GOSSIP_STONE: always
+    }
+}
+
+extend region RR_KF_OUTSIDE_LOST_WOODS {
+    locations {
+        RC_KF_GOSSIP_STONE: always
+    }
+}
+
+extend region RR_KF_STORMS_GROTTO {
+    locations {
+        RC_KF_STORMS_GROTTO_GOSSIP_STONE: always
+    }
+}
+
+# overworld/market
+
+extend region RR_MARKET_MASK_SHOP {
+    locations {
+        RC_MASK_SHOP_HINT: always
+    }
+}
+
+# overworld/temple_of_time
+
+extend region RR_TOT_ENTRANCE {
+    locations {
+        RC_TOT_LEFTMOST_GOSSIP_STONE:     always
+        RC_TOT_LEFT_CENTER_GOSSIP_STONE:  always
+        RC_TOT_RIGHT_CENTER_GOSSIP_STONE: always
+        RC_TOT_RIGHTMOST_GOSSIP_STONE:    always
+    }
+}
+
+extend region RR_TEMPLE_OF_TIME {
+    locations {
+        RC_ALTAR_HINT_CHILD: is_child()
+        RC_ALTAR_HINT_ADULT: is_adult()
+        RC_TOT_SHEIK_HINT:   is_adult() and has(RG_SPEAK_HYLIAN)
     }
 }

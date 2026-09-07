@@ -1,18 +1,4 @@
-extend region RR_KOKIRI_FOREST {
-	locations {
-		RC_KF_GS_KNOW_IT_ALL_HOUSE: is_child() and can_kill(RE_GOLD_SKULLTULA, ED_CLOSE)
-		RC_KF_GS_BEAN_PATCH: can_spawn_soil_skull(RG_KOKIRI_FOREST_BEAN_SOUL) and can_kill(RE_GOLD_SKULLTULA, ED_CLOSE)
-		RC_KF_GS_HOUSE_OF_TWINS: is_adult() and can_get_night_time_gs() and
-			(can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or
-			 (trick(RT_KF_ADULT_GS) and can_use(RG_HOVER_BOOTS) and can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH)))
-	}
-}
-
-extend region RR_MARKET_GUARD_HOUSE {
-	locations {
-		RC_MARKET_GS_GUARD_HOUSE: is_child() and can_break_crates() and (has(RG_POWER_BRACELET) or can_kill(RE_GOLD_SKULLTULA))
-	}
-}
+# dungeons/deku_tree
 
 extend region RR_DEKU_TREE_COMPASS_ROOM {
     locations {
@@ -59,44 +45,7 @@ extend region RR_DEKU_TREE_MQ_BASEMENT_BACK_ROOM {
     }
 }
 
-extend region RR_HC_GATE {
-	locations {
-		RC_HC_GS_TREE: can_bonk_trees() and can_kill(RE_GOLD_SKULLTULA, ED_CLOSE)
-	}
-}
-
-extend region RR_HC_STORMS_GROTTO {
-	locations {
-		RC_HC_GS_STORMS_GROTTO: can_use(RG_BOOMERANG) and trick(RT_HC_STORMS_GS)
-	}
-}
-
-extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
-	locations {
-		RC_HC_GS_STORMS_GROTTO: hookshot_or_boomerang()
-	}
-}
-
-extend region RR_GANONS_CASTLE_GROUNDS {
-	locations {
-		RC_OGC_GS:
-			can_jumpslash_except_hammer() or
-			can_use_projectile() or
-			(can_shield() and can_use(RG_MEGATON_HAMMER)) or
-			can_use(RG_DINS_FIRE)
-	}
-}
-
-extend region RR_DESERT_COLOSSUS {
-    locations {
-        RC_COLOSSUS_GS_BEAN_PATCH: can_spawn_soil_skull(RG_DESERT_COLOSSUS_BEAN_SOUL) and can_attack()
-        RC_COLOSSUS_GS_TREE:       is_adult() and hookshot_or_boomerang() and can_get_night_time_gs()
-        RC_COLOSSUS_GS_HILL:       is_adult() and
-                                   ((can_plant_bean(RR_DESERT_COLOSSUS, RG_DESERT_COLOSSUS_BEAN_SOUL) and can_attack()) or
-                                    can_use(RG_LONGSHOT) or (trick(RT_COLOSSUS_GS) and can_use(RG_HOOKSHOT))) and
-                                   can_get_night_time_gs()
-    }
-}
+# dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH {
     locations {
@@ -190,6 +139,51 @@ extend region RR_SPIRIT_TEMPLE_MQ_9_THRONES_ROOM {
     }
 }
 
+# overworld/castle_grounds
+
+extend region RR_HC_GATE {
+    locations {
+        RC_HC_GS_TREE: can_bonk_trees() and can_kill(RE_GOLD_SKULLTULA, ED_CLOSE)
+    }
+}
+
+extend region RR_HC_STORMS_GROTTO {
+    locations {
+        RC_HC_GS_STORMS_GROTTO: can_use(RG_BOOMERANG) and trick(RT_HC_STORMS_GS)
+    }
+}
+
+extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
+    locations {
+        RC_HC_GS_STORMS_GROTTO: hookshot_or_boomerang()
+    }
+}
+
+extend region RR_GANONS_CASTLE_GROUNDS {
+    locations {
+        RC_OGC_GS:
+            can_jumpslash_except_hammer() or
+            can_use_projectile() or
+            (can_shield() and can_use(RG_MEGATON_HAMMER)) or
+            can_use(RG_DINS_FIRE)
+    }
+}
+
+# overworld/desert_colossus
+
+extend region RR_DESERT_COLOSSUS {
+    locations {
+        RC_COLOSSUS_GS_BEAN_PATCH: can_spawn_soil_skull(RG_DESERT_COLOSSUS_BEAN_SOUL) and can_attack()
+        RC_COLOSSUS_GS_TREE:       is_adult() and hookshot_or_boomerang() and can_get_night_time_gs()
+        RC_COLOSSUS_GS_HILL:       is_adult() and
+                                   ((can_plant_bean(RR_DESERT_COLOSSUS, RG_DESERT_COLOSSUS_BEAN_SOUL) and can_attack()) or
+                                    can_use(RG_LONGSHOT) or (trick(RT_COLOSSUS_GS) and can_use(RG_HOOKSHOT))) and
+                                   can_get_night_time_gs()
+    }
+}
+
+# overworld/hyrule_field
+
 extend region RR_HF_COW_GROTTO_BEHIND_WEBS {
     locations {
         RC_HF_GS_COW_GROTTO: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
@@ -199,5 +193,25 @@ extend region RR_HF_COW_GROTTO_BEHIND_WEBS {
 extend region RR_HF_NEAR_KAK_GROTTO {
     locations {
         RC_HF_GS_NEAR_KAK_GROTTO: hookshot_or_boomerang()
+    }
+}
+
+# overworld/kokiri_forest
+
+extend region RR_KOKIRI_FOREST {
+    locations {
+        RC_KF_GS_KNOW_IT_ALL_HOUSE: is_child() and can_kill(RE_GOLD_SKULLTULA, ED_CLOSE)
+        RC_KF_GS_BEAN_PATCH:        can_spawn_soil_skull(RG_KOKIRI_FOREST_BEAN_SOUL) and can_kill(RE_GOLD_SKULLTULA, ED_CLOSE)
+        RC_KF_GS_HOUSE_OF_TWINS:    is_adult() and can_get_night_time_gs() and
+                                    (can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or
+                                     (trick(RT_KF_ADULT_GS) and can_use(RG_HOVER_BOOTS) and can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH)))
+    }
+}
+
+# overworld/market
+
+extend region RR_MARKET_GUARD_HOUSE {
+    locations {
+        RC_MARKET_GS_GUARD_HOUSE: is_child() and can_break_crates() and (has(RG_POWER_BRACELET) or can_kill(RE_GOLD_SKULLTULA))
     }
 }

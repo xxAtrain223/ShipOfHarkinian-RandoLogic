@@ -1,23 +1,4 @@
-extend region RR_KF_BOULDER_LOOP {
-    locations {
-        RC_KF_KOKIRI_SWORD_CHEST: is_child() and has(RG_OPEN_CHEST)
-    }
-}
-
-extend region RR_KF_MIDOS_HOUSE {
-    locations {
-        RC_KF_MIDOS_TOP_LEFT_CHEST:     has(RG_OPEN_CHEST)
-        RC_KF_MIDOS_TOP_RIGHT_CHEST:    has(RG_OPEN_CHEST)
-        RC_KF_MIDOS_BOTTOM_LEFT_CHEST:  has(RG_OPEN_CHEST)
-        RC_KF_MIDOS_BOTTOM_RIGHT_CHEST: has(RG_OPEN_CHEST)
-    }
-}
-
-extend region RR_KF_STORMS_GROTTO {
-    locations {
-        RC_KF_STORMS_GROTTO_CHEST: has(RG_OPEN_CHEST)
-    }
-}
+# dungeons/deku_tree
 
 extend region RR_DEKU_TREE_LOBBY_2F {
     locations {
@@ -45,73 +26,6 @@ extend region RR_DEKU_TREE_BASEMENT_LOWER {
     }
 }
 
-extend region RR_GANONS_TOWER_FLOOR_2 {
-    locations {
-        RC_GANONS_TOWER_BOSS_KEY_CHEST: can_kill(RE_STALFOS, ED_CLOSE, true, 2) and has(RG_OPEN_CHEST)
-    }
-}
-
-extend region RR_GANONS_CASTLE_FOREST_TRIAL_WOLFOS_ROOM {
-    locations {
-        RC_GANONS_CASTLE_FOREST_TRIAL_CHEST: can_kill(RE_WOLFOS) and has(RG_OPEN_CHEST)
-    }
-}
-
-extend region RR_GANONS_CASTLE_WATER_TRIAL_BLUE_FIRE_ROOM {
-    locations {
-        RC_GANONS_CASTLE_WATER_TRIAL_LEFT_CHEST: has(RG_OPEN_CHEST)
-        RC_GANONS_CASTLE_WATER_TRIAL_RIGHT_CHEST: has(RG_OPEN_CHEST)
-    }
-}
-
-extend region RR_GANONS_CASTLE_SHADOW_TRIAL_START {
-    locations {
-        RC_GANONS_CASTLE_SHADOW_TRIAL_FRONT_CHEST:
-            (can_use(RG_FIRE_ARROWS) or can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or
-             can_use(RG_SONG_OF_TIME) or is_child()) and has(RG_OPEN_CHEST)
-    }
-}
-
-extend region RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM {
-    locations {
-        RC_GANONS_CASTLE_SHADOW_TRIAL_GOLDEN_GAUNTLETS_CHEST: flag(LOGIC_SHADOW_TRIAL_LOWER_SWITCH) and has(RG_OPEN_CHEST)
-    }
-}
-
-extend region RR_GANONS_CASTLE_SPIRIT_TRIAL_BEFORE_SWITCH {
-    locations {
-        RC_GANONS_CASTLE_SPIRIT_TRIAL_CRYSTAL_SWITCH_CHEST:
-            (can_jumpslash() or has_explosives() or can_use(RG_GIANTS_KNIFE)) and has(RG_OPEN_CHEST)
-    }
-}
-
-extend region RR_GANONS_CASTLE_SPIRIT_TRIAL_AFTER_SWITCH {
-    locations {
-        RC_GANONS_CASTLE_SPIRIT_TRIAL_CRYSTAL_SWITCH_CHEST: can_hit_switch() and has(RG_OPEN_CHEST)
-        RC_GANONS_CASTLE_SPIRIT_TRIAL_INVISIBLE_CHEST: (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
-    }
-}
-
-extend region RR_GANONS_CASTLE_LIGHT_TRIAL_CHESTS_ROOM {
-    locations {
-        RC_GANONS_CASTLE_LIGHT_TRIAL_FIRST_LEFT_CHEST: has(RG_OPEN_CHEST)
-        RC_GANONS_CASTLE_LIGHT_TRIAL_SECOND_LEFT_CHEST: has(RG_OPEN_CHEST)
-        RC_GANONS_CASTLE_LIGHT_TRIAL_THIRD_LEFT_CHEST: has(RG_OPEN_CHEST)
-        RC_GANONS_CASTLE_LIGHT_TRIAL_FIRST_RIGHT_CHEST: has(RG_OPEN_CHEST)
-        RC_GANONS_CASTLE_LIGHT_TRIAL_SECOND_RIGHT_CHEST: has(RG_OPEN_CHEST)
-        RC_GANONS_CASTLE_LIGHT_TRIAL_THIRD_RIGHT_CHEST: has(RG_OPEN_CHEST)
-        RC_GANONS_CASTLE_LIGHT_TRIAL_INVISIBLE_ENEMIES_CHEST:
-            (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH)) and
-            (can_kill(RE_BIG_SKULLTULA) and can_kill(RE_KEESE, ED_CLOSE, true, 3)) and
-            has(RG_OPEN_CHEST)
-    }
-}
-
-extend region RR_GANONS_CASTLE_LIGHT_TRIAL_TRIFORCE_ROOM {
-    locations {
-        RC_GANONS_CASTLE_LIGHT_TRIAL_LULLABY_CHEST: can_use(RG_ZELDAS_LULLABY) and has(RG_OPEN_CHEST)
-    }
-}
 extend region RR_DEKU_TREE_MQ_2F {
     locations {
         RC_DEKU_TREE_MQ_MAP_CHEST: has(RG_OPEN_CHEST)
@@ -147,6 +61,76 @@ extend region RR_DEKU_TREE_MQ_BASEMENT_WATER_ROOM_BACK {
     locations {
         # it blocks the chest while stunned unless you stun it from afar while it's slightly off the ground
         RC_DEKU_TREE_MQ_AFTER_SPINNING_LOG_CHEST: can_use(RG_SONG_OF_TIME) and can_pass(RE_BIG_SKULLTULA) and has(RG_OPEN_CHEST)
+    }
+}
+
+# dungeons/ganons_castle
+
+extend region RR_GANONS_TOWER_FLOOR_2 {
+    locations {
+        RC_GANONS_TOWER_BOSS_KEY_CHEST: can_kill(RE_STALFOS, ED_CLOSE, true, 2) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_GANONS_CASTLE_FOREST_TRIAL_WOLFOS_ROOM {
+    locations {
+        RC_GANONS_CASTLE_FOREST_TRIAL_CHEST: can_kill(RE_WOLFOS) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_GANONS_CASTLE_WATER_TRIAL_BLUE_FIRE_ROOM {
+    locations {
+        RC_GANONS_CASTLE_WATER_TRIAL_LEFT_CHEST:  has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_WATER_TRIAL_RIGHT_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_GANONS_CASTLE_SHADOW_TRIAL_START {
+    locations {
+        RC_GANONS_CASTLE_SHADOW_TRIAL_FRONT_CHEST:
+            (can_use(RG_FIRE_ARROWS) or can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or
+             can_use(RG_SONG_OF_TIME) or is_child()) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM {
+    locations {
+        RC_GANONS_CASTLE_SHADOW_TRIAL_GOLDEN_GAUNTLETS_CHEST: flag(LOGIC_SHADOW_TRIAL_LOWER_SWITCH) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_GANONS_CASTLE_SPIRIT_TRIAL_BEFORE_SWITCH {
+    locations {
+        RC_GANONS_CASTLE_SPIRIT_TRIAL_CRYSTAL_SWITCH_CHEST:
+            (can_jumpslash() or has_explosives() or can_use(RG_GIANTS_KNIFE)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_GANONS_CASTLE_SPIRIT_TRIAL_AFTER_SWITCH {
+    locations {
+        RC_GANONS_CASTLE_SPIRIT_TRIAL_CRYSTAL_SWITCH_CHEST: can_hit_switch() and has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_SPIRIT_TRIAL_INVISIBLE_CHEST:      (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_GANONS_CASTLE_LIGHT_TRIAL_CHESTS_ROOM {
+    locations {
+        RC_GANONS_CASTLE_LIGHT_TRIAL_FIRST_LEFT_CHEST:        has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_LIGHT_TRIAL_SECOND_LEFT_CHEST:       has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_LIGHT_TRIAL_THIRD_LEFT_CHEST:        has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_LIGHT_TRIAL_FIRST_RIGHT_CHEST:       has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_LIGHT_TRIAL_SECOND_RIGHT_CHEST:      has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_LIGHT_TRIAL_THIRD_RIGHT_CHEST:       has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_LIGHT_TRIAL_INVISIBLE_ENEMIES_CHEST:
+            (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH)) and
+            (can_kill(RE_BIG_SKULLTULA) and can_kill(RE_KEESE, ED_CLOSE, true, 3)) and
+            has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_GANONS_CASTLE_LIGHT_TRIAL_TRIFORCE_ROOM {
+    locations {
+        RC_GANONS_CASTLE_LIGHT_TRIAL_LULLABY_CHEST: can_use(RG_ZELDAS_LULLABY) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -206,6 +190,8 @@ extend region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_TRIFORCE_ROOM {
         RC_GANONS_CASTLE_MQ_LIGHT_TRIAL_LULLABY_CHEST: can_use(RG_ZELDAS_LULLABY) and has(RG_OPEN_CHEST)
     }
 }
+
+# dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_NORTH {
     locations {
@@ -443,6 +429,8 @@ extend region RR_SPIRIT_TEMPLE_MQ_BIG_MIRROR_CAVE {
     }
 }
 
+# overworld/hyrule_field
+
 extend region RR_HF_SOUTHEAST_GROTTO {
     locations {
         RC_HF_SOUTHEAST_GROTTO_CHEST: has(RG_OPEN_CHEST)
@@ -458,5 +446,28 @@ extend region RR_HF_OPEN_GROTTO {
 extend region RR_HF_NEAR_MARKET_GROTTO {
     locations {
         RC_HF_NEAR_MARKET_GROTTO_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+# overworld/kokiri_forest
+
+extend region RR_KF_BOULDER_LOOP {
+    locations {
+        RC_KF_KOKIRI_SWORD_CHEST: is_child() and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_KF_MIDOS_HOUSE {
+    locations {
+        RC_KF_MIDOS_TOP_LEFT_CHEST:     has(RG_OPEN_CHEST)
+        RC_KF_MIDOS_TOP_RIGHT_CHEST:    has(RG_OPEN_CHEST)
+        RC_KF_MIDOS_BOTTOM_LEFT_CHEST:  has(RG_OPEN_CHEST)
+        RC_KF_MIDOS_BOTTOM_RIGHT_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_KF_STORMS_GROTTO {
+    locations {
+        RC_KF_STORMS_GROTTO_CHEST: has(RG_OPEN_CHEST)
     }
 }

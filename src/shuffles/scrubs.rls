@@ -1,15 +1,12 @@
+# dungeons/deku_tree
+
 extend region RR_DEKU_TREE_MQ_BASEMENT_LEDGE {
     locations {
         RC_DEKU_TREE_MQ_DEKU_SCRUB: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
     }
 }
 
-extend region RR_COLOSSUS_GROTTO {
-    locations {
-        RC_COLOSSUS_DEKU_SCRUB_GROTTO_REAR:  can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
-        RC_COLOSSUS_DEKU_SCRUB_GROTTO_FRONT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
-    }
-}
+# dungeons/ganons_castle
 
 extend region RR_GANONS_CASTLE_DEKU_SCRUBS {
     locations {
@@ -29,6 +26,18 @@ extend region RR_GANONS_CASTLE_MQ_DEKU_SCRUBS {
         RC_GANONS_CASTLE_MQ_DEKU_SCRUB_RIGHT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
     }
 }
+
+# overworld/desert_colossus
+
+extend region RR_COLOSSUS_GROTTO {
+    locations {
+        RC_COLOSSUS_DEKU_SCRUB_GROTTO_REAR:  can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_COLOSSUS_DEKU_SCRUB_GROTTO_FRONT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+    }
+}
+
+# overworld/hyrule_field
+
 extend region RR_HF_INSIDE_FENCE_GROTTO {
     locations {
         RC_HF_DEKU_SCRUB_GROTTO: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()

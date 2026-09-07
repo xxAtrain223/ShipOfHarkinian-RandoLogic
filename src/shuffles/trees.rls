@@ -1,8 +1,5 @@
-extend region RR_THE_MARKET {
-    locations {
-        RC_MARKET_TREE: is_child() and can_bonk_trees()
-    }
-}
+# overworld/castle_grounds
+
 extend region RR_HC_GATE {
     locations {
         RC_HC_SKULLTULA_TREE: can_bonk_trees()
@@ -28,55 +25,65 @@ extend region RR_HC_MOAT {
     }
 }
 
+# overworld/hyrule_field
+
 extend region RR_HYRULE_FIELD {
     locations {
-        RC_HF_NEAR_LLR_TREE: can_bonk_trees()
-        RC_HF_NEAR_LH_TREE: can_bonk_trees()
-        RC_HF_CHILD_NEAR_GV_TREE: is_child() and can_bonk_trees()
-        RC_HF_ADULT_NEAR_GV_TREE: is_adult() and can_bonk_trees()
-        RC_HF_NEAR_ZR_TREE: can_bonk_trees()
-        RC_HF_NEAR_KAK_TREE: can_bonk_trees()
-        RC_HF_NEAR_KAK_SMALL_TREE: can_bonk_trees()
-        RC_HF_NEAR_MARKET_TREE_1: can_bonk_trees()
-        RC_HF_NEAR_MARKET_TREE_2: can_bonk_trees()
-        RC_HF_NEAR_MARKET_TREE_3: can_bonk_trees()
-        RC_HF_NORTHWEST_TREE_1: can_bonk_trees()
-        RC_HF_NORTHWEST_TREE_2: can_bonk_trees()
-        RC_HF_NORTHWEST_TREE_3: can_bonk_trees()
-        RC_HF_NORTHWEST_TREE_4: can_bonk_trees()
-        RC_HF_NORTHWEST_TREE_5: can_bonk_trees()
-        RC_HF_NORTHWEST_TREE_6: can_bonk_trees()
-        RC_HF_EAST_TREE_1: can_bonk_trees()
-        RC_HF_EAST_TREE_2: can_bonk_trees()
-        RC_HF_EAST_TREE_3: can_bonk_trees()
-        RC_HF_EAST_TREE_4: can_bonk_trees()
-        RC_HF_EAST_TREE_5: can_bonk_trees()
-        RC_HF_EAST_TREE_6: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_1: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_2: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_3: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_4: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_5: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_6: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_7: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_8: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_9: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_10: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_11: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_12: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_13: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_14: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_15: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_16: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_17: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_18: can_bonk_trees()
-        RC_HF_SOUTHEAST_TREE_19: can_bonk_trees()
+        RC_HF_NEAR_LLR_TREE:          can_bonk_trees()
+        RC_HF_NEAR_LH_TREE:           can_bonk_trees()
+        RC_HF_CHILD_NEAR_GV_TREE:     is_child() and can_bonk_trees()
+        RC_HF_ADULT_NEAR_GV_TREE:     is_adult() and can_bonk_trees()
+        RC_HF_NEAR_ZR_TREE:           can_bonk_trees()
+        RC_HF_NEAR_KAK_TREE:          can_bonk_trees()
+        RC_HF_NEAR_KAK_SMALL_TREE:    can_bonk_trees()
+        RC_HF_NEAR_MARKET_TREE_1:     can_bonk_trees()
+        RC_HF_NEAR_MARKET_TREE_2:     can_bonk_trees()
+        RC_HF_NEAR_MARKET_TREE_3:     can_bonk_trees()
+        RC_HF_NORTHWEST_TREE_1:       can_bonk_trees()
+        RC_HF_NORTHWEST_TREE_2:       can_bonk_trees()
+        RC_HF_NORTHWEST_TREE_3:       can_bonk_trees()
+        RC_HF_NORTHWEST_TREE_4:       can_bonk_trees()
+        RC_HF_NORTHWEST_TREE_5:       can_bonk_trees()
+        RC_HF_NORTHWEST_TREE_6:       can_bonk_trees()
+        RC_HF_EAST_TREE_1:            can_bonk_trees()
+        RC_HF_EAST_TREE_2:            can_bonk_trees()
+        RC_HF_EAST_TREE_3:            can_bonk_trees()
+        RC_HF_EAST_TREE_4:            can_bonk_trees()
+        RC_HF_EAST_TREE_5:            can_bonk_trees()
+        RC_HF_EAST_TREE_6:            can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_1:       can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_2:       can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_3:       can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_4:       can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_5:       can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_6:       can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_7:       can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_8:       can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_9:       can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_10:      can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_11:      can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_12:      can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_13:      can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_14:      can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_15:      can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_16:      can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_17:      can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_18:      can_bonk_trees()
+        RC_HF_SOUTHEAST_TREE_19:      can_bonk_trees()
         RC_HF_CHILD_SOUTHEAST_TREE_1: is_child() and can_bonk_trees()
         RC_HF_CHILD_SOUTHEAST_TREE_2: is_child() and can_bonk_trees()
         RC_HF_CHILD_SOUTHEAST_TREE_3: is_child() and can_bonk_trees()
         RC_HF_CHILD_SOUTHEAST_TREE_4: is_child() and can_bonk_trees()
         RC_HF_CHILD_SOUTHEAST_TREE_5: is_child() and can_bonk_trees()
         RC_HF_CHILD_SOUTHEAST_TREE_6: is_child() and can_bonk_trees()
-        RC_HF_TEKTITE_GROTTO_TREE: can_bonk_trees()
+        RC_HF_TEKTITE_GROTTO_TREE:    can_bonk_trees()
+    }
+}
+
+# overworld/market
+
+extend region RR_THE_MARKET {
+    locations {
+        RC_MARKET_TREE: is_child() and can_bonk_trees()
     }
 }

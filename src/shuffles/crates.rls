@@ -1,7 +1,9 @@
+# overworld/market
+
 extend region RR_THE_MARKET {
     locations {
-        RC_MK_NEAR_BAZAAR_CRATE_1: is_child() # and can_roll()
-        RC_MK_NEAR_BAZAAR_CRATE_2: is_child() # and can_roll()
+        RC_MK_NEAR_BAZAAR_CRATE_1:      is_child() # and can_roll()
+        RC_MK_NEAR_BAZAAR_CRATE_2:      is_child() # and can_roll()
         RC_MK_SHOOTING_GALLERY_CRATE_1: is_child() # and can_roll()
         RC_MK_SHOOTING_GALLERY_CRATE_2: is_child() # and can_roll()
     }
@@ -19,9 +21,11 @@ extend region RR_MARKET_GUARD_HOUSE {
 
 extend region RR_MARKET_DOG_LADY_HOUSE {
     locations {
-        RC_MK_LOST_DOG_HOUSE_CRATE:can_break_crates()
+        RC_MK_LOST_DOG_HOUSE_CRATE: can_break_crates()
     }
 }
+
+# dungeons/deku_tree
 
 extend region RR_DEKU_TREE_MQ_2F {
     locations {
@@ -35,6 +39,8 @@ extend region RR_DEKU_TREE_MQ_SLINGSHOT_ROOM {
         RC_DEKU_TREE_MQ_SLINGSHOT_ROOM_CRATE_2: can_break_crates()
     }
 }
+
+# dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_CHILD_BOXES {
     locations {

@@ -1,8 +1,5 @@
-extend region RR_KF_STORMS_GROTTO {
-    locations {
-        RC_KF_STORMS_GROTTO_FISH: has_bottle()
-    }
-}
+# overworld/hyrule_field
+
 extend region RR_HF_SOUTHEAST_GROTTO {
     locations {
         RC_HF_SOUTHEAST_GROTTO_FISH: has_bottle()
@@ -18,5 +15,13 @@ extend region RR_HF_OPEN_GROTTO {
 extend region RR_HF_NEAR_MARKET_GROTTO {
     locations {
         RC_HF_NEAR_MARKET_GROTTO_FISH: has_bottle()
+    }
+}
+
+# overworld/kokiri_forest
+
+extend region RR_KF_STORMS_GROTTO {
+    locations {
+        RC_KF_STORMS_GROTTO_FISH: has_bottle()
     }
 }

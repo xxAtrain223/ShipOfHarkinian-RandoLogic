@@ -1,9 +1,4 @@
-extend region RR_KF_STORMS_GROTTO {
-    locations {
-        RC_KF_STORMS_GROTTO_BEEHIVE_LEFT: can_break_lower_beehives()
-        RC_KF_STORMS_GROTTO_BEEHIVE_RIGHT: can_break_lower_beehives()
-    }
-}
+# overworld/desert_colossus
 
 extend region RR_COLOSSUS_GROTTO {
     locations {
@@ -11,16 +6,18 @@ extend region RR_COLOSSUS_GROTTO {
     }
 }
 
+# overworld/hyrule_field
+
 extend region RR_HF_SOUTHEAST_GROTTO {
     locations {
-        RC_HF_SOUTHEAST_GROTTO_BEEHIVE_LEFT: can_break_lower_beehives()
+        RC_HF_SOUTHEAST_GROTTO_BEEHIVE_LEFT:  can_break_lower_beehives()
         RC_HF_SOUTHEAST_GROTTO_BEEHIVE_RIGHT: can_break_lower_beehives()
     }
 }
 
 extend region RR_HF_OPEN_GROTTO {
     locations {
-        RC_HF_OPEN_GROTTO_BEEHIVE_LEFT: can_break_lower_beehives()
+        RC_HF_OPEN_GROTTO_BEEHIVE_LEFT:  can_break_lower_beehives()
         RC_HF_OPEN_GROTTO_BEEHIVE_RIGHT: can_break_lower_beehives()
     }
 }
@@ -33,7 +30,16 @@ extend region RR_HF_INSIDE_FENCE_GROTTO {
 
 extend region RR_HF_NEAR_MARKET_GROTTO {
     locations {
-        RC_HF_NEAR_MARKET_GROTTO_BEEHIVE_LEFT: can_break_lower_beehives()
+        RC_HF_NEAR_MARKET_GROTTO_BEEHIVE_LEFT:  can_break_lower_beehives()
         RC_HF_NEAR_MARKET_GROTTO_BEEHIVE_RIGHT: can_break_lower_beehives()
+    }
+}
+
+# overworld/kokiri_forest
+
+extend region RR_KF_STORMS_GROTTO {
+    locations {
+        RC_KF_STORMS_GROTTO_BEEHIVE_LEFT:  can_break_lower_beehives()
+        RC_KF_STORMS_GROTTO_BEEHIVE_RIGHT: can_break_lower_beehives()
     }
 }

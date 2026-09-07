@@ -1,69 +1,4 @@
-extend region RR_KOKIRI_FOREST {
-    locations {
-        RC_KF_CHILD_GRASS_1: is_child() and can_cut_shrubs()
-        RC_KF_CHILD_GRASS_2: is_child() and can_cut_shrubs()
-        RC_KF_CHILD_GRASS_3: is_child() and can_cut_shrubs()
-        RC_KF_CHILD_GRASS_4: is_child() and can_cut_shrubs()
-        RC_KF_CHILD_GRASS_5: is_child() and can_cut_shrubs()
-        RC_KF_CHILD_GRASS_6: is_child() and can_cut_shrubs()
-        RC_KF_CHILD_GRASS_7: is_child() and can_cut_shrubs()
-        RC_KF_CHILD_GRASS_8: is_child() and can_cut_shrubs()
-        RC_KF_CHILD_GRASS_9: is_child() and can_cut_shrubs()
-        RC_KF_CHILD_GRASS_10: is_child() and can_cut_shrubs()
-        RC_KF_CHILD_GRASS_11: is_child() and can_cut_shrubs()
-        RC_KF_CHILD_GRASS_12: is_child() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_1: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_2: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_3: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_4: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_5: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_6: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_7: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_8: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_9: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_10: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_11: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_12: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_13: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_14: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_15: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_16: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_17: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_18: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_19: is_adult() and can_cut_shrubs()
-        RC_KF_ADULT_GRASS_20: is_adult() and can_cut_shrubs()
-    }
-}
-
-extend region RR_KF_BOULDER_LOOP {
-    locations {
-        RC_KF_CHILD_GRASS_MAZE_1: is_child() and can_cut_shrubs()
-        RC_KF_CHILD_GRASS_MAZE_2: is_child() and can_cut_shrubs()
-        RC_KF_CHILD_GRASS_MAZE_3: is_child() and can_cut_shrubs()
-    }
-}
-
-extend region RR_KF_STORMS_GROTTO {
-    locations {
-        RC_KF_STORMS_GROTTO_GRASS_1: can_cut_shrubs()
-        RC_KF_STORMS_GROTTO_GRASS_2: can_cut_shrubs()
-        RC_KF_STORMS_GROTTO_GRASS_3: can_cut_shrubs()
-        RC_KF_STORMS_GROTTO_GRASS_4: can_cut_shrubs()
-    }
-}
-
-extend region RR_THE_MARKET {
-    locations {
-        RC_MARKET_GRASS_1: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
-        RC_MARKET_GRASS_2: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
-        RC_MARKET_GRASS_3: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
-        RC_MARKET_GRASS_4: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
-        RC_MARKET_GRASS_5: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
-        RC_MARKET_GRASS_6: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
-        RC_MARKET_GRASS_7: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
-        RC_MARKET_GRASS_8: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
-    }
-}
+# dungeons/deku_tree
 
 extend region RR_DEKU_TREE_LOBBY {
     locations {
@@ -275,6 +210,8 @@ extend region RR_DEKU_TREE_MQ_OUTSIDE_BOSS_ROOM {
     }
 }
 
+# overworld/castle_grounds
+
 extend region RR_HC_MOAT {
     locations {
         RC_HC_GRASS_1: can_cut_shrubs()
@@ -282,56 +219,58 @@ extend region RR_HC_MOAT {
     }
 }
 
+# overworld/hyrule_field
+
 extend region RR_HYRULE_FIELD {
     locations {
-        RC_HF_CENTRAL_GRASS_1: can_cut_shrubs()
-        RC_HF_CENTRAL_GRASS_2: can_cut_shrubs()
-        RC_HF_CENTRAL_GRASS_3: can_cut_shrubs()
-        RC_HF_CENTRAL_GRASS_4: can_cut_shrubs()
-        RC_HF_CENTRAL_GRASS_5: can_cut_shrubs()
-        RC_HF_CENTRAL_GRASS_6: can_cut_shrubs()
-        RC_HF_CENTRAL_GRASS_7: can_cut_shrubs()
-        RC_HF_CENTRAL_GRASS_8: can_cut_shrubs()
-        RC_HF_CENTRAL_GRASS_9: can_cut_shrubs()
-        RC_HF_CENTRAL_GRASS_10: can_cut_shrubs()
-        RC_HF_CENTRAL_GRASS_11: can_cut_shrubs()
-        RC_HF_CENTRAL_GRASS_12: can_cut_shrubs()
-        RC_HF_SOUTH_GRASS_1: can_cut_shrubs()
-        RC_HF_SOUTH_GRASS_2: can_cut_shrubs()
-        RC_HF_SOUTH_GRASS_3: can_cut_shrubs()
-        RC_HF_SOUTH_GRASS_4: can_cut_shrubs()
-        RC_HF_SOUTH_GRASS_5: can_cut_shrubs()
-        RC_HF_SOUTH_GRASS_6: can_cut_shrubs()
-        RC_HF_SOUTH_GRASS_7: can_cut_shrubs()
-        RC_HF_SOUTH_GRASS_8: can_cut_shrubs()
-        RC_HF_SOUTH_GRASS_9: can_cut_shrubs()
-        RC_HF_SOUTH_GRASS_10: can_cut_shrubs()
-        RC_HF_SOUTH_GRASS_11: can_cut_shrubs()
-        RC_HF_SOUTH_GRASS_12: can_cut_shrubs()
-        RC_HF_NEAR_MARKET_GRASS_1: can_cut_shrubs()
-        RC_HF_NEAR_MARKET_GRASS_2: can_cut_shrubs()
-        RC_HF_NEAR_MARKET_GRASS_3: can_cut_shrubs()
-        RC_HF_NEAR_MARKET_GRASS_4: can_cut_shrubs()
-        RC_HF_NEAR_MARKET_GRASS_5: can_cut_shrubs()
-        RC_HF_NEAR_MARKET_GRASS_6: can_cut_shrubs()
-        RC_HF_NEAR_MARKET_GRASS_7: can_cut_shrubs()
-        RC_HF_NEAR_MARKET_GRASS_8: can_cut_shrubs()
-        RC_HF_NEAR_MARKET_GRASS_9: can_cut_shrubs()
+        RC_HF_CENTRAL_GRASS_1:      can_cut_shrubs()
+        RC_HF_CENTRAL_GRASS_2:      can_cut_shrubs()
+        RC_HF_CENTRAL_GRASS_3:      can_cut_shrubs()
+        RC_HF_CENTRAL_GRASS_4:      can_cut_shrubs()
+        RC_HF_CENTRAL_GRASS_5:      can_cut_shrubs()
+        RC_HF_CENTRAL_GRASS_6:      can_cut_shrubs()
+        RC_HF_CENTRAL_GRASS_7:      can_cut_shrubs()
+        RC_HF_CENTRAL_GRASS_8:      can_cut_shrubs()
+        RC_HF_CENTRAL_GRASS_9:      can_cut_shrubs()
+        RC_HF_CENTRAL_GRASS_10:     can_cut_shrubs()
+        RC_HF_CENTRAL_GRASS_11:     can_cut_shrubs()
+        RC_HF_CENTRAL_GRASS_12:     can_cut_shrubs()
+        RC_HF_SOUTH_GRASS_1:        can_cut_shrubs()
+        RC_HF_SOUTH_GRASS_2:        can_cut_shrubs()
+        RC_HF_SOUTH_GRASS_3:        can_cut_shrubs()
+        RC_HF_SOUTH_GRASS_4:        can_cut_shrubs()
+        RC_HF_SOUTH_GRASS_5:        can_cut_shrubs()
+        RC_HF_SOUTH_GRASS_6:        can_cut_shrubs()
+        RC_HF_SOUTH_GRASS_7:        can_cut_shrubs()
+        RC_HF_SOUTH_GRASS_8:        can_cut_shrubs()
+        RC_HF_SOUTH_GRASS_9:        can_cut_shrubs()
+        RC_HF_SOUTH_GRASS_10:       can_cut_shrubs()
+        RC_HF_SOUTH_GRASS_11:       can_cut_shrubs()
+        RC_HF_SOUTH_GRASS_12:       can_cut_shrubs()
+        RC_HF_NEAR_MARKET_GRASS_1:  can_cut_shrubs()
+        RC_HF_NEAR_MARKET_GRASS_2:  can_cut_shrubs()
+        RC_HF_NEAR_MARKET_GRASS_3:  can_cut_shrubs()
+        RC_HF_NEAR_MARKET_GRASS_4:  can_cut_shrubs()
+        RC_HF_NEAR_MARKET_GRASS_5:  can_cut_shrubs()
+        RC_HF_NEAR_MARKET_GRASS_6:  can_cut_shrubs()
+        RC_HF_NEAR_MARKET_GRASS_7:  can_cut_shrubs()
+        RC_HF_NEAR_MARKET_GRASS_8:  can_cut_shrubs()
+        RC_HF_NEAR_MARKET_GRASS_9:  can_cut_shrubs()
         RC_HF_NEAR_MARKET_GRASS_10: can_cut_shrubs()
         RC_HF_NEAR_MARKET_GRASS_11: can_cut_shrubs()
         RC_HF_NEAR_MARKET_GRASS_12: can_cut_shrubs()
-        RC_HF_NEAR_KF_GRASS_1: can_cut_shrubs()
-        RC_HF_NEAR_KF_GRASS_2: can_cut_shrubs()
-        RC_HF_NEAR_KF_GRASS_3: can_cut_shrubs()
-        RC_HF_NEAR_KF_GRASS_4: can_cut_shrubs()
-        RC_HF_NEAR_KF_GRASS_5: can_cut_shrubs()
-        RC_HF_NEAR_KF_GRASS_6: can_cut_shrubs()
-        RC_HF_NEAR_KF_GRASS_7: can_cut_shrubs()
-        RC_HF_NEAR_KF_GRASS_8: can_cut_shrubs()
-        RC_HF_NEAR_KF_GRASS_9: can_cut_shrubs()
-        RC_HF_NEAR_KF_GRASS_10: can_cut_shrubs()
-        RC_HF_NEAR_KF_GRASS_11: can_cut_shrubs()
-        RC_HF_NEAR_KF_GRASS_12: can_cut_shrubs()
+        RC_HF_NEAR_KF_GRASS_1:      can_cut_shrubs()
+        RC_HF_NEAR_KF_GRASS_2:      can_cut_shrubs()
+        RC_HF_NEAR_KF_GRASS_3:      can_cut_shrubs()
+        RC_HF_NEAR_KF_GRASS_4:      can_cut_shrubs()
+        RC_HF_NEAR_KF_GRASS_5:      can_cut_shrubs()
+        RC_HF_NEAR_KF_GRASS_6:      can_cut_shrubs()
+        RC_HF_NEAR_KF_GRASS_7:      can_cut_shrubs()
+        RC_HF_NEAR_KF_GRASS_8:      can_cut_shrubs()
+        RC_HF_NEAR_KF_GRASS_9:      can_cut_shrubs()
+        RC_HF_NEAR_KF_GRASS_10:     can_cut_shrubs()
+        RC_HF_NEAR_KF_GRASS_11:     can_cut_shrubs()
+        RC_HF_NEAR_KF_GRASS_12:     can_cut_shrubs()
     }
 }
 
@@ -366,5 +305,76 @@ extend region RR_HF_NEAR_MARKET_GROTTO {
         RC_HF_NEAR_MARKET_GROTTO_GRASS_2: can_cut_shrubs()
         RC_HF_NEAR_MARKET_GROTTO_GRASS_3: can_cut_shrubs()
         RC_HF_NEAR_MARKET_GROTTO_GRASS_4: can_cut_shrubs()
+    }
+}
+
+# overworld/kokiri_forest
+
+extend region RR_KOKIRI_FOREST {
+    locations {
+        RC_KF_CHILD_GRASS_1:  is_child() and can_cut_shrubs()
+        RC_KF_CHILD_GRASS_2:  is_child() and can_cut_shrubs()
+        RC_KF_CHILD_GRASS_3:  is_child() and can_cut_shrubs()
+        RC_KF_CHILD_GRASS_4:  is_child() and can_cut_shrubs()
+        RC_KF_CHILD_GRASS_5:  is_child() and can_cut_shrubs()
+        RC_KF_CHILD_GRASS_6:  is_child() and can_cut_shrubs()
+        RC_KF_CHILD_GRASS_7:  is_child() and can_cut_shrubs()
+        RC_KF_CHILD_GRASS_8:  is_child() and can_cut_shrubs()
+        RC_KF_CHILD_GRASS_9:  is_child() and can_cut_shrubs()
+        RC_KF_CHILD_GRASS_10: is_child() and can_cut_shrubs()
+        RC_KF_CHILD_GRASS_11: is_child() and can_cut_shrubs()
+        RC_KF_CHILD_GRASS_12: is_child() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_1:  is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_2:  is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_3:  is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_4:  is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_5:  is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_6:  is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_7:  is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_8:  is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_9:  is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_10: is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_11: is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_12: is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_13: is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_14: is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_15: is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_16: is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_17: is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_18: is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_19: is_adult() and can_cut_shrubs()
+        RC_KF_ADULT_GRASS_20: is_adult() and can_cut_shrubs()
+    }
+}
+
+extend region RR_KF_BOULDER_LOOP {
+    locations {
+        RC_KF_CHILD_GRASS_MAZE_1: is_child() and can_cut_shrubs()
+        RC_KF_CHILD_GRASS_MAZE_2: is_child() and can_cut_shrubs()
+        RC_KF_CHILD_GRASS_MAZE_3: is_child() and can_cut_shrubs()
+    }
+}
+
+extend region RR_KF_STORMS_GROTTO {
+    locations {
+        RC_KF_STORMS_GROTTO_GRASS_1: can_cut_shrubs()
+        RC_KF_STORMS_GROTTO_GRASS_2: can_cut_shrubs()
+        RC_KF_STORMS_GROTTO_GRASS_3: can_cut_shrubs()
+        RC_KF_STORMS_GROTTO_GRASS_4: can_cut_shrubs()
+    }
+}
+
+# overworld/market
+
+extend region RR_THE_MARKET {
+    locations {
+        RC_MARKET_GRASS_1: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+        RC_MARKET_GRASS_2: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+        RC_MARKET_GRASS_3: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+        RC_MARKET_GRASS_4: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+        RC_MARKET_GRASS_5: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+        RC_MARKET_GRASS_6: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+        RC_MARKET_GRASS_7: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+        RC_MARKET_GRASS_8: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
     }
 }

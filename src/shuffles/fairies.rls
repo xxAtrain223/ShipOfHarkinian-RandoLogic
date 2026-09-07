@@ -1,67 +1,4 @@
-extend region RR_KOKIRI_FOREST {
-    locations {
-        RC_KF_BEAN_SPROUT_FAIRY_1: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_KOKIRI_FOREST_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
-        RC_KF_BEAN_SPROUT_FAIRY_2: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_KOKIRI_FOREST_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
-        RC_KF_BEAN_SPROUT_FAIRY_3: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_KOKIRI_FOREST_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
-    }
-}
-
-extend region RR_KF_OUTSIDE_DEKU_TREE {
-    locations {
-        RC_KF_DEKU_TREE_LEFT_GOSSIP_STONE_FAIRY: call_gossip_fairy_except_suns()
-        RC_KF_DEKU_TREE_LEFT_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
-        RC_KF_DEKU_TREE_RIGHT_GOSSIP_STONE_FAIRY: call_gossip_fairy_except_suns()
-        RC_KF_DEKU_TREE_RIGHT_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
-    }
-}
-
-extend region RR_KF_OUTSIDE_LOST_WOODS {
-    locations {
-        RC_KF_GOSSIP_STONE_FAIRY: call_gossip_fairy_except_suns()
-        RC_KF_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
-    }
-}
-
-extend region RR_KF_STORMS_GROTTO {
-    locations {
-        RC_KF_STORMS_GROTTO_GOSSIP_STONE_FAIRY: call_gossip_fairy()
-        RC_KF_STORMS_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
-    }
-}
-
-extend region RR_TOT_ENTRANCE {
-    locations {
-        RC_TOT_LEFTMOST_GOSSIP_STONE_FAIRY: call_gossip_fairy_except_suns() or (can_use(RG_SUNS_SONG) and is_adult())
-        RC_TOT_LEFTMOST_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_TIME)
-        RC_TOT_LEFT_CENTER_GOSSIP_STONE_FAIRY: call_gossip_fairy_except_suns() or (can_use(RG_SUNS_SONG) and is_adult())
-        RC_TOT_LEFT_CENTER_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_TIME)
-        RC_TOT_RIGHT_CENTER_GOSSIP_STONE_FAIRY: call_gossip_fairy_except_suns() or (can_use(RG_SUNS_SONG) and is_adult())
-        RC_TOT_RIGHT_CENTER_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_TIME)
-        RC_TOT_RIGHTMOST_GOSSIP_STONE_FAIRY: call_gossip_fairy_except_suns() or (can_use(RG_SUNS_SONG) and is_adult())
-        RC_TOT_RIGHTMOST_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_TIME)
-    }
-}
-
-extend region RR_HC_ABOVE_VINE {
-    locations {
-        RC_HC_MALON_GOSSIP_STONE_FAIRY: call_gossip_fairy()
-        RC_HC_MALON_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
-    }
-}
-
-extend region RR_HC_ABOVE_CLIMBABLE_ROCKS {
-    locations {
-        RC_HC_ROCK_WALL_GOSSIP_STONE_FAIRY: call_gossip_fairy()
-        RC_HC_ROCK_WALL_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
-    }
-}
-
-extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
-    locations {
-        RC_HC_STORMS_GROTTO_GOSSIP_STONE_FAIRY: call_gossip_fairy()
-        RC_HC_STORMS_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
-    }
-}
+# dungeons/ganons_castle
 
 extend region RR_GANONS_CASTLE_DEKU_SCRUBS {
     locations {
@@ -81,6 +18,65 @@ extend region RR_GANONS_CASTLE_SPIRIT_TRIAL_BEAMOS_ROOM {
         RC_GANONS_CASTLE_SPIRIT_TRIAL_SUN_FAIRY: can_use(RG_SUNS_SONG)
     }
 }
+
+extend region RR_GANONS_CASTLE_MQ_DEKU_SCRUBS {
+    locations {
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_1: always
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_2: always
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_3: always
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_4: always
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_5: always
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_6: always
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_7: always
+        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_8: always
+    }
+}
+
+# dungeons/spirit_temple
+
+extend region RR_SPIRIT_TEMPLE_PAST_BOULDERS {
+    locations {
+        RC_SPIRIT_TEMPLE_BOULDER_ROOM_SUN_FAIRY: can_use(RG_SUNS_SONG)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_4_ARMOS {
+    locations {
+        RC_SPIRIT_TEMPLE_ARMOS_ROOM_SUN_FAIRY: has_explosives() and can_use(RG_SUNS_SONG)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_SOT_SUN_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_DINALFOS_ROOM_SUN_FAIRY: can_use(RG_SUNS_SONG)
+    }
+}
+
+# overworld/castle_grounds
+
+extend region RR_HC_ABOVE_VINE {
+    locations {
+        RC_HC_MALON_GOSSIP_STONE_FAIRY:     call_gossip_fairy()
+        RC_HC_MALON_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_HC_ABOVE_CLIMBABLE_ROCKS {
+    locations {
+        RC_HC_ROCK_WALL_GOSSIP_STONE_FAIRY:     call_gossip_fairy()
+        RC_HC_ROCK_WALL_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
+    locations {
+        RC_HC_STORMS_GROTTO_GOSSIP_STONE_FAIRY:     call_gossip_fairy()
+        RC_HC_STORMS_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+# overworld/desert_colossus
+
 extend region RR_DESERT_COLOSSUS {
     locations {
         RC_COLOSSUS_BEAN_SPROUT_FAIRY_1:    is_child() and can_use(RG_MAGIC_BEAN) and has(RG_DESERT_COLOSSUS_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
@@ -104,36 +100,7 @@ extend region RR_DESERT_COLOSSUS_OASIS {
     }
 }
 
-extend region RR_GANONS_CASTLE_MQ_DEKU_SCRUBS {
-    locations {
-        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_1: always
-        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_2: always
-        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_3: always
-        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_4: always
-        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_5: always
-        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_6: always
-        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_7: always
-        RC_GANONS_CASTLE_MQ_SCRUBS_FAIRY_8: always
-    }
-}
-
-extend region RR_SPIRIT_TEMPLE_PAST_BOULDERS {
-    locations {
-        RC_SPIRIT_TEMPLE_BOULDER_ROOM_SUN_FAIRY: can_use(RG_SUNS_SONG)
-    }
-}
-
-extend region RR_SPIRIT_TEMPLE_4_ARMOS {
-    locations {
-        RC_SPIRIT_TEMPLE_ARMOS_ROOM_SUN_FAIRY: has_explosives() and can_use(RG_SUNS_SONG)
-    }
-}
-
-extend region RR_SPIRIT_TEMPLE_MQ_SOT_SUN_ROOM {
-    locations {
-        RC_SPIRIT_TEMPLE_MQ_DINALFOS_ROOM_SUN_FAIRY: can_use(RG_SUNS_SONG)
-    }
-}
+# overworld/hyrule_field
 
 extend region RR_HYRULE_FIELD {
     locations {
@@ -143,14 +110,14 @@ extend region RR_HYRULE_FIELD {
 
 extend region RR_HF_SOUTHEAST_GROTTO {
     locations {
-        RC_HF_SOUTHEAST_GROTTO_GOSSIP_STONE_FAIRY: call_gossip_fairy()
+        RC_HF_SOUTHEAST_GROTTO_GOSSIP_STONE_FAIRY:     call_gossip_fairy()
         RC_HF_SOUTHEAST_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
     }
 }
 
 extend region RR_HF_OPEN_GROTTO {
     locations {
-        RC_HF_OPEN_GROTTO_GOSSIP_STONE_FAIRY: call_gossip_fairy()
+        RC_HF_OPEN_GROTTO_GOSSIP_STONE_FAIRY:     call_gossip_fairy()
         RC_HF_OPEN_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
     }
 }
@@ -163,14 +130,14 @@ extend region RR_HF_INSIDE_FENCE_GROTTO {
 
 extend region RR_HF_COW_GROTTO_BEHIND_WEBS {
     locations {
-        RC_HF_COW_GROTTO_GOSSIP_STONE_FAIRY: call_gossip_fairy()
+        RC_HF_COW_GROTTO_GOSSIP_STONE_FAIRY:     call_gossip_fairy()
         RC_HF_COW_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
     }
 }
 
 extend region RR_HF_NEAR_MARKET_GROTTO {
     locations {
-        RC_HF_NEAR_MARKET_GROTTO_GOSSIP_STONE_FAIRY: call_gossip_fairy()
+        RC_HF_NEAR_MARKET_GROTTO_GOSSIP_STONE_FAIRY:     call_gossip_fairy()
         RC_HF_NEAR_MARKET_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
     }
 }
@@ -187,3 +154,52 @@ extend region RR_HF_FAIRY_GROTTO {
         RC_HF_FAIRY_GROTTO_FAIRY_8: always
     }
 }
+
+# overworld/kokiri_forest
+
+extend region RR_KOKIRI_FOREST {
+    locations {
+        RC_KF_BEAN_SPROUT_FAIRY_1: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_KOKIRI_FOREST_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+        RC_KF_BEAN_SPROUT_FAIRY_2: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_KOKIRI_FOREST_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+        RC_KF_BEAN_SPROUT_FAIRY_3: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_KOKIRI_FOREST_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_KF_OUTSIDE_DEKU_TREE {
+    locations {
+        RC_KF_DEKU_TREE_LEFT_GOSSIP_STONE_FAIRY:      call_gossip_fairy_except_suns()
+        RC_KF_DEKU_TREE_LEFT_GOSSIP_STONE_FAIRY_BIG:  can_use(RG_SONG_OF_STORMS)
+        RC_KF_DEKU_TREE_RIGHT_GOSSIP_STONE_FAIRY:     call_gossip_fairy_except_suns()
+        RC_KF_DEKU_TREE_RIGHT_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_KF_OUTSIDE_LOST_WOODS {
+    locations {
+        RC_KF_GOSSIP_STONE_FAIRY:     call_gossip_fairy_except_suns()
+        RC_KF_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_KF_STORMS_GROTTO {
+    locations {
+        RC_KF_STORMS_GROTTO_GOSSIP_STONE_FAIRY:     call_gossip_fairy()
+        RC_KF_STORMS_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+# overworld/temple_of_time
+
+extend region RR_TOT_ENTRANCE {
+    locations {
+        RC_TOT_LEFTMOST_GOSSIP_STONE_FAIRY:         call_gossip_fairy_except_suns() or (can_use(RG_SUNS_SONG) and is_adult())
+        RC_TOT_LEFTMOST_GOSSIP_STONE_FAIRY_BIG:     can_use(RG_SONG_OF_TIME)
+        RC_TOT_LEFT_CENTER_GOSSIP_STONE_FAIRY:      call_gossip_fairy_except_suns() or (can_use(RG_SUNS_SONG) and is_adult())
+        RC_TOT_LEFT_CENTER_GOSSIP_STONE_FAIRY_BIG:  can_use(RG_SONG_OF_TIME)
+        RC_TOT_RIGHT_CENTER_GOSSIP_STONE_FAIRY:     call_gossip_fairy_except_suns() or (can_use(RG_SUNS_SONG) and is_adult())
+        RC_TOT_RIGHT_CENTER_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_TIME)
+        RC_TOT_RIGHTMOST_GOSSIP_STONE_FAIRY:        call_gossip_fairy_except_suns() or (can_use(RG_SUNS_SONG) and is_adult())
+        RC_TOT_RIGHTMOST_GOSSIP_STONE_FAIRY_BIG:    can_use(RG_SONG_OF_TIME)
+    }
+}
+

@@ -1,10 +1,15 @@
-extend region RR_KF_LINKS_HOUSE {
-    locations {
-        RC_KF_LINKS_HOUSE_COW: is_adult() and can_use(RG_EPONAS_SONG) and flag(LOGIC_LINKS_COW)
-    }
-}
+# overworld/hyrule_field
+
 extend region RR_HF_COW_GROTTO_BEHIND_WEBS {
     locations {
         RC_HF_COW_GROTTO_COW: can_use(RG_EPONAS_SONG)
+    }
+}
+
+# overworld/kokiri_forest
+
+extend region RR_KF_LINKS_HOUSE {
+    locations {
+        RC_KF_LINKS_HOUSE_COW: is_adult() and can_use(RG_EPONAS_SONG) and flag(LOGIC_LINKS_COW)
     }
 }
