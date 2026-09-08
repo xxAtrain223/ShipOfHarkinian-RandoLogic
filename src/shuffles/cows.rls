@@ -6,6 +6,20 @@ extend region RR_HF_COW_GROTTO_BEHIND_WEBS {
     }
 }
 
+# overworld/kakariko
+
+extend region RR_KAK_IMPAS_HOUSE {
+    locations {
+        RC_KAK_IMPAS_HOUSE_COW: can_use(RG_EPONAS_SONG)
+    }
+}
+
+extend region RR_KAK_IMPAS_HOUSE_BACK {
+    locations {
+        RC_KAK_IMPAS_HOUSE_COW: can_use(RG_EPONAS_SONG)
+    }
+}
+
 # overworld/kokiri_forest
 
 extend region RR_KF_LINKS_HOUSE {

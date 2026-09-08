@@ -72,6 +72,14 @@ extend region RR_HF_NEAR_MARKET_GROTTO {
     }
 }
 
+# overworld/kakariko
+
+extend region RR_KAK_OPEN_GROTTO {
+    locations {
+        RC_KAK_OPEN_GROTTO_GOSSIP_STONE: always
+    }
+}
+
 # overworld/kokiri_forest
 
 extend region RR_KF_OUTSIDE_DEKU_TREE {

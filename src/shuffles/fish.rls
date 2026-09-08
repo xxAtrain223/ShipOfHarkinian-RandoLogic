@@ -18,6 +18,14 @@ extend region RR_HF_NEAR_MARKET_GROTTO {
     }
 }
 
+# overworld/kakariko
+
+extend region RR_KAK_OPEN_GROTTO {
+    locations {
+        RC_KAK_OPEN_GROTTO_FISH: has_bottle()
+    }
+}
+
 # overworld/kokiri_forest
 
 extend region RR_KF_STORMS_GROTTO {

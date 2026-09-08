@@ -35,6 +35,15 @@ extend region RR_HF_NEAR_MARKET_GROTTO {
     }
 }
 
+# overworld/kakariko
+
+extend region RR_KAK_OPEN_GROTTO {
+    locations {
+        RC_KAK_OPEN_GROTTO_BEEHIVE_LEFT:  can_break_lower_beehives()
+        RC_KAK_OPEN_GROTTO_BEEHIVE_RIGHT: can_break_lower_beehives()
+    }
+}
+
 # overworld/kokiri_forest
 
 extend region RR_KF_STORMS_GROTTO {

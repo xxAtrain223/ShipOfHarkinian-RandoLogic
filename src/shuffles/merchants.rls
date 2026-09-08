@@ -1,0 +1,8 @@
+# overworld/kakariko
+
+extend region RR_KAK_ODD_POTION_BUILDING {
+    locations {
+        RC_KAK_GRANNYS_SHOP: is_adult() and has(RG_SPEAK_HYLIAN) and
+            (can_use(RG_ODD_MUSHROOM) or trade_quest_step(RG_ODD_MUSHROOM)) and check_price() <= wallet_capacity()
+    }
+}

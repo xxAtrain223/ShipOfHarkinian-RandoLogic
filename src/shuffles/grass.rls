@@ -308,6 +308,30 @@ extend region RR_HF_NEAR_MARKET_GROTTO {
     }
 }
 
+# overworld/kakariko
+
+extend region RR_KAKARIKO_VILLAGE {
+    locations {
+        RC_KAK_GRASS_1: can_cut_shrubs()
+        RC_KAK_GRASS_2: can_cut_shrubs()
+        RC_KAK_GRASS_3: can_cut_shrubs()
+        RC_KAK_GRASS_4: can_cut_shrubs()
+        RC_KAK_GRASS_5: can_cut_shrubs()
+        RC_KAK_GRASS_6: can_cut_shrubs()
+        RC_KAK_GRASS_7: can_cut_shrubs()
+        RC_KAK_GRASS_8: can_cut_shrubs()
+    }
+}
+
+extend region RR_KAK_OPEN_GROTTO {
+    locations {
+        RC_KAK_OPEN_GROTTO_GRASS_1: can_cut_shrubs()
+        RC_KAK_OPEN_GROTTO_GRASS_2: can_cut_shrubs()
+        RC_KAK_OPEN_GROTTO_GRASS_3: can_cut_shrubs()
+        RC_KAK_OPEN_GROTTO_GRASS_4: can_cut_shrubs()
+    }
+}
+
 # overworld/kokiri_forest
 
 extend region RR_KOKIRI_FOREST {

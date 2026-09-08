@@ -1,0 +1,13 @@
+# overworld/kakariko
+
+extend region RR_KAKARIKO_VILLAGE {
+    locations {
+        RC_KAK_TRADE_POCKET_CUCCO: is_adult() and at_day() and (can_use(RG_POCKET_EGG) and flag(LOGIC_WAKE_UP_ADULT_TALON))
+    }
+}
+
+extend region RR_KAK_ODD_POTION_BUILDING {
+    locations {
+        RC_KAK_TRADE_ODD_MUSHROOM: is_adult() and can_use(RG_ODD_MUSHROOM)
+    }
+}

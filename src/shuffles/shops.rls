@@ -1,3 +1,31 @@
+# overworld/kakariko
+
+extend region RR_KAK_BAZAAR {
+    locations {
+        RC_KAK_BAZAAR_ITEM_1: has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+        RC_KAK_BAZAAR_ITEM_2: has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+        RC_KAK_BAZAAR_ITEM_3: has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+        RC_KAK_BAZAAR_ITEM_4: has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+        RC_KAK_BAZAAR_ITEM_5: has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+        RC_KAK_BAZAAR_ITEM_6: has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+        RC_KAK_BAZAAR_ITEM_7: has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+        RC_KAK_BAZAAR_ITEM_8: has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+    }
+}
+
+extend region RR_KAK_POTION_SHOP {
+    locations {
+        RC_KAK_POTION_SHOP_ITEM_1: is_adult() and has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+        RC_KAK_POTION_SHOP_ITEM_2: is_adult() and has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+        RC_KAK_POTION_SHOP_ITEM_3: is_adult() and has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+        RC_KAK_POTION_SHOP_ITEM_4: is_adult() and has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+        RC_KAK_POTION_SHOP_ITEM_5: is_adult() and has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+        RC_KAK_POTION_SHOP_ITEM_6: is_adult() and has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+        RC_KAK_POTION_SHOP_ITEM_7: is_adult() and has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+        RC_KAK_POTION_SHOP_ITEM_8: is_adult() and has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+    }
+}
+
 # overworld/kokiri_forest
 
 extend region RR_KF_KOKIRI_SHOP {

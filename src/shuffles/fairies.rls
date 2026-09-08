@@ -155,6 +155,15 @@ extend region RR_HF_FAIRY_GROTTO {
     }
 }
 
+# overworld/kakariko
+
+extend region RR_KAK_OPEN_GROTTO {
+    locations {
+        RC_KAK_OPEN_GROTTO_GOSSIP_STONE_FAIRY:     call_gossip_fairy()
+        RC_KAK_OPEN_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
 # overworld/kokiri_forest
 
 extend region RR_KOKIRI_FOREST {

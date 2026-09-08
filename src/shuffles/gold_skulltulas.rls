@@ -196,6 +196,32 @@ extend region RR_HF_NEAR_KAK_GROTTO {
     }
 }
 
+# overworld/kakariko
+
+extend region RR_KAKARIKO_VILLAGE {
+    locations {
+        RC_KAK_GS_HOUSE_UNDER_CONSTRUCTION: is_child() and can_get_night_time_gs() and (has(RG_POWER_BRACELET) or can_kill(RE_GOLD_SKULLTULA))
+        RC_KAK_GS_SKULLTULA_HOUSE:          is_child() and can_get_night_time_gs() and (has(RG_POWER_BRACELET) or can_kill(RE_GOLD_SKULLTULA))
+        RC_KAK_GS_GUARDS_HOUSE:             is_child() and can_get_night_time_gs() and (has(RG_POWER_BRACELET) or can_kill(RE_GOLD_SKULLTULA))
+        RC_KAK_GS_TREE:                     is_child() and can_get_night_time_gs() and can_bonk_trees() and (has(RG_POWER_BRACELET) or can_kill(RE_GOLD_SKULLTULA))
+        RC_KAK_GS_WATCHTOWER:               is_child() and has(RG_CLIMB) and
+            (can_kill(RE_GOLD_SKULLTULA, ED_LONGSHOT) or (trick(RT_KAK_TOWER_GS) and can_jumpslash_except_hammer())) and
+            can_get_night_time_gs()
+    }
+}
+
+extend region RR_KAK_IMPAS_ROOFTOP {
+    locations {
+        RC_KAK_GS_ABOVE_IMPAS_HOUSE: is_adult() and can_get_night_time_gs() and can_kill(RE_GOLD_SKULLTULA)
+    }
+}
+
+extend region RR_KAK_WATCHTOWER {
+    locations {
+        RC_KAK_GS_WATCHTOWER: is_child() and can_use(RG_DINS_FIRE) and can_get_night_time_gs()
+    }
+}
+
 # overworld/kokiri_forest
 
 extend region RR_KOKIRI_FOREST {

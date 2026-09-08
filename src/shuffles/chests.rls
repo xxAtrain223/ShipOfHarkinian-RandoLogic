@@ -449,6 +449,20 @@ extend region RR_HF_NEAR_MARKET_GROTTO {
     }
 }
 
+# overworld/kakariko
+
+extend region RR_KAK_REDEAD_GROTTO {
+    locations {
+        RC_KAK_REDEAD_GROTTO_CHEST: can_kill(RE_REDEAD, ED_CLOSE, true, 2) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_KAK_OPEN_GROTTO {
+    locations {
+        RC_KAK_OPEN_GROTTO_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
 # overworld/kokiri_forest
 
 extend region RR_KF_BOULDER_LOOP {

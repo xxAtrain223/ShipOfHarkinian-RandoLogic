@@ -80,6 +80,14 @@ extend region RR_HYRULE_FIELD {
     }
 }
 
+# overworld/kakariko
+
+extend region RR_KAKARIKO_VILLAGE {
+    locations {
+        RC_KAK_TREE: can_bonk_trees()
+    }
+}
+
 # overworld/market
 
 extend region RR_THE_MARKET {

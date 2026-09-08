@@ -3,3 +3,294 @@ extend region RR_ROOT {
         LOGIC_KAKARIKO_GATE_OPEN: setting(RSK_KAK_GATE) is RO_KAK_GATE_OPEN
 	}
 }
+
+region RR_KAKARIKO_VILLAGE {
+    name: "Kakariko Village"
+    scene: SCENE_KAKARIKO_VILLAGE
+
+    events {
+        LOGIC_BUG_ACCESS: has(RG_POWER_BRACELET)
+        # Open Gate setting is applied in RR_ROOT
+        LOGIC_KAKARIKO_GATE_OPEN: is_child() and has(RG_ZELDAS_LETTER)
+        LOGIC_BORROW_SKULL_MASK: is_child() and flag(LOGIC_CAN_BORROW_MASKS) and has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN)
+    }
+
+    locations {
+        RC_SHEIK_IN_KAKARIKO: is_adult() and has(RG_FOREST_MEDALLION) and has(RG_FIRE_MEDALLION) and has(RG_WATER_MEDALLION)
+        RC_KAK_ANJU_AS_CHILD:
+            is_child() and at_day() and has(RG_CLIMB) and has(RG_POWER_BRACELET) and
+            can_break_crates() and has(RG_SPEAK_HYLIAN)
+        RC_KAK_ANJU_AS_ADULT: is_adult() and at_day() and has(RG_SPEAK_HYLIAN)
+    }
+
+    exits {
+        RR_HYRULE_FIELD: always
+        RR_KAK_CARPENTER_BOSS_HOUSE: can_open_overworld_door(RG_BOSS_HOUSE_KEY)
+        RR_KAK_HOUSE_OF_SKULLTULA: can_open_overworld_door(RG_SKULLTULA_HOUSE_KEY)
+        RR_KAK_IMPAS_HOUSE: can_open_overworld_door(RG_IMPAS_HOUSE_KEY)
+        RR_KAK_WINDMILL_LOWER: can_open_overworld_door(RG_WINDMILL_KEY)
+        RR_KAK_BAZAAR: is_adult() and at_day() and can_open_overworld_door(RG_KAK_BAZAAR_KEY)
+        RR_KAK_SHOOTING_GALLERY: is_adult() and at_day() and can_open_overworld_door(RG_KAK_SHOOTING_GALLERY_KEY)
+        RR_KAK_WELL:
+            is_adult() or flag(LOGIC_DRAIN_WELL) or can_use(RG_IRON_BOOTS) or
+            (trick(RT_BOTTOM_OF_THE_WELL_NAVI_DIVE) and is_child() and has(RG_BRONZE_SCALE) and can_jumpslash())
+        RR_KAK_POTION_SHOP: (at_day() or is_child()) and can_open_overworld_door(RG_KAK_POTION_SHOP_KEY)
+        RR_KAK_REDEAD_GROTTO: can_open_bomb_grotto()
+        RR_KAK_IMPAS_LEDGE: (is_child() and at_day() and has(RG_POWER_BRACELET)) or (is_adult() and trick(RT_VISIBLE_COLLISION))
+        RR_KAK_WATCHTOWER:
+            has(RG_CLIMB) and
+            (is_adult() or at_day() or can_kill(RE_GOLD_SKULLTULA, ED_LONGSHOT) or
+             (trick(RT_KAK_TOWER_GS) and can_jumpslash_except_hammer()))
+        RR_KAK_ROOFTOP: can_use(RG_HOOKSHOT) or (trick(RT_UNINTUITIVE_JUMPS) and is_adult())
+        RR_KAK_IMPAS_ROOFTOP: can_use(RG_HOOKSHOT) or (trick(RT_KAK_ROOFTOP_GS) and can_use(RG_HOVER_BOOTS))
+        RR_THE_GRAVEYARD: always
+        RR_KAK_BEHIND_GATE: is_adult() or flag(LOGIC_KAKARIKO_GATE_OPEN)
+        # adult can jump from the fence near the windmill to ledgegrab the fence near granny's shop. is in logic on N64
+        RR_KAK_BACKYARD: is_adult() or (at_day() and has(RG_POWER_BRACELET))
+        RR_KAK_BEHIND_POTION_SHOP: can_use(RG_HOOKSHOT) or (trick(RT_UNINTUITIVE_JUMPS) and is_adult())
+    }
+}
+
+region RR_KAK_IMPAS_LEDGE {
+    name: "Kak Impas Ledge"
+    scene: SCENE_KAKARIKO_VILLAGE
+
+    exits {
+        RR_KAK_IMPAS_HOUSE_BACK: always
+        RR_KAKARIKO_VILLAGE: always
+    }
+}
+
+region RR_KAK_IMPAS_ROOFTOP {
+    name: "Kak Impas Rooftop"
+    scene: SCENE_KAKARIKO_VILLAGE
+
+    exits {
+        RR_KAK_IMPAS_LEDGE: always
+        RR_KAKARIKO_VILLAGE: always
+    }
+}
+
+region RR_KAK_WATCHTOWER {
+    name: "Kak Watchtower"
+    scene: SCENE_KAKARIKO_VILLAGE
+
+    exits {
+        RR_KAKARIKO_VILLAGE: always
+        RR_KAK_ROOFTOP: trick(RT_UNINTUITIVE_JUMPS)
+    }
+}
+
+region RR_KAK_ROOFTOP {
+    name: "Kak Rooftop"
+    scene: SCENE_KAKARIKO_VILLAGE
+
+    locations {
+        RC_KAK_MAN_ON_ROOF: has(RG_SPEAK_HYLIAN)
+    }
+
+    exits {
+        RR_KAK_BACKYARD: always
+        RR_KAK_BEHIND_POTION_SHOP: has(RG_HOVER_BOOTS)
+        RR_KAKARIKO_VILLAGE: always
+    }
+}
+
+region RR_KAK_BACKYARD {
+    name: "Kak Backyard"
+    scene: SCENE_KAKARIKO_VILLAGE
+
+    exits {
+        RR_KAKARIKO_VILLAGE: always
+        RR_KAK_OPEN_GROTTO: always
+        RR_KAK_ODD_POTION_BUILDING: is_adult() and can_open_overworld_door(RG_GRANNYS_POTION_SHOP_KEY)
+        RR_KAK_BEHIND_POTION_SHOP: has(RG_CLIMB)
+    }
+}
+
+region RR_KAK_BEHIND_POTION_SHOP {
+    name: "Kak Behind Potion Shop"
+    scene: SCENE_KAKARIKO_VILLAGE
+
+    exits {
+        RR_KAK_BACKYARD: always
+        RR_KAK_POTION_SHOP: is_adult() and at_day() and can_open_overworld_door(RG_KAK_POTION_SHOP_KEY)
+        # can ledgegrab fence to rooftop with hover boots, but that's more difficult than the unintuitive jump,
+        # so not including in default logic
+        RR_KAK_ROOFTOP: trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER) and is_adult()
+    }
+}
+
+region RR_KAK_CARPENTER_BOSS_HOUSE {
+    name: "Kak Carpenter Boss House"
+    scene: SCENE_KAKARIKO_CENTER_GUEST_HOUSE
+
+    events {
+        LOGIC_WAKE_UP_ADULT_TALON: is_adult() and can_use(RG_POCKET_EGG)
+    }
+
+    exits {
+        RR_KAKARIKO_VILLAGE: always
+    }
+}
+
+region RR_KAK_HOUSE_OF_SKULLTULA {
+    name: "Kak House of Skulltula"
+    scene: SCENE_HOUSE_OF_SKULLTULA
+
+    locations {
+        RC_KAK_10_GOLD_SKULLTULA_REWARD: has(RG_SPEAK_HYLIAN) and get_gs_count() >= 10
+        RC_KAK_20_GOLD_SKULLTULA_REWARD: has(RG_SPEAK_HYLIAN) and get_gs_count() >= 20
+        RC_KAK_30_GOLD_SKULLTULA_REWARD: has(RG_SPEAK_HYLIAN) and get_gs_count() >= 30
+        RC_KAK_40_GOLD_SKULLTULA_REWARD: has(RG_SPEAK_HYLIAN) and get_gs_count() >= 40
+        RC_KAK_50_GOLD_SKULLTULA_REWARD: has(RG_SPEAK_HYLIAN) and get_gs_count() >= 50
+        RC_KAK_100_GOLD_SKULLTULA_REWARD: has(RG_SPEAK_HYLIAN) and get_gs_count() >= 100
+    }
+
+    exits {
+        RR_KAKARIKO_VILLAGE: always
+    }
+}
+
+region RR_KAK_IMPAS_HOUSE {
+    name: "Kak Impas House"
+    scene: SCENE_IMPAS_HOUSE
+
+    exits {
+        RR_KAKARIKO_VILLAGE: always
+    }
+}
+
+region RR_KAK_IMPAS_HOUSE_BACK {
+    name: "Kak Impas House Back"
+    scene: SCENE_IMPAS_HOUSE
+
+    locations {
+        RC_KAK_IMPAS_HOUSE_FREESTANDING_POH: always
+    }
+
+    exits {
+        RR_KAK_IMPAS_LEDGE: always
+    }
+}
+
+region RR_KAK_WINDMILL_LOWER {
+    name: "Kak Windmill Lower"
+    scene: SCENE_WINDMILL_AND_DAMPES_GRAVE
+
+    events {
+        LOGIC_DRAIN_WELL: is_child() and can_use(RG_SONG_OF_STORMS)
+    }
+
+    locations {
+        RC_KAK_WINDMILL_FREESTANDING_POH: can_use(RG_BOOMERANG)
+        RC_SONG_FROM_WINDMILL: is_adult() and has(RG_FAIRY_OCARINA)
+    }
+
+    exits {
+        RR_KAKARIKO_VILLAGE: always
+        RR_KAK_WINDMILL_UPPER:
+            (is_adult() and (trick(RT_UNINTUITIVE_JUMPS) or can_ground_jump())) or
+            (is_child() and can_jumpslash() and trick(RT_KAK_CHILD_WINDMILL_POH))
+    }
+}
+
+region RR_KAK_WINDMILL_UPPER {
+    name: "Kak Windmill Upper"
+    scene: SCENE_WINDMILL_AND_DAMPES_GRAVE
+
+    locations {
+        RC_KAK_WINDMILL_FREESTANDING_POH: always
+    }
+
+    exits {
+        RR_KAK_WINDMILL_LOWER: always
+    }
+}
+
+region RR_KAK_BAZAAR {
+    name: "Kak Bazaar"
+    scene: SCENE_BAZAAR
+
+    exits {
+        RR_KAKARIKO_VILLAGE: always
+    }
+}
+
+region RR_KAK_SHOOTING_GALLERY {
+    name: "Kak Shooting Gallery"
+    scene: SCENE_SHOOTING_GALLERY
+
+    locations {
+        RC_KAK_SHOOTING_GALLERY_REWARD: is_adult() and has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and can_use(RG_FAIRY_BOW)
+    }
+
+    exits {
+        RR_KAKARIKO_VILLAGE: always
+    }
+}
+
+region RR_KAK_POTION_SHOP {
+    name: "Kak Potion Shop"
+    scene: SCENE_POTION_SHOP_KAKARIKO
+
+    exits {
+        RR_KAKARIKO_VILLAGE: always
+        RR_KAK_BEHIND_POTION_SHOP: is_adult()
+    }
+}
+
+region RR_KAK_ODD_POTION_BUILDING {
+    name: "Kak Granny's Potion Shop"
+    scene: SCENE_POTION_SHOP_GRANNY
+
+    exits {
+        RR_KAK_BACKYARD: always
+    }
+}
+
+region RR_KAK_REDEAD_GROTTO {
+    name: "Kak Redead Grotto"
+    scene: SCENE_GROTTOS
+
+    exits {
+        RR_KAKARIKO_VILLAGE: always
+    }
+}
+
+region RR_KAK_OPEN_GROTTO {
+    name: "Kak Open Grotto"
+    scene: SCENE_GROTTOS
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy() or can_use(RG_STICKS)
+        LOGIC_BUG_ACCESS: can_cut_shrubs()
+        LOGIC_FISH_ACCESS: always
+    }
+
+    exits {
+        RR_KAK_BACKYARD: always
+    }
+}
+
+region RR_KAK_BEHIND_GATE {
+    name: "Kak Behind Gate"
+    scene: SCENE_KAKARIKO_VILLAGE
+
+    exits {
+        RR_KAKARIKO_VILLAGE: is_adult() or trick(RT_VISIBLE_COLLISION) or flag(LOGIC_KAKARIKO_GATE_OPEN)
+        RR_DEATH_MOUNTAIN_TRAIL: always
+    }
+}
+
+region RR_KAK_WELL {
+    name: "Kak Well"
+    scene: SCENE_KAKARIKO_VILLAGE
+
+    exits {
+        RR_KAKARIKO_VILLAGE: has(RG_CLIMB) and (is_adult() or has(RG_BRONZE_SCALE) or flag(LOGIC_DRAIN_WELL))
+        RR_BOTW_ENTRYWAY:
+            is_child() or
+            (flag(LOGIC_DRAIN_WELL) and setting(RSK_SHUFFLE_DUNGEON_ENTRANCES) is not RO_DUNGEON_ENTRANCE_SHUFFLE_OFF)
+    }
+}
