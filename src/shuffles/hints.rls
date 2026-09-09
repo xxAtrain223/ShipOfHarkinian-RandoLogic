@@ -46,6 +46,20 @@ extend region RR_DESERT_COLOSSUS {
     }
 }
 
+# overworld/graveyard
+
+extend region RR_GRAVEYARD_DAMPES_HOUSE {
+    locations {
+        RC_DAMPE_HINT: is_adult()
+    }
+}
+
+extend region RR_GRAVEYARD_WARP_PAD_REGION {
+    locations {
+        RC_GRAVEYARD_GOSSIP_STONE: always
+    }
+}
+
 # overworld/hyrule_field
 
 extend region RR_HF_SOUTHEAST_GROTTO {

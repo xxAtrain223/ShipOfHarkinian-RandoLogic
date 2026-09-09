@@ -219,6 +219,25 @@ extend region RR_HC_MOAT {
     }
 }
 
+# overworld/graveyard
+
+extend region RR_THE_GRAVEYARD {
+    locations {
+        RC_GY_GRASS_1:  can_cut_shrubs()
+        RC_GY_GRASS_2:  can_cut_shrubs()
+        RC_GY_GRASS_3:  can_cut_shrubs()
+        RC_GY_GRASS_4:  can_cut_shrubs()
+        RC_GY_GRASS_5:  can_cut_shrubs()
+        RC_GY_GRASS_6:  can_cut_shrubs()
+        RC_GY_GRASS_7:  can_cut_shrubs()
+        RC_GY_GRASS_8:  can_cut_shrubs()
+        RC_GY_GRASS_9:  can_cut_shrubs()
+        RC_GY_GRASS_10: can_cut_shrubs()
+        RC_GY_GRASS_11: can_cut_shrubs()
+        RC_GY_GRASS_12: can_cut_shrubs()
+    }
+}
+
 # overworld/hyrule_field
 
 extend region RR_HYRULE_FIELD {

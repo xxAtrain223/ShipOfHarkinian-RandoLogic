@@ -54,6 +54,14 @@ extend region RR_SPIRIT_TEMPLE_MQ_BIG_MIRROR_ROOM {
     }
 }
 
+# overworld/graveyard
+
+extend region RR_THE_GRAVEYARD {
+    locations {
+        RC_GRAVEYARD_CRATE: ((is_adult() and can_plant_bean(RR_THE_GRAVEYARD, RG_GRAVEYARD_BEAN_SOUL)) or can_use(RG_LONGSHOT)) and can_break_crates()
+    }
+}
+
 # overworld/kakariko
 
 extend region RR_KAKARIKO_VILLAGE {

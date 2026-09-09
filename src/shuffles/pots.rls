@@ -286,6 +286,19 @@ extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
     }
 }
 
+# overworld/graveyard
+
+extend region RR_GRAVEYARD_DAMPES_GRAVE {
+    locations {
+        RC_GY_DAMPES_GRAVE_POT_1: can_break_pots()
+        RC_GY_DAMPES_GRAVE_POT_2: can_break_pots()
+        RC_GY_DAMPES_GRAVE_POT_3: can_break_pots()
+        RC_GY_DAMPES_GRAVE_POT_4: can_break_pots()
+        RC_GY_DAMPES_GRAVE_POT_5: can_break_pots()
+        RC_GY_DAMPES_GRAVE_POT_6: can_break_pots()
+    }
+}
+
 # overworld/hyrule_field
 
 extend region RR_HF_COW_GROTTO_BEHIND_WEBS {
@@ -409,4 +422,3 @@ extend region RR_MARKET_MAN_IN_GREEN_HOUSE {
         RC_MK_BACK_ALLEY_HOUSE_POT_3: has(RG_POWER_BRACELET)
     }
 }
-

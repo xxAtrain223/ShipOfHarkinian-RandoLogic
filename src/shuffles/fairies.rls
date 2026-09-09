@@ -100,6 +100,42 @@ extend region RR_DESERT_COLOSSUS_OASIS {
     }
 }
 
+# overworld/graveyard
+
+extend region RR_THE_GRAVEYARD {
+    locations {
+        RC_GRAVEYARD_BEAN_SPROUT_FAIRY_1: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_GRAVEYARD_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+        RC_GRAVEYARD_BEAN_SPROUT_FAIRY_2: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_GRAVEYARD_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+        RC_GRAVEYARD_BEAN_SPROUT_FAIRY_3: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_GRAVEYARD_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_GRAVEYARD_SHIELD_GRAVE_BACK {
+    locations {
+        RC_GRAVEYARD_SHIELD_GRAVE_FAIRY_1: always
+        RC_GRAVEYARD_SHIELD_GRAVE_FAIRY_2: always
+        RC_GRAVEYARD_SHIELD_GRAVE_FAIRY_3: always
+        RC_GRAVEYARD_SHIELD_GRAVE_FAIRY_4: always
+        RC_GRAVEYARD_SHIELD_GRAVE_FAIRY_5: always
+        RC_GRAVEYARD_SHIELD_GRAVE_FAIRY_6: always
+        RC_GRAVEYARD_SHIELD_GRAVE_FAIRY_7: always
+        RC_GRAVEYARD_SHIELD_GRAVE_FAIRY_8: always
+    }
+}
+
+extend region RR_GRAVEYARD_COMPOSERS_GRAVE {
+    locations {
+        RC_GRAVEYARD_ROYAL_FAMILYS_TOMB_SUN_FAIRY: can_use(RG_SUNS_SONG)
+    }
+}
+
+extend region RR_GRAVEYARD_WARP_PAD_REGION {
+    locations {
+        RC_GRAVEYARD_GOSSIP_STONE_FAIRY:     call_gossip_fairy_except_suns()
+        RC_GRAVEYARD_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
 # overworld/hyrule_field
 
 extend region RR_HYRULE_FIELD {
@@ -211,4 +247,3 @@ extend region RR_TOT_ENTRANCE {
         RC_TOT_RIGHTMOST_GOSSIP_STONE_FAIRY_BIG:    can_use(RG_SONG_OF_TIME)
     }
 }
-

@@ -138,6 +138,21 @@ extend region RR_DESERT_COLOSSUS {
     }
 }
 
+# overworld/graveyard
+
+extend region RR_GRAVEYARD_DAMPES_GRAVE {
+    locations {
+        RC_GRAVEYARD_DAMPE_RACE_RUPEE_1: always
+        RC_GRAVEYARD_DAMPE_RACE_RUPEE_2: always
+        RC_GRAVEYARD_DAMPE_RACE_RUPEE_3: always
+        RC_GRAVEYARD_DAMPE_RACE_RUPEE_4: always
+        RC_GRAVEYARD_DAMPE_RACE_RUPEE_5: always
+        RC_GRAVEYARD_DAMPE_RACE_RUPEE_6: always
+        RC_GRAVEYARD_DAMPE_RACE_RUPEE_7: always
+        RC_GRAVEYARD_DAMPE_RACE_RUPEE_8: always
+    }
+}
+
 # overworld/kokiri_forest
 
 extend region RR_KOKIRI_FOREST {
