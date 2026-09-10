@@ -210,6 +210,27 @@ extend region RR_DEKU_TREE_MQ_OUTSIDE_BOSS_ROOM {
     }
 }
 
+# dungeons/dodongos_cavern
+
+extend region RR_DODONGOS_CAVERN_BOMB_ROOM_LOWER {
+    locations {
+        RC_DODONGOS_CAVERN_FIRST_BRIDGE_GRASS: can_cut_shrubs()
+        RC_DODONGOS_CAVERN_BLADE_GRASS:        can_cut_shrubs()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_FIRST_SLINGSHOT_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_SINGLE_EYE_GRASS: can_cut_shrubs()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_BOSS_AREA {
+    locations {
+        RC_DODONGOS_CAVERN_BEFORE_BOSS_GRASS: can_cut_shrubs()
+    }
+}
+
 # overworld/castle_grounds
 
 extend region RR_HC_MOAT {

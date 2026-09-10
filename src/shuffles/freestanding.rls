@@ -64,6 +64,28 @@ extend region RR_DEKU_TREE_MQ_OUTSIDE_BOSS_ROOM {
     }
 }
 
+# dungeons/dodongos_cavern
+
+extend region RR_DODONGOS_CAVERN_LOWER_LIZALFOS {
+    locations {
+        RC_DODONGOS_CAVERN_LOWER_LIZALFOS_HEART: always
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_BOMB_ROOM_LOWER {
+    locations {
+        RC_DODONGOS_CAVERN_BLADE_ROOM_HEART: has(RG_POWER_BRACELET)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_UPPER_LIZALFOS {
+    locations {
+        RC_DODONGOS_CAVERN_LOWER_LIZALFOS_HEART:       always
+        RC_DODONGOS_CAVERN_UPPER_LIZALFOS_LEFT_HEART:  always
+        RC_DODONGOS_CAVERN_UPPER_LIZALFOS_RIGHT_HEART: always
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_CASTLE_FIRE_TRIAL_FROM_OPEN {

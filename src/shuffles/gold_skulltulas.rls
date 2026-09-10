@@ -45,6 +45,39 @@ extend region RR_DEKU_TREE_MQ_BASEMENT_BACK_ROOM {
     }
 }
 
+# dungeons/dodongos_cavern
+
+extend region RR_DODONGOS_CAVERN_SE_CORRIDOR {
+    locations {
+        RC_DODONGOS_CAVERN_GS_SCARECROW: reach_scarecrow() or (is_adult() and can_use(RG_LONGSHOT)) or (trick(RT_DC_SCARECROW_GS) and has(RG_POWER_BRACELET) and can_get_drop(RE_GOLD_SKULLTULA))
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_SE_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_GS_SIDE_ROOM_NEAR_LOWER_LIZALFOS: can_attack()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_STAIRS_LOWER {
+    locations {
+        RC_DODONGOS_CAVERN_GS_VINES_ABOVE_STAIRS: trick(RT_DC_VINES_GS) and can_get_drop(RE_GOLD_SKULLTULA, ED_LONGSHOT)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_STAIRS_UPPER {
+    locations {
+        RC_DODONGOS_CAVERN_GS_ALCOVE_ABOVE_STAIRS: can_get_drop(RE_GOLD_SKULLTULA, flag(LOGIC_DC_LIFT_PLATFORM) ? ED_BOOMERANG : ED_LONGSHOT)
+        RC_DODONGOS_CAVERN_GS_VINES_ABOVE_STAIRS:  (has(RG_CLIMB) and has(RG_POWER_BRACELET)) or can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_BACK_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_GS_BACK_ROOM: can_attack()
+    }
+}
+
 # dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH {

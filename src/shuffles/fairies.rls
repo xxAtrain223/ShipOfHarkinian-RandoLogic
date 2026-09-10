@@ -1,3 +1,12 @@
+# dungeons/dodongos_cavern
+
+extend region RR_DODONGOS_CAVERN_LOBBY {
+    locations {
+        RC_DODONGOS_CAVERN_GOSSIP_STONE_FAIRY:     any_age(can_break_mud_walls() or has(RG_GORONS_BRACELET)) and call_gossip_fairy()
+        RC_DODONGOS_CAVERN_GOSSIP_STONE_FAIRY_BIG: any_age(can_break_mud_walls() or has(RG_GORONS_BRACELET)) and can_use(RG_SONG_OF_STORMS)
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_CASTLE_DEKU_SCRUBS {

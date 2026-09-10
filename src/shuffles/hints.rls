@@ -1,3 +1,11 @@
+# dungeons/dodongos_cavern
+
+extend region RR_DODONGOS_CAVERN_LOBBY {
+    locations {
+        RC_DODONGOS_CAVERN_GOSSIP_STONE: any_age(can_break_mud_walls() or has(RG_GORONS_BRACELET))
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_TOWER_GANONDORF_LAIR {

@@ -1,0 +1,256 @@
+region RR_DODONGOS_CAVERN_BEGINNING {
+    name: "Dodongos Cavern Beginning"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_ENTRYWAY: always
+        RR_DODONGOS_CAVERN_LOBBY:    any_age(can_break_mud_walls() or has(RG_GORONS_BRACELET))
+    }
+}
+
+region RR_DODONGOS_CAVERN_LOBBY {
+    name: "Dodongos Cavern Lobby"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_FAIRY_ACCESS: (any_age(can_break_mud_walls()) or has(RG_GORONS_BRACELET)) and call_gossip_fairy()
+        LOGIC_DC_EYES_LIT:  trick(RT_DC_EYES_CHU) and can_use(RG_BOMBCHU_5)
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_BEGINNING:     always
+        RR_DODONGOS_CAVERN_LOBBY_SWITCH:  is_adult() or can_ground_jump(true)
+        RR_DODONGOS_CAVERN_SE_CORRIDOR:   any_age(can_break_mud_walls() or has(RG_GORONS_BRACELET))
+        RR_DODONGOS_CAVERN_STAIRS_LOWER:  flag(LOGIC_DC_STAIRS_ROOM_DOOR)
+        RR_DODONGOS_CAVERN_FAR_BRIDGE:    flag(LOGIC_DC_LIFT_PLATFORM)
+        RR_DODONGOS_CAVERN_BOSS_AREA:     flag(LOGIC_DC_EYES_LIT)
+        RR_DODONGOS_CAVERN_BOSS_ENTRYWAY: never
+    }
+}
+
+region RR_DODONGOS_CAVERN_LOBBY_SWITCH {
+    name: "Dodongos Cavern Lobby Switch"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_DC_STAIRS_ROOM_DOOR: always
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_LOBBY: always
+        RR_DODONGOS_CAVERN_DODONGO_ROOM: always
+    }
+}
+
+region RR_DODONGOS_CAVERN_SE_CORRIDOR {
+    name: "Dodongos Cavern SE Corridor"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_LOBBY:               always
+        # Shield seems to be in logic to drop a pot on their head as they hit you to blow up the wall
+        RR_DODONGOS_CAVERN_SE_ROOM:             any_age(can_break_mud_walls() or can_attack() or (take_damage() and can_shield() and has(RG_POWER_BRACELET)))
+        RR_DODONGOS_CAVERN_NEAR_LOWER_LIZALFOS: has(RG_POWER_BRACELET)
+    }
+}
+
+region RR_DODONGOS_CAVERN_SE_ROOM {
+    name: "Dodongos Cavern SE Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_SE_CORRIDOR: always
+    }
+}
+
+region RR_DODONGOS_CAVERN_NEAR_LOWER_LIZALFOS {
+    name: "Dodongos Cavern Near Lower Lizalfos"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_SE_CORRIDOR:    always
+        RR_DODONGOS_CAVERN_LOWER_LIZALFOS: always
+    }
+}
+
+region RR_DODONGOS_CAVERN_LOWER_LIZALFOS {
+    name: "Dodongos Cavern Lower Lizalfos"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_DC_KILLED_LOWER_LIZALFOS: can_kill(RE_LIZALFOS, ED_CLOSE, true, 2)
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_NEAR_LOWER_LIZALFOS: flag(LOGIC_DC_KILLED_LOWER_LIZALFOS)
+        RR_DODONGOS_CAVERN_DODONGO_ROOM:        flag(LOGIC_DC_KILLED_LOWER_LIZALFOS)
+    }
+}
+
+region RR_DODONGOS_CAVERN_DODONGO_ROOM {
+    name: "Dodongos Cavern Dodongo Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_LOBBY_SWITCH:      has_fire_source_with_torch()
+        RR_DODONGOS_CAVERN_LOWER_LIZALFOS:    always
+        RR_DODONGOS_CAVERN_NEAR_DODONGO_ROOM: any_age(can_break_mud_walls() or has(RG_GORONS_BRACELET))
+    }
+}
+
+region RR_DODONGOS_CAVERN_NEAR_DODONGO_ROOM {
+    name: "Dodongos Cavern Near Dodongo Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_DODONGO_ROOM: always
+    }
+}
+
+region RR_DODONGOS_CAVERN_STAIRS_LOWER {
+    name: "Dodongos Cavern Stairs Lower"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_LOBBY:        always
+        RR_DODONGOS_CAVERN_STAIRS_UPPER: has_explosives() or has(RG_GORONS_BRACELET) or can_use(RG_DINS_FIRE) or (trick(RT_DC_STAIRS_WITH_BOW) and can_use(RG_FAIRY_BOW))
+        RR_DODONGOS_CAVERN_COMPASS_ROOM: any_age(can_break_mud_walls() or has(RG_GORONS_BRACELET))
+    }
+}
+
+region RR_DODONGOS_CAVERN_STAIRS_UPPER {
+    name: "Dodongos Cavern Stairs Upper"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_STAIRS_LOWER: always
+        RR_DODONGOS_CAVERN_ARMOS_ROOM:   always
+    }
+}
+
+region RR_DODONGOS_CAVERN_COMPASS_ROOM {
+    name: "Dodongos Cavern Compass Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_STAIRS_LOWER: can_use(RG_MASTER_SWORD) or can_use(RG_BIGGORON_SWORD) or can_use(RG_MEGATON_HAMMER) or has_explosives() or has(RG_GORONS_BRACELET)
+    }
+}
+
+region RR_DODONGOS_CAVERN_ARMOS_ROOM {
+    name: "Dodongos Cavern Armos Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_STAIRS_UPPER:    always
+        RR_DODONGOS_CAVERN_BOMB_ROOM_LOWER: is_adult() or (has(RG_POWER_BRACELET) and has(RG_CLIMB)) or trick(RT_UNINTUITIVE_JUMPS) or can_use(RG_HOOKSHOT)
+    }
+}
+
+region RR_DODONGOS_CAVERN_BOMB_ROOM_LOWER {
+    name: "Dodongos Cavern Bomb Room Lower"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_ARMOS_ROOM:           has(RG_CLIMB) or can_use(RG_HOOKSHOT)
+        RR_DODONGOS_CAVERN_2F_SIDE_ROOM:         any_age(can_break_mud_walls() or (trick(RT_DC_SCRUB_ROOM) and has(RG_GORONS_BRACELET)))
+        RR_DODONGOS_CAVERN_FIRST_SLINGSHOT_ROOM: any_age(can_break_mud_walls() or has(RG_GORONS_BRACELET))
+        RR_DODONGOS_CAVERN_BOMB_ROOM_UPPER:      (is_adult() and (trick(RT_UNINTUITIVE_JUMPS) or can_ground_jump())) or
+                                                 can_use(RG_HOVER_BOOTS) or can_use(RG_LONGSHOT) or
+                                                 (trick(RT_DAMAGE_BOOST_SIMPLE) and has_explosives() and can_jumpslash())
+    }
+}
+
+region RR_DODONGOS_CAVERN_2F_SIDE_ROOM {
+    name: "Dodongos Cavern 2F Side Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_BOMB_ROOM_LOWER: always
+    }
+}
+
+region RR_DODONGOS_CAVERN_FIRST_SLINGSHOT_ROOM {
+    name: "Dodongos Cavern First Slingshot Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_BOMB_ROOM_LOWER: always
+        RR_DODONGOS_CAVERN_UPPER_LIZALFOS:  can_hit_eye_targets() or trick(RT_DC_SLINGSHOT_SKIP) or (is_adult() and can_ground_jump()) or
+                                            (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and
+                                             (can_use(RG_MEGATON_HAMMER) or (can_standing_shield() and can_jumpslash())))
+    }
+}
+
+region RR_DODONGOS_CAVERN_UPPER_LIZALFOS {
+    name: "Dodongos Cavern Upper Lizalfos"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_FIRST_SLINGSHOT_ROOM:  any_age(can_kill(RE_LIZALFOS, ED_CLOSE, true, 2))
+        RR_DODONGOS_CAVERN_SECOND_SLINGSHOT_ROOM: any_age(can_kill(RE_LIZALFOS, ED_CLOSE, true, 2))
+        RR_DODONGOS_CAVERN_NEAR_LOWER_LIZALFOS:   flag(LOGIC_DC_KILLED_LOWER_LIZALFOS)
+        RR_DODONGOS_CAVERN_DODONGO_ROOM:          flag(LOGIC_DC_KILLED_LOWER_LIZALFOS)
+    }
+}
+
+region RR_DODONGOS_CAVERN_SECOND_SLINGSHOT_ROOM {
+    name: "Dodongos Cavern Second Slingshot Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_UPPER_LIZALFOS:  always
+        RR_DODONGOS_CAVERN_BOMB_ROOM_UPPER: can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW) or trick(RT_DC_SLINGSHOT_SKIP) or (is_adult() and can_ground_jump()) or
+                                            (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and (can_use(RG_MEGATON_HAMMER) or (can_standing_shield() and can_jumpslash())))
+    }
+}
+
+region RR_DODONGOS_CAVERN_BOMB_ROOM_UPPER {
+    name: "Dodongos Cavern Bomb Room Upper"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_BOMB_ROOM_LOWER:       always
+        RR_DODONGOS_CAVERN_SECOND_SLINGSHOT_ROOM: always
+        RR_DODONGOS_CAVERN_FAR_BRIDGE:            always
+    }
+}
+
+region RR_DODONGOS_CAVERN_FAR_BRIDGE {
+    name: "Dodongos Cavern Far Bridge"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_DC_EYES_LIT:      has_explosives()
+        LOGIC_DC_LIFT_PLATFORM: always
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_LOBBY:           always
+        RR_DODONGOS_CAVERN_BOMB_ROOM_UPPER: always
+    }
+}
+
+region RR_DODONGOS_CAVERN_BOSS_AREA {
+    name: "Dodongos Cavern Boss Region"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_FAIRY_ACCESS: can_break_pots()
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_LOBBY:         always
+        RR_DODONGOS_CAVERN_BACK_ROOM:     any_age(can_break_mud_walls())
+        RR_DODONGOS_CAVERN_BOSS_ENTRYWAY: has(RG_POWER_BRACELET)
+    }
+}
+
+region RR_DODONGOS_CAVERN_BACK_ROOM {
+    name: "Dodongos Cavern Back Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_BOSS_AREA: always
+    }
+}

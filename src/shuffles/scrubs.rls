@@ -6,6 +6,27 @@ extend region RR_DEKU_TREE_MQ_BASEMENT_LEDGE {
     }
 }
 
+# dungeons/dodongos_cavern
+
+extend region RR_DODONGOS_CAVERN_LOBBY {
+    locations {
+        RC_DODONGOS_CAVERN_DEKU_SCRUB_LOBBY: (can_stun_deku() or has(RG_GORONS_BRACELET)) and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_NEAR_DODONGO_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_DEKU_SCRUB_SIDE_ROOM_NEAR_DODONGOS: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_2F_SIDE_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_DEKU_SCRUB_NEAR_BOMB_BAG_LEFT:  can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_DODONGOS_CAVERN_DEKU_SCRUB_NEAR_BOMB_BAG_RIGHT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_CASTLE_DEKU_SCRUBS {

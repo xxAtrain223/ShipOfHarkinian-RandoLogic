@@ -1,3 +1,84 @@
+# dungeons/dodongos_cavern
+
+extend region RR_DODONGOS_CAVERN_SE_CORRIDOR {
+    locations {
+        RC_DODONGOS_CAVERN_SIDE_ROOM_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_SIDE_ROOM_POT_2: can_break_pots()
+        RC_DODONGOS_CAVERN_SIDE_ROOM_POT_3: can_break_pots()
+        RC_DODONGOS_CAVERN_SIDE_ROOM_POT_4: can_break_pots()
+        RC_DODONGOS_CAVERN_SIDE_ROOM_POT_5: can_break_pots()
+        RC_DODONGOS_CAVERN_SIDE_ROOM_POT_6: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_LOWER_LIZALFOS {
+    locations {
+        RC_DODONGOS_CAVERN_LIZALFOS_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_LIZALFOS_POT_2: can_break_pots()
+        RC_DODONGOS_CAVERN_LIZALFOS_POT_3: can_break_pots()
+        RC_DODONGOS_CAVERN_LIZALFOS_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_DODONGO_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_TORCH_ROOM_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_TORCH_ROOM_POT_2: can_break_pots()
+        RC_DODONGOS_CAVERN_TORCH_ROOM_POT_3: can_break_pots()
+        RC_DODONGOS_CAVERN_TORCH_ROOM_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_STAIRS_UPPER {
+    locations {
+        RC_DODONGOS_CAVERN_STAIRCASE_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_STAIRCASE_POT_2: can_break_pots()
+        RC_DODONGOS_CAVERN_STAIRCASE_POT_3: can_break_pots()
+        RC_DODONGOS_CAVERN_STAIRCASE_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_FIRST_SLINGSHOT_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_SINGLE_EYE_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_SINGLE_EYE_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_UPPER_LIZALFOS {
+    locations {
+        # This room is in different states based on what entrance you entered by,
+        # So it's simpler to treat them as separate regions with shared checks in both
+        RC_DODONGOS_CAVERN_LIZALFOS_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_LIZALFOS_POT_2: can_break_pots()
+        RC_DODONGOS_CAVERN_LIZALFOS_POT_3: can_break_pots()
+        RC_DODONGOS_CAVERN_LIZALFOS_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_SECOND_SLINGSHOT_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_DOUBLE_EYE_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_DOUBLE_EYE_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_BOMB_ROOM_UPPER {
+    locations {
+        RC_DODONGOS_CAVERN_BLADE_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_BLADE_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_BACK_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_BACK_ROOM_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_BACK_ROOM_POT_2: can_break_pots()
+        RC_DODONGOS_CAVERN_BACK_ROOM_POT_3: can_break_pots()
+        RC_DODONGOS_CAVERN_BACK_ROOM_POT_4: can_break_pots()
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_TOWER_BEFORE_GANONDORF_LAIR {

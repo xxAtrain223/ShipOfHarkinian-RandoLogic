@@ -1,0 +1,9 @@
+# TODO: Finish DMT
+region RR_DEATH_MOUNTAIN_TRAIL {
+    name: "Death Mountain Trail"
+    scene: SCENE_DEATH_MOUNTAIN_TRAIL
+
+    exits {
+        RR_DODONGOS_CAVERN_ENTRYWAY: has_explosives() or has(RG_GORONS_BRACELET) or is_adult()
+    }
+}

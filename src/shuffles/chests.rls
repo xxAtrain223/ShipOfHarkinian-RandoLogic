@@ -64,6 +64,44 @@ extend region RR_DEKU_TREE_MQ_BASEMENT_WATER_ROOM_BACK {
     }
 }
 
+# dungeons/dodongos_cavern
+
+extend region RR_DODONGOS_CAVERN_LOBBY {
+    locations {
+        RC_DODONGOS_CAVERN_MAP_CHEST: (can_break_mud_walls() or has(RG_GORONS_BRACELET)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_COMPASS_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_COMPASS_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_BOMB_ROOM_LOWER {
+    locations {
+        RC_DODONGOS_CAVERN_BOMB_FLOWER_PLATFORM_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_BOMB_ROOM_UPPER {
+    locations {
+        RC_DODONGOS_CAVERN_BOMB_BAG_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_FAR_BRIDGE {
+    locations {
+        RC_DODONGOS_CAVERN_END_OF_BRIDGE_CHEST: can_break_mud_walls() and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_BOSS_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_BOSS_ROOM_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_TOWER_FLOOR_2 {

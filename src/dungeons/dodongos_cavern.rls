@@ -1,0 +1,51 @@
+region RR_DODONGOS_CAVERN_ENTRYWAY {
+    name: "Dodongos Cavern Entryway"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_BEGINNING:    is_vanilla()
+        RR_DODONGOS_CAVERN_MQ_BEGINNING: is_mq()
+        RR_DEATH_MOUNTAIN_TRAIL:         always
+    }
+}
+
+region RR_DODONGOS_CAVERN_BOSS_ENTRYWAY {
+    name: "Dodongos Cavern Boss Entryway"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_BOSS_ROOM: always
+    }
+}
+
+region RR_DODONGOS_CAVERN_BOSS_EXIT {
+    name: "Dodongos Cavern Boss Exit"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_BOSS_AREA:       is_vanilla()
+        RR_DODONGOS_CAVERN_MQ_BEHIND_MOUTH: is_mq()
+    }
+}
+
+region RR_DODONGOS_CAVERN_BOSS_ROOM {
+    name: "Dodongos Cavern Boss Room"
+    scene: SCENE_DODONGOS_CAVERN_BOSS
+
+    events {
+        LOGIC_DODONGOS_CAVERN_CLEAR: any_age(has_explosives() or
+                                             (trick(RT_DC_HAMMER_FLOOR) ? can_use(RG_MEGATON_HAMMER) or (trick(RT_BLUE_FIRE_MUD_WALLS) and blue_fire()) :
+                                                                          trick(RT_BLUE_FIRE_MUD_WALLS) and can_use(RG_BOTTLE_WITH_BLUE_FIRE))) and
+                                     can_kill(RE_KING_DODONGO)
+    }
+
+    locations {
+        RC_DODONGOS_CAVERN_KING_DODONGO_HEART: flag(LOGIC_DODONGOS_CAVERN_CLEAR)
+        RC_KING_DODONGO:                       flag(LOGIC_DODONGOS_CAVERN_CLEAR)
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_BOSS_EXIT: always
+        RR_DEATH_MOUNTAIN_TRAIL:      flag(LOGIC_DODONGOS_CAVERN_CLEAR)
+    }
+}

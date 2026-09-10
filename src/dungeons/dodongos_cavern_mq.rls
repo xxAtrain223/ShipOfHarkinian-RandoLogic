@@ -1,0 +1,451 @@
+region RR_DODONGOS_CAVERN_MQ_BEGINNING {
+    name: "Dodongos Cavern MQ Beginning"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_ENTRYWAY: never#TODO
+        RR_DODONGOS_CAVERN_MQ_LOBBY: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_LOBBY {
+    name: "Dodongos Cavern MQ Lobby"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_DC_EYES_LIT: never#TODO
+    }
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_MAP_CHEST: never#TODO
+        RC_DODONGOS_CAVERN_MQ_DEKU_SCRUB_LOBBY_REAR: never#TODO
+        RC_DODONGOS_CAVERN_MQ_DEKU_SCRUB_LOBBY_FRONT: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_BEGINNING: never#TODO
+        RR_DODONGOS_CAVERN_MQ_GOSSIP_STONE: never#TODO
+        RR_DODONGOS_CAVERN_MQ_OUTSIDE_POES_ROOM: never#TODO
+        RR_DODONGOS_CAVERN_MQ_MOUTH_SIDE_BRIDGE: never#TODO
+        RR_DODONGOS_CAVERN_MQ_STAIRS_LOWER: never#TODO
+        RR_DODONGOS_CAVERN_MQ_LOWER_RIGHT_SIDE: never#TODO
+        RR_DODONGOS_CAVERN_MQ_BEHIND_MOUTH: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_GOSSIP_STONE {
+    name: "Dodongos Cavern MQ Gossip Stone"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_FAIRY_ACCESS: never#TODO
+    }
+
+    locations {
+        RC_DODONGOS_CAVERN_GOSSIP_STONE: never#TODO
+        RC_DODONGOS_CAVERN_MQ_GOSSIP_STONE_FAIRY: never#TODO
+        RC_DODONGOS_CAVERN_MQ_GOSSIP_STONE_FAIRY_BIG: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_LOBBY: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_OUTSIDE_POES_ROOM {
+    name: "Dodongos Cavern MQ Outside Poes Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_BOMB_BAG_CHEST: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_LOBBY: never#TODO
+        RR_DODONGOS_CAVERN_MQ_POES_ROOM: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_MOUTH_SIDE_BRIDGE {
+    name: "Dodongos Cavern MQ Mouth Side Bridge"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_DC_MQ_CLEAR_UPPER_LOBBY_ROCKS: never#TODO
+        LOGIC_DC_EYES_LIT: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_LOBBY: never#TODO
+        RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_UPPER: never#TODO
+        RR_DODONGOS_CAVERN_MQ_OUTSIDE_POES_ROOM: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_STAIRS_LOWER {
+    name: "Dodongos Cavern MQ Stairs Lower"
+    scene: SCENE_DODONGOS_CAVERN
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_POT_1: never#TODO
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_POT_2: never#TODO
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_POT_3: never#TODO
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_POT_4: never#TODO
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_LOWER_CRATE_1: never#TODO
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_LOWER_CRATE_2: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_LOBBY: never#TODO
+        RR_DODONGOS_CAVERN_MQ_STAIRS_UPPER: never#TODO
+        RR_DODONGOS_CAVERN_MQ_STAIRS_PAST_MUD_WALL: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_STAIRS_PAST_MUD_WALL {
+    name: "Dodongos Cavern MQ Stairs Past Mud Wall"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_STICK_ACCESS: never#TODO
+    }
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_GS_SONG_OF_TIME_BLOCK_ROOM: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_STAIRS_UPPER: never#TODO
+        RR_DODONGOS_CAVERN_MQ_STAIRS_LOWER: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_STAIRS_UPPER {
+    name: "Dodongos Cavern MQ Stairs Upper"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_DC_MQ_STAIRS_SILVER_RUPEES: never#TODO
+    }
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_DEKU_SCRUB_STAIRCASE: never#TODO
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_UPPER_CRATE_1: never#TODO
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_UPPER_CRATE_2: never#TODO
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_UPPER_CRATE_3: never#TODO
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_UPPER_CRATE_4: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_STAIRS_LOWER: never#TODO
+        RR_DODONGOS_CAVERN_MQ_STAIRS_PAST_BIG_SKULLTULAS: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_STAIRS_PAST_BIG_SKULLTULAS {
+    name: "Dodongos Cavern MQ Past Big Skulltulas"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_STAIRS_UPPER: never#TODO
+        RR_DODONGOS_CAVERN_MQ_STAIRS_LOWER: never#TODO
+        RR_DODONGOS_CAVERN_MQ_DODONGO_ROOM: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_DODONGO_ROOM {
+    name: "Dodongos Cavern MQ Dodongo Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_COMPASS_CHEST: never#TODO
+        RC_DODONGOS_CAVERN_MQ_COMPASS_GRASS_1: never#TODO
+        RC_DODONGOS_CAVERN_MQ_COMPASS_GRASS_2: never#TODO
+        RC_DODONGOS_CAVERN_MQ_COMPASS_GRASS_3: never#TODO
+        RC_DODONGOS_CAVERN_MQ_COMPASS_GRASS_4: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_STAIRS_PAST_BIG_SKULLTULAS: never#TODO
+        RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_LOWER: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_LOWER {
+    name: "Dodongos Cavern MQ Torch Puzzle Lower"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_DC_MQ_CLEAR_UPPER_LOBBY_ROCKS: never#TODO
+    }
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_MIDDLE_POT: never#TODO
+        RC_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_ROOM_HEART: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_LOBBY: never#TODO
+        RR_DODONGOS_CAVERN_MQ_DODONGO_ROOM: never#TODO
+        RR_DODONGOS_CAVERN_MQ_LARVAE_ROOM: never#TODO
+        RR_DODONGOS_CAVERN_MQ_BIG_BLOCK_ROOM: never#TODO
+        RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_UPPER: never#TODO
+        RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_BIG_BLOCK_ROOM {
+    name: "Dodongos Cavern MQ Big Block Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_BIG_BLOCK_POT_1: never#TODO
+        RC_DODONGOS_CAVERN_MQ_BIG_BLOCK_POT_2: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_LOWER: never#TODO
+        RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_LARVAE_ROOM {
+    name: "Dodongos Cavern MQ Larvae Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CHEST: never#TODO
+        RC_DODONGOS_CAVERN_MQ_GS_LARVAE_ROOM: never#TODO
+        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CRATE_1: never#TODO
+        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CRATE_2: never#TODO
+        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CRATE_3: never#TODO
+        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CRATE_4: never#TODO
+        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CRATE_5: never#TODO
+        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CRATE_6: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_LOWER: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS {
+    name: "Dodongos Cavern MQ Before Upper Lizalfos"
+    scene: SCENE_DODONGOS_CAVERN
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_GS_LIZALFOS_ROOM: never#TODO
+        RC_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS_POT_1: never#TODO
+        RC_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS_POT_2: never#TODO
+        RC_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS_POT_3: never#TODO
+        RC_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS_POT_4: never#TODO
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_HEART: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_BIG_BLOCK_ROOM: never#TODO
+        RR_DODONGOS_CAVERN_MQ_TWO_FIRES_ROOM: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_TWO_FIRES_ROOM {
+    name: "Dodongos Cavern MQ Before Upper Lizalfos"
+    scene: SCENE_DODONGOS_CAVERN
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_TWO_FLAMES_POT_1: never#TODO
+        RC_DODONGOS_CAVERN_MQ_TWO_FLAMES_POT_2: never#TODO
+        RC_DODONGOS_CAVERN_MQ_TWO_FLAMES_CRATE_1: never#TODO
+        RC_DODONGOS_CAVERN_MQ_TWO_FLAMES_CRATE_2: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS: never#TODO
+        RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_UPPER: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_UPPER {
+    name: "Dodongos Cavern MQ Torch Puzzle Upper"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_DC_MQ_CLEAR_UPPER_LOBBY_ROCKS: never#TODO
+    }
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_ROOM_CHEST: never#TODO
+        RC_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_CORNER_POT: never#TODO
+        RC_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_MIDDLE_POT: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_MOUTH_SIDE_BRIDGE: never#TODO
+        RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_LOWER: never#TODO
+        RR_DODONGOS_CAVERN_MQ_TWO_FIRES_ROOM: never#TODO
+        RR_DODONGOS_CAVERN_MQ_LOWER_RIGHT_SIDE: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_LOWER_RIGHT_SIDE {
+    name: "Dodongos Cavern MQ Lower Right Side"
+    scene: SCENE_DODONGOS_CAVERN
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_RIGHT_SIDE_POT_1: never#TODO
+        RC_DODONGOS_CAVERN_MQ_RIGHT_SIDE_POT_2: never#TODO
+        RC_DODONGOS_CAVERN_MQ_RIGHT_SIDE_POT_3: never#TODO
+        RC_DODONGOS_CAVERN_MQ_RIGHT_SIDE_POT_4: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_LOBBY: never#TODO
+        RR_DODONGOS_CAVERN_MQ_LOWER_RIGHT_SIDE_SCRUB: never#TODO
+        RR_DODONGOS_CAVERN_MQ_LOWER_LIZALFOS: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_LOWER_RIGHT_SIDE_SCRUB {
+    name: "Dodongos Cavern MQ Lower Right Side Scrub"
+    scene: SCENE_DODONGOS_CAVERN
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_DEKU_SCRUB_SIDE_ROOM_NEAR_LOWER_LIZALFOS: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_LOWER_RIGHT_SIDE: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_LOWER_LIZALFOS {
+    name: "Dodongos Cavern MQ Lower Lizalfos"
+    scene: SCENE_DODONGOS_CAVERN
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_HEART: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_LOWER_RIGHT_SIDE: never#TODO
+        RR_DODONGOS_CAVERN_MQ_POES_ROOM: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_POES_ROOM {
+    name: "Dodongos Cavern MQ Poes Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_POT_1: never#TODO
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_POT_2: never#TODO
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_POT_3: never#TODO
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_POT_4: never#TODO
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_1: never#TODO
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_2: never#TODO
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_3: never#TODO
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_4: never#TODO
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_5: never#TODO
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_6: never#TODO
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_7: never#TODO
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_8: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_OUTSIDE_POES_ROOM: never#TODO
+        RR_DODONGOS_CAVERN_MQ_LOWER_LIZALFOS: never#TODO
+        RR_DODONGOS_CAVERN_MQ_MAD_SCRUB_ROOM: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_MAD_SCRUB_ROOM {
+    name: "Dodongos Cavern Mad Scrub Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_GS_SCRUB_ROOM: never#TODO
+        RC_DODONGOS_CAVERN_MQ_SCRUB_GRASS_1: never#TODO
+        RC_DODONGOS_CAVERN_MQ_SCRUB_GRASS_2: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_POES_ROOM: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_BEHIND_MOUTH {
+    name: "Dodongos Cavern MQ Behind Mouth"
+    scene: SCENE_DODONGOS_CAVERN
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_GS_BACK_AREA: never#TODO
+        RC_DODONGOS_CAVERN_MQ_BEFORE_BOSS_SW_POT: never#TODO
+        RC_DODONGOS_CAVERN_MQ_BEFORE_BOSS_NE_POT: never#TODO
+        RC_DODONGOS_CAVERN_MQ_ARMOS_ROOM_SE_POT: never#TODO
+        RC_DODONGOS_CAVERN_MQ_ARMOS_ROOM_SW_POT: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_LOBBY: never#TODO
+        RR_DODONGOS_CAVERN_MQ_BACK_BEHIND_FIRE: never#TODO
+        RR_DODONGOS_CAVERN_MQ_BACK_SWITCH_GRAVE: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_BACK_BEHIND_FIRE {
+    name: "Dodongos Cavern MQ Back Behind Fire"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_DC_MQ_BEHIND_FIRE_SWITCH: never#TODO
+    }
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_GS_BACK_AREA: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_BEHIND_MOUTH: never#TODO
+        RR_DODONGOS_CAVERN_MQ_BACK_POE_ROOM: never#TODO
+        RR_DODONGOS_CAVERN_MQ_BACK_SWITCH_GRAVE: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_BACK_POE_ROOM {
+    name: "Dodongos Cavern MQ Back Poe Room"
+    scene: SCENE_DODONGOS_CAVERN
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_UNDER_GRAVE_CHEST: never#TODO
+        RC_DODONGOS_CAVERN_MQ_BACKROOM_POT_1: never#TODO
+        RC_DODONGOS_CAVERN_MQ_BACKROOM_POT_2: never#TODO
+        RC_DODONGOS_CAVERN_MQ_BACK_POE_GRASS: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_BACK_BEHIND_FIRE: never#TODO
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_BACK_SWITCH_GRAVE {
+    name: "Dodongos Cavern MQ Back Switch Grave"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_DC_MQ_BEHIND_FIRE_SWITCH: never#TODO
+        LOGIC_FAIRY_ACCESS: never#TODO
+    }
+
+    locations {
+        RC_DODONGOS_CAVERN_MQ_GS_BACK_AREA: never#TODO
+        RC_DODONGOS_CAVERN_MQ_ARMOS_ROOM_NW_POT: never#TODO
+        RC_DODONGOS_CAVERN_MQ_ARMOS_ROOM_NE_POT: never#TODO
+        RC_DODONGOS_CAVERN_MQ_ARMOS_GRASS: never#TODO
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_BEHIND_MOUTH: never#TODO
+        RR_DODONGOS_CAVERN_MQ_BACK_BEHIND_FIRE: never#TODO
+        RR_DODONGOS_CAVERN_BOSS_ENTRYWAY: never#TODO
+    }
+}
