@@ -6,6 +6,12 @@ extend region RR_DODONGOS_CAVERN_LOBBY {
     }
 }
 
+extend region RR_DODONGOS_CAVERN_MQ_GOSSIP_STONE {
+    locations {
+        RC_DODONGOS_CAVERN_GOSSIP_STONE: always
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_TOWER_GANONDORF_LAIR {

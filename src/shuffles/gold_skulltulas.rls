@@ -78,6 +78,55 @@ extend region RR_DODONGOS_CAVERN_BACK_ROOM {
     }
 }
 
+extend region RR_DODONGOS_CAVERN_MQ_STAIRS_PAST_MUD_WALL {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_GS_SONG_OF_TIME_BLOCK_ROOM: can_use(RG_SONG_OF_TIME) and can_get_drop(RE_GOLD_SKULLTULA)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_LARVAE_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_GS_LARVAE_ROOM:      can_break_crates() # implied can_kill(RE_GOLD_SKULTULLA) based on entry reqs. Add crate logic when BONKO is added
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_GS_LIZALFOS_ROOM:     blast_or_smash() # Implied can_get_drop(RE_GOLD_SKULLTULA)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_MAD_SCRUB_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_GS_SCRUB_ROOM: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG, true) # Implies you can avoid/kill the enemies with what you use on the skull, if this assumption is broken, add
+                                             # and (any_age(can_kill(RE_FIRE_KEESE) and can_kill(RE_MAD_SCRUB)) or (can_avoid(RE_FIRE_KEESE) and can_avoid(RE_MAD_SCRUB)))
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_BEHIND_MOUTH {
+    locations {
+        # This can be gotten with only str0 as adult by using 1 pot to kill the skull from the top of a nearby grave,
+        # then another to hit the switch to turn of the fire then running up the ledge to grab it. This assumes RR_DODONGOS_CAVERN_MQ_BACK_BEHIND_FIRE access
+        # Alternatively, the grave can be pulled and roll jumped off of.
+        # This may be trickworthy, but it can only come up with doorsanity or decoupled boss door rando, making it too niche to be it's own trick
+        RC_DODONGOS_CAVERN_MQ_GS_BACK_AREA: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or
+                                            (is_adult() and has(RG_POWER_BRACELET) and
+                                             (can_pass(RE_ARMOS) or can_use(RG_HOVER_BOOTS) or (trick(RT_UNINTUITIVE_JUMPS))))
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_BACK_BEHIND_FIRE {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_GS_BACK_AREA: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_BACK_SWITCH_GRAVE {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_GS_BACK_AREA: can_get_drop(RE_GOLD_SKULLTULA) or has(RG_GORONS_BRACELET)
+    }
+}
+
 # dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH {

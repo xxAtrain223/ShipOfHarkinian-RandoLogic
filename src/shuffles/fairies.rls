@@ -7,6 +7,13 @@ extend region RR_DODONGOS_CAVERN_LOBBY {
     }
 }
 
+extend region RR_DODONGOS_CAVERN_MQ_GOSSIP_STONE {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_GOSSIP_STONE_FAIRY:     call_gossip_fairy()
+        RC_DODONGOS_CAVERN_MQ_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_CASTLE_DEKU_SCRUBS {

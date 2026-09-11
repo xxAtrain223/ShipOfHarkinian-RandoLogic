@@ -79,6 +79,92 @@ extend region RR_DODONGOS_CAVERN_BACK_ROOM {
     }
 }
 
+extend region RR_DODONGOS_CAVERN_MQ_STAIRS_LOWER {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_POT_2: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_POT_3: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_LOWER {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_MIDDLE_POT: can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_BIG_BLOCK_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_BIG_BLOCK_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_BIG_BLOCK_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS_POT_2: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS_POT_3: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_TWO_FIRES_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_TWO_FLAMES_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_TWO_FLAMES_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_UPPER {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_CORNER_POT: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_MIDDLE_POT: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_LOWER_RIGHT_SIDE {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_RIGHT_SIDE_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_RIGHT_SIDE_POT_2: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_RIGHT_SIDE_POT_3: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_RIGHT_SIDE_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_POES_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_POT_2: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_POT_3: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_BEHIND_MOUTH {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_BEFORE_BOSS_SW_POT: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_BEFORE_BOSS_NE_POT: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_ARMOS_ROOM_SE_POT:  can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_ARMOS_ROOM_SW_POT:  can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_BACK_POE_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_BACKROOM_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_BACKROOM_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_BACK_SWITCH_GRAVE {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_ARMOS_ROOM_NW_POT: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_ARMOS_ROOM_NE_POT: can_break_pots()
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_TOWER_BEFORE_GANONDORF_LAIR {

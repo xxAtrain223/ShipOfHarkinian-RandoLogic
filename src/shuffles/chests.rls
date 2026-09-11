@@ -102,6 +102,43 @@ extend region RR_DODONGOS_CAVERN_BOSS_ROOM {
     }
 }
 
+extend region RR_DODONGOS_CAVERN_MQ_LOBBY {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_MAP_CHEST: (can_break_mud_walls() or has(RG_GORONS_BRACELET)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_OUTSIDE_POES_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_BOMB_BAG_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_DODONGO_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_COMPASS_CHEST: (can_kill(RE_DODONGO) or (has(RG_GORONS_BRACELET) and can_climb_ladder())) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_LARVAE_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CHEST:   has(RG_OPEN_CHEST) # implied can_kill(RE_GOHMA_LARVA) based on entry reqs with a trick to kill with nuts
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_UPPER {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_ROOM_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_BACK_POE_ROOM {
+    locations {
+        # the chest is in a grave, but you can open it through it
+        RC_DODONGOS_CAVERN_MQ_UNDER_GRAVE_CHEST: (trick(RT_VISIBLE_COLLISION) or has(RG_POWER_BRACELET)) and has(RG_OPEN_CHEST)
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_TOWER_FLOOR_2 {

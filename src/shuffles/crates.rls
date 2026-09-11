@@ -13,6 +13,55 @@ extend region RR_DEKU_TREE_MQ_SLINGSHOT_ROOM {
     }
 }
 
+# dungeons/dodongos_cavern
+
+extend region RR_DODONGOS_CAVERN_MQ_STAIRS_LOWER {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_LOWER_CRATE_1: can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_LOWER_CRATE_2: can_break_crates()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_STAIRS_UPPER {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_UPPER_CRATE_1: can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_UPPER_CRATE_2: can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_UPPER_CRATE_3: can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_UPPER_CRATE_4: can_break_crates()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_LARVAE_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CRATE_1: can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CRATE_2: can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CRATE_3: can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CRATE_4: can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CRATE_5: can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CRATE_6: can_break_crates()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_TWO_FIRES_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_TWO_FLAMES_CRATE_1: can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_TWO_FLAMES_CRATE_2: can_break_crates()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_POES_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_1: has(RG_GORONS_BRACELET) or can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_2: has(RG_GORONS_BRACELET) or can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_3: has(RG_GORONS_BRACELET) or can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_4: has(RG_GORONS_BRACELET) or can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_5: has(RG_GORONS_BRACELET) or can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_6: has(RG_GORONS_BRACELET) or can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_7: has(RG_GORONS_BRACELET) or can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_POE_ROOM_CRATE_8: has(RG_GORONS_BRACELET) or can_break_crates()
+    }
+}
+
 # dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_CHILD_BOXES {

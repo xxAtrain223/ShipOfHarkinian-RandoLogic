@@ -231,6 +231,34 @@ extend region RR_DODONGOS_CAVERN_BOSS_AREA {
     }
 }
 
+extend region RR_DODONGOS_CAVERN_MQ_DODONGO_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_COMPASS_GRASS_1: can_cut_shrubs()
+        RC_DODONGOS_CAVERN_MQ_COMPASS_GRASS_2: can_cut_shrubs()
+        RC_DODONGOS_CAVERN_MQ_COMPASS_GRASS_3: can_cut_shrubs()
+        RC_DODONGOS_CAVERN_MQ_COMPASS_GRASS_4: can_cut_shrubs()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_MAD_SCRUB_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_SCRUB_GRASS_1: can_cut_shrubs()
+        RC_DODONGOS_CAVERN_MQ_SCRUB_GRASS_2: can_cut_shrubs()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_BACK_POE_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_BACK_POE_GRASS: can_cut_shrubs()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_BACK_SWITCH_GRAVE {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_ARMOS_GRASS: can_cut_shrubs()
+    }
+}
+
 # overworld/castle_grounds
 
 extend region RR_HC_MOAT {

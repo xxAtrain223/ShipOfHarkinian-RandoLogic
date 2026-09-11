@@ -86,6 +86,24 @@ extend region RR_DODONGOS_CAVERN_UPPER_LIZALFOS {
     }
 }
 
+extend region RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_LOWER {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_ROOM_HEART: always
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_HEART:  blast_or_smash()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_LOWER_LIZALFOS {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_HEART: always
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_CASTLE_FIRE_TRIAL_FROM_OPEN {
