@@ -152,6 +152,12 @@ extend region RR_MARKET_MASK_SHOP {
     }
 }
 
+extend region RR_MARKET_TREASURE_CHEST_GAME {
+    locations {
+        RC_GREG_HINT: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN)
+    }
+}
+
 # overworld/temple_of_time
 
 extend region RR_TOT_ENTRANCE {

@@ -308,13 +308,13 @@ extend region RR_KF_STORMS_GROTTO {
 extend region RR_TOT_ENTRANCE {
     locations {
         RC_TOT_LEFTMOST_GOSSIP_STONE_FAIRY:         call_gossip_fairy_except_suns() or (can_use(RG_SUNS_SONG) and is_adult())
-        RC_TOT_LEFTMOST_GOSSIP_STONE_FAIRY_BIG:     can_use(RG_SONG_OF_TIME)
+        RC_TOT_LEFTMOST_GOSSIP_STONE_FAIRY_BIG:     can_use(RG_SONG_OF_STORMS)
         RC_TOT_LEFT_CENTER_GOSSIP_STONE_FAIRY:      call_gossip_fairy_except_suns() or (can_use(RG_SUNS_SONG) and is_adult())
-        RC_TOT_LEFT_CENTER_GOSSIP_STONE_FAIRY_BIG:  can_use(RG_SONG_OF_TIME)
+        RC_TOT_LEFT_CENTER_GOSSIP_STONE_FAIRY_BIG:  can_use(RG_SONG_OF_STORMS)
         RC_TOT_RIGHT_CENTER_GOSSIP_STONE_FAIRY:     call_gossip_fairy_except_suns() or (can_use(RG_SUNS_SONG) and is_adult())
-        RC_TOT_RIGHT_CENTER_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_TIME)
+        RC_TOT_RIGHT_CENTER_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
         RC_TOT_RIGHTMOST_GOSSIP_STONE_FAIRY:        call_gossip_fairy_except_suns() or (can_use(RG_SUNS_SONG) and is_adult())
-        RC_TOT_RIGHTMOST_GOSSIP_STONE_FAIRY_BIG:    can_use(RG_SONG_OF_TIME)
+        RC_TOT_RIGHTMOST_GOSSIP_STONE_FAIRY_BIG:    can_use(RG_SONG_OF_STORMS)
     }
 }
 
