@@ -21,6 +21,14 @@ extend region RR_COLOSSUS_GROTTO {
     }
 }
 
+# overworld/goron_city
+
+extend region RR_GC_GROTTO {
+    locations {
+        RC_GC_GROTTO_BEEHIVE: can_break_upper_beehives()
+    }
+}
+
 # overworld/hyrule_field
 
 extend region RR_HF_SOUTHEAST_GROTTO {

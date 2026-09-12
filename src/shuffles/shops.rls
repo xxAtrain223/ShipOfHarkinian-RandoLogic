@@ -1,3 +1,18 @@
+# overworld/goron_city
+
+extend region RR_GC_SHOP {
+    locations {
+        RC_GC_SHOP_ITEM_1: has(RG_SPEAK_GORON) and check_price() <= wallet_capacity()
+        RC_GC_SHOP_ITEM_2: has(RG_SPEAK_GORON) and check_price() <= wallet_capacity()
+        RC_GC_SHOP_ITEM_3: has(RG_SPEAK_GORON) and check_price() <= wallet_capacity()
+        RC_GC_SHOP_ITEM_4: has(RG_SPEAK_GORON) and check_price() <= wallet_capacity()
+        RC_GC_SHOP_ITEM_5: has(RG_SPEAK_GORON) and check_price() <= wallet_capacity()
+        RC_GC_SHOP_ITEM_6: has(RG_SPEAK_GORON) and check_price() <= wallet_capacity()
+        RC_GC_SHOP_ITEM_7: has(RG_SPEAK_GORON) and check_price() <= wallet_capacity()
+        RC_GC_SHOP_ITEM_8: has(RG_SPEAK_GORON) and check_price() <= wallet_capacity()
+    }
+}
+
 # overworld/kakariko
 
 extend region RR_KAK_BAZAAR {

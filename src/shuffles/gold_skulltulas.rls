@@ -337,6 +337,15 @@ extend region RR_DESERT_COLOSSUS {
     }
 }
 
+# overworld/goron_city
+
+extend region RR_GORON_CITY {
+    locations {
+        RC_GC_GS_BOULDER_MAZE:    is_child() and blast_or_smash()
+        RC_GC_GS_CENTER_PLATFORM: is_adult() and can_attack()
+    }
+}
+
 # overworld/graveyard
 
 extend region RR_THE_GRAVEYARD {

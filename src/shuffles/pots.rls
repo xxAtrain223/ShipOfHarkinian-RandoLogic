@@ -520,6 +520,32 @@ extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
     }
 }
 
+# overworld/goron_city
+
+extend region RR_GORON_CITY {
+    locations {
+        RC_GC_LOWER_STAIRCASE_POT_1: can_break_pots()
+        RC_GC_LOWER_STAIRCASE_POT_2: can_break_pots()
+        RC_GC_UPPER_STAIRCASE_POT_1: can_break_pots()
+        RC_GC_UPPER_STAIRCASE_POT_2: can_break_pots()
+        RC_GC_UPPER_STAIRCASE_POT_3: can_break_pots()
+    }
+}
+
+extend region RR_GC_MEDIGORON {
+    locations {
+        RC_GC_MEDIGORON_POT_1: can_break_pots()
+    }
+}
+
+extend region RR_GC_DARUNIAS_CHAMBER {
+    locations {
+        RC_GC_DARUNIA_POT_1: can_break_pots()
+        RC_GC_DARUNIA_POT_2: can_break_pots()
+        RC_GC_DARUNIA_POT_3: can_break_pots()
+    }
+}
+
 # overworld/graveyard
 
 extend region RR_GRAVEYARD_DAMPES_GRAVE {

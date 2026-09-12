@@ -595,6 +595,17 @@ extend region RR_DMT_STORMS_GROTTO {
     }
 }
 
+# overworld/goron_city
+
+extend region RR_GORON_CITY {
+    locations {
+        RC_GC_MAZE_LEFT_CHEST:   (can_use(RG_MEGATON_HAMMER) or can_use(RG_SILVER_GAUNTLETS) or
+          (trick(RT_GC_LEFTMOST) and has_explosives() and can_use(RG_HOVER_BOOTS))) and has(RG_OPEN_CHEST)
+        RC_GC_MAZE_CENTER_CHEST: (blast_or_smash() or can_use(RG_SILVER_GAUNTLETS)) and has(RG_OPEN_CHEST)
+        RC_GC_MAZE_RIGHT_CHEST:  (blast_or_smash() or can_use(RG_SILVER_GAUNTLETS)) and has(RG_OPEN_CHEST)
+    }
+}
+
 # overworld/graveyard
 
 extend region RR_GRAVEYARD_SHIELD_GRAVE {

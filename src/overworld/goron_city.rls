@@ -1,0 +1,129 @@
+region RR_GORON_CITY {
+    name: "Goron City"
+    scene: SCENE_GORON_CITY
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy_except_suns()
+        LOGIC_STICK_ACCESS: is_child() and can_break_pots()
+        LOGIC_BUG_ACCESS: (blast_or_smash() and has(RG_POWER_BRACELET)) or can_use(RG_SILVER_GAUNTLETS)
+        LOGIC_GORON_CITY_CHILD_FIRE: is_child() and can_use(RG_DINS_FIRE)
+        LOGIC_GORON_CITY_WOODS_WARP_OPEN:
+            can_detonate_upright_bomb_flower() or can_use(RG_MEGATON_HAMMER) or flag(LOGIC_GORON_CITY_CHILD_FIRE)
+        LOGIC_GORON_CITY_DARUNIAS_DOOR_OPEN_CHILD: is_child() and can_use(RG_ZELDAS_LULLABY)
+        # bottle animation causes similar complications as stopping goron with Din's Fire,
+        # only put in logic when both din's & blue fire tricks enabled
+        LOGIC_GORON_CITY_STOP_ROLLING_GORON_AS_ADULT:
+            is_adult() and has(RG_SPEAK_GORON) and
+            (has(RG_GORONS_BRACELET) or has_explosives() or can_use(RG_FAIRY_BOW) or
+             (trick(RT_GC_LINK_GORON_DINS) and
+              (can_use(RG_DINS_FIRE) or (trick(RT_BLUE_FIRE_MUD_WALLS) and can_use(RG_BOTTLE_WITH_BLUE_FIRE)))))
+    }
+
+    locations {
+        RC_GC_POT_FREESTANDING_POH:
+            is_child() and flag(LOGIC_GORON_CITY_CHILD_FIRE) and
+            (can_use(RG_BOMB_BAG) or (has(RG_GORONS_BRACELET) and trick(RT_GC_POT_STRENGTH)) or
+             (can_use(RG_BOMBCHU_5) and trick(RT_GC_POT)))
+        RC_GC_ROLLING_GORON_AS_CHILD:
+            is_child() and has(RG_SPEAK_GORON) and
+            (has_explosives() or (has(RG_GORONS_BRACELET) and trick(RT_GC_ROLLING_STRENGTH)))
+        RC_GC_ROLLING_GORON_AS_ADULT: flag(LOGIC_GORON_CITY_STOP_ROLLING_GORON_AS_ADULT)
+    }
+
+    exits {
+        RR_DEATH_MOUNTAIN_TRAIL: always
+        RR_GC_MEDIGORON: can_break_mud_walls() or has(RG_GORONS_BRACELET)
+        RR_GC_WOODS_WARP: flag(LOGIC_GORON_CITY_WOODS_WARP_OPEN)
+        RR_GC_SHOP:
+            (is_adult() and flag(LOGIC_GORON_CITY_STOP_ROLLING_GORON_AS_ADULT)) or
+            (is_child() and
+             (blast_or_smash() or has(RG_GORONS_BRACELET) or flag(LOGIC_GORON_CITY_CHILD_FIRE) or can_use(RG_FAIRY_BOW)))
+        RR_GC_DARUNIAS_CHAMBER:
+            (is_adult() and flag(LOGIC_GORON_CITY_STOP_ROLLING_GORON_AS_ADULT)) or
+            (is_child() and flag(LOGIC_GORON_CITY_DARUNIAS_DOOR_OPEN_CHILD))
+        RR_GC_GROTTO_PLATFORM:
+            is_adult() and
+            ((can_use(RG_SONG_OF_TIME) and
+              (effective_health() > 2 or can_use(RG_GORON_TUNIC) or can_use(RG_LONGSHOT) or can_use(RG_NAYRUS_LOVE))) or
+             (effective_health() > 1 and can_use(RG_GORON_TUNIC) and can_use(RG_HOOKSHOT)) or
+             (can_use(RG_NAYRUS_LOVE) and can_use(RG_HOOKSHOT)) or
+             (effective_health() > 2 and can_use(RG_HOOKSHOT) and trick(RT_GC_GROTTO)))
+    }
+}
+
+region RR_GC_MEDIGORON {
+    name: "GC Medigoron"
+    scene: SCENE_GORON_CITY
+
+    events {
+        LOGIC_MEDIGORON:
+            is_adult() and has(RG_ADULT_WALLET) and check_price(RC_GC_MEDIGORON) <= wallet_capacity() and
+            has(RG_SPEAK_GORON)
+    }
+
+    exits {
+        RR_GORON_CITY: always
+    }
+}
+
+region RR_GC_WOODS_WARP {
+    name: "GC Woods Warp"
+    scene: SCENE_GORON_CITY
+
+    events {
+        LOGIC_GORON_CITY_WOODS_WARP_OPEN: blast_or_smash() or can_use(RG_DINS_FIRE)
+    }
+
+    exits {
+        RR_GORON_CITY: flag(LOGIC_GORON_CITY_WOODS_WARP_OPEN)
+        RR_THE_LOST_WOODS: always
+    }
+}
+
+region RR_GC_DARUNIAS_CHAMBER {
+    name: "GC Darunias Chamber"
+    scene: SCENE_GORON_CITY
+
+    events {
+        LOGIC_GORON_CITY_CHILD_FIRE: is_child() and can_use(RG_STICKS)
+    }
+
+    locations {
+        RC_GC_DARUNIAS_JOY: is_child() and can_use(RG_SARIAS_SONG)
+    }
+
+    exits {
+        RR_GORON_CITY: always
+        RR_DMC_POTS_ENTRY: is_adult() and has(RG_POWER_BRACELET)
+    }
+}
+
+region RR_GC_GROTTO_PLATFORM {
+    name: "GC Grotto Platform"
+    scene: SCENE_GORON_CITY
+
+    exits {
+        RR_GC_GROTTO: always
+        RR_GORON_CITY:
+            effective_health() > 2 or can_use(RG_GORON_TUNIC) or can_use(RG_NAYRUS_LOVE) or
+            ((is_child() or can_use(RG_SONG_OF_TIME)) and can_use(RG_LONGSHOT))
+    }
+}
+
+region RR_GC_SHOP {
+    name: "GC Shop"
+    scene: SCENE_GORON_SHOP
+
+    exits {
+        RR_GORON_CITY: always
+    }
+}
+
+region RR_GC_GROTTO {
+    name: "GC Grotto"
+    scene: SCENE_GROTTOS
+
+    exits {
+        RR_GC_GROTTO_PLATFORM: always
+    }
+}

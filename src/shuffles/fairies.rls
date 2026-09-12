@@ -170,6 +170,22 @@ extend region RR_DESERT_COLOSSUS_OASIS {
     }
 }
 
+# overworld/goron_city
+
+extend region RR_GORON_CITY {
+    locations {
+        RC_GC_MAZE_GOSSIP_STONE_FAIRY:     (blast_or_smash() or can_use(RG_SILVER_GAUNTLETS)) and call_gossip_fairy_except_suns()
+        RC_GC_MAZE_GOSSIP_STONE_FAIRY_BIG: (blast_or_smash() or can_use(RG_SILVER_GAUNTLETS)) and can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_GC_MEDIGORON {
+    locations {
+        RC_GC_MEDIGORON_GOSSIP_STONE_FAIRY:     call_gossip_fairy_except_suns()
+        RC_GC_MEDIGORON_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
 # overworld/graveyard
 
 extend region RR_THE_GRAVEYARD {

@@ -76,6 +76,16 @@ extend region RR_COLOSSUS_GROTTO {
     }
 }
 
+# overworld/goron_city
+
+extend region RR_GC_GROTTO {
+    locations {
+        RC_GC_DEKU_SCRUB_GROTTO_LEFT:   can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_GC_DEKU_SCRUB_GROTTO_RIGHT:  can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_GC_DEKU_SCRUB_GROTTO_CENTER: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+    }
+}
+
 # overworld/hyrule_field
 
 extend region RR_HF_INSIDE_FENCE_GROTTO {

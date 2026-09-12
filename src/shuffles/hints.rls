@@ -75,6 +75,20 @@ extend region RR_DESERT_COLOSSUS {
     }
 }
 
+# overworld/goron_city
+
+extend region RR_GORON_CITY {
+    locations {
+        RC_GC_MAZE_GOSSIP_STONE: blast_or_smash() or can_use(RG_SILVER_GAUNTLETS)
+    }
+}
+
+extend region RR_GC_MEDIGORON {
+    locations {
+        RC_GC_MEDIGORON_GOSSIP_STONE: always
+    }
+}
+
 # overworld/graveyard
 
 extend region RR_GRAVEYARD_DAMPES_HOUSE {
