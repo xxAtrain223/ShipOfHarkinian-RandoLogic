@@ -1,0 +1,118 @@
+region RR_ICE_CAVERN_BEGINNING {
+    name: "Ice Cavern Beginning"
+    scene: SCENE_ICE_CAVERN
+
+    exits {
+        RR_ICE_CAVERN_ENTRYWAY:        always
+        RR_ICE_CAVERN_HUB:             any_age(can_kill(RE_FREEZARD, ED_CLOSE, true, 4))
+        RR_ICE_CAVERN_ABOVE_BEGINNING: never
+    }
+}
+
+region RR_ICE_CAVERN_HUB {
+    name: "Ice Cavern Hub"
+    scene: SCENE_ICE_CAVERN
+
+    exits {
+        RR_ICE_CAVERN_BEGINNING:    always
+        # child can make this with a ground jump for the first step, and a glitchless jump for the second, but it's a separate trick
+        RR_ICE_CAVERN_MAP_ROOM:     is_adult() and can_clear_stalagmite()
+        RR_ICE_CAVERN_COMPASS_ROOM: any_age(blue_fire())
+        RR_ICE_CAVERN_BLOCK_ROOM:   any_age(blue_fire()) and (can_clear_stalagmite() or trick(RT_ICE_STALAGMITE_CLIP))
+    }
+}
+
+region RR_ICE_CAVERN_MAP_ROOM {
+    name: "Ice Cavern Map Room"
+    scene: SCENE_ICE_CAVERN
+
+    events {
+        LOGIC_BLUE_FIRE_ACCESS: always
+    }
+
+    exits {
+        RR_ICE_CAVERN_HUB: always
+    }
+}
+
+region RR_ICE_CAVERN_COMPASS_ROOM {
+    name: "Ice Cavern Map Room"
+    scene: SCENE_ICE_CAVERN
+
+    events {
+        LOGIC_BLUE_FIRE_ACCESS: always
+    }
+
+    exits {
+        RR_ICE_CAVERN_HUB: always
+    }
+}
+
+region RR_ICE_CAVERN_BLOCK_ROOM {
+    name: "Ice Cavern Block Room"
+    scene: SCENE_ICE_CAVERN
+
+    exits {
+        RR_ICE_CAVERN_HUB:                  can_clear_stalagmite() or trick(RT_ICE_STALAGMITE_CLIP)
+        RR_ICE_CAVERN_BLOCK_ROOM_BLUE_FIRE: has(RG_POWER_BRACELET) or (is_adult() and (can_ground_jump() or trick(RT_SLIDE_JUMP)))
+        RR_ICE_CAVERN_BEFORE_FINAL_ROOM:    (has(RG_POWER_BRACELET) or (is_adult() and (can_ground_jump() or trick(RT_SLIDE_JUMP)))) and any_age(blue_fire())
+    }
+}
+
+region RR_ICE_CAVERN_BLOCK_ROOM_BLUE_FIRE {
+    name: "Ice Cavern Block Room Blue Fire"
+    scene: SCENE_ICE_CAVERN
+
+    events {
+        LOGIC_BLUE_FIRE_ACCESS: always
+    }
+
+    exits {
+        RR_ICE_CAVERN_BLOCK_ROOM: always
+    }
+}
+
+# this represents being past the red ice barricade, not just past the silver rupee door
+region RR_ICE_CAVERN_BEFORE_FINAL_ROOM {
+    name: "Ice Cavern Before Final Room"
+    scene: SCENE_ICE_CAVERN
+
+    exits {
+        RR_ICE_CAVERN_BLOCK_ROOM: any_age(blue_fire())
+        RR_ICE_CAVERN_FINAL_ROOM: always
+    }
+}
+
+region RR_ICE_CAVERN_FINAL_ROOM {
+    name: "Ice Cavern Final Room"
+    scene: SCENE_ICE_CAVERN
+
+    locations {
+        RC_SHEIK_IN_ICE_CAVERN: any_age(can_kill(RE_WOLFOS)) and has(RG_OPEN_CHEST)
+    }
+
+    exits {
+        RR_ICE_CAVERN_BEFORE_FINAL_ROOM:     any_age(can_kill(RE_WOLFOS))
+        RR_ICE_CAVERN_FINAL_ROOM_UNDERWATER: any_age(can_kill(RE_WOLFOS)) and can_use(RG_IRON_BOOTS)
+    }
+}
+
+region RR_ICE_CAVERN_FINAL_ROOM_UNDERWATER {
+    name: "Ice Cavern Final Room Underwater"
+    scene: SCENE_ICE_CAVERN
+
+    exits {
+        RR_ICE_CAVERN_FINAL_ROOM:      can_use(RG_BRONZE_SCALE)
+        RR_ICE_CAVERN_ABOVE_BEGINNING: can_use(RG_IRON_BOOTS)
+    }
+}
+
+region RR_ICE_CAVERN_ABOVE_BEGINNING {
+    name: "Ice Cavern Above Beginning"
+    scene: SCENE_ICE_CAVERN
+
+    exits {
+        RR_ICE_CAVERN_FINAL_ROOM_UNDERWATER: can_use(RG_IRON_BOOTS)
+        RR_ICE_CAVERN_BEGINNING:             always
+    }
+}

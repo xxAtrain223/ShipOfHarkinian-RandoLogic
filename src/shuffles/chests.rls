@@ -343,6 +343,44 @@ extend region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_TRIFORCE_ROOM {
     }
 }
 
+# dungeons/ice_cavern
+
+extend region RR_ICE_CAVERN_MAP_ROOM {
+    locations {
+        RC_ICE_CAVERN_MAP_CHEST: blue_fire() and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_ICE_CAVERN_COMPASS_ROOM {
+    locations {
+        RC_ICE_CAVERN_COMPASS_CHEST: (is_child() or can_clear_stalagmite() or trick(RT_ICE_STALAGMITE_CLIP)) and blue_fire() and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_ICE_CAVERN_FINAL_ROOM {
+    locations {
+        RC_ICE_CAVERN_IRON_BOOTS_CHEST: any_age(can_kill(RE_WOLFOS)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_MAP_ROOM {
+    locations {
+        RC_ICE_CAVERN_MQ_MAP_CHEST: blue_fire() and any_age(can_hit_switch()) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_COMPASS_ROOM {
+    locations {
+        RC_ICE_CAVERN_MQ_COMPASS_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_STALFOS_ROOM {
+    locations {
+        RC_ICE_CAVERN_MQ_IRON_BOOTS_CHEST: can_kill(RE_STALFOS) and has(RG_OPEN_CHEST)
+    }
+}
+
 # dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_NORTH {

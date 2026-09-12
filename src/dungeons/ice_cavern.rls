@@ -1,0 +1,10 @@
+region RR_ICE_CAVERN_ENTRYWAY {
+    name: "Ice Cavern Entryway"
+    scene: SCENE_ICE_CAVERN
+
+    exits {
+        RR_ICE_CAVERN_BEGINNING:    is_vanilla()
+        RR_ICE_CAVERN_MQ_BEGINNING: is_mq() and can_use_projectile()
+        RR_ZF_LEDGE:                always
+    }
+}

@@ -193,6 +193,50 @@ extend region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_BOULDER_ROOM_BACK {
     }
 }
 
+# dungeons/ice_cavern
+
+extend region RR_ICE_CAVERN_BEGINNING {
+    locations {
+        RC_ICE_CAVERN_LOBBY_RUPEE: blue_fire() # can get with rang trick
+    }
+}
+
+extend region RR_ICE_CAVERN_MAP_ROOM {
+    locations {
+        RC_ICE_CAVERN_MAP_ROOM_LEFT_HEART: always
+        RC_ICE_CAVERN_MAP_ROOM_MIDDLE_HEART: always
+        RC_ICE_CAVERN_MAP_ROOM_RIGHT_HEART: always
+    }
+}
+
+extend region RR_ICE_CAVERN_COMPASS_ROOM {
+    locations {
+        RC_ICE_CAVERN_FREESTANDING_POH: (can_clear_stalagmite() or trick(RT_ICE_STALAGMITE_CLIP)) and blue_fire() # can skip blue fire with rang trick
+    }
+}
+
+extend region RR_ICE_CAVERN_BLOCK_ROOM {
+    locations {
+        RC_ICE_CAVERN_SLIDING_BLOCK_RUPEE_1: can_use(RG_BOOMERANG)
+        RC_ICE_CAVERN_SLIDING_BLOCK_RUPEE_2: can_use(RG_BOOMERANG)
+        RC_ICE_CAVERN_SLIDING_BLOCK_RUPEE_3: can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_ICE_CAVERN_BLOCK_ROOM_BLUE_FIRE {
+    locations {
+        RC_ICE_CAVERN_SLIDING_BLOCK_RUPEE_1: can_use(RG_SONG_OF_TIME)
+        RC_ICE_CAVERN_SLIDING_BLOCK_RUPEE_2: can_use(RG_SONG_OF_TIME)
+        RC_ICE_CAVERN_SLIDING_BLOCK_RUPEE_3: can_use(RG_SONG_OF_TIME)
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_COMPASS_ROOM {
+    locations {
+        RC_ICE_CAVERN_MQ_FREESTANDING_POH: has_explosives()
+    }
+}
+
 # dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_BIG_WALL_UPPER {
