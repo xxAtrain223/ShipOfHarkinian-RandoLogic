@@ -286,6 +286,17 @@ extend region RR_ZD_STORMS_GROTTO {
     }
 }
 
+# overworld/zoras_fountain
+
+extend region RR_ZORAS_FOUNTAIN {
+    locations {
+        RC_ZF_FAIRY_GOSSIP_STONE_FAIRY: call_gossip_fairy_except_suns()
+        RC_ZF_FAIRY_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+        RC_ZF_JABU_GOSSIP_STONE_FAIRY: call_gossip_fairy_except_suns()
+        RC_ZF_JABU_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
 # overworld/zoras_river
 
 extend region RR_ZORAS_RIVER {

@@ -62,3 +62,16 @@ extend region RR_HYRULE_FIELD {
         RC_HF_CHILD_SOUTHERN_BUSH_12: is_child()
     }
 }
+
+# overworld/zoras_fountain
+
+extend region RR_ZORAS_FOUNTAIN {
+    locations {
+        RC_ZF_BUSH_1: is_child()
+        RC_ZF_BUSH_2: is_child()
+        RC_ZF_BUSH_3: is_child()
+        RC_ZF_BUSH_4: is_child()
+        RC_ZF_BUSH_5: is_child()
+        RC_ZF_BUSH_6: is_child()
+    }
+}

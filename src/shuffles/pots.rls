@@ -601,3 +601,22 @@ extend region RR_ZORAS_DOMAIN {
         RC_ZD_NEAR_SHOP_POT_5: can_break_pots()
     }
 }
+
+# overworld/zoras_fountain
+
+extend region RR_ZORAS_FOUNTAIN {
+    locations {
+        RC_ZF_NEAR_JABU_POT_1: is_child() and can_break_pots()
+        RC_ZF_NEAR_JABU_POT_2: is_child() and can_break_pots()
+        RC_ZF_NEAR_JABU_POT_3: is_child() and can_break_pots()
+        RC_ZF_NEAR_JABU_POT_4: is_child() and can_break_pots()
+    }
+}
+
+extend region RR_ZF_HIDDEN_CAVE {
+    locations {
+        RC_ZF_HIDDEN_CAVE_POT_1: is_adult() and can_break_pots()
+        RC_ZF_HIDDEN_CAVE_POT_2: is_adult() and can_break_pots()
+        RC_ZF_HIDDEN_CAVE_POT_3: is_adult() and can_break_pots()
+    }
+}

@@ -341,6 +341,21 @@ extend region RR_ZORAS_DOMAIN {
     }
 }
 
+# overworld/zoras_fountain
+
+extend region RR_ZORAS_FOUNTAIN {
+    locations {
+        RC_ZF_GS_TREE: is_child() and can_bonk_trees() and (has(RG_POWER_BRACELET) or can_kill(RE_GOLD_SKULLTULA))
+        RC_ZF_GS_ABOVE_THE_LOG: is_child() and hookshot_or_boomerang() and can_get_night_time_gs()
+    }
+}
+
+extend region RR_ZF_HIDDEN_LEDGE {
+    locations {
+        RC_ZF_GS_HIDDEN_CAVE: is_adult() and can_get_drop(RE_GOLD_SKULLTULA, ED_BOMB_THROW) and can_get_night_time_gs()
+    }
+}
+
 # overworld/zoras_river
 
 extend region RR_ZR_FRONT {

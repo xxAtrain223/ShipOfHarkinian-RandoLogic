@@ -1,0 +1,96 @@
+region RR_ZORAS_FOUNTAIN {
+    name: "Zoras Fountain"
+    scene: SCENE_ZORAS_FOUNTAIN
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy_except_suns() or (can_use(RG_STICKS) and at_day())
+    }
+
+    exits {
+        RR_ZD_BEHIND_KING_ZORA:       always
+        RR_ZF_ICEBERGS:               is_adult()
+        RR_ZF_LAKEBED:                can_use(RG_IRON_BOOTS)
+        # child can break the brown rock without lifting the silver rock and it stays gone for adult, but it's not intuitive and there's no reasonable case where it matters.
+        RR_ZF_HIDDEN_CAVE:            can_use(RG_SILVER_GAUNTLETS) and blast_or_smash()
+        RR_ZF_ROCK:                   is_adult() and reach_scarecrow()
+        RR_JABU_JABUS_BELLY_ENTRYWAY: is_child() and (setting(RSK_JABU_OPEN) is RO_JABU_OPEN or can_use(RG_BOTTLE_WITH_FISH))
+        RR_ZF_GREAT_FAIRY_FOUNTAIN:   has_explosives() or (trick(RT_ZF_GREAT_FAIRY_WITHOUT_EXPLOSIVES) and can_use(RG_MEGATON_HAMMER) and can_use(RG_SILVER_GAUNTLETS))
+    }
+}
+
+region RR_ZF_ICEBERGS {
+    name: "ZF Icebergs"
+    scene: SCENE_ZORAS_FOUNTAIN
+
+    exits {
+        # This hover is pretty tight, come at it with momentum and aim for the small corner polygon of the big iceburg while spamming roll
+        RR_ZORAS_FOUNTAIN: has(RG_BRONZE_SCALE) or can_use(RG_HOVER_BOOTS)
+        RR_ZF_LAKEBED:     can_use(RG_IRON_BOOTS)
+        RR_ZF_LEDGE:       always
+    }
+}
+
+region RR_ZF_LAKEBED {
+    name: "ZF Lakebed"
+    scene: SCENE_ZORAS_FOUNTAIN
+
+    exits {
+        RR_ZORAS_FOUNTAIN: has(RG_BRONZE_SCALE)
+    }
+}
+
+region RR_ZF_LEDGE {
+    name: "ZF Ledge"
+    scene: SCENE_ZORAS_FOUNTAIN
+
+    exits {
+        RR_ZORAS_FOUNTAIN: has(RG_BRONZE_SCALE)
+        RR_ZF_ICEBERGS: is_adult()
+        RR_ZF_LAKEBED: can_use(RG_IRON_BOOTS)
+        RR_ICE_CAVERN_ENTRYWAY: always
+    }
+}
+
+region RR_ZF_HIDDEN_CAVE {
+    name: "ZF Hidden Cave"
+    scene: SCENE_ZORAS_FOUNTAIN
+
+    exits {
+        # There are invisible big skultullas here as adult but they do not block the path and can be "seen" with Z-target
+        # Lens is not currently needed for this either, implying they are not considered blocking, but it's open for discussion long-term
+        RR_ZF_HIDDEN_LEDGE: has(RG_CLIMB) or can_use(RG_LONGSHOT)
+    }
+}
+
+region RR_ZF_HIDDEN_LEDGE {
+    name: "ZF Hidden Ledge"
+    scene: SCENE_ZORAS_FOUNTAIN
+
+    exits {
+        # It is possible to avoid fall damage by jumping towards the right and landing in deeper water, but this is basically never relevent
+        RR_ZORAS_FOUNTAIN: has(RG_BRONZE_SCALE) or take_damage()
+        RR_ZF_HIDDEN_CAVE: always
+    }
+}
+
+region RR_ZF_ROCK {
+    name: "ZF Rock"
+    scene: SCENE_ZORAS_FOUNTAIN
+
+    exits {
+        RR_ZORAS_FOUNTAIN: always
+    }
+}
+
+region RR_ZF_GREAT_FAIRY_FOUNTAIN {
+    name: "ZF Great Fairy Fountain"
+    scene: SCENE_GREAT_FAIRYS_FOUNTAIN_SPELLS
+
+    locations {
+        RC_ZF_GREAT_FAIRY_REWARD: can_use(RG_ZELDAS_LULLABY)
+    }
+
+    exits {
+        RR_ZORAS_FOUNTAIN: always
+    }
+}

@@ -256,6 +256,38 @@ extend region RR_KF_RUPEE_ALCOVE {
     }
 }
 
+# overworld/zoras_fountain
+
+extend region RR_ZF_ICEBERGS {
+    locations {
+        RC_ZF_ICEBERG_FREESTANDING_POH: is_adult()
+    }
+}
+
+extend region RR_ZF_LAKEBED {
+    locations {
+        RC_ZF_BOTTOM_FREESTANDING_POH:       is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_NORTH_INNER_RUPEE:      is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_NORTHEAST_INNER_RUPEE:  is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_SOUTHEAST_INNER_RUPEE:  is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_SOUTH_INNER_RUPEE:      is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_SOUTHWEST_INNER_RUPEE:  is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_NORTHWEST_INNER_RUPEE:  is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_NORTH_MIDDLE_RUPEE:     is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_NORTHEAST_MIDDLE_RUPEE: is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_SOUTHEAST_MIDDLE_RUPEE: is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_SOUTH_MIDDLE_RUPEE:     is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_SOUTHWEST_MIDDLE_RUPEE: is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_NORTHWEST_MIDDLE_RUPEE: is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_NORTH_OUTER_RUPEE:      is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_NORTHEAST_OUTER_RUPEE:  is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_SOUTHEAST_OUTER_RUPEE:  is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_SOUTH_OUTER_RUPEE:      is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_SOUTHWEST_OUTER_RUPEE:  is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_ZF_BOTTOM_NORTHWEST_OUTER_RUPEE:  is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+    }
+}
+
 # overworld/zoras_river
 
 extend region RR_ZORAS_RIVER {
