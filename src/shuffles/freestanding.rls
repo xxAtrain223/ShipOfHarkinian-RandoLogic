@@ -135,7 +135,7 @@ extend region RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_LOWER {
 
 extend region RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS {
     locations {
-        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_HEART:  blast_or_smash()
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_HEART: blast_or_smash()
     }
 }
 
@@ -238,12 +238,6 @@ extend region RR_DMT_COW_GROTTO {
 
 # overworld/desert_colossus
 
-extend region RR_DESERT_COLOSSUS {
-    locations {
-        RC_COLOSSUS_FREESTANDING_POH: is_adult() and can_plant_bean(RR_DESERT_COLOSSUS, RG_DESERT_COLOSSUS_BEAN_SOUL)
-    }
-}
-
 # overworld/graveyard
 
 extend region RR_GRAVEYARD_DAMPES_GRAVE {
@@ -324,15 +318,8 @@ extend region RR_KF_RUPEE_ALCOVE {
 
 # overworld/zoras_fountain
 
-extend region RR_ZF_ICEBERGS {
-    locations {
-        RC_ZF_ICEBERG_FREESTANDING_POH: is_adult()
-    }
-}
-
 extend region RR_ZF_LAKEBED {
     locations {
-        RC_ZF_BOTTOM_FREESTANDING_POH:       is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
         RC_ZF_BOTTOM_NORTH_INNER_RUPEE:      is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
         RC_ZF_BOTTOM_NORTHEAST_INNER_RUPEE:  is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
         RC_ZF_BOTTOM_SOUTHEAST_INNER_RUPEE:  is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
@@ -358,17 +345,10 @@ extend region RR_ZF_LAKEBED {
 
 extend region RR_ZORAS_RIVER {
     locations {
-        RC_ZR_NEAR_OPEN_GROTTO_FREESTANDING_POH: can_use(RG_BOOMERANG)
-        RC_ZR_NEAR_DOMAIN_FREESTANDING_POH: (is_child() and has(RG_POWER_BRACELET)) or can_use(RG_BOOMERANG) or can_use(RG_HOVER_BOOTS) or (is_adult() and trick(RT_ZR_UPPER))
-        RC_ZR_BENEATH_WATERFALL_LEFT_RUPEE: is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
-        RC_ZR_BENEATH_WATERFALL_MIDDLE_LEFT_RUPEE: is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
+        RC_ZR_BENEATH_WATERFALL_LEFT_RUPEE:         is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
+        RC_ZR_BENEATH_WATERFALL_MIDDLE_LEFT_RUPEE:  is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
         RC_ZR_BENEATH_WATERFALL_MIDDLE_RIGHT_RUPEE: is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
-        RC_ZR_BENEATH_WATERFALL_RIGHT_RUPEE: is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
+        RC_ZR_BENEATH_WATERFALL_RIGHT_RUPEE:        is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
     }
 }
 
-extend region RR_ZR_PILLAR {
-    locations {
-        RC_ZR_NEAR_OPEN_GROTTO_FREESTANDING_POH: always
-    }
-}

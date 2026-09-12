@@ -25,7 +25,6 @@ extend region RR_KAK_ODD_POTION_BUILDING {
 
 extend region RR_ZORAS_DOMAIN {
     locations {
-        RC_ZD_KING_ZORA_THAWED: is_adult() and flag(LOGIC_KING_ZORA_THAWED) and has(RG_SPEAK_ZORA)
         RC_ZD_TRADE_PRESCRIPTION: is_adult() and flag(LOGIC_KING_ZORA_THAWED) and can_use(RG_PRESCRIPTION)
     }
 }

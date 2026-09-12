@@ -12,7 +12,8 @@ region RR_ZORAS_DOMAIN {
     }
 
     locations {
-        RC_ZD_DIVING_MINIGAME: has(RG_BRONZE_SCALE) and has(RG_CHILD_WALLET) and has(RG_SPEAK_ZORA) and is_child()
+        RC_ZD_DIVING_MINIGAME:  has(RG_BRONZE_SCALE) and has(RG_CHILD_WALLET) and has(RG_SPEAK_ZORA) and is_child()
+        RC_ZD_KING_ZORA_THAWED: is_adult() and flag(LOGIC_KING_ZORA_THAWED) and has(RG_SPEAK_ZORA)
     }
 
     exits {

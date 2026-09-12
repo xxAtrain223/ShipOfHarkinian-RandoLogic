@@ -22,6 +22,10 @@ region RR_ZF_ICEBERGS {
     name: "ZF Icebergs"
     scene: SCENE_ZORAS_FOUNTAIN
 
+    locations {
+        RC_ZF_ICEBERG_FREESTANDING_POH: is_adult()
+    }
+
     exits {
         # This hover is pretty tight, come at it with momentum and aim for the small corner polygon of the big iceburg while spamming roll
         RR_ZORAS_FOUNTAIN: has(RG_BRONZE_SCALE) or can_use(RG_HOVER_BOOTS)
@@ -33,6 +37,10 @@ region RR_ZF_ICEBERGS {
 region RR_ZF_LAKEBED {
     name: "ZF Lakebed"
     scene: SCENE_ZORAS_FOUNTAIN
+
+    locations {
+        RC_ZF_BOTTOM_FREESTANDING_POH: is_adult() and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+    }
 
     exits {
         RR_ZORAS_FOUNTAIN: has(RG_BRONZE_SCALE)

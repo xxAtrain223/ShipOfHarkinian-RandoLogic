@@ -17,13 +17,15 @@ region RR_ZORAS_RIVER {
     }
 
     locations {
-        RC_ZR_FROGS_OCARINA_GAME: is_child() and can_use(RG_ZELDAS_LULLABY) and can_use(RG_SARIAS_SONG) and can_use(RG_SUNS_SONG) and can_use(RG_EPONAS_SONG) and can_use(RG_SONG_OF_TIME) and can_use(RG_SONG_OF_STORMS)
-        RC_ZR_FROGS_IN_THE_RAIN: is_child() and can_use(RG_SONG_OF_STORMS)
-        RC_ZR_FROGS_ZELDAS_LULLABY: is_child() and can_use(RG_ZELDAS_LULLABY)
-        RC_ZR_FROGS_EPONAS_SONG: is_child() and can_use(RG_EPONAS_SONG)
-        RC_ZR_FROGS_SARIAS_SONG: is_child() and can_use(RG_SARIAS_SONG)
-        RC_ZR_FROGS_SUNS_SONG: is_child() and can_use(RG_SUNS_SONG)
-        RC_ZR_FROGS_SONG_OF_TIME: is_child() and can_use(RG_SONG_OF_TIME)
+        RC_ZR_FROGS_OCARINA_GAME:                is_child() and can_use(RG_ZELDAS_LULLABY) and can_use(RG_SARIAS_SONG) and can_use(RG_SUNS_SONG) and can_use(RG_EPONAS_SONG) and can_use(RG_SONG_OF_TIME) and can_use(RG_SONG_OF_STORMS)
+        RC_ZR_FROGS_IN_THE_RAIN:                 is_child() and can_use(RG_SONG_OF_STORMS)
+        RC_ZR_FROGS_ZELDAS_LULLABY:              is_child() and can_use(RG_ZELDAS_LULLABY)
+        RC_ZR_FROGS_EPONAS_SONG:                 is_child() and can_use(RG_EPONAS_SONG)
+        RC_ZR_FROGS_SARIAS_SONG:                 is_child() and can_use(RG_SARIAS_SONG)
+        RC_ZR_FROGS_SUNS_SONG:                   is_child() and can_use(RG_SUNS_SONG)
+        RC_ZR_FROGS_SONG_OF_TIME:                is_child() and can_use(RG_SONG_OF_TIME)
+        RC_ZR_NEAR_OPEN_GROTTO_FREESTANDING_POH: can_use(RG_BOOMERANG)
+        RC_ZR_NEAR_DOMAIN_FREESTANDING_POH:      (is_child() and has(RG_POWER_BRACELET)) or can_use(RG_BOOMERANG) or can_use(RG_HOVER_BOOTS) or (is_adult() and trick(RT_ZR_UPPER))
     }
 
     exits {
@@ -58,6 +60,10 @@ region RR_ZR_PILLAR {
 
     events {
         LOGIC_BUG_ACCESS: can_cut_shrubs()
+    }
+
+    locations {
+        RC_ZR_NEAR_OPEN_GROTTO_FREESTANDING_POH: always
     }
 
     exits {
