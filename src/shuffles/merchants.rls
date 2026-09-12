@@ -6,3 +6,11 @@ extend region RR_KAK_ODD_POTION_BUILDING {
             (can_use(RG_ODD_MUSHROOM) or trade_quest_step(RG_ODD_MUSHROOM)) and check_price() <= wallet_capacity()
     }
 }
+
+# overworld/zoras_river
+
+extend region RR_ZORAS_RIVER {
+    locations {
+        RC_ZR_MAGIC_BEAN_SALESMAN: is_child() and has(RG_SPEAK_HYLIAN) and check_price() <= wallet_capacity()
+    }
+}

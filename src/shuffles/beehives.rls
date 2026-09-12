@@ -52,3 +52,18 @@ extend region RR_KF_STORMS_GROTTO {
         RC_KF_STORMS_GROTTO_BEEHIVE_RIGHT: can_break_lower_beehives()
     }
 }
+
+# overworld/zoras_river
+
+extend region RR_ZR_OPEN_GROTTO {
+    locations {
+        RC_ZR_OPEN_GROTTO_BEEHIVE_LEFT:  can_break_lower_beehives()
+        RC_ZR_OPEN_GROTTO_BEEHIVE_RIGHT: can_break_lower_beehives()
+    }
+}
+
+extend region RR_ZR_STORMS_GROTTO {
+    locations {
+        RC_ZR_STORMS_GROTTO_BEEHIVE: can_break_upper_beehives()
+    }
+}

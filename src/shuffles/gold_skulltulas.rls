@@ -332,3 +332,25 @@ extend region RR_MARKET_GUARD_HOUSE {
         RC_MARKET_GS_GUARD_HOUSE: is_child() and can_break_crates() and (has(RG_POWER_BRACELET) or can_kill(RE_GOLD_SKULLTULA))
     }
 }
+
+# overworld/zoras_river
+
+extend region RR_ZR_FRONT {
+    locations {
+        RC_ZR_GS_TREE: is_child() and can_kill(RE_GOLD_SKULLTULA, ED_CLOSE) and can_bonk_trees()
+    }
+}
+
+extend region RR_ZORAS_RIVER {
+    locations {
+        RC_ZR_GS_LADDER: is_child() and can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH) and can_get_night_time_gs()
+        RC_ZR_GS_NEAR_RAISED_GROTTOS: is_adult() and can_get_drop(RE_GOLD_SKULLTULA, ED_LONGSHOT) and can_get_night_time_gs()
+        RC_ZR_GS_ABOVE_BRIDGE: is_adult() and can_get_drop(RE_GOLD_SKULLTULA, ED_HOOKSHOT) and can_get_night_time_gs()
+    }
+}
+
+extend region RR_ZR_ATOP_LADDER {
+    locations {
+        RC_ZR_GS_NEAR_RAISED_GROTTOS: is_adult() and can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) and can_get_night_time_gs()
+    }
+}

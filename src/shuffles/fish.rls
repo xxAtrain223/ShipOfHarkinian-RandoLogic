@@ -33,3 +33,11 @@ extend region RR_KF_STORMS_GROTTO {
         RC_KF_STORMS_GROTTO_FISH: has_bottle()
     }
 }
+
+# overworld/zoras_river
+
+extend region RR_ZR_OPEN_GROTTO {
+    locations {
+        RC_ZR_OPEN_GROTTO_FISH: has_bottle()
+    }
+}

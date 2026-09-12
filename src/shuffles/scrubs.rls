@@ -83,3 +83,12 @@ extend region RR_HF_INSIDE_FENCE_GROTTO {
         RC_HF_DEKU_SCRUB_GROTTO: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
     }
 }
+
+# overworld/zoras_river
+
+extend region RR_ZR_STORMS_GROTTO {
+    locations {
+        RC_ZR_DEKU_SCRUB_GROTTO_REAR:  can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_ZR_DEKU_SCRUB_GROTTO_FRONT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+    }
+}

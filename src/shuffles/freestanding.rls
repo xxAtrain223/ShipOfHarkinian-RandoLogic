@@ -255,3 +255,22 @@ extend region RR_KF_RUPEE_ALCOVE {
         RC_KF_BEAN_RED_RUPEE: is_adult() and can_use(RG_HOVER_BOOTS)
     }
 }
+
+# overworld/zoras_river
+
+extend region RR_ZORAS_RIVER {
+    locations {
+        RC_ZR_NEAR_OPEN_GROTTO_FREESTANDING_POH: can_use(RG_BOOMERANG)
+        RC_ZR_NEAR_DOMAIN_FREESTANDING_POH: (is_child() and has(RG_POWER_BRACELET)) or can_use(RG_BOOMERANG) or can_use(RG_HOVER_BOOTS) or (is_adult() and trick(RT_ZR_UPPER))
+        RC_ZR_BENEATH_WATERFALL_LEFT_RUPEE: is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
+        RC_ZR_BENEATH_WATERFALL_MIDDLE_LEFT_RUPEE: is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
+        RC_ZR_BENEATH_WATERFALL_MIDDLE_RIGHT_RUPEE: is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
+        RC_ZR_BENEATH_WATERFALL_RIGHT_RUPEE: is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
+    }
+}
+
+extend region RR_ZR_PILLAR {
+    locations {
+        RC_ZR_NEAR_OPEN_GROTTO_FREESTANDING_POH: always
+    }
+}

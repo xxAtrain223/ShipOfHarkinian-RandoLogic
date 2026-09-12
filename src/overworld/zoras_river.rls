@@ -1,0 +1,123 @@
+region RR_ZR_FRONT {
+    name: "ZR Front"
+    scene: SCENE_ZORAS_RIVER
+
+    exits {
+        RR_ZORAS_RIVER:  is_adult() or blast_or_smash() or can_use(RG_HOVER_BOOTS)
+        RR_HYRULE_FIELD: always
+    }
+}
+
+region RR_ZORAS_RIVER {
+    name: "Zora River"
+    scene: SCENE_ZORAS_RIVER
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy() or (is_child() and can_use(RG_STICKS)) or (is_child() and can_use(RG_MAGIC_BEAN) and has(RG_ZORAS_RIVER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS))
+    }
+
+    locations {
+        RC_ZR_FROGS_OCARINA_GAME: is_child() and can_use(RG_ZELDAS_LULLABY) and can_use(RG_SARIAS_SONG) and can_use(RG_SUNS_SONG) and can_use(RG_EPONAS_SONG) and can_use(RG_SONG_OF_TIME) and can_use(RG_SONG_OF_STORMS)
+        RC_ZR_FROGS_IN_THE_RAIN: is_child() and can_use(RG_SONG_OF_STORMS)
+        RC_ZR_FROGS_ZELDAS_LULLABY: is_child() and can_use(RG_ZELDAS_LULLABY)
+        RC_ZR_FROGS_EPONAS_SONG: is_child() and can_use(RG_EPONAS_SONG)
+        RC_ZR_FROGS_SARIAS_SONG: is_child() and can_use(RG_SARIAS_SONG)
+        RC_ZR_FROGS_SUNS_SONG: is_child() and can_use(RG_SUNS_SONG)
+        RC_ZR_FROGS_SONG_OF_TIME: is_child() and can_use(RG_SONG_OF_TIME)
+    }
+
+    exits {
+        RR_ZR_FRONT: is_adult() or has(RG_BRONZE_SCALE) or has(RG_POWER_BRACELET) or blast_or_smash() or has(RG_HOVER_BOOTS)
+        RR_ZR_ATOP_LADDER: ((is_adult() or has(RG_POWER_BRACELET)) and can_climb_ladder()) or (is_adult() and can_plant_bean(RR_ZORAS_RIVER, RG_ZORAS_RIVER_BEAN_SOUL))
+        RR_ZR_PILLAR: (is_child() and has(RG_POWER_BRACELET)) or can_use(RG_HOVER_BOOTS) or (is_adult() and trick(RT_ZR_LOWER))
+        RR_ZR_FROM_SHORTCUT: has(RG_SILVER_SCALE) or can_use(RG_IRON_BOOTS)
+        RR_ZR_STORMS_GROTTO: can_open_storms_grotto()
+        RR_ZR_BEHIND_WATERFALL: setting(RSK_SLEEPING_WATERFALL) is RO_WATERFALL_OPEN or any_age(can_use(RG_ZELDAS_LULLABY)) or (is_child() and trick(RT_ZR_CUCCO) and has(RG_POWER_BRACELET)) or (is_adult() and can_use(RG_HOVER_BOOTS) and trick(RT_ZR_HOVERS))
+    }
+}
+
+region RR_ZR_ATOP_LADDER {
+    name: "ZR Atop Ladder"
+    scene: SCENE_ZORAS_RIVER
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy()
+    }
+
+    exits {
+        RR_ZORAS_RIVER: always
+        RR_ZR_PILLAR: (is_child() and has(RG_POWER_BRACELET)) or can_use(RG_HOVER_BOOTS)
+        RR_ZR_OPEN_GROTTO: always
+        RR_ZR_FAIRY_GROTTO: any_age(blast_or_smash())
+    }
+}
+
+region RR_ZR_PILLAR {
+    name: "ZR Pillar"
+    scene: SCENE_ZORAS_RIVER
+
+    events {
+        LOGIC_BUG_ACCESS: can_cut_shrubs()
+    }
+
+    exits {
+        RR_ZORAS_RIVER: always
+    }
+}
+
+region RR_ZR_FROM_SHORTCUT {
+    name: "ZR From Shortcut"
+    scene: SCENE_ZORAS_RIVER
+
+    exits {
+        RR_ZORAS_RIVER: hearts() > 1 or has(RG_BOTTLE_WITH_FAIRY) or has(RG_BRONZE_SCALE)
+        RR_THE_LOST_WOODS: has(RG_SILVER_SCALE) or can_use(RG_IRON_BOOTS)
+    }
+}
+
+region RR_ZR_BEHIND_WATERFALL {
+    name: "ZR Behind Waterfall"
+    scene: SCENE_ZORAS_RIVER
+
+    exits {
+        RR_ZORAS_RIVER: always
+        RR_ZORAS_DOMAIN: always
+    }
+}
+
+region RR_ZR_OPEN_GROTTO {
+    name: "ZR Open Grotto"
+    scene: SCENE_GROTTOS
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy() or can_use(RG_STICKS)
+        LOGIC_BUG_ACCESS: can_cut_shrubs()
+        LOGIC_FISH_ACCESS: always
+    }
+
+    exits {
+        RR_ZR_ATOP_LADDER: always
+    }
+}
+
+region RR_ZR_FAIRY_GROTTO {
+    name: "ZR Fairy Grotto"
+    scene: SCENE_GROTTOS
+
+    events {
+        LOGIC_FAIRY_ACCESS: always
+    }
+
+    exits {
+        RR_ZR_ATOP_LADDER: always
+    }
+}
+
+region RR_ZR_STORMS_GROTTO {
+    name: "ZR Storms Grotto"
+    scene: SCENE_GROTTOS
+
+    exits {
+        RR_ZORAS_RIVER: always
+    }
+}

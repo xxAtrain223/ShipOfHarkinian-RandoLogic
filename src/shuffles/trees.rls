@@ -95,3 +95,11 @@ extend region RR_THE_MARKET {
         RC_MARKET_TREE: is_child() and can_bonk_trees()
     }
 }
+
+# overworld/zoras_river
+
+extend region RR_ZR_FRONT {
+    locations {
+        RC_ZR_TREE: is_child() and can_bonk_trees()
+    }
+}

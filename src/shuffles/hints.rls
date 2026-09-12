@@ -155,3 +155,23 @@ extend region RR_TEMPLE_OF_TIME {
         RC_TOT_SHEIK_HINT:   is_adult() and has(RG_SPEAK_HYLIAN)
     }
 }
+
+# overworld/zoras_river
+
+extend region RR_ZORAS_RIVER {
+    locations {
+        RC_ZR_NEAR_DOMAIN_GOSSIP_STONE: always
+    }
+}
+
+extend region RR_ZR_ATOP_LADDER {
+    locations {
+        RC_ZR_NEAR_GROTTOS_GOSSIP_STONE: always
+    }
+}
+
+extend region RR_ZR_OPEN_GROTTO {
+    locations {
+        RC_ZR_OPEN_GROTTO_GOSSIP_STONE: always
+    }
+}
