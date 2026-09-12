@@ -360,6 +360,65 @@ extend region RR_GANONS_CASTLE_MQ_LIGHT_TRIAL_FINAL_ROOM {
     }
 }
 
+# dungeons/ice_cavern
+
+extend region RR_ICE_CAVERN_HUB {
+    locations {
+        RC_ICE_CAVERN_HALL_POT_1:           can_break_pots()
+        RC_ICE_CAVERN_HALL_POT_2:           can_break_pots()
+        RC_ICE_CAVERN_SPINNING_BLADE_POT_1: can_break_pots()
+        RC_ICE_CAVERN_SPINNING_BLADE_POT_2: can_break_pots()
+        RC_ICE_CAVERN_SPINNING_BLADE_POT_3: can_break_pots()
+    }
+}
+
+extend region RR_ICE_CAVERN_MAP_ROOM {
+    locations {
+        # Bow extension is possible, but very precise: X = 403, Z = 2062-3, Rot = -11475, needs a setup and is its own trick
+        RC_ICE_CAVERN_FROZEN_POT_1: (can_break_pots() and blue_fire()) or has_explosives() or
+                                    (trick(RT_VISIBLE_COLLISION) and can_jumpslash()) or
+                                    (trick(RT_ITEM_EXTENSION) and can_use(RG_HOOKSHOT))
+    }
+}
+
+extend region RR_ICE_CAVERN_BEFORE_FINAL_ROOM {
+    locations {
+        RC_ICE_CAVERN_NEAR_END_POT_1: can_break_pots() and blue_fire()
+        RC_ICE_CAVERN_NEAR_END_POT_2: can_break_pots() and blue_fire()
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_BEGINNING {
+    locations {
+        RC_ICE_CAVERN_MQ_ENTRANCE_POT: can_break_pots()
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_HUB {
+    locations {
+        RC_ICE_CAVERN_MQ_FIRST_CRYSTAL_POT_1: can_break_pots()
+        RC_ICE_CAVERN_MQ_FIRST_CRYSTAL_POT_2: can_break_pots()
+        RC_ICE_CAVERN_MQ_EARLY_WOLFOS_POT_1:  can_break_pots()
+        RC_ICE_CAVERN_MQ_EARLY_WOLFOS_POT_2:  can_break_pots()
+        RC_ICE_CAVERN_MQ_EARLY_WOLFOS_POT_3:  can_break_pots()
+        RC_ICE_CAVERN_MQ_EARLY_WOLFOS_POT_4:  can_break_pots()
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_WEST_CORRIDOR {
+    locations {
+        RC_ICE_CAVERN_MQ_PUSH_BLOCK_POT_1: can_break_pots()
+        RC_ICE_CAVERN_MQ_PUSH_BLOCK_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_COMPASS_ROOM {
+    locations {
+        RC_ICE_CAVERN_MQ_COMPASS_POT_1: can_break_pots()
+        RC_ICE_CAVERN_MQ_COMPASS_POT_2: can_break_pots()
+    }
+}
+
 # dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_FOYER {

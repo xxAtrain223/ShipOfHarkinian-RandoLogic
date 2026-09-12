@@ -68,6 +68,14 @@ extend region RR_GANONS_CASTLE_MQ_DEKU_SCRUBS {
     }
 }
 
+# dungeons/ice_cavern
+
+extend region RR_ICE_CAVERN_BEGINNING {
+    locations {
+        RC_ICE_CAVERN_ENTRANCE_STORMS_FAIRY: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
 # dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_PAST_BOULDERS {

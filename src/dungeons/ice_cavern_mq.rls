@@ -1,0 +1,105 @@
+region RR_ICE_CAVERN_MQ_BEGINNING {
+    name: "Ice Cavern MQ Beginning"
+    scene: SCENE_ICE_CAVERN
+
+    exits {
+        RR_ICE_CAVERN_ENTRYWAY:           always
+        # It is in logic to use a pot to hit the toggle switch here.
+        RR_ICE_CAVERN_MQ_HUB:             has(RG_POWER_BRACELET) or can_hit_switch(ED_BOMB_THROW) or (is_adult() and can_use(RG_BIGGORON_SWORD))
+        RR_ICE_CAVERN_MQ_ABOVE_BEGINNING: never
+    }
+}
+
+region RR_ICE_CAVERN_MQ_HUB {
+    name: "Ice Cavern MQ Hub"
+    scene: SCENE_ICE_CAVERN
+
+    events {
+        LOGIC_FAIRY_ACCESS: can_break_pots()
+    }
+
+    exits {
+        RR_ICE_CAVERN_MQ_MAP_ROOM:       any_age(can_kill(RE_WHITE_WOLFOS) and can_kill(RE_FREEZARD))
+        # child can make this with a ground jump for the first step, and a glitchless jump for the second, but it's a separate trick
+        RR_ICE_CAVERN_MQ_COMPASS_ROOM:   is_adult() and blue_fire()
+        RR_ICE_CAVERN_MQ_SCARECROW_ROOM: blue_fire()
+    }
+}
+
+region RR_ICE_CAVERN_MQ_MAP_ROOM {
+    name: "Ice Cavern MQ Map Room"
+    scene: SCENE_ICE_CAVERN
+
+    events {
+        # Child can fit between the stalagmites on the left hand side
+        LOGIC_BLUE_FIRE_ACCESS: is_child() or can_clear_stalagmite() or trick(RT_ICE_STALAGMITE_CLIP)
+    }
+}
+
+region RR_ICE_CAVERN_MQ_SCARECROW_ROOM {
+    name: "Ice Cavern MQ Scarecrow Room"
+    scene: SCENE_ICE_CAVERN
+
+    events {
+        LOGIC_BLUE_FIRE_ACCESS: can_use(RG_SONG_OF_TIME) or (is_adult() and (can_ground_jump() or trick(RT_SLIDE_JUMP)))
+    }
+
+    exits {
+        RR_ICE_CAVERN_MQ_HUB:           blue_fire()
+        # The switch defaults into the state where the block exists, and is a temp flag
+        RR_ICE_CAVERN_MQ_WEST_CORRIDOR: is_adult() and blue_fire()
+    }
+}
+
+region RR_ICE_CAVERN_MQ_WEST_CORRIDOR {
+    name: "Ice Cavern MQ West Corridor"
+    scene: SCENE_ICE_CAVERN
+
+    exits {
+        RR_ICE_CAVERN_MQ_SCARECROW_ROOM: blue_fire()
+        RR_ICE_CAVERN_MQ_STALFOS_ROOM:   always
+    }
+}
+
+region RR_ICE_CAVERN_MQ_COMPASS_ROOM {
+    name: "Ice Cavern MQ Compass Room"
+    scene: SCENE_ICE_CAVERN
+
+    events {
+        LOGIC_BLUE_FIRE_ACCESS: always
+    }
+}
+
+region RR_ICE_CAVERN_MQ_STALFOS_ROOM {
+    name: "Ice Cavern MQ Stalfos Room"
+    scene: SCENE_ICE_CAVERN
+
+    locations {
+        RC_SHEIK_IN_ICE_CAVERN: can_kill(RE_STALFOS) and has(RG_OPEN_CHEST) # rando enables this for child
+    }
+
+    exits {
+        RR_ICE_CAVERN_MQ_WEST_CORRIDOR:           any_age(can_kill(RE_STALFOS))
+        RR_ICE_CAVERN_MQ_STALFOS_ROOM_UNDERWATER: can_use(RG_IRON_BOOTS) and any_age(can_kill(RE_STALFOS))
+    }
+}
+
+region RR_ICE_CAVERN_MQ_STALFOS_ROOM_UNDERWATER {
+    name: "Ice Cavern MQ Stalfos Room Underwater"
+    scene: SCENE_ICE_CAVERN
+
+    exits {
+        RR_ICE_CAVERN_MQ_STALFOS_ROOM:    can_use(RG_BRONZE_SCALE)
+        RR_ICE_CAVERN_MQ_ABOVE_BEGINNING: can_use(RG_IRON_BOOTS)
+    }
+}
+
+region RR_ICE_CAVERN_MQ_ABOVE_BEGINNING {
+    name: "Ice Cavern MQ Above Beginning"
+    scene: SCENE_ICE_CAVERN
+
+    exits {
+        RR_ICE_CAVERN_MQ_STALFOS_ROOM_UNDERWATER: can_use(RG_IRON_BOOTS)
+        RR_ICE_CAVERN_MQ_BEGINNING:               always
+    }
+}

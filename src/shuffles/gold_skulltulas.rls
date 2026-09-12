@@ -168,6 +168,49 @@ extend region RR_DODONGOS_CAVERN_MQ_BACK_SWITCH_GRAVE {
     }
 }
 
+# dungeons/ice_cavern
+
+extend region RR_ICE_CAVERN_HUB {
+    locations {
+        RC_ICE_CAVERN_GS_SPINNING_SCYTHE_ROOM: hookshot_or_boomerang()
+    }
+}
+
+extend region RR_ICE_CAVERN_COMPASS_ROOM {
+    locations {
+        RC_ICE_CAVERN_GS_HEART_PIECE_ROOM: hookshot_or_boomerang()
+    }
+}
+
+extend region RR_ICE_CAVERN_BLOCK_ROOM {
+    locations {
+        # trick involves backflip, could be merged into general trick
+        RC_ICE_CAVERN_GS_PUSH_BLOCK_ROOM: hookshot_or_boomerang() or (trick(RT_ICE_BLOCK_GS) and is_adult() and can_use(RG_HOVER_BOOTS) and can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH))
+    }
+}
+
+extend region RR_ICE_CAVERN_BEFORE_FINAL_ROOM {
+    locations {
+        # Assumes RR_ICE_CAVERN_BLOCK_ROOM access
+        RC_ICE_CAVERN_GS_PUSH_BLOCK_ROOM: trick(RT_ICE_BLOCK_GS) and is_adult() and can_use(RG_HOVER_BOOTS) and blue_fire() and has(RG_POWER_BRACELET)
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_SCARECROW_ROOM {
+    locations {
+        # Implies being able to kill the skull if you hit the switch
+        RC_ICE_CAVERN_MQ_GS_ICE_BLOCK: (blue_fire() and has(RG_POWER_BRACELET) and can_kill(RE_GOLD_SKULLTULA)) or can_hit_switch(is_adult() ? ED_LONG_JUMPSLASH : ED_BOMB_THROW)
+        RC_ICE_CAVERN_MQ_GS_SCARECROW: reach_scarecrow() or (is_adult() and (can_use(RG_LONGSHOT) or can_ground_jump() or trick(RT_SLIDE_JUMP)))
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_COMPASS_ROOM {
+    locations {
+        RC_ICE_CAVERN_MQ_GS_RED_ICE: (can_use(RG_BOTTLE_WITH_BLUE_FIRE) and (can_use(RG_SONG_OF_TIME) or (is_adult() and trick(RT_ICE_MQ_RED_ICE_GS))) and can_get_drop(RE_GOLD_SKULLTULA)) or
+                                     (setting(RSK_BLUE_FIRE_ARROWS) and can_use(RG_ICE_ARROWS)) or (trick(RT_ITEM_EXTENSION) and can_use(RG_SONG_OF_TIME) and can_use(RG_HOOKSHOT))
+    }
+}
+
 # dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH {
