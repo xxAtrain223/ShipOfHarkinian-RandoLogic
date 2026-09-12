@@ -52,6 +52,21 @@ extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
     }
 }
 
+# overworld/death_mountain_trail
+
+extend region RR_DEATH_MOUNTAIN_SUMMIT {
+    locations {
+        RC_DMT_GOSSIP_STONE: always
+        RC_BIGGORON_HINT:    is_adult() and has(RG_SPEAK_GORON)
+    }
+}
+
+extend region RR_DMT_STORMS_GROTTO {
+    locations {
+        RC_DMT_STORMS_GROTTO_GOSSIP_STONE: always
+    }
+}
+
 # overworld/desert_colossus
 
 extend region RR_DESERT_COLOSSUS {

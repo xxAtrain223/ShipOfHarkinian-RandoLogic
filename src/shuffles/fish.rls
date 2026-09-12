@@ -1,3 +1,11 @@
+# overworld/death_mountain_trail
+
+extend region RR_DMT_STORMS_GROTTO {
+    locations {
+        RC_DMT_STORMS_GROTTO_FISH: has_bottle()
+    }
+}
+
 # overworld/hyrule_field
 
 extend region RR_HF_SOUTHEAST_GROTTO {

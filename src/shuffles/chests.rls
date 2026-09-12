@@ -581,6 +581,20 @@ extend region RR_SPIRIT_TEMPLE_MQ_BIG_MIRROR_CAVE {
     }
 }
 
+# overworld/death_mountain_trail
+
+extend region RR_DEATH_MOUNTAIN_TRAIL {
+    locations {
+        RC_DMT_CHEST: (blast_or_smash() or (trick(RT_DMT_BOMBABLE) and is_child() and has(RG_GORONS_BRACELET))) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_DMT_STORMS_GROTTO {
+    locations {
+        RC_DMT_STORMS_GROTTO_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
 # overworld/graveyard
 
 extend region RR_GRAVEYARD_SHIELD_GRAVE {

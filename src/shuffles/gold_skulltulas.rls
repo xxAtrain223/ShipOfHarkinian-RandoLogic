@@ -292,6 +292,38 @@ extend region RR_GANONS_CASTLE_GROUNDS {
     }
 }
 
+# overworld/death_mountain_trail
+
+extend region RR_DEATH_MOUNTAIN_TRAIL {
+    locations {
+        RC_DMT_GS_BEAN_PATCH:            can_spawn_soil_skull(RG_DEATH_MOUNTAIN_TRAIL_BEAN_SOUL) and
+        (has_explosives() or has(RG_GORONS_BRACELET) or
+         (trick(RT_DMT_SOIL_GS) and (take_damage() or can_use(RG_HOVER_BOOTS)) and can_use(RG_BOOMERANG)))
+        RC_DMT_GS_NEAR_KAK:              blast_or_smash() and (has(RG_CLIMB) or can_use(RG_HOOKSHOT) or can_use(RG_BOOMERANG))
+        RC_DMT_GS_ABOVE_DODONGOS_CAVERN: is_adult() and can_get_night_time_gs() and
+        ((can_use(RG_MEGATON_HAMMER) or (trick(RT_ITEM_EXTENSION) and can_use(RG_HOOKSHOT)) or
+          (trick(RT_DISTANT_BOULDER_COLLISION) and can_use(RG_LONGSHOT)) or
+          (trick(RT_DMT_JS_LOWER_GS) and can_jumpslash())) or
+         (trick(RT_DMT_BEAN_LOWER_GS) and can_plant_bean(RR_DEATH_MOUNTAIN_TRAIL, RG_DEATH_MOUNTAIN_TRAIL_BEAN_SOUL)) or
+         ((trick(RT_DMT_HOVERS_LOWER_GS) and can_use(RG_HOVER_BOOTS)) and
+          (has_explosives() or can_use(RG_DINS_FIRE) or can_jumpslash() or
+           ((trick(RT_DISTANT_BOULDER_COLLISION) or trick(RT_ITEM_EXTENSION)) and
+            (can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT))))))
+    }
+}
+
+extend region RR_DEATH_MOUNTAIN_ROCKFALL {
+    locations {
+        RC_DMT_GS_FALLING_ROCKS_PATH: is_adult() and can_get_night_time_gs() and
+        (can_use(RG_MEGATON_HAMMER) or (trick(RT_DISTANT_BOULDER_COLLISION) and can_use(RG_LONGSHOT)) or
+         (trick(RT_ITEM_EXTENSION) and can_use(RG_HOOKSHOT)) or
+         (trick(RT_DMT_UPPER_GS) and
+          (can_jumpslash() or can_use(RG_DINS_FIRE) or has_explosives() or
+           (trick(RT_ITEM_EXTENSION) and can_use(RG_FAIRY_SLINGSHOT)) or
+           (trick(RT_DISTANT_BOULDER_COLLISION) and can_kill(RE_GOLD_SKULLTULA, ED_LONGSHOT)))))
+    }
+}
+
 # overworld/desert_colossus
 
 extend region RR_DESERT_COLOSSUS {

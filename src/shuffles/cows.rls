@@ -1,3 +1,11 @@
+# overworld/death_mountain_trail
+
+extend region RR_DMT_COW_GROTTO {
+    locations {
+        RC_DMT_COW_GROTTO_COW: can_use(RG_EPONAS_SONG)
+    }
+}
+
 # overworld/hyrule_field
 
 extend region RR_HF_COW_GROTTO_BEHIND_WEBS {

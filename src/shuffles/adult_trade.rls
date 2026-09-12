@@ -1,3 +1,12 @@
+# overworld/death_mountain_trail
+
+extend region RR_DEATH_MOUNTAIN_SUMMIT {
+    locations {
+        RC_DMT_TRADE_BROKEN_SWORD: is_adult() and can_use(RG_BROKEN_SWORD)
+        RC_DMT_TRADE_EYEDROPS:     is_adult() and can_use(RG_EYEDROPS)
+    }
+}
+
 # overworld/kakariko
 
 extend region RR_KAKARIKO_VILLAGE {

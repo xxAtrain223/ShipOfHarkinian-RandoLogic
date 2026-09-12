@@ -1,3 +1,18 @@
+# overworld/death_mountain_trail
+
+extend region RR_DMT_COW_GROTTO {
+    locations {
+        RC_DMT_COW_GROTTO_BEEHIVE: can_break_lower_beehives()
+    }
+}
+
+extend region RR_DMT_STORMS_GROTTO {
+    locations {
+        RC_DMT_STORMS_GROTTO_BEEHIVE_LEFT:  can_break_lower_beehives()
+        RC_DMT_STORMS_GROTTO_BEEHIVE_RIGHT: can_break_lower_beehives()
+    }
+}
+
 # overworld/desert_colossus
 
 extend region RR_COLOSSUS_GROTTO {

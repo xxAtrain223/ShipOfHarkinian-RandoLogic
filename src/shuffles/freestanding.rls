@@ -211,6 +211,31 @@ extend region RR_SPIRIT_TEMPLE_MQ_CHILD_SIDE_HUB {
     }
 }
 
+# overworld/death_mountain_trail
+
+extend region RR_DEATH_MOUNTAIN_TRAIL {
+    locations {
+        RC_DMT_BLUE_RUPEE: is_child() and blast_or_smash()
+        RC_DMT_RED_RUPEE:  is_child() and blast_or_smash()
+    }
+}
+
+extend region RR_DMT_COW_GROTTO {
+    locations {
+        RC_DMT_COW_GROTTO_LEFT_HEART:         always
+        RC_DMT_COW_GROTTO_MIDDLE_LEFT_HEART:  always
+        RC_DMT_COW_GROTTO_MIDDLE_RIGHT_HEART: always
+        RC_DMT_COW_GROTTO_RIGHT_HEART:        always
+        RC_DMT_COW_GROTTO_RUPEE_1:            always
+        RC_DMT_COW_GROTTO_RUPEE_2:            always
+        RC_DMT_COW_GROTTO_RUPEE_3:            always
+        RC_DMT_COW_GROTTO_RUPEE_4:            always
+        RC_DMT_COW_GROTTO_RUPEE_5:            always
+        RC_DMT_COW_GROTTO_RUPEE_6:            always
+        RC_DMT_COW_GROTTO_RED_RUPEE:          always
+    }
+}
+
 # overworld/desert_colossus
 
 extend region RR_DESERT_COLOSSUS {

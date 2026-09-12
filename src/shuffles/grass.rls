@@ -301,6 +301,24 @@ extend region RR_HC_MOAT {
     }
 }
 
+# overworld/death_mountain_trail
+
+extend region RR_DMT_COW_GROTTO {
+    locations {
+        RC_DMT_COW_GROTTO_GRASS_1: can_cut_shrubs()
+        RC_DMT_COW_GROTTO_GRASS_2: can_cut_shrubs()
+    }
+}
+
+extend region RR_DMT_STORMS_GROTTO {
+    locations {
+        RC_DMT_STORMS_GROTTO_GRASS_1: can_cut_shrubs()
+        RC_DMT_STORMS_GROTTO_GRASS_2: can_cut_shrubs()
+        RC_DMT_STORMS_GROTTO_GRASS_3: can_cut_shrubs()
+        RC_DMT_STORMS_GROTTO_GRASS_4: can_cut_shrubs()
+    }
+}
+
 # overworld/graveyard
 
 extend region RR_THE_GRAVEYARD {
