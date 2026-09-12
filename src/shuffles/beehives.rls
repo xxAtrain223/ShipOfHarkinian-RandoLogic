@@ -53,6 +53,21 @@ extend region RR_KF_STORMS_GROTTO {
     }
 }
 
+# overworld/zoras_domain
+
+extend region RR_ZORAS_DOMAIN {
+    locations {
+        RC_ZD_IN_FRONT_OF_KING_ZORA_BEEHIVE_LEFT:  is_child() and can_break_upper_beehives()
+        RC_ZD_IN_FRONT_OF_KING_ZORA_BEEHIVE_RIGHT: is_child() and can_break_upper_beehives()
+    }
+}
+
+extend region RR_ZD_BEHIND_KING_ZORA {
+    locations {
+        RC_ZD_BEHIND_KING_ZORA_BEEHIVE: is_child() and can_break_upper_beehives()
+    }
+}
+
 # overworld/zoras_river
 
 extend region RR_ZR_OPEN_GROTTO {

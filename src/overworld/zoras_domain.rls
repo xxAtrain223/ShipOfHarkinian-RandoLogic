@@ -1,0 +1,71 @@
+region RR_ZORAS_DOMAIN {
+    name: "Zoras Domain"
+    scene: SCENE_ZORAS_DOMAIN
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy_except_suns()
+        LOGIC_NUT_ACCESS: can_break_pots()
+        LOGIC_STICK_ACCESS: is_child() and can_break_pots()
+        LOGIC_FISH_ACCESS: is_child()
+        LOGIC_KING_ZORA_THAWED: is_adult() and blue_fire()
+        LOGIC_DELIVER_RUTOS_LETTER: can_use(RG_RUTOS_LETTER) and is_child() and setting(RSK_ZORAS_FOUNTAIN) is not RO_ZF_OPEN
+    }
+
+    locations {
+        RC_ZD_DIVING_MINIGAME: has(RG_BRONZE_SCALE) and has(RG_CHILD_WALLET) and has(RG_SPEAK_ZORA) and is_child()
+    }
+
+    exits {
+        RR_ZR_BEHIND_WATERFALL: always
+        RR_LH_FROM_SHORTCUT: is_child() and (has(RG_SILVER_SCALE) or can_use(RG_IRON_BOOTS))
+        RR_ZD_BEHIND_KING_ZORA: flag(LOGIC_DELIVER_RUTOS_LETTER) or setting(RSK_ZORAS_FOUNTAIN) is RO_ZF_OPEN or (setting(RSK_ZORAS_FOUNTAIN) is RO_ZF_CLOSED_CHILD and is_adult()) or (trick(RT_ZD_KING_ZORA_SKIP) and is_adult())
+        RR_ZD_SHOP: is_child() or blue_fire()
+        RR_ZORAS_DOMAIN_ISLAND: always
+    }
+}
+
+region RR_ZORAS_DOMAIN_ISLAND {
+    name: "Zoras Domain Island"
+    scene: SCENE_ZORAS_DOMAIN
+
+    exits {
+        RR_ZORAS_DOMAIN: is_adult() or has(RG_BRONZE_SCALE) or can_use(RG_LONGSHOT) or (can_use(RG_HOOKSHOT) and trick(RT_HOOKSHOT_LADDERS))
+        RR_ZD_STORMS_GROTTO: can_open_storms_grotto()
+    }
+}
+
+region RR_ZD_BEHIND_KING_ZORA {
+    name: "ZD Behind King Zora"
+    scene: SCENE_ZORAS_DOMAIN
+
+    events {
+        LOGIC_KING_ZORA_THAWED: is_adult() and blue_fire()
+    }
+
+    exits {
+        RR_ZORAS_DOMAIN: flag(LOGIC_DELIVER_RUTOS_LETTER) or setting(RSK_ZORAS_FOUNTAIN) is RO_ZF_OPEN or (setting(RSK_ZORAS_FOUNTAIN) is RO_ZF_CLOSED_CHILD and is_adult())
+        RR_ZORAS_FOUNTAIN: always
+    }
+}
+
+region RR_ZD_SHOP {
+    name: "ZD Shop"
+    scene: SCENE_ZORA_SHOP
+
+    exits {
+        RR_ZORAS_DOMAIN: always
+    }
+}
+
+region RR_ZD_STORMS_GROTTO {
+    name: "ZD Storms Grotto"
+    scene: SCENE_GROTTOS
+
+    events {
+        LOGIC_FAIRY_ACCESS: always
+    }
+
+    exits {
+        RR_ZORAS_DOMAIN_ISLAND: always
+    }
+}

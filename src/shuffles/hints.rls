@@ -156,6 +156,14 @@ extend region RR_TEMPLE_OF_TIME {
     }
 }
 
+# overworld/zoras_domain
+
+extend region RR_ZORAS_DOMAIN {
+    locations {
+        RC_ZD_GOSSIP_STONE: always
+    }
+}
+
 # overworld/zoras_river
 
 extend region RR_ZORAS_RIVER {

@@ -264,6 +264,28 @@ extend region RR_TOT_ENTRANCE {
     }
 }
 
+# overworld/zoras_domain
+
+extend region RR_ZORAS_DOMAIN {
+    locations {
+        RC_ZD_GOSSIP_STONE_FAIRY: call_gossip_fairy_except_suns()
+        RC_ZD_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_ZD_STORMS_GROTTO {
+    locations {
+        RC_ZD_FAIRY_GROTTO_FAIRY_1: always
+        RC_ZD_FAIRY_GROTTO_FAIRY_2: always
+        RC_ZD_FAIRY_GROTTO_FAIRY_3: always
+        RC_ZD_FAIRY_GROTTO_FAIRY_4: always
+        RC_ZD_FAIRY_GROTTO_FAIRY_5: always
+        RC_ZD_FAIRY_GROTTO_FAIRY_6: always
+        RC_ZD_FAIRY_GROTTO_FAIRY_7: always
+        RC_ZD_FAIRY_GROTTO_FAIRY_8: always
+    }
+}
+
 # overworld/zoras_river
 
 extend region RR_ZORAS_RIVER {

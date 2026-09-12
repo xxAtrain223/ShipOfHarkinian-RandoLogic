@@ -589,3 +589,15 @@ extend region RR_MARKET_MAN_IN_GREEN_HOUSE {
         RC_MK_BACK_ALLEY_HOUSE_POT_3: has(RG_POWER_BRACELET)
     }
 }
+
+# overworld/zoras_domain
+
+extend region RR_ZORAS_DOMAIN {
+    locations {
+        RC_ZD_NEAR_SHOP_POT_1: can_break_pots()
+        RC_ZD_NEAR_SHOP_POT_2: can_break_pots()
+        RC_ZD_NEAR_SHOP_POT_3: can_break_pots()
+        RC_ZD_NEAR_SHOP_POT_4: can_break_pots()
+        RC_ZD_NEAR_SHOP_POT_5: can_break_pots()
+    }
+}

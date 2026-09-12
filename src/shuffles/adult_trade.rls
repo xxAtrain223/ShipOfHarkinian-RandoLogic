@@ -11,3 +11,12 @@ extend region RR_KAK_ODD_POTION_BUILDING {
         RC_KAK_TRADE_ODD_MUSHROOM: is_adult() and can_use(RG_ODD_MUSHROOM)
     }
 }
+
+# overworld/zoras_domain
+
+extend region RR_ZORAS_DOMAIN {
+    locations {
+        RC_ZD_KING_ZORA_THAWED: is_adult() and flag(LOGIC_KING_ZORA_THAWED) and has(RG_SPEAK_ZORA)
+        RC_ZD_TRADE_PRESCRIPTION: is_adult() and flag(LOGIC_KING_ZORA_THAWED) and can_use(RG_PRESCRIPTION)
+    }
+}

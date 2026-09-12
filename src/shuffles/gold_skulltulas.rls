@@ -333,6 +333,14 @@ extend region RR_MARKET_GUARD_HOUSE {
     }
 }
 
+# overworld/zoras_domain
+
+extend region RR_ZORAS_DOMAIN {
+    locations {
+        RC_ZD_GS_FROZEN_WATERFALL: is_adult() and (hookshot_or_boomerang() or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW) or (can_use(RG_MAGIC_SINGLE) and (can_use(RG_MASTER_SWORD) or can_use(RG_KOKIRI_SWORD) or can_use(RG_BIGGORON_SWORD))) or (trick(RT_ZD_GS) and can_jumpslash_except_hammer())) and can_get_night_time_gs()
+    }
+}
+
 # overworld/zoras_river
 
 extend region RR_ZR_FRONT {

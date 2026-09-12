@@ -587,6 +587,14 @@ extend region RR_KF_STORMS_GROTTO {
     }
 }
 
+# overworld/zoras_domain
+
+extend region RR_ZORAS_DOMAIN {
+    locations {
+        RC_ZD_CHEST: is_child() and can_use(RG_STICKS) and has(RG_OPEN_CHEST)
+    }
+}
+
 # overworld/zoras_river
 
 extend region RR_ZR_OPEN_GROTTO {

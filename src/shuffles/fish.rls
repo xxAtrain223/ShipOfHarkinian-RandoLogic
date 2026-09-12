@@ -34,6 +34,18 @@ extend region RR_KF_STORMS_GROTTO {
     }
 }
 
+# overworld/zoras_domain
+
+extend region RR_ZORAS_DOMAIN {
+    locations {
+        RC_ZD_FISH_1: is_child() and has_bottle()
+        RC_ZD_FISH_2: is_child() and has_bottle()
+        RC_ZD_FISH_3: is_child() and has_bottle()
+        RC_ZD_FISH_4: is_child() and has_bottle()
+        RC_ZD_FISH_5: is_child() and has_bottle()
+    }
+}
+
 # overworld/zoras_river
 
 extend region RR_ZR_OPEN_GROTTO {
