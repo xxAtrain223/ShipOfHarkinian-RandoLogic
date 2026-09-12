@@ -1,3 +1,44 @@
+# dungeons/bottom_of_the_well
+
+extend region RR_BOTW_LOCKED_CAGE {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_GS_LIKE_LIKE_CAGE: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
+extend region RR_BOTW_SKULL_WALL_ROOM {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_GS_WEST_INNER_ROOM: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
+extend region RR_BOTW_INVISIBLE_PATH {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_GS_EAST_INNER_ROOM: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
+extend region RR_BOTW_MQ_GRAVE_ROOM {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_MQ_GS_WEST_INNER_ROOM: (take_damage() or can_use(RG_NUTS)) and
+        (has(RG_POWER_BRACELET) or trick(RT_VISIBLE_COLLISION)) and can_kill(RE_GOLD_SKULLTULA)
+    }
+}
+
+extend region RR_BOTW_MQ_CRYPT {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_MQ_GS_COFFIN_ROOM: can_get_drop(RE_GOLD_SKULLTULA)
+    }
+}
+
+extend region RR_BOTW_MQ_B3 {
+    locations {
+        # Behind invisible big skulltulas, but with navi spotting it's easy to avoid them,
+        # or at worst, tank your way through as they do not block the path
+        RC_BOTTOM_OF_THE_WELL_MQ_GS_BASEMENT: can_get_drop(RE_GOLD_SKULLTULA)
+    }
+}
+
 # dungeons/deku_tree
 
 extend region RR_DEKU_TREE_COMPASS_ROOM {

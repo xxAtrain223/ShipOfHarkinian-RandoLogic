@@ -1,0 +1,243 @@
+region RR_BOTW_CORRIDOR {
+    name: "Bottom of the Well Corridor"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_ENTRYWAY: can_use(RG_CRAWL) and can_climb_ladder()
+        RR_BOTW_PERIMETER: can_pass(RE_BIG_SKULLTULA)
+    }
+}
+
+region RR_BOTW_PERIMETER {
+    name: "Bottom of the Well Perimeter"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    events {
+        LOGIC_STICK_ACCESS: can_break_pots()
+        LOGIC_NUT_ACCESS: can_break_pots()
+        LOGIC_BOTW_LOWERED_WATER: can_use(RG_ZELDAS_LULLABY)
+    }
+
+    exits {
+        RR_BOTW_CORRIDOR: can_pass(RE_BIG_SKULLTULA)
+        RR_BOTW_MIDDLE: trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)
+        RR_BOTW_PIT_CAGE: trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)
+        RR_BOTW_HIDDEN_POTS: trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)
+        RR_BOTW_CORNER_CRAWLSPACE: can_use(RG_CRAWL)
+        # Climb always needed in case water is lowered out of logic
+        RR_BOTW_BEHIND_MOAT:
+            (flag(LOGIC_BOTW_LOWERED_WATER) and (has(RG_CLIMB) or can_use(RG_HOOKSHOT))) or has(RG_BRONZE_SCALE) or
+            (is_adult() and can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT))
+        RR_BOTW_NEAR_BOSS_LOWER: flag(LOGIC_BOTW_LOWERED_WATER) and can_use(RG_CRAWL)
+        # Falling down into basement requires nothing, but falling down somewhere specific requires lens or lens trick
+        # kinda questionable given several drops are blocked by rocks, but that's how it was handled before and on N64
+        RR_BOTW_B3_OOZE: always
+        RR_BOTW_B3_BLOCKED_GRASS: trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)
+    }
+}
+
+# This region combines the Middle with the perimeter's hidden areas. If a warp puts link into the middle
+# without crossing the perimeter or using lens, it will need it's own region
+region RR_BOTW_MIDDLE {
+    name: "Bottom of the Well Middle"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_PERIMETER: trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)
+        RR_BOTW_PIT_CAGE: trick(RT_BOTW_PITS) and (trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH))
+        RR_BOTW_SKULL_WALL_ROOM: small_keys(SCENE_BOTTOM_OF_THE_WELL, 3)
+        RR_BOTW_INVISIBLE_PATH: small_keys(SCENE_BOTTOM_OF_THE_WELL, 3)
+        RR_BOTW_B3_OOZE: always
+        RR_BOTW_B3_PLATFORM: trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)
+    }
+}
+
+region RR_BOTW_HIDDEN_POTS {
+    name: "Bottom of the Well Hidden Pots"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_PERIMETER: trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)
+    }
+}
+
+region RR_BOTW_CORNER_CRAWLSPACE {
+    name: "Bottom of the Well Corner Crawlspace"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_PERIMETER: can_use(RG_CRAWL)
+        RR_BOTW_HIDDEN_PITS_ROOM: small_keys(SCENE_BOTTOM_OF_THE_WELL, 3)
+    }
+}
+
+# Passing through this area needs lens, but entering doesn't, so that the fire keese can be killed
+# without crossing the pits if enemy drops are ever shuffled
+region RR_BOTW_HIDDEN_PITS_ROOM {
+    name: "Bottom of the Well Hidden Pits Room"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_CORNER_CRAWLSPACE: small_keys(SCENE_BOTTOM_OF_THE_WELL, 3) and (trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH))
+        RR_BOTW_LOCKED_CAGE: trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)
+        # not sure if this lens check is needed, these holes are a bit too easy to find, but it matches existing logic
+        RR_BOTW_B3_BOMB_FLOWERS: trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)
+    }
+}
+
+region RR_BOTW_LOCKED_CAGE {
+    name: "Bottom of the Well Locked Cage"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_HIDDEN_PITS_ROOM: always
+    }
+}
+
+region RR_BOTW_PIT_CAGE {
+    name: "Bottom of the Well Pit Cage"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_PERIMETER: trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)
+        RR_BOTW_MIDDLE: trick(RT_BOTW_PITS) and (trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH))
+        RR_BOTW_B3_OOZE: always
+    }
+}
+
+region RR_BOTW_SKULL_WALL_ROOM {
+    name: "Bottom of the Well SKull Wall Room"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    events {
+        LOGIC_STICK_ACCESS: can_get_deku_baba_sticks()
+        LOGIC_NUT_ACCESS: can_get_deku_baba_nuts()
+    }
+
+    exits {
+        RR_BOTW_MIDDLE: small_keys(SCENE_BOTTOM_OF_THE_WELL, 3)
+    }
+}
+
+region RR_BOTW_INVISIBLE_PATH {
+    name: "Bottom of the Well Invisible Path"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_MIDDLE: small_keys(SCENE_BOTTOM_OF_THE_WELL, 3)
+        RR_BOTW_B3_OOZE: always
+    }
+}
+
+region RR_BOTW_BEHIND_MOAT {
+    name: "Bottom of the Well Behind Moat"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        # Climb always needed in case water is lowered out of logic
+        RR_BOTW_PERIMETER:
+            (flag(LOGIC_BOTW_LOWERED_WATER) or has(RG_BRONZE_SCALE) or
+             (is_adult() and can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT))) and
+            (has(RG_CLIMB) or can_use(RG_HOOKSHOT))
+        RR_BOTW_CRYPT: always
+    }
+}
+
+region RR_BOTW_CRYPT {
+    name: "Bottom of the Well Crypt"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    locations {
+        RC_BOTTOM_OF_THE_WELL_FREESTANDING_KEY: has_fire_source_with_torch() or can_use(RG_FAIRY_BOW)
+    }
+
+    exits {
+        RR_BOTW_BEHIND_MOAT: always
+    }
+}
+
+region RR_BOTW_NEAR_BOSS_LOWER {
+    name: "Bottom of the Well Near Boss Lower"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        # Climb always needed in case the water is lowered out of logic
+        # Adult can ground jump out of the pit without climb but needs a way through the crawlspace
+        RR_BOTW_PERIMETER: can_use(RG_CRAWL) and (flag(LOGIC_BOTW_LOWERED_WATER) or has(RG_BRONZE_SCALE)) and has(RG_CLIMB)
+        RR_BOTW_NEAR_BOSS_UPPER: has(RG_CLIMB) or (is_adult() and can_ground_jump())
+    }
+}
+
+region RR_BOTW_NEAR_BOSS_UPPER {
+    name: "Bottom of the Well Near Boss Upper"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_NEAR_BOSS_LOWER: always
+        RR_BOTW_DEAD_HAND_ROOM: always
+    }
+}
+
+region RR_BOTW_DEAD_HAND_ROOM {
+    name: "Bottom of the Well Dead Hand Room"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_NEAR_BOSS_UPPER: can_kill(RE_DEAD_HAND)
+    }
+}
+
+region RR_BOTW_B3_OOZE {
+    name: "Bottom of the Well B3 Ooze"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_HIDDEN_POTS: can_climb_high_ladder()
+        # It's possible to abuse boulder's limited range of collision detection to detonate the flowers through
+        # the boulder with bow, but this is a glitch. The exact range is just past the furthest away plank in
+        # the green goo section
+        RR_BOTW_B3_BOMB_FLOWERS:
+            any_age(blast_or_smash() or can_use(RG_DINS_FIRE) or (trick(RT_BOTW_BASEMENT) and can_use(RG_STICKS)) or
+                    (trick(RT_DISTANT_BOULDER_COLLISION) and can_use(RG_FAIRY_BOW)))
+        RR_BOTW_B3_BLOCKED_GRASS: any_age(blast_or_smash())
+        RR_BOTW_B3_CHEST_AREA: any_age(blast_or_smash())
+    }
+}
+
+region RR_BOTW_B3_BOMB_FLOWERS {
+    name: "Bottom of the Well B3 Bomb Flowers"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_B3_OOZE: can_detonate_upright_bomb_flower()
+        RR_BOTW_B3_BLOCKED_GRASS: has(RG_GORONS_BRACELET)
+        RR_BOTW_B3_CHEST_AREA: has(RG_GORONS_BRACELET)
+    }
+}
+
+region RR_BOTW_B3_BLOCKED_GRASS {
+    name: "Bottom of the Well B3 Blocked Grass"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_B3_OOZE: any_age(blast_or_smash() or has(RG_GORONS_BRACELET))
+    }
+}
+
+region RR_BOTW_B3_CHEST_AREA {
+    name: "Bottom of the Well B3 Chest Area"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_B3_OOZE: any_age(blast_or_smash())
+    }
+}
+
+region RR_BOTW_B3_PLATFORM {
+    name: "Bottom of the Well B3 Platform"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_B3_OOZE: always
+    }
+}

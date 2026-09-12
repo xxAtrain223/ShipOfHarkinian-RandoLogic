@@ -1,3 +1,44 @@
+# dungeons/bottom_of_the_well
+
+extend region RR_BOTW_CRYPT {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_COFFIN_ROOM_FRONT_LEFT_HEART:   always
+        RC_BOTTOM_OF_THE_WELL_COFFIN_ROOM_MIDDLE_RIGHT_HEART: has_fire_source_with_torch() or can_use(RG_FAIRY_BOW)
+    }
+}
+
+extend region RR_BOTW_B3_PLATFORM {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_PLATFORM_LEFT_RUPEE:       always
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_PLATFORM_BACK_LEFT_RUPEE:  always
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_PLATFORM_MIDDLE_RUPEE:     always
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_PLATFORM_BACK_RIGHT_RUPEE: always
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_PLATFORM_RIGHT_RUPEE:      always
+    }
+}
+
+extend region RR_BOTW_MQ_PERIMETER {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_MQ_BOMB_LEFT_HEART:  has_explosives()
+        RC_BOTTOM_OF_THE_WELL_MQ_BOMB_RIGHT_HEART: has_explosives()
+    }
+}
+
+extend region RR_BOTW_MQ_CRYPT {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_MQ_COFFIN_ROOM_FRONT_RIGHT_HEART: has_fire_source_with_torch() or can_use(RG_FAIRY_BOW)
+        RC_BOTTOM_OF_THE_WELL_MQ_COFFIN_ROOM_MIDDLE_LEFT_HEART: has_fire_source_with_torch() or can_use(RG_FAIRY_BOW)
+    }
+}
+
+extend region RR_BOTW_MQ_B3 {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_MQ_BASEMENT_HALLWAY_FRONT_HEART: always
+        RC_BOTTOM_OF_THE_WELL_MQ_BASEMENT_HALLWAY_LEFT_HEART:  always
+        RC_BOTTOM_OF_THE_WELL_MQ_BASEMENT_HALLWAY_RIGHT_HEART: always
+    }
+}
+
 # dungeons/deku_tree
 
 extend region RR_DEKU_TREE_LOBBY {

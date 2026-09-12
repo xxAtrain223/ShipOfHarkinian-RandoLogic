@@ -1,3 +1,80 @@
+# dungeons/bottom_of_the_well
+
+extend region RR_BOTW_PERIMETER {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_FRONT_LEFT_FAKE_WALL_CHEST:   (trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+        RC_BOTTOM_OF_THE_WELL_RIGHT_BOTTOM_FAKE_WALL_CHEST: (trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+        RC_BOTTOM_OF_THE_WELL_FRONT_CENTER_BOMBABLE_CHEST:  has_explosives() and has(RG_OPEN_CHEST)
+        RC_BOTTOM_OF_THE_WELL_BACK_LEFT_BOMBABLE_CHEST:     has_explosives() and (trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+        RC_BOTTOM_OF_THE_WELL_UNDERWATER_FRONT_CHEST:       (flag(LOGIC_BOTW_LOWERED_WATER) and has(RG_OPEN_CHEST)) or can_open_underwater_chest()
+        RC_BOTTOM_OF_THE_WELL_UNDERWATER_LEFT_CHEST:        (flag(LOGIC_BOTW_LOWERED_WATER) and has(RG_OPEN_CHEST)) or can_open_underwater_chest()
+    }
+}
+
+extend region RR_BOTW_MIDDLE {
+    locations {
+        # You can just barely pass the spider on the right side without damage or items,
+        # but it's probably tight enough to count as a trick
+        RC_BOTTOM_OF_THE_WELL_CENTER_SKULLTULA_CHEST: (can_pass(RE_BIG_SKULLTULA) or take_damage()) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_BOTW_HIDDEN_PITS_ROOM {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_FIRE_KEESE_CHEST: (trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_BOTW_LOCKED_CAGE {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_LIKE_LIKE_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_BOTW_PIT_CAGE {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_COMPASS_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_BOTW_BEHIND_MOAT {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_UNDERWATER_LEFT_CHEST: (flag(LOGIC_BOTW_LOWERED_WATER) and has(RG_OPEN_CHEST)) or can_open_underwater_chest()
+    }
+}
+
+extend region RR_BOTW_DEAD_HAND_ROOM {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_LENS_OF_TRUTH_CHEST: can_kill(RE_DEAD_HAND) and has(RG_OPEN_CHEST)
+        RC_BOTTOM_OF_THE_WELL_INVISIBLE_CHEST:     (trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_BOTW_B3_CHEST_AREA {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_MAP_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_BOTW_MQ_MIDDLE {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_MQ_MAP_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_BOTW_MQ_DEAD_HAND_ROOM {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_MQ_COMPASS_CHEST: can_kill(RE_DEAD_HAND) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_BOTW_MQ_B3_PLATFORM {
+    locations {
+        # Assumes RR_BOTW_MQ_B3 access
+        RC_BOTTOM_OF_THE_WELL_MQ_LENS_OF_TRUTH_CHEST: can_pass(RE_REDEAD) and has(RG_OPEN_CHEST)
+    }
+}
+
 # dungeons/deku_tree
 
 extend region RR_DEKU_TREE_LOBBY_2F {

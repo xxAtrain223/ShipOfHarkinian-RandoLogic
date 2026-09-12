@@ -1,3 +1,23 @@
+# dungeons/bottom_of_the_well
+
+extend region RR_BOTW_B3_OOZE {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_SUN_FAIRY: can_use(RG_SUNS_SONG)
+    }
+}
+
+extend region RR_BOTW_MQ_MIDDLE {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_MQ_CELL_SUN_FAIRY: can_use(RG_SUNS_SONG)
+    }
+}
+
+extend region RR_BOTW_MQ_B3 {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_MQ_BASEMENT_SUN_FAIRY: can_use(RG_SUNS_SONG)
+    }
+}
+
 # dungeons/dodongos_cavern
 
 extend region RR_DODONGOS_CAVERN_LOBBY {

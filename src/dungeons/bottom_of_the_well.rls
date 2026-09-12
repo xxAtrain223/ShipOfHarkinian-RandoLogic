@@ -1,0 +1,13 @@
+# Vanilla/MQ Decider
+region RR_BOTW_ENTRYWAY {
+    name: "Bottom of the Well Entryway"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        # Technically involves a fake wall, but passing it lensless is intended in vanilla and it is well telegraphed
+        # Backshot should be implemented here, or new regions should be added
+        RR_BOTW_CORRIDOR: is_vanilla() and can_use(RG_CRAWL)
+        RR_BOTW_MQ_PERIMETER: is_mq() and can_use(RG_CRAWL)
+        RR_KAK_WELL: always
+    }
+}

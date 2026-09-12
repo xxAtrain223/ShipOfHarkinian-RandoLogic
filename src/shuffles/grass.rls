@@ -1,3 +1,36 @@
+# dungeons/bottom_of_the_well
+
+extend region RR_BOTW_B3_OOZE {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_GRASS_1: can_cut_shrubs()
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_GRASS_2: can_cut_shrubs()
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_GRASS_3: can_cut_shrubs()
+    }
+}
+
+extend region RR_BOTW_B3_BLOCKED_GRASS {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_BEHIND_ROCKS_GRASS_1: can_cut_shrubs()
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_BEHIND_ROCKS_GRASS_2: can_cut_shrubs()
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_BEHIND_ROCKS_GRASS_3: can_cut_shrubs()
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_BEHIND_ROCKS_GRASS_4: can_cut_shrubs()
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_BEHIND_ROCKS_GRASS_5: can_cut_shrubs()
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_BEHIND_ROCKS_GRASS_6: can_cut_shrubs()
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_BEHIND_ROCKS_GRASS_7: can_cut_shrubs()
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_BEHIND_ROCKS_GRASS_8: can_cut_shrubs()
+        RC_BOTTOM_OF_THE_WELL_BASEMENT_BEHIND_ROCKS_GRASS_9: can_cut_shrubs()
+    }
+}
+
+extend region RR_BOTW_MQ_DEAD_HAND_ROOM {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_MQ_DEAD_HAND_GRASS_1: can_cut_shrubs()
+        RC_BOTTOM_OF_THE_WELL_MQ_DEAD_HAND_GRASS_2: can_cut_shrubs()
+        RC_BOTTOM_OF_THE_WELL_MQ_DEAD_HAND_GRASS_3: can_cut_shrubs()
+        RC_BOTTOM_OF_THE_WELL_MQ_DEAD_HAND_GRASS_4: can_cut_shrubs()
+    }
+}
+
 # dungeons/deku_tree
 
 extend region RR_DEKU_TREE_LOBBY {

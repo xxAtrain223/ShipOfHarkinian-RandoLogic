@@ -1,0 +1,200 @@
+region RR_BOTW_MQ_PERIMETER {
+    name: "Bottom of the Well MQ Perimeter"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    events {
+        # Fairies are in slingshot wonder item, & pot behind grate. Pot can also be broken with boomerang trick
+        LOGIC_FAIRY_ACCESS:
+            (is_child() and can_use(RG_FAIRY_SLINGSHOT)) or
+            (any_age(blast_or_smash()) and can_hit_eye_targets()) or
+            # Item extension can get a fairy by either shooting the pot through the grate and letting the fairy fly
+            # through the wall. This cannot be done if the pot has an item in it, as it cannot be collected this way.
+            (trick(RT_ITEM_EXTENSION) and
+             (setting(RSK_SHUFFLE_POTS) is RO_SHUFFLE_POTS_OFF or setting(RSK_SHUFFLE_POTS) is RO_SHUFFLE_POTS_OVERWORLD) and
+             can_hit_eye_targets()) or
+            (trick(RT_VISIBLE_COLLISION) and is_child() ? can_hit_eye_targets() : can_use(RG_FAIRY_SLINGSHOT))
+        # It is possible to hit the water switch with a pot from RR_BOTW_MQ_MIDDLE, however the hitbox for making it
+        # activate is very unintuitive. You have to throw the pot from further back to hit the switch from the front
+        # instead of the top, trying to hit the "fingers" directly. This unintuitiveness means it should be a trick.
+        # ZL is needed to get a clear path to carry the pot
+        LOGIC_BOTW_LOWERED_WATER: can_hit_switch(ED_SHORT_JUMPSLASH)
+        LOGIC_BOTW_MQ_OPENED_GATES: can_use(RG_ZELDAS_LULLABY)
+    }
+
+    exits {
+        RR_BOTW_ENTRYWAY: can_use(RG_CRAWL) and (has(RG_CLIMB) or can_use(RG_HOOKSHOT))
+        RR_BOTW_MQ_MIDDLE: flag(LOGIC_BOTW_MQ_OPENED_GATES)
+        RR_BOTW_MQ_PIT_CAGE: any_age(blast_or_smash()) and can_pass(RE_BIG_SKULLTULA)
+        # Climb always needed in case water is lowered out of logic
+        RR_BOTW_MQ_BEHIND_MOAT:
+            (flag(LOGIC_BOTW_LOWERED_WATER) and (has(RG_CLIMB) or can_use(RG_HOOKSHOT))) or has(RG_BRONZE_SCALE) or
+            (is_adult() and can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT))
+        RR_BOTW_MQ_CORNER_CRAWLSPACE: can_use(RG_CRAWL)
+        RR_BOTW_MQ_NEAR_BOSS_LOWER: can_use(RG_CRAWL) and flag(LOGIC_BOTW_LOWERED_WATER)
+        RR_BOTW_MQ_B3: always
+    }
+}
+
+region RR_BOTW_MQ_MIDDLE {
+    name: "Bottom of the Well MQ Middle"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_MQ_PERIMETER: flag(LOGIC_BOTW_MQ_OPENED_GATES)
+        RR_BOTW_MQ_PIT_CAGE: trick(RT_BOTW_PITS)
+        RR_BOTW_MQ_B3_PLATFORM: flag(LOGIC_BOTW_MQ_OPENED_MIDDLE_HOLE)
+        RR_BOTW_MQ_B3: always
+        RR_BOTW_MQ_INVISIBLE_PATH: any_age(has(RG_POWER_BRACELET) or can_hit_switch(ED_BOMB_THROW))
+        RR_BOTW_MQ_GRAVE_ROOM: flag(LOGIC_BOTW_MQ_OPENED_WEST_ROOM)
+    }
+}
+
+region RR_BOTW_MQ_INVISIBLE_PATH {
+    name: "Bottom of the Well Invisible Path"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    locations {
+        # This location technically involves an invisible platform, but it's intended to do lensless in vanilla
+        # and is clearly signposted by pots.
+        RC_BOTTOM_OF_THE_WELL_MQ_EAST_INNER_ROOM_FREESTANDING_KEY: always
+    }
+
+    exits {
+        RR_BOTW_MQ_MIDDLE: always
+        RR_BOTW_MQ_B3: always
+    }
+}
+
+region RR_BOTW_MQ_GRAVE_ROOM {
+    name: "Bottom of the Well Grave Room"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_MQ_MIDDLE: always
+    }
+}
+
+region RR_BOTW_MQ_PIT_CAGE {
+    name: "Bottom of the Well MQ Pit Cage"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    events {
+        LOGIC_BOTW_MQ_OPENED_WEST_ROOM: always
+    }
+
+    exits {
+        RR_BOTW_MQ_PERIMETER: blast_or_smash() and (can_pass(RE_BIG_SKULLTULA) or trick(RT_BOTW_PITS))
+        RR_BOTW_MQ_MIDDLE: trick(RT_BOTW_PITS)
+        RR_BOTW_MQ_B3: always
+    }
+}
+
+region RR_BOTW_MQ_BEHIND_MOAT {
+    name: "Bottom of the Well MQ Behind Moat"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        # Climb always needed in case water is lowered out of logic
+        RR_BOTW_MQ_PERIMETER:
+            ((flag(LOGIC_BOTW_LOWERED_WATER) or has(RG_BRONZE_SCALE)) and (has(RG_CLIMB) or can_use(RG_HOOKSHOT))) or
+            (is_adult() and can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT))
+        RR_BOTW_MQ_CRYPT: small_keys(SCENE_BOTTOM_OF_THE_WELL, 2)
+    }
+}
+
+region RR_BOTW_MQ_CRYPT {
+    name: "Bottom of the Well MQ Crypt"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_MQ_BEHIND_MOAT: small_keys(SCENE_BOTTOM_OF_THE_WELL, 2)
+    }
+}
+
+region RR_BOTW_MQ_CORNER_CRAWLSPACE {
+    name: "Bottom of the Well MQ Northeast Crawlspace"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_MQ_PERIMETER: can_use(RG_CRAWL)
+        RR_BOTW_MQ_FLOORMASTER_ROOM: can_use_projectile()
+    }
+}
+
+region RR_BOTW_MQ_FLOORMASTER_ROOM {
+    name: "Bottom of the Well MQ Floormaster Room"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_MQ_CORNER_CRAWLSPACE: always
+        RR_BOTW_MQ_LOCKED_CAGE: small_keys(SCENE_BOTTOM_OF_THE_WELL, 2)
+    }
+}
+
+region RR_BOTW_MQ_LOCKED_CAGE {
+    name: "Bottom of the Well MQ Locked Cage"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    events {
+        LOGIC_BOTW_MQ_OPENED_MIDDLE_HOLE: has_explosives()
+    }
+
+    exits {
+        RR_BOTW_MQ_FLOORMASTER_ROOM: can_use(RG_CRAWL) and small_keys(SCENE_BOTTOM_OF_THE_WELL, 2)
+    }
+}
+
+region RR_BOTW_MQ_NEAR_BOSS_LOWER {
+    name: "Bottom of the Well MQ Near Boss Lower"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        # Climb always needed in case the water is lowered out of logic
+        # Adult can ground jump out of the pit without climb but needs a way through the crawlspace
+        RR_BOTW_MQ_PERIMETER:
+            can_use(RG_CRAWL) and (flag(LOGIC_BOTW_LOWERED_WATER) or has(RG_BRONZE_SCALE)) and
+            (has(RG_CLIMB) or can_use(RG_HOOKSHOT))
+        RR_BOTW_MQ_NEAR_BOSS_UPPER: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
+    }
+}
+
+region RR_BOTW_MQ_NEAR_BOSS_UPPER {
+    name: "Bottom of the Well MQ Near Boss Upper"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_MQ_NEAR_BOSS_LOWER: always
+        RR_BOTW_MQ_DEAD_HAND_ROOM: always
+    }
+}
+
+region RR_BOTW_MQ_DEAD_HAND_ROOM {
+    name: "Bottom of the Well MQ Dead Hand Room"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    locations {
+        RC_BOTTOM_OF_THE_WELL_MQ_DEAD_HAND_FREESTANDING_KEY: has_explosives() or (trick(RT_BOTW_MQ_DEADHAND_KEY) and can_use(RG_BOOMERANG))
+    }
+
+    exits {
+        RR_BOTW_MQ_NEAR_BOSS_UPPER: can_kill(RE_DEAD_HAND)
+    }
+}
+
+region RR_BOTW_MQ_B3 {
+    name: "Bottom of the Well MQ B3"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_MQ_PERIMETER: can_climb_high_ladder()
+    }
+}
+
+region RR_BOTW_MQ_B3_PLATFORM {
+    name: "Bottom of the Well MQ B3 Platform"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    exits {
+        RR_BOTW_MQ_B3: always
+    }
+}
