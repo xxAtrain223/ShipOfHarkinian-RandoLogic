@@ -1,0 +1,460 @@
+# Notes for calculating timers:
+#   - RT_DMC_BOLERO_JUMP takes about 16 seconds to perform.
+#   - RT_DMC_BOULDER_SKIP assumes a setup that takes 14 seconds to fully execute.
+#   - Spawning and killing the bean skull takes around 10 seconds, as does getting the bean sprout,
+#     as does getting the rupees on the near plank platform, but as it's child only it does not
+#     stack with RT_DMC_BOLERO_JUMP or RT_DMC_BOULDER_SKIP.
+#   - Whatever number of hearts is used for Fewer Tunic Requirements, the default time check is
+#     that +50%, rounded up. This applies to both adult and child.
+#   - All child only checks must be possible with 3 hearts, or minimal item pool breaks.
+#   - Pot Grotto is separate but Rocks Grotto is not, because it needs a different amount of hearts
+#     to reach the blocked exit, which will matter with mods.
+# RANDOTODO: when randomised entrances can be in more than 1 region, make it so the player can
+# always turn around and go back the way they came.
+
+region RR_DMC_UPPER_ENTRY {
+    name: "DMC Upper Entry"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    locations {
+        RC_DMC_WALL_FREESTANDING_POH: fire_timer() >= 16 or hearts() >= 3
+        RC_DMC_VOLCANO_FREESTANDING_POH:
+            ((fire_timer() >= 24 or hearts() >= 5) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS)) or
+            (is_adult() and (fire_timer() >= 56 or hearts() >= 11) and dmc_pots_to_pad() and dmc_upper_to_pots() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))
+    }
+
+    exits {
+        RR_DMC_CRATE:        always
+        RR_DMC_ROCK_GROTTO:  fire_timer() >= 8 or hearts() >= 2
+        RR_DMC_CRACKED_WALL: fire_timer() >= 16 or hearts() >= 3
+        RR_DMC_SCRUB:        fire_timer() >= 16 or hearts() >= 3
+        RR_DMC_BLOCKED_EXIT:
+            ((fire_timer() >= 24 or hearts() >= 5) and dmc_upper_to_pots()) or
+            (is_adult() and (fire_timer() >= 56 or hearts() >= 11) and reach_distant_scarecrow() and take_damage() and trick(RT_UNINTUITIVE_JUMPS))
+        RR_DMC_POTS:
+            ((fire_timer() >= 32 or hearts() >= 6) and dmc_upper_to_pots()) or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and reach_distant_scarecrow() and take_damage() and trick(RT_UNINTUITIVE_JUMPS))
+        RR_DMC_POT_GROTTO_EXIT:
+            ((fire_timer() >= 32 or hearts() >= 6) and dmc_upper_to_pots()) or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and reach_distant_scarecrow() and take_damage() and trick(RT_UNINTUITIVE_JUMPS))
+        RR_DMC_CENTRAL:
+            ((fire_timer() >= 64 or hearts() >= 12) and dmc_upper_to_pots() and dmc_pots_to_pad()) or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and reach_distant_scarecrow() and take_damage() and trick(RT_UNINTUITIVE_JUMPS))
+        RR_DMC_FAR_PLATFORM:
+            (is_adult() and (fire_timer() >= 72 or hearts() >= 14) and dmc_upper_to_pots() and dmc_pots_to_pad() and reach_distant_scarecrow()) or
+            (fire_timer() >= 24 or hearts() >= 5) and take_damage() and trick(RT_UNINTUITIVE_JUMPS)
+        RR_DMC_TEMPLE_EXIT:
+            ((fire_timer() >= 72 or hearts() >= 14) and dmc_upper_to_pots() and dmc_pots_to_pad()) or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and reach_distant_scarecrow() and take_damage() and trick(RT_UNINTUITIVE_JUMPS))
+    }
+}
+
+region RR_DMC_ROCKS_GROTTO_ENTRY {
+    name: "DMC Rocks Grotto Entry"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    locations {
+        RC_DMC_WALL_FREESTANDING_POH: fire_timer() >= 8 or hearts() >= 2
+        RC_DMC_VOLCANO_FREESTANDING_POH:
+            ((fire_timer() >= 24 or hearts() >= 5) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS)) or
+            (is_adult() and (fire_timer() >= 64 or hearts() >= 12) and dmc_pots_to_pad() and dmc_upper_to_pots() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))
+    }
+
+    exits {
+        RR_DMC_CRATE:        fire_timer() >= 8 or hearts() >= 2
+        RR_DMC_ROCK_GROTTO:  always
+        RR_DMC_CRACKED_WALL: fire_timer() >= 16 or hearts() >= 3
+        RR_DMC_SCRUB:        fire_timer() >= 16 or hearts() >= 3
+        RR_DMC_BLOCKED_EXIT:
+            ((fire_timer() >= 32 or hearts() >= 6) and dmc_upper_to_pots()) or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and reach_distant_scarecrow() and take_damage() and trick(RT_UNINTUITIVE_JUMPS))
+        RR_DMC_POTS:
+            ((fire_timer() >= 32 or hearts() >= 6) and dmc_upper_to_pots()) or
+            (is_adult() and (fire_timer() >= 40 or hearts() >= 8) and reach_distant_scarecrow() and take_damage() and trick(RT_UNINTUITIVE_JUMPS))
+        RR_DMC_POT_GROTTO_EXIT:
+            ((fire_timer() >= 40 or hearts() >= 8) and dmc_upper_to_pots()) or
+            (is_adult() and (fire_timer() >= 40 or hearts() >= 8) and reach_distant_scarecrow() and take_damage() and trick(RT_UNINTUITIVE_JUMPS))
+        RR_DMC_CENTRAL:
+            ((fire_timer() >= 64 or hearts() >= 12) and dmc_upper_to_pots() and dmc_pots_to_pad()) or
+            (is_adult() and (fire_timer() >= 40 or hearts() >= 3) and reach_distant_scarecrow() and take_damage() and trick(RT_UNINTUITIVE_JUMPS))
+        RR_DMC_FAR_PLATFORM:
+            (is_adult() and (fire_timer() >= 72 or hearts() >= 14) and dmc_upper_to_pots() and dmc_pots_to_pad() and reach_distant_scarecrow()) or
+            (fire_timer() >= 16 or hearts() >= 3) and take_damage() and trick(RT_UNINTUITIVE_JUMPS)
+        RR_DMC_TEMPLE_EXIT:
+            ((fire_timer() >= 64 or hearts() >= 12) and dmc_upper_to_pots() and dmc_pots_to_pad()) or
+            (is_adult() and (fire_timer() >= 40 or hearts() >= 3) and reach_distant_scarecrow() and take_damage() and trick(RT_UNINTUITIVE_JUMPS))
+    }
+}
+
+region RR_DMC_BLOCKED_ENTRY {
+    name: "DMC Blocked Entry"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    locations {
+        RC_DMC_WALL_FREESTANDING_POH:
+            ((fire_timer() >= 24 or hearts() >= 5) and can_climb_ladder()) or
+            (is_adult() and (fire_timer() >= 40 or hearts() >= 8) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)) or
+            ((fire_timer() >= 24 or hearts() >= 5) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT))
+        RC_DMC_VOLCANO_FREESTANDING_POH:
+            ((fire_timer() >= 16 or hearts() >= 3) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS)) or
+            (is_adult() and (fire_timer() >= 40 or hearts() >= 8) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))
+    }
+
+    exits {
+        RR_DMC_CRATE:
+            ((fire_timer() >= 24 or hearts() >= 5) and can_climb_ladder()) or
+            (is_adult() and (fire_timer() >= 56 or hearts() >= 11) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)) or
+            ((fire_timer() >= 24 or hearts() >= 5) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT))
+        RR_DMC_ROCK_GROTTO:
+            ((fire_timer() >= 24 or hearts() >= 5) and can_climb_ladder()) or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)) or
+            ((fire_timer() >= 24 or hearts() >= 5) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT))
+        RR_DMC_CRACKED_WALL:
+            (fire_timer() >= 32 or hearts() >= 6) and can_climb_ladder() or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)) or
+            ((fire_timer() >= 32 or hearts() >= 6) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT))
+        RR_DMC_SCRUB:           fire_timer() >= 8 or hearts() >= 2
+        RR_DMC_BLOCKED_EXIT:    always
+        RR_DMC_POTS:            fire_timer() >= 8 or hearts() >= 2
+        RR_DMC_POT_GROTTO_EXIT: fire_timer() >= 16 or hearts() >= 3
+        RR_DMC_CENTRAL:
+            ((fire_timer() >= 40 or hearts() >= 8) and dmc_pots_to_pad()) or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and reach_distant_scarecrow() and take_damage() and trick(RT_UNINTUITIVE_JUMPS) and can_climb_ladder())
+        RR_DMC_FAR_PLATFORM:
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and dmc_pots_to_pad() and reach_distant_scarecrow()) or
+            ((fire_timer() >= 32 or hearts() >= 6) and take_damage() and trick(RT_UNINTUITIVE_JUMPS) and can_climb_ladder()) or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)) or
+            ((fire_timer() >= 32 or hearts() >= 6) and take_damage() and trick(RT_UNINTUITIVE_JUMPS) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS))
+        RR_DMC_TEMPLE_EXIT:
+            ((fire_timer() >= 48 or hearts() >= 9) and dmc_pots_to_pad()) or
+            (is_adult() and (fire_timer() >= 56 or hearts() >= 11) and take_damage() and trick(RT_UNINTUITIVE_JUMPS) and reach_distant_scarecrow() and can_climb_ladder())
+    }
+}
+
+region RR_DMC_POTS_ENTRY {
+    name: "DMC Pots Entry"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    locations {
+        RC_DMC_WALL_FREESTANDING_POH:
+            (fire_timer() >= 40 or hearts() >= 8) and can_climb_ladder() or
+            (is_adult() and (fire_timer() >= 40 or hearts() >= 8) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)) or
+            ((fire_timer() >= 24 or hearts() >= 5) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT))
+        RC_DMC_VOLCANO_FREESTANDING_POH:
+            ((fire_timer() >= 8 or hearts() >= 2) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS)) or
+            (is_adult() and (fire_timer() >= 32 or hearts() >= 6) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))
+    }
+
+    exits {
+        RR_DMC_CRATE:
+            (fire_timer() >= 32 or hearts() >= 6) and can_climb_ladder() or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)) or
+            ((fire_timer() >= 24 or hearts() >= 5) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT))
+        RR_DMC_ROCK_GROTTO:
+            (fire_timer() >= 32 or hearts() >= 6) and can_climb_ladder() or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)) or
+            ((fire_timer() >= 24 or hearts() >= 5) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT))
+        RR_DMC_CRACKED_WALL:
+            (fire_timer() >= 32 or hearts() >= 6) and can_climb_ladder() or
+            (is_adult() and (fire_timer() >= 40 or hearts() >= 8) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)) or
+            ((fire_timer() >= 24 or hearts() >= 5) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT))
+        RR_DMC_SCRUB:           fire_timer() >= 16 or hearts() >= 3
+        RR_DMC_BLOCKED_EXIT:    fire_timer() >= 8 or hearts() >= 2
+        RR_DMC_POTS:            always
+        RR_DMC_POT_GROTTO_EXIT: fire_timer() >= 8 or hearts() >= 2
+        RR_DMC_CENTRAL:
+            ((fire_timer() >= 32 or hearts() >= 6) and dmc_pots_to_pad()) or
+            (is_adult() and (fire_timer() >= 56 or hearts() >= 11) and take_damage() and trick(RT_UNINTUITIVE_JUMPS) and reach_distant_scarecrow() and can_climb_ladder())
+        RR_DMC_FAR_PLATFORM:
+            (is_adult() and (fire_timer() >= 40 or hearts() >= 8) and dmc_pots_to_pad() and reach_distant_scarecrow()) or
+            ((fire_timer() >= 32 or hearts() >= 6) and take_damage() and trick(RT_UNINTUITIVE_JUMPS) and can_climb_ladder())
+        RR_DMC_TEMPLE_EXIT:
+            ((fire_timer() >= 40 or hearts() >= 8) and dmc_pots_to_pad()) or
+            (is_adult() and (fire_timer() >= 56 or hearts() >= 11) and take_damage() and trick(RT_UNINTUITIVE_JUMPS) and reach_distant_scarecrow() and can_climb_ladder())
+    }
+}
+
+region RR_DMC_POT_GROTTO_ENTRY {
+    name: "DMC Pot Grotto Entry"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    locations {
+        RC_DMC_WALL_FREESTANDING_POH:
+            (fire_timer() >= 40 or hearts() >= 8) and can_climb_ladder() or
+            (is_adult() and (fire_timer() >= 40 or hearts() >= 8) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)) or
+            ((fire_timer() >= 24 or hearts() >= 5) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT))
+        RC_DMC_VOLCANO_FREESTANDING_POH:
+            (fire_timer() >= 16 or hearts() >= 3) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) or
+            (is_adult() and (fire_timer() >= 32 or hearts() >= 6) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))
+    }
+
+    exits {
+        RR_DMC_CRATE:
+            (fire_timer() >= 32 or hearts() >= 6) and can_climb_ladder() or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)) or
+            ((fire_timer() >= 24 or hearts() >= 5) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT))
+        RR_DMC_ROCK_GROTTO:
+            (fire_timer() >= 32 or hearts() >= 6) and can_climb_ladder() or
+            (is_adult() and (fire_timer() >= 40 or hearts() >= 8) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)) or
+            ((fire_timer() >= 24 or hearts() >= 5) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT))
+        RR_DMC_CRACKED_WALL:
+            (fire_timer() >= 40 or hearts() >= 8) and can_climb_ladder() or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and dmc_pots_to_pad() and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)) or
+            ((fire_timer() >= 32 or hearts() >= 6) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT))
+        RR_DMC_SCRUB:           fire_timer() >= 24 or hearts() >= 5
+        RR_DMC_BLOCKED_EXIT:    fire_timer() >= 16 or hearts() >= 3
+        RR_DMC_POTS:            fire_timer() >= 8 or hearts() >= 2
+        RR_DMC_POT_GROTTO_EXIT: always
+        RR_DMC_CENTRAL:
+            ((fire_timer() >= 32 or hearts() >= 6) and dmc_pots_to_pad()) or
+            (is_adult() and (fire_timer() >= 56 or hearts() >= 11) and take_damage() and trick(RT_UNINTUITIVE_JUMPS) and reach_distant_scarecrow() and can_climb_ladder())
+        RR_DMC_FAR_PLATFORM:
+            (is_adult() and (fire_timer() >= 40 or hearts() >= 8) and dmc_pots_to_pad() and reach_distant_scarecrow()) or
+            ((fire_timer() >= 40 or hearts() >= 8) and take_damage() and trick(RT_UNINTUITIVE_JUMPS) and can_climb_ladder())
+        RR_DMC_TEMPLE_EXIT:
+            ((fire_timer() >= 40 or hearts() >= 8) and dmc_pots_to_pad()) or
+            (is_adult() and (fire_timer() >= 56 or hearts() >= 11) and take_damage() and trick(RT_UNINTUITIVE_JUMPS) and reach_distant_scarecrow() and can_climb_ladder())
+    }
+}
+
+region RR_DMC_PAD_ENTRY {
+    name: "DMC Pad Entry"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    locations {
+        RC_DMC_WALL_FREESTANDING_POH:
+            ((fire_timer() >= 40 or hearts() >= 8) and can_climb_ladder() and dmc_pad_to_pots()) or
+            ((fire_timer() >= 32 or hearts() >= 6) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT)) or
+            (is_adult() and (fire_timer() >= 16 or hearts() >= 3) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))
+        RC_DMC_VOLCANO_FREESTANDING_POH:
+            (fire_timer() >= 24 or hearts() >= 5) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and dmc_pad_to_pots() or
+            (is_adult() and (fire_timer() >= 8 or hearts() >= 2) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))
+    }
+
+    exits {
+        RR_DMC_CRATE:
+            ((fire_timer() >= 40 or hearts() >= 8) and can_climb_ladder() and dmc_pad_to_pots()) or
+            ((fire_timer() >= 40 or hearts() >= 8) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT)) or
+            (is_adult() and (fire_timer() >= 24 or hearts() >= 5) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))
+        RR_DMC_ROCK_GROTTO:
+            ((fire_timer() >= 40 or hearts() >= 8) and can_climb_ladder() and dmc_pad_to_pots()) or
+            ((fire_timer() >= 32 or hearts() >= 6) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT)) or
+            (is_adult() and (fire_timer() >= 16 or hearts() >= 3) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))
+        RR_DMC_CRACKED_WALL:
+            (fire_timer() >= 48 or hearts() >= 9) and can_climb_ladder() and dmc_pad_to_pots() or
+            ((fire_timer() >= 40 or hearts() >= 8) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT)) or
+            (is_adult() and (fire_timer() >= 24 or hearts() >= 5) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))
+        RR_DMC_SCRUB:
+            (fire_timer() >= 24 or hearts() >= 5) and dmc_pad_to_pots() or
+            (is_adult() and (fire_timer() >= 16 or hearts() >= 3) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))
+        RR_DMC_BLOCKED_EXIT:
+            (fire_timer() >= 24 or hearts() >= 5) and dmc_pad_to_pots() or
+            (is_adult() and (fire_timer() >= 16 or hearts() >= 3) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))
+        RR_DMC_POTS:
+            (fire_timer() >= 16 or hearts() >= 3) and dmc_pad_to_pots() or
+            (is_adult() and (fire_timer() >= 16 or hearts() >= 3) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))
+        RR_DMC_POT_GROTTO_EXIT:
+            (fire_timer() >= 16 or hearts() >= 3) and dmc_pad_to_pots() or
+            ((is_adult() and fire_timer() >= 24 or hearts() >= 5) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))
+        RR_DMC_CENTRAL:     fire_timer() >= 16 or hearts() >= 3
+        RR_DMC_FAR_PLATFORM:
+            ((fire_timer() >= 56 or hearts() >= 11) and take_damage() and trick(RT_UNINTUITIVE_JUMPS) and can_climb_ladder() and dmc_pad_to_pots()) or
+            ((fire_timer() >= 40 or hearts() >= 8) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT)) or
+            (is_adult() and (fire_timer() >= 24 or hearts() >= 5) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))or
+            (is_adult() and (fire_timer() >= 16 or hearts() >= 3) and reach_distant_scarecrow())
+        RR_DMC_TEMPLE_EXIT: fire_timer() >= 16 or hearts() >= 3
+    }
+}
+
+region RR_DMC_TEMPLE_ENTRY {
+    name: "DMC Temple Entry"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    locations {
+        RC_DMC_WALL_FREESTANDING_POH:
+            has(RG_CLIMB) and
+            (((fire_timer() >= 72 or hearts() >= 14) and dmc_pad_to_pots()) or
+            ((fire_timer() >= 64 or hearts() >= 12) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT)) or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)))
+        RC_DMC_VOLCANO_FREESTANDING_POH:
+            has(RG_CLIMB) and
+            ((fire_timer() >= 56 or hearts() >= 11) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and dmc_pad_to_pots() or
+            (is_adult() and (fire_timer() >= 40 or hearts() >= 8) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)))
+    }
+
+    exits {
+        RR_DMC_CRATE:
+            has(RG_CLIMB) and
+            (((fire_timer() >= 72 or hearts() >= 14) and dmc_pad_to_pots()) or
+            ((fire_timer() >= 72 or hearts() >= 14) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT)) or
+            (is_adult() and (fire_timer() >= 56 or hearts() >= 11) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)))
+        RR_DMC_ROCK_GROTTO:
+            has(RG_CLIMB) and
+            (((fire_timer() >= 72 or hearts() >= 14) and dmc_pad_to_pots()) or
+            ((fire_timer() >= 64 or hearts() >= 12) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT)) or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)))
+        RR_DMC_CRACKED_WALL:
+            has(RG_CLIMB) and
+            (((fire_timer() >= 80 or hearts() >= 15) and dmc_pad_to_pots()) or
+            ((fire_timer() >= 72 or hearts() >= 14) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT)) or
+            (is_adult() and (fire_timer() >= 56 or hearts() >= 11) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)))
+        RR_DMC_SCRUB:
+            has(RG_CLIMB) and
+            (((fire_timer() >= 56 or hearts() >= 11) and dmc_pad_to_pots()) or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)))
+        RR_DMC_BLOCKED_EXIT:
+            has(RG_CLIMB) and
+            (((fire_timer() >= 56 or hearts() >= 11) and dmc_pad_to_pots()) or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)))
+        RR_DMC_POTS:
+            has(RG_CLIMB) and
+            (((fire_timer() >= 48 or hearts() >= 9) and dmc_pad_to_pots()) or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)))
+        RR_DMC_POT_GROTTO_EXIT:
+            has(RG_CLIMB) and
+            (((fire_timer() >= 48 or hearts() >= 9) and dmc_pad_to_pots()) or
+            (is_adult() and (fire_timer() >= 56 or hearts() >= 11) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL)))
+        RR_DMC_CENTRAL:     has(RG_CLIMB) and (fire_timer() >= 48 or hearts() >= 9)
+        RR_DMC_FAR_PLATFORM:
+            has(RG_CLIMB) and
+            (((fire_timer() >= 88 or hearts() >= 3) and take_damage() and trick(RT_UNINTUITIVE_JUMPS) and can_climb_ladder() and dmc_pad_to_pots()) or
+            ((fire_timer() >= 72 or hearts() >= 14) and trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS) and can_use(RG_LONGSHOT)) or
+            (is_adult() and (fire_timer() >= 56 or hearts() >= 11) and can_plant_bean(RR_DMC_CENTRAL, RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL))or
+            (is_adult() and (fire_timer() >= 48 or hearts() >= 9) and reach_distant_scarecrow()))
+        RR_DMC_TEMPLE_EXIT: always
+    }
+}
+
+region RR_DMC_CRATE {
+    name: "DMC Crate"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    exits {
+        RR_DEATH_MOUNTAIN_SUMMIT: always
+    }
+}
+
+region RR_DMC_ROCK_GROTTO {
+    name: "DMC Rock Grotto"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    exits {
+        RR_DMC_UPPER_GROTTO: any_age(blast_or_smash())
+    }
+}
+
+region RR_DMC_CRACKED_WALL {
+    name: "DMC Cracked Wall"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    events {
+        LOGIC_FAIRY_ACCESS: has_explosives() and call_gossip_fairy_except_suns()
+    }
+}
+
+region RR_DMC_SCRUB {
+    name: "DMC Scrub"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    events {
+        LOGIC_DMC_BOULDER: is_adult() and can_use(RG_MEGATON_HAMMER) and trick(RT_DMC_BOULDER_JS)
+    }
+}
+
+region RR_DMC_BLOCKED_EXIT {
+    name: "DMC Blocked Exit"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    events {
+        # All boulders here are only a perm flag for adult
+        LOGIC_DMC_BOULDER: is_adult() and can_use(RG_MEGATON_HAMMER)
+    }
+
+    exits {
+        RR_DMC_GREAT_FAIRY_FOUNTAIN: can_use(RG_MEGATON_HAMMER)
+    }
+}
+
+region RR_DMC_POTS {
+    name: "DMC Pots"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    exits {
+        RR_GC_DARUNIAS_CHAMBER: always
+    }
+}
+
+region RR_DMC_POT_GROTTO_EXIT {
+    name: "DMC Pot Grotto Exit"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    exits {
+        # Perm flag only as adult
+        RR_DMC_SCRUB_GROTTO: can_use(RG_MEGATON_HAMMER)
+    }
+}
+
+region RR_DMC_CENTRAL {
+    name: "DMC Central"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    events {
+        LOGIC_FAIRY_ACCESS:
+            is_child() and can_use(RG_MAGIC_BEAN) and has(RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+    }
+
+    locations {
+        RC_SHEIK_IN_CRATER: is_adult()
+    }
+}
+
+region RR_DMC_FAR_PLATFORM {
+    name: "DMC Far Platform"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+}
+
+region RR_DMC_TEMPLE_EXIT {
+    name: "DMC Temple Exit"
+    scene: SCENE_DEATH_MOUNTAIN_CRATER
+
+    exits {
+        RR_FIRE_TEMPLE_ENTRYWAY: always
+    }
+}
+
+region RR_DMC_GREAT_FAIRY_FOUNTAIN {
+    name: "DMC Great Fairy Fountain"
+    scene: SCENE_GREAT_FAIRYS_FOUNTAIN_MAGIC
+
+    locations {
+        RC_DMC_GREAT_FAIRY_REWARD: can_use(RG_ZELDAS_LULLABY)
+    }
+
+    exits {
+        RR_DMC_BLOCKED_ENTRY: always
+    }
+}
+
+region RR_DMC_UPPER_GROTTO {
+    name: "DMC Upper Grotto"
+    scene: SCENE_GROTTOS
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy() or can_use(RG_STICKS)
+        LOGIC_BUG_ACCESS:   can_cut_shrubs()
+        LOGIC_FISH_ACCESS:  always
+    }
+
+    exits {
+        RR_DMC_ROCKS_GROTTO_ENTRY: always
+    }
+}
+
+region RR_DMC_SCRUB_GROTTO {
+    name: "DMC Scrub Grotto"
+    scene: SCENE_GROTTOS
+
+    exits {
+        RR_DMC_POT_GROTTO_ENTRY: always
+    }
+}

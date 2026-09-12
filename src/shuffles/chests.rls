@@ -581,6 +581,14 @@ extend region RR_SPIRIT_TEMPLE_MQ_BIG_MIRROR_CAVE {
     }
 }
 
+# overworld/death_mountain_crater
+
+extend region RR_DMC_UPPER_GROTTO {
+    locations {
+        RC_DMC_UPPER_GROTTO_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
 # overworld/death_mountain_trail
 
 extend region RR_DEATH_MOUNTAIN_TRAIL {

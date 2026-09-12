@@ -520,6 +520,17 @@ extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
     }
 }
 
+# overworld/death_mountain_crater
+
+extend region RR_DMC_POTS {
+    locations {
+        RC_DMC_NEAR_GC_POT_1: can_break_pots()
+        RC_DMC_NEAR_GC_POT_2: can_break_pots()
+        RC_DMC_NEAR_GC_POT_3: can_break_pots()
+        RC_DMC_NEAR_GC_POT_4: can_break_pots()
+    }
+}
+
 # overworld/goron_city
 
 extend region RR_GORON_CITY {

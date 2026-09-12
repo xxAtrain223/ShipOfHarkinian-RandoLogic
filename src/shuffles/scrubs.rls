@@ -67,6 +67,22 @@ extend region RR_GANONS_CASTLE_MQ_DEKU_SCRUBS {
     }
 }
 
+# overworld/death_mountain_crater
+
+extend region RR_DMC_SCRUB {
+    locations {
+        RC_DMC_DEKU_SCRUB: is_child() and can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+    }
+}
+
+extend region RR_DMC_SCRUB_GROTTO {
+    locations {
+        RC_DMC_DEKU_SCRUB_GROTTO_LEFT:   can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_DMC_DEKU_SCRUB_GROTTO_RIGHT:  can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_DMC_DEKU_SCRUB_GROTTO_CENTER: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+    }
+}
+
 # overworld/desert_colossus
 
 extend region RR_COLOSSUS_GROTTO {

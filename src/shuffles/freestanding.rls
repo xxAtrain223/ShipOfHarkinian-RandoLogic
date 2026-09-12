@@ -211,6 +211,33 @@ extend region RR_SPIRIT_TEMPLE_MQ_CHILD_SIDE_HUB {
     }
 }
 
+# overworld/death_mountain_crater
+
+extend region RR_DMC_CENTRAL {
+    locations {
+        RC_DMC_NEAR_PLATFORM_RED_RUPEE:      is_child()
+        RC_DMC_MIDDLE_PLATFORM_RED_RUPEE:    is_child()
+        RC_DMC_MIDDLE_PLATFORM_BLUE_RUPEE_1: is_child()
+        RC_DMC_MIDDLE_PLATFORM_BLUE_RUPEE_2: is_child()
+        RC_DMC_MIDDLE_PLATFORM_BLUE_RUPEE_3: is_child()
+        RC_DMC_MIDDLE_PLATFORM_BLUE_RUPEE_4: is_child()
+        RC_DMC_MIDDLE_PLATFORM_BLUE_RUPEE_5: is_child()
+        RC_DMC_MIDDLE_PLATFORM_BLUE_RUPEE_6: is_child()
+    }
+}
+
+extend region RR_DMC_FAR_PLATFORM {
+    locations {
+        RC_DMC_DISTANT_PLATFORM_GREEN_RUPEE_1: is_adult()
+        RC_DMC_DISTANT_PLATFORM_GREEN_RUPEE_2: is_adult()
+        RC_DMC_DISTANT_PLATFORM_GREEN_RUPEE_3: is_adult()
+        RC_DMC_DISTANT_PLATFORM_GREEN_RUPEE_4: is_adult()
+        RC_DMC_DISTANT_PLATFORM_GREEN_RUPEE_5: is_adult()
+        RC_DMC_DISTANT_PLATFORM_GREEN_RUPEE_6: is_adult()
+        RC_DMC_DISTANT_PLATFORM_RED_RUPEE:     is_adult()
+    }
+}
+
 # overworld/death_mountain_trail
 
 extend region RR_DEATH_MOUNTAIN_TRAIL {

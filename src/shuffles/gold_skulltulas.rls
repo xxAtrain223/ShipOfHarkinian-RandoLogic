@@ -292,6 +292,20 @@ extend region RR_GANONS_CASTLE_GROUNDS {
     }
 }
 
+# overworld/death_mountain_crater
+
+extend region RR_DMC_CRATE {
+    locations {
+        RC_DMC_GS_CRATE: is_child() and can_kill(RE_GOLD_SKULLTULA) and can_break_crates()
+    }
+}
+
+extend region RR_DMC_CENTRAL {
+    locations {
+        RC_DMC_GS_BEAN_PATCH: can_spawn_soil_skull(RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL) and can_kill(RE_GOLD_SKULLTULA)
+    }
+}
+
 # overworld/death_mountain_trail
 
 extend region RR_DEATH_MOUNTAIN_TRAIL {

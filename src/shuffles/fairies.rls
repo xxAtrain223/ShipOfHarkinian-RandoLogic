@@ -111,6 +111,33 @@ extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
     }
 }
 
+# overworld/death_mountain_crater
+
+extend region RR_DMC_CRACKED_WALL {
+    locations {
+        RC_DMC_GOSSIP_STONE_FAIRY:     call_gossip_fairy_except_suns() and has_explosives()
+        RC_DMC_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS) and has_explosives()
+    }
+}
+
+extend region RR_DMC_CENTRAL {
+    locations {
+        RC_DMC_BEAN_SPROUT_FAIRY_1:
+            is_child() and can_use(RG_MAGIC_BEAN) and has(RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+        RC_DMC_BEAN_SPROUT_FAIRY_2:
+            is_child() and can_use(RG_MAGIC_BEAN) and has(RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+        RC_DMC_BEAN_SPROUT_FAIRY_3:
+            is_child() and can_use(RG_MAGIC_BEAN) and has(RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_DMC_UPPER_GROTTO {
+    locations {
+        RC_DMC_UPPER_GROTTO_GOSSIP_STONE_FAIRY:     call_gossip_fairy()
+        RC_DMC_UPPER_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
 # overworld/death_mountain_trail
 
 extend region RR_DEATH_MOUNTAIN_TRAIL {

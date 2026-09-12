@@ -103,6 +103,14 @@ extend region RR_SPIRIT_TEMPLE_MQ_BIG_MIRROR_ROOM {
     }
 }
 
+# overworld/death_mountain_crater
+
+extend region RR_DMC_CRATE {
+    locations {
+        RC_DMC_CRATE: is_child() and can_break_crates()
+    }
+}
+
 # overworld/goron_city
 
 extend region RR_GORON_CITY {
