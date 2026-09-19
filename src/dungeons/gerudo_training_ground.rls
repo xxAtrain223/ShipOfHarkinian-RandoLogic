@@ -1,0 +1,9 @@
+region RR_GERUDO_TRAINING_GROUND_ENTRYWAY {
+	name: "Gerudo Training Ground Entryway"
+	scene: SCENE_GERUDO_TRAINING_GROUND
+	exits {
+		RR_GERUDO_TRAINING_GROUND_LOBBY:    is_vanilla()
+		RR_GERUDO_TRAINING_GROUND_MQ_LOBBY: is_mq()
+		RR_GF_EXITING_GTG:                  always
+	}
+}

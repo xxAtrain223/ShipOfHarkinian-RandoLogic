@@ -68,6 +68,14 @@ extend region RR_GANONS_CASTLE_MQ_DEKU_SCRUBS {
     }
 }
 
+# dungeons/gerudo_training_ground
+
+extend region RR_GERUDO_TRAINING_GROUND_LOBBY {
+	locations {
+		RC_GERUDO_TRAINING_GROUND_ENTRANCE_STORMS_FAIRY: can_use(RG_SONG_OF_STORMS)
+	}
+}
+
 # dungeons/ice_cavern
 
 extend region RR_ICE_CAVERN_BEGINNING {
