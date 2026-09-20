@@ -3,8 +3,8 @@ region RR_GANONS_CASTLE_ENTRYWAY {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_LOBBY: is_vanilla()
-        RR_GANONS_CASTLE_MQ_LOBBY: is_mq()
+        RR_GANONS_CASTLE_LOBBY:               is_vanilla()
+        RR_GANONS_CASTLE_MQ_LOBBY:            is_mq()
         RR_CASTLE_GROUNDS_FROM_GANONS_CASTLE: always
     }
 }
@@ -14,7 +14,7 @@ region RR_GANONS_TOWER_ENTRYWAY {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_LOBBY: is_vanilla()
+        RR_GANONS_CASTLE_LOBBY:   is_vanilla()
         RR_GANONS_CASTLE_MQ_MAIN: is_mq()
         RR_GANONS_TOWER_STAIRS_1: always
     }
@@ -25,8 +25,8 @@ region RR_GANONS_TOWER_STAIRS_1 {
     scene: SCENE_GANONS_TOWER
 
     exits {
-        RR_GANONS_TOWER_ENTRYWAY: always
-        RR_GANONS_TOWER_FLOOR_1: always
+        RR_GANONS_TOWER_ENTRYWAY:             always
+        RR_GANONS_TOWER_FLOOR_1:              always
         RR_CASTLE_GROUNDS_FROM_GANONS_CASTLE: never
     }
 }
@@ -86,7 +86,7 @@ region RR_GANONS_TOWER_STAIRS_4 {
     scene: SCENE_GANONS_TOWER
 
     exits {
-        RR_GANONS_TOWER_FLOOR_3: always
+        RR_GANONS_TOWER_FLOOR_3:               always
         RR_GANONS_TOWER_BEFORE_GANONDORF_LAIR: always
     }
 }
@@ -96,7 +96,7 @@ region RR_GANONS_TOWER_BEFORE_GANONDORF_LAIR {
     scene: SCENE_GANONS_TOWER
 
     exits {
-        RR_GANONS_TOWER_FLOOR_3: any_age(always)
+        RR_GANONS_TOWER_FLOOR_3:        any_age(always)
         RR_GANONS_TOWER_GANONDORF_LAIR: any_age(has(RG_GANONS_CASTLE_BOSS_KEY))
     }
 }

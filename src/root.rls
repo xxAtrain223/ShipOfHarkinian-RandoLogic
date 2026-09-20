@@ -5,12 +5,12 @@ region RR_ROOT {
     areas: [RA_LINKS_POCKET]
     
     locations {
-        RC_LINKS_POCKET: always
+        RC_LINKS_POCKET:       always
         RC_TRIFORCE_COMPLETED: collected_triforce_pieces() >= required_triforce_pieces()
 
-        RC_SARIA_SONG_HINT: can_use(RG_SARIAS_SONG)
-        RC_SONG_FROM_IMPA: setting(RSK_SKIP_CHILD_ZELDA)
-        RC_HC_MALON_EGG: setting(RSK_SKIP_CHILD_ZELDA)
+        RC_SARIA_SONG_HINT:  can_use(RG_SARIAS_SONG)
+        RC_SONG_FROM_IMPA:   setting(RSK_SKIP_CHILD_ZELDA)
+        RC_HC_MALON_EGG:     setting(RSK_SKIP_CHILD_ZELDA)
         RC_HC_ZELDAS_LETTER: setting(RSK_SKIP_CHILD_ZELDA)
 
         RC_TOT_MASTER_SWORD: setting(RSK_SELECTED_STARTING_AGE) is RO_AGE_ADULT
@@ -31,12 +31,12 @@ region RR_ROOT_EXITS {
         RR_CHILD_SPAWN: is_child()
         RR_ADULT_SPAWN: is_adult()
 
-        RR_MINUET_OF_FOREST_WARP: can_use(RG_MINUET_OF_FOREST)
-        RR_BOLERO_OF_FIRE_WARP: can_use(RG_BOLERO_OF_FIRE)
-        RR_SERENADE_OF_WATER_WARP: can_use(RG_SERENADE_OF_WATER)
+        RR_MINUET_OF_FOREST_WARP:   can_use(RG_MINUET_OF_FOREST)
+        RR_BOLERO_OF_FIRE_WARP:     can_use(RG_BOLERO_OF_FIRE)
+        RR_SERENADE_OF_WATER_WARP:  can_use(RG_SERENADE_OF_WATER)
         RR_NOCTURNE_OF_SHADOW_WARP: can_use(RG_NOCTURNE_OF_SHADOW)
-        RR_REQUIEM_OF_SPIRIT_WARP: can_use(RG_REQUIEM_OF_SPIRIT)
-        RR_PRELUDE_OF_LIGHT_WARP: can_use(RG_PRELUDE_OF_LIGHT)
+        RR_REQUIEM_OF_SPIRIT_WARP:  can_use(RG_REQUIEM_OF_SPIRIT)
+        RR_PRELUDE_OF_LIGHT_WARP:   can_use(RG_PRELUDE_OF_LIGHT)
     }
 }
 

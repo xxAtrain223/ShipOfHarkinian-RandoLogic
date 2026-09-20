@@ -52,9 +52,9 @@ region RR_ZF_LEDGE {
     scene: SCENE_ZORAS_FOUNTAIN
 
     exits {
-        RR_ZORAS_FOUNTAIN: has(RG_BRONZE_SCALE)
-        RR_ZF_ICEBERGS: is_adult()
-        RR_ZF_LAKEBED: can_use(RG_IRON_BOOTS)
+        RR_ZORAS_FOUNTAIN:      has(RG_BRONZE_SCALE)
+        RR_ZF_ICEBERGS:         is_adult()
+        RR_ZF_LAKEBED:          can_use(RG_IRON_BOOTS)
         RR_ICE_CAVERN_ENTRYWAY: always
     }
 }

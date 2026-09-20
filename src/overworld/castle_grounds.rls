@@ -5,8 +5,8 @@ region RR_CASTLE_GROUNDS {
     areas: [RA_CASTLE_GROUNDS]
 
     exits {
-        RR_THE_MARKET: always
-        RR_HC_GATE: is_child()
+        RR_THE_MARKET:            always
+        RR_HC_GATE:               is_child()
         RR_GANONS_CASTLE_GROUNDS: is_adult()
     }
 }
@@ -18,7 +18,7 @@ region RR_CASTLE_GROUNDS_FROM_GREAT_FAIRY {
     areas: [RA_CASTLE_GROUNDS]
 
     exits {
-        RR_HC_PAST_GATE: is_child()
+        RR_HC_PAST_GATE:          is_child()
         RR_GANONS_CASTLE_GROUNDS: is_adult()
     }
 }
@@ -29,7 +29,7 @@ region RR_HC_GATE {
 
     events {
         LOGIC_FAIRY_ACCESS: call_gossip_fairy() or can_use(RG_STICKS)
-        LOGIC_BUG_ACCESS: has(RG_POWER_BRACELET)
+        LOGIC_BUG_ACCESS:   has(RG_POWER_BRACELET)
     }
 
     locations {
@@ -38,8 +38,8 @@ region RR_HC_GATE {
 
     exits {
         RR_CASTLE_GROUNDS: always
-        RR_HC_ABOVE_VINE: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
-        RR_HC_PAST_GATE: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN)
+        RR_HC_ABOVE_VINE:  has(RG_CLIMB) or can_use(RG_HOOKSHOT)
+        RR_HC_PAST_GATE:   has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN)
     }
 }
 
@@ -52,7 +52,7 @@ region RR_HC_ABOVE_VINE {
     }
 
     exits {
-        RR_HC_GATE: always
+        RR_HC_GATE:      always
         RR_HC_PAST_GATE: always
     }
 }
@@ -66,10 +66,10 @@ region RR_HC_PAST_GATE {
     }
 
     exits {
-        RR_HC_GATE: always
-        RR_HC_ABOVE_VINE: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
+        RR_HC_GATE:                  always
+        RR_HC_ABOVE_VINE:            has(RG_CLIMB) or can_use(RG_HOOKSHOT)
         RR_HC_ABOVE_CLIMBABLE_ROCKS: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
-        RR_HC_GREAT_FAIRY_FOUNTAIN: blast_or_smash() and can_use(RG_CRAWL)
+        RR_HC_GREAT_FAIRY_FOUNTAIN:  blast_or_smash() and can_use(RG_CRAWL)
     }
 }
 
@@ -83,7 +83,7 @@ region RR_HC_ABOVE_CLIMBABLE_ROCKS {
 
     exits {
         RR_HC_PAST_GATE: always
-        RR_HC_MOAT: always
+        RR_HC_MOAT:      always
     }
 }
 
@@ -92,11 +92,10 @@ region RR_HC_MOAT {
     scene: SCENE_HYRULE_CASTLE
 
     exits {
-        RR_HC_GATE: always
+        RR_HC_GATE:          always
         RR_HC_STORMS_GROTTO: can_open_storms_grotto()
-        RR_HC_DRAIN_LEDGE:
-            (can_use(RG_WEIRD_EGG) and has(RG_POWER_BRACELET) and has(RG_SPEAK_HYLIAN)) or
-            (trick(RT_DAMAGE_BOOST_SIMPLE) and take_damage() and has_explosives() and can_jumpslash())
+        RR_HC_DRAIN_LEDGE:   (can_use(RG_WEIRD_EGG) and has(RG_POWER_BRACELET) and has(RG_SPEAK_HYLIAN)) or
+                             (trick(RT_DAMAGE_BOOST_SIMPLE) and take_damage() and has_explosives() and can_jumpslash())
     }
 }
 
@@ -105,7 +104,7 @@ region RR_HC_DRAIN_LEDGE {
     scene: SCENE_HYRULE_CASTLE
 
     exits {
-        RR_HC_MOAT: always
+        RR_HC_MOAT:   always
         RR_HC_GARDEN: can_use(RG_CRAWL)
     }
 }
@@ -116,7 +115,7 @@ region RR_HC_GARDEN {
 
     locations {
         RC_HC_ZELDAS_LETTER: has(RG_SPEAK_HYLIAN)
-        RC_SONG_FROM_IMPA: has(RG_SPEAK_HYLIAN)
+        RC_SONG_FROM_IMPA:   has(RG_SPEAK_HYLIAN)
     }
 
     exits {
@@ -143,7 +142,7 @@ region RR_HC_STORMS_GROTTO {
     scene: SCENE_GROTTOS
 
     exits {
-        RR_CASTLE_GROUNDS_FROM_GROTTO: always
+        RR_CASTLE_GROUNDS_FROM_GROTTO:    always
         RR_HC_STORMS_GROTTO_BEHIND_WALLS: can_break_mud_walls()
     }
 }
@@ -153,9 +152,9 @@ region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
     scene: SCENE_GROTTOS
 
     events {
-        LOGIC_NUT_ACCESS: can_break_pots()
+        LOGIC_NUT_ACCESS:   can_break_pots()
         LOGIC_FAIRY_ACCESS: call_gossip_fairy()
-        LOGIC_BUG_ACCESS: always
+        LOGIC_BUG_ACCESS:   always
     }
 
     exits {
@@ -170,7 +169,7 @@ region RR_CASTLE_GROUNDS_FROM_GROTTO {
     areas: [RA_CASTLE_GROUNDS]
 
     exits {
-        RR_HC_MOAT: is_child()
+        RR_HC_MOAT:               is_child()
         RR_GANONS_CASTLE_GROUNDS: is_adult()
     }
 }
@@ -184,9 +183,9 @@ region RR_GANONS_CASTLE_GROUNDS {
     }
 
     exits {
-        RR_CASTLE_GROUNDS: at_night()
+        RR_CASTLE_GROUNDS:           at_night()
         RR_OGC_GREAT_FAIRY_FOUNTAIN: can_use(RG_GOLDEN_GAUNTLETS) and at_night()
-        RR_GANONS_CASTLE_LEDGE: flag(LOGIC_BUILD_RAINBOW_BRIDGE)
+        RR_GANONS_CASTLE_LEDGE:      flag(LOGIC_BUILD_RAINBOW_BRIDGE)
     }
 }
 
@@ -208,7 +207,7 @@ region RR_CASTLE_GROUNDS_FROM_GANONS_CASTLE {
     scene: SCENE_OUTSIDE_GANONS_CASTLE
 
     exits {
-        RR_HC_DRAIN_LEDGE: is_child()
+        RR_HC_DRAIN_LEDGE:      is_child()
         RR_GANONS_CASTLE_LEDGE: is_adult()
     }
 }
@@ -218,7 +217,7 @@ region RR_GANONS_CASTLE_LEDGE {
     scene: SCENE_OUTSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_GROUNDS: flag(LOGIC_BUILD_RAINBOW_BRIDGE)
+        RR_GANONS_CASTLE_GROUNDS:  flag(LOGIC_BUILD_RAINBOW_BRIDGE)
         RR_GANONS_CASTLE_ENTRYWAY: is_adult()
     }
 }

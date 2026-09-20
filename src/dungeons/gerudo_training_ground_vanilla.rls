@@ -1,174 +1,173 @@
 region RR_GERUDO_TRAINING_GROUND_LOBBY {
-	name: "Gerudo Training Ground Lobby"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_ENTRYWAY: always
-		RR_GERUDO_TRAINING_GROUND_SAND_ROOM: always
-		RR_GERUDO_TRAINING_GROUND_DINALFOS: always
-		RR_GERUDO_TRAINING_GROUND_CENTRAL_MAZE: always
-	}
+    name: "Gerudo Training Ground Lobby"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    exits {
+        RR_GERUDO_TRAINING_GROUND_ENTRYWAY:     always
+        RR_GERUDO_TRAINING_GROUND_SAND_ROOM:    always
+        RR_GERUDO_TRAINING_GROUND_DINALFOS:     always
+        RR_GERUDO_TRAINING_GROUND_CENTRAL_MAZE: always
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_SAND_ROOM {
-	name: "Gerudo Training Ground Sand Room"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_LOBBY: always
-		RR_GERUDO_TRAINING_GROUND_BOULDER_ROOM: any_age(can_kill(RE_STALFOS, ED_CLOSE, true, 2, true))
-	}
+    name: "Gerudo Training Ground Sand Room"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    exits {
+        RR_GERUDO_TRAINING_GROUND_LOBBY:        always
+        RR_GERUDO_TRAINING_GROUND_BOULDER_ROOM: any_age(can_kill(RE_STALFOS, ED_CLOSE, true, 2, true))
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_BOULDER_ROOM {
-	name: "Gerudo Training Ground Boulder Room"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	
-	exits {
-		RR_GERUDO_TRAINING_GROUND_SAND_ROOM: always
-		RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM: any_age(can_use(is_adult() ? RG_HOOKSHOT : RG_LONGSHOT) or 
-				trick(RT_GTG_WITHOUT_HOOKSHOT))
-	}	
+    name: "Gerudo Training Ground Boulder Room"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    
+    exits {
+        RR_GERUDO_TRAINING_GROUND_SAND_ROOM:        always
+        RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM: any_age(can_use(is_adult() ? RG_HOOKSHOT : RG_LONGSHOT) or trick(RT_GTG_WITHOUT_HOOKSHOT))
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_CENTRAL_MAZE {
-	name: "Gerudo Training Ground Central Maze"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_LOBBY: always
-		RR_GERUDO_TRAINING_GROUND_CENTRAL_MAZE_RIGHT: small_keys(SCENE_GERUDO_TRAINING_GROUND, 9)
-	}
+    name: "Gerudo Training Ground Central Maze"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    exits {
+        RR_GERUDO_TRAINING_GROUND_LOBBY:              always
+        RR_GERUDO_TRAINING_GROUND_CENTRAL_MAZE_RIGHT: small_keys(SCENE_GERUDO_TRAINING_GROUND, 9)
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_CENTRAL_MAZE_RIGHT {
-	name: "Gerudo Training Ground Central Maze Right"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_LAVA_ROOM: always
-		RR_GERUDO_TRAINING_GROUND_LAVA_ROOM_UPPER_LEDGE: can_use(RG_HOOKSHOT)
-		RR_GERUDO_TRAINING_GROUND_CENTRAL_MAZE: small_keys(SCENE_GERUDO_TRAINING_GROUND, 9)
-	}
+    name: "Gerudo Training Ground Central Maze Right"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    exits {
+        RR_GERUDO_TRAINING_GROUND_LAVA_ROOM:             always
+        RR_GERUDO_TRAINING_GROUND_LAVA_ROOM_UPPER_LEDGE: can_use(RG_HOOKSHOT)
+        RR_GERUDO_TRAINING_GROUND_CENTRAL_MAZE:          small_keys(SCENE_GERUDO_TRAINING_GROUND, 9)
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM {
-	name: "Gerudo Training Ground Heavy Block Room"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	events {
-		LOGIC_GTG_PUSHED_HEAVY_BLOCK: can_use(RG_SILVER_GAUNTLETS)
-	}
-	exits {
-		RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM_UPPER: (trick(RT_LENS_GTG) or can_use(RG_LENS_OF_TRUTH)) and 
-				(can_use(RG_HOOKSHOT) or (trick(RT_GTG_FAKE_WALL) and is_adult() and can_use(RG_HOVER_BOOTS))
-				or (is_adult() and can_ground_jump()))
-        RR_GERUDO_TRAINING_GROUND_BEHIND_HEAVY_BLOCK: flag(LOGIC_GTG_PUSHED_HEAVY_BLOCK)
-        RR_GERUDO_TRAINING_GROUND_BOULDER_ROOM: always
-	}
+    name: "Gerudo Training Ground Heavy Block Room"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    events {
+        LOGIC_GTG_PUSHED_HEAVY_BLOCK: can_use(RG_SILVER_GAUNTLETS)
+    }
+    exits {
+        RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM_UPPER: (trick(RT_LENS_GTG) or can_use(RG_LENS_OF_TRUTH)) and
+                                                          (can_use(RG_HOOKSHOT) or (trick(RT_GTG_FAKE_WALL) and is_adult() and can_use(RG_HOVER_BOOTS)) or 
+                                                          (is_adult() and can_ground_jump()))
+        RR_GERUDO_TRAINING_GROUND_BEHIND_HEAVY_BLOCK:     flag(LOGIC_GTG_PUSHED_HEAVY_BLOCK)
+        RR_GERUDO_TRAINING_GROUND_BOULDER_ROOM:           always
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM_UPPER {
-	name: "Gerudo Training Ground Heavy Block Room Upper"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	events {
-		LOGIC_GTG_UNLOCKED_DOOR_BEHIND_HEAVY_BLOCK: always
-	}
-	exits {
-		RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM: trick(RT_LENS_GTG) or can_use(RG_LENS_OF_TRUTH)
-		RR_GERUDO_TRAINING_GROUND_EYE_STATUE_UPPER: always
-	}
+    name: "Gerudo Training Ground Heavy Block Room Upper"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    events {
+        LOGIC_GTG_UNLOCKED_DOOR_BEHIND_HEAVY_BLOCK: always
+    }
+    exits {
+        RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM: trick(RT_LENS_GTG) or can_use(RG_LENS_OF_TRUTH)
+        RR_GERUDO_TRAINING_GROUND_EYE_STATUE_UPPER: always
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_BEHIND_HEAVY_BLOCK {
-	name: "Gerudo Training Ground Behind Heavy Block"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM: flag(LOGIC_GTG_PUSHED_HEAVY_BLOCK)
-		RR_GERUDO_TRAINING_GROUND_LIKE_LIKE_ROOM: flag(LOGIC_GTG_UNLOCKED_DOOR_BEHIND_HEAVY_BLOCK)
-	}
+    name: "Gerudo Training Ground Behind Heavy Block"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    exits {
+        RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM: flag(LOGIC_GTG_PUSHED_HEAVY_BLOCK)
+        RR_GERUDO_TRAINING_GROUND_LIKE_LIKE_ROOM:   flag(LOGIC_GTG_UNLOCKED_DOOR_BEHIND_HEAVY_BLOCK)
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_LIKE_LIKE_ROOM {
-	name: "Gerudo Training Ground Like Like Room"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_BEHIND_HEAVY_BLOCK: always
-	}
+    name: "Gerudo Training Ground Like Like Room"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    exits {
+        RR_GERUDO_TRAINING_GROUND_BEHIND_HEAVY_BLOCK: always
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_EYE_STATUE_UPPER {
-	name: "Gerudo Training Ground Eye Statue Upper"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_EYE_STATUE_LOWER: always
-		RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM_UPPER: always
-		RR_GERUDO_TRAINING_GROUND_ABOVE_MAZE: flag(LOGIC_GTG_CLEARED_EYE_STATUE)
-	}
+    name: "Gerudo Training Ground Eye Statue Upper"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    exits {
+        RR_GERUDO_TRAINING_GROUND_EYE_STATUE_LOWER:       always
+        RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM_UPPER: always
+        RR_GERUDO_TRAINING_GROUND_ABOVE_MAZE:             flag(LOGIC_GTG_CLEARED_EYE_STATUE)
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_ABOVE_MAZE {
-	name: "Gerudo Training Ground Above Eye"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_EYE_STATUE_UPPER: always
-	}
+    name: "Gerudo Training Ground Above Eye"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    exits {
+        RR_GERUDO_TRAINING_GROUND_EYE_STATUE_UPPER: always
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_EYE_STATUE_LOWER {
-	name: "Gerudo Training Ground Eye Statue Lower"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	events {
-		LOGIC_GTG_CLEARED_EYE_STATUE: can_use(RG_FAIRY_BOW)
-	}
-	exits {
-		RR_GERUDO_TRAINING_GROUND_HAMMER_ROOM: always
-	}
+    name: "Gerudo Training Ground Eye Statue Lower"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    events {
+        LOGIC_GTG_CLEARED_EYE_STATUE: can_use(RG_FAIRY_BOW)
+    }
+    exits {
+        RR_GERUDO_TRAINING_GROUND_HAMMER_ROOM: always
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_HAMMER_ROOM {
-	name: "Gerudo Training Ground Hammer Room"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_EYE_STATUE_LOWER: can_use(RG_MEGATON_HAMMER) and can_use(RG_FAIRY_BOW)
-		RR_GERUDO_TRAINING_GROUND_LAVA_ROOM: always
-	}
+    name: "Gerudo Training Ground Hammer Room"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    exits {
+        RR_GERUDO_TRAINING_GROUND_EYE_STATUE_LOWER: can_use(RG_MEGATON_HAMMER) and can_use(RG_FAIRY_BOW)
+        RR_GERUDO_TRAINING_GROUND_LAVA_ROOM:        always
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_LAVA_ROOM {
-	name: "Gerudo Training Ground Lava Room"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	events {
-		LOGIC_GTG_PLATFORM_SILVER_RUPEES: can_use(RG_HOOKSHOT) and (can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME) or is_child())
-	}
-	exits {
-		RR_GERUDO_TRAINING_GROUND_DINALFOS: always
-		RR_GERUDO_TRAINING_GROUND_CENTRAL_MAZE_RIGHT: can_use(RG_SONG_OF_TIME) or is_child()
-		RR_GERUDO_TRAINING_GROUND_LAVA_ROOM_UPPER_LEDGE: can_use(RG_LONGSHOT) or (can_use(RG_HOOKSHOT) and (can_use(RG_HOVER_BOOTS) or 
-					can_use(RG_SONG_OF_TIME) or is_child() or (is_adult() and trick(RT_GTG_LAVA_JUMP)) or 
-					(trick(RT_DAMAGE_BOOST_SIMPLE) and can_use(RG_BOMB_BAG) and take_damage())))
-		RR_GERUDO_TRAINING_GROUND_UNDERWATER: flag(LOGIC_GTG_PLATFORM_SILVER_RUPEES)
-	}
+    name: "Gerudo Training Ground Lava Room"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    events {
+        LOGIC_GTG_PLATFORM_SILVER_RUPEES: can_use(RG_HOOKSHOT) and (can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME) or is_child())
+    }
+    exits {
+        RR_GERUDO_TRAINING_GROUND_DINALFOS:              always
+        RR_GERUDO_TRAINING_GROUND_CENTRAL_MAZE_RIGHT:    can_use(RG_SONG_OF_TIME) or is_child()
+        RR_GERUDO_TRAINING_GROUND_LAVA_ROOM_UPPER_LEDGE: can_use(RG_LONGSHOT) or (can_use(RG_HOOKSHOT) and (can_use(RG_HOVER_BOOTS) or
+                                                         can_use(RG_SONG_OF_TIME) or is_child() or (is_adult() and trick(RT_GTG_LAVA_JUMP)) or
+                                                         (trick(RT_DAMAGE_BOOST_SIMPLE) and can_use(RG_BOMB_BAG) and take_damage())))
+        RR_GERUDO_TRAINING_GROUND_UNDERWATER:            flag(LOGIC_GTG_PLATFORM_SILVER_RUPEES)
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_LAVA_ROOM_UPPER_LEDGE {
-	name: "Gerudo Training Ground Lava Room"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_LAVA_ROOM: can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME) or is_child() 
-			or (is_adult() and trick(RT_GTG_LAVA_JUMP)) or (trick(RT_DAMAGE_BOOST_SIMPLE) and can_use(RG_BOMB_BAG) and take_damage())
-		RR_GERUDO_TRAINING_GROUND_HAMMER_ROOM: always
-	}
+    name: "Gerudo Training Ground Lava Room"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    exits {
+        RR_GERUDO_TRAINING_GROUND_LAVA_ROOM:   can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME) or is_child()
+            or (is_adult() and trick(RT_GTG_LAVA_JUMP)) or (trick(RT_DAMAGE_BOOST_SIMPLE) and can_use(RG_BOMB_BAG) and take_damage())
+        RR_GERUDO_TRAINING_GROUND_HAMMER_ROOM: always
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_UNDERWATER {
-	name: "Gerudo Training Ground Underwater"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_LAVA_ROOM: always
-	}
+    name: "Gerudo Training Ground Underwater"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    exits {
+        RR_GERUDO_TRAINING_GROUND_LAVA_ROOM: always
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_DINALFOS {
-	name: "Gerudo Training Dinalfos"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_LOBBY: always
-		RR_GERUDO_TRAINING_GROUND_LAVA_ROOM: any_age(can_kill(RE_BEAMOS) and can_kill(RE_DINOLFOS, ED_CLOSE, true, 2, true))
-	}
+    name: "Gerudo Training Dinalfos"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+    exits {
+        RR_GERUDO_TRAINING_GROUND_LOBBY:     always
+        RR_GERUDO_TRAINING_GROUND_LAVA_ROOM: any_age(can_kill(RE_BEAMOS) and can_kill(RE_DINOLFOS, ED_CLOSE, true, 2, true))
+    }
 }

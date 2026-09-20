@@ -49,10 +49,9 @@ extend region RR_DEKU_TREE_COMPASS_ROOM {
 
 extend region RR_DEKU_TREE_BASEMENT_LOWER {
     locations {
-        RC_DEKU_TREE_GS_BASEMENT_GATE: can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH)
-        RC_DEKU_TREE_GS_BASEMENT_VINES:
-            can_kill(RE_GOLD_SKULLTULA, trick(RT_DEKU_MQ_COMPASS_GS) ? ED_SHORT_JUMPSLASH : ED_BOMB_THROW) and
-            (has(RG_CLIMB) or can_use(RG_HOOKSHOT) or can_use(RG_BOOMERANG))
+        RC_DEKU_TREE_GS_BASEMENT_GATE:  can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH)
+        RC_DEKU_TREE_GS_BASEMENT_VINES: can_kill(RE_GOLD_SKULLTULA, trick(RT_DEKU_MQ_COMPASS_GS) ? ED_SHORT_JUMPSLASH : ED_BOMB_THROW) and
+                                        (has(RG_CLIMB) or can_use(RG_HOOKSHOT) or can_use(RG_BOOMERANG))
     }
 }
 
@@ -127,13 +126,13 @@ extend region RR_DODONGOS_CAVERN_MQ_STAIRS_PAST_MUD_WALL {
 
 extend region RR_DODONGOS_CAVERN_MQ_LARVAE_ROOM {
     locations {
-        RC_DODONGOS_CAVERN_MQ_GS_LARVAE_ROOM:      can_break_crates() # implied can_kill(RE_GOLD_SKULTULLA) based on entry reqs. Add crate logic when BONKO is added
+        RC_DODONGOS_CAVERN_MQ_GS_LARVAE_ROOM: can_break_crates() # implied can_kill(RE_GOLD_SKULTULLA) based on entry reqs. Add crate logic when BONKO is added
     }
 }
 
 extend region RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS {
     locations {
-        RC_DODONGOS_CAVERN_MQ_GS_LIZALFOS_ROOM:     blast_or_smash() # Implied can_get_drop(RE_GOLD_SKULLTULA)
+        RC_DODONGOS_CAVERN_MQ_GS_LIZALFOS_ROOM: blast_or_smash() # Implied can_get_drop(RE_GOLD_SKULLTULA)
     }
 }
 
@@ -277,7 +276,7 @@ extend region RR_JABU_JABUS_BELLY_MQ_INVISIBLE_KEESE_ROOM {
                                                            ((can_use(RG_HOVER_BOOTS) or
                                                           # Otherwise we have to kill the enemies to raise the platform. This persists so we can do it as the other age.
                                                              any_age((trick(RT_LENS_JABU_MQ) or can_use(RG_LENS_OF_TRUTH)) and
-                                                                     can_kill(RE_STINGER, ED_BOOMERANG, false, 2, false, true) and 
+                                                                     can_kill(RE_STINGER, ED_BOOMERANG, false, 2, false, true) and
                                                                      # we can hit the keese farthest from the water with irons and hookshot, but we won't be able to see it while doing so
                                                                      (can_kill(RE_KEESE, ED_LONGSHOT, false) or (trick(RT_LENS_JABU_MQ) and can_use(RG_HOOKSHOT) and can_use(RG_IRON_BOOTS)))))
                                                           # If we kill the enemies, we then need to cross the water using the platform. Note that adult cannot do so while swimming because MQ jank.
@@ -407,11 +406,10 @@ extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
 
 extend region RR_GANONS_CASTLE_GROUNDS {
     locations {
-        RC_OGC_GS:
-            can_jumpslash_except_hammer() or
-            can_use_projectile() or
-            (can_shield() and can_use(RG_MEGATON_HAMMER)) or
-            can_use(RG_DINS_FIRE)
+        RC_OGC_GS: can_jumpslash_except_hammer() or
+                   can_use_projectile() or
+                   (can_shield() and can_use(RG_MEGATON_HAMMER)) or
+                   can_use(RG_DINS_FIRE)
     }
 }
 
@@ -565,7 +563,7 @@ extend region RR_THE_LOST_WOODS {
 
 extend region RR_LW_BEYOND_MIDO {
     locations {
-        RC_LW_GS_ABOVE_THEATER: is_adult() and ((can_plant_bean(RR_LW_BEYOND_MIDO, RG_LOST_WOODS_BEAN_SOUL) and can_get_drop(RE_GOLD_SKULLTULA))
+        RC_LW_GS_ABOVE_THEATER:           is_adult() and ((can_plant_bean(RR_LW_BEYOND_MIDO, RG_LOST_WOODS_BEAN_SOUL) and can_get_drop(RE_GOLD_SKULLTULA))
             or trick(RT_LW_GS_BEAN) and can_use(RG_HOOKSHOT) and (can_use(RG_LONGSHOT) or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT)
             or can_use(RG_BOMBCHU_5) or can_use(RG_DINS_FIRE))) and can_get_night_time_gs()
         RC_LW_GS_BEAN_PATCH_NEAR_THEATER: can_spawn_soil_skull(RG_LOST_WOODS_BEAN_SOUL) and (can_get_drop(RE_GOLD_SKULLTULA) or (setting(RSK_SHUFFLE_SCRUBS) is RO_SCRUBS_OFF and can_reflect_nuts()))
@@ -592,7 +590,7 @@ extend region RR_ZORAS_DOMAIN {
 
 extend region RR_ZORAS_FOUNTAIN {
     locations {
-        RC_ZF_GS_TREE: is_child() and can_bonk_trees() and (has(RG_POWER_BRACELET) or can_kill(RE_GOLD_SKULLTULA))
+        RC_ZF_GS_TREE:          is_child() and can_bonk_trees() and (has(RG_POWER_BRACELET) or can_kill(RE_GOLD_SKULLTULA))
         RC_ZF_GS_ABOVE_THE_LOG: is_child() and hookshot_or_boomerang() and can_get_night_time_gs()
     }
 }
@@ -613,9 +611,9 @@ extend region RR_ZR_FRONT {
 
 extend region RR_ZORAS_RIVER {
     locations {
-        RC_ZR_GS_LADDER: is_child() and can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH) and can_get_night_time_gs()
+        RC_ZR_GS_LADDER:              is_child() and can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH) and can_get_night_time_gs()
         RC_ZR_GS_NEAR_RAISED_GROTTOS: is_adult() and can_get_drop(RE_GOLD_SKULLTULA, ED_LONGSHOT) and can_get_night_time_gs()
-        RC_ZR_GS_ABOVE_BRIDGE: is_adult() and can_get_drop(RE_GOLD_SKULLTULA, ED_HOOKSHOT) and can_get_night_time_gs()
+        RC_ZR_GS_ABOVE_BRIDGE:        is_adult() and can_get_drop(RE_GOLD_SKULLTULA, ED_HOOKSHOT) and can_get_night_time_gs()
     }
 }
 

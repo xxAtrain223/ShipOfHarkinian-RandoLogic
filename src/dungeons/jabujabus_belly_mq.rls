@@ -62,7 +62,7 @@ region RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM_PAST_JIGGLY {
     scene: SCENE_JABU_JABU
 
     exits {
-        RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM: can_use(RG_BOOMERANG)
+        RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM:      can_use(RG_BOOMERANG)
         # It is possible to open the door here without crossing the jiggly using RT_DISTANT_BOULDER and good timing
         RR_JABU_JABUS_BELLY_MQ_FORKED_CORRIDOR: flag(LOGIC_JABU_MQ_FORKED_ROOM_DOOR)
     }
@@ -73,9 +73,9 @@ region RR_JABU_JABUS_BELLY_MQ_HOLES_BASEMENT {
     scene: SCENE_JABU_JABU
 
     exits {
-        RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM: has(RG_CLIMB)
-        RR_JABU_JABUS_BELLY_MQ_TO_BIGOCTO: flag(LOGIC_JABU_WEST_TENTACLE)
-        RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM: has(RG_SPEAK_ZORA) and has(RG_POWER_BRACELET)
+        RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM:           has(RG_CLIMB)
+        RR_JABU_JABUS_BELLY_MQ_TO_BIGOCTO:           flag(LOGIC_JABU_WEST_TENTACLE)
+        RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM:    has(RG_SPEAK_ZORA) and has(RG_POWER_BRACELET)
         RR_JABU_JABUS_BELLY_MQ_INVISIBLE_KEESE_ROOM: flag(LOGIC_JABU_NORTH_TENTACLE)
     }
 }
@@ -91,7 +91,7 @@ region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM {
     exits {
         # without swim, jump from rang chest to the other side
         RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_PAST_GEYSER: any_age(can_kill(RE_LIZALFOS))
-        RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM: (is_adult() or has(RG_BRONZE_SCALE)) and any_age(can_kill(RE_LIZALFOS))
+        RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM:                    (is_adult() or has(RG_BRONZE_SCALE)) and any_age(can_kill(RE_LIZALFOS))
     }
 }
 
@@ -101,7 +101,7 @@ region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_PAST_GEYSER {
 
     exits {
         RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM: flag(LOGIC_JABU_MQ_WATER_SWITCH_LIFT_ACCESS)
-        RR_JABU_JABUS_BELLY_MQ_LIFT_ROOM: always
+        RR_JABU_JABUS_BELLY_MQ_LIFT_ROOM:         always
     }
 }
 
@@ -110,13 +110,13 @@ region RR_JABU_JABUS_BELLY_MQ_FORKED_CORRIDOR {
     scene: SCENE_JABU_JABU
 
     exits {
-        RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM: can_use(RG_BOOMERANG)
+        RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM:         can_use(RG_BOOMERANG)
         # If some mode lets an age use sticks and not sling, and other use sling and not sticks, this needs changing
-        RR_JABU_JABUS_BELLY_MQ_TO_FORK_WEST: always
+        RR_JABU_JABUS_BELLY_MQ_TO_FORK_WEST:       always
         RR_JABU_JABUS_BELLY_MQ_TO_FORK_NORTH_WEST: always
-        RR_JABU_JABUS_BELLY_MQ_TO_FORK_NORTH: blast_or_smash() and has(RG_POWER_BRACELET)
-        RR_JABU_JABUS_BELLY_MQ_FORK_NORTH_EAST: always
-        RR_JABU_JABUS_BELLY_MQ_FORK_EAST: any_age(can_use(RG_FAIRY_SLINGSHOT) and can_use(RG_STICKS)) or any_age(has_fire_source())
+        RR_JABU_JABUS_BELLY_MQ_TO_FORK_NORTH:      blast_or_smash() and has(RG_POWER_BRACELET)
+        RR_JABU_JABUS_BELLY_MQ_FORK_NORTH_EAST:    always
+        RR_JABU_JABUS_BELLY_MQ_FORK_EAST:          any_age(can_use(RG_FAIRY_SLINGSHOT) and can_use(RG_STICKS)) or any_age(has_fire_source())
     }
 }
 
@@ -127,7 +127,7 @@ region RR_JABU_JABUS_BELLY_MQ_TO_FORK_WEST {
 
     exits {
         RR_JABU_JABUS_BELLY_MQ_FORKED_CORRIDOR: flag(LOGIC_JABU_EAST_TENTACLE) or take_damage()
-        RR_JABU_JABUS_BELLY_MQ_FORK_WEST: flag(LOGIC_JABU_EAST_TENTACLE)
+        RR_JABU_JABUS_BELLY_MQ_FORK_WEST:       flag(LOGIC_JABU_EAST_TENTACLE)
     }
 }
 

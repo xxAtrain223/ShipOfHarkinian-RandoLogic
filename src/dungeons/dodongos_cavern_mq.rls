@@ -183,7 +183,7 @@ region RR_DODONGOS_CAVERN_MQ_TWO_FIRES_ROOM {
     scene: SCENE_DODONGOS_CAVERN
 
     exits {
-        RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS: always
+        RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS:     always
         # crate platforming skips the puzzle
         RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_UPPER: is_adult() or (any_age(blast_or_smash() or (can_attack() and has(RG_GORONS_BRACELET))))
     }

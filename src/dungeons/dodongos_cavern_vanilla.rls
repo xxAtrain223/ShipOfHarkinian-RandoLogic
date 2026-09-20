@@ -37,7 +37,7 @@ region RR_DODONGOS_CAVERN_LOBBY_SWITCH {
     }
 
     exits {
-        RR_DODONGOS_CAVERN_LOBBY: always
+        RR_DODONGOS_CAVERN_LOBBY:        always
         RR_DODONGOS_CAVERN_DODONGO_ROOM: always
     }
 }

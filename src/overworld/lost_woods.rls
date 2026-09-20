@@ -71,8 +71,8 @@ region RR_LW_NEAR_SHORTCUTS_GROTTO {
     
     events {
         LOGIC_FAIRY_ACCESS: call_gossip_fairy() or can_use(RG_STICKS)
-        LOGIC_BUG_ACCESS: can_cut_shrubs()
-        LOGIC_FISH_ACCESS: always
+        LOGIC_BUG_ACCESS:   can_cut_shrubs()
+        LOGIC_FISH_ACCESS:  always
     }
 
     exits {

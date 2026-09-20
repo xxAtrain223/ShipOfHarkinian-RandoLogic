@@ -71,9 +71,9 @@ extend region RR_GANONS_CASTLE_MQ_DEKU_SCRUBS {
 # dungeons/gerudo_training_ground
 
 extend region RR_GERUDO_TRAINING_GROUND_LOBBY {
-	locations {
-		RC_GERUDO_TRAINING_GROUND_ENTRANCE_STORMS_FAIRY: can_use(RG_SONG_OF_STORMS)
-	}
+    locations {
+        RC_GERUDO_TRAINING_GROUND_ENTRANCE_STORMS_FAIRY: can_use(RG_SONG_OF_STORMS)
+    }
 }
 
 # dungeons/ice_cavern
@@ -138,12 +138,9 @@ extend region RR_DMC_CRACKED_WALL {
 
 extend region RR_DMC_CENTRAL {
     locations {
-        RC_DMC_BEAN_SPROUT_FAIRY_1:
-            is_child() and can_use(RG_MAGIC_BEAN) and has(RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
-        RC_DMC_BEAN_SPROUT_FAIRY_2:
-            is_child() and can_use(RG_MAGIC_BEAN) and has(RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
-        RC_DMC_BEAN_SPROUT_FAIRY_3:
-            is_child() and can_use(RG_MAGIC_BEAN) and has(RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+        RC_DMC_BEAN_SPROUT_FAIRY_1: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+        RC_DMC_BEAN_SPROUT_FAIRY_2: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+        RC_DMC_BEAN_SPROUT_FAIRY_3: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
     }
 }
 
@@ -369,7 +366,7 @@ extend region RR_THE_LOST_WOODS {
         RC_LW_BEAN_SPROUT_NEAR_BRIDGE_FAIRY_1: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_LOST_WOODS_BRIDGE_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
         RC_LW_BEAN_SPROUT_NEAR_BRIDGE_FAIRY_2: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_LOST_WOODS_BRIDGE_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
         RC_LW_BEAN_SPROUT_NEAR_BRIDGE_FAIRY_3: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_LOST_WOODS_BRIDGE_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
-        RC_LW_SHORTCUT_STORMS_FAIRY: can_use(RG_SONG_OF_STORMS)
+        RC_LW_SHORTCUT_STORMS_FAIRY:           can_use(RG_SONG_OF_STORMS)
     }
 }
 
@@ -420,7 +417,7 @@ extend region RR_TOT_ENTRANCE {
 
 extend region RR_ZORAS_DOMAIN {
     locations {
-        RC_ZD_GOSSIP_STONE_FAIRY: call_gossip_fairy_except_suns()
+        RC_ZD_GOSSIP_STONE_FAIRY:     call_gossip_fairy_except_suns()
         RC_ZD_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
     }
 }
@@ -442,10 +439,10 @@ extend region RR_ZD_STORMS_GROTTO {
 
 extend region RR_ZORAS_FOUNTAIN {
     locations {
-        RC_ZF_FAIRY_GOSSIP_STONE_FAIRY: call_gossip_fairy_except_suns()
+        RC_ZF_FAIRY_GOSSIP_STONE_FAIRY:     call_gossip_fairy_except_suns()
         RC_ZF_FAIRY_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
-        RC_ZF_JABU_GOSSIP_STONE_FAIRY: call_gossip_fairy_except_suns()
-        RC_ZF_JABU_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+        RC_ZF_JABU_GOSSIP_STONE_FAIRY:      call_gossip_fairy_except_suns()
+        RC_ZF_JABU_GOSSIP_STONE_FAIRY_BIG:  can_use(RG_SONG_OF_STORMS)
     }
 }
 
@@ -453,24 +450,24 @@ extend region RR_ZORAS_FOUNTAIN {
 
 extend region RR_ZORAS_RIVER {
     locations {
-        RC_ZR_BEAN_SPROUT_FAIRY_1: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_ZORAS_RIVER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
-        RC_ZR_BEAN_SPROUT_FAIRY_2: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_ZORAS_RIVER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
-        RC_ZR_BEAN_SPROUT_FAIRY_3: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_ZORAS_RIVER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
-        RC_ZR_NEAR_DOMAIN_GOSSIP_STONE_FAIRY: call_gossip_fairy()
+        RC_ZR_BEAN_SPROUT_FAIRY_1:                is_child() and can_use(RG_MAGIC_BEAN) and has(RG_ZORAS_RIVER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+        RC_ZR_BEAN_SPROUT_FAIRY_2:                is_child() and can_use(RG_MAGIC_BEAN) and has(RG_ZORAS_RIVER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+        RC_ZR_BEAN_SPROUT_FAIRY_3:                is_child() and can_use(RG_MAGIC_BEAN) and has(RG_ZORAS_RIVER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+        RC_ZR_NEAR_DOMAIN_GOSSIP_STONE_FAIRY:     call_gossip_fairy()
         RC_ZR_NEAR_DOMAIN_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
     }
 }
 
 extend region RR_ZR_ATOP_LADDER {
     locations {
-        RC_ZR_NEAR_GROTTOS_GOSSIP_STONE_FAIRY: call_gossip_fairy()
+        RC_ZR_NEAR_GROTTOS_GOSSIP_STONE_FAIRY:     call_gossip_fairy()
         RC_ZR_NEAR_GROTTOS_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
     }
 }
 
 extend region RR_ZR_OPEN_GROTTO {
     locations {
-        RC_ZR_OPEN_GROTTO_GOSSIP_STONE_FAIRY: call_gossip_fairy()
+        RC_ZR_OPEN_GROTTO_GOSSIP_STONE_FAIRY:     call_gossip_fairy()
         RC_ZR_OPEN_GROTTO_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
     }
 }

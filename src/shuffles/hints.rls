@@ -232,7 +232,7 @@ extend region RR_ZORAS_DOMAIN {
 extend region RR_ZORAS_FOUNTAIN {
     locations {
         RC_ZF_FAIRY_GOSSIP_STONE: always
-        RC_ZF_JABU_GOSSIP_STONE: always
+        RC_ZF_JABU_GOSSIP_STONE:  always
     }
 }
 

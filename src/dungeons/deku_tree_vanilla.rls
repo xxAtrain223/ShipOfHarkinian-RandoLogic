@@ -83,9 +83,8 @@ region RR_DEKU_TREE_BASEMENT_LOWER {
     events {
         LOGIC_STICK_ACCESS:           can_get_deku_baba_sticks()
         LOGIC_NUT_ACCESS:             can_get_deku_baba_nuts()
-        LOGIC_DEKU_TREE_B1_BROKE_WEB:
-            (can_use(RG_STICKS) and (flag(LOGIC_DEKU_TREE_PUSHED_BASEMENT_BLOCK) or is_adult() or can_use(RG_HOVER_BOOTS))) or
-            (trick(RT_DEKU_B1_BOW_WEBS) and is_adult() and can_use(RG_FAIRY_BOW))
+        LOGIC_DEKU_TREE_B1_BROKE_WEB: (can_use(RG_STICKS) and (flag(LOGIC_DEKU_TREE_PUSHED_BASEMENT_BLOCK) or is_adult() or can_use(RG_HOVER_BOOTS))) or
+                                      (trick(RT_DEKU_B1_BOW_WEBS) and is_adult() and can_use(RG_FAIRY_BOW))
     }
 
     exits {
@@ -182,7 +181,7 @@ region RR_DEKU_TREE_BASEMENT_UPPER {
         RR_DEKU_TREE_BASEMENT_BACK_LOBBY: can_use(RG_CRAWL)
         # It's possible to light a stick on the upper torch with a backflip into a jumpslash, but a trick as it seems to involve landing on the torch platform
         # Adult can simply backflip against a nearby wall to the same effect, which is much simpler but still unintuitive enough top be a trick
-        RR_DEKU_TREE_OUTSIDE_BOSS_ROOM: flag(LOGIC_DEKU_TREE_B1_BROKE_WEB) and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS))
+        RR_DEKU_TREE_OUTSIDE_BOSS_ROOM:   flag(LOGIC_DEKU_TREE_B1_BROKE_WEB) and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS))
     }
 }
 

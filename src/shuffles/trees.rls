@@ -14,8 +14,8 @@ extend region RR_HC_PAST_GATE {
         RC_HC_NEAR_GUARDS_TREE_4: can_bonk_trees()
         RC_HC_NEAR_GUARDS_TREE_5: can_bonk_trees()
         RC_HC_NEAR_GUARDS_TREE_6: can_bonk_trees()
-        RC_HC_NL_TREE_1: never
-        RC_HC_NL_TREE_2: never
+        RC_HC_NL_TREE_1:          never
+        RC_HC_NL_TREE_2:          never
     }
 }
 
