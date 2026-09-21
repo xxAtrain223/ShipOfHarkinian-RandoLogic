@@ -285,7 +285,7 @@ extend region RR_SPIRIT_TEMPLE_BIG_WALL_UPPER {
 extend region RR_SPIRIT_TEMPLE_MQ_CHILD_SIDE_HUB {
     locations {
         RC_SPIRIT_TEMPLE_MQ_CHILD_LEFT_HEART:  can_hit_eye_targets() or can_use(RG_BOOMERANG) or
-                                                (trick(RT_FIRE_RINGS) and trick(RT_VISIBLE_COLLISION) and take_damage() and can_jumpslash())
+                                               (trick(RT_FIRE_RINGS) and trick(RT_VISIBLE_COLLISION) and take_damage() and can_jumpslash())
         RC_SPIRIT_TEMPLE_MQ_CHILD_RIGHT_HEART: can_hit_eye_targets() or can_use(RG_BOOMERANG) or
                                                (trick(RT_FIRE_RINGS) and trick(RT_VISIBLE_COLLISION) and take_damage() and can_jumpslash())
     }

@@ -13,14 +13,14 @@ region RR_GORON_CITY {
         # only put in logic when both din's & blue fire tricks enabled
         LOGIC_GORON_CITY_STOP_ROLLING_GORON_AS_ADULT: is_adult() and has(RG_SPEAK_GORON) and
                                                       (has(RG_GORONS_BRACELET) or has_explosives() or can_use(RG_FAIRY_BOW) or
-                                                      (trick(RT_GC_LINK_GORON_DINS) and
-                                                      (can_use(RG_DINS_FIRE) or (trick(RT_BLUE_FIRE_MUD_WALLS) and can_use(RG_BOTTLE_WITH_BLUE_FIRE)))))
+                                                       (trick(RT_GC_LINK_GORON_DINS) and
+                                                        (can_use(RG_DINS_FIRE) or (trick(RT_BLUE_FIRE_MUD_WALLS) and can_use(RG_BOTTLE_WITH_BLUE_FIRE)))))
     }
 
     locations {
         RC_GC_POT_FREESTANDING_POH:   is_child() and flag(LOGIC_GORON_CITY_CHILD_FIRE) and
                                       (can_use(RG_BOMB_BAG) or (has(RG_GORONS_BRACELET) and trick(RT_GC_POT_STRENGTH)) or
-                                      (can_use(RG_BOMBCHU_5) and trick(RT_GC_POT)))
+                                       (can_use(RG_BOMBCHU_5) and trick(RT_GC_POT)))
         RC_GC_ROLLING_GORON_AS_CHILD: is_child() and has(RG_SPEAK_GORON) and
                                       (has_explosives() or (has(RG_GORONS_BRACELET) and trick(RT_GC_ROLLING_STRENGTH)))
         RC_GC_ROLLING_GORON_AS_ADULT: flag(LOGIC_GORON_CITY_STOP_ROLLING_GORON_AS_ADULT)
@@ -37,10 +37,10 @@ region RR_GORON_CITY {
                                  (is_child() and flag(LOGIC_GORON_CITY_DARUNIAS_DOOR_OPEN_CHILD))
         RR_GC_GROTTO_PLATFORM:   is_adult() and
                                  ((can_use(RG_SONG_OF_TIME) and
-                                 (effective_health() > 2 or can_use(RG_GORON_TUNIC) or can_use(RG_LONGSHOT) or can_use(RG_NAYRUS_LOVE))) or
-                                 (effective_health() > 1 and can_use(RG_GORON_TUNIC) and can_use(RG_HOOKSHOT)) or
-                                 (can_use(RG_NAYRUS_LOVE) and can_use(RG_HOOKSHOT)) or
-                                 (effective_health() > 2 and can_use(RG_HOOKSHOT) and trick(RT_GC_GROTTO)))
+                                  (effective_health() > 2 or can_use(RG_GORON_TUNIC) or can_use(RG_LONGSHOT) or can_use(RG_NAYRUS_LOVE))) or
+                                  (effective_health() > 1 and can_use(RG_GORON_TUNIC) and can_use(RG_HOOKSHOT)) or
+                                  (can_use(RG_NAYRUS_LOVE) and can_use(RG_HOOKSHOT)) or
+                                  (effective_health() > 2 and can_use(RG_HOOKSHOT) and trick(RT_GC_GROTTO)))
     }
 }
 

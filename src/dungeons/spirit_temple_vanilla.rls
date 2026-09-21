@@ -222,7 +222,7 @@ region RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD {
         # they will be able to exit the dungeon through the intended entrance and vice versa
         # for needing to open the west hand lock to block the intended child route
         RR_DESERT_COLOSSUS:               setting(RSK_SHUFFLE_DUNGEON_ENTRANCES) is RO_DUNGEON_ENTRANCE_SHUFFLE_OFF and has(RG_POWER_BRACELET) and
-                                             can_use(RG_CRAWL) and small_keys(SCENE_SPIRIT_TEMPLE, 4) and can_kill(RE_IRON_KNUCKLE)
+                                          can_use(RG_CRAWL) and small_keys(SCENE_SPIRIT_TEMPLE, 4) and can_kill(RE_IRON_KNUCKLE)
     }
 }
 

@@ -135,7 +135,7 @@ region RR_BOTW_BEHIND_MOAT {
     exits {
         # Climb always needed in case water is lowered out of logic
         RR_BOTW_PERIMETER: (flag(LOGIC_BOTW_LOWERED_WATER) or has(RG_BRONZE_SCALE) or
-                           (is_adult() and can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT))) and
+                            (is_adult() and can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT))) and
                            (has(RG_CLIMB) or can_use(RG_HOOKSHOT))
         RR_BOTW_CRYPT:     always
     }

@@ -83,8 +83,8 @@ region RR_DEKU_TREE_MQ_COMPASS_ROOM {
         RR_DEKU_TREE_MQ_EYE_TARGET_ROOM:    always
         RR_DEKU_TREE_MQ_PAST_BOULDER_VINES: (has(RG_CLIMB) or can_use(RG_HOOKSHOT) or (is_adult() and can_use(RG_SONG_OF_TIME))) and
                                             any_age(can_use(RG_BOMBCHU_5) or
-                                            (can_use(RG_BOMB_BAG) and (can_use(RG_SONG_OF_TIME) or is_adult() or can_use(RG_HOVER_BOOTS))) or
-                                            (can_use(RG_MEGATON_HAMMER) and ((is_adult() and can_use(RG_SONG_OF_TIME)) or (trick(RT_DEKU_MQ_COMPASS_GS) and has(RG_CLIMB)))))
+                                                    (can_use(RG_BOMB_BAG) and (can_use(RG_SONG_OF_TIME) or is_adult() or can_use(RG_HOVER_BOOTS))) or
+                                                    (can_use(RG_MEGATON_HAMMER) and ((is_adult() and can_use(RG_SONG_OF_TIME)) or (trick(RT_DEKU_MQ_COMPASS_GS) and has(RG_CLIMB)))))
     }
 }
 

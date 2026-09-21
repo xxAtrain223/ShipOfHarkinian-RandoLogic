@@ -9,8 +9,8 @@ region RR_BOTW_MQ_PERIMETER {
                                     # Item extension can get a fairy by either shooting the pot through the grate and letting the fairy fly
                                     # through the wall. This cannot be done if the pot has an item in it, as it cannot be collected this way.
                                     (trick(RT_ITEM_EXTENSION) and
-                                    (setting(RSK_SHUFFLE_POTS) is RO_SHUFFLE_POTS_OFF or setting(RSK_SHUFFLE_POTS) is RO_SHUFFLE_POTS_OVERWORLD) and
-                                    can_hit_eye_targets()) or
+                                     (setting(RSK_SHUFFLE_POTS) is RO_SHUFFLE_POTS_OFF or setting(RSK_SHUFFLE_POTS) is RO_SHUFFLE_POTS_OVERWORLD) and
+                                     can_hit_eye_targets()) or
                                     (trick(RT_VISIBLE_COLLISION) and is_child() ? can_hit_eye_targets() : can_use(RG_FAIRY_SLINGSHOT))
         # It is possible to hit the water switch with a pot from RR_BOTW_MQ_MIDDLE, however the hitbox for making it
         # activate is very unintuitive. You have to throw the pot from further back to hit the switch from the front

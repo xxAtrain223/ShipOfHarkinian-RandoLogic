@@ -51,7 +51,7 @@ region RR_KF_OUTSIDE_DEKU_TREE {
     exits {
         RR_DEKU_TREE_ENTRYWAY: is_child() or
                                (setting(RSK_SHUFFLE_DUNGEON_ENTRANCES) is not RO_DUNGEON_ENTRANCE_SHUFFLE_OFF and
-                               (setting(RSK_FOREST) is RO_CLOSED_FOREST_OFF or flag(LOGIC_SHOWED_MIDO_SWORD_AND_SHIELD)))
+                                (setting(RSK_FOREST) is RO_CLOSED_FOREST_OFF or flag(LOGIC_SHOWED_MIDO_SWORD_AND_SHIELD)))
         RR_KOKIRI_FOREST:      (is_adult() and (can_pass(RE_BIG_SKULLTULA) or flag(LOGIC_DEKU_TREE_CLEAR))) or
                                setting(RSK_FOREST) is RO_CLOSED_FOREST_OFF or flag(LOGIC_SHOWED_MIDO_SWORD_AND_SHIELD)
     }

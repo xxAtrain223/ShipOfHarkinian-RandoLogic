@@ -199,7 +199,8 @@ extend region RR_DODONGOS_CAVERN_MQ_DODONGO_ROOM {
 
 extend region RR_DODONGOS_CAVERN_MQ_LARVAE_ROOM {
     locations {
-        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CHEST: has(RG_OPEN_CHEST) # implied can_kill(RE_GOHMA_LARVA) based on entry reqs with a trick to kill with nuts
+        # implied can_kill(RE_GOHMA_LARVA) based on entry reqs with a trick to kill with nuts
+        RC_DODONGOS_CAVERN_MQ_LARVAE_ROOM_CHEST: has(RG_OPEN_CHEST)
     }
 }
 
@@ -376,8 +377,7 @@ extend region RR_GERUDO_TRAINING_GROUND_LIKE_LIKE_ROOM {
     locations {
         RC_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_FIRST_CHEST:  can_kill(RE_LIKE_LIKE) and has(RG_OPEN_CHEST)
         RC_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_SECOND_CHEST: can_kill(RE_LIKE_LIKE) and has(RG_OPEN_CHEST)
-        RC_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_THIRD_CHEST:  (trick(RT_LENS_GTG) or can_use(RG_LENS_OF_TRUTH)) and can_pass(RE_LIKE_LIKE)
-                and has(RG_OPEN_CHEST)
+        RC_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_THIRD_CHEST:  (trick(RT_LENS_GTG) or can_use(RG_LENS_OF_TRUTH)) and can_pass(RE_LIKE_LIKE) and has(RG_OPEN_CHEST)
         RC_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_FOURTH_CHEST: has(RG_OPEN_CHEST)
     }
 }
@@ -397,8 +397,7 @@ extend region RR_GERUDO_TRAINING_GROUND_EYE_STATUE_LOWER {
 extend region RR_GERUDO_TRAINING_GROUND_HAMMER_ROOM {
     locations {
         RC_GERUDO_TRAINING_GROUND_HAMMER_ROOM_CLEAR_CHEST:  can_attack() and has(RG_OPEN_CHEST)
-        RC_GERUDO_TRAINING_GROUND_HAMMER_ROOM_SWITCH_CHEST: (can_use(RG_MEGATON_HAMMER) or (take_damage() and trick(RT_FIRE_RINGS)))
-                and has(RG_OPEN_CHEST)
+        RC_GERUDO_TRAINING_GROUND_HAMMER_ROOM_SWITCH_CHEST: (can_use(RG_MEGATON_HAMMER) or (take_damage() and trick(RT_FIRE_RINGS))) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -425,8 +424,7 @@ extend region RR_GERUDO_TRAINING_GROUND_MQ_MAZE_BY_LOBBY {
     locations {
         RC_GERUDO_TRAINING_GROUND_MQ_MAZE_PATH_FIRST_CHEST:  has(RG_OPEN_CHEST)
         RC_GERUDO_TRAINING_GROUND_MQ_MAZE_PATH_SECOND_CHEST: has(RG_OPEN_CHEST)
-        RC_GERUDO_TRAINING_GROUND_MQ_HIDDEN_CEILING_CHEST:   (trick(RT_LENS_GTG_MQ) or can_use(RG_LENS_OF_TRUTH)) and (has(RG_CLIMB)
-                or can_use(RG_HOOKSHOT)) and has(RG_OPEN_CHEST)
+        RC_GERUDO_TRAINING_GROUND_MQ_HIDDEN_CEILING_CHEST:   (trick(RT_LENS_GTG_MQ) or can_use(RG_LENS_OF_TRUTH)) and (has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -488,7 +486,9 @@ extend region RR_GERUDO_TRAINING_GROUND_MQ_MAZE_RIGHT {
 
 extend region RR_GERUDO_TRAINING_GROUND_MQ_DINOLFOS_ROOM {
     locations {
-        RC_GERUDO_TRAINING_GROUND_MQ_DINOLFOS_CHEST: (can_use(RG_MASTER_SWORD) or can_use(RG_BIGGORON_SWORD) or can_use(RG_MEGATON_HAMMER) or can_use(RG_FAIRY_BOW) or ((can_use(RG_NUTS) or can_use(RG_HOOKSHOT) or can_use(RG_BOOMERANG)) and (can_use(RG_KOKIRI_SWORD) or can_use(RG_FAIRY_SLINGSHOT)))) and has(RG_OPEN_CHEST)
+        RC_GERUDO_TRAINING_GROUND_MQ_DINOLFOS_CHEST: (can_use(RG_MASTER_SWORD) or can_use(RG_BIGGORON_SWORD) or can_use(RG_MEGATON_HAMMER) or can_use(RG_FAIRY_BOW) or
+                                                      ((can_use(RG_NUTS) or can_use(RG_HOOKSHOT) or can_use(RG_BOOMERANG)) and (can_use(RG_KOKIRI_SWORD) or can_use(RG_FAIRY_SLINGSHOT)))) and
+                                                     has(RG_OPEN_CHEST)
     }
 }
 
@@ -869,7 +869,7 @@ extend region RR_DMT_STORMS_GROTTO {
 extend region RR_GORON_CITY {
     locations {
         RC_GC_MAZE_LEFT_CHEST:   (can_use(RG_MEGATON_HAMMER) or can_use(RG_SILVER_GAUNTLETS) or
-          (trick(RT_GC_LEFTMOST) and has_explosives() and can_use(RG_HOVER_BOOTS))) and has(RG_OPEN_CHEST)
+                                  (trick(RT_GC_LEFTMOST) and has_explosives() and can_use(RG_HOVER_BOOTS))) and has(RG_OPEN_CHEST)
         RC_GC_MAZE_CENTER_CHEST: (blast_or_smash() or can_use(RG_SILVER_GAUNTLETS)) and has(RG_OPEN_CHEST)
         RC_GC_MAZE_RIGHT_CHEST:  (blast_or_smash() or can_use(RG_SILVER_GAUNTLETS)) and has(RG_OPEN_CHEST)
     }

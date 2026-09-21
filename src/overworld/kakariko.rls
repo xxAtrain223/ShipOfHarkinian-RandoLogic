@@ -36,7 +36,7 @@ region RR_KAKARIKO_VILLAGE {
         RR_KAK_IMPAS_LEDGE:          (is_child() and at_day() and has(RG_POWER_BRACELET)) or (is_adult() and trick(RT_VISIBLE_COLLISION))
         RR_KAK_WATCHTOWER:           has(RG_CLIMB) and
                                      (is_adult() or at_day() or can_kill(RE_GOLD_SKULLTULA, ED_LONGSHOT) or
-                                     (trick(RT_KAK_TOWER_GS) and can_jumpslash_except_hammer()))
+                                      (trick(RT_KAK_TOWER_GS) and can_jumpslash_except_hammer()))
         RR_KAK_ROOFTOP:              can_use(RG_HOOKSHOT) or (trick(RT_UNINTUITIVE_JUMPS) and is_adult())
         RR_KAK_IMPAS_ROOFTOP:        can_use(RG_HOOKSHOT) or (trick(RT_KAK_ROOFTOP_GS) and can_use(RG_HOVER_BOOTS))
         RR_THE_GRAVEYARD:            always

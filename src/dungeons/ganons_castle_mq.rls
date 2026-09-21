@@ -132,8 +132,8 @@ region RR_GANONS_CASTLE_MQ_FIRE_TRIAL_FROM_OPEN {
         RR_GANONS_CASTLE_MQ_FIRE_TRIAL_OPEN_DOOR:   always
         RR_GANONS_CASTLE_MQ_FIRE_TRIAL_BARRED_DOOR: fire_timer() >= 32 and
                                                     (can_use(RG_LONGSHOT) or
-                                                    (can_use(RG_GOLDEN_GAUNTLETS) and
-                                                    (can_use(RG_HOVER_BOOTS) or (trick(RT_GANON_MQ_FIRE_TRIAL) and is_adult() and can_use(RG_HOOKSHOT)))))
+                                                     (can_use(RG_GOLDEN_GAUNTLETS) and
+                                                      (can_use(RG_HOVER_BOOTS) or (trick(RT_GANON_MQ_FIRE_TRIAL) and is_adult() and can_use(RG_HOOKSHOT)))))
     }
 }
 
