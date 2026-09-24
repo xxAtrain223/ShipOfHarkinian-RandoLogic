@@ -94,7 +94,7 @@ extend region RR_DESERT_COLOSSUS {
 
 extend region RR_GV_UPPER_STREAM {
     locations {
-        RR_GV_GOSSIP_STONE: always
+        RC_GV_GOSSIP_STONE: always
     }
 }
 
