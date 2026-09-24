@@ -200,6 +200,21 @@ extend region RR_MARKET_TREASURE_CHEST_GAME {
     }
 }
 
+# overworld/sacred_forest_meadow
+
+extend region RR_SFM_ABOVE_MAZE {
+    locations {
+        RC_SFM_MAZE_LOWER_GOSSIP_STONE: always
+        RC_SFM_MAZE_UPPER_GOSSIP_STONE: always
+    }
+}
+
+extend region RR_SACRED_FOREST_MEADOW {
+    locations {
+        RC_SFM_SARIA_GOSSIP_STONE: always
+    }
+}
+
 # overworld/temple_of_time
 
 extend region RR_TOT_ENTRANCE {
@@ -232,7 +247,7 @@ extend region RR_ZORAS_DOMAIN {
 extend region RR_ZORAS_FOUNTAIN {
     locations {
         RC_ZF_FAIRY_GOSSIP_STONE: always
-        RC_ZF_JABU_GOSSIP_STONE: always
+        RC_ZF_JABU_GOSSIP_STONE:  always
     }
 }
 

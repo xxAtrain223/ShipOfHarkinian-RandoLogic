@@ -38,12 +38,12 @@ region RR_DEKU_TREE_BOSS_ROOM {
     }
 
     locations {
-        RC_QUEEN_GOHMA:                   flag(LOGIC_DEKU_TREE_CLEAR)
-        RC_DEKU_TREE_QUEEN_GOHMA_HEART:   flag(LOGIC_DEKU_TREE_CLEAR)
+        RC_QUEEN_GOHMA:                 flag(LOGIC_DEKU_TREE_CLEAR)
+        RC_DEKU_TREE_QUEEN_GOHMA_HEART: flag(LOGIC_DEKU_TREE_CLEAR)
     }
 
     exits {
-        RR_DEKU_TREE_BOSS_EXIT: always
+        RR_DEKU_TREE_BOSS_EXIT:  always
         RR_KF_OUTSIDE_DEKU_TREE: flag(LOGIC_DEKU_TREE_CLEAR)
     }
 }

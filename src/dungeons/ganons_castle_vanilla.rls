@@ -4,7 +4,7 @@ region RR_GANONS_CASTLE_LOBBY {
 
     exits {
         RR_GANONS_CASTLE_ENTRYWAY: always
-        RR_GANONS_CASTLE_MAIN: always
+        RR_GANONS_CASTLE_MAIN:     always
     }
 }
 
@@ -13,23 +13,21 @@ region RR_GANONS_CASTLE_MAIN {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_LOBBY: always
-        RR_GANONS_CASTLE_FOREST_TRIAL_WOLFOS_ROOM: not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_FOREST_MEDALLION)
-        RR_GANONS_CASTLE_FIRE_TRIAL_FROM_OPEN: not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_FIRE_MEDALLION)
+        RR_GANONS_CASTLE_LOBBY:                      always
+        RR_GANONS_CASTLE_FOREST_TRIAL_WOLFOS_ROOM:   not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_FOREST_MEDALLION)
+        RR_GANONS_CASTLE_FIRE_TRIAL_FROM_OPEN:       not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_FIRE_MEDALLION)
         RR_GANONS_CASTLE_WATER_TRIAL_BLUE_FIRE_ROOM: not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_WATER_MEDALLION)
-        RR_GANONS_CASTLE_SHADOW_TRIAL_START: not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_SHADOW_MEDALLION)
-        RR_GANONS_CASTLE_SPIRIT_TRIAL_BEAMOS_ROOM: not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_SPIRIT_MEDALLION)
-        RR_GANONS_CASTLE_LIGHT_TRIAL_CHESTS_ROOM:
-            (not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_LIGHT_MEDALLION)) and
-            can_use(RG_GOLDEN_GAUNTLETS)
-        RR_GANONS_TOWER_ENTRYWAY:
-            (flag(LOGIC_FOREST_TRIAL_CLEAR) or trial_skipped(TK_FOREST_TRIAL)) and
-            (flag(LOGIC_FIRE_TRIAL_CLEAR) or trial_skipped(TK_FIRE_TRIAL)) and
-            (flag(LOGIC_WATER_TRIAL_CLEAR) or trial_skipped(TK_WATER_TRIAL)) and
-            (flag(LOGIC_SHADOW_TRIAL_CLEAR) or trial_skipped(TK_SHADOW_TRIAL)) and
-            (flag(LOGIC_SPIRIT_TRIAL_CLEAR) or trial_skipped(TK_SPIRIT_TRIAL)) and
-            (flag(LOGIC_LIGHT_TRIAL_CLEAR) or trial_skipped(TK_LIGHT_TRIAL))
-        RR_GANONS_CASTLE_DEKU_SCRUBS: trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH)
+        RR_GANONS_CASTLE_SHADOW_TRIAL_START:         not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_SHADOW_MEDALLION)
+        RR_GANONS_CASTLE_SPIRIT_TRIAL_BEAMOS_ROOM:   not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_SPIRIT_MEDALLION)
+        RR_GANONS_CASTLE_LIGHT_TRIAL_CHESTS_ROOM:    (not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_LIGHT_MEDALLION)) and
+                                                     can_use(RG_GOLDEN_GAUNTLETS)
+        RR_GANONS_TOWER_ENTRYWAY:                    (flag(LOGIC_FOREST_TRIAL_CLEAR) or trial_skipped(TK_FOREST_TRIAL)) and
+                                                     (flag(LOGIC_FIRE_TRIAL_CLEAR) or trial_skipped(TK_FIRE_TRIAL)) and
+                                                     (flag(LOGIC_WATER_TRIAL_CLEAR) or trial_skipped(TK_WATER_TRIAL)) and
+                                                     (flag(LOGIC_SHADOW_TRIAL_CLEAR) or trial_skipped(TK_SHADOW_TRIAL)) and
+                                                     (flag(LOGIC_SPIRIT_TRIAL_CLEAR) or trial_skipped(TK_SPIRIT_TRIAL)) and
+                                                     (flag(LOGIC_LIGHT_TRIAL_CLEAR) or trial_skipped(TK_LIGHT_TRIAL))
+        RR_GANONS_CASTLE_DEKU_SCRUBS:                trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH)
     }
 }
 
@@ -47,7 +45,7 @@ region RR_GANONS_CASTLE_FOREST_TRIAL_WOLFOS_ROOM {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_MAIN: always
+        RR_GANONS_CASTLE_MAIN:                     always
         RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM: can_use(RG_FIRE_ARROWS) or (can_use(RG_HOOKSHOT) and can_use(RG_DINS_FIRE))
     }
 }
@@ -62,7 +60,7 @@ region RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM {
     }
 
     exits {
-        RR_GANONS_CASTLE_FOREST_TRIAL_WOLFOS_ROOM: always
+        RR_GANONS_CASTLE_FOREST_TRIAL_WOLFOS_ROOM:     always
         RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_END: always
     }
 }
@@ -72,7 +70,7 @@ region RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_END {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM: can_use(RG_LONGSHOT)
+        RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM:            can_use(RG_LONGSHOT)
         RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_FINAL_DOOR: is_adult() or can_ground_jump() or trick(RT_UNINTUITIVE_JUMPS)
     }
 }
@@ -83,7 +81,7 @@ region RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_FINAL_DOOR {
 
     exits {
         RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_END: always
-        RR_GANONS_CASTLE_FOREST_TRIAL_FINAL_ROOM: flag(LOGIC_FOREST_TRIAL_SILVER_RUPEES)
+        RR_GANONS_CASTLE_FOREST_TRIAL_FINAL_ROOM:      flag(LOGIC_FOREST_TRIAL_SILVER_RUPEES)
     }
 }
 
@@ -119,7 +117,7 @@ region RR_GANONS_CASTLE_FIRE_TRIAL_FROM_OPEN {
     }
 
     exits {
-        RR_GANONS_CASTLE_FIRE_TRIAL_OPEN_DOOR: always
+        RR_GANONS_CASTLE_FIRE_TRIAL_OPEN_DOOR:   always
         RR_GANONS_CASTLE_FIRE_TRIAL_BARRED_DOOR: can_use(RG_LONGSHOT) and fire_timer() >= 16
     }
 }
@@ -134,7 +132,7 @@ region RR_GANONS_CASTLE_FIRE_TRIAL_FROM_BARRED {
     }
 
     exits {
-        RR_GANONS_CASTLE_FIRE_TRIAL_OPEN_DOOR: can_use(RG_LONGSHOT) and fire_timer() >= 24
+        RR_GANONS_CASTLE_FIRE_TRIAL_OPEN_DOOR:   can_use(RG_LONGSHOT) and fire_timer() >= 24
         RR_GANONS_CASTLE_FIRE_TRIAL_BARRED_DOOR: always
     }
 }
@@ -170,7 +168,7 @@ region RR_GANONS_CASTLE_WATER_TRIAL_BLUE_FIRE_ROOM {
     }
 
     exits {
-        RR_GANONS_CASTLE_MAIN: always
+        RR_GANONS_CASTLE_MAIN:                   always
         RR_GANONS_CASTLE_WATER_TRIAL_BLOCK_ROOM: blue_fire()
     }
 }
@@ -180,17 +178,15 @@ region RR_GANONS_CASTLE_WATER_TRIAL_BLOCK_ROOM {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     events {
-        LOGIC_FAIRY_ACCESS: can_break_pots()
-        LOGIC_WATER_TRIAL_RUSTED_SWITCH:
-            is_adult() and (has(RG_POWER_BRACELET) or can_middair_ground_jump()) and
-            (blue_fire() or trick(RT_VISIBLE_COLLISION)) and
-            can_use(RG_MEGATON_HAMMER)
+        LOGIC_FAIRY_ACCESS:              can_break_pots()
+        LOGIC_WATER_TRIAL_RUSTED_SWITCH: is_adult() and (has(RG_POWER_BRACELET) or can_middair_ground_jump()) and
+                                         (blue_fire() or trick(RT_VISIBLE_COLLISION)) and
+                                         can_use(RG_MEGATON_HAMMER)
     }
 
     exits {
         RR_GANONS_CASTLE_WATER_TRIAL_BLUE_FIRE_ROOM: always
-        RR_GANONS_CASTLE_WATER_TRIAL_BLOCK_ROOM_END:
-            is_adult() or (has(RG_POWER_BRACELET) and can_use(RG_HOVER_BOOTS)) or can_ground_jump() or trick(RT_SLIDE_JUMP)
+        RR_GANONS_CASTLE_WATER_TRIAL_BLOCK_ROOM_END: is_adult() or (has(RG_POWER_BRACELET) and can_use(RG_HOVER_BOOTS)) or can_ground_jump() or trick(RT_SLIDE_JUMP)
     }
 }
 
@@ -222,8 +218,8 @@ region RR_GANONS_CASTLE_SHADOW_TRIAL_START {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_MAIN: always
-        RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM: can_use(RG_FIRE_ARROWS) or can_use(RG_LONGSHOT)
+        RR_GANONS_CASTLE_MAIN:                        always
+        RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM:  can_use(RG_FIRE_ARROWS) or can_use(RG_LONGSHOT)
         # shortcut for longshot to torch, dins, longshot to like like, run to chest platform
         RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM: can_use(RG_DINS_FIRE) and can_use(RG_LONGSHOT)
     }
@@ -234,10 +230,9 @@ region RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_SHADOW_TRIAL_START: can_use(RG_FIRE_ARROWS) or can_use(RG_LONGSHOT)
-        RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM:
-            can_use(RG_FIRE_ARROWS) or can_use(RG_HOVER_BOOTS) or
-            (flag(LOGIC_SHADOW_TRIAL_LOWER_SWITCH) and can_use(RG_HOOKSHOT))
+        RR_GANONS_CASTLE_SHADOW_TRIAL_START:          can_use(RG_FIRE_ARROWS) or can_use(RG_LONGSHOT)
+        RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM: can_use(RG_FIRE_ARROWS) or can_use(RG_HOVER_BOOTS) or
+                                                      (flag(LOGIC_SHADOW_TRIAL_LOWER_SWITCH) and can_use(RG_HOOKSHOT))
     }
 }
 
@@ -246,16 +241,14 @@ region RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     events {
-        LOGIC_SHADOW_TRIAL_RUSTED_SWITCH:
-            (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_HOVER_BOOTS)) and
-            can_use(RG_MEGATON_HAMMER)
+        LOGIC_SHADOW_TRIAL_RUSTED_SWITCH: (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_HOVER_BOOTS)) and
+                                          can_use(RG_MEGATON_HAMMER)
     }
 
     exits {
         RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM: can_use(RG_FIRE_ARROWS) or can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS)
-        RR_GANONS_CASTLE_SHADOW_TRIAL_LOWER_SWITCH:
-            can_use(RG_FIRE_ARROWS) or trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_HOVER_BOOTS)
-        RR_GANONS_CASTLE_SHADOW_TRIAL_END: trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH)
+        RR_GANONS_CASTLE_SHADOW_TRIAL_LOWER_SWITCH:  can_use(RG_FIRE_ARROWS) or trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_HOVER_BOOTS)
+        RR_GANONS_CASTLE_SHADOW_TRIAL_END:           trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH)
     }
 }
 
@@ -268,8 +261,7 @@ region RR_GANONS_CASTLE_SHADOW_TRIAL_LOWER_SWITCH {
     }
 
     exits {
-        RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM:
-            can_use(RG_FIRE_ARROWS) or (flag(LOGIC_SHADOW_TRIAL_LOWER_SWITCH) and can_use(RG_LONGSHOT))
+        RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM: can_use(RG_FIRE_ARROWS) or (flag(LOGIC_SHADOW_TRIAL_LOWER_SWITCH) and can_use(RG_LONGSHOT))
     }
 }
 
@@ -278,14 +270,12 @@ region RR_GANONS_CASTLE_SHADOW_TRIAL_END {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM:
-            (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH)) or
-            (can_use(RG_HOVER_BOOTS) and has_fire_source()) or
-            (flag(LOGIC_SHADOW_TRIAL_LOWER_SWITCH) and can_use(RG_LONGSHOT))
-        RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM:
-            can_use(RG_LONGSHOT) and can_use(RG_DINS_FIRE) and (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH))
-        RR_GANONS_CASTLE_SHADOW_TRIAL_LOWER_SWITCH: can_use(RG_HOVER_BOOTS)
-        RR_GANONS_CASTLE_SHADOW_TRIAL_FINAL_ROOM: flag(LOGIC_SHADOW_TRIAL_RUSTED_SWITCH)
+        RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM: (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH)) or
+                                                      (can_use(RG_HOVER_BOOTS) and has_fire_source()) or
+                                                      (flag(LOGIC_SHADOW_TRIAL_LOWER_SWITCH) and can_use(RG_LONGSHOT))
+        RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM:  can_use(RG_LONGSHOT) and can_use(RG_DINS_FIRE) and (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH))
+        RR_GANONS_CASTLE_SHADOW_TRIAL_LOWER_SWITCH:   can_use(RG_HOVER_BOOTS)
+        RR_GANONS_CASTLE_SHADOW_TRIAL_FINAL_ROOM:     flag(LOGIC_SHADOW_TRIAL_RUSTED_SWITCH)
     }
 }
 
@@ -307,7 +297,7 @@ region RR_GANONS_CASTLE_SPIRIT_TRIAL_BEAMOS_ROOM {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_MAIN: always
+        RR_GANONS_CASTLE_MAIN:                       always
         RR_GANONS_CASTLE_SPIRIT_TRIAL_BEFORE_SWITCH: trick(RT_GANON_SPIRIT_TRIAL_HOOKSHOT) or can_use(RG_HOOKSHOT)
     }
 }
@@ -317,10 +307,9 @@ region RR_GANONS_CASTLE_SPIRIT_TRIAL_BEFORE_SWITCH {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_SPIRIT_TRIAL_BEAMOS_ROOM: always
-        RR_GANONS_CASTLE_SPIRIT_TRIAL_AFTER_SWITCH:
-            can_use(RG_BOMBCHU_5) or
-            (trick(RT_ITEM_EXTENSION) and (can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT)))
+        RR_GANONS_CASTLE_SPIRIT_TRIAL_BEAMOS_ROOM:  always
+        RR_GANONS_CASTLE_SPIRIT_TRIAL_AFTER_SWITCH: can_use(RG_BOMBCHU_5) or
+                                                    (trick(RT_ITEM_EXTENSION) and (can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT)))
     }
 }
 
@@ -330,8 +319,7 @@ region RR_GANONS_CASTLE_SPIRIT_TRIAL_AFTER_SWITCH {
 
     exits {
         RR_GANONS_CASTLE_SPIRIT_TRIAL_BEFORE_SWITCH: always
-        RR_GANONS_CASTLE_SPIRIT_TRIAL_FINAL_ROOM:
-            can_use(RG_FAIRY_BOW) and (can_use(RG_MIRROR_SHIELD) or sunlight_arrows())
+        RR_GANONS_CASTLE_SPIRIT_TRIAL_FINAL_ROOM:    can_use(RG_FAIRY_BOW) and (can_use(RG_MIRROR_SHIELD) or sunlight_arrows())
     }
 }
 
@@ -341,7 +329,7 @@ region RR_GANONS_CASTLE_SPIRIT_TRIAL_FINAL_ROOM {
 
     events {
         LOGIC_SPIRIT_TRIAL_CLEAR: can_use(RG_LIGHT_ARROWS)
-        LOGIC_NUT_ACCESS: can_break_pots()
+        LOGIC_NUT_ACCESS:         can_break_pots()
     }
 
     exits {
@@ -354,7 +342,7 @@ region RR_GANONS_CASTLE_LIGHT_TRIAL_CHESTS_ROOM {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_MAIN: always
+        RR_GANONS_CASTLE_MAIN:                      always
         RR_GANONS_CASTLE_LIGHT_TRIAL_TRIFORCE_ROOM: small_keys(SCENE_INSIDE_GANONS_CASTLE, 1)
     }
 }
@@ -364,7 +352,7 @@ region RR_GANONS_CASTLE_LIGHT_TRIAL_TRIFORCE_ROOM {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_LIGHT_TRIAL_CHESTS_ROOM: always
+        RR_GANONS_CASTLE_LIGHT_TRIAL_CHESTS_ROOM:  always
         RR_GANONS_CASTLE_LIGHT_TRIAL_BOULDER_ROOM: small_keys(SCENE_INSIDE_GANONS_CASTLE, 2)
     }
 }
@@ -375,7 +363,7 @@ region RR_GANONS_CASTLE_LIGHT_TRIAL_BOULDER_ROOM {
 
     exits {
         RR_GANONS_CASTLE_LIGHT_TRIAL_TRIFORCE_ROOM: small_keys(SCENE_INSIDE_GANONS_CASTLE, 2)
-        RR_GANONS_CASTLE_LIGHT_TRIAL_FINAL_ROOM: can_use(RG_HOOKSHOT) or (is_adult() and can_ground_jump())
+        RR_GANONS_CASTLE_LIGHT_TRIAL_FINAL_ROOM:    can_use(RG_HOOKSHOT) or (is_adult() and can_ground_jump())
     }
 }
 

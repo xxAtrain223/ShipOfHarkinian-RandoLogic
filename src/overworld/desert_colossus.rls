@@ -11,11 +11,11 @@ region RR_DESERT_COLOSSUS {
     }
 
     exits {
-        RR_DESERT_COLOSSUS_OASIS: can_use(RG_SONG_OF_STORMS) and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or has_bottle())
+        RR_DESERT_COLOSSUS_OASIS:         can_use(RG_SONG_OF_STORMS) and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or has_bottle())
         RR_COLOSSUS_GREAT_FAIRY_FOUNTAIN: has_explosives()
-        RR_SPIRIT_TEMPLE_ENTRYWAY: always
-        RR_WASTELAND_NEAR_COLOSSUS: always
-        RR_COLOSSUS_GROTTO: can_use(RG_SILVER_GAUNTLETS)
+        RR_SPIRIT_TEMPLE_ENTRYWAY:        always
+        RR_WASTELAND_NEAR_COLOSSUS:       always
+        RR_COLOSSUS_GROTTO:               can_use(RG_SILVER_GAUNTLETS)
     }
 }
 

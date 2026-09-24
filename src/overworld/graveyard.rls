@@ -3,26 +3,25 @@ region RR_THE_GRAVEYARD {
     scene: SCENE_GRAVEYARD
 
     events {
-        LOGIC_FAIRY_ACCESS: (at_day() and can_use(RG_STICKS)) or (is_child() and can_use(RG_MAGIC_BEAN) and can_use(RG_SONG_OF_STORMS))
-        LOGIC_BUG_ACCESS: has(RG_POWER_BRACELET)
+        LOGIC_FAIRY_ACCESS:      (at_day() and can_use(RG_STICKS)) or (is_child() and can_use(RG_MAGIC_BEAN) and can_use(RG_SONG_OF_STORMS))
+        LOGIC_BUG_ACCESS:        has(RG_POWER_BRACELET)
         LOGIC_BORROW_BUNNY_HOOD: is_child() and at_day() and flag(LOGIC_BORROW_SPOOKY_MASK) and has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN)
     }
 
     locations {
-        RC_GRAVEYARD_FREESTANDING_POH:
-            (((is_adult() and can_plant_bean(RR_THE_GRAVEYARD, RG_GRAVEYARD_BEAN_SOUL)) or can_use(RG_LONGSHOT)) and can_break_crates()) or
-            (trick(RT_GY_POH) and can_use(RG_BOOMERANG))
+        RC_GRAVEYARD_FREESTANDING_POH:        (((is_adult() and can_plant_bean(RR_THE_GRAVEYARD, RG_GRAVEYARD_BEAN_SOUL)) or can_use(RG_LONGSHOT)) and can_break_crates()) or
+                                              (trick(RT_GY_POH) and can_use(RG_BOOMERANG))
         RC_GRAVEYARD_DAMPE_GRAVEDIGGING_TOUR: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and is_child() and at_night()
     }
 
     exits {
-        RR_GRAVEYARD_SHIELD_GRAVE: (is_adult() or at_night()) and has(RG_POWER_BRACELET)
-        RR_GRAVEYARD_COMPOSERS_GRAVE: can_use(RG_ZELDAS_LULLABY)
+        RR_GRAVEYARD_SHIELD_GRAVE:      (is_adult() or at_night()) and has(RG_POWER_BRACELET)
+        RR_GRAVEYARD_COMPOSERS_GRAVE:   can_use(RG_ZELDAS_LULLABY)
         RR_GRAVEYARD_HEART_PIECE_GRAVE: (is_adult() or at_night()) and has(RG_POWER_BRACELET)
-        RR_GRAVEYARD_DAMPES_GRAVE: is_adult() and has(RG_POWER_BRACELET)
-        RR_GRAVEYARD_DAMPES_HOUSE: is_adult() and can_open_overworld_door(RG_DAMPES_HUT_KEY)
-        RR_KAKARIKO_VILLAGE: always
-        RR_GRAVEYARD_WARP_PAD_REGION: never
+        RR_GRAVEYARD_DAMPES_GRAVE:      is_adult() and has(RG_POWER_BRACELET)
+        RR_GRAVEYARD_DAMPES_HOUSE:      is_adult() and can_open_overworld_door(RG_DAMPES_HUT_KEY)
+        RR_KAKARIKO_VILLAGE:            always
+        RR_GRAVEYARD_WARP_PAD_REGION:   never
     }
 }
 
@@ -31,7 +30,7 @@ region RR_GRAVEYARD_SHIELD_GRAVE {
     scene: SCENE_GRAVE_WITH_FAIRYS_FOUNTAIN
 
     exits {
-        RR_THE_GRAVEYARD: always
+        RR_THE_GRAVEYARD:               always
         RR_GRAVEYARD_SHIELD_GRAVE_BACK: any_age(can_break_mud_walls())
     }
 }
@@ -80,7 +79,7 @@ region RR_GRAVEYARD_DAMPES_GRAVE {
     }
 
     exits {
-        RR_THE_GRAVEYARD: always
+        RR_THE_GRAVEYARD:      always
         RR_KAK_WINDMILL_UPPER: (is_adult() and can_use(RG_SONG_OF_TIME)) or (is_child() and can_ground_jump())
     }
 }
@@ -103,7 +102,7 @@ region RR_GRAVEYARD_WARP_PAD_REGION {
     }
 
     exits {
-        RR_THE_GRAVEYARD: always
+        RR_THE_GRAVEYARD:          always
         RR_SHADOW_TEMPLE_ENTRYWAY: can_use(RG_DINS_FIRE) or (trick(RT_GY_SHADOW_FIRE_ARROWS) and is_adult() and can_use(RG_FIRE_ARROWS))
     }
 }

@@ -279,7 +279,7 @@ region RR_JABU_JABUS_BELLY_NEAR_BOSS_ROOM {
     scene: SCENE_JABU_JABU
 
     exits {
-        RR_JABU_JABUS_BELLY_LIFT_ROOM: always
+        RR_JABU_JABUS_BELLY_LIFT_ROOM:     always
         RR_JABU_JABUS_BELLY_BOSS_ENTRYWAY: (has(RG_CLIMB) and can_use(RG_BOOMERANG)) or
                                            (trick(RT_JABU_NEAR_BOSS_RANGED) and (can_use(has(RG_CLIMB) ? RG_HOOKSHOT : RG_LONGSHOT) or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT))) or
                                            (trick(RT_JABU_NEAR_BOSS_EXPLOSIVES) and (can_use(RG_BOMBCHU_5) or (can_use(RG_HOVER_BOOTS) and can_use(RG_BOMB_BAG) and has(RG_CLIMB))))

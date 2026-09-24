@@ -1,197 +1,215 @@
 region RR_GERUDO_TRAINING_GROUND_MQ_LOBBY {
-	name: "Gerudo Training Ground MQ Lobby"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_ENTRYWAY: always
-		RR_GERUDO_TRAINING_GROUND_MQ_MAZE_BY_LOBBY: always
-		RR_GERUDO_TRAINING_GROUND_MQ_SAND_ROOM: any_age(has_fire_source())
-		RR_GERUDO_TRAINING_GROUND_MQ_DINOLFOS_ROOM: any_age(can_hit_eye_targets())
-	}
+    name: "Gerudo Training Ground MQ Lobby"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_ENTRYWAY:         always
+        RR_GERUDO_TRAINING_GROUND_MQ_MAZE_BY_LOBBY: always
+        RR_GERUDO_TRAINING_GROUND_MQ_SAND_ROOM:     any_age(has_fire_source())
+        RR_GERUDO_TRAINING_GROUND_MQ_DINOLFOS_ROOM: any_age(can_hit_eye_targets())
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_MAZE_BY_LOBBY {
-	name: "Gerudo Training Ground MQ Maze By Lobby"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_LOBBY: always
-		RR_GERUDO_TRAINING_GROUND_MQ_MAZE_FIRST_LOCK: small_keys(SCENE_GERUDO_TRAINING_GROUND, 1)
-	}
+    name: "Gerudo Training Ground MQ Maze By Lobby"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_LOBBY:           always
+        RR_GERUDO_TRAINING_GROUND_MQ_MAZE_FIRST_LOCK: small_keys(SCENE_GERUDO_TRAINING_GROUND, 1)
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_MAZE_FIRST_LOCK {
-	name: "Gerudo Training Ground MQ Maze First Lock"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_LOBBY: small_keys(SCENE_GERUDO_TRAINING_GROUND, 1)
-		RR_GERUDO_TRAINING_GROUND_MQ_MAZE_CENTER: small_keys(SCENE_GERUDO_TRAINING_GROUND, 3)
-	}
+    name: "Gerudo Training Ground MQ Maze First Lock"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_LOBBY:       small_keys(SCENE_GERUDO_TRAINING_GROUND, 1)
+        RR_GERUDO_TRAINING_GROUND_MQ_MAZE_CENTER: small_keys(SCENE_GERUDO_TRAINING_GROUND, 3)
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_MAZE_CENTER {
-	name: "Gerudo Training Ground MQ Maze Center"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	events {
-		LOGIC_GTG_MQ_MAZE_SWITCH: can_use(RG_MEGATON_HAMMER)
-	}
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_MAZE_FIRST_LOCK: small_keys(SCENE_GERUDO_TRAINING_GROUND, 3)
-	}
+    name: "Gerudo Training Ground MQ Maze Center"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    events {
+        LOGIC_GTG_MQ_MAZE_SWITCH: can_use(RG_MEGATON_HAMMER)
+    }
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_MAZE_FIRST_LOCK: small_keys(SCENE_GERUDO_TRAINING_GROUND, 3)
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_SAND_ROOM {
-	name: "Gerudo Training Ground MQ Sand Room"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_LOBBY: always
-		RR_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM: any_age(can_kill(RE_IRON_KNUCKLE))
-	}
+    name: "Gerudo Training Ground MQ Sand Room"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_LOBBY:        always
+        RR_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM: any_age(can_kill(RE_IRON_KNUCKLE))
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM {
-	name: "Gerudo Training Ground MQ Left Side"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_SAND_ROOM: always
-		RR_GERUDO_TRAINING_GROUND_MQ_STALFOS_ROOM: any_age(can_use(RG_LONGSHOT) or trick(RT_GTG_MQ_WITHOUT_HOOKSHOT) or 
-				(trick(RT_GTG_MQ_WITH_HOOKSHOT) and is_adult() and can_jumpslash() and can_use(RG_HOOKSHOT)))
-	}
+    name: "Gerudo Training Ground MQ Left Side"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_SAND_ROOM:    always
+        RR_GERUDO_TRAINING_GROUND_MQ_STALFOS_ROOM: any_age(can_use(RG_LONGSHOT) or trick(RT_GTG_MQ_WITHOUT_HOOKSHOT) or
+                (trick(RT_GTG_MQ_WITH_HOOKSHOT) and is_adult() and can_jumpslash() and can_use(RG_HOOKSHOT)))
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_STALFOS_ROOM {
-	name: "Gerudo Training Ground MQ Stalfos Room"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	events {
-		LOGIC_BLUE_FIRE_ACCESS: always
-		LOGIC_GTG_UNLOCKED_DOOR_BEHIND_HEAVY_BLOCK: any_age(can_kill(RE_STALFOS, ED_CLOSE, true, 2, true))
-		LOGIC_GTG_PUSHED_HEAVY_BLOCK: can_use(RG_SILVER_GAUNTLETS) and can_avoid(RE_STALFOS, true, 2)
-	}
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM: always
-		RR_GERUDO_TRAINING_GROUND_MQ_BEHIND_BLOCK: flag(LOGIC_GTG_PUSHED_HEAVY_BLOCK)
-		RR_GERUDO_TRAINING_GROUND_MQ_STATUE_ROOM_LEDGE: is_adult() and any_age(can_kill(RE_STALFOS, ED_CLOSE, true, 2, true)) and (trick(RT_LENS_GTG_MQ) or can_use(RG_LENS_OF_TRUTH)) and blue_fire() and (can_use(RG_SONG_OF_TIME) or (trick(RT_GTG_FAKE_WALL) and is_adult() and can_use(RG_HOVER_BOOTS)) or (is_adult() and can_ground_jump()))
-	}
+    name: "Gerudo Training Ground MQ Stalfos Room"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    events {
+        LOGIC_BLUE_FIRE_ACCESS:                     always
+        LOGIC_GTG_UNLOCKED_DOOR_BEHIND_HEAVY_BLOCK: any_age(can_kill(RE_STALFOS, ED_CLOSE, true, 2, true))
+        LOGIC_GTG_PUSHED_HEAVY_BLOCK:               can_use(RG_SILVER_GAUNTLETS) and can_avoid(RE_STALFOS, true, 2)
+    }
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM:      always
+        RR_GERUDO_TRAINING_GROUND_MQ_BEHIND_BLOCK:      flag(LOGIC_GTG_PUSHED_HEAVY_BLOCK)
+        RR_GERUDO_TRAINING_GROUND_MQ_STATUE_ROOM_LEDGE: is_adult() and any_age(can_kill(RE_STALFOS, ED_CLOSE, true, 2, true)) and (trick(RT_LENS_GTG_MQ) or can_use(RG_LENS_OF_TRUTH)) and blue_fire() and (can_use(RG_SONG_OF_TIME) or (trick(RT_GTG_FAKE_WALL) and is_adult() and can_use(RG_HOVER_BOOTS)) or (is_adult() and can_ground_jump()))
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_BEHIND_BLOCK {
-	name: "Gerudo Training Ground MQ Behind Block"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_STALFOS_ROOM: flag(LOGIC_GTG_PUSHED_HEAVY_BLOCK)
-		RR_GERUDO_TRAINING_GROUND_MQ_ROOM_BEHIND_BLOCK: flag(LOGIC_GTG_UNLOCKED_DOOR_BEHIND_HEAVY_BLOCK)
-	}
+    name: "Gerudo Training Ground MQ Behind Block"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_STALFOS_ROOM:      flag(LOGIC_GTG_PUSHED_HEAVY_BLOCK)
+        RR_GERUDO_TRAINING_GROUND_MQ_ROOM_BEHIND_BLOCK: flag(LOGIC_GTG_UNLOCKED_DOOR_BEHIND_HEAVY_BLOCK)
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_ROOM_BEHIND_BLOCK {
-	name: "Gerudo Training Ground MQ Room Behind Block"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_BEHIND_BLOCK: always
-	}
+    name: "Gerudo Training Ground MQ Room Behind Block"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_BEHIND_BLOCK: always
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_STATUE_ROOM_LEDGE {
-	name: "Gerudo Training Ground MQ Statue Room Ledge"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_STALFOS_ROOM: always
-		RR_GERUDO_TRAINING_GROUND_MQ_MAGENTA_FIRE_ROOM: any_age(can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW) or 
-				can_use(RG_MASTER_SWORD) or can_use(RG_BIGGORON_SWORD) or can_use(RG_STICKS) or can_use(RG_FAIRY_SLINGSHOT)
-				or can_use(RG_BOOMERANG))
-		RR_GERUDO_TRAINING_GROUND_MQ_STATUE_ROOM: always
-	}
+    name: "Gerudo Training Ground MQ Statue Room Ledge"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_STALFOS_ROOM:      always
+        RR_GERUDO_TRAINING_GROUND_MQ_MAGENTA_FIRE_ROOM: any_age(can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW) or can_use(RG_MASTER_SWORD) or can_use(RG_BIGGORON_SWORD) or
+                                                                can_use(RG_STICKS) or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_BOOMERANG))
+        RR_GERUDO_TRAINING_GROUND_MQ_STATUE_ROOM:       always
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_MAGENTA_FIRE_ROOM {
-	name: "Gerudo Training Ground MQ Magenta Fire Room"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_STATUE_ROOM_LEDGE: always
-	}
+    name: "Gerudo Training Ground MQ Magenta Fire Room"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_STATUE_ROOM_LEDGE: always
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_STATUE_ROOM {
-	name: "Gerudo Training Ground MQ Statue Room"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_STATUE_ROOM_LEDGE: can_use(RG_LONGSHOT)
-		RR_GERUDO_TRAINING_GROUND_MQ_TORCH_SLUG_ROOM: always
-	}
+    name: "Gerudo Training Ground MQ Statue Room"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_STATUE_ROOM_LEDGE: can_use(RG_LONGSHOT)
+        RR_GERUDO_TRAINING_GROUND_MQ_TORCH_SLUG_ROOM:   always
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_TORCH_SLUG_ROOM {
-	name: "Gerudo Training Ground MQ Torch Slug Room"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_STATUE_ROOM: any_age(can_kill(RE_IRON_KNUCKLE))
-		RR_GERUDO_TRAINING_GROUND_MQ_SWITCH_LEDGE: any_age(can_kill(RE_IRON_KNUCKLE))
-	}
+    name: "Gerudo Training Ground MQ Torch Slug Room"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_STATUE_ROOM:  any_age(can_kill(RE_IRON_KNUCKLE))
+        RR_GERUDO_TRAINING_GROUND_MQ_SWITCH_LEDGE: any_age(can_kill(RE_IRON_KNUCKLE))
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_SWITCH_LEDGE {
-	name: "Gerudo Training Ground MQ Switch Ledge"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	events {
-		LOGIC_GTG_MQ_RIGHT_SIDE_SWITCH: can_use(RG_MEGATON_HAMMER)
-		LOGIC_GTG_PLATFORM_SILVER_RUPEES: can_use(RG_FIRE_ARROWS) and can_use(RG_HOVER_BOOTS)
-	}
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_LEDGE_SIDE_PLATFORMS: can_use(RG_FIRE_ARROWS)
-		RR_GERUDO_TRAINING_GROUND_MQ_PLATFORMS_UNLIT_TORCH: can_use(RG_LONGSHOT) or (flag(LOGIC_GTG_PLATFORM_SILVER_RUPEES) 
-				and can_use(RG_HOOKSHOT)) or ((can_use(RG_FIRE_ARROWS) and flag(LOGIC_GTG_PLATFORM_SILVER_RUPEES)) 
-				and can_use(RG_HOVER_BOOTS))
-		RR_GERUDO_TRAINING_GROUND_MQ_MAZE_RIGHT: flag(LOGIC_GTG_MQ_RIGHT_SIDE_SWITCH) and can_use(RG_LONGSHOT)
-		RR_GERUDO_TRAINING_GROUND_MQ_TORCH_SLUG_ROOM: always
-	}
+    name: "Gerudo Training Ground MQ Switch Ledge"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    events {
+        LOGIC_GTG_MQ_RIGHT_SIDE_SWITCH:   can_use(RG_MEGATON_HAMMER)
+        LOGIC_GTG_PLATFORM_SILVER_RUPEES: can_use(RG_FIRE_ARROWS) and can_use(RG_HOVER_BOOTS)
+    }
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_LEDGE_SIDE_PLATFORMS:  can_use(RG_FIRE_ARROWS)
+        RR_GERUDO_TRAINING_GROUND_MQ_PLATFORMS_UNLIT_TORCH: can_use(RG_LONGSHOT) or (flag(LOGIC_GTG_PLATFORM_SILVER_RUPEES) and can_use(RG_HOOKSHOT)) or
+                                                            ((can_use(RG_FIRE_ARROWS) and flag(LOGIC_GTG_PLATFORM_SILVER_RUPEES)) and can_use(RG_HOVER_BOOTS))
+        RR_GERUDO_TRAINING_GROUND_MQ_MAZE_RIGHT:            flag(LOGIC_GTG_MQ_RIGHT_SIDE_SWITCH) and can_use(RG_LONGSHOT)
+        RR_GERUDO_TRAINING_GROUND_MQ_TORCH_SLUG_ROOM:       always
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_LEDGE_SIDE_PLATFORMS {
-	name: "Gerudo Training Ground MQ Ledge Side Platforms"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_FURTHEST_PLATFORM: can_use(RG_HOVER_BOOTS)
-	}
+    name: "Gerudo Training Ground MQ Ledge Side Platforms"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_FURTHEST_PLATFORM: can_use(RG_HOVER_BOOTS)
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_FURTHEST_PLATFORM {
-	name: "Gerudo Training Ground MQ Furthest Platform"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_LEDGE_SIDE_PLATFORMS: can_use(RG_HOVER_BOOTS)
-	}
+    name: "Gerudo Training Ground MQ Furthest Platform"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_LEDGE_SIDE_PLATFORMS: can_use(RG_HOVER_BOOTS)
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_PLATFORMS_UNLIT_TORCH {
-	name: "Gerudo Training Ground MQ Platforms Unlit Torch"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	events {
-		LOGIC_GTG_PLATFORM_SILVER_RUPEES: has_fire_source() and can_use(RG_HOVER_BOOTS)
-	}
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_UNDERWATER: flag(LOGIC_GTG_PLATFORM_SILVER_RUPEES)
-		RR_GERUDO_TRAINING_GROUND_MQ_LEDGE_SIDE_PLATFORMS: has_fire_source() and can_use(RG_HOVER_BOOTS)
-		RR_GERUDO_TRAINING_GROUND_MQ_TORCH_SIDE_PLATFORMS: has_fire_source() or can_use(RG_LONGSHOT) or (trick(RT_HOVER_BOOST_SIMPLE) 
-				and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))
-		RR_GERUDO_TRAINING_GROUND_MQ_MAZE_RIGHT: flag(LOGIC_GTG_MQ_RIGHT_SIDE_SWITCH) and (can_use(RG_LONGSHOT) or (can_use(RG_HOOKSHOT) 
-				and has_fire_source()))
-	}
+    name: "Gerudo Training Ground MQ Platforms Unlit Torch"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    events {
+        LOGIC_GTG_PLATFORM_SILVER_RUPEES: has_fire_source() and can_use(RG_HOVER_BOOTS)
+    }
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_UNDERWATER:           flag(LOGIC_GTG_PLATFORM_SILVER_RUPEES)
+        RR_GERUDO_TRAINING_GROUND_MQ_LEDGE_SIDE_PLATFORMS: has_fire_source() and can_use(RG_HOVER_BOOTS)
+        RR_GERUDO_TRAINING_GROUND_MQ_TORCH_SIDE_PLATFORMS: has_fire_source() or can_use(RG_LONGSHOT) or (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))
+        RR_GERUDO_TRAINING_GROUND_MQ_MAZE_RIGHT:           flag(LOGIC_GTG_MQ_RIGHT_SIDE_SWITCH) and (can_use(RG_LONGSHOT) or (can_use(RG_HOOKSHOT) and has_fire_source()))
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_TORCH_SIDE_PLATFORMS {
-	name: "Gerudo Training Ground Torch Side Platforms"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	events {
-		LOGIC_GTG_PLATFORM_SILVER_RUPEES: ((can_use(RG_FAIRY_BOW) and is_adult()) or can_use(RG_FIRE_ARROWS)) and can_use(RG_HOVER_BOOTS)
-	}
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_LEDGE_SIDE_PLATFORMS: ((can_use(RG_FAIRY_BOW) and is_adult()) or can_use(RG_FIRE_ARROWS)) 
-				and (can_use(RG_HOVER_BOOTS) or (is_adult() and trick(RT_GTG_LAVA_JUMP)) or (trick(RT_DAMAGE_BOOST_SIMPLE) 
-				and can_use(RG_BOMB_BAG) and take_damage()))
-        RR_GERUDO_TRAINING_GROUND_MQ_PLATFORMS_UNLIT_TORCH: (can_use(RG_FAIRY_BOW) and is_adult()) or can_use(RG_FIRE_ARROWS) 
-				or can_use(RG_LONGSHOT) or (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))
-        RR_GERUDO_TRAINING_GROUND_MQ_MAZE_RIGHT: flag(LOGIC_GTG_MQ_RIGHT_SIDE_SWITCH) and ((can_use(RG_FAIRY_BOW) and is_adult()) 
-				or can_use(RG_FIRE_ARROWS) or can_use(RG_LONGSHOT))
-        RR_GERUDO_TRAINING_GROUND_MQ_DINOLFOS_ROOM: always
-	}
+    name: "Gerudo Training Ground Torch Side Platforms"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    events {
+        LOGIC_GTG_PLATFORM_SILVER_RUPEES: ((can_use(RG_FAIRY_BOW) and is_adult()) or can_use(RG_FIRE_ARROWS)) and can_use(RG_HOVER_BOOTS)
+    }
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_LEDGE_SIDE_PLATFORMS:  ((can_use(RG_FAIRY_BOW) and is_adult()) or can_use(RG_FIRE_ARROWS)) and 
+                                                            (can_use(RG_HOVER_BOOTS) or (is_adult() and trick(RT_GTG_LAVA_JUMP)) or (trick(RT_DAMAGE_BOOST_SIMPLE) and 
+                                                             can_use(RG_BOMB_BAG) and take_damage()))
+        RR_GERUDO_TRAINING_GROUND_MQ_PLATFORMS_UNLIT_TORCH: (can_use(RG_FAIRY_BOW) and is_adult()) or can_use(RG_FIRE_ARROWS) or can_use(RG_LONGSHOT) or
+                                                            (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))
+        RR_GERUDO_TRAINING_GROUND_MQ_MAZE_RIGHT:            flag(LOGIC_GTG_MQ_RIGHT_SIDE_SWITCH) and ((can_use(RG_FAIRY_BOW) and is_adult()) or can_use(RG_FIRE_ARROWS) or can_use(RG_LONGSHOT))
+        RR_GERUDO_TRAINING_GROUND_MQ_DINOLFOS_ROOM:         always
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_UNDERWATER {
@@ -204,34 +222,36 @@ region RR_GERUDO_TRAINING_GROUND_MQ_UNDERWATER {
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_MAZE_RIGHT {
-	name: "Gerudo Training Ground MQ Maze Right"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	events {
-		LOGIC_GTG_PLATFORM_SILVER_RUPEES: can_use(RG_FIRE_ARROWS) and can_use(RG_HOVER_BOOTS)
-	}
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_LOBBY: always
-		RR_GERUDO_TRAINING_GROUND_MQ_TORCH_SIDE_PLATFORMS: can_use(RG_FIRE_ARROWS) or can_use(RG_LONGSHOT) or 
-				(trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))
-		RR_GERUDO_TRAINING_GROUND_MQ_PLATFORMS_UNLIT_TORCH: can_use(RG_FIRE_ARROWS) or 
-				can_use(flag(LOGIC_GTG_PLATFORM_SILVER_RUPEES) ? RG_HOOKSHOT : RG_LONGSHOT) or 
-				(trick(RT_HOVER_BOOST_SIMPLE) and flag(LOGIC_GTG_MQ_RIGHT_SIDE_SWITCH) and 
-				can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))
-		RR_GERUDO_TRAINING_GROUND_MQ_LEDGE_SIDE_PLATFORMS: can_use(RG_FIRE_ARROWS)
-		RR_GERUDO_TRAINING_GROUND_MQ_FURTHEST_PLATFORM: can_use(RG_FIRE_ARROWS)
-	}
+    name: "Gerudo Training Ground MQ Maze Right"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    events {
+        LOGIC_GTG_PLATFORM_SILVER_RUPEES: can_use(RG_FIRE_ARROWS) and can_use(RG_HOVER_BOOTS)
+    }
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_LOBBY:                 always
+        RR_GERUDO_TRAINING_GROUND_MQ_TORCH_SIDE_PLATFORMS:  can_use(RG_FIRE_ARROWS) or can_use(RG_LONGSHOT) or
+                                                            (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))
+        RR_GERUDO_TRAINING_GROUND_MQ_PLATFORMS_UNLIT_TORCH: can_use(RG_FIRE_ARROWS) or can_use(flag(LOGIC_GTG_PLATFORM_SILVER_RUPEES) ? RG_HOOKSHOT : RG_LONGSHOT) or
+                                                            (trick(RT_HOVER_BOOST_SIMPLE) and flag(LOGIC_GTG_MQ_RIGHT_SIDE_SWITCH) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))
+        RR_GERUDO_TRAINING_GROUND_MQ_LEDGE_SIDE_PLATFORMS:  can_use(RG_FIRE_ARROWS)
+        RR_GERUDO_TRAINING_GROUND_MQ_FURTHEST_PLATFORM:     can_use(RG_FIRE_ARROWS)
+    }
 }
 
 region RR_GERUDO_TRAINING_GROUND_MQ_DINOLFOS_ROOM {
-	name: "Gerudo Training Ground MQ Dinolfos Room"
-	scene: SCENE_GERUDO_TRAINING_GROUND
-	events {
-		LOGIC_FAIRY_ACCESS: is_adult() and can_use(RG_FAIRY_BOW)
-	}
-	exits {
-		RR_GERUDO_TRAINING_GROUND_MQ_LOBBY: always
-		RR_GERUDO_TRAINING_GROUND_MQ_TORCH_SIDE_PLATFORMS: any_age(can_use(RG_MASTER_SWORD) or can_use(RG_BIGGORON_SWORD) 
-				or can_use(RG_MEGATON_HAMMER) or can_use(RG_FAIRY_BOW) or ((can_use(RG_NUTS) or can_use(RG_HOOKSHOT) 
-				or can_use(RG_BOOMERANG)) and (can_use(RG_KOKIRI_SWORD) or can_use(RG_FAIRY_SLINGSHOT))))
-	}
+    name: "Gerudo Training Ground MQ Dinolfos Room"
+    scene: SCENE_GERUDO_TRAINING_GROUND
+
+    events {
+        LOGIC_FAIRY_ACCESS: is_adult() and can_use(RG_FAIRY_BOW)
+    }
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_MQ_LOBBY:                always
+        RR_GERUDO_TRAINING_GROUND_MQ_TORCH_SIDE_PLATFORMS: any_age(can_use(RG_MASTER_SWORD) or can_use(RG_BIGGORON_SWORD) or 
+                                                                   can_use(RG_MEGATON_HAMMER) or can_use(RG_FAIRY_BOW) or
+                                                                   ((can_use(RG_NUTS) or can_use(RG_HOOKSHOT) or can_use(RG_BOOMERANG)) and (can_use(RG_KOKIRI_SWORD) or can_use(RG_FAIRY_SLINGSHOT))))
+    }
 }

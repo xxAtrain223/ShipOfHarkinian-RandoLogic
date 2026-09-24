@@ -1,0 +1,87 @@
+region RR_SFM_ENTRYWAY {
+    name: "SFM Entryway"
+    scene: SCENE_SACRED_FOREST_MEADOW
+
+    exits {
+        RR_LW_BEYOND_MIDO:       always
+        RR_SACRED_FOREST_MEADOW: is_adult() or can_kill(RE_WOLFOS)
+        RR_SFM_WOLFOS_GROTTO:    can_open_bomb_grotto()
+    }
+}
+
+region RR_SFM_ABOVE_MAZE {
+    name: "SFM Maze"
+    scene: SCENE_SACRED_FOREST_MEADOW
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy_except_suns()
+    }
+
+    exits {
+        RR_SFM_ENTRYWAY:             always
+        RR_SFM_OUTSIDE_FAIRY_GROTTO: always
+        RR_SACRED_FOREST_MEADOW:     always
+    }
+}
+
+region RR_SACRED_FOREST_MEADOW {
+    name: "Sacred Forest Meadow"
+    scene: SCENE_SACRED_FOREST_MEADOW
+
+    events {
+        LOGIC_FAIRY_ACCESS: call_gossip_fairy_except_suns()
+    }
+
+    locations {
+        RC_SONG_FROM_SARIA: is_child() and has(RG_ZELDAS_LETTER)
+        RC_SHEIK_IN_FOREST: is_adult()
+    }
+
+    exits {
+        RR_FOREST_TEMPLE_ENTRYWAY: can_use(RG_HOOKSHOT)
+        RR_SFM_ENTRYWAY:           always
+        RR_SFM_ABOVE_MAZE:         can_climb_ladder() or (is_adult() and can_ground_jump())
+        RR_SFM_STORMS_GROTTO:      can_open_storms_grotto()
+    }
+}
+
+region RR_SFM_OUTSIDE_FAIRY_GROTTO {
+    name: "SFM Outside Fairy Grotto"
+    scene: SCENE_SACRED_FOREST_MEADOW
+
+    exits {
+        RR_SFM_FAIRY_GROTTO: always
+        RR_SFM_ABOVE_MAZE:   can_climb_ladder()
+    }
+}
+
+region RR_SFM_FAIRY_GROTTO {
+    name: "SFM Fairy Grotto"
+    scene: SCENE_GROTTOS
+
+    events {
+        LOGIC_FAIRY_ACCESS: always
+    }
+
+    exits {
+        RR_SFM_OUTSIDE_FAIRY_GROTTO: always
+    }
+}
+
+region RR_SFM_WOLFOS_GROTTO {
+    name: "SFM Wolfos Grotto"
+    scene: SCENE_GROTTOS
+
+    exits {
+        RR_SFM_ENTRYWAY: always
+    }
+}
+
+region RR_SFM_STORMS_GROTTO {
+    name: "SFM Storms Grotto"
+    scene: SCENE_GROTTOS
+
+    exits {
+        RR_SACRED_FOREST_MEADOW: always
+    }
+}

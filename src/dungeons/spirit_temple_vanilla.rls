@@ -217,7 +217,7 @@ region RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD {
                                           (can_use(RG_LONGSHOT) or (trick(RT_SPIRIT_PLATFORM_HOOKSHOT) and can_use(RG_HOOKSHOT)))
         RR_SPIRIT_TEMPLE_EMPTY_STAIRS:    has(RG_POWER_BRACELET)
         # !QUANTUM LOGIC!
-        # When child enters spirit in reverse, has 4 keys, and dungeon entrance shuffle is off, 
+        # When child enters spirit in reverse, has 4 keys, and dungeon entrance shuffle is off,
         # Child cannot lock themselves out of desert colossus access as if they save the west hand lock for last
         # they will be able to exit the dungeon through the intended entrance and vice versa
         # for needing to open the west hand lock to block the intended child route

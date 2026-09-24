@@ -114,6 +114,14 @@ extend region RR_LW_SCRUBS_GROTTO {
     }
 }
 
+# overworld/sacred_forest_meadow
+
+extend region RR_SFM_STORMS_GROTTO {
+    locations {
+        RC_SFM_STORMS_GROTTO_BEEHIVE: can_break_upper_beehives()
+    }
+}
+
 # overworld/zoras_domain
 
 extend region RR_ZORAS_DOMAIN {

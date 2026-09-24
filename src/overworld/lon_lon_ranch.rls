@@ -1,7 +1,7 @@
 extend region RR_ROOT {
-	events {
+    events {
         LOGIC_FREED_EPONA: setting(RSK_SKIP_EPONA_RACE)
-	}
+    }
 }
 
 region RR_LON_LON_RANCH {
