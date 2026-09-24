@@ -89,7 +89,8 @@ extend region RR_DESERT_COLOSSUS {
     }
 }
 
-# overworld/gerudo_valley 
+
+# overworld/gerudo_valley
 
 extend region RR_GV_UPPER_STREAM {
     locations {
