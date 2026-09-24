@@ -142,6 +142,29 @@ extend region RR_DMC_CRATE {
     }
 }
 
+# overworld/gerudo_valley 
+
+extend region RR_GV_UPPER_STREAM {
+    locations {
+        RC_GV_NEAR_COW_CRATE: is_child() and can_break_crates()
+    }
+}
+
+extend region RR_GV_CRATE_LEDGE {
+    locations {
+        RC_GV_FREESTANDING_POH_CRATE: can_break_crates()
+    }
+}
+
+extend region RR_GV_FORTRESS_SIDE {
+    locations {
+        RC_GV_CRATE_BRIDGE_1: is_child() and can_break_crates()
+        RC_GV_CRATE_BRIDGE_2: is_child() and can_break_crates()
+        RC_GV_CRATE_BRIDGE_3: is_child() and can_break_crates()
+        RC_GV_CRATE_BRIDGE_4: is_child() and can_break_crates()
+    }
+}
+
 # overworld/goron_city
 
 extend region RR_GORON_CITY {

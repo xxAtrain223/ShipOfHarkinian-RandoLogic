@@ -469,6 +469,27 @@ extend region RR_DESERT_COLOSSUS {
     }
 }
 
+# overworld/gerudo_valley
+
+extend region RR_GERUDO_VALLEY {
+    locations {
+        RC_GV_GS_SMALL_BRIDGE: is_child() and hookshot_or_boomerang() and can_get_night_time_gs()
+    }
+}
+
+extend region RR_GV_UPPER_STREAM {
+    locations {
+        RC_GV_GS_BEAN_PATCH: can_spawn_soil_skull(RG_GERUDO_VALLEY_BEAN_SOUL) and can_attack()
+    }
+}
+
+extend region RR_GV_FORTRESS_SIDE {
+    locations {
+        RC_GV_GS_BEHIND_TENT: is_adult() and hookshot_or_boomerang() and can_get_night_time_gs()
+        RC_GV_GS_PILLAR: is_adult() and hookshot_or_boomerang() and can_get_night_time_gs()
+    }
+}
+
 # overworld/goron_city
 
 extend region RR_GORON_CITY {

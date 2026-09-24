@@ -14,6 +14,14 @@ extend region RR_DMT_COW_GROTTO {
     }
 }
 
+# overworld/gerudo_valley 
+
+extend region RR_GV_UPPER_STREAM {
+    locations {
+        RC_GV_COW: is_child() and can_use(RG_EPONAS_SONG)
+    }
+}
+
 # overworld/hyrule_field
 
 extend region RR_HF_COW_GROTTO_BEHIND_WEBS {

@@ -345,6 +345,33 @@ extend region RR_DMT_COW_GROTTO {
 
 # overworld/desert_colossus
 
+# overworld/gerudo_valley
+
+extend region RR_GV_WATERFALL_ALCOVE {
+    locations {
+        RC_GV_WATERFALL_FREESTANDING_POH: always
+    }
+}
+
+extend region RR_GV_CRATE_LEDGE {
+    locations {
+        RC_GV_CRATE_FREESTANDING_POH: can_break_crates()
+    }
+}
+
+extend region RR_GV_OCTOROK_GROTTO {
+    locations {
+        RC_GV_OCTOROK_GROTTO_FRONT_LEFT_BLUE_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GV_OCTOROK_GROTTO_FRONT_RIGHT_BLUE_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GV_OCTOROK_GROTTO_BACK_BLUE_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GV_OCTOROK_GROTTO_FRONT_LEFT_GREEN_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GV_OCTOROK_GROTTO_FRONT_RIGHT_GREEN_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GV_OCTOROK_GROTTO_BACK_LEFT_GREEN_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GV_OCTOROK_GROTTO_BACK_RIGHT_GREEN_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GV_OCTOROK_GROTTO_RED_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+    }
+}
+
 # overworld/graveyard
 
 extend region RR_GRAVEYARD_DAMPES_GRAVE {

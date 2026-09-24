@@ -210,6 +210,18 @@ extend region RR_DESERT_COLOSSUS_OASIS {
     }
 }
 
+# overworld/gerudo_valley 
+
+extend region RR_GV_UPPER_STREAM {
+    locations {
+        RC_GV_BEAN_SPROUT_FAIRY_1: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_GERUDO_VALLEY_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+        RC_GV_BEAN_SPROUT_FAIRY_2: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_GERUDO_VALLEY_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+        RC_GV_BEAN_SPROUT_FAIRY_3: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_GERUDO_VALLEY_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
+        RC_GV_GOSSIP_STONE_FAIRY: call_gossip_fairy()
+        RC_GV_GOSSIP_STONE_FAIRY_BIG: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
 # overworld/goron_city
 
 extend region RR_GORON_CITY {

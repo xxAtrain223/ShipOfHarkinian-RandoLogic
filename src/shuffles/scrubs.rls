@@ -100,6 +100,15 @@ extend region RR_COLOSSUS_GROTTO {
     }
 }
 
+# overworld/gerudo_valley
+
+extend region RR_GV_STORMS_GROTTO {
+    locations {
+        RC_GV_DEKU_SCRUB_GROTTO_REAR: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_GV_DEKU_SCRUB_GROTTO_FRONT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+    }
+}
+
 # overworld/goron_city
 
 extend region RR_GC_GROTTO {

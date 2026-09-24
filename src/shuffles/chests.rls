@@ -864,6 +864,14 @@ extend region RR_DMT_STORMS_GROTTO {
     }
 }
 
+# overworld/gerudo_valley
+
+extend region RR_GV_FORTRESS_SIDE {
+    locations {
+        RC_GV_CHEST: is_adult() and (can_use(RG_MEGATON_HAMMER) or (trick(RT_DISTANT_BOULDER_COLLISION) and can_use(RG_LONGSHOT))) and has(RG_OPEN_CHEST)
+    }
+}
+
 # overworld/goron_city
 
 extend region RR_GORON_CITY {
