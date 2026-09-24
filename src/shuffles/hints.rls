@@ -89,6 +89,14 @@ extend region RR_DESERT_COLOSSUS {
     }
 }
 
+# overworld/gerudo_valley 
+
+extend region RR_GV_UPPER_STREAM {
+    locations {
+        RR_GV_GOSSIP_STONE: always
+    }
+}
+
 # overworld/goron_city
 
 extend region RR_GORON_CITY {

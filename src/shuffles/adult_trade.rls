@@ -7,6 +7,14 @@ extend region RR_DEATH_MOUNTAIN_SUMMIT {
     }
 }
 
+# overworld/gerudo_valley
+
+extend region RR_GV_FORTRESS_SIDE {
+    locations {
+        RC_GV_TRADE_SAW: is_adult() and can_use(RG_POACHERS_SAW)
+    }
+}
+
 # overworld/kakariko
 
 extend region RR_KAKARIKO_VILLAGE {
