@@ -1,0 +1,98 @@
+region RR_LAKE_HYLIA {
+    name: "Lake Hylia"
+    scene: SCENE_LAKE_HYLIA
+    events {
+        LOGIC_FAIRY_ACCESS:     call_gossip_fairy() or can_use(RG_STICKS) or (is_child() and can_use(RG_MAGIC_BEAN) and has(RG_LAKE_HYLIA_BEAN_SOUL) and 
+                                        can_use(RG_SONG_OF_STORMS))
+        LOGIC_BUG_ACCESS:       is_child() and can_cut_shrubs()
+        LOGIC_CHILD_SCARECROW:  is_child() and has(RG_FAIRY_OCARINA) and ocarina_buttons() >= 2
+        LOGIC_ADULT_SCARECROW:  is_adult() and has(RG_FAIRY_OCARINA) and ocarina_buttons() >= 2
+    }
+    locations {
+        RC_LH_SUN:              is_adult() and ((flag(LOGIC_WATER_TEMPLE_CLEAR) and has(RG_BRONZE_SCALE)) or reach_distant_scarecrow()) and 
+                                        can_use(RG_FAIRY_BOW)
+    }
+    exits {
+        RR_HF_TO_LAKE_HYLIA:     always
+        RR_LH_FROM_SHORTCUT:     always
+        RR_LH_OWL_FLIGHT:        is_child() and (has(RG_SPEAK_DEKU) or has(RG_SPEAK_GERUDO) or has(RG_SPEAK_GORON) or has(RG_SPEAK_KOKIRI) or has(RG_SPEAK_HYLIAN) or has(RG_SPEAK_ZORA))
+        RR_LH_FISHING_ISLAND:    ((is_child() or flag(LOGIC_WATER_TEMPLE_CLEAR)) and has(RG_BRONZE_SCALE)) or (is_adult() and (reach_scarecrow() or
+                                         can_plant_bean(RR_LAKE_HYLIA, RG_LAKE_HYLIA_BEAN_SOUL)))
+        RR_LH_LAB:               can_open_overworld_door(RG_HYLIA_LAB_KEY)
+        RR_LH_FROM_WATER_TEMPLE: always
+        RR_LH_GROTTO:            has(RG_POWER_BRACELET) and (is_adult() or has(RG_SPEAK_DEKU) or has(RG_SPEAK_GERUDO) or has(RG_SPEAK_GORON) or 
+                                        has(RG_SPEAK_KOKIRI) or has(RG_SPEAK_HYLIAN) or has(RG_SPEAK_ZORA))
+    }
+}
+
+region RR_LH_FROM_SHORTCUT {
+    name: "LH From Shortcut"
+    scene: SCENE_LAKE_HYLIA
+    timePasses: never
+    areas: RA_LAKE_HYLIA
+    exits {
+        RR_LAKE_HYLIA:   hearts() > 1 or has(RG_BOTTLE_WITH_FAIRY) or has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS)
+        RR_ZORAS_DOMAIN: is_child() and (has(RG_SILVER_SCALE) or can_use(RG_IRON_BOOTS))
+    }
+}
+
+region RR_LH_FROM_WATER_TEMPLE {
+    name: "LH From Water Temple"
+    scene: SCENE_LAKE_HYLIA
+    timePasses: never
+    areas: RA_LAKE_AREA
+    exits {
+        RR_LAKE_HYLIA:            has(RG_BRONZE_SCALE) or has(RG_BOTTLE_WITH_FAIRY) or can_use(RG_IRON_BOOTS)
+        RR_WATER_TEMPLE_ENTRYWAY: can_use(RG_HOOKSHOT) and ((can_use(RG_IRON_BOOTS) or (trick(RT_LH_WATER_HOOKSHOT) and has(RG_GOLDEN_SCALE))) or 
+                                        (is_adult() and can_use(RG_LONGSHOT) and has(RG_GOLDEN_SCALE)))
+    }
+}
+
+region RR_LH_FISHING_ISLAND {
+    name: "LH Fishing Island"
+    scene: SCENE_LAKE_HYLIA
+    exits {
+        RR_LAKE_HYLIA:      has(RG_BRONZE_SCALE)
+        RR_LH_FISHING_POND: can_open_overworld_door(RG_FISHING_HOLE_KEY)
+    }
+}
+
+region RR_LH_OWL_FLIGHT {
+    name: "LH Owl Flight"
+    scene: SCENE_LAKE_HYLIA
+    exits {
+        RR_HYRULE_FIELD: always #hint propogation false
+    }
+}
+
+region RR_LH_LAB {
+    name: "LH Lab"
+    scene: SCENE_LAKESIDE_LABORATORY
+    locations {
+        RC_LH_LAB_DIVE: (has(RG_GOLDEN_SCALE) or (trick(RT_LH_LAB_DIVING) and can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT) and has(RG_BRONZE_SCALE))) and 
+                                has(RG_SPEAK_HYLIAN)
+    }
+    exits {
+        RR_LAKE_HYLIA: always
+    }
+}
+
+region RR_LH_FISHING_POND {
+    name: "LH Fishing Hole"
+    scene: SCENE_FISHING_POND
+    locations {
+        RC_LH_CHILD_FISHING: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_child()
+        RC_LH_ADULT_FISHING: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult()
+    }
+    exits {
+        RR_LH_FISHING_ISLAND: always
+    }
+}
+
+region RR_LH_GROTTO {
+    name: "LH Grotto"
+    scene: SCENE_GROTTOS
+    exits {
+        RR_LAKE_HYLIA: always
+    }
+}

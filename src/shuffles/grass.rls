@@ -574,6 +574,55 @@ extend region RR_KF_STORMS_GROTTO {
     }
 }
 
+# overworld/lake_hylia
+
+extend region RR_LAKE_HYLIA {
+    locations {
+        RC_LH_GRASS_1:          can_cut_shrubs()
+        RC_LH_GRASS_2:          can_cut_shrubs()
+        RC_LH_GRASS_3:          can_cut_shrubs()
+        RC_LH_GRASS_4:          can_cut_shrubs()
+        RC_LH_GRASS_5:          can_cut_shrubs()
+        RC_LH_GRASS_6:          can_cut_shrubs()
+        RC_LH_GRASS_7:          can_cut_shrubs()
+        RC_LH_GRASS_8:          can_cut_shrubs()
+        RC_LH_GRASS_9:          can_cut_shrubs()
+        RC_LH_GRASS_10:         can_cut_shrubs()
+        RC_LH_GRASS_11:         can_cut_shrubs()
+        RC_LH_GRASS_12:         can_cut_shrubs()
+        RC_LH_GRASS_13:         can_cut_shrubs()
+        RC_LH_GRASS_14:         can_cut_shrubs()
+        RC_LH_GRASS_15:         can_cut_shrubs()
+        RC_LH_GRASS_16:         can_cut_shrubs()
+        RC_LH_GRASS_17:         can_cut_shrubs()
+        RC_LH_GRASS_18:         can_cut_shrubs()
+        RC_LH_GRASS_19:         can_cut_shrubs()
+        RC_LH_GRASS_20:         can_cut_shrubs()
+        RC_LH_GRASS_21:         can_cut_shrubs()
+        RC_LH_GRASS_22:         can_cut_shrubs()
+        RC_LH_GRASS_23:         can_cut_shrubs()
+        RC_LH_GRASS_24:         can_cut_shrubs()
+        RC_LH_GRASS_25:         can_cut_shrubs()
+        RC_LH_GRASS_26:         can_cut_shrubs()
+        RC_LH_GRASS_27:         can_cut_shrubs()
+        RC_LH_GRASS_28:         can_cut_shrubs()
+        RC_LH_GRASS_29:         can_cut_shrubs()
+        RC_LH_GRASS_30:         can_cut_shrubs()
+        RC_LH_GRASS_31:         can_cut_shrubs()
+        RC_LH_GRASS_32:         can_cut_shrubs()
+        RC_LH_GRASS_33:         can_cut_shrubs()
+        RC_LH_GRASS_34:         can_cut_shrubs()
+        RC_LH_GRASS_35:         can_cut_shrubs()
+        RC_LH_GRASS_36:         can_cut_shrubs()
+        RC_LH_CHILD_GRASS_1:    is_child() and can_cut_shrubs()
+        RC_LH_CHILD_GRASS_2:    is_child() and can_cut_shrubs()
+        RC_LH_CHILD_GRASS_3:    is_child() and can_cut_shrubs()
+        RC_LH_CHILD_GRASS_4:    is_child() and can_cut_shrubs()
+        RC_LH_WARP_PAD_GRASS_1: can_cut_shrubs()
+        RC_LH_WARP_PAD_GRASS_2: can_cut_shrubs()
+    }
+}
+
 # overworld/lost_woods
 
 extend region RR_THE_LOST_WOODS {

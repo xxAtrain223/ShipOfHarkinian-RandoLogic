@@ -99,6 +99,14 @@ extend region RR_KF_STORMS_GROTTO {
     }
 }
 
+# overworld/lake_hylia
+
+extend region RR_LH_GROTTO {
+    locations {
+        RC_LH_GROTTO_BEEHIVE: can_break_upper_beehives()
+    }
+}
+
 # overworld/lon_lon_ranch
 
 extend region RR_LLR_GROTTO {

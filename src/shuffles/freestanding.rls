@@ -450,6 +450,19 @@ extend region RR_KF_RUPEE_ALCOVE {
     }
 }
 
+# overworld/lake_hylia
+
+extend region RR_LAKE_HYLIA {
+    locations {
+        RC_LH_UNDERWATER_ITEM:  is_child() and has(RG_SILVER_SCALE)
+        RC_LH_FREESTANDING_POH: is_adult() and (reach_scarecrow() or can_plant_bean(RR_LAKE_HYLIA, RG_LAKE_HYLIA_BEAN_SOUL)) and 
+                                        can_avoid(RE_GUAY, false) and has(RG_CLIMB)
+        RC_LH_FRONT_RUPEE:      is_child() and has(RG_BRONZE_SCALE)
+        RC_LH_MIDDLE_RUPEE:     is_child() and (has(RG_SILVER_SCALE) or can_use(RG_IRON_BOOTS))
+        RC_LH_BACK_RUPEE:       is_child() and (has(RG_SILVER_SCALE) or can_use(RG_IRON_BOOTS))
+    }
+}
+
 # overworld/lon_lon_ranch
 
 extend region RR_LLR_TOWER {

@@ -50,6 +50,46 @@ extend region RR_KF_STORMS_GROTTO {
     }
 }
 
+# overworld/lake_hylia
+
+extend region RR_LH_FISHING_POND {
+    locations {
+        RC_LH_CHILD_FISH_1:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_FISH_2:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_FISH_3:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_FISH_4:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_FISH_5:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_FISH_6:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_FISH_7:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_FISH_8:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_FISH_9:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_FISH_10: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_FISH_11: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_FISH_12: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_FISH_13: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_FISH_14: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_FISH_15: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_LOACH_1: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_CHILD_LOACH_2: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and (is_child() or not setting(RSK_FISHSANITY_AGE_SPLIT))
+        RC_LH_ADULT_FISH_1:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_ADULT_FISH_2:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_ADULT_FISH_3:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_ADULT_FISH_4:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_ADULT_FISH_5:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_ADULT_FISH_6:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_ADULT_FISH_7:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_ADULT_FISH_8:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_ADULT_FISH_9:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_ADULT_FISH_10: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_ADULT_FISH_11: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_ADULT_FISH_12: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_ADULT_FISH_13: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_ADULT_FISH_14: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_ADULT_FISH_15: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_ADULT_LOACH:   can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+    }
+}
+
 # overworld/lost_woods
 
 extend region RR_LW_NEAR_SHORTCUTS_GROTTO {
