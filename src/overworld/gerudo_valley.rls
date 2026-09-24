@@ -5,17 +5,17 @@ region RR_GERUDO_VALLEY {
         LOGIC_BUG_ACCESS: is_child() and has(RG_POWER_BRACELET)
     }
     exits {
-        RR_HYRULE_FIELD: always
-        RR_GV_UPPER_STREAM: (is_child() and has(RG_POWER_BRACELET)) or take_damage()
+        RR_HYRULE_FIELD:          always
+        RR_GV_UPPER_STREAM:       (is_child() and has(RG_POWER_BRACELET)) or take_damage()
         RR_GV_UPPER_STREAM_WATER: always
-        RR_GV_CRATE_LEDGE: (is_child() and has(RG_POWER_BRACELET)) or can_use(RG_LONGSHOT)
-        RR_GV_GROTTO_LEDGE: always
-        RR_GV_FORTRESS_SIDE: (is_adult() and (summon_epona() or can_use(RG_LONGSHOT) or setting(RSK_GERUDO_FORTRESS) is RO_GF_CARPENTERS_FREE or 
+        RR_GV_CRATE_LEDGE:        (is_child() and has(RG_POWER_BRACELET)) or can_use(RG_LONGSHOT)
+        RR_GV_GROTTO_LEDGE:       always
+        RR_GV_FORTRESS_SIDE:      (is_adult() and (summon_epona() or can_use(RG_LONGSHOT) or setting(RSK_GERUDO_FORTRESS) is RO_GF_CARPENTERS_FREE or
                 flag(LOGIC_TH_RESCUED_ALL_CARPENTERS))) or (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_MEGATON_HAMMER) and can_use(RG_HOVER_BOOTS)) or
-                ((is_child() or trick(RT_GV_HOOKSHOT_BRIDGE)) and can_use(RG_HOOKSHOT)) or (is_child() and trick(RT_GV_CHILD_CUCCO_JUMP) and 
+                ((is_child() or trick(RT_GV_HOOKSHOT_BRIDGE)) and can_use(RG_HOOKSHOT)) or (is_child() and trick(RT_GV_CHILD_CUCCO_JUMP) and
                 has(RG_POWER_BRACELET) and can_jumpslash())
-        RR_GV_WATERFALL_ALCOVE: is_child() and has(RG_POWER_BRACELET)
-        RR_GV_LOWER_STREAM: is_child() and has(RG_POWER_BRACELET)
+        RR_GV_WATERFALL_ALCOVE:   is_child() and has(RG_POWER_BRACELET)
+        RR_GV_LOWER_STREAM:       is_child() and has(RG_POWER_BRACELET)
     }
 }
 
@@ -27,7 +27,7 @@ region RR_GV_UPPER_STREAM {
     }
     exits {
         RR_GV_UPPER_STREAM_WATER: always
-        RR_GV_WATERFALL_ALCOVE: (can_use(RG_LONGSHOT) and (can_use(RG_CLIMB) or trick(RT_HOOKSHOT_LADDERS))) or 
+        RR_GV_WATERFALL_ALCOVE:   (can_use(RG_LONGSHOT) and (can_use(RG_CLIMB) or trick(RT_HOOKSHOT_LADDERS))) or
                 can_plant_bean(RR_GV_UPPER_STREAM, RG_GERUDO_VALLEY_BEAN_SOUL)
     }
 }
@@ -36,8 +36,8 @@ region RR_GV_UPPER_STREAM_WATER {
     name: "GV Upper Stream Water"
     scene: SCENE_GERUDO_VALLEY
     exits {
-        RR_GV_UPPER_STREAM: has(RG_BRONZE_SCALE)
-        RR_GV_LOWER_STREAM: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS)
+        RR_GV_UPPER_STREAM:     has(RG_BRONZE_SCALE)
+        RR_GV_LOWER_STREAM:     has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS)
         RR_GV_WATERFALL_ALCOVE: (has(RG_BRONZE_SCALE) or (can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT))) and has(RG_CLIMB)
     }
 }
@@ -54,7 +54,7 @@ region RR_GV_WATERFALL_ALCOVE {
     name: "GV Waterfall Alcove"
     scene: SCENE_GERUDO_VALLEY
     exits {
-        RR_GV_UPPER_STREAM: is_adult() and can_use(RG_HOVER_BOOTS)
+        RR_GV_UPPER_STREAM:       is_adult() and can_use(RG_HOVER_BOOTS)
         RR_GV_UPPER_STREAM_WATER: always
     }
 }
@@ -63,10 +63,10 @@ region RR_GV_GROTTO_LEDGE {
     name: "GV Grotto Ledge"
     scene: SCENE_GERUDO_VALLEY
     exits {
-        RR_GV_UPPER_STREAM: trick(RT_DAMAGE_BOOST_SIMPLE) and has_explosives() and take_damage()
-        RR_GV_LOWER_STREAM: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS)
+        RR_GV_UPPER_STREAM:   trick(RT_DAMAGE_BOOST_SIMPLE) and has_explosives() and take_damage()
+        RR_GV_LOWER_STREAM:   has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS)
         RR_GV_OCTOROK_GROTTO: can_use(RG_SILVER_GAUNTLETS)
-        RR_GV_CRATE_LEDGE: can_use(RG_LONGSHOT)
+        RR_GV_CRATE_LEDGE:    can_use(RG_LONGSHOT)
     }
 }
 
@@ -83,14 +83,14 @@ region RR_GV_FORTRESS_SIDE {
     name: "GV Fortress Side"
     scene: SCENE_GERUDO_VALLEY
     exits {
-        RR_GF_OUTSKIRTS: always
-        RR_GV_UPPER_STREAM: take_damage()
+        RR_GF_OUTSKIRTS:          always
+        RR_GV_UPPER_STREAM:       take_damage()
         RR_GV_UPPER_STREAM_WATER: always
-        RR_GERUDO_VALLEY: is_child() or summon_epona() or can_use(RG_LONGSHOT) or setting(RSK_GERUDO_FORTRESS) is RO_GF_CARPENTERS_FREE or 
+        RR_GERUDO_VALLEY:         is_child() or summon_epona() or can_use(RG_LONGSHOT) or setting(RSK_GERUDO_FORTRESS) is RO_GF_CARPENTERS_FREE or
                 flag(LOGIC_TH_RESCUED_ALL_CARPENTERS) or (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_MEGATON_HAMMER) and can_use(RG_HOVER_BOOTS))
-        RR_GV_CARPENTER_TENT: is_adult() or trick(RT_GV_CHILD_TENT)
-        RR_GV_STORMS_GROTTO: is_adult() and can_open_storms_grotto()
-        RR_GV_CRATE_LEDGE: (trick(RT_DAMAGE_BOOST_SIMPLE) and has_explosives()) or (trick(RT_GV_CRATE_HOVERS) and take_damage() and can_use(RG_HOVER_BOOTS) and
+        RR_GV_CARPENTER_TENT:     is_adult() or trick(RT_GV_CHILD_TENT)
+        RR_GV_STORMS_GROTTO:      is_adult() and can_open_storms_grotto()
+        RR_GV_CRATE_LEDGE:        (trick(RT_DAMAGE_BOOST_SIMPLE) and has_explosives()) or (trick(RT_GV_CRATE_HOVERS) and take_damage() and can_use(RG_HOVER_BOOTS) and
                 (can_use(RG_MASTER_SWORD) or can_use(RG_BIGGORON_SWORD)))
     }
 }
