@@ -23,7 +23,7 @@ region RR_TH_1_TORCH_CELL {
 
     locations {
         RC_TH_1_TORCH_CARPENTER: can_kill(RE_GERUDO_WARRIOR)
-        RC_TH_FREED_CARPENTERS: flag(LOGIC_TH_RESCUED_ALL_CARPENTERS)
+        RC_TH_FREED_CARPENTERS:  flag(LOGIC_TH_RESCUED_ALL_CARPENTERS)
     }
 
     exits {
@@ -45,12 +45,12 @@ region RR_TH_DOUBLE_CELL {
 
     locations {
         RC_TH_DOUBLE_CELL_CARPENTER: can_kill(RE_GERUDO_WARRIOR)
-        RC_TH_FREED_CARPENTERS: flag(LOGIC_TH_RESCUED_ALL_CARPENTERS)
+        RC_TH_FREED_CARPENTERS:      flag(LOGIC_TH_RESCUED_ALL_CARPENTERS)
     }
 
     exits {
-        RR_GF_OUTSKIRTS: always
-        RR_GF_ABOVE_GTG: always
+        RR_GF_OUTSKIRTS:          always
+        RR_GF_ABOVE_GTG:          always
         RR_GF_TOP_OF_LOWER_VINES: always
     }
 }
@@ -68,7 +68,7 @@ region RR_TH_DEAD_END_CELL {
 
     locations {
         RC_TH_DEAD_END_CARPENTER: can_kill(RE_GERUDO_WARRIOR)
-        RC_TH_FREED_CARPENTERS: flag(LOGIC_TH_RESCUED_ALL_CARPENTERS)
+        RC_TH_FREED_CARPENTERS:   flag(LOGIC_TH_RESCUED_ALL_CARPENTERS)
     }
 
     exits {
@@ -89,7 +89,7 @@ region RR_TH_STEEP_SLOPE_CELL {
 
     locations {
         RC_TH_STEEP_SLOPE_CARPENTER: can_kill(RE_GERUDO_WARRIOR)
-        RC_TH_FREED_CARPENTERS: flag(LOGIC_TH_RESCUED_ALL_CARPENTERS)
+        RC_TH_FREED_CARPENTERS:      flag(LOGIC_TH_RESCUED_ALL_CARPENTERS)
     }
 
     exits {
