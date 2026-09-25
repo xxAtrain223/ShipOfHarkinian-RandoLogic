@@ -463,6 +463,14 @@ extend region RR_LAKE_HYLIA {
     }
 }
 
+extend region RR_LH_LAB {
+    locations {
+        RC_LH_LAB_FRONT_RUPEE: can_use(RG_IRON_BOOTS) or has(RG_GOLDEN_SCALE)
+        RC_LH_LAB_LEFT_RUPEE: can_use(RG_IRON_BOOTS) or has(RG_GOLDEN_SCALE)
+        RC_LH_LAB_RIGHT_RUPEE: can_use(RG_IRON_BOOTS) or has(RG_GOLDEN_SCALE)
+    }
+}
+
 # overworld/lon_lon_ranch
 
 extend region RR_LLR_TOWER {
