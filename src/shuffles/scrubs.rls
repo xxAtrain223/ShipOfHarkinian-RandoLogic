@@ -104,7 +104,7 @@ extend region RR_COLOSSUS_GROTTO {
 
 extend region RR_GV_STORMS_GROTTO {
     locations {
-        RC_GV_DEKU_SCRUB_GROTTO_REAR: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_GV_DEKU_SCRUB_GROTTO_REAR:  can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
         RC_GV_DEKU_SCRUB_GROTTO_FRONT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
     }
 }
@@ -131,8 +131,8 @@ extend region RR_HF_INSIDE_FENCE_GROTTO {
 
 extend region RR_LH_GROTTO {
     locations {
-        RC_LH_DEKU_SCRUB_GROTTO_LEFT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
-        RC_LH_DEKU_SCRUB_GROTTO_RIGHT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_LH_DEKU_SCRUB_GROTTO_LEFT:   can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_LH_DEKU_SCRUB_GROTTO_RIGHT:  can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
         RC_LH_DEKU_SCRUB_GROTTO_CENTER: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
     }
 }

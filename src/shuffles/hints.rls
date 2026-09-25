@@ -185,7 +185,7 @@ extend region RR_KF_STORMS_GROTTO {
 
 extend region RR_LAKE_HYLIA {
     locations {
-        RC_LH_LAB_GOSSIP_STONE: always
+        RC_LH_LAB_GOSSIP_STONE:       always
         RC_LH_SOUTHEAST_GOSSIP_STONE: always
         RC_LH_SOUTHWEST_GOSSIP_STONE: always
     }

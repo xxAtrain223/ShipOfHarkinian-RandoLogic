@@ -486,7 +486,7 @@ extend region RR_GV_UPPER_STREAM {
 extend region RR_GV_FORTRESS_SIDE {
     locations {
         RC_GV_GS_BEHIND_TENT: is_adult() and hookshot_or_boomerang() and can_get_night_time_gs()
-        RC_GV_GS_PILLAR: is_adult() and hookshot_or_boomerang() and can_get_night_time_gs()
+        RC_GV_GS_PILLAR:      is_adult() and hookshot_or_boomerang() and can_get_night_time_gs()
     }
 }
 
@@ -598,8 +598,9 @@ extend region RR_KOKIRI_FOREST {
 extend region RR_LAKE_HYLIA {
     locations {
         RC_LH_GS_BEAN_PATCH:   can_spawn_soil_skull(RG_LAKE_HYLIA_BEAN_SOUL) and can_get_drop(RE_GOLD_SKULLTULA)
-        RC_LH_GS_LAB_WALL:     is_child() and (can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or (trick(RT_LH_LAB_WALL_GS) and 
-                                        can_jumpslash_except_hammer())) and can_get_night_time_gs()
+        RC_LH_GS_LAB_WALL:     is_child() and (can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or
+                                               (trick(RT_LH_LAB_WALL_GS) and can_jumpslash_except_hammer())) and
+                               can_get_night_time_gs()
         RC_LH_GS_SMALL_ISLAND: is_child() and can_get_drop(RE_GOLD_SKULLTULA) and can_get_night_time_gs() and has(RG_BRONZE_SCALE)
         RC_LH_GS_TREE:         is_child() and can_use(RG_LONGSHOT) and can_get_night_time_gs()
     }

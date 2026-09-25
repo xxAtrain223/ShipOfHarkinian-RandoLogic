@@ -30,6 +30,7 @@ extend region RR_KAK_ODD_POTION_BUILDING {
 }
 
 # overworld/lake_hylia
+
 extend region RR_LH_LAB {
     locations {
         RC_LH_TRADE_FROG: is_adult() and can_use(RG_EYEBALL_FROG)

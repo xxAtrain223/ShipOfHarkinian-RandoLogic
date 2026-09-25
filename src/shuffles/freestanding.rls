@@ -361,14 +361,14 @@ extend region RR_GV_CRATE_LEDGE {
 
 extend region RR_GV_OCTOROK_GROTTO {
     locations {
-        RC_GV_OCTOROK_GROTTO_FRONT_LEFT_BLUE_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_GV_OCTOROK_GROTTO_FRONT_RIGHT_BLUE_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_GV_OCTOROK_GROTTO_BACK_BLUE_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_GV_OCTOROK_GROTTO_FRONT_LEFT_GREEN_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GV_OCTOROK_GROTTO_FRONT_LEFT_BLUE_RUPEE:   has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GV_OCTOROK_GROTTO_FRONT_RIGHT_BLUE_RUPEE:  has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GV_OCTOROK_GROTTO_BACK_BLUE_RUPEE:         has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GV_OCTOROK_GROTTO_FRONT_LEFT_GREEN_RUPEE:  has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
         RC_GV_OCTOROK_GROTTO_FRONT_RIGHT_GREEN_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_GV_OCTOROK_GROTTO_BACK_LEFT_GREEN_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_GV_OCTOROK_GROTTO_BACK_RIGHT_GREEN_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_GV_OCTOROK_GROTTO_RED_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GV_OCTOROK_GROTTO_BACK_LEFT_GREEN_RUPEE:   has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GV_OCTOROK_GROTTO_BACK_RIGHT_GREEN_RUPEE:  has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GV_OCTOROK_GROTTO_RED_RUPEE:               has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
     }
 }
 
@@ -455,8 +455,7 @@ extend region RR_KF_RUPEE_ALCOVE {
 extend region RR_LAKE_HYLIA {
     locations {
         RC_LH_UNDERWATER_ITEM:  is_child() and has(RG_SILVER_SCALE)
-        RC_LH_FREESTANDING_POH: is_adult() and (reach_scarecrow() or can_plant_bean(RR_LAKE_HYLIA, RG_LAKE_HYLIA_BEAN_SOUL)) and 
-                                        can_avoid(RE_GUAY, false) and has(RG_CLIMB)
+        RC_LH_FREESTANDING_POH: is_adult() and (reach_scarecrow() or can_plant_bean(RR_LAKE_HYLIA, RG_LAKE_HYLIA_BEAN_SOUL)) and can_avoid(RE_GUAY, false) and has(RG_CLIMB)
         RC_LH_FRONT_RUPEE:      is_child() and has(RG_BRONZE_SCALE)
         RC_LH_MIDDLE_RUPEE:     is_child() and (has(RG_SILVER_SCALE) or can_use(RG_IRON_BOOTS))
         RC_LH_BACK_RUPEE:       is_child() and (has(RG_SILVER_SCALE) or can_use(RG_IRON_BOOTS))
@@ -466,7 +465,7 @@ extend region RR_LAKE_HYLIA {
 extend region RR_LH_LAB {
     locations {
         RC_LH_LAB_FRONT_RUPEE: can_use(RG_IRON_BOOTS) or has(RG_GOLDEN_SCALE)
-        RC_LH_LAB_LEFT_RUPEE: can_use(RG_IRON_BOOTS) or has(RG_GOLDEN_SCALE)
+        RC_LH_LAB_LEFT_RUPEE:  can_use(RG_IRON_BOOTS) or has(RG_GOLDEN_SCALE)
         RC_LH_LAB_RIGHT_RUPEE: can_use(RG_IRON_BOOTS) or has(RG_GOLDEN_SCALE)
     }
 }
