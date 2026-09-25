@@ -165,6 +165,49 @@ extend region RR_GV_FORTRESS_SIDE {
     }
 }
 
+# overworld/gerudo_fortress
+
+extend region RR_GF_OUTSKIRTS {
+    locations {
+        RC_GF_OUTSKIRTS_NE_CRATE: (is_child() or can_pass(RE_GERUDO_GUARD)) and can_break_crates()
+        RC_GF_OUTSKIRTS_NW_CRATE: (is_child() or can_pass(RE_GERUDO_GUARD)) and can_break_crates()
+    }
+}
+
+extend region RR_GF_NEAR_GROTTO {
+    locations {
+        RC_GF_SOUTHMOST_CENTER_CRATE: can_break_crates()
+        RC_GF_MID_SOUTH_CENTER_CRATE: can_break_crates()
+        RC_GF_MID_NORTH_CENTER_CRATE: can_break_crates()
+        RC_GF_NORTHMOST_CENTER_CRATE: can_break_crates()
+    }
+}
+
+extend region RR_GF_ABOVE_JAIL {
+    locations {
+        RC_GF_ABOVE_JAIL_CRATE: always
+    }
+}
+
+extend region RR_GF_HBA_RANGE {
+    locations {
+        RC_GF_HBA_RANGE_CRATE_1:        can_break_crates()
+        RC_GF_HBA_RANGE_CRATE_2:        can_break_crates()
+        RC_GF_HBA_RANGE_CRATE_3:        can_break_crates()
+        RC_GF_HBA_RANGE_CRATE_4:        can_break_crates()
+        RC_GF_HBA_RANGE_CRATE_5:        can_break_crates()
+        RC_GF_HBA_RANGE_CRATE_6:        can_break_crates()
+        RC_GF_HBA_RANGE_CRATE_7:        can_break_crates()
+        RC_GF_HBA_CANOPY_EAST_CRATE:    can_break_crates()
+        RC_GF_HBA_CANOPY_WEST_CRATE:    can_break_crates()
+        RC_GF_NORTH_TARGET_EAST_CRATE:  can_break_crates()
+        RC_GF_NORTH_TARGET_WEST_CRATE:  is_adult() or (blast_or_smash() or hookshot_or_boomerang() or can_use(RG_HOVER_BOOTS))
+        RC_GF_NORTH_TARGET_CHILD_CRATE: is_child() and blast_or_smash()
+        RC_GF_SOUTH_TARGET_EAST_CRATE:  can_break_crates()
+        RC_GF_SOUTH_TARGET_WEST_CRATE:  can_break_crates()
+    }
+}
+
 # overworld/goron_city
 
 extend region RR_GORON_CITY {

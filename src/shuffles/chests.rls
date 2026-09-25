@@ -872,6 +872,14 @@ extend region RR_GV_FORTRESS_SIDE {
     }
 }
 
+# overworld/gerudo_fortress
+
+extend region RR_GF_NEAR_CHEST {
+    locations {
+        RC_GF_CHEST: has(RG_OPEN_CHEST)
+    }   
+}
+
 # overworld/goron_city
 
 extend region RR_GORON_CITY {

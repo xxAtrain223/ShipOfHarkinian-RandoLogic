@@ -1,0 +1,287 @@
+region RR_GF_OUTSKIRTS {
+    name: "Gerudo Fortress Outskirts"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_GV_FORTRESS_SIDE: always
+        RR_TH_1_TORCH_CELL:  always
+        RR_GF_OUTSIDE_GATE:  flag(LOGIC_GF_GATE_OPEN)
+        RR_GF_NEAR_GROTTO:   is_child() or can_pass(RE_GERUDO_GUARD)
+        RR_GF_OUTSIDE_GTG:   is_child() or can_pass(RE_GERUDO_GUARD)
+        RR_GF_TOWER:         (is_child() or has(RG_GERUDO_MEMBERSHIP_CARD)) and can_climb_high_ladder()
+        RR_GF_JAIL_WINDOW:   can_use(RG_HOOKSHOT)
+    }
+}
+
+region RR_GF_NEAR_GROTTO {
+    name: "GF Near Grotto"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_TH_1_TORCH_CELL:       always
+        RR_TH_STEEP_SLOPE_CELL:   always
+        RR_TH_KITCHEN_CORRIDOR:   always
+        RR_GF_OUTSKIRTS:          always
+        RR_GF_JAIL_WINDOW:        can_use(RG_HOOKSHOT)
+        RR_GF_OUTSIDE_GTG:        is_child() or can_pass(RE_GERUDO_GUARD)
+        RR_GF_TOP_OF_UPPER_VINES: can_use(RG_LONGSHOT)
+        RR_GF_STORMS_GROTTO:      is_adult() and can_open_storms_grotto()
+    }
+}
+
+region RR_GF_OUTSIDE_GTG {
+    name: "GF Outside GTG"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    events {
+        LOGIC_GTG_GATE_OPEN: is_adult() and has(RG_GERUDO_MEMBERSHIP_CARD) and has(RG_CHILD_WALLET) and has(RG_SPEAK_GERUDO)
+    }
+
+    exits {
+        RR_GF_TO_GTG:             flag(LOGIC_GTG_GATE_OPEN) and (is_adult() or setting(RSK_SHUFFLE_DUNGEON_ENTRANCES))
+        RR_GF_JAIL_WINDOW:        can_use(RG_HOOKSHOT)
+        RR_GF_OUTSKIRTS:          always
+        RR_GF_NEAR_GROTTO:        is_child() or can_pass(RE_GERUDO_GUARD)
+        RR_GF_ABOVE_GTG:          is_child() or can_pass(RE_GERUDO_GUARD)
+        RR_GF_TOP_OF_UPPER_VINES: has(RG_GERUDO_MEMBERSHIP_CARD) and can_use(RG_LONGSHOT)
+        RR_GF_HBA_RANGE:          is_child() or has(RG_GERUDO_MEMBERSHIP_CARD)
+    }
+}
+
+region RR_GF_TO_GTG {
+    name: "GF to GTG"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_GERUDO_TRAINING_GROUND_ENTRYWAY: always
+    }
+}
+
+region RR_GF_EXITING_GTG {
+    name: "GF Exiting GTG"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_GF_OUTSIDE_GTG: is_child() or has(RG_GERUDO_MEMBERSHIP_CARD)
+        RR_GF_JAIL_WINDOW: can_use(RG_HOOKSHOT)
+        RR_GF_OUTSKIRTS:   always
+    }
+}
+
+region RR_GF_ABOVE_GTG {
+    name: "GF Above GTG"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_TH_DOUBLE_CELL:           always
+        RR_TH_KITCHEN_CORRIDOR:      always
+        RR_GF_JAIL_WINDOW:           can_use(RG_HOOKSHOT)
+        RR_GF_OUTSKIRTS:             always
+        RR_GF_NEAR_GROTTO:           always
+        RR_GF_OUTSIDE_GTG:           is_child() or can_pass(RE_GERUDO_GUARD)
+        RR_GF_BOTTOM_OF_LOWER_VINES: trick(RT_UNINTUITIVE_JUMPS)
+    }
+}
+
+region RR_GF_BOTTOM_OF_LOWER_VINES {
+    name: "GF Bottom of Lower Vines"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_TH_STEEP_SLOPE_CELL:   always
+        RR_GF_NEAR_GROTTO:        always
+        RR_GF_TOP_OF_LOWER_VINES: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
+        RR_GF_ABOVE_GTG:          always
+        RR_GF_BELOW_GS:           is_adult() and can_ground_jump()
+    }
+}
+
+region RR_GF_TOP_OF_LOWER_VINES {
+    name: "GF Top of Lower Vines"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_TH_KITCHEN_BY_CORRIDOR:   always
+        RR_TH_DOUBLE_CELL:           always
+        RR_GF_ABOVE_GTG:             always
+        RR_GF_BOTTOM_OF_LOWER_VINES: always
+        RR_GF_BOTTOM_OF_UPPER_VINES: is_adult() and trick(RT_UNINTUITIVE_JUMPS)
+    }
+}
+
+region RR_GF_NEAR_GS {
+    name: "GF Near GS"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_TH_KITCHEN_OPPOSITE_CORRIDOR: always
+        RR_GF_BOTTOM_OF_LOWER_VINES:     always
+        RR_GF_TOP_OF_LOWER_VINES:        always
+        RR_GF_SLOPED_ROOF:               is_adult() or can_ground_jump()
+        RR_GF_LONG_ROOF:                 can_use(RG_HOVER_BOOTS)
+        RR_GF_NEAR_CHEST:                can_use(RG_LONGSHOT)
+        RR_GF_BELOW_GS:                  always
+    }
+}
+
+region RR_GF_SLOPED_ROOF {
+    name: "GF Sloped Roof"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_GF_TOP_OF_LOWER_VINES:    always
+        RR_GF_NEAR_GS:               always
+        RR_GF_BOTTOM_OF_UPPER_VINES: always
+        RR_GF_TOP_OF_UPPER_VINES:    is_adult() and trick(RT_UNINTUITIVE_JUMPS)
+    }
+}
+
+region RR_GF_BOTTOM_OF_UPPER_VINES {
+    name: "GF Bottom of Upper Vines"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_GF_OUTSIDE_GTG:        always
+        RR_GF_TOP_OF_LOWER_VINES: always
+        RR_GF_SLOPED_ROOF:        is_adult() and (can_use(RG_HOVER_BOOTS) or trick(RT_UNINTUITIVE_JUMPS))
+        RR_GF_TOP_OF_UPPER_VINES: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
+        RR_GF_TO_GTG:             is_adult() and trick(RT_GF_LEDGE_CLIP_INTO_GTG)
+    }
+}
+
+region RR_GF_TOP_OF_UPPER_VINES {
+    name: "GF Top of Upper Vines"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_GF_TOP_OF_LOWER_VINES:    always
+        RR_GF_SLOPED_ROOF:           always
+        RR_GF_BOTTOM_OF_UPPER_VINES: always
+        RR_GF_NEAR_CHEST:            can_use(RG_HOVER_BOOTS) or (is_adult() and reach_scarecrow()) or can_use(RG_LONGSHOT)
+    }
+}
+
+region RR_GF_NEAR_CHEST {
+    name: "GF Near Chest"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_GF_NEAR_GS:   always
+        RR_GF_LONG_ROOF: always
+    }
+}
+
+region RR_GF_LONG_ROOF {
+    name: "GF Long Roof"
+    scene: SCENE_GERUDOS_FORTRESS
+    
+    exits {
+        RR_GF_BOTTOM_OF_LOWER_VINES: always
+        RR_GF_NEAR_GS:               (is_adult() and trick(RT_UNINTUITIVE_JUMPS)) or can_use(RG_HOVER_BOOTS)
+        RR_GF_BELOW_GS:              always
+        RR_GF_NEAR_CHEST:            can_use(RG_LONGSHOT)
+        RR_GF_BELOW_CHEST:           always
+    }
+}
+
+region RR_GF_BELOW_GS {
+    name: "GF Below GS"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_TH_DEAD_END_CELL:         always
+        RR_GF_BOTTOM_OF_LOWER_VINES: always
+    }
+}
+
+region RR_GF_BELOW_CHEST {
+    name: "GF Below Chest"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_TH_BREAK_ROOM: always
+        RR_GF_OUTSKIRTS:  always
+    }
+}
+
+region RR_GF_TOWER {
+    name: "Gerudo Fortress Tower"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    events {
+        LOGIC_GF_GATE_OPEN: is_adult() and has(RG_SPEAK_GERUDO)
+    }
+
+    exits {
+        RR_GF_OUTSKIRTS: always
+        RR_GF_OUTSIDE_GATE: (is_adult() and can_ground_jump()) or trick(RT_GF_WASTELAND_GATE_SIDEHOP_SKIP)
+    }
+}
+
+region RR_GF_ABOVE_JAIL {
+    name: "GF Above Jail"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_GF_OUTSKIRTS:           always
+        RR_GF_NEAR_CHEST:          can_use(RG_LONGSHOT)
+        RR_GF_BELOW_CHEST:         take_damage()
+        RR_GF_JAIL_WINDOW:         can_use(RG_HOOKSHOT)
+        RR_TH_BREAK_ROOM_CORRIDOR: always
+        RR_GF_TOWER:               trick(RT_GF_ADULT_SKIP_WASTELAND_GATE) and is_adult() and can_use(RG_HOVER_BOOTS) and can_jumpslash() and has(RG_GERUDO_MEMBERSHIP_CARD)
+        RR_GF_OUTSIDE_GATE:        trick(RT_GF_ADULT_SKIP_WASTELAND_GATE) and is_adult() and can_use(RG_HOVER_BOOTS) and can_jumpslash()
+    }
+}
+
+region RR_GF_JAIL_WINDOW {
+    name: "GF Jail Window"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    exits {
+        RR_GF_LONG_ROOF:   trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER)
+        RR_GF_OUTSKIRTS:   always
+        RR_GF_BELOW_CHEST: always
+        RR_GF_ABOVE_JAIL:  trick(RT_HOOKSHOT_CLIP) and can_use(RG_HOOKSHOT)
+    }
+}
+
+region RR_GF_HBA_RANGE {
+    name: "GF HBA Range"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    locations {
+        RC_GF_HBA_1000_POINTS: is_adult() and has(RG_CHILD_WALLET) and has(RG_SPEAK_GERUDO) and has(RG_GERUDO_MEMBERSHIP_CARD) and summon_epona() and can_use(RG_FAIRY_BOW) and at_day()
+        RC_GF_HBA_1500_POINTS: is_adult() and has(RG_CHILD_WALLET) and has(RG_SPEAK_GERUDO) and has(RG_GERUDO_MEMBERSHIP_CARD) and summon_epona() and can_use(RG_FAIRY_BOW) and at_day()
+    }
+
+    exits {
+        RR_GF_OUTSIDE_GTG: is_child() or has(RG_GERUDO_MEMBERSHIP_CARD)
+    }
+}
+
+region RR_GF_OUTSIDE_GATE {
+    name: "GF Outside Gate"
+    scene: SCENE_GERUDOS_FORTRESS
+
+    events {
+        LOGIC_GF_GATE_OPEN: is_adult() and has(RG_GERUDO_MEMBERSHIP_CARD) and has(RG_SPEAK_GERUDO)
+    }
+
+    exits {
+        RR_GF_OUTSKIRTS:            flag(LOGIC_GF_GATE_OPEN)
+        RR_WASTELAND_NEAR_FORTRESS: always
+    }
+}
+
+region RR_GF_STORMS_GROTTO {
+    name: "GF Storms Grotto"
+    scene: SCENE_GROTTOS
+
+    events {
+        LOGIC_FAIRY_ACCESS: always
+    }
+
+    exits {
+        RR_GF_NEAR_GROTTO: always
+    }
+}

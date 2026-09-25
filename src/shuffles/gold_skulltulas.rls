@@ -490,6 +490,39 @@ extend region RR_GV_FORTRESS_SIDE {
     }
 }
 
+# overworld/gerudo_fortress
+
+extend region RR_GF_NEAR_GS {
+    locations {
+        RC_GF_GS_TOP_FLOOR: is_adult() and can_get_drop(RE_GOLD_SKULLTULA, ED_BOMB_THROW) and can_get_night_time_gs()
+    }
+}
+
+extend region RR_GF_TOP_OF_UPPER_VINES {
+    locations {
+        RC_GF_GS_TOP_FLOOR: is_adult() and can_get_night_time_gs() and can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH) and 
+                            (has(RG_CLIMB) or can_use(RG_HOOKSHOT) or can_use(RG_BOOMERANG) or trick(RT_UNINTUITIVE_JUMPS))
+    }
+}
+
+extend region RR_GF_NEAR_CHEST {
+    locations {
+        RC_GF_GS_TOP_FLOOR: is_adult() and can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) and can_get_night_time_gs()
+    }
+}
+
+extend region RR_GF_BELOW_GS {
+    locations {
+        RC_GF_GS_TOP_FLOOR: is_adult() and can_get_drop(RE_GOLD_SKULLTULA, ED_LONGSHOT) and can_get_night_time_gs()
+    }
+}
+
+extend region RR_GF_HBA_RANGE {
+    locations {
+        RC_GF_HBA_RANGE_GS: is_adult() and can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) and can_get_night_time_gs()
+    }
+}
+
 # overworld/goron_city
 
 extend region RR_GORON_CITY {

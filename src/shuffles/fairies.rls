@@ -222,6 +222,21 @@ extend region RR_GV_UPPER_STREAM {
     }
 }
 
+# overworld/gerudo_fortress
+
+extend region RR_GF_STORMS_GROTTO {
+    locations {
+        RC_GF_FAIRY_GROTTO_FAIRY_1: always
+        RC_GF_FAIRY_GROTTO_FAIRY_2: always
+        RC_GF_FAIRY_GROTTO_FAIRY_3: always
+        RC_GF_FAIRY_GROTTO_FAIRY_4: always
+        RC_GF_FAIRY_GROTTO_FAIRY_5: always
+        RC_GF_FAIRY_GROTTO_FAIRY_6: always
+        RC_GF_FAIRY_GROTTO_FAIRY_7: always
+        RC_GF_FAIRY_GROTTO_FAIRY_8: always
+    }
+}
+
 # overworld/goron_city
 
 extend region RR_GORON_CITY {
