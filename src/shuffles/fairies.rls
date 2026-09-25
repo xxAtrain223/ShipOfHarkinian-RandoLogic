@@ -490,6 +490,14 @@ extend region RR_TOT_ENTRANCE {
     }
 }
 
+# overworld/thieves_hideout
+
+extend region RR_TH_KITCHEN_MAIN {
+    locations {
+        RC_TH_KITCHEN_SUN_FAIRY: can_pass(RE_GERUDO_GUARD) and can_use(RG_SUNS_SONG)
+    }
+}
+
 # overworld/zoras_domain
 
 extend region RR_ZORAS_DOMAIN {

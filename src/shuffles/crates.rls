@@ -291,3 +291,48 @@ extend region RR_MARKET_DOG_LADY_HOUSE {
         RC_MK_LOST_DOG_HOUSE_CRATE: can_break_crates()
     }
 }
+
+# overworld/thieves_hideout
+
+extend region RR_TH_1_TORCH_CELL {
+    locations {
+        RC_TH_1_TORCH_CELL_CRATE: can_break_crates()
+    }
+}
+
+extend region RR_TH_DOUBLE_CELL {
+    locations {
+        RC_TH_DOUBLE_CELL_LEFT_CRATE:  can_break_crates()
+        RC_TH_DOUBLE_CELL_RIGHT_CRATE: can_break_crates()
+    }
+}
+
+extend region RR_TH_DEAD_END_CELL {
+    locations {
+        RC_TH_DEAD_END_CELL_CRATE: can_break_crates()
+    }
+}
+
+extend region RR_TH_KITCHEN_CORRIDOR {
+    locations {
+        RC_TH_NEAR_KITCHEN_LEFTMOST_CRATE:  can_break_crates()
+        RC_TH_NEAR_KITCHEN_MID_LEFT_CRATE:  can_break_crates()
+        RC_TH_NEAR_KITCHEN_MID_RIGHT_CRATE: can_break_crates()
+        RC_TH_NEAR_KITCHEN_RIGHTMOST_CRATE: can_break_crates()
+    }
+}
+
+extend region RR_TH_KITCHEN_MAIN {
+    locations {
+        RC_TH_KITCHEN_CRATE: can_break_crates() and can_pass(RE_GERUDO_GUARD)
+    }
+}
+
+extend region RR_TH_BREAK_ROOM {
+    locations {
+        RC_TH_BREAK_HALLWAY_OUTER_CRATE: can_break_crates()
+        RC_TH_BREAK_HALLWAY_INNER_CRATE: can_break_crates()
+        RC_TH_BREAK_ROOM_RIGHT_CRATE:    (can_pass(RE_BREAK_ROOM_GUARD) and can_break_crates()) or (can_pass(RE_GERUDO_GUARD) and has_explosives() and can_use(RG_BOOMERANG))
+        RC_TH_BREAK_ROOM_LEFT_CRATE:     (can_pass(RE_BREAK_ROOM_GUARD) and can_break_crates()) or (can_pass(RE_GERUDO_GUARD) and has_explosives() and can_use(RG_BOOMERANG))
+    }
+}

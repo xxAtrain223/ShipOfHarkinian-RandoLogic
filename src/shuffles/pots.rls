@@ -859,6 +859,63 @@ extend region RR_MARKET_MAN_IN_GREEN_HOUSE {
     }
 }
 
+# overworld/thieves_hideout
+
+extend region RR_TH_1_TORCH_CELL {
+    locations {
+        RC_TH_1_TORCH_CELL_RIGHT_POT: can_break_pots()
+        RC_TH_1_TORCH_CELL_MID_POT:   can_break_pots()
+        RC_TH_1_TORCH_CELL_LEFT_POT:  can_break_pots()
+    }
+}
+
+extend region RR_TH_DOUBLE_CELL {
+    locations {
+        RC_TH_NEAR_DOUBLE_CELL_RIGHT_POT: can_break_pots()
+        RC_TH_NEAR_DOUBLE_CELL_MID_POT:   can_break_pots()
+        RC_TH_NEAR_DOUBLE_CELL_LEFT_POT:  can_break_pots()
+        RC_TH_RIGHTMOST_JAILED_POT:       can_break_pots()
+        RC_TH_RIGHT_MIDDLE_JAILED_POT:    can_break_pots()
+        RC_TH_LEFT_MIDDLE_JAILED_POT:     can_break_pots()
+        RC_TH_LEFTMOST_JAILED_POT:        can_break_pots()
+    }
+}
+
+extend region RR_TH_STEEP_SLOPE_CELL {
+    locations {
+        RC_TH_STEEP_SLOPE_RIGHT_POT: can_break_pots()
+        RC_TH_STEEP_SLOPE_LEFT_POT:  can_break_pots()
+    }
+}
+
+extend region RR_TH_KITCHEN_MAIN {
+    locations {
+        RC_TH_KITCHEN_POT_1: can_break_pots() and can_pass(RE_GERUDO_GUARD)
+        RC_TH_KITCHEN_POT_2: can_break_pots() and can_pass(RE_GERUDO_GUARD)
+    }
+}
+
+extend region RR_TH_KITCHEN_BY_CORRIDOR {
+    locations {
+        RC_TH_KITCHEN_POT_1: can_use(RG_BOOMERANG)
+        RC_TH_KITCHEN_POT_2: can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_TH_KITCHEN_OPPOSITE_CORRIDOR {
+    locations {
+        RC_TH_KITCHEN_POT_1: can_use(RG_BOOMERANG)
+        RC_TH_KITCHEN_POT_2: can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_TH_BREAK_ROOM {
+    locations {
+        RC_TH_BREAK_ROOM_FRONT_POT: (can_pass(RE_BREAK_ROOM_GUARD) and can_break_pots()) or (can_pass(RE_GERUDO_GUARD) and can_use(RG_BOOMERANG))
+        RC_TH_BREAK_ROOM_BACK_POT:  (can_pass(RE_BREAK_ROOM_GUARD) and can_break_pots()) or (can_pass(RE_GERUDO_GUARD) and can_use(RG_BOOMERANG))
+    }
+}
+
 # overworld/zoras_domain
 
 extend region RR_ZORAS_DOMAIN {
