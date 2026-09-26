@@ -1,0 +1,40 @@
+region RR_WATER_TEMPLE_ENTRYWAY {
+    name: "Water Temple Entryway"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_ENTRANCE_LEDGE:    has(RG_BRONZE_SCALE) and is_vanilla()
+        RR_WATER_TEMPLE_MQ_ENTRANCE_LEDGE: has(RG_BRONZE_SCALE) and is_mq()
+        RR_LH_FROM_WATER_TEMPLE:           always
+    }
+}
+
+region RR_WATER_TEMPLE_BOSS_ENTRYWAY {
+    name: "Water Temple Boss Entryway"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_TRAPPED_SLOPE: is_vanilla()
+        RR_WATER_TEMPLE_MQ_BOSS_DOOR:  is_mq()
+        RR_WATER_TEMPLE_BOSS_ROOM:     has(RG_WATER_TEMPLE_BOSS_KEY)
+    }
+}
+
+region RR_WATER_TEMPLE_BOSS_ROOM {
+    name: "Water Temple Boss Room"
+    scene: SCENE_WATER_TEMPLE_BOSS
+    
+    events {
+        LOGIC_WATER_TEMPLE_CLEAR:     can_kill(RE_MORPHA)
+    }
+    
+    locations {
+        RC_WATER_TEMPLE_MORPHA_HEART: flag(LOGIC_WATER_TEMPLE_CLEAR)
+        RC_MORPHA:                    flag(LOGIC_WATER_TEMPLE_CLEAR)
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_BOSS_ENTRYWAY: false
+        RR_LAKE_HYLIA:                 flag(LOGIC_WATER_TEMPLE_CLEAR) #TODO no hint propogation
+    }
+}

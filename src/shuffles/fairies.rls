@@ -104,6 +104,21 @@ extend region RR_SPIRIT_TEMPLE_MQ_SOT_SUN_ROOM {
     }
 }
 
+# dungeons/water_temple
+
+extend region RR_WATER_TEMPLE_MQ_STALFOS_PIT_POTS {
+    locations {
+        RC_WATER_TEMPLE_MQ_DARK_LINK_PILAR_SUN_FAIRY: can_use(RG_SUNS_SONG)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_STALFOS_PIT_UPPER {
+    locations {
+        RC_WATER_TEMPLE_MQ_DARK_LINK_LEFT_STORM_FAIRY: can_use(RG_SONG_OF_STORMS)
+        RC_WATER_TEMPLE_MQ_DARK_LINK_RIGHT_SUN_FAIRY:  can_use(RG_SUNS_SONG)
+    }
+}
+
 # overworld/castle_grounds
 
 extend region RR_HC_ABOVE_VINE {

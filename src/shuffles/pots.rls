@@ -652,6 +652,219 @@ extend region RR_SPIRIT_TEMPLE_MQ_BIG_MIRROR_ROOM {
     }
 }
 
+# dungeons/water_temple
+
+extend region RR_WATER_TEMPLE_3F_CENTRAL_A {
+    locations {
+        RC_WATER_TEMPLE_MAIN_LEVEL_2_POT_1: can_use(RG_BOOMERANG) or (can_break_pots(ED_BOOMERANG, false, true) and has(RG_GOLDEN_SCALE))
+        RC_WATER_TEMPLE_MAIN_LEVEL_2_POT_2: can_use(RG_BOOMERANG) or (can_break_pots(ED_BOOMERANG, false, true) and has(RG_GOLDEN_SCALE))
+    }
+}
+
+extend region RR_WATER_TEMPLE_2F_CENTRAL_H {
+    locations {
+        RC_WATER_TEMPLE_MAIN_LEVEL_2_POT_1: can_use(RG_HOOKSHOT)
+        RC_WATER_TEMPLE_MAIN_LEVEL_2_POT_2: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_2F_CENTRAL_LM {
+    locations {
+        RC_WATER_TEMPLE_MAIN_LEVEL_2_POT_1: can_break_pots()
+        RC_WATER_TEMPLE_MAIN_LEVEL_2_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_SIDE_TOWER_1F {
+    locations {
+        RC_WATER_TEMPLE_TORCH_POT_1: (water_level(WL_LOW) and can_break_pots()) or (can_use(RG_HOOKSHOT) and can_use(RG_IRON_BOOTS))
+        RC_WATER_TEMPLE_TORCH_POT_2: (water_level(WL_LOW) and can_break_pots()) or (can_use(RG_HOOKSHOT) and can_use(RG_IRON_BOOTS))
+    }
+}
+
+extend region RR_WATER_TEMPLE_BLOCK_ROOM_TARGET {
+    locations {
+        #from this door, we can get the pots swimless with irons if we have to
+        #using bombchus from this side is trickworthy due to awkward terrain
+        RC_WATER_TEMPLE_BASEMENT_BLOCK_PUZZLE_POT_1: can_break_pots(ED_HOOKSHOT, false, true) and can_use(RG_IRON_BOOTS) and water_timer() >= 8
+        RC_WATER_TEMPLE_BASEMENT_BLOCK_PUZZLE_POT_2: can_break_pots(ED_HOOKSHOT, false, true) and can_use(RG_IRON_BOOTS) and water_timer() >= 8
+    }
+}
+
+extend region RR_WATER_TEMPLE_BLOCK_ROOM {
+    locations {
+        #we can always get the pots by shooting them from afar and diving for the item...
+        RC_WATER_TEMPLE_BASEMENT_BLOCK_PUZZLE_POT_1: (can_break_pots(ED_LONGSHOT, true, true) and has(RG_BRONZE_SCALE)) or
+        #or we can use irons and hookshot the pot, hookshoting to the target door if needed to cross the gap
+                                                     (can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT) and water_timer() >= 8)
+        RC_WATER_TEMPLE_BASEMENT_BLOCK_PUZZLE_POT_2: (can_break_pots(ED_LONGSHOT, true, true) and has(RG_BRONZE_SCALE)) or
+                                                     (can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT) and water_timer() >= 8)
+    }
+}
+
+extend region RR_WATER_TEMPLE_BOSS_KEY_ROOM {
+    locations {
+        RC_WATER_TEMPLE_BOSS_KEY_POT_1: can_break_pots()
+        RC_WATER_TEMPLE_BOSS_KEY_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_GS_CAGE {
+    locations {
+        RC_WATER_TEMPLE_BEHIND_GATE_POT_1: can_break_pots()
+        RC_WATER_TEMPLE_BEHIND_GATE_POT_2: can_break_pots()
+        RC_WATER_TEMPLE_BEHIND_GATE_POT_3: can_break_pots()
+        RC_WATER_TEMPLE_BEHIND_GATE_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_JET_CHEST_ROOM {
+    locations {
+        RC_WATER_TEMPLE_NEAR_COMPASS_POT_1: can_break_pots()
+        RC_WATER_TEMPLE_NEAR_COMPASS_POT_2: can_break_pots()
+        RC_WATER_TEMPLE_NEAR_COMPASS_POT_3: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_BLOCK_LOOP_BACK {
+    locations {
+        RC_WATER_TEMPLE_CENTRAL_BOW_POT_1: can_use(RG_BOMBCHU_5) and (has(RG_GOLDEN_SCALE) or can_use(RG_IRON_BOOTS))
+        RC_WATER_TEMPLE_CENTRAL_BOW_POT_2: can_use(RG_BOMBCHU_5) and (has(RG_GOLDEN_SCALE) or can_use(RG_IRON_BOOTS))
+    }
+}
+
+extend region RR_WATER_TEMPLE_BLOCK_LOOP_3F_A {
+    locations {
+        RC_WATER_TEMPLE_MAIN_LEVEL_2_POT_1: can_use(RG_BOMBCHU_5) and (has(RG_GOLDEN_SCALE) or can_use(RG_IRON_BOOTS))
+        RC_WATER_TEMPLE_MAIN_LEVEL_2_POT_2: can_use(RG_BOMBCHU_5) and (has(RG_GOLDEN_SCALE) or can_use(RG_IRON_BOOTS))
+    }
+}
+
+extend region RR_WATER_TEMPLE_LIKE_LIKE_SPIKES {
+    locations {
+        RC_WATER_TEMPLE_LIKE_LIKE_POT_1: can_break_pots()
+        RC_WATER_TEMPLE_LIKE_LIKE_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_RIVER_POTS {
+    locations {
+        RC_WATER_TEMPLE_RIVER_POT_1: can_break_pots()
+        RC_WATER_TEMPLE_RIVER_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_RISING_TARGET_LEDGE {
+    locations {
+        RC_WATER_TEMPLE_MAIN_LEVEL_1_POT_1: can_break_pots()
+        RC_WATER_TEMPLE_MAIN_LEVEL_1_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_SIDE_TOWER_1F {
+    locations {
+        RC_WATER_TEMPLE_MQ_LOWER_TORCHES_POT_1: (water_level(WL_LOW) and can_break_pots()) or (can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT) and water_timer() >= 16)
+        RC_WATER_TEMPLE_MQ_LOWER_TORCHES_POT_2: (water_level(WL_LOW) and can_break_pots()) or (can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT) and water_timer() >= 16)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_STORAGE_ROOM {
+    locations {
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_A_POT_1: can_break_pots()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_A_POT_2: can_break_pots()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_A_POT_3: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_HIDDEN_SWITCH_2F {
+    locations {
+        RC_WATER_TEMPLE_MQ_GS_STORAGE_ROOM_POT_1: can_break_pots()
+        RC_WATER_TEMPLE_MQ_GS_STORAGE_ROOM_POT_2: can_break_pots()
+        RC_WATER_TEMPLE_MQ_GS_STORAGE_ROOM_POT_3: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_LIZALFOS_LOOP_A {
+    locations {
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_WEST_POT:  can_use(RG_HOOKSHOT)
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_SOUTH_POT: can_use(RG_HOOKSHOT)
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_SE_POT:    can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_LIZALFOS_LOOP_LM {
+    locations {
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_WEST_POT:  can_break_pots()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_SOUTH_POT: can_break_pots()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_SE_POT:    can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_LIZALFOS_CAGE {
+    locations {
+        RC_WATER_TEMPLE_MQ_LIZALFOS_CAGE_SOUTH_POT: can_break_pots()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_CAGE_NORTH_POT: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_STALFOS_PIT_POTS {
+    locations {
+        RC_WATER_TEMPLE_MQ_STALFOS_PIT_SOUTH_POT:  can_break_pots()
+        RC_WATER_TEMPLE_MQ_STALFOS_PIT_MIDDLE_POT: can_break_pots()
+        RC_WATER_TEMPLE_MQ_STALFOS_PIT_NORTH_POT:  can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_STALFOS_PIT_UPPER {
+    locations {
+        RC_WATER_TEMPLE_MQ_BEFORE_DARK_LINK_POT_1: can_break_pots()
+        RC_WATER_TEMPLE_MQ_BEFORE_DARK_LINK_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_GATED_PIT {
+    locations {
+        RC_WATER_TEMPLE_MQ_AFTER_DARK_LINK_POT_1: can_break_pots()
+        RC_WATER_TEMPLE_MQ_AFTER_DARK_LINK_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_RIVER_POTS {
+    locations {
+        RC_WATER_TEMPLE_MQ_RIVER_POT_1: can_break_pots()
+        RC_WATER_TEMPLE_MQ_RIVER_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_BOSS_KEY_ROOM_SWITCH {
+    locations {
+        RC_WATER_TEMPLE_MQ_BOSS_KEY_POT: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_TRIANGLE_TORCH_CAGE {
+    locations {
+        RC_WATER_TEMPLE_MQ_LOWEST_GS_POT_1: can_break_pots()
+        RC_WATER_TEMPLE_MQ_LOWEST_GS_POT_2: can_break_pots()
+        RC_WATER_TEMPLE_MQ_LOWEST_GS_POT_3: can_break_pots()
+        RC_WATER_TEMPLE_MQ_LOWEST_GS_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_FREESTANDING_ROOM {
+    locations {
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_B_POT_1: can_break_pots()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_B_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_DODONGO_ROOM {
+    locations {
+        RC_WATER_TEMPLE_MQ_MINI_DODONGO_POT_1: can_break_pots()
+        RC_WATER_TEMPLE_MQ_MINI_DODONGO_POT_2: can_break_pots()
+    }
+}
+
 # overworld/castle_grounds
 
 extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {

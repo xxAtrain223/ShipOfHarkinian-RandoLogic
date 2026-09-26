@@ -1,0 +1,776 @@
+region RR_WATER_TEMPLE_MQ_ENTRANCE_LEDGE {
+    name: "Water Temple MQ Entrance Ledge"
+    scene: SCENE_WATER_TEMPLE
+    
+    events {
+        LOGIC_WATER_COULD_MIDDLE: always
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_ENTRYWAY:         has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS)
+        RR_WATER_TEMPLE_MQ_MAIN:          always
+        #If we are not on WL_HIGH, we reach RR_WATER_TEMPLE_MQ_3F_MAIN with hookshot via 2F, otherwise we can reach the platform
+        RR_WATER_TEMPLE_MQ_3F_CENTRAL_A:  can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS)
+        RR_WATER_TEMPLE_MQ_3F_CENTRAL_H:  (can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS)) and water_level(WL_HIGH)
+        RR_WATER_TEMPLE_MQ_3F_CENTRAL_LM: (can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS)) and water_level(WL_LOW_OR_MID)
+        RR_WATER_TEMPLE_MQ_2F_CENTRAL_LM: water_level(WL_LOW_OR_MID)
+    }
+}
+
+#This region covers simply existing in the area around the central pillar without being on a specific platform, either swimming or walking on the lakebed
+#Entry should only include being in the correct area, taking any possible fall damage, and floating up to the surface of WL_HIGH if coming from below
+#This area then leads to others based on level and worst-case water timers for follow-up exits from the water's surface
+#remember that any solution that works for any level doesn't need to be given a level, even if that solution is overkill for a lower level
+region RR_WATER_TEMPLE_MQ_MAIN {
+    name: "Water Temple MQ Main"
+    scene: SCENE_WATER_TEMPLE
+    
+    events {
+        LOGIC_WATER_COULD_MIDDLE: can_use(RG_HOOKSHOT)
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_ENTRANCE_LEDGE:      has(RG_BRONZE_SCALE) and water_level(WL_HIGH)
+        RR_WATER_TEMPLE_MQ_SIDE_TOWER_1F:       (water_timer() >= 24 and can_use(RG_IRON_BOOTS)) or (water_level(WL_LOW_OR_MID) and 
+                                                has(RG_GOLDEN_SCALE) and water_timer() >= 16) or water_level(WL_LOW)
+        RR_WATER_TEMPLE_MQ_3F_CENTRAL_A:        water_level(WL_HIGH) and has(RG_BRONZE_SCALE)
+        RR_WATER_TEMPLE_MQ_3F_CENTRAL_H:        water_level(WL_HIGH) and has(RG_BRONZE_SCALE)
+        #First water timer uses the hook to go from the top of center to storage room/central pillar as coming from the bottom
+        #Second water timer is simply diving down and entering the door as fast as possible from the surface
+        RR_WATER_TEMPLE_MQ_2F_CENTRAL_A:        ((water_level(WL_LOW) or (can_use(RG_IRON_BOOTS) and (water_level(WL_LOW_OR_MID) or 
+                                                water_timer() >= 16))) and can_use(RG_LONGSHOT)) or ((water_level(WL_MID) or (water_level(WL_HIGH_OR_MID) and 
+                                                can_use(RG_IRON_BOOTS) and water_timer() >= 8)) and has(RG_BRONZE_SCALE))
+        RR_WATER_TEMPLE_MQ_2F_CENTRAL_H:        water_level(WL_HIGH) and
+                                                ((can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_use(RG_LONGSHOT)) or
+                                                (can_use(RG_IRON_BOOTS) and water_timer() >= 8 and has(RG_BRONZE_SCALE)))
+        RR_WATER_TEMPLE_MQ_2F_CENTRAL_LM:       ((water_level(WL_LOW) or (can_use(RG_IRON_BOOTS) and water_level(WL_LOW_OR_MID))) and 
+                                                can_use(RG_LONGSHOT)) or (water_level(WL_MID) and has(RG_BRONZE_SCALE))
+        RR_WATER_TEMPLE_MQ_PILLAR_1F:           water_level(WL_LOW)
+        #A special entry as we can't set it to high after entering at a lower height
+        RR_WATER_TEMPLE_MQ_PILLAR_H:            water_level(WL_HIGH) and can_use(RG_IRON_BOOTS) and water_timer() >= 16 and 
+                                                (has(RG_BRONZE_SCALE) or can_use(RG_LONGSHOT))
+        RR_WATER_TEMPLE_MQ_LIZALFOS_LOOP_A:     can_use(RG_IRON_BOOTS) and water_timer() >= 16 and has(RG_BRONZE_SCALE)
+        RR_WATER_TEMPLE_MQ_LIZALFOS_LOOP_LM:    water_level(WL_MID) and has(RG_BRONZE_SCALE)
+        RR_WATER_TEMPLE_MQ_B1_GATE_SWITCH:      flag(LOGIC_WATER_MQ_B1_SWITCH) and (water_level(WL_LOW) or ((can_use(RG_IRON_BOOTS) and 
+                                                water_timer() >= 24) and has(RG_BRONZE_SCALE)))
+        RR_WATER_TEMPLE_MQ_TRIANGLE_TORCH_ROOM: flag(LOGIC_WATER_MQ_B1_SWITCH) and ((water_level(WL_LOW) and has(RG_SILVER_SCALE)) or 
+                                                (can_use(RG_IRON_BOOTS) and water_timer() >= 16 and  (has(RG_BRONZE_SCALE) or can_use(RG_LONGSHOT))))
+        #Adult needs to jump in instead of dive for swim access, but you just hold forward. RT_WATER_BK_REGION Isn't relevant unless 
+        #the Dark Link loop can be done without longshot with other tricks
+        RR_WATER_TEMPLE_MQ_CRATE_VORTEX_ROOM:   flag(LOGIC_WATER_MQ_B1_SWITCH) and ((water_level(WL_LOW) and has(RG_BRONZE_SCALE)) or 
+                                                (can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_use(RG_HOOKSHOT) or has(RG_BRONZE_SCALE))) and 
+                                                (can_use(RG_LONGSHOT) or (trick(RT_WATER_BK_REGION) and can_use(RG_HOVER_BOOTS)))
+    }
+}
+
+#This region specifically covers the topmost platform around central pillar
+region RR_WATER_TEMPLE_MQ_3F_CENTRAL_A {
+    name: "Water Temple MQ 3F Central Any Water"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_MAIN:                always
+        RR_WATER_TEMPLE_MQ_ENTRANCE_LEDGE:      can_use(RG_LONGSHOT) or can_use(RG_HOVER_BOOTS)
+        RR_WATER_TEMPLE_MQ_2F_CENTRAL_A:        can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_use(RG_HOOKSHOT)
+        RR_WATER_TEMPLE_MQ_RISING_TARGET_LEDGE: trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and (can_use(RG_MEGATON_HAMMER) or 
+                                                (trick(RT_DAMAGE_BOOST_SIMPLE) and has_explosives()))
+        #this swimless jump with irons may be a trick as you have to put irons on quite late.
+        RR_WATER_TEMPLE_MQ_LIZALFOS_LOOP_A:     can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        #Jumping across is possible but a trick due to the janky ledge
+        RR_WATER_TEMPLE_MQ_HIGH_EMBLEM:         can_use(RG_HOOKSHOT) or (is_adult() and can_use(RG_HOVER_BOOTS))
+    }
+}
+
+#This region specifically covers the topmost platform around central pillar
+#Assumes WL_HIGH is checked on entry
+region RR_WATER_TEMPLE_MQ_3F_CENTRAL_H {
+    name: "Water Temple MQ 3F Central High Water"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_2F_CENTRAL_H:        can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_use(RG_HOOKSHOT)
+        RR_WATER_TEMPLE_MQ_RISING_TARGET_LEDGE: can_use(RG_LONGSHOT) or (trick(RT_WATER_IRON_BOOTS_LEDGE_GRAB) and is_adult() and has(RG_BRONZE_SCALE) and 
+                                                can_use(RG_IRON_BOOTS))
+        RR_WATER_TEMPLE_MQ_OUTSIDE_WATERFALL:   is_adult() or has(RG_BRONZE_SCALE) or can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT)
+    }
+}
+
+#This region specifically covers the topmost platform around central pillar
+region RR_WATER_TEMPLE_MQ_3F_CENTRAL_LM {
+    name: "Water Temple MQ 3F Central Low or Mid Water"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_2F_CENTRAL_LM:    always
+        RR_WATER_TEMPLE_MQ_LIZALFOS_LOOP_LM: always
+    }
+}
+
+#This region specifically covers walking on the lower platform around central pillar.
+#This is underwater when WL_HIGH and irons are assumed if this is the case
+region RR_WATER_TEMPLE_MQ_2F_CENTRAL_A {
+    name: "Water Temple MQ 2F Central Any Water"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_MAIN:         always
+        RR_WATER_TEMPLE_MQ_3F_CENTRAL_A: can_use(RG_HOOKSHOT)
+        RR_WATER_TEMPLE_MQ_STORAGE_ROOM: can_use(RG_HOOKSHOT) or (trick(RT_WATER_IRON_BOOTS_LEDGE_GRAB) and has(RG_BRONZE_SCALE))
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_2F_CENTRAL_H {
+    name: "Water Temple MQ 2F Central High Water"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_2F_CENTRAL_A: always
+        RR_WATER_TEMPLE_MQ_PILLAR_H:     always
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_2F_CENTRAL_LM {
+    name: "Water Temple MQ 2F Central Low or Mid Water"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_2F_CENTRAL_A:     always
+        RR_WATER_TEMPLE_MQ_PILLAR_2F:        always
+        RR_WATER_TEMPLE_MQ_HIDDEN_SWITCH_2F: (is_adult() or can_use(RG_HOVER_BOOTS)) and can_use(RG_HOOKSHOT) and has(RG_POWER_BRACELET)
+        RR_WATER_TEMPLE_MQ_LIZALFOS_LOOP_LM: can_use(RG_HOVER_BOOTS)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_HIGH_EMBLEM {
+    name: "Water Temple MQ High Emblem"
+    scene: SCENE_WATER_TEMPLE
+    
+    events {
+        LOGIC_WATER_SCARECROW: scarecrows_song()
+        LOGIC_WATER_HIGH:      always
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_3F_CENTRAL_A: always
+        RR_WATER_TEMPLE_MQ_MAIN:         always
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_RISING_TARGET_LEDGE {
+    name: "Water Temple MQ Rising Target Ledge"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+    #As you cannot change the water level from here, we must be able to make the drop on any water level
+    #Bronze scale does this alone thanks to the nearby pond cancelling fall damage
+    #otherwise we need irons for high level and taking damage for low
+        RR_WATER_TEMPLE_MQ_MAIN:           has(RG_BRONZE_SCALE) or (can_use(RG_IRON_BOOTS) and take_damage())
+        RR_WATER_TEMPLE_MQ_3F_CENTRAL_A:   water_rising_target_to_3f_central()
+        RR_WATER_TEMPLE_MQ_3F_CENTRAL_H:   water_rising_target_to_3f_central() and water_level(WL_HIGH)
+        RR_WATER_TEMPLE_MQ_3F_CENTRAL_LM:  water_rising_target_to_3f_central() and water_level(WL_LOW_OR_MID)
+        RR_WATER_TEMPLE_MQ_BOSS_DOOR_RAMP: always
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_BOSS_DOOR_RAMP {
+    name: "Water Temple MQ Boss Door Ramp"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_RISING_TARGET_LEDGE: always
+        RR_WATER_TEMPLE_MQ_BOSS_DOOR:           can_use(RG_LONGSHOT) or can_use(RG_HOVER_BOOTS) or can_use(RG_ICE_ARROWS) or can_use(RG_NAYRUS_LOVE)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_BOSS_DOOR {
+    name: "Water Temple MQ Boss Door"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_BOSS_DOOR_RAMP: can_use(RG_ICE_ARROWS) or take_damage()
+        RR_WATER_TEMPLE_BOSS_ENTRYWAY:     always
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_SIDE_TOWER_1F {
+    name: "Water Temple MQ Side Tower 1F"
+    scene: SCENE_WATER_TEMPLE
+    
+    events {
+        LOGIC_WATER_COULD_LOW_FROM_HIGH: has(RG_BRONZE_SCALE)
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_MAIN:              water_level(WL_LOW) or (can_use(RG_IRON_BOOTS) and water_timer() >= 16)
+        RR_WATER_TEMPLE_MQ_TOWER_TARGET_ROOM: water_level(WL_LOW) and (can_use(RG_FAIRY_BOW) or has_fire_source_with_torch())
+        RR_WATER_TEMPLE_MQ_SIDE_TOWER_2F:     (water_level(WL_MID) and has(RG_BRONZE_SCALE)) or
+                                              (flag(LOGIC_WATER_MQ_SIDE_TOWER_TARGETS) and can_use(RG_LONGSHOT))
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_SIDE_TOWER_2F {
+    name: "Water Temple MQ Side Tower 2F"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_SIDE_TOWER_1F: water_level(WL_LOW) or can_use(RG_IRON_BOOTS)
+        RR_WATER_TEMPLE_MQ_LOW_EMBLEM:    (water_level(WL_HIGH) and has(RG_BRONZE_SCALE)) or
+                #SoT can be skipped with longshot, but it's precise to get an angle you can ledgegrab with so a trick
+                                          (flag(LOGIC_WATER_MQ_SIDE_TOWER_TARGETS) and water_level(WL_LOW_OR_MID) and can_use(RG_HOOKSHOT) and 
+                                          can_use(RG_SONG_OF_TIME))
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_LOW_EMBLEM {
+    name: "Water Temple MQ Low Emblem"
+    scene: SCENE_WATER_TEMPLE
+    
+    events {
+        LOGIC_WATER_COULD_LOW: always
+        LOGIC_WATER_LOW:       can_use(RG_ZELDAS_LULLABY)
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_3_STALFOS_ROOM: water_level(WL_HIGH) and has_fire_source()
+        RR_WATER_TEMPLE_MQ_SIDE_TOWER_2F:  water_level(WL_LOW) and (can_use(RG_FAIRY_BOW) or can_use(RG_DINS_FIRE) or can_use(RG_STICKS))
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_3_STALFOS_ROOM {
+    name: "Water Temple MQ 3 Stalfos Room"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_LOW_EMBLEM: can_kill(RE_STALFOS, ED_CLOSE, true, 4)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_TOWER_TARGET_ROOM {
+    name: "Water Temple MQ Tower Target Room"
+    scene: SCENE_WATER_TEMPLE
+    
+    events {
+        LOGIC_WATER_MQ_SIDE_TOWER_TARGETS: can_kill(RE_LIZALFOS) and can_kill(RE_SPIKE)
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_SIDE_TOWER_1F: always
+    }
+}
+
+#This area assumes we entered through the lower door, so water is low or mid
+region RR_WATER_TEMPLE_MQ_PILLAR_1F {
+    name: "Water Temple MQ Central Pillar 1F"
+    scene: SCENE_WATER_TEMPLE
+    
+    events {
+    #This is harder than the other possibilities as you have to move between shots on top of the extra range
+        LOGIC_WATER_MQ_B1_SWITCH:     trick(RT_WATER_MQ_CENTRAL_PILLAR) and can_use(RG_FIRE_ARROWS)
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_MAIN:      always
+        RR_WATER_TEMPLE_MQ_PILLAR_H:  water_level(WL_HIGH) and trick(RT_WATER_FW_CENTRAL_GS) and can_use(RG_FARORES_WIND) and has(RG_BRONZE_SCALE)
+        RR_WATER_TEMPLE_MQ_PILLAR_2F: can_use(RG_HOOKSHOT) or (water_level(WL_MID) and trick(RT_WATER_FW_CENTRAL_GS) and can_use(RG_FARORES_WIND) and 
+                                      has(RG_BRONZE_SCALE))
+        #if the gate is open, you sink straight in, so you can't climb up this way in logic without swimming
+        RR_WATER_TEMPLE_MQ_PILLAR_B1: flag(LOGIC_WATER_MQ_B1_OPENED_PILLAR) and water_level(WL_HIGH_OR_MID) and trick(RT_WATER_FW_CENTRAL_GS) and 
+                                      can_use(RG_FARORES_WIND) and can_use(RG_IRON_BOOTS) and can_use(RG_ZORA_TUNIC)
+    }
+}
+
+#If we enter here in WL_HIGH, go to RR_WATER_TEMPLE_MQ_PILLAR_H instead, Assumes WL_LOW_OR_MID
+region RR_WATER_TEMPLE_MQ_PILLAR_2F {
+    name: "Water Temple MQ Central Pillar 2F"
+    scene: SCENE_WATER_TEMPLE
+    
+    events {
+        LOGIC_WATER_COULD_MIDDLE:        always
+        LOGIC_WATER_MIDDLE:              can_use(RG_ZELDAS_LULLABY)
+        #It's possible to do this even on low water, but more awkward. I'm not sure if it's even possible for it to be relevant though.
+        LOGIC_WATER_MQ_B1_OPENED_PILLAR: trick(RT_WATER_MQ_CENTRAL_PILLAR) and can_use(RG_FIRE_ARROWS)
+        LOGIC_WATER_MQ_PILLAR_SOT_BLOCK: can_use(RG_HOOKSHOT) and can_use(RG_SONG_OF_TIME)
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_2F_CENTRAL_LM: always
+        RR_WATER_TEMPLE_MQ_PILLAR_H:      water_level(WL_HIGH) and can_use(RG_FARORES_WIND) and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS))
+        RR_WATER_TEMPLE_MQ_PILLAR_B1:     flag(LOGIC_WATER_MQ_B1_OPENED_PILLAR) and water_level(WL_MID) and can_use(RG_IRON_BOOTS) and can_use(RG_ZORA_TUNIC)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_PILLAR_H {
+    name: "Water Temple MQ Central Pillar High"
+    scene: SCENE_WATER_TEMPLE
+    
+    events {
+        LOGIC_WATER_MQ_B1_OPENED_PILLAR: ((flag(LOGIC_WATER_MQ_PILLAR_SOT_BLOCK) and can_use(RG_DINS_FIRE)) or
+                                         (trick(RT_WATER_MQ_CENTRAL_PILLAR) and can_use(RG_FIRE_ARROWS))) and
+                                         (has(RG_BRONZE_SCALE) or (can_use(RG_IRON_BOOTS) and can_use(RG_LONGSHOT) and can_jumpslash()))
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_PILLAR_B1: flag(LOGIC_WATER_MQ_B1_SWITCH) and can_use(RG_IRON_BOOTS) and can_use(RG_ZORA_TUNIC)
+    }
+}
+
+#Assuming tunic and irons was checked on entry
+region RR_WATER_TEMPLE_MQ_PILLAR_B1 {
+    name: "Water Temple MQ Central Pillar B1"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+    #Can't know water level, so we'll just assume any possibility and skip to MAIN
+        RR_WATER_TEMPLE_MQ_MAIN:            flag(LOGIC_WATER_MQ_B1_OPENED_PILLAR) and can_use(RG_IRON_BOOTS) and has(RG_BRONZE_SCALE)
+        #Child needs to release irons for height to push down the larger "peg", however they can push the lower one down by climbing and then hit the switch 
+        #through the larger peg, but it's a trick
+        RR_WATER_TEMPLE_MQ_PILLAR_B1_FINAL: ((is_adult() and can_use(RG_LONGSHOT)) or (can_use(RG_HOOKSHOT) and has(RG_BRONZE_SCALE)))
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_PILLAR_B1_FINAL {
+    name: "Water Temple MQ Central Pillar B1 Final"
+    scene: SCENE_WATER_TEMPLE
+}
+
+region RR_WATER_TEMPLE_MQ_STORAGE_ROOM {
+    name: "Water Temple MQ Storage Room"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_MAIN: water_level(WL_LOW_OR_MID) or (can_use(RG_IRON_BOOTS) and water_timer() >= 8)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_OUTSIDE_HIDDEN_SWITCH_2F {
+    name: "Water Temple MQ Outside Hidden Switch 2F"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_MAIN:             has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS)
+        RR_WATER_TEMPLE_MQ_2F_CENTRAL_LM:    water_level(WL_MID) and (is_adult() or has(RG_BRONZE_SCALE) or can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS))
+        RR_WATER_TEMPLE_MQ_HIDDEN_SWITCH_2F: water_level(WL_MID)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_HIDDEN_SWITCH_2F {
+    name: "Water Temple MQ Hidden Switch 2F"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_MAIN: always
+        RR_WATER_TEMPLE_MQ_HIDDEN_SWITCH_3F: can_use(RG_LONGSHOT)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_HIDDEN_SWITCH_3F {
+    name: "Water Temple MQ Hidden Switch 3F"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_HIDDEN_SWITCH_2F: always
+        RR_WATER_TEMPLE_MQ_HIGH_EMBLEM:      always
+    }
+}
+
+#Assumes Iron Boots are checked on entry if the water is high
+region RR_WATER_TEMPLE_MQ_LIZALFOS_LOOP_A {
+    name: "Water Temple MQ Lizalfos Loop Any Water"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_3F_CENTRAL_A: can_use(RG_HOOKSHOT)
+    }
+}
+
+#Assumes WL_LOW_OR_MID is checked on entry
+region RR_WATER_TEMPLE_MQ_LIZALFOS_LOOP_LM {
+    name: "Water Temple MQ Lizalfos Loop Low or Mid Water"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_LIZALFOS_CAGE: can_use(RG_DINS_FIRE)
+        RR_WATER_TEMPLE_MQ_3F_CENTRAL_A:  can_use(RG_HOOKSHOT)
+        RR_WATER_TEMPLE_MQ_3F_CENTRAL_LM: can_use(RG_HOOKSHOT)
+    }
+}
+
+#Assumes WL_LOW_OR_MID is checked on entry
+region RR_WATER_TEMPLE_MQ_LIZALFOS_CAGE {
+    name: "Water Temple MQ Lizalfos Cage"
+    scene: SCENE_WATER_TEMPLE
+}
+
+region RR_WATER_TEMPLE_MQ_OUTSIDE_WATERFALL {
+    name: "Water Temple Outside Waterfall"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_MAIN:                     always
+        RR_WATER_TEMPLE_MQ_OUTSIDE_HIDDEN_SWITCH_2F: water_level(WL_MID)
+        RR_WATER_TEMPLE_MQ_WATERFALL:                water_level(WL_HIGH) and small_keys(SCENE_WATER_TEMPLE, 1)
+        RR_WATER_TEMPLE_MQ_3F_CENTRAL_H:             water_level(WL_HIGH) and (is_adult() or can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT) or 
+                                                     has(RG_BRONZE_SCALE))
+        RR_WATER_TEMPLE_MQ_2F_CENTRAL_H:             water_level(WL_HIGH) and can_use(RG_HOOKSHOT) and can_use(RG_IRON_BOOTS)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_WATERFALL {
+    name: "Water Temple Waterfall"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_OUTSIDE_WATERFALL: small_keys(SCENE_WATER_TEMPLE, 1)
+        RR_WATER_TEMPLE_MQ_WATERFALL_TOP:     can_use(RG_LONGSHOT)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_WATERFALL_TOP {
+    name: "Water Temple Waterfall Top"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_WATERFALL:   can_use(RG_LONGSHOT) and can_hit_switch(ED_FAR)
+        RR_WATER_TEMPLE_MQ_STALFOS_PIT: always
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_STALFOS_PIT {
+    name: "Water Temple MQ Stalfos Pit"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_WATERFALL_TOP:     flag(LOGIC_WATER_MQ_STALFOS_PIT)
+        RR_WATER_TEMPLE_MQ_STALFOS_PIT_LOWER: always
+        RR_WATER_TEMPLE_MQ_STALFOS_PIT_POTS:  (flag(LOGIC_WATER_MQ_STALFOS_PIT) and is_adult() and can_use(RG_HOOKSHOT)) or can_use(RG_HOVER_BOOTS)
+        RR_WATER_TEMPLE_MQ_STALFOS_PIT_UPPER: flag(LOGIC_WATER_MQ_STALFOS_PIT) and can_use(RG_LONGSHOT)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_STALFOS_PIT_LOWER {
+    name: "Water Temple MQ Stalfos Pit Lower"
+    scene: SCENE_WATER_TEMPLE
+    
+    events {
+        LOGIC_WATER_MQ_STALFOS_PIT: ((is_adult() and can_kill(RE_STALFOS, ED_CLOSE, true, 3, false, true)) or (can_use(RG_IRON_BOOTS) and 
+                                    can_use(RG_HOOKSHOT) and can_kill(RE_STALFOS, ED_BOMB_THROW, true, 3, false, true)))
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_STALFOS_PIT:       can_use(RG_HOOKSHOT) and (is_adult() or (can_use(RG_IRON_BOOTS) and water_timer() >= 8))
+        RR_WATER_TEMPLE_MQ_STALFOS_PIT_POTS:  (is_adult() and can_use(RG_HOOKSHOT)) or (can_use(RG_HOOKSHOT) and (is_adult() or can_use(RG_IRON_BOOTS) and 
+                                              water_timer() >= 8) and (can_use(RG_HOVER_BOOTS) or flag(LOGIC_WATER_MQ_STALFOS_PIT)))
+        RR_WATER_TEMPLE_MQ_STALFOS_PIT_UPPER: flag(LOGIC_WATER_MQ_STALFOS_PIT) and (is_adult() or can_use(RG_IRON_BOOTS) and water_timer() >= 8) and 
+                                              can_use(RG_HOOKSHOT)
+    }
+}
+
+#also includes the suns fairy in the middle
+region RR_WATER_TEMPLE_MQ_STALFOS_PIT_POTS {
+    name: "Water Temple MQ Stalfos Pit Pots"
+    scene: SCENE_WATER_TEMPLE
+    
+    events {
+        LOGIC_FAIRY_ACCESS: can_break_pots()
+        LOGIC_NUT_ACCESS:   can_break_pots()
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_STALFOS_PIT:       can_use(RG_HOVER_BOOTS) or can_use(RG_LONGSHOT)
+        RR_WATER_TEMPLE_MQ_STALFOS_PIT_LOWER: always
+        RR_WATER_TEMPLE_MQ_STALFOS_PIT_UPPER: flag(LOGIC_WATER_MQ_STALFOS_PIT) and can_use(RG_HOOKSHOT)
+    }
+}
+
+#specifically the area past the spikes
+region RR_WATER_TEMPLE_MQ_STALFOS_PIT_UPPER {
+    name: "Water Temple MQ Stalfos Pit Upper"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_STALFOS_PIT_LOWER: always
+        RR_WATER_TEMPLE_MQ_STALFOS_PIT_POTS:  always
+        RR_WATER_TEMPLE_MQ_DARK_LINK_ROOM:    always
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_DARK_LINK_ROOM {
+    name: "Water Temple MQ Dark Link Room"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_STALFOS_PIT_UPPER: any_age(can_kill(RE_DARK_LINK))
+        RR_WATER_TEMPLE_MQ_GATED_PIT:         any_age(can_kill(RE_DARK_LINK))
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_GATED_PIT {
+    name: "Water Temple MQ Gated Pit"
+    scene: SCENE_WATER_TEMPLE
+    
+    events {
+        LOGIC_FAIRY_ACCESS: can_break_pots()
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_DARK_LINK_ROOM: always
+        RR_WATER_TEMPLE_MQ_RIVER_SKULL:    can_use(RG_HOOKSHOT) and (has(RG_BRONZE_SCALE) or (can_use(RG_IRON_BOOTS) and water_timer() >= 8) or 
+                                           can_use(RG_LONGSHOT))
+    }
+}
+
+#if we can use hookshot, we are standing on the targets, otherwise assume we're in the water
+region RR_WATER_TEMPLE_MQ_RIVER_SKULL {
+    name: "Water Temple MQ River Skull"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_RIVER_POTS: has(RG_BRONZE_SCALE) or can_use(RG_LONGSHOT)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_RIVER_POTS {
+    name: "Water Temple MQ River Pots"
+    scene: SCENE_WATER_TEMPLE
+    
+    events {
+        LOGIC_FAIRY_ACCESS: can_break_pots()
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_RIVER_SKULL:        can_use(RG_LONGSHOT) or (can_use(RG_IRON_BOOTS) and water_timer() >= 8 and can_use(RG_HOOKSHOT))
+        #You don't need to swim for this if you put irons on in midair and hold forward while aiming for the tunnel with a tight angle, but if you 
+        #miss you have to void unless you have a hook. It's only relevant with glitches anyway
+        RR_WATER_TEMPLE_MQ_DRAGON_ROOM_TUNNEL: can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RR_WATER_TEMPLE_MQ_DRAGON_ROOM_ALCOVE: has(RG_SILVER_SCALE) or (is_adult() and has(RG_BRONZE_SCALE) and trick(RT_WATER_DRAGON_JUMP_DIVE))
+        RR_WATER_TEMPLE_MQ_DRAGON_ROOM_DOOR:   has(RG_BRONZE_SCALE) or can_use(RG_LONGSHOT) or (can_use(RG_HOVER_BOOTS) and can_jumpslash())
+    }
+}
+
+#This region assumes Iron boots to access
+region RR_WATER_TEMPLE_MQ_DRAGON_ROOM_TUNNEL {
+    name: "Water Temple MQ Dragon Room Tunnel"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_RIVER_POTS:         can_use(RG_LONGSHOT)
+        RR_WATER_TEMPLE_MQ_DRAGON_ROOM_ALCOVE: has(RG_BRONZE_SCALE) or can_use(RG_HOOKSHOT)
+        RR_WATER_TEMPLE_MQ_DRAGON_ROOM_DOOR:   has(RG_BRONZE_SCALE) or can_use(RG_LONGSHOT)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_DRAGON_ROOM_ALCOVE {
+    name: "Water Temple MQ Dragon Room Alcove"
+    scene: SCENE_WATER_TEMPLE
+    
+    events {
+        LOGIC_WATER_MQ_DRAGON_TORCHES: has_fire_source()
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_DRAGON_ROOM_TUNNEL: can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RR_WATER_TEMPLE_MQ_DRAGON_ROOM_DOOR:   has(RG_SILVER_SCALE)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_DRAGON_ROOM_DOOR {
+    name: "Water Temple MQ Dragon Room Door"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_RIVER_POTS:           can_use(RG_LONGSHOT)
+        RR_WATER_TEMPLE_MQ_DRAGON_ROOM_TUNNEL:   can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_use(RG_HOOKSHOT)
+        RR_WATER_TEMPLE_MQ_DRAGON_ROOM_ALCOVE:   has(RG_SILVER_SCALE)
+        RR_WATER_TEMPLE_MQ_BOSS_KEY_ROOM_SWITCH: flag(LOGIC_WATER_MQ_DRAGON_TORCHES)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_BOSS_KEY_ROOM_SWITCH {
+    name:"Water Temple MQ Boss Key Room Switch"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_DRAGON_ROOM_DOOR:    always
+        RR_WATER_TEMPLE_MQ_BOSS_KEY_ROOM_PIT:   always
+        RR_WATER_TEMPLE_MQ_BOSS_KEY_ROOM_CHEST: can_hit_switch() and any_age(can_use(RG_DINS_FIRE)) and has(RG_OPEN_CHEST)
+    }
+}
+
+#this exists for the crates in preparation for clips through the grate
+region RR_WATER_TEMPLE_MQ_BOSS_KEY_ROOM_PIT {
+    name: "Water Temple MQ Boss Key Room Pit"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_BOSS_KEY_ROOM_SWITCH: can_hit_switch(ED_BOOMERANG)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_BOSS_KEY_ROOM_CHEST {
+    name:"Water Temple MQ Boss Key Room Chest"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_BOSS_KEY_ROOM_SWITCH: can_hit_switch(ED_BOMB_THROW) or can_use(RG_HOVER_BOOTS)
+        RR_WATER_TEMPLE_MQ_BOSS_KEY_ROOM_PIT:    always
+        RR_WATER_TEMPLE_MQ_B1_GATE_SWITCH:       has(RG_SILVER_SCALE) or (can_use(RG_IRON_BOOTS) and (has(RG_BRONZE_SCALE) or (water_timer() >= 24 and 
+                                                 can_use(RG_LONGSHOT))))
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_B1_GATE_SWITCH {
+    name: "Water Temple MQ B1 Gate Switch"
+    scene: SCENE_WATER_TEMPLE
+    
+    events {
+        #If the water is low, the switch is underwater and needs irons to press, otherwise, the water is too low to climb up and you need irons to 
+        #hookshot a target
+        #If a glitch clips through the gate on low, have it logically press the switch and let entrance logic enter
+        LOGIC_WATER_MQ_B1_SWITCH: can_use(RG_IRON_BOOTS)
+    }
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_MAIN:                flag(LOGIC_WATER_MQ_B1_SWITCH) and (water_level(WL_LOW) or (can_use(RG_IRON_BOOTS) and water_timer() >= 16))
+        RR_WATER_TEMPLE_MQ_BOSS_KEY_ROOM_CHEST: can_use(RG_IRON_BOOTS) and has(RG_BRONZE_SCALE) and (water_level(WL_LOW) or water_timer() >= 24)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_TRIANGLE_TORCH_ROOM {
+    name: "Water Temple MQ Triangle Torch Room"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_MAIN:                    flag(LOGIC_WATER_MQ_B1_SWITCH) and ((water_level(WL_LOW) and has(RG_GOLDEN_SCALE)) or 
+                                                    (can_use(RG_IRON_BOOTS) and water_timer() >= 40 and (has(RG_BRONZE_SCALE) or can_use(RG_LONGSHOT))))
+        RR_WATER_TEMPLE_MQ_TRIANGLE_TORCH_TOP_STEP: is_adult() or can_ground_jump() or can_use(RG_HOOKSHOT)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_TRIANGLE_TORCH_TOP_STEP {
+    name:"Water Temple MQ Triangle Torch Top Step"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_TRIANGLE_TORCH_ROOM: always
+        RR_WATER_TEMPLE_MQ_TRIANGLE_TORCH_CAGE: can_use(RG_FIRE_ARROWS) and
+                                                ((is_adult() and can_use(RG_HOVER_BOOTS)) or can_middair_ground_jump() or
+                                                (can_use(RG_LONGSHOT) and any_age(scarecrows_song())))
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_TRIANGLE_TORCH_CAGE {
+    name: "Water Temple MQ Triangle Torch Cage"
+    scene: SCENE_WATER_TEMPLE
+}
+
+region RR_WATER_TEMPLE_MQ_SPIKE_MOAT {
+    name: "Water Temple MQ Spike Moat"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_MAIN:              flag(LOGIC_WATER_MQ_B1_SWITCH) and ((can_use(RG_IRON_BOOTS) and water_timer() >= 24 and 
+                                              can_use(RG_HOOKSHOT)) or has(RG_BRONZE_SCALE))
+        RR_WATER_TEMPLE_MQ_BEHIND_SPIKE_MOAT: (can_use(RG_LONGSHOT) or (trick(RT_WATER_BK_REGION) and can_use(RG_HOVER_BOOTS)))
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_BEHIND_SPIKE_MOAT {
+    name: "Water Temple MQ Behind Spike Moat"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        #You can backflip over the spikes and into the water.
+        RR_WATER_TEMPLE_MQ_SPIKE_MOAT:        has(RG_BRONZE_SCALE) or can_use(RG_LONGSHOT) or (can_use(RG_HOOKSHOT) and can_use(RG_IRON_BOOTS))
+        RR_WATER_TEMPLE_MQ_CRATE_VORTEX_ROOM: always
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_CRATE_VORTEX_ROOM {
+    name: "Water Temple MQ Crate Vortex Room"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_BEHIND_SPIKE_MOAT: always
+        #Child can use the crate to get the height to make it with hovers, but it's annoyingly tight so would be a trick
+        RR_WATER_TEMPLE_MQ_SCARECROW_CANAL:   ((is_adult() and (can_use(RG_HOVER_BOOTS) or trick(RT_WATER_NORTH_BASEMENT_LEDGE_JUMP))) or
+                                              (any_age(scarecrows_song()) and can_use(RG_HOOKSHOT))) and
+                                              (is_adult() or (can_use(RG_IRON_BOOTS) and water_timer() >= 8))
+        RR_WATER_TEMPLE_MQ_CRATE_VORTEX_CAGE: trick(RT_WATER_INVISIBLE_HOOKSHOT_TARGET) and can_use(is_adult() ? RG_HOOKSHOT : RG_LONGSHOT) and 
+                                              can_use(RG_IRON_BOOTS) and water_timer() >= 8
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_SCARECROW_CANAL {
+    name:"Water Temple MQ Scarecrow Canal"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+    #making the jump as adult without jumpslash is possible, but hard enough to be a trick
+        RR_WATER_TEMPLE_MQ_CRATE_VORTEX_ROOM: has(RG_BRONZE_SCALE) or
+                                              (is_adult() and (can_jumpslash() or can_use(RG_HOVER_BOOTS))) or
+                                              (can_use(RG_IRON_BOOTS) and water_timer() >= 8 and can_use(RG_HOOKSHOT))
+        RR_WATER_TEMPLE_MQ_CANAL_ALCOVE:      is_adult()
+        RR_WATER_TEMPLE_MQ_BEHIND_CANAL:      can_use(RG_IRON_BOOTS) and (has(RG_BRONZE_SCALE) or can_use(RG_HOOKSHOT)) and water_timer() >= 8
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_CANAL_ALCOVE {
+    name: "Water Temple MQ Canal Alcove"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_3_JETS_ROOM:     small_keys(SCENE_WATER_TEMPLE, 2)
+        RR_WATER_TEMPLE_MQ_SCARECROW_CANAL: is_adult() or has(RG_BRONZE_SCALE) or (can_use(RG_IRON_BOOTS) and water_timer() >= 8)
+        RR_WATER_TEMPLE_MQ_BEHIND_CANAL:    is_adult() and trick(RT_UNINTUITIVE_JUMPS) and has(RG_BRONZE_SCALE)
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_BEHIND_CANAL {
+    name: "Water Temple MQ Behind Canal"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_SCARECROW_CANAL:   has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT) and water_timer() >= 8
+        RR_WATER_TEMPLE_MQ_FREESTANDING_ROOM: always
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_FREESTANDING_ROOM {
+    name: "Water Temple MQ Freestanding Room"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_BEHIND_CANAL: any_age(can_kill(RE_STALFOS))
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_3_JETS_ROOM {
+    name: "Water Temple MQ 3 Jets Room"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_CANAL_ALCOVE: small_keys(SCENE_WATER_TEMPLE, 2) and can_hit_switch(ED_BOOMERANG)
+        RR_WATER_TEMPLE_MQ_DODONGO_ROOM: can_hit_switch() and has_fire_source()
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_DODONGO_ROOM {
+    name: "Water Temple MQ Dodongo Room"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_3_JETS_ROOM:       (can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS)) and any_age(can_kill(RE_DODONGO, ED_CLOSE, true, 5))
+        RR_WATER_TEMPLE_MQ_CRATE_VORTEX_CAGE: (can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS)) and any_age(can_kill(RE_DODONGO, ED_CLOSE, true, 5))
+    }
+}
+
+region RR_WATER_TEMPLE_MQ_CRATE_VORTEX_CAGE {
+    name: "Water Temple MQ Crate Vortex Cage"
+    scene: SCENE_WATER_TEMPLE
+    
+    exits {
+        RR_WATER_TEMPLE_MQ_DODONGO_ROOM: always
+        RR_WATER_TEMPLE_MQ_CRATE_VORTEX_ROOM: can_use(RG_LONGSHOT) and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS)) # stand on crate to aim
+    }
+}
+

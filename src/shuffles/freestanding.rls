@@ -291,6 +291,24 @@ extend region RR_SPIRIT_TEMPLE_MQ_CHILD_SIDE_HUB {
     }
 }
 
+# dungeons/water_temple
+
+extend region RR_WATER_TEMPLE_RIVER {
+    locations {
+        RC_WATER_TEMPLE_RIVER_HEART_1: (can_use(RG_IRON_BOOTS) and water_timer() >= 16) or has(RG_BRONZE_SCALE)
+        RC_WATER_TEMPLE_RIVER_HEART_2: (can_use(RG_IRON_BOOTS) and water_timer() >= 16) or has(RG_BRONZE_SCALE)
+        RC_WATER_TEMPLE_RIVER_HEART_3: (can_use(RG_IRON_BOOTS) and water_timer() >= 16) or has(RG_BRONZE_SCALE)
+        RC_WATER_TEMPLE_RIVER_HEART_4: (can_use(RG_IRON_BOOTS) and water_timer() >= 16) or has(RG_BRONZE_SCALE)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_FREESTANDING_ROOM {
+    locations {
+        RC_WATER_TEMPLE_MQ_FREESTANDING_KEY: can_break_crates()
+    }
+}
+
+
 # overworld/death_mountain_crater
 
 extend region RR_DMC_CENTRAL {

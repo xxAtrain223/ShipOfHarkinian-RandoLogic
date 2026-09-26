@@ -384,6 +384,109 @@ extend region RR_SPIRIT_TEMPLE_MQ_9_THRONES_ROOM {
     }
 }
 
+# dungeons/water_temple
+
+extend region RR_WATER_TEMPLE_BOULDERS_SOUTH {
+    locations {
+        RC_WATER_TEMPLE_GS_NEAR_BOSS_KEY_CHEST: can_use(RG_LONGSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_CANAL_ALCOVE {
+    locations {
+        RC_WATER_TEMPLE_GS_NEAR_BOSS_KEY_CHEST: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or
+        #child can also do a hovers backwalk backflip to reach the token after killing the skull
+                                                (((is_adult() and can_use(RG_HOVER_BOOTS)) or can_middair_ground_jump()) and
+        #killing with bombchu from here is hard due to the terrain, but adult can do it much easier from the river so it's only relevant for child
+                                                can_kill(RE_GOLD_SKULLTULA, has(RG_BRONZE_SCALE) and is_adult() ? ED_SHORT_JUMPSLASH : ED_BOOMERANG))
+    }
+}
+
+extend region RR_WATER_TEMPLE_BOULDER_CANAL {
+    locations {
+        RC_WATER_TEMPLE_GS_NEAR_BOSS_KEY_CHEST: (is_adult() and can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)) or (can_use(RG_IRON_BOOTS) and 
+                can_use(RG_HOOKSHOT))
+    }
+}
+
+extend region RR_WATER_TEMPLE_BEHIND_CANAL {
+    locations {
+        RC_WATER_TEMPLE_GS_NEAR_BOSS_KEY_CHEST: can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT) and water_timer() >= 8
+    }
+}
+
+extend region RR_WATER_TEMPLE_GS_CAGE {
+    locations {
+        RC_WATER_TEMPLE_GS_BEHIND_GATE: (is_adult() and (has(RG_POWER_BRACELET) or can_kill(RE_GOLD_SKULLTULA))) or 
+                can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or can_ground_jumpslash()
+    }
+}
+
+extend region RR_WATER_TEMPLE_PILLAR_2F {
+    locations {
+        RC_WATER_TEMPLE_GS_CENTRAL_PILLAR: can_use(RG_LONGSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_PILLAR_H {
+    locations {
+        RC_WATER_TEMPLE_GS_CENTRAL_PILLAR: has(RG_BRONZE_SCALE) and can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
+extend region RR_WATER_TEMPLE_WATERFALL {
+    locations {
+        RC_WATER_TEMPLE_GS_FALLING_PLATFORM_ROOM: can_get_drop(RE_GOLD_SKULLTULA, ED_LONGSHOT) or
+                (trick(RT_WATER_RANG_FALLING_PLATFORM_GS) and can_use(RG_BOOMERANG)) or
+                (trick(RT_WATER_HOOKSHOT_FALLING_PLATFORM_GS) and is_adult() and can_use(RG_HOOKSHOT))
+    }
+}
+
+extend region RR_WATER_TEMPLE_RIVER {
+    locations {
+        RC_WATER_TEMPLE_GS_RIVER: (can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT) and water_timer() >= 16)
+    }
+}
+
+extend region RR_WATER_TEMPLE_RIVER_POTS {
+    locations {
+        RC_WATER_TEMPLE_GS_RIVER: trick(RT_WATER_RIVER_GS) and can_use(RG_LONGSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_HIDDEN_SWITCH_3F {
+    locations {
+        #Boxes can kill Gold Skulltulas.
+        RC_WATER_TEMPLE_MQ_GS_BEFORE_UPPER_WATER_SWITCH: (can_break_crates() and has(RG_POWER_BRACELET)) or
+                                                         ((can_break_crates() or trick(RT_VISIBLE_COLLISION)) and can_kill(RE_GOLD_SKULLTULA))
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_LIZALFOS_CAGE {
+    locations {
+        #Technically hidden within a crate, but the act of opening the cage kills it and spawns the token on top so it's exempt from RT_VISUAL_COLLISION
+        RC_WATER_TEMPLE_MQ_GS_LIZALFOS_HALLWAY: can_kill(RE_GOLD_SKULLTULA)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_RIVER_SKULL {
+    locations {
+        RC_WATER_TEMPLE_MQ_GS_RIVER: can_use(RG_LONGSHOT) or (can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT))
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_TRIANGLE_TORCH_CAGE {
+    locations {
+        RC_WATER_TEMPLE_MQ_GS_TRIPLE_WALL_TORCH: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_CRATE_VORTEX_CAGE {
+    locations {
+        RC_WATER_TEMPLE_MQ_GS_FREESTANDING_KEY_AREA: can_get_drop(RE_GOLD_SKULLTULA) and (can_break_crates() or trick(RT_VISIBLE_COLLISION))
+    }
+}
+
 # overworld/castle_grounds
 
 extend region RR_HC_GATE {

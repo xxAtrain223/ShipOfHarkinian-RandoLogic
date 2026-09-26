@@ -134,6 +134,223 @@ extend region RR_SPIRIT_TEMPLE_MQ_BIG_MIRROR_ROOM {
     }
 }
 
+# dungeons/water_temple
+
+extend region RR_WATER_TEMPLE_MQ_PILLAR_2F {
+    locations {
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_UPPER_CRATE_1: can_break_crates() and can_use(RG_LONGSHOT)
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_UPPER_CRATE_2: can_break_crates() and can_use(RG_LONGSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_PILLAR_H {
+    locations {
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_UPPER_CRATE_1: can_break_crates() and has(RG_BRONZE_SCALE)
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_UPPER_CRATE_2: can_break_crates() and has(RG_BRONZE_SCALE)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_PILLAR_B1 {
+    locations {
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_LOWER_CRATE_1:  can_break_crates()
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_LOWER_CRATE_2:  can_break_crates()
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_LOWER_CRATE_3:  can_break_crates()
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_LOWER_CRATE_4:  can_break_crates()
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_LOWER_CRATE_5:  can_break_crates()
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_LOWER_CRATE_6:  can_break_crates()
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_LOWER_CRATE_7:  can_break_crates()
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_LOWER_CRATE_8:  can_break_crates()
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_LOWER_CRATE_9:  can_break_crates()
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_LOWER_CRATE_10: can_break_crates()
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_LOWER_CRATE_11: can_break_crates()
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_LOWER_CRATE_12: can_break_crates()
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_LOWER_CRATE_13: can_break_crates()
+        RC_WATER_TEMPLE_MQ_CENTRAL_PILLAR_LOWER_CRATE_14: can_break_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_STORAGE_ROOM {
+    locations {
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_A_CRATE_1:       can_break_crates()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_A_CRATE_2:       can_break_crates()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_A_CRATE_3:       can_break_crates()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_A_CRATE_4:       can_break_crates()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_A_CRATE_5:       can_break_crates()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_A_CRATE_6:       can_break_crates()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_A_CRATE_7:       can_break_crates()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_A_SMALL_CRATE_1: can_break_small_crates()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_A_SMALL_CRATE_2: can_break_small_crates()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_A_SMALL_CRATE_3: can_break_small_crates()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_A_SMALL_CRATE_4: can_break_small_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_HIDDEN_SWITCH_2F {
+    locations {
+        RC_WATER_TEMPLE_MQ_GS_STORAGE_ROOM_LOWER_CRATE_1:     can_break_crates()
+        RC_WATER_TEMPLE_MQ_GS_STORAGE_ROOM_LOWER_CRATE_2:     can_break_crates()
+        RC_WATER_TEMPLE_MQ_GS_STORAGE_ROOM_LOWER_CRATE_3:     can_break_crates()
+        RC_WATER_TEMPLE_MQ_GS_STORAGE_ROOM_LOWER_CRATE_4:     can_break_crates()
+        RC_WATER_TEMPLE_MQ_GS_STORAGE_ROOM_LOWER_CRATE_5:     can_break_crates()
+        RC_WATER_TEMPLE_MQ_GS_STORAGE_ROOM_LOWER_CRATE_6:     can_break_crates()
+        RC_WATER_TEMPLE_MQ_GS_STORAGE_ROOM_LOWER_SMALL_CRATE: can_break_small_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_HIDDEN_SWITCH_3F {
+    locations {
+        RC_WATER_TEMPLE_MQ_GS_STORAGE_ROOM_UPPER_CRATE_1:     can_break_crates()
+        RC_WATER_TEMPLE_MQ_GS_STORAGE_ROOM_UPPER_CRATE_2:     can_break_crates()
+        RC_WATER_TEMPLE_MQ_GS_STORAGE_ROOM_UPPER_SMALL_CRATE: can_break_small_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_LIZALFOS_LOOP_A {
+    locations {
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_CRATE_1:      can_break_crates()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_CRATE_2:      can_break_crates()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_CRATE_3:      can_break_crates()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_ROOM_CRATE_1: can_break_crates()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_ROOM_CRATE_2: can_break_crates()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_ROOM_CRATE_3: can_break_crates()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_ROOM_CRATE_4: can_break_crates()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_ROOM_CRATE_5: can_break_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_LIZALFOS_LOOP_LM {
+    locations {
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_CRATE_1:      can_break_crates()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_CRATE_2:      can_break_crates()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_CRATE_3:      can_break_crates()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_ROOM_CRATE_1: can_break_crates()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_ROOM_CRATE_2: can_break_crates()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_ROOM_CRATE_3: can_break_crates()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_ROOM_CRATE_4: can_break_crates()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_ROOM_CRATE_5: can_break_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_LIZALFOS_CAGE {
+    locations {
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_GATE_CRATE_1: can_break_crates()
+        RC_WATER_TEMPLE_MQ_LIZALFOS_HALLWAY_GATE_CRATE_2: can_break_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_DRAGON_ROOM_TUNNEL {
+    locations {
+        RC_WATER_TEMPLE_MQ_DRAGON_ROOM_SUBMERGED_CRATE_1: can_break_crates()
+        RC_WATER_TEMPLE_MQ_DRAGON_ROOM_SUBMERGED_CRATE_2: can_break_crates()
+        RC_WATER_TEMPLE_MQ_DRAGON_ROOM_SUBMERGED_CRATE_3: can_break_crates()
+        RC_WATER_TEMPLE_MQ_DRAGON_ROOM_SUBMERGED_CRATE_4: can_break_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_DRAGON_ROOM_ALCOVE {
+    locations {
+        RC_WATER_TEMPLE_MQ_DRAGON_ROOM_TORCHES_CRATE_1:       can_break_crates()
+        RC_WATER_TEMPLE_MQ_DRAGON_ROOM_TORCHES_CRATE_2:       can_break_crates()
+        RC_WATER_TEMPLE_MQ_DRAGON_ROOM_TORCHES_SMALL_CRATE_1: can_break_small_crates()
+        RC_WATER_TEMPLE_MQ_DRAGON_ROOM_TORCHES_SMALL_CRATE_2: can_break_small_crates()
+        RC_WATER_TEMPLE_MQ_DRAGON_ROOM_TORCHES_SMALL_CRATE_3: can_break_small_crates()
+    } 
+}
+
+extend region RR_WATER_TEMPLE_MQ_DRAGON_ROOM_DOOR {
+    locations {
+        RC_WATER_TEMPLE_MQ_DRAGON_ROOM_DOOR_CRATE_1: can_break_crates()
+        RC_WATER_TEMPLE_MQ_DRAGON_ROOM_DOOR_CRATE_2: can_break_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_BOSS_KEY_ROOM_SWITCH {
+    locations {
+        RC_WATER_TEMPLE_MQ_BK_ROOM_UPPER_CRATE: can_break_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_BOSS_KEY_ROOM_PIT {
+    locations {
+        RC_WATER_TEMPLE_MQ_BK_ROOM_LOWER_CRATE_1: can_break_crates()
+        RC_WATER_TEMPLE_MQ_BK_ROOM_LOWER_CRATE_2: can_break_crates()
+        RC_WATER_TEMPLE_MQ_BK_ROOM_LOWER_CRATE_3: can_break_crates()
+        RC_WATER_TEMPLE_MQ_BK_ROOM_LOWER_CRATE_4: can_break_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_TRIANGLE_TORCH_ROOM {
+    locations {
+        RC_WATER_TEMPLE_MQ_TRIPLE_TORCH_ROOM_SUBMERGED_CRATE_1: (can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()) or
+                                                                        (can_use(RG_BOMBCHU_5) and can_use(RG_BOOMERANG))
+        RC_WATER_TEMPLE_MQ_TRIPLE_TORCH_ROOM_SUBMERGED_CRATE_2: (can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()) or
+                                                                        (can_use(RG_BOMBCHU_5) and can_use(RG_BOOMERANG))
+        RC_WATER_TEMPLE_MQ_TRIPLE_TORCH_ROOM_SUBMERGED_CRATE_3: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
+        RC_WATER_TEMPLE_MQ_TRIPLE_TORCH_ROOM_SUBMERGED_CRATE_4: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
+        RC_WATER_TEMPLE_MQ_TRIPLE_TORCH_ROOM_SUBMERGED_CRATE_5: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
+        RC_WATER_TEMPLE_MQ_TRIPLE_TORCH_ROOM_SUBMERGED_CRATE_6: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_TRIANGLE_TORCH_TOP_STEP {
+    locations {
+        RC_WATER_TEMPLE_MQ_TRIPLE_TORCH_ROOM_SUBMERGED_CRATE_3: (can_use(RG_BOMBCHU_5) and can_use(RG_BOOMERANG))
+        RC_WATER_TEMPLE_MQ_TRIPLE_TORCH_ROOM_SUBMERGED_CRATE_4: (can_use(RG_BOMBCHU_5) and can_use(RG_BOOMERANG))
+        RC_WATER_TEMPLE_MQ_TRIPLE_TORCH_ROOM_SUBMERGED_CRATE_5: (can_use(RG_BOMBCHU_5) and can_use(RG_BOOMERANG))
+        RC_WATER_TEMPLE_MQ_TRIPLE_TORCH_ROOM_SUBMERGED_CRATE_6: (can_use(RG_BOMBCHU_5) and can_use(RG_BOOMERANG))
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_TRIANGLE_TORCH_CAGE {
+    locations {
+        RC_WATER_TEMPLE_MQ_TRIPLE_TORCH_ROOM_GATE_CRATE_3: can_break_crates()
+        RC_WATER_TEMPLE_MQ_TRIPLE_TORCH_ROOM_GATE_CRATE_1: can_break_crates()
+        RC_WATER_TEMPLE_MQ_TRIPLE_TORCH_ROOM_GATE_CRATE_2: can_break_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_CRATE_VORTEX_ROOM {
+    locations {
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_FRONT_CRATE_1:     can_break_crates()
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_FRONT_CRATE_2:     can_break_crates()
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_1: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_2: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_3: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_4: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_5: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_6: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_FREESTANDING_ROOM {
+    locations {
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_B_CRATE_1: can_break_crates()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_B_CRATE_2: can_break_crates()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_B_CRATE_3: can_break_crates()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_B_CRATE_4: can_break_crates()
+        RC_WATER_TEMPLE_MQ_STORAGE_ROOM_B_CRATE_5: can_break_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_DODONGO_ROOM {
+    locations {
+        RC_WATER_TEMPLE_MQ_DODONGO_ROOM_UPPER_CRATE: can_break_crates()
+        RC_WATER_TEMPLE_MQ_DODONGO_ROOM_HALL_CRATE: can_break_crates()
+        RC_WATER_TEMPLE_MQ_DODONGO_ROOM_LOWER_CRATE_1: can_break_crates()
+        RC_WATER_TEMPLE_MQ_DODONGO_ROOM_LOWER_CRATE_2: can_break_crates()
+        RC_WATER_TEMPLE_MQ_DODONGO_ROOM_LOWER_CRATE_3: can_break_crates()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_CRATE_VORTEX_CAGE {
+    locations {
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_BEHIND_GATE_CRATE_1: can_break_crates()
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_BEHIND_GATE_CRATE_2: can_break_crates()
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_BEHIND_GATE_CRATE_3: can_break_crates()
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_BEHIND_GATE_CRATE_4: can_break_crates()
+    }
+}
+
 # overworld/death_mountain_crater
 
 extend region RR_DMC_CRATE {
