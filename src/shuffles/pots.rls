@@ -232,6 +232,131 @@ extend region RR_DODONGOS_CAVERN_MQ_BACK_SWITCH_GRAVE {
     }
 }
 
+# dungeons/fire_temple
+
+#This region assumes tunic logic is handled on entry.
+extend region RR_FIRE_TEMPLE_NEAR_BOSS_UPPER {
+    locations {
+        RC_FIRE_TEMPLE_NEAR_BOSS_POT_1: can_break_pots()
+        RC_FIRE_TEMPLE_NEAR_BOSS_POT_2: can_break_pots()
+        RC_FIRE_TEMPLE_NEAR_BOSS_POT_3: can_break_pots()
+        RC_FIRE_TEMPLE_NEAR_BOSS_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_BIG_LAVA_ROOM {
+    locations {
+        RC_FIRE_TEMPLE_BIG_LAVA_POT_1: can_break_pots() and fire_timer() >= 32
+        RC_FIRE_TEMPLE_BIG_LAVA_POT_2: can_break_pots() and fire_timer() >= 32
+        RC_FIRE_TEMPLE_BIG_LAVA_POT_3: can_break_pots() and fire_timer() >= 32
+    }
+}
+
+extend region RR_FIRE_TEMPLE_FIRE_MAZE_MAIN {
+    locations {
+        RC_FIRE_TEMPLE_FLAME_MAZE_LEFT_POT_1: can_break_pots()
+        RC_FIRE_TEMPLE_FLAME_MAZE_LEFT_POT_2: can_break_pots()
+        RC_FIRE_TEMPLE_FLAME_MAZE_LEFT_POT_3: can_break_pots()
+        RC_FIRE_TEMPLE_FLAME_MAZE_LEFT_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_FIRE_MAZE_PAST_WALL {
+    locations {
+        RC_FIRE_TEMPLE_FLAME_MAZE_RIGHT_POT_1: can_break_pots()
+        RC_FIRE_TEMPLE_FLAME_MAZE_RIGHT_POT_2: can_break_pots()
+        RC_FIRE_TEMPLE_FLAME_MAZE_RIGHT_POT_3: can_break_pots()
+        RC_FIRE_TEMPLE_FLAME_MAZE_RIGHT_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_FOYER_LOWER {
+    locations {
+        RC_FIRE_TEMPLE_MQ_ENTRANCE_POT_1: can_break_pots()
+        RC_FIRE_TEMPLE_MQ_ENTRANCE_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_LOOP_5_TILE_ROOM {
+    locations {
+        RC_FIRE_TEMPLE_MQ_BEFORE_MINI_BOSS_POT_1: can_break_pots()
+        RC_FIRE_TEMPLE_MQ_BEFORE_MINI_BOSS_POT_2: can_break_pots()
+        RC_FIRE_TEMPLE_MQ_BEFORE_MINI_BOSS_POT_3: can_break_pots()
+        RC_FIRE_TEMPLE_MQ_BEFORE_MINI_BOSS_POT_4: can_break_pots()
+        RC_FIRE_TEMPLE_MQ_BEFORE_MINI_BOSS_POT_5: can_break_pots()
+        RC_FIRE_TEMPLE_MQ_BEFORE_MINI_BOSS_POT_6: can_break_pots()
+        RC_FIRE_TEMPLE_MQ_BEFORE_MINI_BOSS_POT_7: can_break_pots()
+        RC_FIRE_TEMPLE_MQ_BEFORE_MINI_BOSS_POT_8: can_break_pots()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_TARGET {
+    locations {
+        RC_FIRE_TEMPLE_MQ_OUTSIDE_BOSS_POT_1:   can_break_pots()
+        RC_FIRE_TEMPLE_MQ_OUTSIDE_BOSS_POT_2:   can_break_pots()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_BIG_LAVA_ROOM {
+    locations {
+        #I'm currently assuming the oversight version of RT_FIRE_MQ_BK_CHEST for the fire timer logic
+        RC_FIRE_TEMPLE_MQ_LAVA_ROOM_NORTH_POT: can_break_pots()
+        RC_FIRE_TEMPLE_MQ_LAVA_ROOM_HIGH_POT:  can_break_pots()
+        RC_FIRE_TEMPLE_MQ_LAVA_ROOM_SOUTH_POT: fire_timer() >= 40 and (can_use(RG_HOOKSHOT) or trick(RT_FIRE_MQ_BLOCKED_CHEST)) and can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_BIG_LAVA_BLOCKED_DOOR {
+    locations {
+        RC_FIRE_TEMPLE_MQ_LAVA_ROOM_SOUTH_POT: can_break_pots() and fire_timer() >= 8
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_TORCH_FIREWALL_ROOM {
+    locations {
+        RC_FIRE_TEMPLE_MQ_LAVA_TORCH_POT_1: hookshot_or_boomerang()
+        RC_FIRE_TEMPLE_MQ_LAVA_TORCH_POT_2: hookshot_or_boomerang()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_NARROW_PATH_ROOM {
+    locations {
+        RC_FIRE_TEMPLE_MQ_ABOVE_LAVA_POT_1: can_break_pots()
+        RC_FIRE_TEMPLE_MQ_ABOVE_LAVA_POT_2: can_break_pots()
+        RC_FIRE_TEMPLE_MQ_ABOVE_LAVA_POT_3: can_break_pots()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM {
+    locations {
+        RC_FIRE_TEMPLE_MQ_FLAME_WALL_POT_1:         can_break_pots() and fire_timer() >= 24
+        RC_FIRE_TEMPLE_MQ_FLAME_WALL_POT_2:         can_break_pots() and fire_timer() >= 24
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MAIN {
+    locations {
+        RC_FIRE_TEMPLE_MQ_SOUTH_FIRE_MAZE_WEST_POT: can_break_pots()
+        RC_FIRE_TEMPLE_MQ_SOUTH_FIRE_MAZE_EAST_POT: can_break_pots()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MIDDLE {
+    locations {
+        RC_FIRE_TEMPLE_MQ_PAST_FIRE_MAZE_SOUTH_POT: can_use(RG_BOOMERANG)
+        RC_FIRE_TEMPLE_MQ_FIRE_MAZE_NORTHMOST_POT:  can_break_pots()
+        RC_FIRE_TEMPLE_MQ_FIRE_MAZE_NORTHWEST_POT:  can_break_pots()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PAST_WALL {
+    locations {
+        RC_FIRE_TEMPLE_MQ_PAST_FIRE_MAZE_SOUTH_POT: can_break_pots()
+        RC_FIRE_TEMPLE_MQ_PAST_FIRE_MAZE_NORTH_POT: can_break_pots()
+        RC_FIRE_TEMPLE_MQ_FIRE_MAZE_NORTHWEST_POT:  can_use(RG_BOOMERANG)
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_TOWER_BEFORE_GANONDORF_LAIR {

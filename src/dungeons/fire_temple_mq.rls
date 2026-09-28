@@ -1,0 +1,676 @@
+#potentially dangerous temp flag on the first room's torches, should be made permanent if possible
+region RR_FIRE_TEMPLE_MQ_FOYER_LOWER {
+    name: "Fire Temple MQ Foyer Lower"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_ENTRYWAY:                always
+        RR_FIRE_TEMPLE_MQ_LOOP_CAGE_FOYER_SIDE: always
+        #child can easilly pass the flame wall with a well timed sidehop, but that's a generic version of RT_FIRE_FLAME_MAZE
+        RR_FIRE_TEMPLE_MQ_FOYER_UPPER:          is_adult() or can_use(RG_HOOKSHOT) or trick(RT_FIRE_SKIP_FLAME_WALLS)
+        RR_FIRE_TEMPLE_MQ_LOOP_HEXAGON_ROOM:    small_keys(SCENE_FIRE_TEMPLE, 5)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_FOYER_UPPER {
+    name: "Fire Temple MQ Foyer Upper"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_FOYER_LOWER:    always
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM: has_fire_source()
+        RR_FIRE_TEMPLE_MQ_BIG_LAVA_ROOM:  any_age(can_use(RG_MEGATON_HAMMER))
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_LOOP_CAGE_FOYER_SIDE {
+    name: "Fire Temple MQ Loop Cage Foyer Side"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_FOYER_LOWER:     any_age(can_kill(RE_LIKE_LIKE))
+        RR_FIRE_TEMPLE_MQ_LOOP_GORON_CAGE: flag(LOGIC_FIRE_OPENED_LOWEST_GORON_CAGE)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_LOOP_HEXAGON_ROOM {
+    name: "Fire Temple MQ Loop Hexagon Room"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_FOYER_LOWER:      always
+        RR_FIRE_TEMPLE_MQ_LOOP_5_TILE_ROOM: any_age(can_kill(RE_STALFOS, ED_CLOSE, always, 2))
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_LOOP_5_TILE_ROOM {
+    name: "Fire Temple MQ Loop 5 Tile Room"
+    scene: SCENE_FIRE_TEMPLE
+
+    events {
+        LOGIC_FAIRY_ACCESS: can_break_pots()
+    }
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_LOOP_HEXAGON_ROOM: always
+        RR_FIRE_TEMPLE_MQ_LOOP_FLARE_DANCER: any_age(can_kill(RE_IRON_KNUCKLE))
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_LOOP_FLARE_DANCER {
+    name: "Fire Temple MQ Loop Flare Dancer"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_LOOP_5_TILE_ROOM: always
+        RR_FIRE_TEMPLE_MQ_LOOP_CAGE_SWITCH: any_age(can_kill(RE_FLARE_DANCER))
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_LOOP_CAGE_SWITCH {
+    name: "Fire Temple MQ Loop Cage Switch"
+    scene: SCENE_FIRE_TEMPLE
+
+    events {
+        LOGIC_FIRE_OPENED_LOWEST_GORON_CAGE: can_use(RG_MEGATON_HAMMER)
+    }
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_LOOP_FLARE_DANCER: always
+        RR_FIRE_TEMPLE_MQ_LOOP_GORON_CAGE:   flag(LOGIC_FIRE_OPENED_LOWEST_GORON_CAGE)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_LOOP_GORON_CAGE {
+    name: "Fire Temple MQ Loop Goron Cage"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_LOOP_CAGE_SWITCH:     flag(LOGIC_FIRE_OPENED_LOWEST_GORON_CAGE)
+        RR_FIRE_TEMPLE_MQ_LOOP_CAGE_FOYER_SIDE: flag(LOGIC_FIRE_OPENED_LOWEST_GORON_CAGE)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM {
+    name: "Fire Temple MQ Near Boss Room"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_FOYER_UPPER:      (is_adult() or can_use(RG_HOVER_BOOTS)) and (fire_timer() >= 16 or (flag(LOGIC_FIRE_HIT_PLATFORM) and 
+                                            fire_timer() >= 8))
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_TARGET: fire_timer() >= 32 and (can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS))
+        RR_FIRE_TEMPLE_BOSS_ENTRYWAY:       fire_timer() >= 16 and (can_use(RG_HOVER_BOOTS) or (is_adult() and (trick(RT_UNINTUITIVE_JUMPS) or 
+                                            flag(LOGIC_FIRE_HIT_PLATFORM))))
+    }
+}
+
+#This region assumes tunic logic is handled on entry.
+region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_TARGET {
+    name: "Fire Temple MQ Near Boss Target"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM:       always
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM_UPPER: is_adult() or can_use(RG_HOOKSHOT)
+    }
+}
+
+#This region assumes tunic logic is handled on entry.
+region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM_UPPER {
+    name: "Fire Temple MQ Near Boss Room Upper"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_TARGET: always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_BIG_LAVA_ROOM {
+    name: "Fire Temple MQ Big Lava Room"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_FOYER_UPPER:           fire_timer() >= 32
+        RR_FIRE_TEMPLE_MQ_GS_GORON_CAGE:         fire_timer() >= 32
+        RR_FIRE_TEMPLE_MQ_BIG_LAVA_BLOCKED_DOOR: fire_timer() >= 48 and (can_use(RG_HOOKSHOT) or ((is_adult() or can_ground_jump()) and 
+                                                 trick(RT_FIRE_MQ_BLOCKED_CHEST)))
+        # Fewer tunic requirements ends here
+        RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_1F:        can_use(RG_GORON_TUNIC) and small_keys(SCENE_FIRE_TEMPLE, 2)
+        RR_FIRE_TEMPLE_MQ_TORCH_FIREWALL_ROOM:   has_fire_source() and ((can_use(RG_FAIRY_BOW) and fire_timer() >= 32) or (trick(RT_FIRE_MQ_BK_CHEST) and 
+                                                 fire_timer() >= 56)) and (can_use(RG_HOOKSHOT) or (is_adult() and trick(RT_FIRE_SOT)))
+    }
+}
+
+#Tunic timers from other doors are handled on entry from RR_FIRE_TEMPLE_MQ_BIG_LAVA_ROOM
+#Specifically the tiled platform, not the ground underneath
+region RR_FIRE_TEMPLE_MQ_BIG_LAVA_BLOCKED_DOOR {
+    name: "Fire Temple MQ Big Lava Blocked Door"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_TORCH_LOCKED_CAGE: has_explosives()
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_GS_GORON_CAGE {
+    name: "Fire Temple MQ GS Goron Cage"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_BIG_LAVA_ROOM: always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_TORCH_LOCKED_CAGE {
+    name: "Fire Temple MQ Torch Locked Cage"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_BIG_LAVA_ROOM: always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_TORCH_FIREWALL_ROOM {
+    name: "Fire Temple MQ Torch Firewall Room"
+    scene: SCENE_FIRE_TEMPLE
+
+    events {
+        LOGIC_FAIRY_ACCESS: can_use(RG_HOOKSHOT)
+    }
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_BIG_LAVA_ROOM: always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_1F {
+    name: "Fire Temple MQ Lava Geyser 1F"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_BIG_LAVA_ROOM:       always
+        RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_GRATE:   fire_timer() >= 40 and (has(RG_CLIMB) or can_use(RG_HOOKSHOT))
+        #this technically only reaches torch pillar, but the heart pillar can be reached from there with longshot
+        RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_PILLARS: fire_timer() >= 40 and can_use(RG_LONGSHOT)
+    }
+}
+
+#tunic logic handled on entry
+region RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_GRATE {
+    name: "Fire Temple MQ Lava Geyser Grate"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_1F:      always
+        RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_PILLARS: always
+    }
+}
+
+#tunic logic handled on entry
+region RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_PILLARS {
+    name: "Fire Temple MQ Lava Geyser Pillars"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_1F:    always
+        RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_GRATE: can_use(RG_HOOKSHOT)
+        RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_2F:    always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_2F {
+    name: "Fire Temple MQ Lava Geyser 2F"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        #the block lift does some janky stuff that makes leave sideways while on it difficult, so you can't avoid fall damage if you want to land on pillars.
+        #you can still move "backwards" into the door though and with a roll jump onto the grate, which avoids damage
+        RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_1F:      fire_timer() >= 24
+        RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_PILLARS: take_damage() and fire_timer() >= 24
+        RR_FIRE_TEMPLE_MQ_SHORTCUT_ROOM_LOWER: always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_SHORTCUT_ROOM_LOWER {
+    name: "Fire Temple MQ Shortcut Room Lower"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_SHORTCUT_ROOM_MID: (has_fire_source() and (is_adult() or (can_use(RG_HOOKSHOT) and has(RG_CLIMB)))) or 
+                                                    (trick(RT_FIRE_MQ_CLIMB) and can_use(RG_HOVER_BOOTS) and has(RG_CLIMB))
+        RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_2F:    always
+        RR_FIRE_TEMPLE_MQ_SHORTCUT_CAGE:     flag(LOGIC_FIRE_OPENED_UPPER_SHORTCUT)
+    }
+}
+
+#specifically the foot of the final grate, where the lizalfos spawns
+region RR_FIRE_TEMPLE_MQ_SHORTCUT_ROOM_MID {
+    name: "Fire Temple MQ Shortcut Room Middle"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_SHORTCUT_ROOM_LOWER: always
+        RR_FIRE_TEMPLE_MQ_SHORTCUT_ROOM_3F:    has(RG_CLIMB) or can_use(RG_HOOKSHOT)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_SHORTCUT_ROOM_3F {
+    name: "Fire Temple MQ Shortcut Room 3F"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_SHORTCUT_ROOM_MID:   always
+        RR_FIRE_TEMPLE_MQ_LOWER_LIZALFOS_MAZE: always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_LOWER_LIZALFOS_MAZE {
+    name: "Fire Temple MQ Lower Lizalfos Maze"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_SHORTCUT_ROOM_LOWER: always
+        #Explosives can also reach this room. Chus is relatively simple, they need to detonate on the first horizontal bar up from the floor while horizontally near the switch, but bombs are much harder
+        RR_FIRE_TEMPLE_MQ_MAZE_CRATE_CAGE:     any_age(can_jumpslash())
+        #it's possible to make the RT_FIRE_MQ_MAZE_HOVERS as child using bunny hood jumps, but not adult as adult bonks
+        RR_FIRE_TEMPLE_MQ_UPPER_LIZALFOS_MAZE: (has_explosives() or trick(RT_VISIBLE_COLLISION)) and can_use(RG_MEGATON_HAMMER) and can_use(RG_HOOKSHOT)
+        RR_FIRE_TEMPLE_MQ_MAZE_SWITCH_DOOR:    has_explosives() and trick(RT_FIRE_MQ_MAZE_SIDE_ROOM)
+        RR_FIRE_TEMPLE_MQ_NARROW_PATH_ROOM:    false
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_MAZE_SWITCH_DOOR {
+    name: "Fire Temple MQ Maze Switch Door"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        #This exists to join upper/lower access in a way compatible with door shuffle
+        RR_FIRE_TEMPLE_MQ_LOWER_LIZALFOS_MAZE: always
+        RR_FIRE_TEMPLE_MQ_3F_CURVED_CAGE:      always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_3F_CURVED_CAGE {
+    name: "Fire Temple MQ 3F Curved Cage"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_MAZE_SWITCH_DOOR: always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_MAZE_CRATE_CAGE {
+    name: "Fire Temple MQ Maze Crate Cage"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_LOWER_LIZALFOS_MAZE: always
+        #it's possible to make the RT_FIRE_MQ_MAZE_HOVERS as child using bunny hood jumps, but not adult as adult bonks
+        RR_FIRE_TEMPLE_MQ_UPPER_LIZALFOS_MAZE: is_adult() and ((trick(RT_FIRE_MQ_MAZE_HOVERS) and can_use(RG_HOVER_BOOTS)) or trick(RT_FIRE_MQ_MAZE_JUMP))
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_UPPER_LIZALFOS_MAZE {
+    name: "Fire Temple MQ Upper Lizalfos Maze"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_LOWER_LIZALFOS_MAZE: always
+        RR_FIRE_TEMPLE_MQ_MAZE_BOX_CAGE:       any_age(can_jumpslash() or has_explosives() or 
+                                               (trick(RT_VISIBLE_COLLISION) and (can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_BOOMERANG))))
+        RR_FIRE_TEMPLE_MQ_SHORTCUT_CLIMB:          has_explosives()
+        #Implies RR_FIRE_TEMPLE_MQ_LOWER_LIZALFOS_MAZE access
+        RR_FIRE_TEMPLE_MQ_ABOVE_MAZE:              has_explosives() and can_use(RG_MEGATON_HAMMER) and (can_use(RG_LONGSHOT) or (can_use(RG_HOOKSHOT) and 
+                                                can_use(RG_SONG_OF_TIME)))
+        RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM:         small_keys(SCENE_FIRE_TEMPLE, 3) and can_use(RG_GORON_TUNIC)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_MAZE_BOX_CAGE {
+    name: "Fire Temple MQ Maze Box Cage"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_UPPER_LIZALFOS_MAZE: always
+        #Assumes maze access
+        RR_FIRE_TEMPLE_MQ_MAZE_SWITCH_DOOR:    has_explosives() and has(RG_POWER_BRACELET)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_ABOVE_MAZE {
+    name: "Fire Temple MQ Above Maze"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_UPPER_LIZALFOS_MAZE: always
+        RR_FIRE_TEMPLE_MQ_TORCH_SLUG_CLIMB:    always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_SHORTCUT_CLIMB {
+    name: "Fire Temple MQ Shortcut Climb"
+    scene: SCENE_FIRE_TEMPLE
+
+    events {
+        LOGIC_FIRE_OPENED_UPPER_SHORTCUT: can_use(RG_MEGATON_HAMMER)
+    }
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_UPPER_LIZALFOS_MAZE: has(RG_CLIMB)
+        RR_FIRE_TEMPLE_MQ_SHORTCUT_CAGE:       flag(LOGIC_FIRE_OPENED_UPPER_SHORTCUT)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_SHORTCUT_CAGE {
+    name: "Fire Temple MQ Shortcut Cage"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_SHORTCUT_CLIMB:      flag(LOGIC_FIRE_OPENED_UPPER_SHORTCUT)
+        RR_FIRE_TEMPLE_MQ_SHORTCUT_ROOM_LOWER: flag(LOGIC_FIRE_OPENED_UPPER_SHORTCUT)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_TORCH_SLUG_CLIMB {
+    name: "Fire Temple MQ Torch Slug Climb"
+    scene: SCENE_FIRE_TEMPLE
+
+    events {
+        LOGIC_FAIRY_ACCESS: can_use(RG_HOOKSHOT)
+    }
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_ABOVE_MAZE:    always
+        RR_FIRE_TEMPLE_MQ_BURNING_BLOCK: can_use(RG_HOOKSHOT) and has(RG_CLIMB)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_BURNING_BLOCK {
+    name: "Fire Temple MQ Burning Block"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_TORCH_SLUG_CLIMB: always
+        RR_FIRE_TEMPLE_MQ_NARROW_PATH_ROOM: take_damage()
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_NARROW_PATH_ROOM {
+    name: "Fire Temple MQ Narrow Path Room"
+    scene: SCENE_FIRE_TEMPLE
+
+    events {
+        LOGIC_FAIRY_ACCESS: can_break_pots()
+    }
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_LOWER_LIZALFOS_MAZE:  always
+        RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM:      false
+        RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM_CAGE: false
+        RR_FIRE_TEMPLE_MQ_BIG_LAVA_ROOM:        take_damage()
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM {
+    name: "Fire Temple MQ High Torch Room"
+    scene: SCENE_FIRE_TEMPLE
+
+    events {
+        LOGIC_FIRE_MQ_HIGH_TORCH_LIT: (can_use(RG_FIRE_ARROWS) and fire_timer() >= 24)
+    }
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM_ABOVE_CAGE: (is_adult() or can_use(RG_HOOKSHOT)) and fire_timer() >= 24
+        RR_FIRE_TEMPLE_MQ_UPPER_LIZALFOS_MAZE:        small_keys(SCENE_FIRE_TEMPLE, 3) and fire_timer() >= 24
+        RR_FIRE_TEMPLE_MQ_NARROW_PATH_ROOM:           fire_timer() >= 24
+        #Child has issues navigating the higher points of this room without an equip swapped hookshot
+        RR_FIRE_TEMPLE_MQ_CORRIDOR:                   flag(LOGIC_FIRE_MQ_HIGH_TORCH_LIT) and (is_adult() or can_use(RG_HOOKSHOT)) and fire_timer() >= 16
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM_BARRED_DOOR {
+    name: "Fire Temple MQ High Torch Barred Door"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM: always
+        RR_FIRE_TEMPLE_MQ_CORRIDOR:        flag(LOGIC_FIRE_MQ_HIGH_TORCH_LIT)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM_ABOVE_CAGE {
+    name: "Fire Temple MQ High Torch Room Above Cage"
+    scene: SCENE_FIRE_TEMPLE
+
+    events {
+        LOGIC_FIRE_MQ_HIGH_TORCH_LIT: ((can_use(RG_FAIRY_BOW) and can_use(RG_HOOKSHOT) and has(RG_POWER_BRACELET)) and fire_timer() >= 48)
+    }
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM:      always
+        RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM_CAGE: always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM_CAGE {
+    name: "Fire Temple MQ High Torch Room Cage"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM_ABOVE_CAGE:  can_use(RG_HOOKSHOT) and fire_timer() >= 8
+        RR_FIRE_TEMPLE_MQ_NARROW_PATH_ROOM:            always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_CORRIDOR {
+    name: "Fire Temple Corridor"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM_BARRED_DOOR: always
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MAIN:              always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MAIN {
+    name: "Fire Temple MQ Fire Maze Main"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM:      flag(LOGIC_FIRE_HIT_PLATFORM)
+        RR_FIRE_TEMPLE_MQ_CORRIDOR:            always
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PLATFORMS: is_adult() or can_use(RG_SONG_OF_TIME) or can_use(RG_HOVER_BOOTS)
+        #Hover boots get there via the platforms
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MIDDLE:    trick(RT_FIRE_SKIP_FLAME_WALLS)
+        RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER:  always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PLATFORMS {
+    name: "Fire Temple MQ Fire Maze Platforms"
+    scene: SCENE_FIRE_TEMPLE
+
+    events {
+        LOGIC_FIRE_HIT_PLATFORM: can_use(RG_MEGATON_HAMMER)
+    }
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MAIN:          always
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MIDDLE:        can_use(RG_SONG_OF_TIME) or can_use(RG_HOVER_BOOTS)
+        RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_UPPER_DOOR: always
+        #This one might be a bit too hard for base logic, but is only relevent in doorsanity or with RT_FIRE_MQ_MAZE_HOVERS
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_SWITCH:        can_use(RG_SONG_OF_TIME) and can_use(RG_HOVER_BOOTS) and (take_damage() or can_jumpslash())
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_UPPER_DOOR {
+    name: "Fire Temple MQ 2 Fire Walls Upper Door"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PLATFORMS: always
+        RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_SWITCH: can_use(RG_HOOKSHOT)
+        RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER:  false
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_SWITCH {
+    name: "Fire Temple MQ 2 Fire Walls Switch"
+    scene: SCENE_FIRE_TEMPLE
+
+    events {
+        LOGIC_FIRE_MQ_OPENED_FIRE_MAZE_DOOR: can_use(RG_MEGATON_HAMMER)
+    }
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_UPPER_DOOR: can_use(RG_HOOKSHOT)
+        RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER:      false
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER {
+    name: "Fire Temple MQ 2 Fire Walls Lower"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MAIN:   always
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_SWITCH: flag(LOGIC_FIRE_MQ_OPENED_FIRE_MAZE_DOOR)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MIDDLE {
+    name: "Fire Temple MQ Fire Maze Middle"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_GS_LIZALFOS_ROOM: always
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MAIN:   is_adult() or trick(RT_FIRE_SKIP_FLAME_WALLS)
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_SWITCH: trick(RT_FIRE_SKIP_FLAME_WALLS)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_SWITCH {
+    name: "Fire Temple MQ Fire Maze Switch"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PAST_WALL: always
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MIDDLE:    trick(RT_FIRE_SKIP_FLAME_WALLS)
+        RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER:  always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_GS_LIZALFOS_ROOM {
+    name: "Fire Temple MQ GS Lizalfos Room"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MIDDLE: always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PAST_WALL {
+    name: "Fire Temple MQ Fire Maze Past Wall"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_3F_FLARE_DANCER: always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_3F_FLARE_DANCER {
+    name: "Fire Temple MQ 3F Flare Dancer"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PAST_WALL:   any_age(can_kill(RE_FLARE_DANCER))
+        RR_FIRE_TEMPLE_MQ_ABOVE_3F_FLARE_DANCER: any_age(can_kill(RE_FLARE_DANCER))
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_ABOVE_3F_FLARE_DANCER {
+    name: "Fire Temple MQ Above 3F Flare Dancer"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_3F_FLARE_DANCER: always
+        RR_FIRE_TEMPLE_MQ_LOCKED_CLIMB:    always
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_LOCKED_CLIMB {
+    name: "Fire Temple MQ Locked Climb"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_3F_FLARE_DANCER:    always
+        RR_FIRE_TEMPLE_MQ_NARROW_STAIRS_ROOM: small_keys(SCENE_FIRE_TEMPLE, 4) and has(RG_CLIMB)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_NARROW_STAIRS_ROOM {
+    name: "Fire Temple MQ Narrow Stairs Room"
+    scene: SCENE_FIRE_TEMPLE
+
+    events {
+        LOGIC_FIRE_MQ_HIT_SCARECROW_ROOM_PLATFORM: can_use(RG_MEGATON_HAMMER)
+    }
+
+    exits {
+        #The dropdown here is unusual in that it hits 1 of 3 locations: RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER, RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_UPPER_DOOR, and
+        #RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_SWITCH
+        #Using this dropdown is in N64 logic elsewhere, but not here, probably because it requires good foreknowlege to determine where to land
+        RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER:      take_damage()
+        RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_UPPER_DOOR: take_damage()
+        RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_SWITCH:     take_damage()
+        RR_FIRE_TEMPLE_MQ_3F_FLARE_DANCER:         small_keys(SCENE_FIRE_TEMPLE, 4)
+        RR_FIRE_TEMPLE_MQ_NARROW_STAIRS_4F:        flag(LOGIC_FIRE_MQ_HIT_SCARECROW_ROOM_PLATFORM)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_NARROW_STAIRS_4F {
+    name: "Fire Temple MQ Narrow Stairs 4F"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_NARROW_STAIRS_ROOM:       flag(LOGIC_FIRE_MQ_HIT_SCARECROW_ROOM_PLATFORM) and can_use(RG_HOOKSHOT)
+        RR_FIRE_TEMPLE_MQ_TOP_OF_COLLAPSING_STAIRS: small_keys(SCENE_FIRE_TEMPLE, 5)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_TOP_OF_COLLAPSING_STAIRS {
+    name: "Fire Temple MQ Top of Collapsing Stairs"
+    scene: SCENE_FIRE_TEMPLE
+
+    events {
+        LOGIC_FIRE_HIT_STAIRS: can_use(RG_MEGATON_HAMMER)
+    }
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_BASE_OF_COLLAPSING_STAIRS: flag(LOGIC_FIRE_HIT_STAIRS)
+        RR_FIRE_TEMPLE_MQ_NARROW_STAIRS_4F:          small_keys(SCENE_FIRE_TEMPLE, 5)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_BASE_OF_COLLAPSING_STAIRS {
+    name: "Fire Temple MQ Base of Collapsing Stairs"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_TOP_OF_COLLAPSING_STAIRS: flag(LOGIC_FIRE_HIT_STAIRS) and is_adult()
+        RR_FIRE_TEMPLE_MQ_ABOVE_FIRE_MAZE:          can_use(RG_HOOKSHOT)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_ABOVE_FIRE_MAZE {
+    name: "Fire Temple MQ Above Fire Maze"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MAIN:            any_age(can_use(RG_MEGATON_HAMMER))
+        #it's possible to land directly on the upper platform as child and even avoid fall damage, but it's not intuitive (you have to ledge grab, drop down 
+        #and then air drift with enough momentum to roll)
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PLATFORMS:       any_age(can_use(RG_MEGATON_HAMMER)) and can_jumpslash() and take_damage()
+        RR_FIRE_TEMPLE_MQ_BASE_OF_COLLAPSING_STAIRS: false
+    }
+}

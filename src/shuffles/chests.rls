@@ -217,6 +217,187 @@ extend region RR_DODONGOS_CAVERN_MQ_BACK_POE_ROOM {
     }
 }
 
+# dungeons/fire_temple
+
+extend region RR_FIRE_TEMPLE_NEAR_BOSS_ROOM {
+    locations {
+        RC_FIRE_TEMPLE_NEAR_BOSS_CHEST: fire_timer() >= 16 and has(RG_OPEN_CHEST)
+        #It's plausible to get the pots with rang from the larger square platform, but it's a blind shot that likely 
+        #needs a setup and I've only been able to get the nearest 2, regardless it's a trick and probably a specific 
+        #one like GY crate freestanding with rang
+    }
+}
+
+extend region RR_FIRE_TEMPLE_LOOP_FLARE_DANCER {
+    locations {
+        RC_FIRE_TEMPLE_FLARE_DANCER_CHEST: any_age(can_kill(RE_FLARE_DANCER)) and (is_adult() or can_ground_jump() or 
+                                           can_use(RG_HOOKSHOT)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_LOOP_GORON_CAGE {
+    locations {
+        RC_FIRE_TEMPLE_BOSS_KEY_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_1F_CURVED_CAGE {
+    locations {
+        RC_FIRE_TEMPLE_BIG_LAVA_ROOM_LOWER_OPEN_DOOR_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_STRAIGHTFORWARD_CAGE {
+    locations {
+        RC_FIRE_TEMPLE_BIG_LAVA_ROOM_BLOCKED_DOOR_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_SHORTCUT_CLIMB {
+    locations {
+        RC_FIRE_TEMPLE_BOULDER_MAZE_SHORTCUT_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_BOULDER_MAZE_LOWER {
+    locations {
+        RC_FIRE_TEMPLE_BOULDER_MAZE_LOWER_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_3F_CURVED_CAGE {
+    locations {
+        RC_FIRE_TEMPLE_BOULDER_MAZE_SIDE_ROOM_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+#firetimer for entering this area from RR_FIRE_TEMPLE_FIRE_WALL_CHASE is handled there
+extend region RR_FIRE_TEMPLE_FIRE_WALL_CAGE {
+    locations {
+        RC_FIRE_TEMPLE_MAP_CHEST: fire_timer() >= 8 and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_BOULDER_MAZE_UPPER {
+    locations {
+        RC_FIRE_TEMPLE_BOULDER_MAZE_UPPER_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_5F_RUINS {
+    locations {
+        RC_FIRE_TEMPLE_SCARECROW_CHEST:  has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_CAGELESS_CHEST_ROOM {
+    locations {
+        RC_FIRE_TEMPLE_COMPASS_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_SOT_CAGE_SWITCH {
+    locations {
+        RC_FIRE_TEMPLE_HIGHEST_GORON_CHEST: (can_use(RG_SONG_OF_TIME) or trick(RT_VISIBLE_COLLISION)) and 
+                                            can_use(RG_MEGATON_HAMMER) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_NARROW_STAIRS {
+    locations {
+        RC_FIRE_TEMPLE_MEGATON_HAMMER_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_LOOP_CAGE_FOYER_SIDE {
+    locations {
+        RC_FIRE_TEMPLE_MQ_MAP_ROOM_SIDE_CHEST: can_kill(RE_LIKE_LIKE) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_LOOP_FLARE_DANCER {
+    locations {
+        RC_FIRE_TEMPLE_MQ_MEGATON_HAMMER_CHEST: (is_adult() or can_use(RG_HOOKSHOT) or can_ground_jump()) and any_age(can_kill(RE_FLARE_DANCER)) and 
+                                                has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_LOOP_GORON_CAGE {
+    locations {
+        RC_FIRE_TEMPLE_MQ_MAP_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_TARGET {
+    locations {
+        #With Dins, we first light them with dins and then either use a bow shot or to cross back over to light the other torch.
+        #Only adult is tall enough to use a bow shot without climbing to UPPER
+        #Logical ways to cross are hovers, longshot or running through the lava and then climbing back up as adult (child can't reach the ledge).
+        #The Damage logic here is for jumping down and running across the lava to get in dins range of the south torch
+        #Fairies cannot be used for this as it is time sensetive, and NL is only useful with sticks as it disables other magic while in use, so it's tunic or raw damage taking ability.
+        #testing tells me you take 3 ticks of lava damage, which is 12 internal damage or 3/4 of a heart at x1 damage multiplier, performing this run
+        #effective_health() works in half hearts for whatever reason, meaning this needs a deeper refactor to be perfect, but it should be good enough for now
+        RC_FIRE_TEMPLE_MQ_NEAR_BOSS_CHEST:      can_use(RG_DINS_FIRE) and (can_use(RG_HOVER_BOOTS) or can_use(RG_LONGSHOT) or (is_adult() and 
+                                                (can_use(RG_FAIRY_BOW) or can_use(RG_GORON_TUNIC) or effective_health() >= 2 or (can_use(RG_NAYRUS_LOVE) and 
+                                                can_use(RG_STICKS))))) and has(RG_OPEN_CHEST)
+    }
+}
+
+#This region assumes tunic logic is handled on entry.
+extend region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM_UPPER {
+    locations {
+        #If we have FAs, we can just remove the crate and use those to light the torches.
+        #otherwise, with Dins, we first light them with dins and then use a bow shot 
+        RC_FIRE_TEMPLE_MQ_NEAR_BOSS_CHEST:      (can_use(RG_FIRE_ARROWS) or (can_use(RG_DINS_FIRE) and can_use(RG_FAIRY_BOW))) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_TORCH_LOCKED_CAGE {
+    locations {
+        RC_FIRE_TEMPLE_MQ_BIG_LAVA_ROOM_BLOCKED_DOOR_CHEST: has_fire_source() and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_TORCH_FIREWALL_ROOM {
+    locations {
+        RC_FIRE_TEMPLE_MQ_BOSS_KEY_CHEST:   can_use(RG_HOOKSHOT) and has(RG_OPEN_CHEST)
+    }
+}
+
+#specifically the foot of the final grate, where the lizalfos spawns
+extend region RR_FIRE_TEMPLE_MQ_3F_CURVED_CAGE {
+    locations {
+        RC_FIRE_TEMPLE_MQ_LIZALFOS_MAZE_SIDE_ROOM_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_MAZE_CRATE_CAGE {
+    locations {
+        RC_FIRE_TEMPLE_MQ_LIZALFOS_MAZE_LOWER_CHEST:   has(RG_OPEN_CHEST) and (trick(RT_VISIBLE_COLLISION) or can_break_crates())
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_MAZE_BOX_CAGE {
+    locations {
+        RC_FIRE_TEMPLE_MQ_LIZALFOS_MAZE_UPPER_CHEST:         has(RG_OPEN_CHEST) and (trick(RT_VISIBLE_COLLISION) or can_break_crates())
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_SHORTCUT_CAGE {
+    locations {
+        RC_FIRE_TEMPLE_MQ_COMPASS_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_NARROW_STAIRS_ROOM {
+    locations {
+        #This requires nothing in N64 logic, but is tight enough to need rollspam with the one-point on which is stricter than I would normally consider in 
+        #logic
+        #Child basically needs the scarecrow or a bunny hood though due to a worse ledge grab.
+        RC_FIRE_TEMPLE_MQ_CHEST_ON_FIRE: (is_adult() or reach_scarecrow()) and has(RG_OPEN_CHEST)
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_TOWER_FLOOR_2 {

@@ -167,6 +167,86 @@ extend region RR_DODONGOS_CAVERN_MQ_BACK_SWITCH_GRAVE {
     }
 }
 
+# dungeons/fire_temple
+
+extend region RR_FIRE_TEMPLE_LOOP_5_TILE_ROOM {
+    locations {
+        RC_FIRE_TEMPLE_GS_BOSS_KEY_LOOP: can_kill(RE_GOLD_SKULLTULA, ED_CLOSE)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_8_TILE_ROOM {
+    locations {
+        #it's also possible to use the like like trick to grab this as child, but there's no generic version of that yet
+        RC_FIRE_TEMPLE_GS_SONG_OF_TIME_ROOM: can_get_drop(RE_GOLD_SKULLTULA, is_adult() ? ED_CLOSE : ED_BOOMERANG) or
+                                                    can_ground_jumpslash()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_BOULDER_MAZE_LOWER {
+    locations {
+        RC_FIRE_TEMPLE_GS_BOULDER_MAZE:          has_explosives() and (is_adult() or hookshot_or_boomerang() or 
+                                                 can_ground_jumpslash())
+    }
+}
+
+extend region RR_FIRE_TEMPLE_GS_CLIMB_4F {
+    locations {
+        RC_FIRE_TEMPLE_GS_SCARECROW_CLIMB: can_get_drop(RE_GOLD_SKULLTULA, ED_LONGSHOT)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_GS_CLIMB_5F {
+    locations {
+        RC_FIRE_TEMPLE_GS_SCARECROW_CLIMB: can_kill(RE_GOLD_SKULLTULA, has(RG_CLIMB) ? ED_SHORT_JUMPSLASH : ED_BOMB_THROW)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_5F_RUINS {
+    locations {
+        RC_FIRE_TEMPLE_GS_SCARECROW_TOP: can_kill(RE_GOLD_SKULLTULA, ED_BOMB_THROW)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_GS_GORON_CAGE {
+    locations {
+        #implies CanGetEnemyDrop(RE_GOLD_SKULLTULA)
+        RC_FIRE_TEMPLE_MQ_GS_BIG_LAVA_ROOM_OPEN_DOOR: can_use(RG_MEGATON_HAMMER)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_BURNING_BLOCK {
+    locations {
+        #There's definitely ways to do this hammerless, but with one points on it's a trick
+        #you can just hook through the block while next to it to kill the skull and get the token
+        RC_FIRE_TEMPLE_MQ_GS_SKULL_ON_FIRE: can_use(RG_MEGATON_HAMMER) and can_use(RG_HOOKSHOT) and (has(RG_POWER_BRACELET) or trick(RT_VISIBLE_COLLISION))
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MAIN {
+    locations {
+        RC_FIRE_TEMPLE_MQ_GS_FIRE_WALL_MAZE_CENTER: has_explosives()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER {
+    locations {
+        RC_FIRE_TEMPLE_MQ_GS_FIRE_WALL_MAZE_CENTER: has_explosives() and (is_adult() or can_ground_jump())
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_GS_LIZALFOS_ROOM {
+    locations {
+        RC_FIRE_TEMPLE_MQ_GS_FIRE_WALL_MAZE_SIDE_ROOM: can_get_drop(RE_GOLD_SKULLTULA)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_ABOVE_FIRE_MAZE {
+    locations {
+        RC_FIRE_TEMPLE_MQ_GS_ABOVE_FIRE_MAZE: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
 # dungeons/ice_cavern
 
 extend region RR_ICE_CAVERN_HUB {

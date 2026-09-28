@@ -1,0 +1,36 @@
+region RR_FIRE_TEMPLE_ENTRYWAY {
+    name: "Fire Temple Entryway"
+    scene: SCENE_FIRE_TEMPLE
+    exits {
+        RR_FIRE_TEMPLE_FOYER:          is_vanilla()
+        RR_FIRE_TEMPLE_MQ_FOYER_LOWER: is_mq()
+        RR_DMC_TEMPLE_EXIT:            always
+    }
+}
+
+# Boss Room
+region RR_FIRE_TEMPLE_BOSS_ENTRYWAY {
+    name: "Fire Temple Boss Entryway"
+    scene: SCENE_FIRE_TEMPLE
+    exits {
+        RR_FIRE_TEMPLE_NEAR_BOSS_ROOM:    is_vanilla() and false
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM: is_mq() and false
+        RR_FIRE_TEMPLE_BOSS_ROOM:         has(RG_FIRE_TEMPLE_BOSS_KEY)
+    }
+}
+
+region RR_FIRE_TEMPLE_BOSS_ROOM {
+    name: "Fire Temple Boss Room"
+    scene: SCENE_FIRE_TEMPLE_BOSS
+    events {
+        LOGIC_FIRE_TEMPLE_CLEAR: can_use(RG_GORON_TUNIC) and can_kill(RE_VOLVAGIA)
+    }
+    locations {
+        RC_FIRE_TEMPLE_VOLVAGIA_HEART: flag(LOGIC_FIRE_TEMPLE_CLEAR)
+        RC_VOLVAGIA:                   flag(LOGIC_FIRE_TEMPLE_CLEAR)
+    }
+    exits {
+        RR_FIRE_TEMPLE_BOSS_ENTRYWAY: false
+        RR_DMC_PAD_ENTRY:             flag(LOGIC_FIRE_TEMPLE_CLEAR) #TODO no hint propogation
+    }
+}

@@ -62,6 +62,92 @@ extend region RR_DODONGOS_CAVERN_MQ_POES_ROOM {
     }
 }
 
+# dungeons/fire_temple
+
+extend region RR_FIRE_TEMPLE_TOP_OF_COLLAPSING_STAIRS {
+    locations {
+        RC_FIRE_TEMPLE_AFTER_HAMMER_SMALL_CRATE_1: can_break_small_crates()
+        RC_FIRE_TEMPLE_AFTER_HAMMER_SMALL_CRATE_2: can_break_small_crates()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM {
+    locations {
+        RC_FIRE_TEMPLE_MQ_OUTSIDE_BOSS_CRATE_1: fire_timer() >= 24 and can_break_crates()
+        RC_FIRE_TEMPLE_MQ_OUTSIDE_BOSS_CRATE_2: fire_timer() >= 24 and can_break_crates()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_TARGET {
+    locations {
+        RC_FIRE_TEMPLE_MQ_OUTSIDE_BOSS_CRATE_5: can_break_crates()
+        RC_FIRE_TEMPLE_MQ_OUTSIDE_BOSS_CRATE_6: can_break_crates()
+    }
+}
+
+#This region assumes tunic logic is handled on entry.
+extend region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM_UPPER {
+    locations {
+        RC_FIRE_TEMPLE_MQ_OUTSIDE_BOSS_CRATE_3: can_break_crates()
+        RC_FIRE_TEMPLE_MQ_OUTSIDE_BOSS_CRATE_4: can_break_crates()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_MAZE_CRATE_CAGE {
+    locations {
+        RC_FIRE_TEMPLE_MQ_LIZALFOS_MAZE_LOWER_CRATE_1: can_break_crates()
+        RC_FIRE_TEMPLE_MQ_LIZALFOS_MAZE_LOWER_CRATE_2: can_break_crates()
+        RC_FIRE_TEMPLE_MQ_LIZALFOS_MAZE_LOWER_CRATE_3: can_break_crates()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_MAZE_BOX_CAGE {
+    locations {
+        RC_FIRE_TEMPLE_MQ_LIZALFOS_MAZE_UPPER_CRATE_1:       can_break_crates()
+        RC_FIRE_TEMPLE_MQ_LIZALFOS_MAZE_UPPER_CRATE_2:       can_break_crates()
+        RC_FIRE_TEMPLE_MQ_LIZALFOS_MAZE_UPPER_CRATE_3:       can_break_crates()
+        RC_FIRE_TEMPLE_MQ_LIZALFOS_MAZE_UPPER_SMALL_CRATE_1: can_break_small_crates()
+        RC_FIRE_TEMPLE_MQ_LIZALFOS_MAZE_UPPER_SMALL_CRATE_2: can_break_small_crates()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_SHORTCUT_CLIMB {
+    locations {
+        RC_FIRE_TEMPLE_MQ_SHORTCUT_CRATE_1: can_break_crates()
+        RC_FIRE_TEMPLE_MQ_SHORTCUT_CRATE_2: can_break_crates()
+        RC_FIRE_TEMPLE_MQ_SHORTCUT_CRATE_3: can_break_crates()
+        RC_FIRE_TEMPLE_MQ_SHORTCUT_CRATE_4: can_break_crates()
+        RC_FIRE_TEMPLE_MQ_SHORTCUT_CRATE_5: can_break_crates()
+        RC_FIRE_TEMPLE_MQ_SHORTCUT_CRATE_6: can_break_crates()
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM {
+    locations {
+        RC_FIRE_TEMPLE_MQ_LAVA_TORCH_CRATE_1:       can_break_crates() and fire_timer() >= 24
+        RC_FIRE_TEMPLE_MQ_LAVA_TORCH_CRATE_3:       can_break_crates() and fire_timer() >= 24
+        RC_FIRE_TEMPLE_MQ_LAVA_TORCH_CRATE_4:       can_break_crates() and fire_timer() >= 16
+        RC_FIRE_TEMPLE_MQ_LAVA_TORCH_SMALL_CRATE_2: can_break_small_crates() and fire_timer() >= 24
+        RC_FIRE_TEMPLE_MQ_LAVA_TORCH_SMALL_CRATE_3: can_break_small_crates() and fire_timer() >= 16
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM_BARRED_DOOR {
+    locations {
+        RC_FIRE_TEMPLE_MQ_LAVA_TORCH_CRATE_2:       can_break_crates() and fire_timer() >= 8
+        RC_FIRE_TEMPLE_MQ_LAVA_TORCH_SMALL_CRATE_1: can_break_small_crates() and fire_timer() >= 8
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM_ABOVE_CAGE {
+    locations {
+        #Tunic logic for these checks is handled on entry
+        RC_FIRE_TEMPLE_MQ_LAVA_TORCH_CRATE_5:       can_break_crates()
+        RC_FIRE_TEMPLE_MQ_LAVA_TORCH_SMALL_CRATE_4: can_break_small_crates()
+        RC_FIRE_TEMPLE_MQ_LAVA_TORCH_SMALL_CRATE_5: can_break_small_crates()
+    }
+}
+
 # dungeons/gerudo_training_ground
 
 extend region RR_GERUDO_TRAINING_GROUND_MQ_MAZE_CENTER {
