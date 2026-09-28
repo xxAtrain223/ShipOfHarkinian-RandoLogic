@@ -145,6 +145,52 @@ extend region RR_DODONGOS_CAVERN_MQ_LOWER_LIZALFOS {
     }
 }
 
+# dungeons/forest_temple
+
+extend region RR_FOREST_TEMPLE_NW_COURTYARD_LOWER {
+    locations {
+        RC_FOREST_TEMPLE_COURTYARD_RIGHT_HEART: can_use(RG_BOOMERANG) and trick(RT_FOREST_COURTYARD_HEARTS_BOOMERANG)
+        RC_FOREST_TEMPLE_COURTYARD_LEFT_HEART:  can_use(RG_BOOMERANG) and trick(RT_FOREST_COURTYARD_HEARTS_BOOMERANG)
+    }
+}
+
+extend region RR_FOREST_TEMPLE_NW_COURTYARD_UPPER {
+    locations {
+        RC_FOREST_TEMPLE_COURTYARD_RIGHT_HEART: always
+        RC_FOREST_TEMPLE_COURTYARD_LEFT_HEART:  always
+    }
+}
+
+extend region RR_FOREST_TEMPLE_SEWER {
+    locations {
+        RC_FOREST_TEMPLE_WELL_WEST_HEART: can_use(RG_IRON_BOOTS) and water_timer() >= 8
+        RC_FOREST_TEMPLE_WELL_EAST_HEART: can_use(RG_IRON_BOOTS) and water_timer() >= 8
+    }
+}
+
+extend region RR_FOREST_TEMPLE_DRAINED_SEWER {
+    locations {
+        RC_FOREST_TEMPLE_WELL_WEST_HEART: always
+        RC_FOREST_TEMPLE_WELL_EAST_HEART: always
+    }
+}
+
+extend region RR_FOREST_TEMPLE_MQ_NW_COURTYARD_LEDGE {
+    locations {
+        RC_FOREST_TEMPLE_MQ_COURTYARD_RIGHT_HEART:  always
+        RC_FOREST_TEMPLE_MQ_COURTYARD_MIDDLE_HEART: always
+        RC_FOREST_TEMPLE_MQ_COURTYARD_LEFT_HEART:   always
+    }
+}
+
+extend region RR_FOREST_TEMPLE_MQ_NE_COURTYARD {
+    locations {
+        RC_FOREST_TEMPLE_MQ_WELL_WEST_HEART:   flag(LOGIC_FOREST_DRAINED_WELL) or (can_use(RG_IRON_BOOTS) and water_timer() >= 8)
+        RC_FOREST_TEMPLE_MQ_WELL_MIDDLE_HEART: flag(LOGIC_FOREST_DRAINED_WELL) or (can_use(RG_IRON_BOOTS) and water_timer() >= 8)
+        RC_FOREST_TEMPLE_MQ_WELL_EAST_HEART:   flag(LOGIC_FOREST_DRAINED_WELL) or (can_use(RG_IRON_BOOTS) and water_timer() >= 8)
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_CASTLE_FIRE_TRIAL_FROM_OPEN {
