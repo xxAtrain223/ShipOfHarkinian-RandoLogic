@@ -186,12 +186,6 @@ extend region RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_PILLARS {
     }
 }
 
-extend region RR_FIRE_TEMPLE_MQ_3F_FLARE_DANCER {
-    locations {
-        RC_FIRE_TEMPLE_MQ_FREESTANDING_KEY: can_kill(RE_FLARE_DANCER)
-    }
-}
-
 # dungeons/ganons_castle
 
 extend region RR_GANONS_CASTLE_FIRE_TRIAL_FROM_OPEN {

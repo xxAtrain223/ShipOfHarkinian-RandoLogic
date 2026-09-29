@@ -582,6 +582,10 @@ region RR_FIRE_TEMPLE_MQ_3F_FLARE_DANCER {
     name: "Fire Temple MQ 3F Flare Dancer"
     scene: SCENE_FIRE_TEMPLE
 
+    locations {
+        RC_FIRE_TEMPLE_MQ_FREESTANDING_KEY: can_kill(RE_FLARE_DANCER)
+    }
+
     exits {
         RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PAST_WALL:   any_age(can_kill(RE_FLARE_DANCER))
         RR_FIRE_TEMPLE_MQ_ABOVE_3F_FLARE_DANCER: any_age(can_kill(RE_FLARE_DANCER))
