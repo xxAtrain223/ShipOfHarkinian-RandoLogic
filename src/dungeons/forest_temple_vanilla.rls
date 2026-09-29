@@ -87,6 +87,7 @@ region RR_FOREST_TEMPLE_NW_COURTYARD_LOWER {
                                                     and (trick(RT_DAMAGE_BOOST_SIMPLE) and has_explosives())) or can_middair_ground_jump())
         RR_FOREST_TEMPLE_NW_COURTYARD_UPPER_ALCOVE: has(RG_CLIMB) or can_use(RG_LONGSHOT)
         RR_FOREST_TEMPLE_SEWER:                     has(RG_GOLDEN_SCALE) or can_use(RG_IRON_BOOTS)
+        RR_FOREST_TEMPLE_DRAINED_SEWER:             flag(LOGIC_FOREST_DRAINED_WELL)
         RR_FOREST_TEMPLE_BOSS_ENTRYWAY:             never
     }
 }
@@ -210,7 +211,7 @@ region RR_FOREST_TEMPLE_SEWER {
 
     exits {
         RR_FOREST_TEMPLE_NW_COURTYARD_LOWER: has(RG_BRONZE_SCALE)
-        RR_FOREST_TEMPLE_NW_COURTYARD_UPPER: has(RG_BRONZE_SCALE)
+        RR_FOREST_TEMPLE_NE_COURTYARD_LOWER: has(RG_BRONZE_SCALE)
     }
 }
 
@@ -454,6 +455,11 @@ region RR_FOREST_TEMPLE_BLUE_DOORMAT_HALLWAY_DOORMAT {
 region RR_FOREST_TEMPLE_BLUE_DOORMAT_HALLWAY {
     name: "Forest Temple Blue Doormat Hallway"
     scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_BLUE_DOORMAT_HALLWAY_DOORMAT: can_pass(RE_BIG_SKULLTULA)
+        RR_FOREST_TEMPLE_LOBBY:                        always
+    }
 }
 
 region RR_FOREST_TEMPLE_BASEMENT {

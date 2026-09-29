@@ -183,6 +183,17 @@ extend region RR_FOREST_TEMPLE_MQ_NW_COURTYARD_LEDGE {
     }
 }
 
+extend region RR_FOREST_TEMPLE_MQ_NW_COURTYARD {
+    locations {
+        RC_FOREST_TEMPLE_MQ_COURTYARD_RIGHT_HEART:     can_use(RG_BOOMERANG) and trick(RT_FOREST_COURTYARD_HEARTS_BOOMERANG)
+        RC_FOREST_TEMPLE_MQ_COURTYARD_MIDDLE_HEART:    can_use(RG_BOOMERANG) and trick(RT_FOREST_COURTYARD_HEARTS_BOOMERANG)
+        RC_FOREST_TEMPLE_MQ_COURTYARD_LEFT_HEART:      can_use(RG_BOOMERANG) and trick(RT_FOREST_COURTYARD_HEARTS_BOOMERANG)
+        RC_FOREST_TEMPLE_MQ_WELL_WEST_HEART:           can_use(RG_IRON_BOOTS) and water_timer() >= 8
+        RC_FOREST_TEMPLE_MQ_WELL_MIDDLE_HEART:         can_use(RG_IRON_BOOTS) and water_timer() >= 8
+        RC_FOREST_TEMPLE_MQ_WELL_EAST_HEART:           can_use(RG_IRON_BOOTS) and water_timer() >= 8
+    }
+}
+
 extend region RR_FOREST_TEMPLE_MQ_NE_COURTYARD {
     locations {
         RC_FOREST_TEMPLE_MQ_WELL_WEST_HEART:   flag(LOGIC_FOREST_DRAINED_WELL) or (can_use(RG_IRON_BOOTS) and water_timer() >= 8)

@@ -42,7 +42,7 @@ region RR_FOREST_TEMPLE_MQ_LOBBY {
         RR_FOREST_TEMPLE_MQ_OVERGROWN_HALLWAY_UPPER: small_keys(SCENE_FOREST_TEMPLE, 1)
         RR_FOREST_TEMPLE_MQ_NORTH_HALLWAY:           always
         RR_FOREST_TEMPLE_MQ_RED_DOORMAT_HALLWAY:     always
-        RR_FOREST_TEMPLE_MQ_BLUE_DOORMAT_HALLWAY:    always
+        RR_FOREST_TEMPLE_MQ_BLUE_DOORMAT_HALLWAY:    never
         RR_FOREST_TEMPLE_MQ_NW_COURTYARD:            can_hit_eye_targets()
         RR_FOREST_TEMPLE_MQ_NE_COURTYARD:            can_hit_eye_targets()
         RR_FOREST_TEMPLE_MQ_BASEMENT:                flag(LOGIC_FOREST_MEG)
@@ -123,7 +123,7 @@ region RR_FOREST_TEMPLE_MQ_MIDDLE_BLOCK_PUZZLE {
     events {
         LOGIC_FOREST_MQ_BLOCK_ROOM_TARGETS: can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_LONGSHOT)
         LOGIC_FOREST_CAN_TWIST_HALLWAY:     trick(RT_FOREST_MQ_JS_HALLWAY_SWITCH) and (is_adult() and can_jumpslash()) or (can_use(RG_HOVER_BOOTS) and
-                                            can_use(RG_STICKS) or can_use(RG_BIGGORON_SWORD) or can_use(RG_MASTER_SWORD))
+                                            (can_use(RG_STICKS) or can_use(RG_BIGGORON_SWORD) or can_use(RG_MASTER_SWORD)))
     }
 
     exits {
