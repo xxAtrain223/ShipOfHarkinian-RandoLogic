@@ -454,6 +454,86 @@ extend region RR_JABU_JABUS_BELLY_MQ_NEAR_BOSS_ROOM {
     }
 }
 
+# dungeons/shadow_temple
+
+extend region RR_SHADOW_TEMPLE_STONE_UMBRELLA {
+    locations {
+        RC_SHADOW_TEMPLE_GS_FALLING_SPIKES_ROOM:     can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or (is_adult() and can_ground_jumpslash())
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_STONE_UMBRELLA_UPPER {
+    locations {
+        # Assuming the known setup for RT_SHADOW_UMBRELLA_HOVER and RT_SHADOW_UMBRELLA_GS, probably possible without sword + shield.
+        RC_SHADOW_TEMPLE_GS_FALLING_SPIKES_ROOM:      trick(RT_SHADOW_UMBRELLA_GS) and can_use(RG_HOVER_BOOTS) and can_standing_shield() and can_use(RG_MASTER_SWORD)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_INVISIBLE_SPINNING_BLADES {
+    locations {
+        RC_SHADOW_TEMPLE_GS_LIKE_LIKE_ROOM:                any_age(can_kill(RE_LIKE_LIKE) and can_kill(RE_KEESE)) and ((is_adult() and can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH)) or can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG))
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_SKULL_JAR {
+    locations {
+        RC_SHADOW_TEMPLE_GS_SINGLE_GIANT_POT: can_kill(RE_GOLD_SKULLTULA)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_DOCK {
+    locations {
+        RC_SHADOW_TEMPLE_GS_NEAR_SHIP:          can_use(RG_LONGSHOT)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_THREE_SKULL_JARS {
+    locations {
+        RC_SHADOW_TEMPLE_GS_TRIPLE_GIANT_POT: has(RG_GORONS_BRACELET) or can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_STONE_UMBRELLA_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_GS_FALLING_SPIKES_ROOM:     can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or (is_adult() and can_ground_jump())
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_UPPER_STONE_UMBRELLA {
+    locations {
+        # Assuming the known setup for RT_SHADOW_UMBRELLA_HOVER and RT_SHADOW_UMBRELLA_GS, probably possible without sword + shield.
+        RC_SHADOW_TEMPLE_MQ_GS_FALLING_SPIKES_ROOM:      trick(RT_SHADOW_UMBRELLA_GS) and can_use(RG_HOVER_BOOTS) and can_standing_shield() and can_use(RG_MASTER_SWORD)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_WIND_HINT_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_GS_WIND_HINT_ROOM:   can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_B4_GIBDO_ROOM {
+    locations {
+        # The various methods for this can be a bit specific, might be worthy of it's own trick when it becomes relevant with dungeon shortcut settings.
+        RC_SHADOW_TEMPLE_MQ_GS_AFTER_WIND:           has_explosives() or (trick(RT_VISIBLE_COLLISION) and can_get_drop(RE_GOLD_SKULLTULA))
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_BEYOND_BOAT {
+    locations {
+        # It's a trick on N64 to kill this and drop down to collect this with normal weapons, as doing so without the statue being dropped voids you to before the boat
+        # hilariously, you can hit this with a pot before you bring down statue, but there's no great way to reset it without crossing. the statue's collision is very inconvenient afterwards
+        RC_SHADOW_TEMPLE_MQ_GS_AFTER_SHIP:         can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_BOSS_DOOR {
+    locations {
+        # you can drop onto this and the respawn is reasonable
+        RC_SHADOW_TEMPLE_MQ_GS_NEAR_BOSS:  (can_kill(RE_GOLD_SKULLTULA, ED_BOMB_THROW) or can_use(RG_MEGATON_HAMMER)) and (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH))
+    }
+}
+
 # dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH {

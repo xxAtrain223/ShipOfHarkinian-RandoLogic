@@ -371,6 +371,59 @@ extend region RR_JABU_JABUS_BELLY_MQ_UNDERWATER_ALCOVE {
     }
 }
 
+# dungeons/shadow_temple
+
+extend region RR_SHADOW_TEMPLE_INVISIBLE_SPINNING_BLADES {
+    locations {
+        # We cannot repeat the MQ invisible blades trick for these hearts as the like-like does not respawn if the room is cleared
+        RC_SHADOW_TEMPLE_INVISIBLE_BLADES_LEFT_HEART:      (can_use(RG_SONG_OF_TIME) and is_adult()) or can_use(RG_BOOMERANG)
+        RC_SHADOW_TEMPLE_INVISIBLE_BLADES_RIGHT_HEART:     (can_use(RG_SONG_OF_TIME) and is_adult()) or can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_DOCK {
+    locations {
+        RC_SHADOW_TEMPLE_SCARECROW_NORTH_HEART: reach_distant_scarecrow()
+        RC_SHADOW_TEMPLE_SCARECROW_SOUTH_HEART: reach_distant_scarecrow()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_CHASM_SCARECROW {
+    locations {
+        RC_SHADOW_TEMPLE_AFTER_SHIP_UPPER_LEFT_HEART:  always
+        RC_SHADOW_TEMPLE_AFTER_SHIP_UPPER_RIGHT_HEART: always
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_BROKEN_PILLAR {
+    locations {
+        RC_SHADOW_TEMPLE_AFTER_SHIP_LOWER_HEART: always
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_LEFT_HEART:      (can_use(RG_SONG_OF_TIME) and is_adult()) or (trick(RT_SHADOW_MQ_INVISIBLE_BLADES) and effective_health() > 1) or can_use(RG_BOOMERANG)
+        RC_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_RIGHT_HEART:     (can_use(RG_SONG_OF_TIME) and is_adult()) or (trick(RT_SHADOW_MQ_INVISIBLE_BLADES) and effective_health() > 1) or can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_DOCK {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_SCARECROW_NORTH_HEART: reach_distant_scarecrow()
+        RC_SHADOW_TEMPLE_MQ_SCARECROW_SOUTH_HEART: reach_distant_scarecrow()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_ACROSS_CHASM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_AFTER_SHIP_UPPER_LEFT_HEART:  flag(LOGIC_SHADOW_MQ_EYE_SWITCH_ACROSS_CHASM) and can_use(RG_LONGSHOT)
+        RC_SHADOW_TEMPLE_MQ_AFTER_SHIP_UPPER_RIGHT_HEART: flag(LOGIC_SHADOW_MQ_EYE_SWITCH_ACROSS_CHASM) and can_use(RG_LONGSHOT)
+        # There's invisible floor collision that makes aiming for the heart with rang harder than it should be, so it's a trick.
+        RC_SHADOW_TEMPLE_MQ_AFTER_SHIP_LOWER_HEART:       is_adult()
+    }
+}
+
 # dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_BIG_WALL_UPPER {

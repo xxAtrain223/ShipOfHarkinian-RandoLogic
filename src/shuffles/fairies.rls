@@ -98,6 +98,44 @@ extend region RR_ICE_CAVERN_BEGINNING {
     }
 }
 
+# dungeons/shadow_temple
+
+extend region RR_SHADOW_TEMPLE_FIRST_BEAMOS {
+    locations {
+        RC_SHADOW_TEMPLE_BEAMOS_STORM_FAIRY: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_UPPER_HUGE_PIT {
+    locations {
+        RC_SHADOW_TEMPLE_PIT_STORM_FAIRY: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_WIND_TUNNEL_HINT_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_WIND_HINT_SUN_FAIRY: can_use(RG_SUNS_SONG)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_FIRST_BEAMOS {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_BEAMOS_STORM_FAIRY: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_UPPER_HUGE_PIT {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_PIT_STORM_FAIRY: can_use(RG_SONG_OF_STORMS)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_WIND_HINT_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_WIND_HINT_SUN_FAIRY: can_use(RG_SUNS_SONG)
+    }
+}
+
 # dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_PAST_BOULDERS {

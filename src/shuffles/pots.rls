@@ -730,6 +730,157 @@ extend region RR_JABU_JABUS_BELLY_MQ_NEAR_BOSS_ROOM {
     }
 }
 
+# dungeons/shadow_temple
+
+extend region RR_SHADOW_TEMPLE_WHISPERING_WALLS_START {
+    locations {
+        RC_SHADOW_TEMPLE_WHISPERING_WALLS_POT_1: can_break_pots ()
+        RC_SHADOW_TEMPLE_WHISPERING_WALLS_POT_2: can_break_pots ()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_WHISPERING_WALLS_SIDE {
+    locations {
+        RC_SHADOW_TEMPLE_WHISPERING_WALLS_POT_1: can_break_pots ()
+        RC_SHADOW_TEMPLE_WHISPERING_WALLS_POT_2: can_break_pots ()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_WHISPERING_WALLS_END {
+    locations {
+        RC_SHADOW_TEMPLE_WHISPERING_WALLS_POT_3: can_break_pots ()
+        RC_SHADOW_TEMPLE_WHISPERING_WALLS_POT_4: can_break_pots ()
+        RC_SHADOW_TEMPLE_WHISPERING_WALLS_POT_5: can_break_pots ()
+        RC_SHADOW_TEMPLE_NEAR_DEAD_HAND_POT_1:   can_break_pots ()
+    } 
+}
+
+extend region RR_SHADOW_TEMPLE_WHISPERING_WALLS_SIDE_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MAP_CHEST_POT_1: can_break_pots ()
+        RC_SHADOW_TEMPLE_MAP_CHEST_POT_2: can_break_pots ()
+    } 
+}
+
+extend region RR_SHADOW_TEMPLE_STONE_UMBRELLA {
+    locations {
+        RC_SHADOW_TEMPLE_FALLING_SPIKES_POT_1:       can_break_pots()
+        RC_SHADOW_TEMPLE_FALLING_SPIKES_POT_2:       can_break_pots()
+        RC_SHADOW_TEMPLE_FALLING_SPIKES_POT_3:       can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_STONE_UMBRELLA_UPPER {
+    locations {
+        RC_SHADOW_TEMPLE_FALLING_SPIKES_POT_3:        can_break_pots()
+        RC_SHADOW_TEMPLE_FALLING_SPIKES_POT_4:        can_break_pots()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_ROOM_TO_BOAT {
+    locations {
+        RC_SHADOW_TEMPLE_AFTER_WIND_POT_1:        can_break_pots()
+        RC_SHADOW_TEMPLE_AFTER_WIND_POT_2:        can_break_pots()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_BEYOND_BOAT {
+    locations {
+        RC_SHADOW_TEMPLE_AFTER_BOAT_POT_1: can_break_pots()
+        RC_SHADOW_TEMPLE_AFTER_BOAT_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_ACROSS_CHASM {
+    locations {
+        RC_SHADOW_TEMPLE_AFTER_BOAT_POT_3:       can_break_pots()
+        RC_SHADOW_TEMPLE_AFTER_BOAT_POT_4:       can_break_pots()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_X_CROSS {
+    locations {
+        RC_SHADOW_TEMPLE_FLOORMASTER_POT_1:           can_break_pots()
+        RC_SHADOW_TEMPLE_FLOORMASTER_POT_2:           can_break_pots()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_WOODEN_SPIKES {
+    locations {
+        RC_SHADOW_TEMPLE_SPIKE_WALLS_POT_1:            can_break_pots()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_WHISPERING_WALLS_START {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_WHISPERING_WALLS_POT_1: can_break_pots()
+        RC_SHADOW_TEMPLE_MQ_WHISPERING_WALLS_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_WHISPERING_WALLS_SIDE {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_WHISPERING_WALLS_POT_1: can_break_pots()
+        RC_SHADOW_TEMPLE_MQ_WHISPERING_WALLS_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_WHISPERING_WALLS_SIDE_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_ENTRANCE_REDEAD_POT_1: can_break_pots()
+        RC_SHADOW_TEMPLE_MQ_ENTRANCE_REDEAD_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_STONE_UMBRELLA_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_LOWER_UMBRELLA_WEST_POT:    can_break_pots()
+        RC_SHADOW_TEMPLE_MQ_LOWER_UMBRELLA_EAST_POT:    can_break_pots()
+        RC_SHADOW_TEMPLE_MQ_UPPER_UMBRELLA_SOUTH_POT:   can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_UPPER_STONE_UMBRELLA {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_UPPER_UMBRELLA_NORTH_POT:    can_break_pots()
+        RC_SHADOW_TEMPLE_MQ_UPPER_UMBRELLA_SOUTH_POT:    can_break_pots()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_B4_GIBDO_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_BEFORE_BOAT_POT_1:       can_break_pots()
+        RC_SHADOW_TEMPLE_MQ_BEFORE_BOAT_POT_2:       can_break_pots()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_BEYOND_BOAT {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_BEFORE_CHASM_WEST_POT: can_break_pots()
+        RC_SHADOW_TEMPLE_MQ_BEFORE_CHASM_EAST_POT: can_break_pots()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_ACROSS_CHASM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_AFTER_CHASM_WEST_POT:         can_break_pots()
+        RC_SHADOW_TEMPLE_MQ_AFTER_CHASM_EAST_POT:         can_break_pots()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_X_CROSS {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_DEAD_HAND_POT_1:   can_break_pots()
+        RC_SHADOW_TEMPLE_MQ_DEAD_HAND_POT_2:   can_break_pots()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_SPIKE_WALLS_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_SPIKE_BARICADE_POT:     can_break_pots()
+    }
+}
+
 # dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_FOYER {

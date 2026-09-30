@@ -189,6 +189,17 @@ extend region RR_JABU_JABUS_BELLY_MQ_JIGGLIES_ROOM {
     }
 }
 
+# dungeons/shadow_temple
+
+extend region RR_SHADOW_TEMPLE_MQ_SPINNER_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_TRUTH_SPINNER_SMALL_CRATE_1: can_break_small_crates()
+        RC_SHADOW_TEMPLE_MQ_TRUTH_SPINNER_SMALL_CRATE_2: can_break_small_crates()
+        RC_SHADOW_TEMPLE_MQ_TRUTH_SPINNER_SMALL_CRATE_3: can_break_small_crates()
+        RC_SHADOW_TEMPLE_MQ_TRUTH_SPINNER_SMALL_CRATE_4: can_break_small_crates()
+    }
+}
+
 # dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_CHILD_BOXES {

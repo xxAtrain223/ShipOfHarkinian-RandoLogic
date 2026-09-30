@@ -953,6 +953,185 @@ extend region RR_JABU_JABUS_BELLY_MQ_NEAR_BOSS_ROOM {
     }
 }
 
+# dungeons/shadow_temple
+
+extend region RR_SHADOW_TEMPLE_WHISPERING_WALLS_SIDE_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MAP_CHEST:       can_kill(RE_REDEAD) and can_kill(RE_KEESE) and has(RG_OPEN_CHEST)
+    } 
+}
+
+extend region RR_SHADOW_TEMPLE_DEAD_HAND {
+    locations {
+        RC_SHADOW_TEMPLE_HOVER_BOOTS_CHEST: can_kill(RE_DEAD_HAND) and has(RG_OPEN_CHEST)
+    } 
+}
+
+extend region RR_SHADOW_TEMPLE_COMPASS_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_COMPASS_CHEST: can_kill(RE_GIBDO) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_SPINNING_BLADES {
+    locations {
+        RC_SHADOW_TEMPLE_EARLY_SILVER_RUPEE_CHEST: ((is_adult() and (can_use(RG_HOVER_BOOTS) or can_ground_jump())) or can_use(RG_HOOKSHOT)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_STONE_UMBRELLA {
+    locations {
+        RC_SHADOW_TEMPLE_FALLING_SPIKES_LOWER_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_STONE_UMBRELLA_UPPER {
+    locations {
+        RC_SHADOW_TEMPLE_FALLING_SPIKES_UPPER_CHEST:  has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_FALLING_SPIKES_SWITCH_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_INVISIBLE_SPINNING_BLADES {
+    locations {
+        RC_SHADOW_TEMPLE_INVISIBLE_BLADES_VISIBLE_CHEST:   can_kill(RE_LIKE_LIKE) and can_kill(RE_KEESE) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_INVISIBLE_BLADES_INVISIBLE_CHEST: can_kill(RE_LIKE_LIKE) and can_kill(RE_KEESE) and (trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_INVISIBLE_SPIKES {
+    locations {
+        RC_SHADOW_TEMPLE_INVISIBLE_SPIKES_CHEST: can_kill(RE_REDEAD) and (trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH) or take_damage() or can_use(RG_GORON_TUNIC)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_WIND_TUNNEL_HINT_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_WIND_HINT_CHEST:     can_kill(RE_REDEAD) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_ROOM_TO_BOAT {
+    locations {
+        RC_SHADOW_TEMPLE_AFTER_WIND_ENEMY_CHEST:  can_kill(RE_GIBDO, ED_CLOSE, true, 2) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_AFTER_WIND_HIDDEN_CHEST: (trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH)) and has_explosives() and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_X_CROSS {
+    locations {
+        RC_SHADOW_TEMPLE_INVISIBLE_FLOORMASTER_CHEST: (trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH)) and can_kill(RE_FLOORMASTER) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_WOODEN_SPIKES {
+    locations {
+        RC_SHADOW_TEMPLE_SPIKE_WALLS_LEFT_CHEST:       can_use(RG_DINS_FIRE) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_BOSS_KEY_CHEST:               can_use(RG_DINS_FIRE) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_WHISPERING_WALLS_SIDE_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_COMPASS_CHEST:         can_kill(RE_REDEAD) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_WHISPERING_WALLS_DEAD_HAND {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_HOVER_BOOTS_CHEST: can_kill(RE_DEAD_HAND) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_B2_GIBDO_ROOM {
+    locations {
+        # Doing this sets the shared flag for the glass in RR_SHADOW_TEMPLE_MQ_WHISPERING_WALLS, but doesn't seem to affect the chest
+        RC_SHADOW_TEMPLE_MQ_EARLY_GIBDOS_CHEST: can_kill(RE_GIBDO) and (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_B2_SPINNING_BLADE_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_MAP_CHEST: can_pass(RE_BIG_SKULLTULA) and (can_use(RG_HOOKSHOT) or (is_adult() and (can_use(RG_HOVER_BOOTS) or can_ground_jump()))) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_SHORTCUT_PATH {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_NEAR_SHIP_INVISIBLE_CHEST: (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_ROOM {
+    locations {
+        # RT_SHADOW_MQ_INVISIBLE_BLADES does not work with NL as like-likes will not swallow you, likewise like-likes will not spit you with a fairy revive
+        # you take half a heart base from a spit out, double check EffectiveHealth when damage logic gets reworked
+        # Child is too small to get hit by the blades doesn't need the trick or lens for dodging them
+        RC_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_VISIBLE_CHEST:   (can_use(RG_SONG_OF_TIME) or (trick(RT_SHADOW_MQ_INVISIBLE_BLADES) and effective_health() > 1)) and
+                                                              (trick(RT_LENS_SHADOW_MQ_INVISIBLE_BLADES) or is_child() or can_use(RG_NAYRUS_LOVE) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_INVISIBLE_CHEST: (can_use(RG_SONG_OF_TIME) or (trick(RT_SHADOW_MQ_INVISIBLE_BLADES) and effective_health() > 1)) and
+                                                              ((trick(RT_LENS_SHADOW_MQ) and (trick(RT_LENS_SHADOW_MQ_INVISIBLE_BLADES) or is_child() or can_use(RG_NAYRUS_LOVE))) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_BEAMOS_SILVER_RUPEES_CHEST: can_use(RG_LONGSHOT) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_STONE_UMBRELLA_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_FALLING_SPIKES_LOWER_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_UPPER_STONE_UMBRELLA {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_FALLING_SPIKES_UPPER_CHEST:  has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_MQ_FALLING_SPIKES_SWITCH_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_INVISIBLE_SPIKES_CHEST: can_kill(RE_REDEAD) and (trick(RT_LENS_SHADOW_MQ) or take_damage() or can_use(RG_LENS_OF_TRUTH) or can_use(RG_GORON_TUNIC)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_STALFOS_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_STALFOS_ROOM_CHEST: can_kill(RE_STALFOS, ED_CLOSE, true, 2) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_WIND_HINT_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_WIND_HINT_CHEST:     (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and can_pass(RE_REDEAD) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_B4_GIBDO_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_AFTER_WIND_ENEMY_CHEST:  can_kill(RE_GIBDO) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_MQ_AFTER_WIND_HIDDEN_CHEST: has_explosives() and (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_X_CROSS {
+    locations {
+        # don't use CanDetonateUprightBombFlower as blue fire logic would need to account for player having multiple bottles & taking damage multiple times
+        RC_SHADOW_TEMPLE_MQ_BOMB_FLOWER_CHEST: (can_use(RG_LENS_OF_TRUTH) or trick(RT_LENS_SHADOW_MQ_DEADHAND)) and can_kill(RE_DEAD_HAND) and (can_detonate_bomb_flowers() or has(RG_GORONS_BRACELET)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_SPIKE_WALLS_ROOM {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_SPIKE_WALLS_LEFT_CHEST: can_use(RG_DINS_FIRE) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_MQ_BOSS_KEY_CHEST:         can_use(RG_DINS_FIRE) and has(RG_OPEN_CHEST)
+    }
+}
+
 # dungeons/spirit_temple
 
 extend region RR_SPIRIT_TEMPLE_SWITCH_BRIDGE_NORTH {

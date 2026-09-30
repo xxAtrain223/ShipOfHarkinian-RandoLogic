@@ -17,11 +17,6 @@ region RR_SHADOW_TEMPLE_WHISPERING_WALLS_START {
         LOGIC_NUT_ACCESS: can_break_pots()
     }
 
-    locations {
-        RC_SHADOW_TEMPLE_WHISPERING_WALLS_POT_1: can_break_pots ()
-        RC_SHADOW_TEMPLE_WHISPERING_WALLS_POT_2: can_break_pots ()
-    }
-
     exits {
         RR_SHADOW_TEMPLE_BEGINNING:             always
         RR_SHADOW_TEMPLE_WHISPERING_WALLS_SIDE: trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH)
@@ -37,11 +32,6 @@ region RR_SHADOW_TEMPLE_WHISPERING_WALLS_SIDE {
         LOGIC_NUT_ACCESS: can_break_pots ()
     }
 
-    locations {
-        RC_SHADOW_TEMPLE_WHISPERING_WALLS_POT_1: can_break_pots ()
-        RC_SHADOW_TEMPLE_WHISPERING_WALLS_POT_2: can_break_pots ()
-    }
-
     exits {
         RR_SHADOW_TEMPLE_WHISPERING_WALLS_START:     trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH)
         RR_SHADOW_TEMPLE_WHISPERING_WALLS_SIDE_ROOM: always
@@ -50,14 +40,7 @@ region RR_SHADOW_TEMPLE_WHISPERING_WALLS_SIDE {
 
 region RR_SHADOW_TEMPLE_WHISPERING_WALLS_END { 
     name: "Shadow Temple Whispering Walls End" 
-    scene: SCENE_SHADOW_TEMPLE 
-
-    locations {
-        RC_SHADOW_TEMPLE_WHISPERING_WALLS_POT_3: can_break_pots ()
-        RC_SHADOW_TEMPLE_WHISPERING_WALLS_POT_4: can_break_pots ()
-        RC_SHADOW_TEMPLE_WHISPERING_WALLS_POT_5: can_break_pots ()
-        RC_SHADOW_TEMPLE_NEAR_DEAD_HAND_POT_1:   can_break_pots ()
-    } 
+    scene: SCENE_SHADOW_TEMPLE
     
     exits {
         RR_SHADOW_TEMPLE_WHISPERING_WALLS_START: trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH)
@@ -69,12 +52,6 @@ region RR_SHADOW_TEMPLE_WHISPERING_WALLS_SIDE_ROOM{
     name: "Shadow Temple Whispering Walls Side Room" 
     scene: SCENE_SHADOW_TEMPLE
     
-    locations {
-        RC_SHADOW_TEMPLE_MAP_CHEST:       can_kill(RE_REDEAD) and can_kill(RE_KEESE) and has(RG_OPEN_CHEST)
-        RC_SHADOW_TEMPLE_MAP_CHEST_POT_1: can_break_pots ()
-        RC_SHADOW_TEMPLE_MAP_CHEST_POT_2: can_break_pots ()
-    } 
-    
     exits {
         RR_SHADOW_TEMPLE_WHISPERING_WALLS_SIDE: any_age(can_kill(RE_REDEAD) and can_kill(RE_KEESE))
     }
@@ -83,9 +60,6 @@ region RR_SHADOW_TEMPLE_WHISPERING_WALLS_SIDE_ROOM{
 region RR_SHADOW_TEMPLE_DEAD_HAND { 
     name: "Shadow Temple Dead Hand"
     scene: SCENE_SHADOW_TEMPLE
-    locations {
-        RC_SHADOW_TEMPLE_HOVER_BOOTS_CHEST: can_kill(RE_DEAD_HAND) and has(RG_OPEN_CHEST)
-    } 
     
     exits{
         RR_SHADOW_TEMPLE_WHISPERING_WALLS_END: any_age(can_kill(RE_DEAD_HAND))
@@ -95,10 +69,6 @@ region RR_SHADOW_TEMPLE_DEAD_HAND {
 region RR_SHADOW_TEMPLE_FIRST_BEAMOS { 
     name: "Shadow Temple First Beamos" 
     scene: SCENE_SHADOW_TEMPLE
-    
-    locations {
-        RC_SHADOW_TEMPLE_BEAMOS_STORM_FAIRY: can_use(RG_SONG_OF_STORMS)
-    }
     
     exits {
         RR_SHADOW_TEMPLE_BEGINNING:            trick(RT_VISIBLE_COLLISION) and (can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT))
@@ -112,10 +82,6 @@ region RR_SHADOW_TEMPLE_COMPASS_ROOM {
     name: "Shadow Temple Compass Room" 
     scene: SCENE_SHADOW_TEMPLE
     
-    locations {
-        RC_SHADOW_TEMPLE_COMPASS_CHEST: can_kill(RE_GIBDO) and has(RG_OPEN_CHEST)
-    }
-    
     exits {
         RR_SHADOW_TEMPLE_FIRST_BEAMOS: any_age(can_kill(RE_GIBDO))
     }
@@ -124,10 +90,6 @@ region RR_SHADOW_TEMPLE_COMPASS_ROOM {
 region RR_SHADOW_TEMPLE_SPINNING_BLADES { 
     name: "Shadow Temple Spinning Blades"
     scene: SCENE_SHADOW_TEMPLE
-    
-    locations {
-        RC_SHADOW_TEMPLE_EARLY_SILVER_RUPEE_CHEST: ((is_adult() and (can_use(RG_HOVER_BOOTS) or can_ground_jump())) or can_use(RG_HOOKSHOT)) and has(RG_OPEN_CHEST)
-    }
     
     exits {
         RR_SHADOW_TEMPLE_FIRST_BEAMOS: always
@@ -159,10 +121,6 @@ region RR_SHADOW_TEMPLE_B2_TO_B3_CORRIDOR_B3 {
 region RR_SHADOW_TEMPLE_UPPER_HUGE_PIT { 
     name: "Shadow Temple Upper Huge Pit" 
     scene: SCENE_SHADOW_TEMPLE
-    
-    locations {
-        RC_SHADOW_TEMPLE_PIT_STORM_FAIRY: can_use(RG_SONG_OF_STORMS)
-    } 
     
     exits {
         RR_SHADOW_TEMPLE_B2_TO_B3_CORRIDOR_B3:      can_use(RG_LONGSHOT)
@@ -196,14 +154,6 @@ region RR_SHADOW_TEMPLE_STONE_UMBRELLA {
     name: "Shadow Temple Stone Umbrella" 
     scene: SCENE_SHADOW_TEMPLE
     
-    locations {
-        RC_SHADOW_TEMPLE_FALLING_SPIKES_LOWER_CHEST: has(RG_OPEN_CHEST)
-        RC_SHADOW_TEMPLE_GS_FALLING_SPIKES_ROOM:     can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or (is_adult() and can_ground_jumpslash())
-        RC_SHADOW_TEMPLE_FALLING_SPIKES_POT_1:       can_break_pots()
-        RC_SHADOW_TEMPLE_FALLING_SPIKES_POT_2:       can_break_pots()
-        RC_SHADOW_TEMPLE_FALLING_SPIKES_POT_3:       can_use(RG_BOOMERANG)
-    } 
-    
     exits {
         RR_SHADOW_TEMPLE_LOWER_HUGE_PIT:       trick(RT_VISIBLE_COLLISION)
         RR_SHADOW_TEMPLE_STONE_UMBRELLA_UPPER: trick(RT_SHADOW_UMBRELLA_CLIP) or (trick(RT_DAMAGE_BOOST_SIMPLE) and take_damage()) or (is_adult() and ((trick(RT_SHADOW_UMBRELLA_HOVER) and can_use(RG_HOVER_BOOTS)) or has(RG_GORONS_BRACELET)))
@@ -213,15 +163,6 @@ region RR_SHADOW_TEMPLE_STONE_UMBRELLA {
 region RR_SHADOW_TEMPLE_STONE_UMBRELLA_UPPER { 
     name: "Shadow Temple Stone Umbrella Upper"
     scene: SCENE_SHADOW_TEMPLE
-    
-    locations {
-        RC_SHADOW_TEMPLE_FALLING_SPIKES_UPPER_CHEST:  has(RG_OPEN_CHEST)
-        RC_SHADOW_TEMPLE_FALLING_SPIKES_SWITCH_CHEST: has(RG_OPEN_CHEST)
-        # Assuming the known setup for RT_SHADOW_UMBRELLA_HOVER and RT_SHADOW_UMBRELLA_GS, probably possible without sword + shield.
-        RC_SHADOW_TEMPLE_GS_FALLING_SPIKES_ROOM:      trick(RT_SHADOW_UMBRELLA_GS) and can_use(RG_HOVER_BOOTS) and can_standing_shield() and can_use(RG_MASTER_SWORD)
-        RC_SHADOW_TEMPLE_FALLING_SPIKES_POT_3:        can_break_pots()
-        RC_SHADOW_TEMPLE_FALLING_SPIKES_POT_4:        can_break_pots()
-    }
     
     exits {
         RR_SHADOW_TEMPLE_STONE_UMBRELLA: always
@@ -242,15 +183,6 @@ region RR_SHADOW_TEMPLE_INVISIBLE_SPINNING_BLADES {
     name: "Shadow Temple Invisible Spinning Blades" 
     scene: SCENE_SHADOW_TEMPLE
     
-    locations {
-        RC_SHADOW_TEMPLE_INVISIBLE_BLADES_VISIBLE_CHEST:   can_kill(RE_LIKE_LIKE) and can_kill(RE_KEESE) and has(RG_OPEN_CHEST)
-        RC_SHADOW_TEMPLE_INVISIBLE_BLADES_INVISIBLE_CHEST: can_kill(RE_LIKE_LIKE) and can_kill(RE_KEESE) and (trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
-        RC_SHADOW_TEMPLE_GS_LIKE_LIKE_ROOM:                any_age(can_kill(RE_LIKE_LIKE) and can_kill(RE_KEESE)) and ((is_adult() and can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH)) or can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG))
-        # We cannot repeat the MQ invisible blades trick for these hearts as the like-like does not respawn if the room is cleared
-        RC_SHADOW_TEMPLE_INVISIBLE_BLADES_LEFT_HEART:      (can_use(RG_SONG_OF_TIME) and is_adult()) or can_use(RG_BOOMERANG)
-        RC_SHADOW_TEMPLE_INVISIBLE_BLADES_RIGHT_HEART:     (can_use(RG_SONG_OF_TIME) and is_adult()) or can_use(RG_BOOMERANG)
-    }
-    
     exits {
         RR_SHADOW_TEMPLE_UPPER_HUGE_PIT_DOOR_LEDGE: always
     }
@@ -259,10 +191,6 @@ region RR_SHADOW_TEMPLE_INVISIBLE_SPINNING_BLADES {
 region RR_SHADOW_TEMPLE_INVISIBLE_SPIKES { 
     name: "Shadow Temple Invisible Spikes" 
     scene: SCENE_SHADOW_TEMPLE
-    
-    locations {
-        RC_SHADOW_TEMPLE_INVISIBLE_SPIKES_CHEST: can_kill(RE_REDEAD) and (trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH) or take_damage() or can_use(RG_GORON_TUNIC)) and has(RG_OPEN_CHEST)
-    }
     
     exits {
         RR_SHADOW_TEMPLE_LOWER_HUGE_PIT_DOOR_LEDGE: small_keys(SCENE_SHADOW_TEMPLE, 2)
@@ -288,7 +216,6 @@ region RR_SHADOW_TEMPLE_SKULL_JAR {
     
     locations {
         RC_SHADOW_TEMPLE_FREESTANDING_KEY:    can_use(RG_BOMB_BAG) or has(RG_GORONS_BRACELET) or (trick(RT_SHADOW_FREESTANDING_KEY) and can_use(RG_BOMBCHU_5))
-        RC_SHADOW_TEMPLE_GS_SINGLE_GIANT_POT: can_kill(RE_GOLD_SKULLTULA)
     }
     
     exits {
@@ -331,11 +258,6 @@ region RR_SHADOW_TEMPLE_WIND_TUNNEL_HINT_ROOM {
     name: "Shadow Temple Wind Tunnel Hint Room"
     scene: SCENE_SHADOW_TEMPLE
     
-    locations {
-        RC_SHADOW_TEMPLE_WIND_HINT_CHEST:     can_kill(RE_REDEAD) and has(RG_OPEN_CHEST)
-        RC_SHADOW_TEMPLE_WIND_HINT_SUN_FAIRY: can_use(RG_SUNS_SONG)
-    }
-    
     exits {
         RR_SHADOW_TEMPLE_LOWER_WIND_TUNNEL: can_kill(RE_REDEAD)
     }
@@ -344,13 +266,6 @@ region RR_SHADOW_TEMPLE_WIND_TUNNEL_HINT_ROOM {
 region RR_SHADOW_TEMPLE_ROOM_TO_BOAT { 
     name: "Shadow Temple Room to Boat" 
     scene: SCENE_SHADOW_TEMPLE
-    
-    locations {
-        RC_SHADOW_TEMPLE_AFTER_WIND_ENEMY_CHEST:  can_kill(RE_GIBDO, ED_CLOSE, true, 2) and has(RG_OPEN_CHEST)
-        RC_SHADOW_TEMPLE_AFTER_WIND_HIDDEN_CHEST: (trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH)) and has_explosives() and has(RG_OPEN_CHEST)
-        RC_SHADOW_TEMPLE_AFTER_WIND_POT_1:        can_break_pots()
-        RC_SHADOW_TEMPLE_AFTER_WIND_POT_2:        can_break_pots()
-    }
     
     exits {
         RR_SHADOW_TEMPLE_WIND_TUNNEL_ALCOVE: any_age(can_kill(RE_GIBDO, ED_CLOSE, true, 2))
@@ -364,12 +279,6 @@ region RR_SHADOW_TEMPLE_DOCK {
     
     events {
         LOGIC_SHADOW_SHORTCUT_BLOCK: has(RG_GORONS_BRACELET)
-    } 
-    
-    locations {
-        RC_SHADOW_TEMPLE_GS_NEAR_SHIP:          can_use(RG_LONGSHOT)
-        RC_SHADOW_TEMPLE_SCARECROW_NORTH_HEART: reach_distant_scarecrow()
-        RC_SHADOW_TEMPLE_SCARECROW_SOUTH_HEART: reach_distant_scarecrow()
     }
     
     exits {
@@ -387,11 +296,6 @@ region RR_SHADOW_TEMPLE_BEYOND_BOAT {
         LOGIC_SHADOW_BRIDGE_BEYOND_BOAT_LOWERED: can_use(RG_FAIRY_BOW) or (trick(RT_SHADOW_STATUE) and can_use(RG_BOMBCHU_5))
     }
     
-    locations {
-        RC_SHADOW_TEMPLE_AFTER_BOAT_POT_1: can_break_pots()
-        RC_SHADOW_TEMPLE_AFTER_BOAT_POT_2: can_break_pots()
-    }
-    
     exits {
         RR_SHADOW_TEMPLE_MAZE:            always
         RR_SHADOW_TEMPLE_CHASM_SCARECROW: reach_distant_scarecrow()
@@ -403,11 +307,6 @@ region RR_SHADOW_TEMPLE_BEYOND_BOAT {
 region RR_SHADOW_TEMPLE_CHASM_SCARECROW { 
     name: "Shadow Temple Chasm Scarecrow"
     scene: SCENE_SHADOW_TEMPLE
-    
-    locations {
-        RC_SHADOW_TEMPLE_AFTER_SHIP_UPPER_LEFT_HEART:  always
-        RC_SHADOW_TEMPLE_AFTER_SHIP_UPPER_RIGHT_HEART: always
-    }
     
     exits {
         RR_SHADOW_TEMPLE_ACROSS_CHASM:  always
@@ -423,12 +322,6 @@ region RR_SHADOW_TEMPLE_ACROSS_CHASM {
         LOGIC_SHADOW_BRIDGE_BEYOND_BOAT_LOWERED: can_detonate_bomb_flowers()
     }
     
-    locations {
-        RC_SHADOW_TEMPLE_AFTER_BOAT_POT_3:       can_break_pots()
-        RC_SHADOW_TEMPLE_AFTER_BOAT_POT_4:       can_break_pots()
-        # RC_SHADOW_TEMPLE_AFTER_SHIP_LOWER_HEART requires an indirect boomerang from here due to invisible collision
-    }
-    
     exits  {
         RR_SHADOW_TEMPLE_BEYOND_BOAT:   (flag(LOGIC_SHADOW_BRIDGE_BEYOND_BOAT_LOWERED) and is_adult()) or (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))
         RR_SHADOW_TEMPLE_BROKEN_PILLAR: is_adult() and can_use(RG_SONG_OF_TIME)
@@ -439,10 +332,6 @@ region RR_SHADOW_TEMPLE_ACROSS_CHASM {
 region RR_SHADOW_TEMPLE_BROKEN_PILLAR { 
     name: "Shadow Temple Broken Pillar"
     scene: SCENE_SHADOW_TEMPLE
-    
-    locations {
-        RC_SHADOW_TEMPLE_AFTER_SHIP_LOWER_HEART: always
-    }
     
     exits {
         RR_SHADOW_TEMPLE_ACROSS_CHASM:    always
@@ -466,12 +355,6 @@ region RR_SHADOW_TEMPLE_X_CROSS {
     name: "Shadow Temple X-Cross"
     scene: SCENE_SHADOW_TEMPLE
     
-    locations {
-        RC_SHADOW_TEMPLE_INVISIBLE_FLOORMASTER_CHEST: (trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH)) and can_kill(RE_FLOORMASTER) and has(RG_OPEN_CHEST)
-        RC_SHADOW_TEMPLE_FLOORMASTER_POT_1:           can_break_pots()
-        RC_SHADOW_TEMPLE_FLOORMASTER_POT_2:           can_break_pots()
-    }
-    
     exits {
         RR_SHADOW_TEMPLE_MAZE: any_age(trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH)) and can_kill(RE_FLOORMASTER)
     }
@@ -481,10 +364,6 @@ region RR_SHADOW_TEMPLE_THREE_SKULL_JARS {
     name: "Shadow Temple Three Skull Jars"
     scene: SCENE_SHADOW_TEMPLE
     
-    locations {
-        RC_SHADOW_TEMPLE_GS_TRIPLE_GIANT_POT: has(RG_GORONS_BRACELET) or can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH)
-    }
-    
     exits {
         RR_SHADOW_TEMPLE_MAZE: always
     }
@@ -493,12 +372,6 @@ region RR_SHADOW_TEMPLE_THREE_SKULL_JARS {
 region RR_SHADOW_TEMPLE_WOODEN_SPIKES { 
     name: "Shadow Temple Wooden Spikes" 
     scene: SCENE_SHADOW_TEMPLE
-    
-    locations {
-        RC_SHADOW_TEMPLE_SPIKE_WALLS_LEFT_CHEST:       can_use(RG_DINS_FIRE) and has(RG_OPEN_CHEST)
-        RC_SHADOW_TEMPLE_BOSS_KEY_CHEST:               can_use(RG_DINS_FIRE) and has(RG_OPEN_CHEST)
-        RC_SHADOW_TEMPLE_SPIKE_WALLS_POT_1:            can_break_pots()
-    }
     
     exits {
         RR_SHADOW_TEMPLE_MAZE: always
