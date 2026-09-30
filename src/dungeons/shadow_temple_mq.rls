@@ -390,7 +390,7 @@ region RR_SHADOW_TEMPLE_MQ_X_CROSS {
     scene: SCENE_SHADOW_TEMPLE
     
     exits {
-        RR_SHADOW_TEMPLE_MQ_INVISIBLE_MAZE: true
+        RR_SHADOW_TEMPLE_MQ_INVISIBLE_MAZE: always
     }
 }
 
