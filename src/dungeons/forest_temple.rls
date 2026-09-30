@@ -1,0 +1,40 @@
+region RR_FOREST_TEMPLE_ENTRYWAY {
+    name: "Forest Temple Entryway"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_TREES:    is_vanilla()
+        RR_FOREST_TEMPLE_MQ_TREES: is_mq()
+        RR_SACRED_FOREST_MEADOW:   always
+    }
+}
+
+region RR_FOREST_TEMPLE_BOSS_ENTRYWAY {
+    name: "Forest Temple Boss Entryway"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_BASEMENT:    is_vanilla() and flag(LOGIC_FOREST_OPEN_BOSS_HALLWAY)
+        RR_FOREST_TEMPLE_MQ_BASEMENT: is_mq() and flag(LOGIC_FOREST_OPEN_BOSS_HALLWAY)
+        RR_FOREST_TEMPLE_BOSS_ROOM:   has(RG_FOREST_TEMPLE_BOSS_KEY)
+    }
+}
+
+region RR_FOREST_TEMPLE_BOSS_ROOM {
+    name: "Forest Temple Boss Room"
+    scene: SCENE_FOREST_TEMPLE_BOSS
+
+    events {
+        LOGIC_FOREST_TEMPLE_CLEAR: can_kill(RE_PHANTOM_GANON)
+    }
+
+    locations {
+        RC_FOREST_TEMPLE_PHANTOM_GANON_HEART: flag(LOGIC_FOREST_TEMPLE_CLEAR)
+        RC_PHANTOM_GANON:                     flag(LOGIC_FOREST_TEMPLE_CLEAR)
+    }
+
+    exits {
+        RR_FOREST_TEMPLE_BOSS_ENTRYWAY: never
+        RR_SACRED_FOREST_MEADOW:        flag(LOGIC_FOREST_TEMPLE_CLEAR)
+    }
+}

@@ -357,6 +357,108 @@ extend region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PAST_WALL {
     }
 }
 
+# dungeons/forest_temple
+
+extend region RR_FOREST_TEMPLE_LOBBY {
+    locations {
+        RC_FOREST_TEMPLE_LOBBY_POT_1: can_break_pots()
+        RC_FOREST_TEMPLE_LOBBY_POT_2: can_break_pots()
+        RC_FOREST_TEMPLE_LOBBY_POT_3: can_break_pots()
+        RC_FOREST_TEMPLE_LOBBY_POT_4: can_break_pots()
+        RC_FOREST_TEMPLE_LOBBY_POT_5: can_break_pots()
+        RC_FOREST_TEMPLE_LOBBY_POT_6: can_break_pots()
+    }
+}
+
+extend region RR_FOREST_TEMPLE_LOWER_STALFOS {
+    locations {
+        RC_FOREST_TEMPLE_LOWER_STALFOS_POT_1: can_break_pots()
+        RC_FOREST_TEMPLE_LOWER_STALFOS_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_FOREST_TEMPLE_UPPER_STALFOS {
+    locations {
+        RC_FOREST_TEMPLE_UPPER_STALFOS_POT_1: can_break_pots()
+        RC_FOREST_TEMPLE_UPPER_STALFOS_POT_2: can_break_pots()
+        RC_FOREST_TEMPLE_UPPER_STALFOS_POT_3: can_break_pots()
+        RC_FOREST_TEMPLE_UPPER_STALFOS_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_FOREST_TEMPLE_BLUE_POE_ROOM {
+    locations {
+        RC_FOREST_TEMPLE_BLUE_POE_POT_1: can_break_pots()
+        RC_FOREST_TEMPLE_BLUE_POE_POT_2: can_break_pots()
+        RC_FOREST_TEMPLE_BLUE_POE_POT_3: can_break_pots()
+    }
+}
+
+extend region RR_FOREST_TEMPLE_FROZEN_EYE_ROOM {
+    locations {
+        RC_FOREST_TEMPLE_FROZEN_EYE_POT_1: can_break_pots()
+        RC_FOREST_TEMPLE_FROZEN_EYE_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_FOREST_TEMPLE_GREEN_POE_ROOM {
+    locations {
+        RC_FOREST_TEMPLE_GREEN_POE_POT_1: can_break_pots()
+        RC_FOREST_TEMPLE_GREEN_POE_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_FOREST_TEMPLE_MQ_LOBBY {
+    locations {
+        RC_FOREST_TEMPLE_MQ_LOBBY_POT_1: can_break_pots()
+        RC_FOREST_TEMPLE_MQ_LOBBY_POT_2: can_break_pots()
+        RC_FOREST_TEMPLE_MQ_LOBBY_POT_3: can_break_pots()
+        RC_FOREST_TEMPLE_MQ_LOBBY_POT_4: can_break_pots()
+        RC_FOREST_TEMPLE_MQ_LOBBY_POT_5: can_break_pots()
+        RC_FOREST_TEMPLE_MQ_LOBBY_POT_6: can_break_pots()
+    }
+}
+
+extend region RR_FOREST_TEMPLE_MQ_WOLFOS_ROOM {
+    locations {
+        RC_FOREST_TEMPLE_MQ_WOLFOS_POT_1: can_break_pots()
+        RC_FOREST_TEMPLE_MQ_WOLFOS_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_FOREST_TEMPLE_MQ_3_STALFOS_ROOM {
+    locations {
+        RC_FOREST_TEMPLE_MQ_UPPER_STALFOS_POT_1: can_break_pots()
+        RC_FOREST_TEMPLE_MQ_UPPER_STALFOS_POT_2: can_break_pots()
+        RC_FOREST_TEMPLE_MQ_UPPER_STALFOS_POT_3: can_break_pots()
+        RC_FOREST_TEMPLE_MQ_UPPER_STALFOS_POT_4: can_break_pots()
+    }
+}
+
+extend region RR_FOREST_TEMPLE_MQ_BETH_ROOM {
+    locations {
+        RC_FOREST_TEMPLE_MQ_BLUE_POE_POT_1: can_break_pots()
+        RC_FOREST_TEMPLE_MQ_BLUE_POE_POT_2: can_break_pots()
+        RC_FOREST_TEMPLE_MQ_BLUE_POE_POT_3: can_break_pots()
+    }
+}
+
+extend region RR_FOREST_TEMPLE_MQ_AMY_ROOM {
+    locations {
+        RC_FOREST_TEMPLE_MQ_GREEN_POE_POT_1: can_break_pots()
+        RC_FOREST_TEMPLE_MQ_GREEN_POE_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_FOREST_TEMPLE_MQ_BASEMENT_POT_ROOM {
+    locations {
+        RC_FOREST_TEMPLE_MQ_BASEMENT_POT_1: can_break_pots()
+        RC_FOREST_TEMPLE_MQ_BASEMENT_POT_2: can_break_pots()
+        RC_FOREST_TEMPLE_MQ_BASEMENT_POT_3: can_break_pots()
+        RC_FOREST_TEMPLE_MQ_BASEMENT_POT_4: can_break_pots()
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_TOWER_BEFORE_GANONDORF_LAIR {

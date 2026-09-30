@@ -1,0 +1,477 @@
+region RR_FOREST_TEMPLE_TREES {
+    name: "Forest Temple Trees"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_ENTRYWAY:                always
+        RR_FOREST_TEMPLE_OVERGROWN_HALLWAY_LOWER: always
+    }
+}
+
+region RR_FOREST_TEMPLE_OVERGROWN_HALLWAY_LOWER {
+    name: "Forest Temple Overgrown Hallway Lower"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_TREES:                   always
+        RR_FOREST_TEMPLE_OVERGROWN_HALLWAY_UPPER: can_pass(RE_BIG_SKULLTULA)
+    }
+}
+
+region RR_FOREST_TEMPLE_OVERGROWN_HALLWAY_UPPER {
+    name: "Forest Temple Overgrown Hallway Upper"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_OVERGROWN_HALLWAY_LOWER: can_pass(RE_BIG_SKULLTULA)
+        RR_FOREST_TEMPLE_LOBBY:                   always
+    }
+}
+
+region RR_FOREST_TEMPLE_LOBBY {
+    name: "Forest Temple Lobby"
+    scene: SCENE_FOREST_TEMPLE
+
+    events {
+        LOGIC_FOREST_MEG: flag(LOGIC_FOREST_JOELLE) and flag(LOGIC_FOREST_BETH) and flag(LOGIC_FOREST_AMY) and can_kill(RE_MEG)
+    }
+
+    exits {
+        RR_FOREST_TEMPLE_OVERGROWN_HALLWAY_UPPER: always
+        RR_FOREST_TEMPLE_NORTH_HALLWAY:           always
+        RR_FOREST_TEMPLE_NW_COURTYARD_LOWER:      can_use(RG_SONG_OF_TIME) or is_child()
+        RR_FOREST_TEMPLE_NE_COURTYARD_LOWER:      can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT)
+        RR_FOREST_TEMPLE_RED_DOORMAT_HALLWAY:     small_keys(SCENE_FOREST_TEMPLE, 1)
+        RR_FOREST_TEMPLE_BLUE_DOORMAT_HALLWAY:    never
+        RR_FOREST_TEMPLE_BASEMENT:                flag(LOGIC_FOREST_MEG)
+        RR_FOREST_TEMPLE_BOSS_ENTRYWAY:           never
+    }
+}
+
+region RR_FOREST_TEMPLE_NORTH_HALLWAY {
+    name: "Forest Temple North Hallway"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_LOBBY:         always
+        RR_FOREST_TEMPLE_LOWER_STALFOS: always
+    }
+}
+
+region RR_FOREST_TEMPLE_LOWER_STALFOS {
+    name: "Forest Temple Lower Stalfos"
+    scene: SCENE_FOREST_TEMPLE
+
+    events {
+        LOGIC_FAIRY_ACCESS:                         can_break_pots()
+        LOGIC_FOREST_CLEAR_BETWEEN_JOELLE_AND_BETH: can_kill(RE_STALFOS, ED_CLOSE, true, 2)
+    }
+
+    exits {
+        RR_FOREST_TEMPLE_NORTH_HALLWAY: flag(LOGIC_FOREST_CLEAR_BETWEEN_JOELLE_AND_BETH)
+    }
+}
+
+region RR_FOREST_TEMPLE_NW_COURTYARD_LOWER {
+    name: "Forest Temple NW Courtyard Lower"
+    scene: SCENE_FOREST_TEMPLE
+
+    events {
+        LOGIC_STICK_ACCESS: can_get_deku_baba_sticks()
+        LOGIC_NUT_ACCESS:   can_get_deku_baba_nuts()
+    }
+
+    exits {
+        RR_FOREST_TEMPLE_LOBBY:                     always
+        RR_FOREST_TEMPLE_NW_COURTYARD_UPPER:        (has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and can_use(RG_HOVER_BOOTS) and ((trick(RT_HOVER_BOOST_SIMPLE) 
+                                                    and (trick(RT_DAMAGE_BOOST_SIMPLE) and has_explosives())) or can_middair_ground_jump())
+        RR_FOREST_TEMPLE_NW_COURTYARD_UPPER_ALCOVE: has(RG_CLIMB) or can_use(RG_LONGSHOT)
+        RR_FOREST_TEMPLE_SEWER:                     has(RG_GOLDEN_SCALE) or can_use(RG_IRON_BOOTS)
+        RR_FOREST_TEMPLE_DRAINED_SEWER:             flag(LOGIC_FOREST_DRAINED_WELL)
+        RR_FOREST_TEMPLE_BOSS_ENTRYWAY:             never
+    }
+}
+
+region RR_FOREST_TEMPLE_NW_COURTYARD_UPPER_ALCOVE {
+    name: "Forest Temple NW Courtyard Upper Alcove"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_NW_COURTYARD_LOWER: always
+        RR_FOREST_TEMPLE_MAP_ROOM:           always
+        RR_FOREST_TEMPLE_NW_COURTYARD_UPPER: trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER)
+    }
+}
+
+region RR_FOREST_TEMPLE_NW_COURTYARD_UPPER {
+    name: "Forest Temple NW Courtyard Upper"
+    scene: SCENE_FOREST_TEMPLE
+
+    events {
+        LOGIC_STICK_ACCESS: can_get_deku_baba_sticks()
+        LOGIC_NUT_ACCESS:   can_get_deku_baba_nuts()
+    }
+
+    exits {
+        RR_FOREST_TEMPLE_NW_COURTYARD_LOWER: always
+        RR_FOREST_TEMPLE_BELOW_BOSS_KEY_CHEST: always
+        RR_FOREST_TEMPLE_FLOORMASTER_ROOM: always
+        RR_FOREST_TEMPLE_BLOCK_PUSH_ROOM_COURTYARD_ALCOVE: always
+    }
+}
+
+region RR_FOREST_TEMPLE_NE_COURTYARD_LOWER {
+    name: "Forest Temple NE Courtyard Lower"
+    scene: SCENE_FOREST_TEMPLE
+
+    events {
+        LOGIC_STICK_ACCESS: can_get_deku_baba_sticks()
+        LOGIC_NUT_ACCESS:   can_get_deku_baba_nuts()
+    }
+
+    exits {
+        RR_FOREST_TEMPLE_LOBBY:               always
+        RR_FOREST_TEMPLE_NE_COURTYARD_UPPER:  can_use(RG_LONGSHOT) or (trick(RT_FOREST_VINES) and can_use(RG_HOOKSHOT) and has(RG_CLIMB))
+        RR_FOREST_TEMPLE_NE_COURTYARD_ISLAND: can_use(RG_HOOKSHOT)
+        RR_FOREST_TEMPLE_SEWER:               (((can_use(RG_IRON_BOOTS) or can_use(RG_LONGSHOT) or (trick(RT_FOREST_WELL_SWIM) and can_use(RG_HOOKSHOT))) 
+                                              and has(RG_BRONZE_SCALE)) or has(RG_GOLDEN_SCALE)) and water_timer() >= 16
+        RR_FOREST_TEMPLE_DRAINED_SEWER:       flag(LOGIC_FOREST_DRAINED_WELL)
+    }
+}
+
+region RR_FOREST_TEMPLE_NE_COURTYARD_UPPER {
+    name: "Forest Temple NE Courtyard Upper"
+    scene: SCENE_FOREST_TEMPLE
+
+    events {
+        LOGIC_STICK_ACCESS:        can_get_deku_baba_sticks()
+        LOGIC_NUT_ACCESS:          can_get_deku_baba_nuts()
+        LOGIC_FOREST_DRAINED_WELL: always
+    }
+
+    exits {
+        RR_FOREST_TEMPLE_NE_COURTYARD_LOWER:     always
+        RR_FOREST_TEMPLE_NE_COURTYARD_ISLAND:    is_adult() and trick(RT_FOREST_COURTYARD_LEDGE) and can_use(RG_HOVER_BOOTS)
+        RR_FOREST_TEMPLE_NE_COURTYARD_DOORFRAME: can_hammer_recoil_hover(false) or ((trick(RT_FOREST_DOORFRAME) and can_use(RG_HOVER_BOOTS) and can_jumpslash()))
+        RR_FOREST_TEMPLE_MAP_ROOM:               always
+    }
+}
+
+region RR_FOREST_TEMPLE_NE_COURTYARD_DOORFRAME {
+    name: "Forest Temple NE Courtyard Doorframe"
+    scene: SCENE_FOREST_TEMPLE
+
+    events {
+        LOGIC_FOREST_SUMMON_NE_SCARECROW: scarecrows_song()
+    }
+
+    exits {
+        RR_FOREST_TEMPLE_NE_COURTYARD_LOWER:  always
+        RR_FOREST_TEMPLE_NE_COURTYARD_ISLAND: can_hammer_recoil_hover(false)
+    }
+}
+
+region RR_FOREST_TEMPLE_NE_COURTYARD_ISLAND {
+    name: "Forest Temple NE Courtyard Island"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_NE_COURTYARD_LOWER:           always
+        RR_FOREST_TEMPLE_NE_COURTYARD_SCARECROW_LEDGE: flag(LOGIC_FOREST_SUMMON_NE_SCARECROW) and can_use(RG_HOOKSHOT)
+    }
+}
+
+region RR_FOREST_TEMPLE_NE_COURTYARD_SCARECROW_LEDGE {
+    name: "Forest Temple NE Courtyard Scarecrow Ledge"
+    scene: SCENE_FOREST_TEMPLE
+
+    events {
+        LOGIC_FOREST_SUMMON_NE_SCARECROW: scarecrows_song()
+    }
+
+    exits {
+        RR_FOREST_TEMPLE_NE_COURTYARD_ISLAND: always
+        RR_FOREST_TEMPLE_FALLING_ROOM:        always
+    }
+}
+
+region RR_FOREST_TEMPLE_MAP_ROOM {
+    name: "Forest Temple Map Room"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_NW_COURTYARD_LOWER: any_age(can_kill(RE_BLUE_BUBBLE))
+        RR_FOREST_TEMPLE_NE_COURTYARD_UPPER: any_age(can_kill(RE_BLUE_BUBBLE))
+    }
+}
+
+region RR_FOREST_TEMPLE_SEWER {
+    name: "Forest Temple Sewer"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_NW_COURTYARD_LOWER: has(RG_BRONZE_SCALE)
+        RR_FOREST_TEMPLE_NE_COURTYARD_LOWER: has(RG_BRONZE_SCALE)
+    }
+}
+
+region RR_FOREST_TEMPLE_DRAINED_SEWER {
+    name: "Forest Temple Drained Well"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_NW_COURTYARD_LOWER: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
+        RR_FOREST_TEMPLE_NE_COURTYARD_LOWER: has(RG_CLIMB)
+    }
+}
+
+region RR_FOREST_TEMPLE_BELOW_BOSS_KEY_CHEST {
+    name: "Forest Temple Below Boss Key Chest"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_NW_COURTYARD_UPPER: any_age(can_kill(RE_BLUE_BUBBLE))
+    }
+}
+
+region RR_FOREST_TEMPLE_FLOORMASTER_ROOM {
+    name: "Forest Temple Floormaster Room"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_NW_COURTYARD_UPPER: always
+    }
+}
+
+region RR_FOREST_TEMPLE_RED_DOORMAT_HALLWAY {
+    name: "Forest Temple West Hallway"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_LOBBY:                       small_keys(SCENE_FOREST_TEMPLE, 1)
+        RR_FOREST_TEMPLE_RED_DOORMAT_HALLWAY_DOORMAT: can_pass(RE_BIG_SKULLTULA)
+    }
+}
+
+region RR_FOREST_TEMPLE_RED_DOORMAT_HALLWAY_DOORMAT {
+    name: "Forest Temple West Hallway Doormat"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_RED_DOORMAT_HALLWAY: can_pass(RE_BIG_SKULLTULA)
+        RR_FOREST_TEMPLE_BLOCK_PUSH_FLOOR:    always
+    }
+}
+
+region RR_FOREST_TEMPLE_BLOCK_PUSH_FLOOR {
+    name: "Forest Temple Lower Block Push Floor"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_RED_DOORMAT_HALLWAY_DOORMAT: always
+        RR_FOREST_TEMPLE_LOWER_BLOCK_PUSH_ROOM:       has(RG_CLIMB) or (is_adult() and can_ground_jump())
+    }
+}
+
+region RR_FOREST_TEMPLE_LOWER_BLOCK_PUSH_ROOM {
+    name: "Forest Temple Lower Block Push Room"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_BLOCK_PUSH_FLOOR:                 always
+        RR_FOREST_TEMPLE_MIDDLE_BLOCK_PUSH_ROOM:           has(RG_CLIMB) and has(RG_GORONS_BRACELET)
+        RR_FOREST_TEMPLE_UPPER_BLOCK_PUSH_ROOM:            is_adult() and can_ground_jump() and has(RG_GORONS_BRACELET) and can_use(RG_HOVER_BOOTS)
+        RR_FOREST_TEMPLE_BLOCK_PUSH_ROOM_COURTYARD_ALCOVE: can_use(RG_HOVER_BOOTS)
+    }
+}
+
+region RR_FOREST_TEMPLE_MIDDLE_BLOCK_PUSH_ROOM {
+    name: "Forest Temple Middle Block Push Room"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_LOWER_BLOCK_PUSH_ROOM:            always
+        RR_FOREST_TEMPLE_BLOCK_PUSH_ROOM_COURTYARD_ALCOVE: trick(RT_FOREST_OUTSIDE_BACKDOOR) and can_jumpslash_except_hammer()
+        RR_FOREST_TEMPLE_UPPER_BLOCK_PUSH_ROOM:            is_adult() and has(RG_GORONS_BRACELET)
+    }
+}
+
+region RR_FOREST_TEMPLE_UPPER_BLOCK_PUSH_ROOM {
+    name: "Forest Temple Upper Block Push Room"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_MIDDLE_BLOCK_PUSH_ROOM: always
+        RR_FOREST_TEMPLE_BLOCK_PUSH_ROOM_TOP:    has(RG_CLIMB)
+    }
+}
+
+region RR_FOREST_TEMPLE_BLOCK_PUSH_ROOM_TOP {
+    name: "Forest Temple Block Push Room Top"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_UPPER_BLOCK_PUSH_ROOM:   always
+        RR_FOREST_TEMPLE_NW_HALLWAY_TWISTED:      small_keys(SCENE_FOREST_TEMPLE, 2)
+        RR_FOREST_TEMPLE_NW_HALLWAY_STRAIGHTENED: can_hit_eye_targets() and small_keys(SCENE_FOREST_TEMPLE, 2)
+    }
+}
+
+region RR_FOREST_TEMPLE_BLOCK_PUSH_ROOM_COURTYARD_ALCOVE {
+    name: "Forest Temple Block Push Room Courtyard Alcove"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_LOWER_BLOCK_PUSH_ROOM: always
+        RR_FOREST_TEMPLE_NW_COURTYARD_UPPER:    always
+    }
+}
+
+region RR_FOREST_TEMPLE_NW_HALLWAY_TWISTED {
+    name: "Forest Temple NW Hallway Twisted"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_BLOCK_PUSH_ROOM_TOP: small_keys(SCENE_FOREST_TEMPLE, 2)
+        RR_FOREST_TEMPLE_RED_POE_ROOM:        small_keys(SCENE_FOREST_TEMPLE, 3)
+    }
+}
+
+region RR_FOREST_TEMPLE_NW_HALLWAY_STRAIGHTENED {
+    name: "Forest Temple NW Hallway Straightened"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_BELOW_BOSS_KEY_CHEST: always
+        RR_FOREST_TEMPLE_BLOCK_PUSH_ROOM_TOP:  small_keys(SCENE_FOREST_TEMPLE, 2)
+    }
+}
+
+region RR_FOREST_TEMPLE_RED_POE_ROOM {
+    name: "Forest Temple Red Poe Room"
+    scene: SCENE_FOREST_TEMPLE
+
+    events {
+        LOGIC_FOREST_JOELLE: can_use(RG_FAIRY_BOW)
+    }
+
+    exits {
+        RR_FOREST_TEMPLE_NW_HALLWAY_TWISTED: small_keys(SCENE_FOREST_TEMPLE, 3)
+        RR_FOREST_TEMPLE_UPPER_STALFOS:      always
+    }
+}
+
+region RR_FOREST_TEMPLE_UPPER_STALFOS {
+    name: "Forest Temple Upper Stalfos"
+    scene: SCENE_FOREST_TEMPLE
+
+    events {
+        LOGIC_FOREST_CLEAR_BETWEEN_JOELLE_AND_BETH: can_kill(RE_STALFOS, ED_CLOSE, true, 2)
+    }
+
+    exits {
+        RR_FOREST_TEMPLE_RED_POE_ROOM:  flag(LOGIC_FOREST_CLEAR_BETWEEN_JOELLE_AND_BETH) and can_kill(RE_STALFOS, ED_CLOSE, true, 3)
+        RR_FOREST_TEMPLE_BLUE_POE_ROOM: flag(LOGIC_FOREST_CLEAR_BETWEEN_JOELLE_AND_BETH) and can_kill(RE_STALFOS, ED_CLOSE, true, 3)
+    }
+}
+
+region RR_FOREST_TEMPLE_BLUE_POE_ROOM {
+    name: "Forest Temple Blue Poe Room"
+    scene: SCENE_FOREST_TEMPLE
+
+    events {
+        LOGIC_FOREST_BETH: can_use(RG_FAIRY_BOW)
+    }
+    exits {
+        RR_FOREST_TEMPLE_UPPER_STALFOS:           always
+        RR_FOREST_TEMPLE_NE_HALLWAY_STRAIGHTENED: small_keys(SCENE_FOREST_TEMPLE, 4)
+    }
+}
+
+region RR_FOREST_TEMPLE_NE_HALLWAY_STRAIGHTENED {
+    name:"Forest Temple NE Hallway Straightened"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_BLUE_POE_ROOM:   small_keys(SCENE_FOREST_TEMPLE, 4)
+        RR_FOREST_TEMPLE_FROZEN_EYE_ROOM: small_keys(SCENE_FOREST_TEMPLE, 5)
+    }
+}
+
+region RR_FOREST_TEMPLE_NE_HALLWAY_TWISTED {
+    name: "Forest Temple NE Hallway Twisted"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_FROZEN_EYE_ROOM: small_keys(SCENE_FOREST_TEMPLE, 5)
+        RR_FOREST_TEMPLE_FALLING_ROOM:    always
+    }
+}
+
+region RR_FOREST_TEMPLE_FROZEN_EYE_ROOM {
+    name: "Forest Temple Frozen Eye Room"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_NE_HALLWAY_STRAIGHTENED: small_keys(SCENE_FOREST_TEMPLE, 5)
+        RR_FOREST_TEMPLE_NE_HALLWAY_TWISTED:      small_keys(SCENE_FOREST_TEMPLE, 5) and (can_use(RG_FAIRY_BOW) or can_use(RG_DINS_FIRE))
+    }
+}
+
+region RR_FOREST_TEMPLE_FALLING_ROOM {
+    name: "Forest Temple Falling Room"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_NE_COURTYARD_SCARECROW_LEDGE: always
+        RR_FOREST_TEMPLE_GREEN_POE_ROOM:               always
+    }
+}
+
+region RR_FOREST_TEMPLE_GREEN_POE_ROOM {
+    name: "Forest Temple Green Poe Room"
+    scene: SCENE_FOREST_TEMPLE
+
+    events {
+        LOGIC_FOREST_AMY: can_use(RG_FAIRY_BOW) and has(RG_POWER_BRACELET)
+    }
+
+    exits {
+        RR_FOREST_TEMPLE_FALLING_ROOM:                 always
+        RR_FOREST_TEMPLE_BLUE_DOORMAT_HALLWAY_DOORMAT: flag(LOGIC_FOREST_AMY)
+    }
+}
+
+region RR_FOREST_TEMPLE_BLUE_DOORMAT_HALLWAY_DOORMAT {
+    name: "Forest Temple Blue Doormat Hallway Doormat"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_GREEN_POE_ROOM:       always
+        RR_FOREST_TEMPLE_BLUE_DOORMAT_HALLWAY: can_pass(RE_BIG_SKULLTULA)
+    }
+}
+
+region RR_FOREST_TEMPLE_BLUE_DOORMAT_HALLWAY {
+    name: "Forest Temple Blue Doormat Hallway"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_BLUE_DOORMAT_HALLWAY_DOORMAT: can_pass(RE_BIG_SKULLTULA)
+        RR_FOREST_TEMPLE_LOBBY:                        always
+    }
+}
+
+region RR_FOREST_TEMPLE_BASEMENT {
+    name: "Forest Temple Basement"
+    scene: SCENE_FOREST_TEMPLE
+
+    events {
+        LOGIC_FOREST_OPEN_BOSS_HALLWAY: has(RG_POWER_BRACELET)
+    }
+
+    exits {
+        RR_FOREST_TEMPLE_LOBBY:         always
+        RR_FOREST_TEMPLE_BOSS_ENTRYWAY: flag(LOGIC_FOREST_OPEN_BOSS_HALLWAY)
+    }
+}
