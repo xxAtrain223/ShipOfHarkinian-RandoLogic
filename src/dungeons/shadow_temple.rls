@@ -1,0 +1,40 @@
+region RR_SHADOW_TEMPLE_ENTRYWAY {
+    name: "Shadow Temple Entryway"
+    scene: SCENE_SHADOW_TEMPLE
+
+    exits {
+        RR_SHADOW_TEMPLE_BEGINNING:    is_vanilla() and (can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT))
+        RR_SHADOW_TEMPLE_MQ_BEGINNING: is_mq()
+        RR_GRAVEYARD_WARP_PAD_REGION:  always
+    }
+}
+
+region RR_SHADOW_TEMPLE_BOSS_ENTRYWAY {
+    name: "Shadow Temple Boss Entryway" 
+    scene: SCENE_SHADOW_TEMPLE
+    
+    exits {
+        RR_SHADOW_TEMPLE_BOSS_DOOR:    is_vanilla() and never
+        RR_SHADOW_TEMPLE_MQ_BOSS_DOOR: is_mq() and never
+        RR_SHADOW_TEMPLE_BOSS_ROOM:    has(RG_SHADOW_TEMPLE_BOSS_KEY)
+    }
+}
+
+region RR_SHADOW_TEMPLE_BOSS_ROOM {
+    name: "Shadow Temple Boss Room" 
+    scene: SCENE_SHADOW_TEMPLE_BOSS
+    
+    events {
+        LOGIC_SHADOW_TEMPLE_CLEAR: can_kill(RE_BONGO_BONGO)
+    }
+    
+    locations {
+        RC_SHADOW_TEMPLE_BONGO_BONGO_HEART: flag(LOGIC_SHADOW_TEMPLE_CLEAR)
+        RC_BONGO_BONGO:                     flag(LOGIC_SHADOW_TEMPLE_CLEAR)
+    }
+    
+    exits {
+        RR_SHADOW_TEMPLE_BOSS_ENTRYWAY: never
+        RR_GRAVEYARD_WARP_PAD_REGION:   flag(LOGIC_SHADOW_TEMPLE_CLEAR)
+    }      
+} 
