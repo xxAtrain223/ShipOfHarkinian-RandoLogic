@@ -179,7 +179,7 @@ extend region RR_FIRE_TEMPLE_8_TILE_ROOM {
     locations {
         #it's also possible to use the like like trick to grab this as child, but there's no generic version of that yet
         RC_FIRE_TEMPLE_GS_SONG_OF_TIME_ROOM: can_get_drop(RE_GOLD_SKULLTULA, is_adult() ? ED_CLOSE : ED_BOOMERANG) or
-                                                    can_ground_jumpslash()
+                                             can_ground_jumpslash()
     }
 }
 

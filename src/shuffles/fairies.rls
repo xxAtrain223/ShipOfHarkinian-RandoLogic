@@ -48,15 +48,6 @@ extend region RR_FIRE_TEMPLE_MQ_LOOP_5_TILE_ROOM {
     }
 }
 
-extend region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM {
-    locations {
-        #If we're using the south torch as the initial torch, or using FAs, we either have to cross to the north to remove the crate, or use a trick to ignore it
-        RC_FIRE_TEMPLE_MQ_NEAR_BOSS_CHEST:      fire_timer() >= 24 and trick(RT_FIRE_MQ_NEAR_BOSS) and (can_use(RG_FIRE_ARROWS) or (is_adult() and 
-                                                can_use(RG_DINS_FIRE) and can_use(RG_FAIRY_BOW))) and has(RG_OPEN_CHEST)
-    }
-}
-
-
 # dungeons/ganons_castle
 
 extend region RR_GANONS_CASTLE_DEKU_SCRUBS {

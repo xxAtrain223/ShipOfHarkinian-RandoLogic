@@ -39,7 +39,7 @@ region RR_FIRE_TEMPLE_MQ_LOOP_HEXAGON_ROOM {
 
     exits {
         RR_FIRE_TEMPLE_MQ_FOYER_LOWER:      always
-        RR_FIRE_TEMPLE_MQ_LOOP_5_TILE_ROOM: any_age(can_kill(RE_STALFOS, ED_CLOSE, always, 2))
+        RR_FIRE_TEMPLE_MQ_LOOP_5_TILE_ROOM: any_age(can_kill(RE_STALFOS, ED_CLOSE, true, 2))
     }
 }
 
@@ -318,11 +318,11 @@ region RR_FIRE_TEMPLE_MQ_UPPER_LIZALFOS_MAZE {
         RR_FIRE_TEMPLE_MQ_LOWER_LIZALFOS_MAZE: always
         RR_FIRE_TEMPLE_MQ_MAZE_BOX_CAGE:       any_age(can_jumpslash() or has_explosives() or 
                                                (trick(RT_VISIBLE_COLLISION) and (can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_BOOMERANG))))
-        RR_FIRE_TEMPLE_MQ_SHORTCUT_CLIMB:          has_explosives()
+        RR_FIRE_TEMPLE_MQ_SHORTCUT_CLIMB:      has_explosives()
         #Implies RR_FIRE_TEMPLE_MQ_LOWER_LIZALFOS_MAZE access
-        RR_FIRE_TEMPLE_MQ_ABOVE_MAZE:              has_explosives() and can_use(RG_MEGATON_HAMMER) and (can_use(RG_LONGSHOT) or (can_use(RG_HOOKSHOT) and 
-                                                can_use(RG_SONG_OF_TIME)))
-        RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM:         small_keys(SCENE_FIRE_TEMPLE, 3) and can_use(RG_GORON_TUNIC)
+        RR_FIRE_TEMPLE_MQ_ABOVE_MAZE:          has_explosives() and can_use(RG_MEGATON_HAMMER) and (can_use(RG_LONGSHOT) or (can_use(RG_HOOKSHOT) and 
+                                               can_use(RG_SONG_OF_TIME)))
+        RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM:     small_keys(SCENE_FIRE_TEMPLE, 3) and can_use(RG_GORON_TUNIC)
     }
 }
 
