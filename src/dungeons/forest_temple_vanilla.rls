@@ -414,7 +414,7 @@ region RR_FOREST_TEMPLE_FROZEN_EYE_ROOM {
 
     exits {
         RR_FOREST_TEMPLE_NE_HALLWAY_STRAIGHTENED: small_keys(SCENE_FOREST_TEMPLE, 5)
-        RR_FOREST_TEMPLE_NE_HALLWAY_TWISTED: small_keys(SCENE_FOREST_TEMPLE, 5) and (can_use(RG_FAIRY_BOW) or can_use(RG_DINS_FIRE))
+        RR_FOREST_TEMPLE_NE_HALLWAY_TWISTED:      small_keys(SCENE_FOREST_TEMPLE, 5) and (can_use(RG_FAIRY_BOW) or can_use(RG_DINS_FIRE))
     }
 }
 
