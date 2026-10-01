@@ -319,7 +319,7 @@ region RR_SHADOW_TEMPLE_ACROSS_CHASM {
     scene: SCENE_SHADOW_TEMPLE
     
     events {
-        LOGIC_SHADOW_BRIDGE_BEYOND_BOAT_LOWERED: can_detonate_bomb_flowers()
+        LOGIC_SHADOW_BRIDGE_BEYOND_BOAT_LOWERED: can_detonate_upright_bomb_flower()
     }
     
     exits  {
@@ -356,7 +356,7 @@ region RR_SHADOW_TEMPLE_X_CROSS {
     scene: SCENE_SHADOW_TEMPLE
     
     exits {
-        RR_SHADOW_TEMPLE_MAZE: any_age(trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH)) and can_kill(RE_FLOORMASTER)
+        RR_SHADOW_TEMPLE_MAZE: any_age((trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH)) and can_kill(RE_FLOORMASTER))
     }
 }
 

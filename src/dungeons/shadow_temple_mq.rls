@@ -216,12 +216,12 @@ region RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_ROOM {
     events {
                                              # lens or trick is always required for hookshot targets. We handle it here to not complicate the RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_UPPER_DOOR logic
         LOGIC_SHADOW_MQ_FLOOR_SPIKES_RUPEES: (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and
-                                                          # Upper door side high rupee needs (hookshot and redead kill(as either age) for chest and adult) or longshot. hovers can cross from the left side with a backflip but that would be a trick
-                                                          # East midair rupee needs (hookshot and(hover boots or jumpslash from the upper door platform)) or longshot.
-                                                          # Combined these are longshot or (IsAdult and hookshot and (CanJumpslash or (Hover Boots and Here(CanKillRedeads))))
-                                                          (can_use(RG_LONGSHOT) or (is_adult() and can_use(RG_HOOKSHOT) and (can_jumpslash() or (can_use(RG_HOVER_BOOTS) and any_age(can_kill(RE_REDEAD)))))) and
-                                                          # 1 rupee is in spikes, needs hovers or damage
-                                                          (take_damage() or can_use(RG_HOVER_BOOTS) or can_use(RG_GORON_TUNIC))
+                                             # Upper door side high rupee needs (hookshot and redead kill(as either age) for chest and adult) or longshot. hovers can cross from the left side with a backflip but that would be a trick
+                                             # East midair rupee needs (hookshot and(hover boots or jumpslash from the upper door platform)) or longshot.
+                                             # Combined these are longshot or (IsAdult and hookshot and (CanJumpslash or (Hover Boots and Here(CanKillRedeads))))
+                                             (can_use(RG_LONGSHOT) or (is_adult() and can_use(RG_HOOKSHOT) and (can_jumpslash() or (can_use(RG_HOVER_BOOTS) and any_age(can_kill(RE_REDEAD)))))) and
+                                             # 1 rupee is in spikes, needs hovers or damage
+                                             (take_damage() or can_use(RG_HOVER_BOOTS) or can_use(RG_GORON_TUNIC))
     }
     
     exits {

@@ -495,7 +495,7 @@ extend region RR_SHADOW_TEMPLE_THREE_SKULL_JARS {
 
 extend region RR_SHADOW_TEMPLE_MQ_STONE_UMBRELLA_ROOM {
     locations {
-        RC_SHADOW_TEMPLE_MQ_GS_FALLING_SPIKES_ROOM:     can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or (is_adult() and can_ground_jump())
+        RC_SHADOW_TEMPLE_MQ_GS_FALLING_SPIKES_ROOM:     can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or (is_adult() and can_ground_jumpslash())
     }
 }
 
