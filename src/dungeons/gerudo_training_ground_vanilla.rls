@@ -146,7 +146,7 @@ region RR_GERUDO_TRAINING_GROUND_LAVA_ROOM {
 }
 
 region RR_GERUDO_TRAINING_GROUND_LAVA_ROOM_UPPER_LEDGE {
-    name: "Gerudo Training Ground Lava Room"
+    name: "Gerudo Training Ground Lava Room Upper Ledge"
     scene: SCENE_GERUDO_TRAINING_GROUND
     exits {
         RR_GERUDO_TRAINING_GROUND_LAVA_ROOM:   can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME) or is_child()

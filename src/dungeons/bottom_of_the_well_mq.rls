@@ -48,7 +48,7 @@ region RR_BOTW_MQ_MIDDLE {
 }
 
 region RR_BOTW_MQ_INVISIBLE_PATH {
-    name: "Bottom of the Well Invisible Path"
+    name: "Bottom of the Well MQ Invisible Path"
     scene: SCENE_BOTTOM_OF_THE_WELL
 
     locations {

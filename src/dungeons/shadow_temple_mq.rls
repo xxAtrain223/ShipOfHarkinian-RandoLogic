@@ -179,7 +179,7 @@ region RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT {
 }
 
 region RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT_DOOR_LEDGE {
-    name: "Shadow Temple MQ Upper Huge Pit Door Ledge"
+    name: "Shadow Temple MQ Lower Huge Pit Door Ledge"
     scene: SCENE_SHADOW_TEMPLE
     
     exits {

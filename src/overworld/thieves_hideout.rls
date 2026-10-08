@@ -156,7 +156,7 @@ region RR_TH_BREAK_ROOM {
 }
 
 region RR_TH_BREAK_ROOM_CORRIDOR {
-    name: "Thieves Hideout Break Room"
+    name: "Thieves Hideout Break Room Corridor"
     scene: SCENE_THIEVES_HIDEOUT
 
     exits {

@@ -36,7 +36,7 @@ region RR_ICE_CAVERN_MAP_ROOM {
 }
 
 region RR_ICE_CAVERN_COMPASS_ROOM {
-    name: "Ice Cavern Map Room"
+    name: "Ice Cavern Compass Room"
     scene: SCENE_ICE_CAVERN
 
     events {

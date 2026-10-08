@@ -168,7 +168,7 @@ region RR_DODONGOS_CAVERN_MQ_LARVAE_ROOM {
 }
 
 region RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS {
-    name: "Dodongos Cavern MQ Before Upper Lizalfos"
+    name: "Dodongos Cavern MQ Upper Lizalfos"
     scene: SCENE_DODONGOS_CAVERN
 
     exits {
