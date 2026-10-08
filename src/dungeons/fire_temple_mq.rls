@@ -463,7 +463,7 @@ region RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM_CAGE {
 }
 
 region RR_FIRE_TEMPLE_MQ_CORRIDOR {
-    name: "Fire Temple Corridor"
+    name: "Fire Temple MQ Corridor"
     scene: SCENE_FIRE_TEMPLE
 
     exits {

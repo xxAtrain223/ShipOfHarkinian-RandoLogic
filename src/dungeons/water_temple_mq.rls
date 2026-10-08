@@ -402,7 +402,7 @@ region RR_WATER_TEMPLE_MQ_LIZALFOS_CAGE {
 }
 
 region RR_WATER_TEMPLE_MQ_OUTSIDE_WATERFALL {
-    name: "Water Temple Outside Waterfall"
+    name: "Water Temple MQ Outside Waterfall"
     scene: SCENE_WATER_TEMPLE
     
     exits {
@@ -416,7 +416,7 @@ region RR_WATER_TEMPLE_MQ_OUTSIDE_WATERFALL {
 }
 
 region RR_WATER_TEMPLE_MQ_WATERFALL {
-    name: "Water Temple Waterfall"
+    name: "Water Temple MQ Waterfall"
     scene: SCENE_WATER_TEMPLE
     
     exits {
@@ -426,7 +426,7 @@ region RR_WATER_TEMPLE_MQ_WATERFALL {
 }
 
 region RR_WATER_TEMPLE_MQ_WATERFALL_TOP {
-    name: "Water Temple Waterfall Top"
+    name: "Water Temple MQ Waterfall Top"
     scene: SCENE_WATER_TEMPLE
     
     exits {
