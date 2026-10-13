@@ -1,7 +1,92 @@
-# overworld/lon_lon_ranch.rls
+# dungeons/ice_cavern
+
+extend region RR_ICE_CAVERN_FINAL_ROOM {
+    locations {
+        RC_SHEIK_IN_ICE_CAVERN: any_age(can_kill(RE_WOLFOS)) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_STALFOS_ROOM {
+    locations {
+        RC_SHEIK_IN_ICE_CAVERN: can_kill(RE_STALFOS) and has(RG_OPEN_CHEST) # rando enables this for child
+    }
+}
+
+# overworld/castle_grounds
+
+extend region RR_HC_GARDEN {
+    locations {
+        RC_SONG_FROM_IMPA:   has(RG_SPEAK_HYLIAN)
+    }
+}
+
+# overworld/death_mountain_crater
+
+extend region RR_DMC_CENTRAL {
+    locations {
+        RC_SHEIK_IN_CRATER: is_adult()
+    }
+}
+
+# overworld/desert_colossus
+
+extend region RR_DESERT_COLOSSUS_OUTSIDE_TEMPLE {
+    locations {
+        RC_SHEIK_AT_COLOSSUS: always
+    }
+}
+
+# overworld/graveyard
+
+extend region RR_GRAVEYARD_COMPOSERS_GRAVE {
+    locations {
+        RC_SONG_FROM_ROYAL_FAMILYS_TOMB: can_use_projectile() or can_jumpslash()
+    }
+}
+
+# overworld/hyrule_field
+
+extend region RR_HYRULE_FIELD {
+    locations {
+        RC_SONG_FROM_OCARINA_OF_TIME: is_child() and stone_count() == 3 and has(RG_BRONZE_SCALE)
+    }
+}
+
+# overworld/kakariko
+
+extend region RR_KAKARIKO_VILLAGE {
+    locations {
+        RC_SHEIK_IN_KAKARIKO: is_adult() and has(RG_FOREST_MEDALLION) and has(RG_FIRE_MEDALLION) and has(RG_WATER_MEDALLION)
+    }
+}
+
+extend region RR_KAK_WINDMILL_LOWER {
+    locations {
+        RC_SONG_FROM_WINDMILL:            is_adult() and has(RG_FAIRY_OCARINA)
+    }
+}
+
+# overworld/lon_lon_ranch
 
 extend region RR_LON_LON_RANCH {
     locations {
         RC_SONG_FROM_MALON: is_child() and has(RG_ZELDAS_LETTER) and has(RG_SPEAK_HYLIAN) and has(RG_FAIRY_OCARINA) and at_day()
+    }
+}
+
+# overworld/sacred_forest_meadow
+
+extend region RR_SACRED_FOREST_MEADOW {
+    locations {
+        RC_SONG_FROM_SARIA: is_child() and has(RG_ZELDAS_LETTER)
+        RC_SHEIK_IN_FOREST: is_adult()
+    }
+}
+
+# overworld/temple_of_time
+
+extend region RR_TOT_BEYOND_DOOR_OF_TIME {
+    locations {
+        RC_SHEIK_AT_TEMPLE:  has(RG_FOREST_MEDALLION) and is_adult()
     }
 }

@@ -57,10 +57,6 @@ region RR_GRAVEYARD_COMPOSERS_GRAVE {
     name: "Graveyard Composers Grave"
     scene: SCENE_ROYAL_FAMILYS_TOMB
 
-    locations {
-        RC_SONG_FROM_ROYAL_FAMILYS_TOMB: can_use_projectile() or can_jumpslash()
-    }
-
     exits {
         RR_THE_GRAVEYARD: always
     }

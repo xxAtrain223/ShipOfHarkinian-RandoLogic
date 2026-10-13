@@ -74,10 +74,6 @@ region RR_ICE_CAVERN_MQ_STALFOS_ROOM {
     name: "Ice Cavern MQ Stalfos Room"
     scene: SCENE_ICE_CAVERN
 
-    locations {
-        RC_SHEIK_IN_ICE_CAVERN: can_kill(RE_STALFOS) and has(RG_OPEN_CHEST) # rando enables this for child
-    }
-
     exits {
         RR_ICE_CAVERN_MQ_WEST_CORRIDOR:           any_age(can_kill(RE_STALFOS))
         RR_ICE_CAVERN_MQ_STALFOS_ROOM_UNDERWATER: can_use(RG_IRON_BOOTS) and any_age(can_kill(RE_STALFOS))

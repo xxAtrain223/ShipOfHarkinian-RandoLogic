@@ -87,10 +87,6 @@ region RR_ICE_CAVERN_FINAL_ROOM {
     name: "Ice Cavern Final Room"
     scene: SCENE_ICE_CAVERN
 
-    locations {
-        RC_SHEIK_IN_ICE_CAVERN: any_age(can_kill(RE_WOLFOS)) and has(RG_OPEN_CHEST)
-    }
-
     exits {
         RR_ICE_CAVERN_BEFORE_FINAL_ROOM:     any_age(can_kill(RE_WOLFOS))
         RR_ICE_CAVERN_FINAL_ROOM_UNDERWATER: any_age(can_kill(RE_WOLFOS)) and can_use(RG_IRON_BOOTS)

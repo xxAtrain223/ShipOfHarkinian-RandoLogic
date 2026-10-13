@@ -343,10 +343,6 @@ region RR_DMC_CENTRAL {
     events {
         LOGIC_FAIRY_ACCESS: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_DEATH_MOUNTAIN_CRATER_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
     }
-
-    locations {
-        RC_SHEIK_IN_CRATER: is_adult()
-    }
 }
 
 region RR_DMC_FAR_PLATFORM {
