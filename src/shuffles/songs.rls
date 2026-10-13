@@ -2,6 +2,7 @@
 
 extend region RR_LON_LON_RANCH {
     locations {
-        RC_SONG_FROM_MALON: is_child() and has(RG_ZELDAS_LETTER) and has(RG_SPEAK_HYLIAN) and has(RG_FAIRY_OCARINA) and at_day()
+        RC_SONG_FROM_MALON: is_child() and flag(LOGIC_MALON_RETURNED_FROM_CASTLE) and
+ has(RG_SPEAK_HYLIAN) and has(RG_FAIRY_OCARINA) and at_day()
     }
 }

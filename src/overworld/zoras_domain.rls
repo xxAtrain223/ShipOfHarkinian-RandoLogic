@@ -30,7 +30,10 @@ region RR_ZORAS_DOMAIN_ISLAND {
     scene: SCENE_ZORAS_DOMAIN
 
     exits {
-        RR_ZORAS_DOMAIN:     is_adult() or has(RG_BRONZE_SCALE) or can_use(RG_LONGSHOT) or (can_use(RG_HOOKSHOT) and trick(RT_HOOKSHOT_LADDERS))
+        RR_ZORAS_DOMAIN:     is_adult() or has(RG_BRONZE_SCALE) or can_use(RG_LONGSHOT) or
+                             (can_use(RG_HOOKSHOT) and trick(RT_HOOKSHOT_LADDERS)) or can_use(RG_IRON_BOOTS) or
+                             ((can_use(RG_HOVER_BOOTS) or bunny_hood()) and has(RG_CLIMB)) or can_bunny_mega_jumpslash()
+
         RR_ZD_STORMS_GROTTO: can_open_storms_grotto()
     }
 }

@@ -2,15 +2,19 @@ region RR_SFM_ENTRYWAY {
     name: "SFM Entryway"
     scene: SCENE_SACRED_FOREST_MEADOW
 
+    events {
+        LOGIC_OPEN_SFM_GATE: is_child() and can_kill(RE_WOLFOS)
+    }
+
     exits {
         RR_LW_BEYOND_MIDO:       always
-        RR_SACRED_FOREST_MEADOW: is_adult() or can_kill(RE_WOLFOS)
+        RR_SACRED_FOREST_MEADOW: is_adult() or flag(LOGIC_OPEN_SFM_GATE)
         RR_SFM_WOLFOS_GROTTO:    can_open_bomb_grotto()
     }
 }
 
 region RR_SFM_ABOVE_MAZE {
-    name: "SFM Maze"
+    name: "SFM Above Maze"
     scene: SCENE_SACRED_FOREST_MEADOW
 
     events {
@@ -33,14 +37,15 @@ region RR_SACRED_FOREST_MEADOW {
     }
 
     locations {
-        RC_SONG_FROM_SARIA: is_child() and has(RG_ZELDAS_LETTER)
+        RC_SONG_FROM_SARIA: is_child() and flag(LOGIC_MET_ZELDA)
         RC_SHEIK_IN_FOREST: is_adult()
     }
 
     exits {
         RR_FOREST_TEMPLE_ENTRYWAY: can_use(RG_HOOKSHOT)
-        RR_SFM_ENTRYWAY:           always
-        RR_SFM_ABOVE_MAZE:         can_climb_ladder() or (is_adult() and can_ground_jump())
+        RR_SFM_ENTRYWAY:           is_adult() or flag(LOGIC_OPEN_SFM_GATE)
+        RR_SFM_ABOVE_MAZE:         can_climb_ladder() or (is_adult() and (can_ground_jump() or (trick(RT_UNINTUITIVE_JUMPS) and bunny_hood())))
+
         RR_SFM_STORMS_GROTTO:      can_open_storms_grotto()
     }
 }

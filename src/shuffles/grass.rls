@@ -245,10 +245,15 @@ extend region RR_DEKU_TREE_MQ_OUTSIDE_BOSS_ROOM {
 
 # dungeons/dodongos_cavern
 
-extend region RR_DODONGOS_CAVERN_BOMB_ROOM_LOWER {
+extend region RR_DODONGOS_CAVERN_ENTRANCE_SIDE_BRIDGE {
     locations {
         RC_DODONGOS_CAVERN_FIRST_BRIDGE_GRASS: can_cut_shrubs()
-        RC_DODONGOS_CAVERN_BLADE_GRASS:        can_cut_shrubs()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_BOMB_ROOM_LOWER {
+    locations {
+        RC_DODONGOS_CAVERN_BLADE_GRASS: can_cut_shrubs()
     }
 }
 
@@ -280,15 +285,15 @@ extend region RR_DODONGOS_CAVERN_MQ_MAD_SCRUB_ROOM {
     }
 }
 
-extend region RR_DODONGOS_CAVERN_MQ_BACK_POE_ROOM {
+extend region RR_DODONGOS_CAVERN_MQ_BACK_BEHIND_FIRE {
     locations {
-        RC_DODONGOS_CAVERN_MQ_BACK_POE_GRASS: can_cut_shrubs()
+        RC_DODONGOS_CAVERN_MQ_ARMOS_GRASS: can_cut_shrubs()
     }
 }
 
-extend region RR_DODONGOS_CAVERN_MQ_BACK_SWITCH_GRAVE {
+extend region RR_DODONGOS_CAVERN_MQ_BACK_POE_ROOM {
     locations {
-        RC_DODONGOS_CAVERN_MQ_ARMOS_GRASS: can_cut_shrubs()
+        RC_DODONGOS_CAVERN_MQ_BACK_POE_GRASS: can_cut_shrubs()
     }
 }
 
@@ -316,9 +321,15 @@ extend region RR_JABU_JABUS_BELLY_MQ_HOLES_BASEMENT {
     }
 }
 
-extend region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM {
+extend region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_NORTH {
     locations {
         RC_JABU_JABUS_BELLY_MQ_BASEMENT_BOOMERANG_GRASS: can_cut_shrubs()
+    }
+}
+
+extend region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_SOUTH {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_BASEMENT_BOOMERANG_GRASS: can_use(RG_BOOMERANG)
     }
 }
 
@@ -657,14 +668,14 @@ extend region RR_LW_NEAR_SHORTCUTS_GROTTO {
 
 extend region RR_THE_MARKET {
     locations {
-        RC_MARKET_GRASS_1: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
-        RC_MARKET_GRASS_2: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
-        RC_MARKET_GRASS_3: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
-        RC_MARKET_GRASS_4: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
-        RC_MARKET_GRASS_5: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
-        RC_MARKET_GRASS_6: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
-        RC_MARKET_GRASS_7: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
-        RC_MARKET_GRASS_8: is_child() and (can_use_sword() or has(RG_GORONS_BRACELET))
+        RC_MARKET_GRASS_1: is_child() and can_cut_shrubs()
+        RC_MARKET_GRASS_2: is_child() and can_cut_shrubs()
+        RC_MARKET_GRASS_3: is_child() and can_cut_shrubs()
+        RC_MARKET_GRASS_4: is_child() and can_cut_shrubs()
+        RC_MARKET_GRASS_5: is_child() and can_cut_shrubs()
+        RC_MARKET_GRASS_6: is_child() and can_cut_shrubs()
+        RC_MARKET_GRASS_7: is_child() and can_cut_shrubs()
+        RC_MARKET_GRASS_8: is_child() and can_cut_shrubs()
     }
 }
 

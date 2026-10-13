@@ -4,14 +4,23 @@ region RR_ROOT {
     timePasses: TimePasses.No
     areas: [RA_LINKS_POCKET]
     
+    events {
+        LOGIC_SHOWED_MIDO_SWORD_AND_SHIELD: setting(RSK_FOREST) is RO_CLOSED_FOREST_OFF
+        LOGIC_MET_ZELDA:                    setting(RSK_STARTING_ZELDAS_LETTER) and not setting(RSK_SHUFFLE_ZELDAS_LETTER)
+        LOGIC_MALON_RETURNED_FROM_CASTLE:   setting(RSK_SHUFFLE_WEIRD_EGG) is RO_WEIRD_EGG_SKIP_TALON
+        LOGIC_TALON_RETURNED_FROM_CASTLE:   setting(RSK_SHUFFLE_WEIRD_EGG) is RO_WEIRD_EGG_SKIP_TALON
+    }
+
     locations {
-        RC_LINKS_POCKET:       always
-        RC_TRIFORCE_COMPLETED: collected_triforce_pieces() >= required_triforce_pieces()
+        RC_LINKS_POCKET:    always
+        RC_GANONS_BOSS_KEY: can_trigger_gbk()
+        RC_GANON_SOUL:      can_trigger_ganons_soul()
+        RC_WINCON:          can_trigger_wincon()
 
         RC_SARIA_SONG_HINT:  can_use(RG_SARIAS_SONG)
-        RC_SONG_FROM_IMPA:   setting(RSK_SKIP_CHILD_ZELDA)
-        RC_HC_MALON_EGG:     setting(RSK_SKIP_CHILD_ZELDA)
-        RC_HC_ZELDAS_LETTER: setting(RSK_SKIP_CHILD_ZELDA)
+        RC_SONG_FROM_IMPA:   setting(RSK_STARTING_ZELDAS_LETTER) and not setting(RSK_SHUFFLE_ZELDAS_LETTER)
+        RC_HC_MALON_EGG:     setting(RSK_SHUFFLE_WEIRD_EGG) is RO_WEIRD_EGG_SKIP_TALON
+        RC_HC_ZELDAS_LETTER: setting(RSK_STARTING_ZELDAS_LETTER) and not setting(RSK_SHUFFLE_ZELDAS_LETTER)
 
         RC_TOT_MASTER_SWORD: setting(RSK_SELECTED_STARTING_AGE) is RO_AGE_ADULT
     }

@@ -14,8 +14,8 @@ region RR_SPIRIT_TEMPLE_BOSS_ENTRYWAY {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_STATUE_HEAD:    is_vanilla() and never
-        RR_SPIRIT_TEMPLE_MQ_STATUE_HEAD: is_mq() and never
+        RR_SPIRIT_TEMPLE_STATUE_HEAD:    is_vanilla()
+        RR_SPIRIT_TEMPLE_MQ_STATUE_HEAD: is_mq()
         RR_SPIRIT_TEMPLE_BOSS_ROOM:      has(RG_SPIRIT_TEMPLE_BOSS_KEY)
     }
 }

@@ -117,3 +117,8 @@ extend region RR_ZR_OPEN_GROTTO {
         RC_ZR_OPEN_GROTTO_FISH: has_bottle()
     }
 }
+extend region RR_LH_FISHING_POND {
+    locations {
+        RC_LH_HYRULE_LOACH: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN)
+    }
+}

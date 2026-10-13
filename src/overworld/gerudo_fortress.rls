@@ -106,6 +106,7 @@ region RR_GF_TOP_OF_LOWER_VINES {
         RR_GF_ABOVE_GTG:             always
         RR_GF_BOTTOM_OF_LOWER_VINES: always
         RR_GF_BOTTOM_OF_UPPER_VINES: is_adult() and trick(RT_UNINTUITIVE_JUMPS)
+        RR_GF_BELOW_GS:              bunny_hovers() or can_megajump(not can_jumpslash())
     }
 }
 
@@ -118,7 +119,7 @@ region RR_GF_NEAR_GS {
         RR_GF_BOTTOM_OF_LOWER_VINES:     always
         RR_GF_TOP_OF_LOWER_VINES:        always
         RR_GF_SLOPED_ROOF:               is_adult() or can_ground_jump()
-        RR_GF_LONG_ROOF:                 can_use(RG_HOVER_BOOTS)
+        RR_GF_LONG_ROOF:                 can_use(RG_HOVER_BOOTS) or (is_adult() and bunny_hood()) or can_megajump()
         RR_GF_NEAR_CHEST:                can_use(RG_LONGSHOT)
         RR_GF_BELOW_GS:                  always
     }
@@ -143,7 +144,7 @@ region RR_GF_BOTTOM_OF_UPPER_VINES {
     exits {
         RR_GF_OUTSIDE_GTG:        always
         RR_GF_TOP_OF_LOWER_VINES: always
-        RR_GF_SLOPED_ROOF:        is_adult() and (can_use(RG_HOVER_BOOTS) or trick(RT_UNINTUITIVE_JUMPS))
+        RR_GF_SLOPED_ROOF:        can_megajump() or (is_adult() and (can_use(RG_HOVER_BOOTS) or bunny_hood() or trick(RT_UNINTUITIVE_JUMPS)))
         RR_GF_TOP_OF_UPPER_VINES: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
         RR_GF_TO_GTG:             is_adult() and trick(RT_GF_LEDGE_CLIP_INTO_GTG)
     }
@@ -157,7 +158,7 @@ region RR_GF_TOP_OF_UPPER_VINES {
         RR_GF_TOP_OF_LOWER_VINES:    always
         RR_GF_SLOPED_ROOF:           always
         RR_GF_BOTTOM_OF_UPPER_VINES: always
-        RR_GF_NEAR_CHEST:            can_use(RG_HOVER_BOOTS) or (is_adult() and reach_scarecrow()) or can_use(RG_LONGSHOT)
+        RR_GF_NEAR_CHEST:            can_use(RG_HOVER_BOOTS) or (is_adult() and (reach_scarecrow() or bunny_hood())) or can_use(RG_LONGSHOT) or can_megajump()
     }
 }
 
@@ -177,7 +178,7 @@ region RR_GF_LONG_ROOF {
     
     exits {
         RR_GF_BOTTOM_OF_LOWER_VINES: always
-        RR_GF_NEAR_GS:               (is_adult() and trick(RT_UNINTUITIVE_JUMPS)) or can_use(RG_HOVER_BOOTS)
+        RR_GF_NEAR_GS:               (is_adult() and (trick(RT_UNINTUITIVE_JUMPS) or bunny_hood())) or can_use(RG_HOVER_BOOTS) or can_megajump()
         RR_GF_BELOW_GS:              always
         RR_GF_NEAR_CHEST:            can_use(RG_LONGSHOT)
         RR_GF_BELOW_CHEST:           always
@@ -199,8 +200,9 @@ region RR_GF_BELOW_CHEST {
     scene: SCENE_GERUDOS_FORTRESS
 
     exits {
-        RR_TH_BREAK_ROOM: always
-        RR_GF_OUTSKIRTS:  always
+        RR_TH_BREAK_ROOM:  always
+        RR_GF_OUTSKIRTS:   always
+        RR_GF_JAIL_WINDOW: can_use(RG_LONGSHOT)
     }
 }
 
@@ -223,13 +225,14 @@ region RR_GF_ABOVE_JAIL {
     scene: SCENE_GERUDOS_FORTRESS
 
     exits {
-        RR_GF_OUTSKIRTS:           always
-        RR_GF_NEAR_CHEST:          can_use(RG_LONGSHOT)
-        RR_GF_BELOW_CHEST:         take_damage()
-        RR_GF_JAIL_WINDOW:         can_use(RG_HOOKSHOT)
-        RR_TH_BREAK_ROOM_CORRIDOR: always
-        RR_GF_TOWER:               trick(RT_GF_ADULT_SKIP_WASTELAND_GATE) and is_adult() and can_use(RG_HOVER_BOOTS) and can_jumpslash() and has(RG_GERUDO_MEMBERSHIP_CARD)
-        RR_GF_OUTSIDE_GATE:        trick(RT_GF_ADULT_SKIP_WASTELAND_GATE) and is_adult() and can_use(RG_HOVER_BOOTS) and can_jumpslash()
+        RR_GF_OUTSKIRTS:                 always
+        RR_GF_NEAR_CHEST:                can_use(RG_LONGSHOT)
+        RR_GF_LONG_ROOF:                 trick(RT_GF_ADULT_SKIP_WASTELAND_GATE) and can_use(RG_HOVER_BOOTS)
+        RR_GF_BELOW_CHEST:               take_damage()
+        RR_GF_JAIL_WINDOW:               can_use(RG_HOOKSHOT)
+        RR_TH_BREAK_ROOM_UPPER_CORRIDOR: always
+        RR_GF_TOWER:                     trick(RT_GF_ADULT_SKIP_WASTELAND_GATE) and is_adult() and can_use(RG_HOVER_BOOTS) and can_jumpslash() and has(RG_GERUDO_MEMBERSHIP_CARD)
+        RR_GF_OUTSIDE_GATE:              trick(RT_GF_ADULT_SKIP_WASTELAND_GATE) and is_adult() and can_use(RG_HOVER_BOOTS) and can_jumpslash()
     }
 }
 
@@ -238,7 +241,7 @@ region RR_GF_JAIL_WINDOW {
     scene: SCENE_GERUDOS_FORTRESS
 
     exits {
-        RR_GF_LONG_ROOF:   trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER)
+        RR_GF_LONG_ROOF:   can_recoil_hover(RECOIL_HAMMER) or can_megajump()
         RR_GF_OUTSKIRTS:   always
         RR_GF_BELOW_CHEST: always
         RR_GF_ABOVE_JAIL:  trick(RT_HOOKSHOT_CLIP) and can_use(RG_HOOKSHOT)

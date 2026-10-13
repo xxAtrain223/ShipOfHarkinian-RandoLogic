@@ -47,7 +47,7 @@ region RR_DEKU_TREE_2F_MIDDLE_ROOM {
     scene: SCENE_DEKU_TREE
 
     exits {
-        RR_DEKU_TREE_LOBBY:          any_age(can_reflect_nuts() or can_use(RG_MEGATON_HAMMER))
+        RR_DEKU_TREE_LOBBY_2F:       any_age(can_reflect_nuts() or can_use(RG_MEGATON_HAMMER))
         RR_DEKU_TREE_SLINGSHOT_ROOM: any_age(can_reflect_nuts() or can_use(RG_MEGATON_HAMMER))
     }
 }
@@ -71,7 +71,7 @@ region RR_DEKU_TREE_COMPASS_ROOM {
     }
 
     exits {
-        RR_DEKU_TREE_LOBBY:         has_fire_source_with_torch() or can_use(RG_FAIRY_BOW)
+        RR_DEKU_TREE_LOBBY_3F:      has_fire_source_with_torch() or can_use(RG_FAIRY_BOW)
         RR_DEKU_TREE_BOSS_ENTRYWAY: never
     }
 }
@@ -83,14 +83,14 @@ region RR_DEKU_TREE_BASEMENT_LOWER {
     events {
         LOGIC_STICK_ACCESS:           can_get_deku_baba_sticks()
         LOGIC_NUT_ACCESS:             can_get_deku_baba_nuts()
-        LOGIC_DEKU_TREE_B1_BROKE_WEB: (can_use(RG_STICKS) and (flag(LOGIC_DEKU_TREE_PUSHED_BASEMENT_BLOCK) or is_adult() or can_use(RG_HOVER_BOOTS))) or
+        LOGIC_DEKU_TREE_B1_BROKE_WEB: (can_use(RG_STICKS) and (flag(LOGIC_DEKU_TREE_PUSHED_BASEMENT_BLOCK) or is_adult() or can_use(RG_HOVER_BOOTS) or bunny_hood())) or
                                       (trick(RT_DEKU_B1_BOW_WEBS) and is_adult() and can_use(RG_FAIRY_BOW))
     }
 
     exits {
         RR_DEKU_TREE_LOBBY:               has(RG_CLIMB) or (is_adult() and can_use(RG_LONGSHOT))
         RR_DEKU_TREE_BASEMENT_SCRUB_ROOM: any_age(has_fire_source_with_torch() or can_use(RG_FAIRY_BOW))
-        RR_DEKU_TREE_BASEMENT_UPPER:      is_adult() or trick(RT_DEKU_B1_SKIP) or can_ground_jump() or flag(LOGIC_DEKU_TREE_PUSHED_BASEMENT_BLOCK)
+        RR_DEKU_TREE_BASEMENT_UPPER:      is_adult() or bunny_hood() or trick(RT_DEKU_B1_SKIP) or can_ground_jump() or flag(LOGIC_DEKU_TREE_PUSHED_BASEMENT_BLOCK)
         RR_DEKU_TREE_OUTSIDE_BOSS_ROOM:   never
     }
 }
@@ -111,6 +111,7 @@ region RR_DEKU_TREE_BASEMENT_WATER_ROOM_FRONT {
 
     exits {
         RR_DEKU_TREE_BASEMENT_SCRUB_ROOM:      always
+        # Taking damage or using a cutscene item on the platform can be used to pass the log, it's a trick.
         RR_DEKU_TREE_BASEMENT_WATER_ROOM_BACK: has(RG_BRONZE_SCALE) or trick(RT_DEKU_B1_BACKFLIP_OVER_SPIKED_LOG)
     }
 }
@@ -120,7 +121,7 @@ region RR_DEKU_TREE_BASEMENT_WATER_ROOM_BACK {
     scene: SCENE_DEKU_TREE
 
     exits {
-        RR_DEKU_TREE_BASEMENT_WATER_ROOM_FRONT: has(RG_BRONZE_SCALE) or trick(RT_DEKU_B1_BACKFLIP_OVER_SPIKED_LOG)
+        RR_DEKU_TREE_BASEMENT_WATER_ROOM_FRONT: has(RG_BRONZE_SCALE) or trick(RT_DEKU_B1_BACKFLIP_OVER_SPIKED_LOG) or take_damage()
         RR_DEKU_TREE_BASEMENT_TORCH_ROOM:       always
     }
 }

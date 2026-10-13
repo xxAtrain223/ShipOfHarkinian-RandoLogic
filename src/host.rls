@@ -13,6 +13,9 @@ extern enum Dungeon { DUNGEON_* }
 extern enum Area { RA_* }
 extern enum Trial { TK_* }
 extern enum Setting { RSK_*, RO_* }
+extern enum RecoilRequirements { RECOIL_* }
+extern enum ActorRecoilRequirements { ARECOIL_* }
+extern enum DamageAllowance { DAMAGE_* }
 
 enum TimePasses {
     Auto,
@@ -46,8 +49,9 @@ extern define is_adult() -> Bool
 extern define at_day() -> Bool
 extern define at_night() -> Bool
 
-extern define is_vanilla() -> Bool
-extern define is_mq() -> Bool
+# SCENE_ID_MAX means the dungeon of the current region
+extern define is_vanilla(scene: Scene = SCENE_ID_MAX) -> Bool
+extern define is_mq(scene: Scene = SCENE_ID_MAX) -> Bool
 
 extern define any_age(condition: Condition) -> Bool
 extern define spirit_shared(
@@ -57,12 +61,19 @@ extern define spirit_shared(
 extern define spirit_certain_access(reg: Region) -> Bool
 
 extern define can_use(item: Item) -> Bool
-extern define can_plant_bean(reg: Region, bean: Item) -> Bool
+extern define item_use_allowed(item: Item) -> Bool
+extern define b_allowed() -> Bool
+extern define can_plant_bean(bean: Item) -> Bool
+extern define bean_planted(bean: Event) -> Bool
+extern define can_open_large_chest() -> Bool
+extern define shop_item_not_for_sale(check: Location) -> Bool
 extern define bottle_count() -> Int
 extern define ocarina_buttons() -> Int
 extern define bombchus_enabled() -> Bool
+# health in OoT units, 16 per heart
+extern define health() -> Int
+# health scaled by how much a hit costs us, also 16 per heart on normal damage
 extern define effective_health() -> Int
-extern define hearts() -> Int
 extern define dungeon_count() -> Int
 extern define stone_count() -> Int
 extern define medallion_count() -> Int
@@ -75,8 +86,7 @@ extern define check_price(check: Location = RC_UNKNOWN_CHECK) -> Int
 extern define trial_skipped(trial: Trial) -> Bool
 
 extern define can_build_rainbow_bridge() -> Bool
-extern define can_trigger_lacs() -> Bool
+extern define can_trigger_gbk() -> Bool
+extern define can_trigger_ganons_soul() -> Bool
+extern define can_trigger_wincon() -> Bool
 extern define small_keys(scene: Scene, requiredAmount: Int) -> Bool
-
-extern define required_triforce_pieces() -> Int
-extern define collected_triforce_pieces() -> Int

@@ -1,6 +1,6 @@
 extend region RR_ROOT {
     events {
-        LOGIC_KAKARIKO_GATE_OPEN: setting(RSK_KAK_GATE) is RO_KAK_GATE_OPEN
+        LOGIC_KAKARIKO_GATE_OPEN: setting(RSK_STARTING_ZELDAS_LETTER)
     }
 }
 
@@ -12,38 +12,58 @@ region RR_KAKARIKO_VILLAGE {
         LOGIC_BUG_ACCESS:         has(RG_POWER_BRACELET)
         # Open Gate setting is applied in RR_ROOT
         LOGIC_KAKARIKO_GATE_OPEN: is_child() and has(RG_ZELDAS_LETTER)
-        LOGIC_BORROW_SKULL_MASK:  is_child() and flag(LOGIC_CAN_BORROW_MASKS) and has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN)
+        LOGIC_SOLD_KEATON_MASK:   is_child() and flag(LOGIC_KAKARIKO_GATE_OPEN) and has(RG_KEATON_MASK) and has(RG_CHILD_WALLET) and
+                                  has(RG_SPEAK_HYLIAN)
     }
 
     locations {
         RC_SHEIK_IN_KAKARIKO: is_adult() and has(RG_FOREST_MEDALLION) and has(RG_FIRE_MEDALLION) and has(RG_WATER_MEDALLION)
-        RC_KAK_ANJU_AS_CHILD: is_child() and at_day() and has(RG_CLIMB) and has(RG_POWER_BRACELET) and can_break_crates() and has(RG_SPEAK_HYLIAN)
         RC_KAK_ANJU_AS_ADULT: is_adult() and at_day() and has(RG_SPEAK_HYLIAN)
     }
 
     exits {
         RR_HYRULE_FIELD:             always
-        RR_KAK_CARPENTER_BOSS_HOUSE: can_open_overworld_door(RG_BOSS_HOUSE_KEY)
-        RR_KAK_HOUSE_OF_SKULLTULA:   can_open_overworld_door(RG_SKULLTULA_HOUSE_KEY)
-        RR_KAK_IMPAS_HOUSE:          can_open_overworld_door(RG_IMPAS_HOUSE_KEY)
-        RR_KAK_WINDMILL_LOWER:       can_open_overworld_door(RG_WINDMILL_KEY)
-        RR_KAK_BAZAAR:               is_adult() and at_day() and can_open_overworld_door(RG_KAK_BAZAAR_KEY)
-        RR_KAK_SHOOTING_GALLERY:     is_adult() and at_day() and can_open_overworld_door(RG_KAK_SHOOTING_GALLERY_KEY)
+        RR_KAK_CARPENTER_BOSS_HOUSE: has(RG_BOSS_HOUSE_KEY)
+        RR_KAK_HOUSE_OF_SKULLTULA:   has(RG_SKULLTULA_HOUSE_KEY)
+        RR_KAK_IMPAS_HOUSE:          has(RG_IMPAS_HOUSE_KEY)
+        RR_KAK_WINDMILL_LOWER:       has(RG_WINDMILL_KEY)
+        RR_KAK_BAZAAR:               is_adult() and at_day() and has(RG_KAK_BAZAAR_KEY)
+        RR_KAK_SHOOTING_GALLERY:     is_adult() and at_day() and has(RG_KAK_SHOOTING_GALLERY_KEY)
         RR_KAK_WELL:                 is_adult() or flag(LOGIC_DRAIN_WELL) or can_use(RG_IRON_BOOTS) or
                                      (trick(RT_BOTTOM_OF_THE_WELL_NAVI_DIVE) and is_child() and has(RG_BRONZE_SCALE) and can_jumpslash())
-        RR_KAK_POTION_SHOP:          (at_day() or is_child()) and can_open_overworld_door(RG_KAK_POTION_SHOP_KEY)
+        RR_KAK_POTION_SHOP:          (at_day() or is_child()) and has(RG_KAK_POTION_SHOP_KEY)
         RR_KAK_REDEAD_GROTTO:        can_open_bomb_grotto()
-        RR_KAK_IMPAS_LEDGE:          (is_child() and at_day() and has(RG_POWER_BRACELET)) or (is_adult() and trick(RT_VISIBLE_COLLISION))
+        RR_KAK_IMPAS_LEDGE:          (is_child() and ((at_day() and has(RG_POWER_BRACELET)) or (bunny_hovers() and can_jumpslash()) or
+                                       can_megajump(true) or can_bomb_recoil_hover())) or (is_adult() and trick(RT_VISIBLE_COLLISION))
         RR_KAK_WATCHTOWER:           has(RG_CLIMB) and
                                      (is_adult() or at_day() or can_kill(RE_GOLD_SKULLTULA, ED_LONGSHOT) or
                                       (trick(RT_KAK_TOWER_GS) and can_jumpslash_except_hammer()))
-        RR_KAK_ROOFTOP:              can_use(RG_HOOKSHOT) or (trick(RT_UNINTUITIVE_JUMPS) and is_adult())
-        RR_KAK_IMPAS_ROOFTOP:        can_use(RG_HOOKSHOT) or (trick(RT_KAK_ROOFTOP_GS) and can_use(RG_HOVER_BOOTS))
+        RR_KAK_ROOFTOP:              can_use(RG_HOOKSHOT) or (is_adult() and (trick(RT_UNINTUITIVE_JUMPS) or can_bunny_mega_jumpslash()))
+        RR_KAK_IMPAS_ROOFTOP:        can_use(RG_HOOKSHOT) or (trick(RT_KAK_ROOFTOP_GS) and can_use(RG_HOVER_BOOTS)) or (is_adult() and
+                                      (can_megajump(true) or can_bomb_recoil_hover()))
         RR_THE_GRAVEYARD:            always
         RR_KAK_BEHIND_GATE:          is_adult() or flag(LOGIC_KAKARIKO_GATE_OPEN)
-        # adult can jump from the fence near the windmill to ledgegrab the fence near granny's shop. is in logic on N64
-        RR_KAK_BACKYARD:             is_adult() or (at_day() and has(RG_POWER_BRACELET))
+        # adult or bunny can jump from the fence near the windmill to ledgegrab the fence near granny's shop. is in logic on N64
+        RR_KAK_BACKYARD:             is_adult() or bunny_hood() or (at_day() and has(RG_POWER_BRACELET)) or can_use(RG_HOVER_BOOTS)
+        RR_KAK_HILL:                 (is_adult() and can_use(RG_HOVER_BOOTS)) or can_megajump() or (has(RG_LONGSHOT) and ((is_adult() and at_day() and has(RG_POWER_BRACELET)) or
+                                       (trick(RT_UNINTUITIVE_JUMPS) and can_jumpslash() and take_damage())))
         RR_KAK_BEHIND_POTION_SHOP:   can_use(RG_HOOKSHOT) or (trick(RT_UNINTUITIVE_JUMPS) and is_adult())
+    }
+}
+
+region RR_KAK_HILL {
+    name: "Kak Hill"
+    scene: SCENE_KAKARIKO_VILLAGE
+
+    locations {
+        # assumes access to most of the town
+        RC_KAK_ANJU_AS_CHILD: is_child() and at_day() and has(RG_POWER_BRACELET) and can_break_crates() and has(RG_SPEAK_HYLIAN)
+    }
+
+    exits {
+        RR_KAKARIKO_VILLAGE: always
+        RR_KAK_BACKYARD:     always
+        RR_KAK_ROOFTOP:      is_adult() and can_megajump(true)
     }
 }
 
@@ -77,6 +97,7 @@ region RR_KAK_WATCHTOWER {
     }
 }
 
+# specifically the roof with Man on Roof
 region RR_KAK_ROOFTOP {
     name: "Kak Rooftop"
     scene: SCENE_KAKARIKO_VILLAGE
@@ -87,7 +108,10 @@ region RR_KAK_ROOFTOP {
 
     exits {
         RR_KAK_BACKYARD:           always
-        RR_KAK_BEHIND_POTION_SHOP: has(RG_HOVER_BOOTS)
+        RR_KAK_HILL:               can_megajump(not can_jumpslash()) or can_bomb_recoil_hover()
+        # via archery game roof
+        RR_KAK_IMPAS_ROOFTOP:      can_megajump(true) or can_bomb_recoil_hover()
+        RR_KAK_BEHIND_POTION_SHOP: has(RG_HOVER_BOOTS) or can_megajump()
         RR_KAKARIKO_VILLAGE:       always
     }
 }
@@ -98,8 +122,9 @@ region RR_KAK_BACKYARD {
 
     exits {
         RR_KAKARIKO_VILLAGE:        always
+        RR_KAK_HILL:                has(RG_CLIMB)
         RR_KAK_OPEN_GROTTO:         always
-        RR_KAK_ODD_POTION_BUILDING: is_adult() and can_open_overworld_door(RG_GRANNYS_POTION_SHOP_KEY)
+        RR_KAK_ODD_POTION_BUILDING: is_adult() and has(RG_GRANNYS_POTION_SHOP_KEY)
         RR_KAK_BEHIND_POTION_SHOP:  has(RG_CLIMB)
     }
 }
@@ -110,10 +135,10 @@ region RR_KAK_BEHIND_POTION_SHOP {
 
     exits {
         RR_KAK_BACKYARD:    always
-        RR_KAK_POTION_SHOP: is_adult() and at_day() and can_open_overworld_door(RG_KAK_POTION_SHOP_KEY)
+        RR_KAK_POTION_SHOP: is_adult() and at_day() and has(RG_KAK_POTION_SHOP_KEY)
         # can ledgegrab fence to rooftop with hover boots, but that's more difficult than the unintuitive jump,
         # so not including in default logic
-        RR_KAK_ROOFTOP:     trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER) and is_adult()
+        RR_KAK_ROOFTOP:     can_recoil_hover(RECOIL_HAMMER) or can_megajump()
     }
 }
 
@@ -180,13 +205,13 @@ region RR_KAK_WINDMILL_LOWER {
 
     locations {
         RC_KAK_WINDMILL_FREESTANDING_POH: can_use(RG_BOOMERANG)
-        RC_SONG_FROM_WINDMILL:            is_adult() and has(RG_FAIRY_OCARINA)
+        RC_SONG_FROM_WINDMILL:            is_adult() and can_use(RG_FAIRY_OCARINA)
     }
 
     exits {
         RR_KAKARIKO_VILLAGE:   always
-        RR_KAK_WINDMILL_UPPER: (is_adult() and (trick(RT_UNINTUITIVE_JUMPS) or can_ground_jump())) or
-                               (is_child() and can_jumpslash() and trick(RT_KAK_CHILD_WINDMILL_POH))
+        RR_KAK_WINDMILL_UPPER: (is_adult() and (trick(RT_UNINTUITIVE_JUMPS) or can_ground_jump())) or (is_child() and can_jumpslash() and
+                                trick(RT_KAK_CHILD_WINDMILL_POH)) or can_megajump()
     }
 }
 
@@ -217,7 +242,7 @@ region RR_KAK_SHOOTING_GALLERY {
     scene: SCENE_SHOOTING_GALLERY
 
     locations {
-        RC_KAK_SHOOTING_GALLERY_REWARD: is_adult() and has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and can_use(RG_FAIRY_BOW)
+        RC_KAK_SHOOTING_GALLERY_REWARD: is_adult() and has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and has(RG_FAIRY_BOW)
     }
 
     exits {

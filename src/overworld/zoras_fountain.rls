@@ -75,7 +75,8 @@ region RR_ZF_HIDDEN_LEDGE {
     scene: SCENE_ZORAS_FOUNTAIN
 
     exits {
-        # It is possible to avoid fall damage by jumping towards the right and landing in deeper water, but this is basically never relevent
+        # It is possible to avoid fall damage by jumping towards the right and landing in deeper water, but this is basically never relevant
+
         RR_ZORAS_FOUNTAIN: has(RG_BRONZE_SCALE) or take_damage()
         RR_ZF_HIDDEN_CAVE: always
     }

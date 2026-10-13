@@ -45,7 +45,7 @@ extend region RR_BOTW_MQ_PERIMETER {
         # Instead of blowing up the boulder, you can aim through the lower left side with sling (either age)
         # or as child with bow. Not even bow extension seems to get adult's bow to work; this would be a trick
         RC_BOTTOM_OF_THE_WELL_MQ_OUTER_LOBBY_POT: (any_age(blast_or_smash()) and can_hit_eye_targets()) or
-                                                  (trick(RT_VISIBLE_COLLISION) and is_child() ? can_hit_eye_targets() : can_use(RG_FAIRY_SLINGSHOT))
+                                                  (trick(RT_BOULDER_COLLISION) and is_child() ? can_hit_eye_targets() : can_use(RG_FAIRY_SLINGSHOT))
     }
 }
 
@@ -73,8 +73,13 @@ extend region RR_DODONGOS_CAVERN_SE_CORRIDOR {
         RC_DODONGOS_CAVERN_SIDE_ROOM_POT_2: can_break_pots()
         RC_DODONGOS_CAVERN_SIDE_ROOM_POT_3: can_break_pots()
         RC_DODONGOS_CAVERN_SIDE_ROOM_POT_4: can_break_pots()
-        RC_DODONGOS_CAVERN_SIDE_ROOM_POT_5: can_break_pots()
-        RC_DODONGOS_CAVERN_SIDE_ROOM_POT_6: can_break_pots()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_NEAR_LOWER_LIZALFOS {
+    locations {
+        RC_DODONGOS_CAVERN_NEAR_LOWER_LIZALFOS_POT_1: can_break_pots()
+        RC_DODONGOS_CAVERN_NEAR_LOWER_LIZALFOS_POT_2: can_break_pots()
     }
 }
 
@@ -130,6 +135,19 @@ extend region RR_DODONGOS_CAVERN_SECOND_SLINGSHOT_ROOM {
     }
 }
 
+extend region RR_DODONGOS_CAVERN_ENTRANCE_SIDE_BRIDGE {
+    locations {
+        RC_DODONGOS_CAVERN_BLADE_POT_1: can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_BOMB_ROOM_LOWER {
+    locations {
+        # You can get this from the ledge leading to the slingshot loop. breaking the mud wall is not necessary
+        RC_DODONGOS_CAVERN_BLADE_POT_2: can_use(RG_BOOMERANG)
+    }
+}
+
 extend region RR_DODONGOS_CAVERN_BOMB_ROOM_UPPER {
     locations {
         RC_DODONGOS_CAVERN_BLADE_POT_1: can_break_pots()
@@ -157,6 +175,7 @@ extend region RR_DODONGOS_CAVERN_MQ_STAIRS_LOWER {
 
 extend region RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_LOWER {
     locations {
+        # on review of the review, RC_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_MIDDLE_POT has good line of sight from the top of the ladder to big block
         RC_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_MIDDLE_POT: can_use(RG_BOOMERANG)
     }
 }
@@ -227,8 +246,8 @@ extend region RR_DODONGOS_CAVERN_MQ_BACK_POE_ROOM {
 
 extend region RR_DODONGOS_CAVERN_MQ_BACK_SWITCH_GRAVE {
     locations {
-        RC_DODONGOS_CAVERN_MQ_ARMOS_ROOM_NW_POT: can_break_pots()
-        RC_DODONGOS_CAVERN_MQ_ARMOS_ROOM_NE_POT: can_break_pots()
+        RC_DODONGOS_CAVERN_MQ_ARMOS_ROOM_NW_POT: can_break_pots() or has(RG_GORONS_BRACELET)
+        RC_DODONGOS_CAVERN_MQ_ARMOS_ROOM_NE_POT: can_break_pots() or has(RG_GORONS_BRACELET)
     }
 }
 
@@ -461,7 +480,7 @@ extend region RR_FOREST_TEMPLE_MQ_BASEMENT_POT_ROOM {
 
 # dungeons/ganons_castle
 
-extend region RR_GANONS_TOWER_BEFORE_GANONDORF_LAIR {
+extend region RR_GANONS_TOWER_POT_ROOM {
     locations {
         RC_GANONS_CASTLE_GANONS_TOWER_POT_1:  can_break_pots()
         RC_GANONS_CASTLE_GANONS_TOWER_POT_2:  can_break_pots()
@@ -672,11 +691,21 @@ extend region RR_JABU_JABUS_BELLY_BOSS_ROOM {
 
 extend region RR_JABU_JABUS_BELLY_B1_JIGGLY {
     locations {
-        RC_JABU_JABUS_BELLY_TWO_OCTOROK_POT_1: can_use(RG_BOOMERANG) or (can_break_pots() and trick(RT_JABU_B1_CUBE_HOVER) and can_use(RG_HOVER_BOOTS))
-        RC_JABU_JABUS_BELLY_TWO_OCTOROK_POT_2: can_use(RG_BOOMERANG) or (can_break_pots() and trick(RT_JABU_B1_CUBE_HOVER) and can_use(RG_HOVER_BOOTS))
-        RC_JABU_JABUS_BELLY_TWO_OCTOROK_POT_3: can_use(RG_BOOMERANG) or (can_break_pots() and trick(RT_JABU_B1_CUBE_HOVER) and can_use(RG_HOVER_BOOTS))
-        RC_JABU_JABUS_BELLY_TWO_OCTOROK_POT_4: can_use(RG_BOOMERANG) or (can_break_pots() and trick(RT_JABU_B1_CUBE_HOVER) and can_use(RG_HOVER_BOOTS))
-        RC_JABU_JABUS_BELLY_TWO_OCTOROK_POT_5: can_use(RG_BOOMERANG) or (can_break_pots() and trick(RT_JABU_B1_CUBE_HOVER) and can_use(RG_HOVER_BOOTS))
+        RC_JABU_JABUS_BELLY_TWO_OCTOROK_POT_1: can_use(RG_BOOMERANG)
+        RC_JABU_JABUS_BELLY_TWO_OCTOROK_POT_2: can_use(RG_BOOMERANG)
+        RC_JABU_JABUS_BELLY_TWO_OCTOROK_POT_3: can_use(RG_BOOMERANG)
+        RC_JABU_JABUS_BELLY_TWO_OCTOROK_POT_4: can_use(RG_BOOMERANG)
+        RC_JABU_JABUS_BELLY_TWO_OCTOROK_POT_5: can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_JABU_JABUS_BELLY_B1_JIGGLY_POTS {
+    locations {
+        RC_JABU_JABUS_BELLY_TWO_OCTOROK_POT_1: can_break_pots()
+        RC_JABU_JABUS_BELLY_TWO_OCTOROK_POT_2: can_break_pots()
+        RC_JABU_JABUS_BELLY_TWO_OCTOROK_POT_3: can_break_pots()
+        RC_JABU_JABUS_BELLY_TWO_OCTOROK_POT_4: can_break_pots()
+        RC_JABU_JABUS_BELLY_TWO_OCTOROK_POT_5: can_break_pots()
     }
 }
 
@@ -710,7 +739,7 @@ extend region RR_JABU_JABUS_BELLY_MQ_UNDERWATER_ALCOVE {
     }
 }
 
-extend region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM {
+extend region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_ALCOVE {
     locations {
         RC_JABU_JABUS_BELLY_MQ_TIME_BLOCK_POT_1: can_break_pots()
         RC_JABU_JABUS_BELLY_MQ_TIME_BLOCK_POT_2: can_break_pots()
@@ -1125,6 +1154,13 @@ extend region RR_WATER_TEMPLE_LIKE_LIKE_SPIKES {
     }
 }
 
+extend region RR_WATER_TEMPLE_RIVER_PLATFORM {
+    locations {
+        RC_WATER_TEMPLE_RIVER_POT_1: can_use(RG_BOOMERANG)
+        RC_WATER_TEMPLE_RIVER_POT_2: can_use(RG_BOOMERANG)
+    }
+}
+
 extend region RR_WATER_TEMPLE_RIVER_POTS {
     locations {
         RC_WATER_TEMPLE_RIVER_POT_1: can_break_pots()
@@ -1211,6 +1247,13 @@ extend region RR_WATER_TEMPLE_MQ_RIVER_POTS {
     locations {
         RC_WATER_TEMPLE_MQ_RIVER_POT_1: can_break_pots()
         RC_WATER_TEMPLE_MQ_RIVER_POT_2: can_break_pots()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_RIVER_END {
+    locations {
+        RC_WATER_TEMPLE_MQ_RIVER_POT_1: can_use(RG_BOOMERANG)
+        RC_WATER_TEMPLE_MQ_RIVER_POT_2: can_use(RG_BOOMERANG)
     }
 }
 
@@ -1351,21 +1394,22 @@ extend region RR_KAK_BACKYARD {
 
 extend region RR_KF_LINKS_HOUSE {
     locations {
-        RC_KF_LINKS_HOUSE_POT: has(RG_POWER_BRACELET)
+        RC_KF_LINKS_HOUSE_POT: can_break_pots()
     }
 }
 
 extend region RR_KF_HOUSE_OF_TWINS {
     locations {
-        RC_KF_TWINS_HOUSE_POT_1: has(RG_POWER_BRACELET)
-        RC_KF_TWINS_HOUSE_POT_2: has(RG_POWER_BRACELET)
+        RC_KF_TWINS_HOUSE_POT_1: can_break_pots()
+        RC_KF_TWINS_HOUSE_POT_2: can_break_pots()
     }
 }
 
 extend region RR_KF_KNOW_IT_ALL_HOUSE {
     locations {
-        RC_KF_BROTHERS_HOUSE_POT_1: has(RG_POWER_BRACELET)
-        RC_KF_BROTHERS_HOUSE_POT_2: has(RG_POWER_BRACELET)
+        RC_KF_BROTHERS_HOUSE_POT_1: can_break_pots()
+        RC_KF_BROTHERS_HOUSE_POT_2: can_break_pots()
+
     }
 }
 
@@ -1385,9 +1429,10 @@ extend region RR_LON_LON_RANCH {
 
 extend region RR_LLR_TALONS_HOUSE {
     locations {
-        RC_LLR_TALONS_HOUSE_POT_1: has(RG_POWER_BRACELET) or can_use_sword() # TODO: can_break_pots() restricted
-        RC_LLR_TALONS_HOUSE_POT_2: has(RG_POWER_BRACELET) or can_use_sword() # TODO: can_break_pots() restricted
-        RC_LLR_TALONS_HOUSE_POT_3: has(RG_POWER_BRACELET) or can_use_sword() # TODO: can_break_pots() restricted
+        RC_LLR_TALONS_HOUSE_POT_1: can_break_pots()
+        RC_LLR_TALONS_HOUSE_POT_2: can_break_pots()
+        RC_LLR_TALONS_HOUSE_POT_3: can_break_pots()
+
     }
 }
 
@@ -1455,9 +1500,9 @@ extend region RR_MARKET_GUARD_HOUSE {
 
 extend region RR_MARKET_MAN_IN_GREEN_HOUSE {
     locations {
-        RC_MK_BACK_ALLEY_HOUSE_POT_1: has(RG_POWER_BRACELET)
-        RC_MK_BACK_ALLEY_HOUSE_POT_2: has(RG_POWER_BRACELET)
-        RC_MK_BACK_ALLEY_HOUSE_POT_3: has(RG_POWER_BRACELET)
+        RC_MK_BACK_ALLEY_HOUSE_POT_1: can_break_pots()
+        RC_MK_BACK_ALLEY_HOUSE_POT_2: can_break_pots()
+        RC_MK_BACK_ALLEY_HOUSE_POT_3: can_break_pots()
     }
 }
 
@@ -1499,7 +1544,8 @@ extend region RR_TH_KITCHEN_MAIN {
 
 extend region RR_TH_KITCHEN_BY_CORRIDOR {
     locations {
-        RC_TH_KITCHEN_POT_1: can_use(RG_BOOMERANG)
+        # "voidout" here means getting caught by guards
+        RC_TH_KITCHEN_POT_1: can_use(RG_BOOMERANG) or (trick(RT_VOIDOUT_COLLECTION) and can_break_pots(ED_BOMB_THROW))
         RC_TH_KITCHEN_POT_2: can_use(RG_BOOMERANG)
     }
 }
@@ -1507,7 +1553,7 @@ extend region RR_TH_KITCHEN_BY_CORRIDOR {
 extend region RR_TH_KITCHEN_OPPOSITE_CORRIDOR {
     locations {
         RC_TH_KITCHEN_POT_1: can_use(RG_BOOMERANG)
-        RC_TH_KITCHEN_POT_2: can_use(RG_BOOMERANG)
+        RC_TH_KITCHEN_POT_2: can_use(RG_BOOMERANG) or (trick(RT_VOIDOUT_COLLECTION) and can_break_pots(ED_BOMB_THROW))
     }
 }
 

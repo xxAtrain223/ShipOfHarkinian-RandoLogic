@@ -17,7 +17,7 @@ region RR_TEMPLE_OF_TIME{
     scene: SCENE_TEMPLE_OF_TIME
 
     locations {
-        RC_TOT_LIGHT_ARROWS_CUTSCENE: is_adult() and can_trigger_lacs()
+        RC_TOT_LIGHT_ARROWS_CUTSCENE: is_adult() and has(RG_SHADOW_MEDALLION) and has(RG_SPIRIT_MEDALLION)
     }
 
     exits {
@@ -33,7 +33,7 @@ region RR_TOT_BEYOND_DOOR_OF_TIME {
     locations {
         RC_TOT_MASTER_SWORD: is_adult()
         RC_GIFT_FROM_RAURU:  is_adult()
-        RC_SHEIK_AT_TEMPLE:  has(RG_FOREST_MEDALLION) and is_adult()
+        RC_SHEIK_AT_TEMPLE:  is_adult() and has(RG_FOREST_MEDALLION)
     }
 
     exits {

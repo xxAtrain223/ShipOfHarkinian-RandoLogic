@@ -3,14 +3,14 @@ region RR_DEATH_MOUNTAIN_TRAIL {
     scene: SCENE_DEATH_MOUNTAIN_TRAIL
 
     events {
-        LOGIC_FAIRY_ACCESS: is_child() and can_use(RG_MAGIC_BEAN) and has(RG_DEATH_MOUNTAIN_TRAIL_BEAN_SOUL) and
-                            can_use(RG_SONG_OF_STORMS) and (has_explosives() or has(RG_GORONS_BRACELET))
+        LOGIC_PLANT_DEATH_MOUNTAIN_TRAIL_BEAN: can_plant_bean(RG_DEATH_MOUNTAIN_TRAIL_BEAN_SOUL) and (has_explosives() or has(RG_GORONS_BRACELET))
+        LOGIC_FAIRY_ACCESS:                    is_child() and bean_planted(LOGIC_PLANT_DEATH_MOUNTAIN_TRAIL_BEAN) and can_use(RG_SONG_OF_STORMS) and
+                                               (has_explosives() or has(RG_GORONS_BRACELET))
     }
 
     locations {
-        RC_DMT_FREESTANDING_POH: take_damage() or can_use(RG_HOVER_BOOTS) or
-                                 (is_adult() and can_plant_bean(RR_DEATH_MOUNTAIN_TRAIL, RG_DEATH_MOUNTAIN_TRAIL_BEAN_SOUL) and
-                                 (has_explosives() or has(RG_GORONS_BRACELET)))
+        # adult and bunny jump off the nearby ledge and over the fence
+        RC_DMT_FREESTANDING_POH: is_adult() or take_damage() or can_use(RG_HOVER_BOOTS) or bunny_hood()
     }
 
     exits {
@@ -18,7 +18,7 @@ region RR_DEATH_MOUNTAIN_TRAIL {
         RR_GORON_CITY:               always
         RR_DEATH_MOUNTAIN_ROCKFALL:  any_age(blast_or_smash()) or
                                      (is_adult() and
-                                     ((can_plant_bean(RR_DEATH_MOUNTAIN_TRAIL, RG_DEATH_MOUNTAIN_TRAIL_BEAN_SOUL) and has(RG_GORONS_BRACELET)) or
+                                     ((bean_planted(LOGIC_PLANT_DEATH_MOUNTAIN_TRAIL_BEAN) and has(RG_GORONS_BRACELET)) or
                                      (can_use(RG_HOVER_BOOTS) and trick(RT_DMT_CLIMB_HOVERS))))
         RR_DODONGOS_CAVERN_ENTRYWAY: has_explosives() or has(RG_GORONS_BRACELET) or is_adult()
         RR_DMT_STORMS_GROTTO:        can_open_storms_grotto()
@@ -31,6 +31,8 @@ region RR_DEATH_MOUNTAIN_ROCKFALL {
 
     exits {
         RR_DEATH_MOUNTAIN_TRAIL:  always
+        # bunny keeps you ahead of the aimed boulders, but random boulders ahead become unavoidable
+        # because the aimed boulders catch you if you change course
         RR_DEATH_MOUNTAIN_SUMMIT: has(RG_CLIMB) and
                                   (is_adult() or trick(RT_DMT_SHIELDLESS_CLIMB) or has(RG_HYLIAN_SHIELD) or can_use(RG_NAYRUS_LOVE))
         RR_DMT_COW_GROTTO:        any_age(blast_or_smash())

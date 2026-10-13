@@ -12,9 +12,10 @@ region RR_THE_LOST_WOODS {
     scene: SCENE_LOST_WOODS
 
     events {
-        LOGIC_FAIRY_ACCESS:       is_child() and can_use(RG_MAGIC_BEAN) and has(RG_LOST_WOODS_BRIDGE_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS)
-        LOGIC_BUG_ACCESS:         is_child() and can_cut_shrubs()
-        LOGIC_BORROW_SPOOKY_MASK: is_child() and flag(LOGIC_BORROW_SKULL_MASK) and can_use(RG_SARIAS_SONG) and has(RG_CHILD_WALLET) and has(RG_SPEAK_KOKIRI) and has(RG_SPEAK_HYLIAN)
+        LOGIC_PLANT_LOST_WOODS_BRIDGE_BEAN: can_plant_bean(RG_LOST_WOODS_BRIDGE_BEAN_SOUL)
+        LOGIC_FAIRY_ACCESS:                 is_child() and bean_planted(LOGIC_PLANT_LOST_WOODS_BRIDGE_BEAN) and can_use(RG_SONG_OF_STORMS)
+        LOGIC_BUG_ACCESS:                   is_child() and can_cut_shrubs()
+        LOGIC_SOLD_SKULL_MASK:              is_child() and has(RG_SKULL_MASK) and can_use(RG_SARIAS_SONG) and has(RG_CHILD_WALLET) and has(RG_SPEAK_KOKIRI) and has(RG_SPEAK_HYLIAN)
     }
 
     locations {
@@ -27,7 +28,7 @@ region RR_THE_LOST_WOODS {
         RR_LW_FOREST_EXIT:           always
         RR_LW_UNDER_BRIDGE:          always
         RR_GC_WOODS_WARP:            always
-        RR_LW_BRIDGE:                (is_adult() and (can_plant_bean(RR_THE_LOST_WOODS, RG_LOST_WOODS_BRIDGE_BEAN_SOUL) or trick(RT_LW_BRIDGE))) or can_use(RG_HOVER_BOOTS) or can_use(RG_LONGSHOT)
+        RR_LW_BRIDGE:                (is_adult() and (bean_planted(LOGIC_PLANT_LOST_WOODS_BRIDGE_BEAN) or (trick(RT_LW_BRIDGE) and can_jumpslash()))) or can_use(RG_HOVER_BOOTS) or bunny_hood() or can_use(RG_LONGSHOT)
         RR_ZR_FROM_SHORTCUT:         has(RG_SILVER_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_LOST_WOOD_NAVI_DIVE) and is_child() and has(RG_BRONZE_SCALE) and can_jumpslash())
         RR_LW_BEYOND_MIDO:           is_child() or can_use(RG_SARIAS_SONG) or trick(RT_LW_MIDO_BACKFLIP)
         RR_LW_NEAR_SHORTCUTS_GROTTO: any_age(blast_or_smash())
@@ -53,7 +54,9 @@ region RR_LW_BEYOND_MIDO {
     scene: SCENE_LOST_WOODS
 
     events {
-        LOGIC_FAIRY_ACCESS: can_use(RG_STICKS) or (is_child() and can_use(RG_MAGIC_BEAN) and has(RG_LOST_WOODS_BEAN_SOUL) and can_use(RG_SONG_OF_STORMS))
+        LOGIC_PLANT_LOST_WOODS_THEATER_BEAN: can_plant_bean(RG_LOST_WOODS_BEAN_SOUL)
+        LOGIC_FAIRY_ACCESS:                  can_use(RG_STICKS) or (is_child() and bean_planted(LOGIC_PLANT_LOST_WOODS_THEATER_BEAN) and can_use(RG_SONG_OF_STORMS))
+
     }
 
     exits {

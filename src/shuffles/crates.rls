@@ -17,8 +17,8 @@ extend region RR_DEKU_TREE_MQ_SLINGSHOT_ROOM {
 
 extend region RR_DODONGOS_CAVERN_MQ_STAIRS_LOWER {
     locations {
-        RC_DODONGOS_CAVERN_MQ_STAIRCASE_LOWER_CRATE_1: can_break_crates()
-        RC_DODONGOS_CAVERN_MQ_STAIRCASE_LOWER_CRATE_2: can_break_crates()
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_LOWER_CRATE_1: can_break_crates() or has(RG_GORONS_BRACELET)
+        RC_DODONGOS_CAVERN_MQ_STAIRCASE_LOWER_CRATE_2: can_break_crates() or has(RG_GORONS_BRACELET)
     }
 }
 
@@ -46,6 +46,13 @@ extend region RR_DODONGOS_CAVERN_MQ_TWO_FIRES_ROOM {
     locations {
         RC_DODONGOS_CAVERN_MQ_TWO_FLAMES_CRATE_1: can_break_crates()
         RC_DODONGOS_CAVERN_MQ_TWO_FLAMES_CRATE_2: can_break_crates()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_TWO_FIRES_FLOWER {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_TWO_FLAMES_CRATE_1: has(RG_GORONS_BRACELET)
+        RC_DODONGOS_CAVERN_MQ_TWO_FLAMES_CRATE_2: has(RG_GORONS_BRACELET)
     }
 }
 
@@ -228,7 +235,7 @@ extend region RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM {
 
 extend region RR_SPIRIT_TEMPLE_MQ_BEAMOS_PITS {
     locations {
-        RC_SPIRIT_TEMPLE_MQ_BEAMOS_SMALL_CRATE: can_avoid(RE_BEAMOS, true, 4) and can_use(RG_SONG_OF_TIME) and can_break_small_crates()
+        RC_SPIRIT_TEMPLE_MQ_BEAMOS_SMALL_CRATE: can_avoid(RE_BEAMOS, ED_CLOSE, true, 4) and can_use(RG_SONG_OF_TIME) and can_break_small_crates()
     }
 }
 
@@ -420,12 +427,38 @@ extend region RR_WATER_TEMPLE_MQ_CRATE_VORTEX_ROOM {
     locations {
         RC_WATER_TEMPLE_MQ_WHIRLPOOL_FRONT_CRATE_1:     can_break_crates()
         RC_WATER_TEMPLE_MQ_WHIRLPOOL_FRONT_CRATE_2:     can_break_crates()
-        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_1: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
-        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_2: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
-        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_3: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
-        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_4: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
-        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_5: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
-        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_6: can_use(RG_IRON_BOOTS) and water_timer() >= 16 and can_break_crates()
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_1: can_use(RG_BOMBCHU_5) and
+                                                        ((can_use(RG_IRON_BOOTS) and water_timer() >= 8) or has(RG_BRONZE_SCALE) or can_use(RG_BOOMERANG) or
+                                                         (trick(RT_VOIDOUT_COLLECTION) and is_adult() and bunny_hood()))
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_2: can_use(RG_BOMBCHU_5) and
+                                                        ((can_use(RG_IRON_BOOTS) and water_timer() >= 8 and (is_adult() or can_use(RG_HOOKSHOT))) or has(RG_BRONZE_SCALE))
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_3: can_use(RG_BOMBCHU_5) and
+                                                        ((can_use(RG_IRON_BOOTS) and water_timer() >= 8 and (is_adult() or can_use(RG_HOOKSHOT))) or has(RG_BRONZE_SCALE))
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_4: can_use(RG_BOMBCHU_5) and
+                                                        ((can_use(RG_IRON_BOOTS) and water_timer() >= 8 and (is_adult() or can_use(RG_HOOKSHOT))) or has(RG_BRONZE_SCALE))
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_5: can_use(RG_BOMBCHU_5) and
+                                                        ((can_use(RG_IRON_BOOTS) and water_timer() >= 8) or has(RG_BRONZE_SCALE) or can_use(RG_BOOMERANG) or
+                                                         (trick(RT_VOIDOUT_COLLECTION) and is_adult() and bunny_hood()))
+        #This can spawn in or outside of rang range depending on random spread, should be a trick
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_6: can_use(RG_BOMBCHU_5) and ((can_use(RG_IRON_BOOTS) and water_timer() >= 8) or has(RG_BRONZE_SCALE))
+    }
+}
+
+#Assumes Iron Boots are checked on entry
+extend region RR_WATER_TEMPLE_MQ_CRATE_VORTEX_BED_S {
+    locations {
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_1: always
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_5: always
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_6: always
+    }
+}
+
+#Assumes Iron Boots are checked on entry
+extend region RR_WATER_TEMPLE_MQ_CRATE_VORTEX_BED_N {
+    locations {
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_2: always
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_3: always
+        RC_WATER_TEMPLE_MQ_WHIRLPOOL_SUBMERGED_CRATE_4: always
     }
 }
 
@@ -509,7 +542,7 @@ extend region RR_GF_NEAR_GROTTO {
 
 extend region RR_GF_ABOVE_JAIL {
     locations {
-        RC_GF_ABOVE_JAIL_CRATE: always
+        RC_GF_ABOVE_JAIL_CRATE: is_adult()
     }
 }
 
@@ -532,6 +565,14 @@ extend region RR_GF_HBA_RANGE {
     }
 }
 
+extend region RR_GF_OUTSIDE_GATE {
+    locations {
+        # "decoy" crates made to look like the crate in wasteland
+        RC_GF_FAR_AWAY_CRATE_CHILD: is_child() and never
+        RC_GF_FAR_AWAY_CRATE_ADULT: is_adult() and never
+    }
+}
+
 # overworld/goron_city
 
 extend region RR_GORON_CITY {
@@ -544,7 +585,7 @@ extend region RR_GORON_CITY {
 
 extend region RR_THE_GRAVEYARD {
     locations {
-        RC_GRAVEYARD_CRATE: ((is_adult() and can_plant_bean(RR_THE_GRAVEYARD, RG_GRAVEYARD_BEAN_SOUL)) or can_use(RG_LONGSHOT)) and can_break_crates()
+        RC_GRAVEYARD_CRATE: ((is_adult() and bean_planted(LOGIC_PLANT_GRAVEYARD_BEAN)) or can_use(RG_LONGSHOT)) and can_break_crates()
     }
 }
 
@@ -597,9 +638,10 @@ extend region RR_KAKARIKO_VILLAGE {
 
 # overworld/lake_hylia
 
-extend region RR_LH_LAB {
+extend region RR_LH_LAB_UNDERWATER {
     locations {
-        RC_LH_LAB_CRATE: can_use(RG_IRON_BOOTS) and can_break_crates()
+        RC_LH_LAB_CRATE: can_break_crates()
+
     }
 }
 
@@ -615,10 +657,10 @@ extend region RR_LON_LON_RANCH {
 
 extend region RR_THE_MARKET {
     locations {
-        RC_MK_NEAR_BAZAAR_CRATE_1:      is_child() # and can_roll()
-        RC_MK_NEAR_BAZAAR_CRATE_2:      is_child() # and can_roll()
-        RC_MK_SHOOTING_GALLERY_CRATE_1: is_child() # and can_roll()
-        RC_MK_SHOOTING_GALLERY_CRATE_2: is_child() # and can_roll()
+        RC_MK_NEAR_BAZAAR_CRATE_1:      is_child() and can_break_crates()
+        RC_MK_NEAR_BAZAAR_CRATE_2:      is_child() and can_break_crates()
+        RC_MK_SHOOTING_GALLERY_CRATE_1: is_child() and can_break_crates()
+        RC_MK_SHOOTING_GALLERY_CRATE_2: is_child() and can_break_crates()
     }
 }
 

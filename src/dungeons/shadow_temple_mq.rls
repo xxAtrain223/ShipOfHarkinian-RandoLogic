@@ -14,7 +14,10 @@ region RR_SHADOW_TEMPLE_MQ_SPINNER_ROOM {
 
     exits {
         RR_SHADOW_TEMPLE_ENTRYWAY:                  always
-        RR_SHADOW_TEMPLE_MQ_FIRST_BEAMOS:           any_age(has(RG_POWER_BRACELET) and (can_use(RG_HOVER_BOOTS) or (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)))) and (can_use(RG_HOVER_BOOTS) or any_age(can_use(RG_FIRE_ARROWS)) or (trick(RT_SHADOW_MQ_GAP) and can_use(RG_LONGSHOT) and can_jumpslash_except_hammer()))
+        RR_SHADOW_TEMPLE_MQ_FIRST_BEAMOS:           any_age(has(RG_POWER_BRACELET) and (can_use(RG_HOVER_BOOTS) or (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)))) and
+                                                    (can_use(RG_HOVER_BOOTS) or (is_adult() and bunny_hood()) or can_megajump() or
+                                                     any_age(can_use(RG_FIRE_ARROWS)) or (trick(RT_DAMAGE_BOOST_SIMPLE) and can_use(RG_BOMBCHU_5) and take_damage(DAMAGE_NO_FAIRY) and can_standing_shield()) or
+                                                     (trick(RT_SHADOW_MQ_GAP) and can_use(RG_LONGSHOT) and can_jumpslash_except_hammer()))
         RR_SHADOW_TEMPLE_MQ_WHISPERING_WALLS_START: any_age(has_explosives()) and small_keys(SCENE_SHADOW_TEMPLE, 6) and (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH))
     }
 }
@@ -53,7 +56,7 @@ region RR_SHADOW_TEMPLE_MQ_WHISPERING_WALLS_END {
 }
 
 region RR_SHADOW_TEMPLE_MQ_WHISPERING_WALLS_SIDE_ROOM {
-    name: "Shadow Temple MQ Whispering Walls Redeads"
+    name: "Shadow Temple MQ Whispering Walls Side Room"
     scene: SCENE_SHADOW_TEMPLE
     
     exits {
@@ -75,7 +78,7 @@ region RR_SHADOW_TEMPLE_MQ_FIRST_BEAMOS {
     scene: SCENE_SHADOW_TEMPLE
     
     exits {
-        RR_SHADOW_TEMPLE_MQ_SPINNER_ROOM:           trick(RT_VISIBLE_COLLISION) and (can_use(RG_HOVER_BOOTS) or has_fire_source())
+        RR_SHADOW_TEMPLE_MQ_SPINNER_ROOM:           trick(RT_VISIBLE_COLLISION) and (can_use(RG_HOVER_BOOTS) or has_fire_source() or (is_adult() and bunny_hood()))
         RR_SHADOW_TEMPLE_MQ_B2_GIBDO_ROOM:          always
         RR_SHADOW_TEMPLE_MQ_B2_TO_B3_CORRIDOR_B2:   has_explosives() and small_keys(SCENE_SHADOW_TEMPLE, 2)
         RR_SHADOW_TEMPLE_MQ_B2_SPINNING_BLADE_ROOM: always
@@ -94,9 +97,15 @@ region RR_SHADOW_TEMPLE_MQ_B2_GIBDO_ROOM {
 region RR_SHADOW_TEMPLE_MQ_B2_SPINNING_BLADE_ROOM {
     name: "Shadow Temple MQ B2 Spinning Blade Room"
     scene: SCENE_SHADOW_TEMPLE
+
+    events {
+        LOGIC_SHADOW_SILVER_BLADES: can_kill(RE_BIG_SKULLTULA) and
+                                    (can_use(RG_HOOKSHOT) or (can_megajump() and effective_health() > 12) or
+                                     (is_adult() and (can_use(RG_HOVER_BOOTS) or can_ground_jump() or bunny_hood())))
+    }
     
     exits {
-        RR_SHADOW_TEMPLE_MQ_FIRST_BEAMOS:  any_age(can_kill(RE_BIG_SKULLTULA) and (can_use(RG_HOOKSHOT) or (is_adult() and can_use(RG_HOVER_BOOTS))))
+        RR_SHADOW_TEMPLE_MQ_FIRST_BEAMOS:  has(RG_SHADOW_SILVER_BLADES)
         RR_SHADOW_TEMPLE_MQ_SHORTCUT_PATH: can_pass(RE_BIG_SKULLTULA)
     }
 }
@@ -138,12 +147,13 @@ region RR_SHADOW_TEMPLE_MQ_UPPER_HUGE_PIT {
     scene: SCENE_SHADOW_TEMPLE
     
     events {
-        LOGIC_SHADOW_MQ_PIT_STAIRS: has_fire_source()
+        LOGIC_SHADOW_MQ_PIT_STAIRS: has_fire_source() and (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH))
     }
     
     exits {
         RR_SHADOW_TEMPLE_MQ_UPPER_HUGE_PIT_DOOR_LEDGE: trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)
-        RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT:            (flag(LOGIC_SHADOW_MQ_PIT_STAIRS) and (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH))) or trick(RT_SHADOW_MQ_HUGE_PIT)
+        RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT:            flag(LOGIC_SHADOW_MQ_PIT_STAIRS) or trick(RT_SHADOW_MQ_HUGE_PIT) or bunny_hovers() or
+                                                       can_megajump() or can_recoil_hover(RECOIL_HAMMER)
     }
 }
 
@@ -160,6 +170,11 @@ region RR_SHADOW_TEMPLE_MQ_UPPER_HUGE_PIT_DOOR_LEDGE {
 region RR_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_ROOM {
     name: "Shadow Temple MQ Invisible Blades Room"
     scene: SCENE_SHADOW_TEMPLE
+
+    events {
+        LOGIC_SHADOW_MQ_SILVER_INVISIBLE_BLADES: (can_use(RG_SONG_OF_TIME) or (trick(RT_SHADOW_MQ_INVISIBLE_BLADES) and effective_health() > 8)) and
+                                                 (trick(RT_LENS_SHADOW_MQ_INVISIBLE_BLADES) or is_child() or can_use(RG_NAYRUS_LOVE) or can_use(RG_LENS_OF_TRUTH))
+    }
     
     exits {
         RR_SHADOW_TEMPLE_MQ_UPPER_HUGE_PIT: always
@@ -169,11 +184,15 @@ region RR_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_ROOM {
 region RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT {
     name: "Shadow Temple MQ Lower Huge Pit"
     scene: SCENE_SHADOW_TEMPLE
+
+    events {
+        LOGIC_SHADOW_SILVER_PIT: can_use(RG_LONGSHOT)
+    }
     
     exits {
         RR_SHADOW_TEMPLE_MQ_B2_TO_B3_CORRIDOR_B3:      can_use(RG_LONGSHOT)
         RR_SHADOW_TEMPLE_MQ_UPPER_HUGE_PIT:            flag(LOGIC_SHADOW_MQ_PIT_STAIRS)
-        RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT_DOOR_LEDGE: can_use(RG_HOVER_BOOTS) and (trick(RT_LENS_SHADOW_MQ_PLATFORM) or can_use(RG_LENS_OF_TRUTH))
+        RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT_DOOR_LEDGE: (can_use(RG_HOVER_BOOTS) or (is_adult() and bunny_hood())) and (trick(RT_LENS_SHADOW_MQ_PLATFORM) or can_use(RG_LENS_OF_TRUTH))
         RR_SHADOW_TEMPLE_MQ_STONE_UMBRELLA_ROOM:       any_age(can_jumpslash() or has_explosives() or can_use(RG_GIANTS_KNIFE) or (trick(RT_ITEM_EXTENSION) and (can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT))))
     }
 }
@@ -183,8 +202,8 @@ region RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT_DOOR_LEDGE {
     scene: SCENE_SHADOW_TEMPLE
     
     exits {
-        RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT:    can_use(RG_HOVER_BOOTS) and (trick(RT_LENS_SHADOW_MQ_PLATFORM) or can_use(RG_LENS_OF_TRUTH)) and trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)
-        RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_ROOM: small_keys(SCENE_SHADOW_TEMPLE, 3)
+        RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT:      can_use(RG_HOVER_BOOTS) and (trick(RT_LENS_SHADOW_MQ_PLATFORM) or can_use(RG_LENS_OF_TRUTH)) and (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH))
+        RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_S_DOOR: small_keys(SCENE_SHADOW_TEMPLE, 3)
     }
 }
 
@@ -195,7 +214,7 @@ region RR_SHADOW_TEMPLE_MQ_STONE_UMBRELLA_ROOM {
     exits {
         RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT:       any_age(trick(RT_VISIBLE_COLLISION) or can_hit_switch())
         # Assuming the known setup for RT_SHADOW_UMBRELLA, probably possible without sword + shield
-        RR_SHADOW_TEMPLE_MQ_UPPER_STONE_UMBRELLA: trick(RT_SHADOW_UMBRELLA_CLIP) or (trick(RT_DAMAGE_BOOST_SIMPLE) and take_damage()) or (is_adult() and (has(RG_GORONS_BRACELET) or (trick(RT_SHADOW_UMBRELLA_HOVER) and can_use(RG_HOVER_BOOTS) and can_standing_shield() and can_use(RG_MASTER_SWORD))))
+        RR_SHADOW_TEMPLE_MQ_UPPER_STONE_UMBRELLA: trick(RT_SHADOW_UMBRELLA_CLIP) or (trick(RT_DAMAGE_BOOST_SIMPLE) and take_damage(DAMAGE_NO_FAIRY)) or (is_adult() and (has(RG_GORONS_BRACELET) or (trick(RT_SHADOW_UMBRELLA_HOVER) and can_use(RG_HOVER_BOOTS) and can_standing_shield() and can_use(RG_MASTER_SWORD))))
     }
 }
 
@@ -208,38 +227,104 @@ region RR_SHADOW_TEMPLE_MQ_UPPER_STONE_UMBRELLA {
     }
 }
 
-# while the spikes here are annoying, they don't really stop you doing anything, so I'll assume either lens trick, lens to see them, or taking damage from them. Not hovers though as a new player won't see the threat without lens to react properly
+# For this room, logic assumes you can either take damage, wear passive spike resistance (Goron tunic or hovers) or see the spikes to navigate across the floor
+# As this only matters with 1 heart/OHKO logic, which is already a trick-level setting, using Hook and Longshot to reach rupees without moving is allowed
+region RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_S_DOOR {
+    name: "Shadow Temple MQ Floor Spikes South Door"
+    scene: SCENE_SHADOW_TEMPLE
+
+    exits {
+        RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT:         small_keys(SCENE_SHADOW_TEMPLE, 3)
+        RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_ROOM:      trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_HOVER_BOOTS) or can_use(RG_GORON_TUNIC) or take_damage()
+        RR_SHADOW_TEMPLE_MQ_SPIKES_GLASS_PLATFORMS: has(RG_SHADOW_SILVER_SPIKES) and (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and can_use(RG_LONGSHOT)
+    }
+}
+
+# Assumes logic for navigating around spikes is checked on entry
 region RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_ROOM {
     name: "Shadow Temple MQ Floor Spikes Room"
     scene: SCENE_SHADOW_TEMPLE
     
     events {
-                                             # lens or trick is always required for hookshot targets. We handle it here to not complicate the RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_UPPER_DOOR logic
-        LOGIC_SHADOW_MQ_FLOOR_SPIKES_RUPEES: (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and
-                                             # Upper door side high rupee needs (hookshot and redead kill(as either age) for chest and adult) or longshot. hovers can cross from the left side with a backflip but that would be a trick
-                                             # East midair rupee needs (hookshot and(hover boots or jumpslash from the upper door platform)) or longshot.
-                                             # Combined these are longshot or (IsAdult and hookshot and (CanJumpslash or (Hover Boots and Here(CanKillRedeads))))
-                                             (can_use(RG_LONGSHOT) or (is_adult() and can_use(RG_HOOKSHOT) and (can_jumpslash() or (can_use(RG_HOVER_BOOTS) and any_age(can_kill(RE_REDEAD)))))) and
-                                             # 1 rupee is in spikes, needs hovers or damage
-                                             (take_damage() or can_use(RG_HOVER_BOOTS) or can_use(RG_GORON_TUNIC))
+                                    # (lens or trick) & (adult & hookshot) or longshot is always required for rupees below hookshot targets and the corner platform.
+        LOGIC_SHADOW_SILVER_SPIKES: (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and can_use(is_adult() ? RG_LONGSHOT : RG_HOOKSHOT) and
+                                    # We need to get onto the Door Platform to get North target Rupee at minimum,
+                                    # This needs either longshot, midair ground jump or hookshot & adult & defeating the redeads (as any age, as they are perm flags)
+                                    # hovers can cross from the corner platform with a backflip but that would be a trick.
+                                    (can_use(RG_LONGSHOT) or ((any_age(can_kill(RE_REDEAD)) or can_midair_ground_jump()) and
+                                    # East midair rupee needs longshot to reach from the floor, or hover boots, bunny hood or jumpslash to reach from the upper door platform.
+                                     (can_jumpslash() or can_use(RG_HOVER_BOOTS) or bunny_hood()))) and
+                                    # 1 rupee is in spikes, needs hovers, goron tunic or damage
+                                    (take_damage() or can_use(RG_HOVER_BOOTS) or can_use(RG_GORON_TUNIC))
     }
     
     exits {
-        RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT:        small_keys(SCENE_SHADOW_TEMPLE, 3)
-        RR_SHADOW_TEMPLE_MQ_STALFOS_ROOM:          flag(LOGIC_SHADOW_MQ_FLOOR_SPIKES_RUPEES)
-        # We need to assume we can get here with or without the glass platforms
-        RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_PLATFORM: ((can_use(RG_LONGSHOT) or (is_adult() and can_use(RG_HOOKSHOT) and (flag(LOGIC_SHADOW_MQ_FLOOR_SPIKES_RUPEES) or any_age(can_kill(RE_REDEAD))))) and (can_jumpslash() or can_use(RG_HOVER_BOOTS))) or
-                                                   ((trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH)) and (is_adult() and can_middair_ground_jump()))
+        RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_S_DOOR:    always
+        RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_W_DOOR:    always
+        RR_SHADOW_TEMPLE_MQ_SPIKES_CORNER_PLATFORM: (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and (can_use(RG_HOOKSHOT) or (is_adult() and can_midair_ground_jump()))
+        # if we have silvers, we can just hookshot (as adult) or longshot onto the platforms...
+        RR_SHADOW_TEMPLE_MQ_SPIKES_GLASS_PLATFORMS: has(RG_SHADOW_SILVER_SPIKES) and can_use(is_adult() ? RG_HOOKSHOT : RG_LONGSHOT)
+        # otherwise we have to use the hidden target and if we don't have longshot, spawn the chest. even if the glass platforms have spawned, this logic includes the above logic
+        RR_SHADOW_TEMPLE_MQ_SPIKES_DOOR_PLATFORM:   (((trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and can_use((is_adult() and any_age(can_kill(RE_REDEAD))) ? RG_HOOKSHOT : RG_LONGSHOT)) and
+                                                    # regardless, we can't assume the player does not have the silvers, so we need to cross from the glass to the platform with hovers or a jumpslash jump (as adult)
+                                                     (can_use(RG_HOVER_BOOTS) or (is_adult() and can_jumpslash()))) or
+                                                    # alternatively, a midair groundjump from the invisible spikes takes adult directly there
+                                                    ((trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and is_adult() and can_midair_ground_jump())
     }
 }
 
-region RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_PLATFORM {
-    name: "Shadow Temple MQ Floor Spikes Platform"
+region RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_W_DOOR {
+    name: "Shadow Temple MQ Floor Spikes West Door"
     scene: SCENE_SHADOW_TEMPLE
-    
+
     exits {
-        RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_ROOM: always
-        RR_SHADOW_TEMPLE_MQ_UPPER_WIND_TUNNEL: small_keys(SCENE_SHADOW_TEMPLE, 4)
+        RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_ROOM:      trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_HOVER_BOOTS) or can_use(RG_GORON_TUNIC) or take_damage()
+        RR_SHADOW_TEMPLE_MQ_STALFOS_ROOM:           has(RG_SHADOW_SILVER_SPIKES)
+        RR_SHADOW_TEMPLE_MQ_SPIKES_GLASS_PLATFORMS: has(RG_SHADOW_SILVER_SPIKES) and can_use(RG_LONGSHOT)
+    }
+}
+
+region RR_SHADOW_TEMPLE_MQ_SPIKES_CORNER_PLATFORM {
+    name: "Shadow Temple MQ Spikes Corner Platform"
+    scene: SCENE_SHADOW_TEMPLE
+
+    exits {
+        RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_ROOM:    trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_HOVER_BOOTS) or can_use(RG_GORON_TUNIC) or take_damage()
+        RR_SHADOW_TEMPLE_MQ_SPIKES_DOOR_PLATFORM: can_megajump() or can_recoil_hover(RECOIL_SWORD_AND_SHIELD) or can_use(RG_LONGSHOT)
+    }
+}
+
+# Assumes SHADOW_SPIKES_SILVER is checked on entry
+region RR_SHADOW_TEMPLE_MQ_SPIKES_GLASS_PLATFORMS {
+    name: "Shadow Temple MQ Spikes Glass Platforms"
+    scene: SCENE_SHADOW_TEMPLE
+
+    exits {
+        RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_ROOM:    trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_HOVER_BOOTS) or can_use(RG_GORON_TUNIC) or take_damage()
+        RR_SHADOW_TEMPLE_MQ_SPIKES_DOOR_PLATFORM: can_use(RG_HOVER_BOOTS) or (is_adult() and can_jumpslash()) or bunny_hood()
+    }
+}
+
+region RR_SHADOW_TEMPLE_MQ_SPIKES_DOOR_PLATFORM {
+    name: "Shadow Temple MQ Spikes Door Platform"
+    scene: SCENE_SHADOW_TEMPLE
+
+    events {
+                                    # (lens or trick) & (adult & hookshot) or longshot is always required for rupees below hookshot targets and lens for the corner platform.
+        LOGIC_SHADOW_SILVER_SPIKES: (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and can_use(is_adult() ? RG_LONGSHOT : RG_HOOKSHOT) and
+                                    # As we start on the upper door platform, we can get north target rupee with just hook, then jump off to get east midair, after which we do not need to get up here again
+                                    # East midair rupee needs longshot to reach from the floor, or hover boots, bunny hood or jumpslash to reach from the upper door platform.
+                                    (can_use(RG_LONGSHOT) or can_jumpslash() or can_use(RG_HOVER_BOOTS) or bunny_hood()) and
+                                    # 1 rupee is in spikes, needs hovers or damage
+                                    (take_damage() or can_use(RG_HOVER_BOOTS) or can_use(RG_GORON_TUNIC))
+    }
+
+    exits {
+        RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_ROOM:      trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_HOVER_BOOTS) or can_use(RG_GORON_TUNIC) or take_damage()
+        RR_SHADOW_TEMPLE_MQ_SPIKES_CORNER_PLATFORM: (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and
+                                                    (can_use(RG_HOVER_BOOTS) or can_megajump())
+        RR_SHADOW_TEMPLE_MQ_SPIKES_GLASS_PLATFORMS: has(RG_SHADOW_SILVER_SPIKES) and (can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or bunny_hood())
+        RR_SHADOW_TEMPLE_MQ_UPPER_WIND_TUNNEL:      small_keys(SCENE_SHADOW_TEMPLE, 4)
     }
 }
 
@@ -257,8 +342,8 @@ region RR_SHADOW_TEMPLE_MQ_UPPER_WIND_TUNNEL {
     scene: SCENE_SHADOW_TEMPLE
 
     exits {
-        RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_ROOM: small_keys(SCENE_SHADOW_TEMPLE, 4)
-        RR_SHADOW_TEMPLE_MQ_LOWER_WIND_TUNNEL: (can_use(RG_HOVER_BOOTS) and can_pass(RE_BIG_SKULLTULA)) or can_use(RG_HOOKSHOT)
+        RR_SHADOW_TEMPLE_MQ_SPIKES_DOOR_PLATFORM: small_keys(SCENE_SHADOW_TEMPLE, 4)
+        RR_SHADOW_TEMPLE_MQ_LOWER_WIND_TUNNEL:    ((can_use(RG_HOVER_BOOTS) or bunny_hood()) and can_pass(RE_BIG_SKULLTULA)) or can_use(RG_HOOKSHOT)
     }
 }
 
@@ -287,7 +372,8 @@ region RR_SHADOW_TEMPLE_MQ_WIND_TUNNEL_ALCOVE {
     scene: SCENE_SHADOW_TEMPLE
     
     exits {
-        RR_SHADOW_TEMPLE_MQ_LOWER_WIND_TUNNEL: (trick(RT_SHADOW_MQ_WINDY_WALKWAY)) or can_use(RG_HOVER_BOOTS)
+        # child can make it using the wind strat
+        RR_SHADOW_TEMPLE_MQ_LOWER_WIND_TUNNEL: trick(RT_SHADOW_MQ_WINDY_WALKWAY) or can_use(RG_HOVER_BOOTS) or bunny_hood()
         RR_SHADOW_TEMPLE_MQ_B4_GIBDO_ROOM:     always
     }
 }
@@ -301,7 +387,6 @@ region RR_SHADOW_TEMPLE_MQ_B4_GIBDO_ROOM {
     }
     
     exits {
-        # child can make it using the wind strat
         RR_SHADOW_TEMPLE_MQ_WIND_TUNNEL_ALCOVE: always
         RR_SHADOW_TEMPLE_MQ_DOCK:               small_keys(SCENE_SHADOW_TEMPLE, 5)
     }
@@ -331,8 +416,9 @@ region RR_SHADOW_TEMPLE_MQ_BEYOND_BOAT {
     }
     
     exits {
-        # a precise recoil hover back flip can get across too, but isn't a simple hover boost
-        RR_SHADOW_TEMPLE_MQ_ACROSS_CHASM:   flag(LOGIC_SHADOW_BRIDGE_BEYOND_BOAT_LOWERED) or (flag(LOGIC_SHADOW_MQ_SWITCH_ACROSS_CHASM) and can_use(RG_LONGSHOT))
+        # a less precise recoil off the broken statue into a jumpslash works.
+        RR_SHADOW_TEMPLE_MQ_ACROSS_CHASM:   flag(LOGIC_SHADOW_BRIDGE_BEYOND_BOAT_LOWERED) or can_melee_recoil_hover(RECOIL_HAMMER_AND_SHIELD) or can_bunny_mega_jumpslash() or
+                                            (flag(LOGIC_SHADOW_MQ_SWITCH_ACROSS_CHASM) and can_use(RG_LONGSHOT))
         RR_SHADOW_TEMPLE_MQ_INVISIBLE_MAZE: flag(LOGIC_SHADOW_MQ_SWITCH_ACROSS_CHASM)
     }
 }
@@ -344,12 +430,28 @@ region RR_SHADOW_TEMPLE_MQ_ACROSS_CHASM {
     events {
         LOGIC_SHADOW_BRIDGE_BEYOND_BOAT_LOWERED: can_detonate_upright_bomb_flower()
         LOGIC_SHADOW_MQ_EYE_SWITCH_ACROSS_CHASM: can_hit_eye_targets() and (can_use(RG_SONG_OF_TIME) or trick(RT_ITEM_EXTENSION))
-        LOGIC_SHADOW_MQ_SWITCH_ACROSS_CHASM:     flag(LOGIC_SHADOW_MQ_EYE_SWITCH_ACROSS_CHASM) and can_use(RG_LONGSHOT)
     }
     
     exits {
-        RR_SHADOW_TEMPLE_MQ_BEYOND_BOAT:    (flag(LOGIC_SHADOW_BRIDGE_BEYOND_BOAT_LOWERED) and is_adult()) or (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))
-        RR_SHADOW_TEMPLE_MQ_PRE_BOSS_ROOM:  always
+        # child can use the statue with hovers, but needs to run around the side so it's unintuitive
+        RR_SHADOW_TEMPLE_MQ_BEYOND_BOAT:   (flag(LOGIC_SHADOW_BRIDGE_BEYOND_BOAT_LOWERED) and (is_adult() or (trick(RT_SHADOW_BUNNY_STATUE) and bunny_hood() and can_jumpslash()))) or
+                                           can_melee_recoil_hover(RECOIL_HAMMER)
+        RR_SHADOW_TEMPLE_MQ_CHASM_SWITCH:  flag(LOGIC_SHADOW_MQ_EYE_SWITCH_ACROSS_CHASM) and can_use(RG_LONGSHOT)
+        RR_SHADOW_TEMPLE_MQ_PRE_BOSS_ROOM: always
+    }
+}
+
+region RR_SHADOW_TEMPLE_MQ_CHASM_SWITCH {
+    name: "Shadow Temple MQ Chasm Switch"
+    scene: SCENE_SHADOW_TEMPLE
+
+    events {
+        LOGIC_SHADOW_MQ_SWITCH_ACROSS_CHASM: always
+    }
+
+    exits {
+        RR_SHADOW_TEMPLE_MQ_BEYOND_BOAT:  can_megajump(not can_jumpslash()) or can_recoil_hover(RECOIL_HAMMER)
+        RR_SHADOW_TEMPLE_MQ_ACROSS_CHASM: always
     }
 }
 
@@ -359,7 +461,8 @@ region RR_SHADOW_TEMPLE_MQ_PRE_BOSS_ROOM {
     
     exits {
         RR_SHADOW_TEMPLE_MQ_ACROSS_CHASM: always
-        RR_SHADOW_TEMPLE_MQ_BOSS_DOOR:    can_use(RG_HOVER_BOOTS) and (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH))
+        # child can make this jump with bunny, and it's not hard, but it's too inconsistent for unintuitive
+        RR_SHADOW_TEMPLE_MQ_BOSS_DOOR:    (can_use(RG_HOVER_BOOTS) or (bunny_hood() and is_adult())) and (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH))
     }
 }
 
@@ -368,7 +471,7 @@ region RR_SHADOW_TEMPLE_MQ_BOSS_DOOR {
     scene: SCENE_SHADOW_TEMPLE
     
     exits {
-        RR_SHADOW_TEMPLE_MQ_PRE_BOSS_ROOM: can_use(RG_HOVER_BOOTS) and (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH))
+        RR_SHADOW_TEMPLE_MQ_PRE_BOSS_ROOM: (can_use(RG_HOVER_BOOTS) or (bunny_hood() and is_adult())) and (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH))
         RR_SHADOW_TEMPLE_BOSS_ENTRYWAY:    always
     }
 }

@@ -3,7 +3,7 @@ region RR_SHADOW_TEMPLE_ENTRYWAY {
     scene: SCENE_SHADOW_TEMPLE
 
     exits {
-        RR_SHADOW_TEMPLE_BEGINNING:    is_vanilla() and (can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT))
+        RR_SHADOW_TEMPLE_BEGINNING:    is_vanilla() and (can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT) or can_megajump())
         RR_SHADOW_TEMPLE_MQ_BEGINNING: is_mq()
         RR_GRAVEYARD_WARP_PAD_REGION:  always
     }
@@ -14,8 +14,8 @@ region RR_SHADOW_TEMPLE_BOSS_ENTRYWAY {
     scene: SCENE_SHADOW_TEMPLE
     
     exits {
-        RR_SHADOW_TEMPLE_BOSS_DOOR:    is_vanilla() and never
-        RR_SHADOW_TEMPLE_MQ_BOSS_DOOR: is_mq() and never
+        RR_SHADOW_TEMPLE_BOSS_DOOR:    is_vanilla()
+        RR_SHADOW_TEMPLE_MQ_BOSS_DOOR: is_mq()
         RR_SHADOW_TEMPLE_BOSS_ROOM:    has(RG_SHADOW_TEMPLE_BOSS_KEY)
     }
 }

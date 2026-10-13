@@ -13,10 +13,14 @@ region RR_ICE_CAVERN_HUB {
     name: "Ice Cavern Hub"
     scene: SCENE_ICE_CAVERN
 
+    events {
+        LOGIC_ICE_CAVERN_SILVER_BLADES: is_adult() and can_clear_stalagmite()
+    }
+
     exits {
         RR_ICE_CAVERN_BEGINNING:    always
         # child can make this with a ground jump for the first step, and a glitchless jump for the second, but it's a separate trick
-        RR_ICE_CAVERN_MAP_ROOM:     is_adult() and can_clear_stalagmite()
+        RR_ICE_CAVERN_MAP_ROOM:     is_adult() and has(RG_ICE_CAVERN_SILVER_BLADES)
         RR_ICE_CAVERN_COMPASS_ROOM: any_age(blue_fire())
         RR_ICE_CAVERN_BLOCK_ROOM:   any_age(blue_fire()) and (can_clear_stalagmite() or trick(RT_ICE_STALAGMITE_CLIP))
     }
@@ -53,14 +57,25 @@ region RR_ICE_CAVERN_BLOCK_ROOM {
     scene: SCENE_ICE_CAVERN
 
     exits {
-        RR_ICE_CAVERN_HUB:                  can_clear_stalagmite() or trick(RT_ICE_STALAGMITE_CLIP)
-        RR_ICE_CAVERN_BLOCK_ROOM_BLUE_FIRE: has(RG_POWER_BRACELET) or (is_adult() and (can_ground_jump() or trick(RT_SLIDE_JUMP)))
-        RR_ICE_CAVERN_BEFORE_FINAL_ROOM:    (has(RG_POWER_BRACELET) or (is_adult() and (can_ground_jump() or trick(RT_SLIDE_JUMP)))) and any_age(blue_fire())
+        RR_ICE_CAVERN_HUB:              can_clear_stalagmite() or trick(RT_ICE_STALAGMITE_CLIP)
+        # Adult Bunny megajump can go directly from lowest platform, otherwise you have to use the middle platform which is
+        # an awkward range. Remove bunny/hovers midflight to hit it, then you can jump from there.
+        # This may not be "simple" as a result
+        RR_ICE_CAVERN_FIRE_NOOK:        has(RG_POWER_BRACELET) or (is_adult() and (can_ground_jump() or trick(RT_SLIDE_JUMP) or can_bomb_recoil_hover())) or
+                                        can_megajump()
+        # can be done with bunnyhovers from NEAR_BLOCK_SILVER, but it's unintuitive.
+        # megajump without bunny goes to the smaller platform first, needs somewhat precise removal of hover boots to not
+        # fly off or come up short, then hover to the nook
+        RR_ICE_CAVERN_ICE_NOOK:         has(RG_POWER_BRACELET) or (is_adult() and (can_ground_jump() or trick(RT_SLIDE_JUMP))) or can_megajump() or
+                                        can_bomb_recoil_hover()
+        RR_ICE_CAVERN_AFTER_BLOCK_ROOM: has(RG_ICE_CAVERN_SILVER_BLOCK) and
+                                        (has(RG_POWER_BRACELET) or (is_adult() and (can_ground_jump() or trick(RT_SLIDE_JUMP))) or can_megajump(true) or
+                                         can_bomb_recoil_hover())
     }
 }
 
-region RR_ICE_CAVERN_BLOCK_ROOM_BLUE_FIRE {
-    name: "Ice Cavern Block Room Blue Fire"
+region RR_ICE_CAVERN_FIRE_NOOK {
+    name: "Ice Cavern Fire Nook"
     scene: SCENE_ICE_CAVERN
 
     events {
@@ -72,14 +87,38 @@ region RR_ICE_CAVERN_BLOCK_ROOM_BLUE_FIRE {
     }
 }
 
+region RR_ICE_CAVERN_ICE_NOOK {
+    name: "Ice Cavern Ice Nook"
+    scene: SCENE_ICE_CAVERN
+
+    events {
+        LOGIC_ICE_CAVERN_SILVER_BLOCK: (is_adult() or has(RG_POWER_BRACELET) or can_use(RG_HOVER_BOOTS) or bunny_hood()) and
+                                       (blue_fire() or (trick(RT_VISIBLE_COLLISION) and can_jumpslash()))
+    }
+
+    exits {
+        RR_ICE_CAVERN_BLOCK_ROOM: always
+    }
+}
+
+region RR_ICE_CAVERN_AFTER_BLOCK_ROOM {
+    name: "Ice Cavern After Block Room"
+    scene: SCENE_ICE_CAVERN
+
+    exits {
+        RR_ICE_CAVERN_BLOCK_ROOM:        always
+        RR_ICE_CAVERN_BEFORE_FINAL_ROOM: any_age(blue_fire())
+    }
+}
+
 # this represents being past the red ice barricade, not just past the silver rupee door
 region RR_ICE_CAVERN_BEFORE_FINAL_ROOM {
     name: "Ice Cavern Before Final Room"
     scene: SCENE_ICE_CAVERN
 
     exits {
-        RR_ICE_CAVERN_BLOCK_ROOM: any_age(blue_fire())
-        RR_ICE_CAVERN_FINAL_ROOM: always
+        RR_ICE_CAVERN_AFTER_BLOCK_ROOM: any_age(blue_fire())
+        RR_ICE_CAVERN_FINAL_ROOM:       always
     }
 }
 
@@ -102,7 +141,7 @@ region RR_ICE_CAVERN_FINAL_ROOM_UNDERWATER {
     scene: SCENE_ICE_CAVERN
 
     exits {
-        RR_ICE_CAVERN_FINAL_ROOM:      can_use(RG_BRONZE_SCALE)
+        RR_ICE_CAVERN_FINAL_ROOM:      has(RG_BRONZE_SCALE)
         RR_ICE_CAVERN_ABOVE_BEGINNING: can_use(RG_IRON_BOOTS)
     }
 }

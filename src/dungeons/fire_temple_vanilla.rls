@@ -8,7 +8,7 @@ region RR_FIRE_TEMPLE_FOYER {
         RR_FIRE_TEMPLE_LOOP_HEXAGON_ROOM:    any_age(can_use(RG_MEGATON_HAMMER)) and (small_keys(SCENE_FIRE_TEMPLE, 8) 
                                              or not is_fire_loop_locked())
         RR_FIRE_TEMPLE_LOOP_CAGE_FOYER_SIDE: always
-        RR_FIRE_TEMPLE_BIG_LAVA_ROOM:        small_keys(SCENE_FIRE_TEMPLE, 2) and fire_timer() >= 24
+        RR_FIRE_TEMPLE_BIG_LAVA_ROOM:        small_keys(SCENE_FIRE_TEMPLE, 2)
     }
 }
 
@@ -17,12 +17,45 @@ region RR_FIRE_TEMPLE_NEAR_BOSS_ROOM {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_FOYER:           (is_adult() or can_use(RG_HOVER_BOOTS)) and (fire_timer() >= 16 or 
-                                        (flag(LOGIC_FIRE_HIT_PLATFORM) and fire_timer() >= 8))
-        RR_FIRE_TEMPLE_NEAR_BOSS_UPPER: is_adult() and (can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS)) and 
-                                        fire_timer() >= 16
-        RR_FIRE_TEMPLE_BOSS_ENTRYWAY:   fire_timer() >= 16 and (can_use(RG_HOVER_BOOTS) or (is_adult() and 
-                                        (trick(RT_UNINTUITIVE_JUMPS) or flag(LOGIC_FIRE_HIT_PLATFORM))))
+        RR_FIRE_TEMPLE_FOYER:            always
+        RR_FIRE_TEMPLE_NEAR_BOSS_PILLAR: fire_timer() >= 8 and flag(LOGIC_FIRE_HIT_PLATFORM)
+        RR_FIRE_TEMPLE_NEAR_BOSS_TARGET: fire_timer() >= 16 and (can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or can_megajump())
+        RR_FIRE_TEMPLE_NEAR_BOSS_DOOR:   fire_timer() >= 16 and (can_use(RG_HOVER_BOOTS) or (is_adult() and (trick(RT_UNINTUITIVE_JUMPS) or bunny_hood())) or
+                                         can_megajump())
+    }
+}
+
+region RR_FIRE_TEMPLE_NEAR_BOSS_PILLAR {
+    name: "Fire Temple Near Boss Pillar"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_NEAR_BOSS_ROOM:   fire_timer() >= 8
+        RR_FIRE_TEMPLE_NEAR_BOSS_TARGET: fire_timer() >= 8 and can_use(RG_LONGSHOT)
+        RR_FIRE_TEMPLE_NEAR_BOSS_DOOR:   fire_timer() >= 8 and (is_adult() or bunny_hood() or can_use(RG_HOVER_BOOTS))
+    }
+}
+
+region RR_FIRE_TEMPLE_NEAR_BOSS_DOOR {
+    name: "Fire Temple Near Boss Door"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_NEAR_BOSS_ROOM:   fire_timer() >= 8 and (is_adult() or can_use(RG_HOVER_BOOTS) or can_megajump())
+        RR_FIRE_TEMPLE_NEAR_BOSS_PILLAR: fire_timer() >= 8 and (is_adult() or can_use(RG_HOVER_BOOTS) or bunny_hood())
+        RR_FIRE_TEMPLE_NEAR_BOSS_TARGET: fire_timer() >= 8 and (can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT) or (is_adult() and bunny_hood()) or can_megajump())
+        RR_FIRE_TEMPLE_BOSS_ENTRYWAY:    always
+    }
+}
+
+region RR_FIRE_TEMPLE_NEAR_BOSS_TARGET {
+    name: "Fire Temple Near Boss Target"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_NEAR_BOSS_ROOM:  fire_timer() >= 8 and (((is_adult() or bunny_hood()) and can_use(RG_HOVER_BOOTS)) or can_megajump() or can_bomb_recoil_hover())
+        RR_FIRE_TEMPLE_NEAR_BOSS_DOOR:  fire_timer() >= 8 and (can_use(RG_HOVER_BOOTS) or (is_adult() and bunny_hood()) or can_megajump())
+        RR_FIRE_TEMPLE_NEAR_BOSS_UPPER: fire_timer() >= 8 and is_adult()
     }
 }
 
@@ -36,7 +69,8 @@ region RR_FIRE_TEMPLE_NEAR_BOSS_UPPER {
     }
 
     exits {
-        #Exits should be handled if there's any way here directly
+        RR_FIRE_TEMPLE_NEAR_BOSS_ROOM:   fire_timer() >= 8
+        RR_FIRE_TEMPLE_NEAR_BOSS_TARGET: fire_timer() >= 8
     }
 }
 
@@ -111,12 +145,22 @@ region RR_FIRE_TEMPLE_BIG_LAVA_ROOM {
     exits {
         RR_FIRE_TEMPLE_FOYER:                small_keys(SCENE_FIRE_TEMPLE, 2) and fire_timer() >= 24
         RR_FIRE_TEMPLE_1F_CURVED_CAGE:       fire_timer() >= 24
-        RR_FIRE_TEMPLE_8_TILE_ROOM:          is_adult() and fire_timer() >= 32 and (can_use(RG_SONG_OF_TIME) or 
-                                             trick(RT_FIRE_SOT))
+        RR_FIRE_TEMPLE_BIG_LAVA_SOT_LEDGE:   is_adult() and fire_timer() >= 32 and (can_use(RG_SONG_OF_TIME) or
+                                             trick(RT_FIRE_SOT) or can_megajump(true))
         RR_FIRE_TEMPLE_STRAIGHTFORWARD_CAGE: (is_adult() and has_explosives() and fire_timer() >= 32) or 
                                              (can_ground_jump() and fire_timer() >= 40)
         # Fewer tunic requirements ends here
         RR_FIRE_TEMPLE_LAVA_GEYSER_1F:       can_use(RG_GORON_TUNIC) and small_keys(SCENE_FIRE_TEMPLE, 3)
+    }
+}
+
+region RR_FIRE_TEMPLE_BIG_LAVA_SOT_LEDGE {
+    name: "Fire Temple Big Lava SoT Ledge"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_BIG_LAVA_ROOM: always
+        RR_FIRE_TEMPLE_8_TILE_ROOM:   always
     }
 }
 
@@ -194,11 +238,20 @@ region RR_FIRE_TEMPLE_SHORTCUT_ROOM {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_LAVA_GEYSER_1F:     small_keys(SCENE_FIRE_TEMPLE, 4)
-        RR_FIRE_TEMPLE_SHORTCUT_CLIMB:     flag(LOGIC_FIRE_OPENED_UPPER_SHORTCUT)
-        RR_FIRE_TEMPLE_BOULDER_MAZE_LOWER: is_adult() and has(RG_CLIMB) and ((has(RG_GORONS_BRACELET) or 
-                                           trick(RT_FIRE_STRENGTH)) or can_ground_jump()) and 
-                                           can_hit_switch(ED_BOMB_THROW)
+        RR_FIRE_TEMPLE_LAVA_GEYSER_2F:   small_keys(SCENE_FIRE_TEMPLE, 4)
+        RR_FIRE_TEMPLE_SHORTCUT_CLIMB:   flag(LOGIC_FIRE_OPENED_UPPER_SHORTCUT)
+        RR_FIRE_TEMPLE_SHORTCUT_ROOM_3F: has(RG_CLIMB) and is_adult() and (has(RG_GORONS_BRACELET) or trick(RT_FIRE_STRENGTH) or can_ground_jump() or
+                                         can_megajump() or can_recoil_hover(RECOIL_HAMMER)) and can_hit_switch(ED_BOMB_THROW)
+    }
+}
+
+region RR_FIRE_TEMPLE_SHORTCUT_ROOM_3F {
+    name: "Fire Temple Shortcut Room 3F"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_SHORTCUT_ROOM:      always
+        RR_FIRE_TEMPLE_BOULDER_MAZE_LOWER: always
     }
 }
 
@@ -254,10 +307,31 @@ region RR_FIRE_TEMPLE_FIRE_WALL_CHASE {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_NARROW_PATH_ROOM:   fire_timer() >= 24 and small_keys(SCENE_FIRE_TEMPLE, 6)
-        RR_FIRE_TEMPLE_FIRE_WALL_CAGE:     fire_timer() >= 16 and is_adult()
-        RR_FIRE_TEMPLE_BOULDER_MAZE_UPPER: fire_timer() >= 24 and is_adult()
-        RR_FIRE_TEMPLE_CORRIDOR:           fire_timer() >= 16 and is_adult() and small_keys(SCENE_FIRE_TEMPLE, 7)
+        RR_FIRE_TEMPLE_NARROW_PATH_ROOM:     fire_timer() >= 24 and small_keys(SCENE_FIRE_TEMPLE, 6)
+        RR_FIRE_TEMPLE_FIRE_WALL_CAGE:       fire_timer() >= 16 and is_adult()
+        RR_FIRE_TEMPLE_FIRE_WALL_UPPER_DOOR: fire_timer() >= 24 and is_adult()
+        RR_FIRE_TEMPLE_FIRE_WALL_SIDE_DOOR:  fire_timer() >= 16 and (is_adult() or (can_midair_damage_boost() and can_use(RG_BOTTLE_WITH_FAIRY)))
+    }
+}
+
+region RR_FIRE_TEMPLE_FIRE_WALL_UPPER_DOOR {
+    name: "Fire Temple Fire Wall Upper Door"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_FIRE_WALL_CAGE:     fire_timer() >= 8 and is_adult()
+        RR_FIRE_TEMPLE_FIRE_WALL_CHASE:    always
+        RR_FIRE_TEMPLE_BOULDER_MAZE_UPPER: always
+    }
+}
+
+region RR_FIRE_TEMPLE_FIRE_WALL_SIDE_DOOR {
+    name: "Fire Temple Fire Wall Chase"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_FIRE_WALL_CHASE: always
+        RR_FIRE_TEMPLE_CORRIDOR:        small_keys(SCENE_FIRE_TEMPLE, 7)
     }
 }
 
@@ -268,7 +342,7 @@ region RR_FIRE_TEMPLE_FIRE_WALL_CAGE {
 
     exits {
         RR_FIRE_TEMPLE_NARROW_PATH_ROOM: always
-        RR_FIRE_TEMPLE_FIRE_WALL_CHASE:  false
+        RR_FIRE_TEMPLE_FIRE_WALL_CHASE:  is_adult() and can_bomb_recoil_hover()
     }
 }
 
@@ -277,11 +351,20 @@ region RR_FIRE_TEMPLE_BOULDER_MAZE_UPPER {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_SHORTCUT_CLIMB:     has_explosives()
-        RR_FIRE_TEMPLE_BOULDER_MAZE_LOWER: always
-        RR_FIRE_TEMPLE_FIRE_WALL_CHASE:    always
-        RR_FIRE_TEMPLE_GS_CLIMB_4F:        reach_scarecrow() or (trick(RT_FIRE_SCARECROW) and is_adult() and 
-                                           can_use(RG_LONGSHOT))
+        RR_FIRE_TEMPLE_SHORTCUT_CLIMB:       has_explosives()
+        RR_FIRE_TEMPLE_BOULDER_MAZE_LOWER:   always
+        RR_FIRE_TEMPLE_FIRE_WALL_UPPER_DOOR: always
+        RR_FIRE_TEMPLE_BOULDER_MAZE_4F:      reach_scarecrow() or (trick(RT_FIRE_SCARECROW) and is_adult() and can_use(RG_LONGSHOT))
+    }
+}
+
+region RR_FIRE_TEMPLE_BOULDER_MAZE_4F {
+    name: "Fire Temple Boulder Maze 4F"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_BOULDER_MAZE_UPPER: always
+        RR_FIRE_TEMPLE_GS_CLIMB_4F:        always
     }
 }
 
@@ -290,8 +373,8 @@ region RR_FIRE_TEMPLE_GS_CLIMB_4F {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_BOULDER_MAZE_UPPER: always
-        RR_FIRE_TEMPLE_GS_CLIMB_5F:        has(RG_CLIMB)
+        RR_FIRE_TEMPLE_BOULDER_MAZE_4F: always
+        RR_FIRE_TEMPLE_GS_CLIMB_5F:     has(RG_CLIMB)
     }
 }
 
@@ -311,7 +394,7 @@ region RR_FIRE_TEMPLE_5F_RUINS {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_GS_CLIMB_4F:      always
+        RR_FIRE_TEMPLE_GS_CLIMB_5F:      always
         RR_FIRE_TEMPLE_NARROW_PATH_ROOM: take_damage()
     }
 }
@@ -321,8 +404,8 @@ region RR_FIRE_TEMPLE_CORRIDOR {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_FIRE_WALL_CHASE: small_keys(SCENE_FIRE_TEMPLE, 7)
-        RR_FIRE_TEMPLE_FIRE_MAZE_MAIN:  always
+        RR_FIRE_TEMPLE_FIRE_WALL_SIDE_DOOR: small_keys(SCENE_FIRE_TEMPLE, 7)
+        RR_FIRE_TEMPLE_FIRE_MAZE_MAIN:      always
     }
 }
 
@@ -331,15 +414,17 @@ region RR_FIRE_TEMPLE_FIRE_MAZE_MAIN {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        #Accounting for either air-drifting to the platform you want and taking fall damage or landing on the platform and jumping off
-        RR_FIRE_TEMPLE_NEAR_BOSS_ROOM:      flag(LOGIC_FIRE_HIT_PLATFORM) and (is_adult() or can_use(RG_HOVER_BOOTS) or
-                                            take_damage())
+        RR_FIRE_TEMPLE_NEAR_BOSS_PILLAR:    flag(LOGIC_FIRE_HIT_PLATFORM)
+        # sidehop towards foyer door
+        RR_FIRE_TEMPLE_NEAR_BOSS_ROOM:      flag(LOGIC_FIRE_HIT_PLATFORM) and fire_timer() >= 8 and take_damage()
+        # sidehop towards boss door
+        RR_FIRE_TEMPLE_NEAR_BOSS_DOOR:      flag(LOGIC_FIRE_HIT_PLATFORM) and fire_timer() >= 8 and take_damage()
         RR_FIRE_TEMPLE_CORRIDOR:            always
-        RR_FIRE_TEMPLE_FIRE_MAZE_PLATFORMS: can_use(RG_HOVER_BOOTS) or (is_adult() and 
-                                            (flag(LOGIC_FIRE_HIT_ABOVE_MAZE_PLATFORM) or can_ground_jump()))
+        RR_FIRE_TEMPLE_FIRE_MAZE_PLATFORMS: can_use(RG_HOVER_BOOTS) or (is_adult() and
+                                            (flag(LOGIC_FIRE_HIT_ABOVE_MAZE_PLATFORM) or can_ground_jump() or bunny_hood())) or can_megajump()
         RR_FIRE_TEMPLE_CAGELESS_CHEST_ROOM: always
         RR_FIRE_TEMPLE_SOT_CAGE_LOWER:      small_keys(SCENE_FIRE_TEMPLE, 8)
-        RR_FIRE_TEMPLE_FIRE_MAZE_SWITCH:    trick(RT_FIRE_SKIP_FLAME_WALLS)
+        RR_FIRE_TEMPLE_FIRE_MAZE_SWITCH:    trick(RT_FIRE_SKIP_FLAME_WALLS) or can_recoil_hover(RECOIL_HAMMER)
     }
 }
 
@@ -353,6 +438,8 @@ region RR_FIRE_TEMPLE_FIRE_MAZE_PLATFORMS {
 
     exits {
         RR_FIRE_TEMPLE_FIRE_MAZE_MAIN:      always
+        # bunny hovers can also reach the switch by running over the poles, but it's a hard hovers trick
+        RR_FIRE_TEMPLE_FIRE_MAZE_SWITCH:    can_megajump() or can_bomb_recoil_hover()
         RR_FIRE_TEMPLE_SOT_CAGE_UPPER_DOOR: can_use(RG_MEGATON_HAMMER)
     }
 }
@@ -384,7 +471,7 @@ region RR_FIRE_TEMPLE_SOT_CAGE_UPPER_DOOR {
 
     exits {
         RR_FIRE_TEMPLE_BOSS_ENTRYWAY:       false
-        RR_FIRE_TEMPLE_SOT_CAGE_SWITCH:     is_adult() or can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME)
+        RR_FIRE_TEMPLE_SOT_CAGE_SWITCH:     is_adult() or can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME) or bunny_hood()
         RR_FIRE_TEMPLE_FIRE_MAZE_PLATFORMS: always
         RR_FIRE_TEMPLE_SOT_CAGE_LOWER:      always
     }
@@ -396,7 +483,7 @@ region RR_FIRE_TEMPLE_SOT_CAGE_SWITCH {
 
     exits {
         RR_FIRE_TEMPLE_BOSS_ENTRYWAY:       false
-        RR_FIRE_TEMPLE_SOT_CAGE_UPPER_DOOR: is_adult() or can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME)
+        RR_FIRE_TEMPLE_SOT_CAGE_UPPER_DOOR: is_adult() or can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME) or bunny_hood()
         RR_FIRE_TEMPLE_SOT_CAGE_LOWER:      always
     }
 }
@@ -406,9 +493,9 @@ region RR_FIRE_TEMPLE_FIRE_MAZE_SWITCH {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_FIRE_MAZE_MAIN:      (trick(RT_FIRE_SKIP_FLAME_WALLS) and take_damage()) or
-                                            (is_adult() and can_standing_shield() and can_use(RG_BOMB_BAG) and 
-                                            trick(RT_GROUND_JUMP_HARD) and (can_jumpslash() or can_use(RG_HOVER_BOOTS)))
+        RR_FIRE_TEMPLE_FIRE_MAZE_MAIN:      trick(RT_FIRE_SKIP_FLAME_WALLS) or can_recoil_hover(RECOIL_HAMMER) or
+                                            (is_adult() and can_ground_jump() and (can_megajump() or
+                                            (trick(RT_GROUND_JUMP_HARD) and (can_jumpslash() or can_use(RG_HOVER_BOOTS)))))
         RR_FIRE_TEMPLE_SOT_CAGE_LOWER:      always
         RR_FIRE_TEMPLE_FIRE_MAZE_PAST_WALL: always
     }
@@ -439,17 +526,27 @@ region RR_FIRE_TEMPLE_ABOVE_3F_FLARE_DANCER {
 
     exits {
         RR_FIRE_TEMPLE_3F_FLARE_DANCER: always
-        RR_FIRE_TEMPLE_SWITCH_CLIMB:    always
+        RR_FIRE_TEMPLE_SWITCH_CLIMB_4F: always
     }
 }
 
-region RR_FIRE_TEMPLE_SWITCH_CLIMB {
-    name: "Fire Temple Switch Climb"
+region RR_FIRE_TEMPLE_SWITCH_CLIMB_4F {
+    name: "Fire Temple Switch Climb 4F"
     scene: SCENE_FIRE_TEMPLE
 
     exits {
         RR_FIRE_TEMPLE_ABOVE_3F_FLARE_DANCER: always
-        RR_FIRE_TEMPLE_NARROW_STAIRS:         can_hit_switch(ED_BOMB_THROW) and has(RG_CLIMB)
+        RR_FIRE_TEMPLE_SWITCH_CLIMB_5F:       can_hit_switch(ED_BOMB_THROW) and has(RG_CLIMB)
+    }
+}
+
+region RR_FIRE_TEMPLE_SWITCH_CLIMB_5F {
+    name: "Fire Temple Switch Climb 5F"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_SWITCH_CLIMB_4F: always
+        RR_FIRE_TEMPLE_NARROW_STAIRS:   always
     }
 }
 
@@ -460,7 +557,7 @@ region RR_FIRE_TEMPLE_NARROW_STAIRS {
     exits {
         RR_FIRE_TEMPLE_SOT_CAGE_UPPER_DOOR: take_damage()
         RR_FIRE_TEMPLE_SOT_CAGE_SWITCH:     take_damage()
-        RR_FIRE_TEMPLE_SWITCH_CLIMB:        always
+        RR_FIRE_TEMPLE_SWITCH_CLIMB_5F:     always
         RR_FIRE_TEMPLE_NARROW_STAIRS_4F:    any_age(can_use(RG_MEGATON_HAMMER))
     }
 }
@@ -513,9 +610,7 @@ region RR_FIRE_TEMPLE_ABOVE_FIRE_MAZE {
 
     exits {
         RR_FIRE_TEMPLE_BASE_OF_COLLAPSING_STAIRS: always
-        RR_FIRE_TEMPLE_FIRE_MAZE_MAIN:            flag(LOGIC_FIRE_HIT_ABOVE_MAZE_PLATFORM)
-        #it's possible to land directly on the upper platform as child and even avoid fall damage, but it's not intuitive (you have to ledge grab, drop down 
-        #and then air drift with enough momentum to roll)
-        RR_FIRE_TEMPLE_FIRE_MAZE_PLATFORMS:       flag(LOGIC_FIRE_HIT_ABOVE_MAZE_PLATFORM) and can_jumpslash() and take_damage()
+        # pegs prevent fall damage
+        RR_FIRE_TEMPLE_FIRE_MAZE_PLATFORMS:       flag(LOGIC_FIRE_HIT_ABOVE_MAZE_PLATFORM)
     }
 }

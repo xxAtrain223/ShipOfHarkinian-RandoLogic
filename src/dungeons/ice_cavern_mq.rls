@@ -36,18 +36,41 @@ region RR_ICE_CAVERN_MQ_MAP_ROOM {
     }
 }
 
+# RANDOTODO the default state of the toggle switches in MQ ice are weird, investigate for doorsanity
 region RR_ICE_CAVERN_MQ_SCARECROW_ROOM {
     name: "Ice Cavern MQ Scarecrow Room"
     scene: SCENE_ICE_CAVERN
 
+    exits {
+        RR_ICE_CAVERN_MQ_HUB:            blue_fire()
+        RR_ICE_CAVERN_MQ_FIRE_NOOK:      can_use(RG_SONG_OF_TIME) or bunny_hovers() or
+                                         (is_adult() and (can_ground_jump() or trick(RT_SLIDE_JUMP) or can_bomb_recoil_hover())) or can_megajump()
+        RR_ICE_CAVERN_MQ_SCARECROW_NOOK: reach_scarecrow() or (is_adult() and (trick(RT_SLIDE_JUMP) or can_ground_jump())) or
+                                         ((can_megajump() or can_bomb_recoil_hover()) and (is_adult() or can_use(RG_HOVER_BOOTS)))
+        # The switch defaults into the state where the block exists, and is a temp flag
+        RR_ICE_CAVERN_MQ_WEST_CORRIDOR:  (is_adult() or bunny_hovers() or can_megajump() or can_bomb_recoil_hover()) and blue_fire()
+    }
+}
+
+region RR_ICE_CAVERN_MQ_FIRE_NOOK {
+    name: "Ice Cavern MQ Fire Nook"
+    scene: SCENE_ICE_CAVERN
+
     events {
-        LOGIC_BLUE_FIRE_ACCESS: can_use(RG_SONG_OF_TIME) or (is_adult() and (can_ground_jump() or trick(RT_SLIDE_JUMP)))
+        LOGIC_BLUE_FIRE_ACCESS: always
     }
 
     exits {
-        RR_ICE_CAVERN_MQ_HUB:           blue_fire()
-        # The switch defaults into the state where the block exists, and is a temp flag
-        RR_ICE_CAVERN_MQ_WEST_CORRIDOR: is_adult() and blue_fire()
+        RR_ICE_CAVERN_MQ_SCARECROW_ROOM: always
+    }
+}
+
+region RR_ICE_CAVERN_MQ_SCARECROW_NOOK {
+    name: "Ice Cavern MQ Scarecrow Nook"
+    scene: SCENE_ICE_CAVERN
+
+    exits {
+        RR_ICE_CAVERN_MQ_SCARECROW_ROOM: always
     }
 }
 
@@ -89,7 +112,7 @@ region RR_ICE_CAVERN_MQ_STALFOS_ROOM_UNDERWATER {
     scene: SCENE_ICE_CAVERN
 
     exits {
-        RR_ICE_CAVERN_MQ_STALFOS_ROOM:    can_use(RG_BRONZE_SCALE)
+        RR_ICE_CAVERN_MQ_STALFOS_ROOM:    has(RG_BRONZE_SCALE)
         RR_ICE_CAVERN_MQ_ABOVE_BEGINNING: can_use(RG_IRON_BOOTS)
     }
 }

@@ -7,10 +7,12 @@ region RR_GORON_CITY {
         LOGIC_STICK_ACCESS:                           is_child() and can_break_pots()
         LOGIC_BUG_ACCESS:                             (blast_or_smash() and has(RG_POWER_BRACELET)) or can_use(RG_SILVER_GAUNTLETS)
         LOGIC_GORON_CITY_CHILD_FIRE:                  is_child() and can_use(RG_DINS_FIRE)
-        LOGIC_GORON_CITY_WOODS_WARP_OPEN:             can_detonate_upright_bomb_flower() or can_use(RG_MEGATON_HAMMER) or flag(LOGIC_GORON_CITY_CHILD_FIRE)
+        LOGIC_GORON_CITY_WOODS_WARP_OPEN:             can_detonate_upright_bomb_flower() or can_use(RG_MEGATON_HAMMER) or
+                                                      (is_child() and flag(LOGIC_GORON_CITY_CHILD_FIRE) and can_use(RG_STICKS))
         LOGIC_GORON_CITY_DARUNIAS_DOOR_OPEN_CHILD:    is_child() and can_use(RG_ZELDAS_LULLABY)
         # bottle animation causes similar complications as stopping goron with Din's Fire,
         # only put in logic when both din's & blue fire tricks enabled
+        # RANDOTODO Strength for this is a trick in N64, should it be here? Should bunny put it in default logic?
         LOGIC_GORON_CITY_STOP_ROLLING_GORON_AS_ADULT: is_adult() and has(RG_SPEAK_GORON) and
                                                       (has(RG_GORONS_BRACELET) or has_explosives() or can_use(RG_FAIRY_BOW) or
                                                        (trick(RT_GC_LINK_GORON_DINS) and
@@ -35,12 +37,13 @@ region RR_GORON_CITY {
                                   (blast_or_smash() or has(RG_GORONS_BRACELET) or flag(LOGIC_GORON_CITY_CHILD_FIRE) or can_use(RG_FAIRY_BOW)))
         RR_GC_DARUNIAS_CHAMBER:  (is_adult() and flag(LOGIC_GORON_CITY_STOP_ROLLING_GORON_AS_ADULT)) or
                                  (is_child() and flag(LOGIC_GORON_CITY_DARUNIAS_DOOR_OPEN_CHILD))
+        # the lava dive costs a heart, half a heart if we can climb out with the hookshot
         RR_GC_GROTTO_PLATFORM:   is_adult() and
                                  ((can_use(RG_SONG_OF_TIME) and
-                                  (effective_health() > 2 or can_use(RG_GORON_TUNIC) or can_use(RG_LONGSHOT) or can_use(RG_NAYRUS_LOVE))) or
-                                  (effective_health() > 1 and can_use(RG_GORON_TUNIC) and can_use(RG_HOOKSHOT)) or
+                                  (effective_health() > 16 or can_use(RG_GORON_TUNIC) or can_use(RG_LONGSHOT) or can_use(RG_NAYRUS_LOVE))) or
+                                  (effective_health() > 8 and can_use(RG_GORON_TUNIC) and can_use(RG_HOOKSHOT)) or
                                   (can_use(RG_NAYRUS_LOVE) and can_use(RG_HOOKSHOT)) or
-                                  (effective_health() > 2 and can_use(RG_HOOKSHOT) and trick(RT_GC_GROTTO)))
+                                  (effective_health() > 16 and can_use(RG_HOOKSHOT) and trick(RT_GC_GROTTO)))
     }
 }
 
@@ -95,7 +98,7 @@ region RR_GC_GROTTO_PLATFORM {
 
     exits {
         RR_GC_GROTTO:  always
-        RR_GORON_CITY: effective_health() > 2 or can_use(RG_GORON_TUNIC) or can_use(RG_NAYRUS_LOVE) or
+        RR_GORON_CITY: effective_health() > 16 or can_use(RG_GORON_TUNIC) or can_use(RG_NAYRUS_LOVE) or
                        ((is_child() or can_use(RG_SONG_OF_TIME)) and can_use(RG_LONGSHOT))
     }
 }

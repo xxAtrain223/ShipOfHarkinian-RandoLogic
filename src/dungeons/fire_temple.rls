@@ -5,7 +5,7 @@ region RR_FIRE_TEMPLE_ENTRYWAY {
     exits {
         RR_FIRE_TEMPLE_FOYER:          is_vanilla()
         RR_FIRE_TEMPLE_MQ_FOYER_LOWER: is_mq()
-        RR_DMC_TEMPLE_EXIT:            always
+        RR_DMC_TEMPLE_ENTRY:           always
     }
 }
 
@@ -15,8 +15,8 @@ region RR_FIRE_TEMPLE_BOSS_ENTRYWAY {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_NEAR_BOSS_ROOM:    is_vanilla() and false
-        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM: is_mq() and false
+        RR_FIRE_TEMPLE_NEAR_BOSS_DOOR:    is_vanilla()
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_DOOR: is_mq()
         RR_FIRE_TEMPLE_BOSS_ROOM:         has(RG_FIRE_TEMPLE_BOSS_KEY)
     }
 }

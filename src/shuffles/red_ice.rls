@@ -1,0 +1,141 @@
+# overworld/zoras_domain
+
+extend region RR_ZORAS_DOMAIN {
+    locations {
+        RC_ZD_KING_ZORA_RED_ICE: is_adult() and flag(LOGIC_KING_ZORA_THAWED)
+        RC_ZD_ZORA_SHOP_RED_ICE: is_adult() and blue_fire()
+    }
+}
+
+extend region RR_ZD_BEHIND_KING_ZORA {
+    locations {
+        RC_ZD_KING_ZORA_RED_ICE: is_adult() and flag(LOGIC_KING_ZORA_THAWED)
+    }
+}
+extend region RR_GANONS_CASTLE_MQ_WATER_TRIAL_BLOCK_ROOM {
+    locations {
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_SECOND_DOOR_RED_ICE_1: flag(LOGIC_WATER_TRIAL_MQ_MELTED_FINAL_DOOR_RED_ICE) and can_use(RG_BOOMERANG)
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_SECOND_DOOR_RED_ICE_2: flag(LOGIC_WATER_TRIAL_MQ_MELTED_FINAL_DOOR_RED_ICE) and can_use(RG_BOOMERANG)
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_SECOND_DOOR_RED_ICE_3: flag(LOGIC_WATER_TRIAL_MQ_MELTED_FINAL_DOOR_RED_ICE) and can_use(RG_BOOMERANG)
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_SECOND_DOOR_RED_ICE_4: flag(LOGIC_WATER_TRIAL_MQ_MELTED_FINAL_DOOR_RED_ICE) and can_use(RG_BOOMERANG)
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_SECOND_DOOR_RED_ICE_5: flag(LOGIC_WATER_TRIAL_MQ_MELTED_FINAL_DOOR_RED_ICE) and can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_WATER_TRIAL_BLOCK_ROOM_END {
+    locations {
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_SECOND_DOOR_RED_ICE_1: flag(LOGIC_WATER_TRIAL_MQ_MELTED_FINAL_DOOR_RED_ICE)
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_SECOND_DOOR_RED_ICE_2: flag(LOGIC_WATER_TRIAL_MQ_MELTED_FINAL_DOOR_RED_ICE)
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_SECOND_DOOR_RED_ICE_3: flag(LOGIC_WATER_TRIAL_MQ_MELTED_FINAL_DOOR_RED_ICE)
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_SECOND_DOOR_RED_ICE_4: flag(LOGIC_WATER_TRIAL_MQ_MELTED_FINAL_DOOR_RED_ICE)
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_SECOND_DOOR_RED_ICE_5: flag(LOGIC_WATER_TRIAL_MQ_MELTED_FINAL_DOOR_RED_ICE)
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_WATER_TRIAL_GEYSER_ROOM {
+    locations {
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_FIRST_ROOM_BACK_LEFT_RED_ICE: blue_fire()
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_FIRST_ROOM_DOOR_RED_ICE_1: blue_fire()
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_FIRST_ROOM_DOOR_RED_ICE_2: blue_fire()
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_FIRST_ROOM_DOOR_RED_ICE_3: blue_fire()
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_FIRST_ROOM_DOOR_RED_ICE_4: blue_fire()
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_FIRST_ROOM_LEFT_RED_ICE: blue_fire()
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_FIRST_ROOM_RIGHT_RED_ICE: blue_fire()
+    }
+}
+
+extend region RR_GANONS_CASTLE_WATER_TRIAL_BLOCK_ROOM_SWITCH {
+    locations {
+        RC_GANONS_CASTLE_WATER_TRIAL_RUSTED_SWITCH_RED_ICE: blue_fire()
+    }
+}
+
+extend region RR_GANONS_CASTLE_WATER_TRIAL_BLUE_FIRE_ROOM {
+    locations {
+        RC_GANONS_CASTLE_WATER_TRIAL_DOOR_RED_ICE: blue_fire()
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_MQ_STALFOS_ROOM_ALCOVE {
+    locations {
+        RC_GERUDO_TRAINING_GROUND_MQ_STALFOS_ROOM_RED_ICE: blue_fire()
+    }
+}
+
+extend region RR_ICE_CAVERN_BEFORE_FINAL_ROOM {
+    locations {
+        RC_ICE_CAVERN_NEAR_END_LEFT_RED_ICE: blue_fire()
+        RC_ICE_CAVERN_NEAR_END_MIDDLE_RED_ICE: blue_fire()
+        RC_ICE_CAVERN_NEAR_END_RIGHT_RED_ICE: blue_fire()
+    }
+}
+
+extend region RR_ICE_CAVERN_BEGINNING {
+    locations {
+        RC_ICE_CAVERN_ENTRANCE_RED_ICE: blue_fire()
+        RC_ICE_CAVERN_LOBBY_LEFT_RED_ICE: blue_fire()
+        RC_ICE_CAVERN_LOBBY_RIGHT_RED_ICE: blue_fire()
+    }
+}
+
+extend region RR_ICE_CAVERN_COMPASS_ROOM {
+    locations {
+        RC_ICE_CAVERN_HEART_PIECE_ROOM_CHEST_RED_ICE: (is_child() or can_clear_stalagmite() or trick(RT_ICE_STALAGMITE_CLIP)) and blue_fire()
+        RC_ICE_CAVERN_HEART_PIECE_ROOM_FREESTANDING_RED_ICE: (can_clear_stalagmite() or trick(RT_ICE_STALAGMITE_CLIP)) and blue_fire()
+    }
+}
+
+extend region RR_ICE_CAVERN_HUB {
+    locations {
+        RC_ICE_CAVERN_SPINNING_BLADE_EAST_RED_ICE: blue_fire()
+        RC_ICE_CAVERN_SPINNING_BLADE_WEST_RED_ICE: blue_fire()
+    }
+}
+
+extend region RR_ICE_CAVERN_MAP_ROOM {
+    locations {
+        RC_ICE_CAVERN_MAP_ROOM_CHEST_RED_ICE: blue_fire()
+        RC_ICE_CAVERN_MAP_ROOM_POT_RED_ICE: blue_fire()
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_COMPASS_ROOM {
+    locations {
+        RC_ICE_CAVERN_MQ_COMPASS_RED_ICE: (can_use(RG_BOTTLE_WITH_BLUE_FIRE) and (can_use(RG_SONG_OF_TIME) or (is_adult() and trick(RT_ICE_MQ_RED_ICE_GS))) and (can_kill(RE_GOLD_SKULLTULA) or take_damage())) or (setting(RSK_BLUE_FIRE_ARROWS) and can_use(RG_ICE_ARROWS))
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_HUB {
+    locations {
+        RC_ICE_CAVERN_MQ_HUB_LEDGE_LEFT_RED_ICE: (is_adult() ) and blue_fire()
+        RC_ICE_CAVERN_MQ_HUB_LEDGE_MIDDLE_RED_ICE: (is_adult() ) and blue_fire()
+        RC_ICE_CAVERN_MQ_HUB_LEDGE_RIGHT_RED_ICE: (is_adult() ) and blue_fire()
+        RC_ICE_CAVERN_MQ_HUB_WEST_LEFT_RED_ICE: blue_fire()
+        RC_ICE_CAVERN_MQ_HUB_WEST_MIDDLE_RED_ICE: blue_fire()
+        RC_ICE_CAVERN_MQ_HUB_WEST_RIGHT_RED_ICE: blue_fire()
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_MAP_ROOM {
+    locations {
+        RC_ICE_CAVERN_MQ_MAP_RED_ICE: blue_fire()
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_SCARECROW_ROOM {
+    locations {
+        RC_ICE_CAVERN_MQ_SCARECROW_LEFT_RED_ICE: setting(RSK_BLUE_FIRE_ARROWS) and can_use(RG_ICE_ARROWS) and can_use(RG_BOOMERANG)
+        RC_ICE_CAVERN_MQ_SCARECROW_MIDDLE_RED_ICE: setting(RSK_BLUE_FIRE_ARROWS) and can_use(RG_ICE_ARROWS) and can_use(RG_BOOMERANG)
+        RC_ICE_CAVERN_MQ_SCARECROW_RIGHT_RED_ICE: setting(RSK_BLUE_FIRE_ARROWS) and can_use(RG_ICE_ARROWS) and can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_WEST_CORRIDOR {
+    locations {
+        RC_ICE_CAVERN_MQ_SCARECROW_LEFT_RED_ICE: blue_fire()
+        RC_ICE_CAVERN_MQ_SCARECROW_MIDDLE_RED_ICE: blue_fire()
+        RC_ICE_CAVERN_MQ_SCARECROW_RIGHT_RED_ICE: blue_fire()
+    }
+}
+
+

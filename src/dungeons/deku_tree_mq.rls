@@ -81,10 +81,10 @@ region RR_DEKU_TREE_MQ_COMPASS_ROOM {
 
     exits {
         RR_DEKU_TREE_MQ_EYE_TARGET_ROOM:    always
-        RR_DEKU_TREE_MQ_PAST_BOULDER_VINES: (has(RG_CLIMB) or can_use(RG_HOOKSHOT) or (is_adult() and can_use(RG_SONG_OF_TIME))) and
+        RR_DEKU_TREE_MQ_PAST_BOULDER_VINES: (has(RG_CLIMB) or can_use(RG_HOOKSHOT) or ((is_adult() or bunny_hood()) and can_use(RG_SONG_OF_TIME)) or ((is_adult() or can_use(RG_SONG_OF_TIME)) and can_megajump())) and
                                             any_age(can_use(RG_BOMBCHU_5) or
-                                                    (can_use(RG_BOMB_BAG) and (can_use(RG_SONG_OF_TIME) or is_adult() or can_use(RG_HOVER_BOOTS))) or
-                                                    (can_use(RG_MEGATON_HAMMER) and ((is_adult() and can_use(RG_SONG_OF_TIME)) or (trick(RT_DEKU_MQ_COMPASS_GS) and has(RG_CLIMB)))))
+                                                    (can_use(RG_BOMB_BAG) and ((can_use(RG_SONG_OF_TIME) and bunny_hood()) or is_adult() or can_use(RG_HOVER_BOOTS))) or
+                                                    (can_use(RG_MEGATON_HAMMER) and (((is_adult() or bunny_hood() or can_megajump()) and can_use(RG_SONG_OF_TIME)) or (trick(RT_DEKU_MQ_COMPASS_GS) and has(RG_CLIMB)))))
     }
 }
 
@@ -104,7 +104,7 @@ region RR_DEKU_TREE_MQ_BASEMENT {
     events {
         LOGIC_STICK_ACCESS:           can_get_deku_baba_sticks()
         LOGIC_NUT_ACCESS:             can_get_deku_baba_nuts()
-        LOGIC_DEKU_TREE_B1_BROKE_WEB: can_use(RG_STICKS) and (flag(LOGIC_DEKU_TREE_PUSHED_BASEMENT_BLOCK) or is_adult() or can_use(RG_HOVER_BOOTS))
+        LOGIC_DEKU_TREE_B1_BROKE_WEB: can_use(RG_STICKS) and (flag(LOGIC_DEKU_TREE_PUSHED_BASEMENT_BLOCK) or is_adult() or can_use(RG_HOVER_BOOTS) or bunny_hood())
     }
 
     exits {
@@ -112,7 +112,7 @@ region RR_DEKU_TREE_MQ_BASEMENT {
         RR_DEKU_TREE_MQ_BASEMENT_SOUTHEAST_ROOM:   any_age(can_hit_eye_targets())
         # includes RR_DEKU_TREE_MQ_BASEMENT_SOUTHEAST_ROOM Access, other fire sources clear directly from there
         RR_DEKU_TREE_MQ_BASEMENT_WATER_ROOM_FRONT: any_age(can_hit_eye_targets()) and flag(LOGIC_DEKU_TREE_MQ_CLEARED_SE_ROOM) and any_age(can_use(RG_STICKS))
-        RR_DEKU_TREE_MQ_BASEMENT_LEDGE:            is_adult() or trick(RT_DEKU_B1_SKIP) or can_ground_jump() or flag(LOGIC_DEKU_TREE_PUSHED_BASEMENT_BLOCK) or can_use(RG_HOVER_BOOTS)
+        RR_DEKU_TREE_MQ_BASEMENT_LEDGE:            is_adult() or bunny_hood() or trick(RT_DEKU_B1_SKIP) or can_ground_jump() or flag(LOGIC_DEKU_TREE_PUSHED_BASEMENT_BLOCK) or can_use(RG_HOVER_BOOTS)
     }
 }
 
@@ -158,7 +158,7 @@ region RR_DEKU_TREE_MQ_BASEMENT_WATER_ROOM_BACK {
 
     exits {
         RR_DEKU_TREE_MQ_BASEMENT_SOUTHWEST_ROOM:   flag(LOGIC_DEKU_TREE_MQ_WATER_ROOM_TORCHES) and can_pass(RE_BIG_SKULLTULA, can_use(RG_SONG_OF_TIME) ? ED_CLOSE : ED_SHORT_JUMPSLASH)
-        RR_DEKU_TREE_MQ_BASEMENT_WATER_ROOM_FRONT: trick(RT_DEKU_MQ_LOG) or (is_child() and can_shield()) or can_use(RG_LONGSHOT) or has(RG_BRONZE_SCALE) or (can_use(RG_IRON_BOOTS) and (is_adult() or can_use(RG_HOOKSHOT)))
+        RR_DEKU_TREE_MQ_BASEMENT_WATER_ROOM_FRONT: trick(RT_DEKU_MQ_LOG) or (is_child() and can_shield()) or can_use(RG_LONGSHOT) or has(RG_BRONZE_SCALE) or (can_use(RG_IRON_BOOTS) and (is_adult() or can_use(RG_HOOKSHOT))) or take_damage()
     }
 }
 
@@ -185,7 +185,7 @@ region RR_DEKU_TREE_MQ_BASEMENT_GRAVE_ROOM {
     exits {
         RR_DEKU_TREE_MQ_BASEMENT_LEDGE:          can_use(RG_CRAWL) and any_age(has_fire_source_with_torch() or can_use(RG_FAIRY_BOW))
         RR_DEKU_TREE_MQ_BASEMENT_SOUTHWEST_ROOM: always
-        # Using a bow to get past here as adult is a bit precise on standing position but simple, doing as as child requires a side-hop with the bow out to shoot through the torch and may be trick worthy
+        # Using a bow to get past here as adult is a bit precise on standing position but simple, doing so as child requires a side-hop with the bow out to shoot through the torch and may be trick worthy
         RR_DEKU_TREE_MQ_BASEMENT_BACK_ROOM:      any_age(has_fire_source_with_torch() or can_use(RG_FAIRY_BOW))
     }
 }

@@ -13,16 +13,19 @@ region RR_DODONGOS_CAVERN_MQ_LOBBY {
     scene: SCENE_DODONGOS_CAVERN
 
     events {
-        LOGIC_DC_EYES_LIT: trick(RT_DC_EYES_CHU) and can_use(RG_BOMBCHU_5)
+        LOGIC_DC_EYES_LIT:      (trick(RT_DC_EYES_CHU) and can_use(RG_BOMBCHU_5)) or
+                                (trick(RT_DC_EYES_BUNNYHOVERS) and has(RG_GORONS_BRACELET) and bunny_hovers())
+        LOGIC_DC_LIFT_PLATFORM: blast_or_smash() or has(RG_GORONS_BRACELET)
     }
 
     exits {
         RR_DODONGOS_CAVERN_MQ_BEGINNING:         always
         RR_DODONGOS_CAVERN_MQ_GOSSIP_STONE:      any_age(can_break_mud_walls() or has(RG_GORONS_BRACELET))
-        RR_DODONGOS_CAVERN_MQ_OUTSIDE_POES_ROOM: is_adult() or can_use(RG_HOOKSHOT) or can_ground_jump(trick(RT_GROUND_JUMP_HARD))
-        RR_DODONGOS_CAVERN_MQ_MOUTH_SIDE_BRIDGE: any_age(blast_or_smash() or has(RG_GORONS_BRACELET))
+        RR_DODONGOS_CAVERN_MQ_OUTSIDE_POES_ROOM: is_adult() or can_use(RG_HOOKSHOT) or can_ground_jump(trick(RT_GROUND_JUMP_HARD) or bunny_hood())
+        RR_DODONGOS_CAVERN_MQ_MOUTH_SIDE_BRIDGE: flag(LOGIC_DC_LIFT_PLATFORM)
         RR_DODONGOS_CAVERN_MQ_STAIRS_LOWER:      any_age(blast_or_smash() or has(RG_GORONS_BRACELET))
-        RR_DODONGOS_CAVERN_MQ_LOWER_RIGHT_SIDE:  any_age(can_break_mud_walls()) or any_age(has(RG_GORONS_BRACELET) and take_damage())
+        # We can skip bunny here as adult, but it's tight, should probably be a trick
+        RR_DODONGOS_CAVERN_MQ_LOWER_RIGHT_SIDE:  any_age(can_break_mud_walls() or (has(RG_GORONS_BRACELET) and bunny_hood()))
         RR_DODONGOS_CAVERN_MQ_BEHIND_MOUTH:      flag(LOGIC_DC_EYES_LIT)
     }
 }
@@ -56,15 +59,16 @@ region RR_DODONGOS_CAVERN_MQ_MOUTH_SIDE_BRIDGE {
 
     events {
         LOGIC_DC_MQ_CLEAR_UPPER_LOBBY_ROCKS: blast_or_smash() or can_use(RG_DINS_FIRE)
-        LOGIC_DC_EYES_LIT:                   has_explosives() or (flag(LOGIC_DC_MQ_CLEAR_UPPER_LOBBY_ROCKS) and has(RG_GORONS_BRACELET) and ((is_adult() and trick(RT_DC_MQ_ADULT_EYES)) or (is_child() and trick(RT_DC_MQ_CHILD_EYES))))
+        LOGIC_DC_EYES_LIT:                   has_explosives() or (flag(LOGIC_DC_MQ_CLEAR_UPPER_LOBBY_ROCKS) and has(RG_GORONS_BRACELET) and (bunny_hood() or (is_adult() and trick(RT_DC_MQ_ADULT_EYES)) or (is_child() and trick(RT_DC_MQ_CHILD_EYES))))
     }
 
     exits {
         RR_DODONGOS_CAVERN_MQ_LOBBY:              always
         RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_UPPER: flag(LOGIC_DC_MQ_CLEAR_UPPER_LOBBY_ROCKS)
-        # Bunny hood jump + jumpslash can also make it directly from the raising platform
-        RR_DODONGOS_CAVERN_MQ_OUTSIDE_POES_ROOM:  can_use(RG_HOVER_BOOTS) or (trick(RT_DC_MQ_CHILD_BOMBS) and can_jumpslash_except_hammer() and take_damage()) # RANDOTODO is this possible with equip swapped hammer?
-        # it is possible to use bunny hood speed, hovers and a jumpslash to go between here and the other bridge (included with TORCH_ROOM_LOWER), but this would be a trick
+        # Bunny hood jump + jumpslash can also make it directly from the raising platform, but it's too tight for unintuitive and overlaps with the recoil trick
+        RR_DODONGOS_CAVERN_MQ_OUTSIDE_POES_ROOM:  (flag(LOGIC_DC_LIFT_PLATFORM) and can_use(RG_HOVER_BOOTS)) or
+                                                  (trick(RT_DC_CHILD_LOBBY) and can_jumpslash_except_hammer() and take_damage()) or
+                                                  can_megajump(not flag(LOGIC_DC_LIFT_PLATFORM), flag(LOGIC_DC_MQ_CLEAR_UPPER_LOBBY_ROCKS))
     }
 }
 
@@ -75,7 +79,7 @@ region RR_DODONGOS_CAVERN_MQ_STAIRS_LOWER {
     exits {
         RR_DODONGOS_CAVERN_MQ_LOBBY:                always
         # This is possible with sticks and shield, igniting a first flower by "touch" then very quickly crouch stabbing in a way that cuts the corner to light the 3rd bomb on the other side, but that's a trick
-        RR_DODONGOS_CAVERN_MQ_STAIRS_UPPER:         any_age(has_explosives() or can_use(RG_DINS_FIRE) or (trick(RT_DC_STAIRS_WITH_BOW) and can_use(RG_FAIRY_BOW)))
+        RR_DODONGOS_CAVERN_MQ_STAIRS_UPPER:         any_age(has_explosives() or can_use(RG_DINS_FIRE) or (trick(RT_DC_STAIRS_WITH_BOW) and can_use(RG_FAIRY_BOW))) or (trick(RT_VISIBLE_COLLISION) and can_use(RG_HOOKSHOT))
         RR_DODONGOS_CAVERN_MQ_STAIRS_PAST_MUD_WALL: any_age(has(RG_GORONS_BRACELET) or can_break_mud_walls())
     }
 }
@@ -99,7 +103,8 @@ region RR_DODONGOS_CAVERN_MQ_STAIRS_UPPER {
     scene: SCENE_DODONGOS_CAVERN
 
     events {
-        LOGIC_DC_MQ_STAIRS_SILVER_RUPEES: has(RG_CLIMB)
+        LOGIC_DODONGOS_CAVERN_MQ_SILVER: (can_pass(RE_BIG_SKULLTULA) or can_use(RG_HOVER_BOOTS)) and
+                                         has(RG_CLIMB) and (can_break_crates() or (trick(RT_VISIBLE_COLLISION) and is_child()))
     }
 
     exits {
@@ -115,7 +120,7 @@ region RR_DODONGOS_CAVERN_MQ_STAIRS_PAST_BIG_SKULLTULAS {
     exits {
         RR_DODONGOS_CAVERN_MQ_STAIRS_UPPER: can_pass(RE_BIG_SKULLTULA) or can_use(RG_HOVER_BOOTS)
         RR_DODONGOS_CAVERN_MQ_STAIRS_LOWER: take_damage()
-        RR_DODONGOS_CAVERN_MQ_DODONGO_ROOM: flag(LOGIC_DC_MQ_STAIRS_SILVER_RUPEES)
+        RR_DODONGOS_CAVERN_MQ_DODONGO_ROOM: has(RG_DODONGOS_CAVERN_MQ_SILVER)
     }
 }
 
@@ -129,22 +134,41 @@ region RR_DODONGOS_CAVERN_MQ_DODONGO_ROOM {
     }
 }
 
+region RR_DODONGOS_CAVERN_MQ_ENTRANCE_SIDE_BRIDGE {
+    name: "Dodongos Cavern MQ Entrance Side Bridge"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_DC_MQ_CLEAR_UPPER_LOBBY_ROCKS: (((is_adult() or bunny_hood()) and ((has(RG_POWER_BRACELET) and is_adult()) or trick(RT_UNINTUITIVE_JUMPS))) or can_use(RG_HOVER_BOOTS)) and can_use(RG_STICKS)
+        LOGIC_DC_MQ_CLEAR_BIG_BLOCK_WEB:     can_use(RG_STICKS) and has(RG_POWER_BRACELET)
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_LOBBY:              take_damage()
+        RR_DODONGOS_CAVERN_MQ_OUTSIDE_POES_ROOM:  can_megajump(true)
+        RR_DODONGOS_CAVERN_MQ_DODONGO_ROOM:       always
+        RR_DODONGOS_CAVERN_MQ_LARVAE_ROOM:        can_use(RG_STICKS) and has(RG_POWER_BRACELET) # assumes RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_LOWER access.
+        RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_UPPER: ((is_adult() or bunny_hood()) and trick(RT_UNINTUITIVE_JUMPS)) or can_use(RG_HOVER_BOOTS) or can_midair_damage_boost()
+        # Implies access to RR_DODONGOS_CAVERN_MQ_BIG_BLOCK_ROOM and RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_LOWER from here
+        RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS:     can_use(RG_STICKS) and has(RG_GORONS_BRACELET)
+    }
+}
+
 region RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_LOWER {
     name: "Dodongos Cavern MQ Torch Puzzle Lower"
     scene: SCENE_DODONGOS_CAVERN
 
     events {
-        LOGIC_DC_MQ_CLEAR_UPPER_LOBBY_ROCKS: ((is_adult() and (has(RG_POWER_BRACELET) or trick(RT_UNINTUITIVE_JUMPS))) or can_use(RG_HOVER_BOOTS)) and can_use(RG_STICKS)
+        LOGIC_DC_MQ_CLEAR_BIG_BLOCK_WEB: has_fire_source()
     }
 
     exits {
-        RR_DODONGOS_CAVERN_MQ_LOBBY:              take_damage()
-        RR_DODONGOS_CAVERN_MQ_DODONGO_ROOM:       has(RG_POWER_BRACELET) or can_climb_ladder()
-        RR_DODONGOS_CAVERN_MQ_LARVAE_ROOM:        has_fire_source() or (can_use(RG_STICKS) and has(RG_POWER_BRACELET))
-        RR_DODONGOS_CAVERN_MQ_BIG_BLOCK_ROOM:     any_age(has_fire_source_with_torch()) # Includes an implied can_pass(RE_BIG_SKULLTULA)
-        # Bunny hood jump can make it as child
-        RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_UPPER: (is_adult() and (has(RG_POWER_BRACELET) or trick(RT_UNINTUITIVE_JUMPS) or can_ground_jump())) or can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT)
-        RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS:     can_use(RG_STICKS) and has(RG_GORONS_BRACELET) # Implies access to RR_DODONGOS_CAVERN_MQ_BIG_BLOCK_ROOM from here
+        RR_DODONGOS_CAVERN_MQ_ENTRANCE_SIDE_BRIDGE: (is_adult() or has(RG_POWER_BRACELET)) or can_climb_ladder() or ((is_adult() or can_midair_ground_jump(true)) and bunny_hovers())
+        RR_DODONGOS_CAVERN_MQ_LARVAE_ROOM:          has_fire_source()
+        # you can platform off the blocks to get here without climb
+        RR_DODONGOS_CAVERN_MQ_BIG_BLOCK_ROOM:       flag(LOGIC_DC_MQ_CLEAR_BIG_BLOCK_WEB) # Includes an implied can_pass(RE_BIG_SKULLTULA)
+        RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_UPPER:   (is_adult() and (has(RG_POWER_BRACELET) or trick(RT_UNINTUITIVE_JUMPS) or can_ground_jump())) or
+                                                    can_use(RG_HOOKSHOT) or can_midair_ground_jump() or can_megajump()
     }
 }
 
@@ -152,9 +176,15 @@ region RR_DODONGOS_CAVERN_MQ_BIG_BLOCK_ROOM {
     name: "Dodongos Cavern MQ Big Block Room"
     scene: SCENE_DODONGOS_CAVERN
 
+    events {
+        LOGIC_DC_MQ_CLEAR_BIG_BLOCK_WEB: has_fire_source()
+    }
+
     exits {
         RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_LOWER: can_pass(RE_BIG_SKULLTULA)
-        RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS:     (is_adult() or has(RG_POWER_BRACELET) or can_use(RG_HOVER_BOOTS)) and ((has_fire_source() and has(RG_GORONS_BRACELET)) or can_break_mud_walls()) # If you can somehow warp into this room, add can_pass(RE_BIG_SKULLTULA)
+        # crossing this area with hovers rolless as child requires backwalking, however the big skulltula prevents this unless the player manages to change the camera angle without changing the facing angle (c-up or freecam)
+        # it is unclear if this should be considered in logic or not
+        RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS:     (is_adult() or has(RG_POWER_BRACELET) or can_use(RG_HOVER_BOOTS) or can_megajump()) and ((has_fire_source() and has(RG_GORONS_BRACELET)) or can_break_mud_walls()) # If you can somehow warp into this room, add can_pass(RE_BIG_SKULLTULA)
     }
 }
 
@@ -179,13 +209,34 @@ region RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS {
 }
 
 region RR_DODONGOS_CAVERN_MQ_TWO_FIRES_ROOM {
-    name: "Dodongos Cavern MQ Before Upper Lizalfos"
+    name: "Dodongos Cavern MQ Two Fires Room"
     scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_DC_MQ_TWO_FIRES_BOULDER: blast_or_smash()
+    }
 
     exits {
         RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS:     always
+        RR_DODONGOS_CAVERN_MQ_TWO_FIRES_FLOWER:   can_hit_switch() or bunny_hood() or can_use(RG_HOVER_BOOTS) or trick(RT_DC_SLINGSHOT_SKIP)
         # crate platforming skips the puzzle
-        RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_UPPER: is_adult() or (any_age(blast_or_smash() or (can_attack() and has(RG_GORONS_BRACELET))))
+        RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_UPPER: is_adult() or trick(RT_UNINTUITIVE_JUMPS) or trick(RT_DC_SLINGSHOT_SKIP) or
+                                                  (flag(LOGIC_DC_MQ_TWO_FIRES_BOULDER) and can_hit_switch())
+    }
+}
+
+region RR_DODONGOS_CAVERN_MQ_TWO_FIRES_FLOWER {
+    name: "Dodongos Cavern MQ Two Fires Nook"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_DC_MQ_TWO_FIRES_BOULDER: has(RG_GORONS_BRACELET)
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_TWO_FIRES_ROOM:     always
+        # barely possible as adult with just hover boots and rolls, but hard enough to be a trick
+        RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_UPPER: has(RG_GORONS_BRACELET) or can_recoil_hover(RECOIL_SWORD_AND_SHIELD) or bunny_hovers() or can_megajump(false, true)
     }
 }
 
@@ -195,14 +246,15 @@ region RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_UPPER {
 
     events {
         LOGIC_DC_MQ_CLEAR_UPPER_LOBBY_ROCKS: can_detonate_upright_bomb_flower() or can_use(RG_MEGATON_HAMMER)
+        LOGIC_DC_LIFT_PLATFORM:              has(RG_GORONS_BRACELET)
     }
 
     exits {
         RR_DODONGOS_CAVERN_MQ_MOUTH_SIDE_BRIDGE:  flag(LOGIC_DC_MQ_CLEAR_UPPER_LOBBY_ROCKS)
         RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_LOWER: always
         RR_DODONGOS_CAVERN_MQ_TWO_FIRES_ROOM:     always
-        # Implied drop to LOWER_RIGHT_SIDE
-        RR_DODONGOS_CAVERN_MQ_LOWER_RIGHT_SIDE:   has(RG_GORONS_BRACELET) and take_damage() # strength 1 and bunny speed works too
+        # Implied drop to LOWER_RIGHT_SIDE. Target in the air to shield drop the flower to avoid fall damage
+        RR_DODONGOS_CAVERN_MQ_LOWER_RIGHT_SIDE:   has(RG_GORONS_BRACELET) and (can_standing_shield() or take_damage())
     }
 }
 
@@ -213,7 +265,7 @@ region RR_DODONGOS_CAVERN_MQ_LOWER_RIGHT_SIDE {
     exits {
         RR_DODONGOS_CAVERN_MQ_LOBBY:                  always
         RR_DODONGOS_CAVERN_MQ_LOWER_RIGHT_SIDE_SCRUB: can_break_mud_walls() or has(RG_GORONS_BRACELET)
-        RR_DODONGOS_CAVERN_MQ_LOWER_LIZALFOS:         any_age(can_detonate_bomb_flowers() or has(RG_GORONS_BRACELET)) and can_hit_eye_targets()
+        RR_DODONGOS_CAVERN_MQ_LOWER_LIZALFOS:         any_age(can_detonate_bomb_flowers() or has(RG_GORONS_BRACELET) or trick(RT_BOULDER_COLLISION)) and can_hit_eye_targets()
     }
 }
 
@@ -248,11 +300,25 @@ region RR_DODONGOS_CAVERN_MQ_POES_ROOM {
 }
 
 region RR_DODONGOS_CAVERN_MQ_MAD_SCRUB_ROOM {
-    name: "Dodongos Cavern Mad Scrub Room"
+    name: "Dodongos Cavern MQ Mad Scrub Room"
     scene: SCENE_DODONGOS_CAVERN
 
     exits {
         RR_DODONGOS_CAVERN_MQ_POES_ROOM: any_age(can_kill(RE_FIRE_KEESE) and can_kill(RE_MAD_SCRUB))
+    }
+}
+
+# This region only exists when the mouth is closed, so should only leave to lobby and set EYES_LIT
+region RR_DODONGOS_CAVERN_MQ_SKULL_CHIN {
+    name: "Dodongos Cavern MQ Skull Chin"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_DC_EYES_LIT: can_use(RG_BOMB_BAG)
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_MQ_LOBBY: always
     }
 }
 
@@ -261,9 +327,9 @@ region RR_DODONGOS_CAVERN_MQ_BEHIND_MOUTH {
     scene: SCENE_DODONGOS_CAVERN
 
     exits {
-        RR_DODONGOS_CAVERN_MQ_LOBBY:             always
+        RR_DODONGOS_CAVERN_MQ_SKULL_CHIN:        always
         RR_DODONGOS_CAVERN_MQ_BACK_BEHIND_FIRE:  has(RG_POWER_BRACELET) or has_explosives() or
-                                                 (is_adult() and (can_use(RG_HOVER_BOOTS) or trick(RT_UNINTUITIVE_JUMPS)))
+                                                 (is_adult() and (can_use(RG_HOVER_BOOTS) or trick(RT_UNINTUITIVE_JUMPS) or bunny_hood()))
         RR_DODONGOS_CAVERN_MQ_BACK_SWITCH_GRAVE: is_adult()
     }
 }
@@ -279,7 +345,7 @@ region RR_DODONGOS_CAVERN_MQ_BACK_BEHIND_FIRE {
     exits {
         RR_DODONGOS_CAVERN_MQ_BEHIND_MOUTH:      can_hit_switch()
         RR_DODONGOS_CAVERN_MQ_BACK_POE_ROOM:     always
-        # There's a trick N64 rolls into the child eyes trick for using armos blow up the bomb flowers when dieing, which would be killing an armos
+        # There's a trick N64 rolls into the child eyes trick for using armos blow up the bomb flowers when dying, which would be killing an armos
         RR_DODONGOS_CAVERN_MQ_BACK_SWITCH_GRAVE: (can_pass(RE_ARMOS) and (is_adult() or flag(LOGIC_DC_MQ_BEHIND_FIRE_SWITCH))) or can_use(RG_HOVER_BOOTS)
     }
 }
@@ -299,7 +365,7 @@ region RR_DODONGOS_CAVERN_MQ_BACK_SWITCH_GRAVE {
 
     events {
         LOGIC_DC_MQ_BEHIND_FIRE_SWITCH: has(RG_POWER_BRACELET) or can_hit_switch() or can_detonate_bomb_flowers()
-        LOGIC_FAIRY_ACCESS:             can_break_pots()
+        LOGIC_FAIRY_ACCESS:             can_break_pots() or has(RG_GORONS_BRACELET)
     }
 
     exits {

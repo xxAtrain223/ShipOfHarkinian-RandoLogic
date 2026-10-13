@@ -2,8 +2,8 @@
 
 extend region RR_BOTW_CRYPT {
     locations {
-        RC_BOTTOM_OF_THE_WELL_COFFIN_ROOM_FRONT_LEFT_HEART:   always
-        RC_BOTTOM_OF_THE_WELL_COFFIN_ROOM_MIDDLE_RIGHT_HEART: has_fire_source_with_torch() or can_use(RG_FAIRY_BOW)
+        RC_BOTTOM_OF_THE_WELL_COFFIN_ROOM_FRONT_LEFT_HEART:   has_fire_source_with_torch() or can_use(RG_FAIRY_BOW)
+        RC_BOTTOM_OF_THE_WELL_COFFIN_ROOM_MIDDLE_RIGHT_HEART: always
     }
 }
 
@@ -59,11 +59,18 @@ extend region RR_DEKU_TREE_LOBBY_3F {
     }
 }
 
+extend region RR_DEKU_TREE_BASEMENT_UPPER {
+    locations {
+        RC_DEKU_TREE_BEFORE_BOSS_MIDDLE_HEART: trick(RT_VOIDOUT_COLLECTION) and can_void()
+    }
+}
+
 extend region RR_DEKU_TREE_OUTSIDE_BOSS_ROOM {
     locations {
-        RC_DEKU_TREE_BEFORE_BOSS_LEFT_HEART:   has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_DEKU_TREE_BEFORE_BOSS_MIDDLE_HEART: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_DEKU_TREE_BEFORE_BOSS_RIGHT_HEART:  has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_DEKU_TREE_BEFORE_BOSS_LEFT_HEART:   is_adult() or (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        # Can be grabbed by jumping to it from above, might deserve its own trick
+        RC_DEKU_TREE_BEFORE_BOSS_MIDDLE_HEART: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or ((can_use(RG_HOVER_BOOTS) or is_adult()) and (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_DEKU_TREE_BEFORE_BOSS_RIGHT_HEART:  is_adult() or (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
     }
 }
 
@@ -97,11 +104,17 @@ extend region RR_DEKU_TREE_MQ_PAST_BOULDER_VINES {
     }
 }
 
+extend region RR_DEKU_TREE_MQ_BASEMENT_LEDGE {
+    locations {
+        RC_DEKU_TREE_MQ_BEFORE_BOSS_MIDDLE_HEART: trick(RT_VOIDOUT_COLLECTION) and can_void()
+    }
+}
+
 extend region RR_DEKU_TREE_MQ_OUTSIDE_BOSS_ROOM {
     locations {
-        RC_DEKU_TREE_MQ_BEFORE_BOSS_LEFT_HEART:   has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_DEKU_TREE_MQ_BEFORE_BOSS_MIDDLE_HEART: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_DEKU_TREE_MQ_BEFORE_BOSS_RIGHT_HEART:  has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_DEKU_TREE_MQ_BEFORE_BOSS_LEFT_HEART:   is_adult() or (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_DEKU_TREE_MQ_BEFORE_BOSS_MIDDLE_HEART: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or ((can_use(RG_HOVER_BOOTS) or is_adult()) and (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_DEKU_TREE_MQ_BEFORE_BOSS_RIGHT_HEART:  is_adult() or (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
     }
 }
 
@@ -135,7 +148,8 @@ extend region RR_DODONGOS_CAVERN_MQ_TORCH_PUZZLE_LOWER {
 
 extend region RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS {
     locations {
-        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_HEART: blast_or_smash()
+        # bunny hood visibly clears the lower boulders, but even without it you can air drift into a relative gap in the boulders to cross
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_HEART: blast_or_smash() or bunny_hood() or trick(RT_UNINTUITIVE_JUMPS)
     }
 }
 
@@ -168,6 +182,13 @@ extend region RR_FIRE_TEMPLE_FIRE_WALL_CHASE {
         RC_FIRE_TEMPLE_FIRE_WALL_EAST_HEART: fire_timer() >= 24 and (is_adult() or can_use(RG_BOOMERANG))
         RC_FIRE_TEMPLE_FIRE_WALL_WEST_HEART: fire_timer() >= 24 and (is_adult() or can_use(RG_BOOMERANG))
         RC_FIRE_TEMPLE_FIRE_WALL_EXIT_HEART: fire_timer() >= 16
+    }
+}
+
+extend region RR_FIRE_TEMPLE_FIRE_WALL_SIDE_DOOR {
+    locations {
+        RC_FIRE_TEMPLE_FIRE_WALL_EAST_HEART: fire_timer() >= 8 and (can_use(RG_HOVER_BOOTS) or can_megajump())
+        RC_FIRE_TEMPLE_FIRE_WALL_WEST_HEART: fire_timer() >= 8 and (can_use(RG_HOVER_BOOTS) or can_megajump())
     }
 }
 
@@ -253,7 +274,8 @@ extend region RR_GANONS_CASTLE_FIRE_TRIAL_FROM_OPEN {
 
 extend region RR_GANONS_CASTLE_FIRE_TRIAL_FROM_BARRED {
     locations {
-        RC_GANONS_CASTLE_FIRE_TRIAL_HEART: fire_timer() >= 16
+        RC_GANONS_CASTLE_FIRE_TRIAL_HEART: (can_use(RG_LONGSHOT) or can_melee_recoil_hover(RECOIL_HAMMER) or (is_adult() and can_megajump(true)) or
+                                            can_bunny_mega_jumpslash()) and fire_timer() >= 16
     }
 }
 
@@ -267,8 +289,8 @@ extend region RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM {
 
 extend region RR_GANONS_CASTLE_SHADOW_TRIAL_END {
     locations {
-        RC_GANONS_CASTLE_SHADOW_TRIAL_HEART_2: can_use(RG_HOVER_BOOTS) or can_use(RG_BOOMERANG)
-        RC_GANONS_CASTLE_SHADOW_TRIAL_HEART_3: can_use(RG_HOVER_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GANONS_CASTLE_SHADOW_TRIAL_HEART_2: (trick(RT_VOIDOUT_COLLECTION) and (can_use(RG_HOVER_BOOTS) or can_megajump())) or can_use(RG_BOOMERANG)
+        RC_GANONS_CASTLE_SHADOW_TRIAL_HEART_3: (trick(RT_VOIDOUT_COLLECTION) and (can_use(RG_HOVER_BOOTS) or bunny_hood())) or can_use(RG_BOOMERANG)
     }
 }
 
@@ -310,7 +332,7 @@ extend region RR_GERUDO_TRAINING_GROUND_DINALFOS {
 
 extend region RR_ICE_CAVERN_BEGINNING {
     locations {
-        RC_ICE_CAVERN_LOBBY_RUPEE: blue_fire() # can get with rang trick
+        RC_ICE_CAVERN_LOBBY_RUPEE: blue_fire() or (trick(RT_VISIBLE_COLLISION) and can_jumpslash()) # can get with rang trick
     }
 }
 
@@ -336,7 +358,7 @@ extend region RR_ICE_CAVERN_BLOCK_ROOM {
     }
 }
 
-extend region RR_ICE_CAVERN_BLOCK_ROOM_BLUE_FIRE {
+extend region RR_ICE_CAVERN_FIRE_NOOK {
     locations {
         RC_ICE_CAVERN_SLIDING_BLOCK_RUPEE_1: can_use(RG_SONG_OF_TIME)
         RC_ICE_CAVERN_SLIDING_BLOCK_RUPEE_2: can_use(RG_SONG_OF_TIME)
@@ -403,8 +425,8 @@ extend region RR_SHADOW_TEMPLE_BROKEN_PILLAR {
 
 extend region RR_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_ROOM {
     locations {
-        RC_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_LEFT_HEART:      (can_use(RG_SONG_OF_TIME) and is_adult()) or (trick(RT_SHADOW_MQ_INVISIBLE_BLADES) and effective_health() > 1) or can_use(RG_BOOMERANG)
-        RC_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_RIGHT_HEART:     (can_use(RG_SONG_OF_TIME) and is_adult()) or (trick(RT_SHADOW_MQ_INVISIBLE_BLADES) and effective_health() > 1) or can_use(RG_BOOMERANG)
+        RC_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_LEFT_HEART:      (can_use(RG_SONG_OF_TIME) and is_adult()) or (trick(RT_SHADOW_MQ_INVISIBLE_BLADES) and effective_health() > 8) or can_use(RG_BOOMERANG)
+        RC_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_RIGHT_HEART:     (can_use(RG_SONG_OF_TIME) and is_adult()) or (trick(RT_SHADOW_MQ_INVISIBLE_BLADES) and effective_health() > 8) or can_use(RG_BOOMERANG)
     }
 }
 
@@ -417,10 +439,15 @@ extend region RR_SHADOW_TEMPLE_MQ_DOCK {
 
 extend region RR_SHADOW_TEMPLE_MQ_ACROSS_CHASM {
     locations {
-        RC_SHADOW_TEMPLE_MQ_AFTER_SHIP_UPPER_LEFT_HEART:  flag(LOGIC_SHADOW_MQ_EYE_SWITCH_ACROSS_CHASM) and can_use(RG_LONGSHOT)
-        RC_SHADOW_TEMPLE_MQ_AFTER_SHIP_UPPER_RIGHT_HEART: flag(LOGIC_SHADOW_MQ_EYE_SWITCH_ACROSS_CHASM) and can_use(RG_LONGSHOT)
         # There's invisible floor collision that makes aiming for the heart with rang harder than it should be, so it's a trick.
-        RC_SHADOW_TEMPLE_MQ_AFTER_SHIP_LOWER_HEART:       is_adult()
+        RC_SHADOW_TEMPLE_MQ_AFTER_SHIP_LOWER_HEART: is_adult() or (flag(LOGIC_SHADOW_MQ_EYE_SWITCH_ACROSS_CHASM) and can_use(RG_HOOKSHOT))
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_CHASM_SWITCH {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_AFTER_SHIP_UPPER_LEFT_HEART:  always
+        RC_SHADOW_TEMPLE_MQ_AFTER_SHIP_UPPER_RIGHT_HEART: always
     }
 }
 
@@ -446,10 +473,10 @@ extend region RR_SPIRIT_TEMPLE_MQ_CHILD_SIDE_HUB {
 
 extend region RR_WATER_TEMPLE_RIVER {
     locations {
-        RC_WATER_TEMPLE_RIVER_HEART_1: (can_use(RG_IRON_BOOTS) and water_timer() >= 16) or has(RG_BRONZE_SCALE)
-        RC_WATER_TEMPLE_RIVER_HEART_2: (can_use(RG_IRON_BOOTS) and water_timer() >= 16) or has(RG_BRONZE_SCALE)
-        RC_WATER_TEMPLE_RIVER_HEART_3: (can_use(RG_IRON_BOOTS) and water_timer() >= 16) or has(RG_BRONZE_SCALE)
-        RC_WATER_TEMPLE_RIVER_HEART_4: (can_use(RG_IRON_BOOTS) and water_timer() >= 16) or has(RG_BRONZE_SCALE)
+        RC_WATER_TEMPLE_RIVER_HEART_1: (can_use(RG_IRON_BOOTS) and water_timer() >= 8) or has(RG_BRONZE_SCALE)
+        RC_WATER_TEMPLE_RIVER_HEART_2: (can_use(RG_IRON_BOOTS) and water_timer() >= 8) or has(RG_BRONZE_SCALE)
+        RC_WATER_TEMPLE_RIVER_HEART_3: (can_use(RG_IRON_BOOTS) and water_timer() >= 8) or has(RG_BRONZE_SCALE)
+        RC_WATER_TEMPLE_RIVER_HEART_4: (can_use(RG_IRON_BOOTS) and water_timer() >= 8) or has(RG_BRONZE_SCALE)
     }
 }
 
@@ -530,14 +557,22 @@ extend region RR_GV_CRATE_LEDGE {
 
 extend region RR_GV_OCTOROK_GROTTO {
     locations {
-        RC_GV_OCTOROK_GROTTO_FRONT_LEFT_BLUE_RUPEE:   has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_GV_OCTOROK_GROTTO_FRONT_RIGHT_BLUE_RUPEE:  has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_GV_OCTOROK_GROTTO_BACK_BLUE_RUPEE:         has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_GV_OCTOROK_GROTTO_FRONT_LEFT_GREEN_RUPEE:  has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_GV_OCTOROK_GROTTO_FRONT_RIGHT_GREEN_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_GV_OCTOROK_GROTTO_BACK_LEFT_GREEN_RUPEE:   has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_GV_OCTOROK_GROTTO_BACK_RIGHT_GREEN_RUPEE:  has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
-        RC_GV_OCTOROK_GROTTO_RED_RUPEE:               has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG)
+        RC_GV_OCTOROK_GROTTO_FRONT_LEFT_BLUE_RUPEE:   has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (is_adult() and
+                                                       (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_GV_OCTOROK_GROTTO_FRONT_RIGHT_BLUE_RUPEE:  has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (is_adult() and
+                                                       (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_GV_OCTOROK_GROTTO_BACK_BLUE_RUPEE:         has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (is_adult() and
+                                                       (trick(RT_VOIDOUT_COLLECTION) and can_void()) and can_use(RG_HOVER_BOOTS))
+        RC_GV_OCTOROK_GROTTO_FRONT_LEFT_GREEN_RUPEE:  has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (is_adult() and
+                                                       (trick(RT_VOIDOUT_COLLECTION) and can_void()) and can_use(RG_HOVER_BOOTS))
+        RC_GV_OCTOROK_GROTTO_FRONT_RIGHT_GREEN_RUPEE: has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (is_adult() and
+                                                       (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_GV_OCTOROK_GROTTO_BACK_LEFT_GREEN_RUPEE:   has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (is_adult() and
+                                                       (trick(RT_VOIDOUT_COLLECTION) and can_void()) and can_use(RG_HOVER_BOOTS))
+        RC_GV_OCTOROK_GROTTO_BACK_RIGHT_GREEN_RUPEE:  has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (is_adult() and
+                                                       (trick(RT_VOIDOUT_COLLECTION) and can_void()) and can_use(RG_HOVER_BOOTS))
+        RC_GV_OCTOROK_GROTTO_RED_RUPEE:               has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (is_adult() and
+                                                       (trick(RT_VOIDOUT_COLLECTION) and can_void()) and can_use(RG_HOVER_BOOTS))
     }
 }
 
@@ -566,13 +601,9 @@ extend region RR_KOKIRI_FOREST {
         RC_KF_SOUTH_GRASS_EAST_RUPEE:  is_child()
         RC_KF_NORTH_GRASS_WEST_RUPEE:  is_child()
         RC_KF_NORTH_GRASS_EAST_RUPEE:  is_child()
-        RC_KF_BEAN_RUPEE_1:            is_adult() and (can_plant_bean(RR_KOKIRI_FOREST, RG_KOKIRI_FOREST_BEAN_SOUL) or can_use(RG_HOVER_BOOTS) or can_use(RG_BOOMERANG))
-        RC_KF_BEAN_RUPEE_2:            is_adult() and (can_plant_bean(RR_KOKIRI_FOREST, RG_KOKIRI_FOREST_BEAN_SOUL) or can_use(RG_HOVER_BOOTS) or can_use(RG_BOOMERANG))
-        RC_KF_BEAN_RUPEE_3:            is_adult() and (can_plant_bean(RR_KOKIRI_FOREST, RG_KOKIRI_FOREST_BEAN_SOUL) or can_use(RG_HOVER_BOOTS) or can_use(RG_BOOMERANG))
-        RC_KF_BEAN_RUPEE_4:            is_adult() and (can_plant_bean(RR_KOKIRI_FOREST, RG_KOKIRI_FOREST_BEAN_SOUL) or can_use(RG_HOVER_BOOTS) or can_use(RG_BOOMERANG))
-        RC_KF_BEAN_RUPEE_5:            is_adult() and (can_plant_bean(RR_KOKIRI_FOREST, RG_KOKIRI_FOREST_BEAN_SOUL) or can_use(RG_HOVER_BOOTS) or can_use(RG_BOOMERANG))
-        RC_KF_BEAN_RUPEE_6:            is_adult() and (can_plant_bean(RR_KOKIRI_FOREST, RG_KOKIRI_FOREST_BEAN_SOUL) or can_use(RG_HOVER_BOOTS) or can_use(RG_BOOMERANG))
-        RC_KF_BEAN_RED_RUPEE:          is_adult() and (can_plant_bean(RR_KOKIRI_FOREST, RG_KOKIRI_FOREST_BEAN_SOUL) or can_use(RG_HOVER_BOOTS) or can_use(RG_BOOMERANG))
+        RC_KF_BEAN_RUPEE_1:            is_adult() and can_use(RG_BOOMERANG)
+        RC_KF_BEAN_RUPEE_2:            is_adult() and can_use(RG_BOOMERANG)
+        RC_KF_BEAN_RUPEE_6:            is_adult() and can_use(RG_BOOMERANG)
         RC_KF_SARIAS_ROOF_WEST_HEART:  is_child()
         RC_KF_SARIAS_ROOF_EAST_HEART:  is_child()
         RC_KF_SARIAS_ROOF_NORTH_HEART: is_child()
@@ -609,13 +640,14 @@ extend region RR_KF_OUTSIDE_LOST_WOODS {
 
 extend region RR_KF_RUPEE_ALCOVE {
     locations {
-        RC_KF_BEAN_RUPEE_1:   is_adult() and can_use(RG_HOVER_BOOTS)
-        RC_KF_BEAN_RUPEE_2:   is_adult() and can_use(RG_HOVER_BOOTS)
-        RC_KF_BEAN_RUPEE_3:   is_adult() and can_use(RG_HOVER_BOOTS)
-        RC_KF_BEAN_RUPEE_4:   is_adult() and can_use(RG_HOVER_BOOTS)
-        RC_KF_BEAN_RUPEE_5:   is_adult() and can_use(RG_HOVER_BOOTS)
-        RC_KF_BEAN_RUPEE_6:   is_adult() and can_use(RG_HOVER_BOOTS)
-        RC_KF_BEAN_RED_RUPEE: is_adult() and can_use(RG_HOVER_BOOTS)
+        RC_KF_BEAN_RUPEE_1:   is_adult()
+        RC_KF_BEAN_RUPEE_2:   is_adult()
+        RC_KF_BEAN_RUPEE_3:   is_adult()
+        RC_KF_BEAN_RUPEE_4:   is_adult()
+        RC_KF_BEAN_RUPEE_5:   is_adult()
+        RC_KF_BEAN_RUPEE_6:   is_adult()
+        RC_KF_BEAN_RED_RUPEE: is_adult()
+
     }
 }
 
@@ -624,8 +656,8 @@ extend region RR_KF_RUPEE_ALCOVE {
 extend region RR_LAKE_HYLIA {
     locations {
         RC_LH_UNDERWATER_ITEM:  is_child() and has(RG_SILVER_SCALE)
-        RC_LH_FREESTANDING_POH: is_adult() and (reach_scarecrow() or can_plant_bean(RR_LAKE_HYLIA, RG_LAKE_HYLIA_BEAN_SOUL)) and can_avoid(RE_GUAY, false) and has(RG_CLIMB)
-        RC_LH_FRONT_RUPEE:      is_child() and has(RG_BRONZE_SCALE)
+        RC_LH_FREESTANDING_POH: is_adult() and (reach_scarecrow() or bean_planted(LOGIC_PLANT_LAKE_HYLIA_BEAN)) and can_avoid(RE_GUAY, ED_CLOSE, false) and has(RG_CLIMB)
+        RC_LH_FRONT_RUPEE:      is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS))
         RC_LH_MIDDLE_RUPEE:     is_child() and (has(RG_SILVER_SCALE) or can_use(RG_IRON_BOOTS))
         RC_LH_BACK_RUPEE:       is_child() and (has(RG_SILVER_SCALE) or can_use(RG_IRON_BOOTS))
     }
@@ -633,11 +665,20 @@ extend region RR_LAKE_HYLIA {
 
 extend region RR_LH_LAB {
     locations {
-        RC_LH_LAB_FRONT_RUPEE: can_use(RG_IRON_BOOTS) or has(RG_GOLDEN_SCALE)
-        RC_LH_LAB_LEFT_RUPEE:  can_use(RG_IRON_BOOTS) or has(RG_GOLDEN_SCALE)
-        RC_LH_LAB_RIGHT_RUPEE: can_use(RG_IRON_BOOTS) or has(RG_GOLDEN_SCALE)
+        RC_LH_LAB_FRONT_RUPEE: has(RG_GOLDEN_SCALE)
+        RC_LH_LAB_LEFT_RUPEE:  has(RG_GOLDEN_SCALE)
+        RC_LH_LAB_RIGHT_RUPEE: has(RG_GOLDEN_SCALE)
     }
 }
+
+extend region RR_LH_LAB_UNDERWATER {
+    locations {
+        RC_LH_LAB_FRONT_RUPEE: always
+        RC_LH_LAB_LEFT_RUPEE:  always
+        RC_LH_LAB_RIGHT_RUPEE: always
+    }
+}
+
 
 # overworld/lon_lon_ranch
 
@@ -697,10 +738,23 @@ extend region RR_ZF_LAKEBED {
 
 extend region RR_ZORAS_RIVER {
     locations {
-        RC_ZR_BENEATH_WATERFALL_LEFT_RUPEE:         is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
-        RC_ZR_BENEATH_WATERFALL_MIDDLE_LEFT_RUPEE:  is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
-        RC_ZR_BENEATH_WATERFALL_MIDDLE_RIGHT_RUPEE: is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
-        RC_ZR_BENEATH_WATERFALL_RIGHT_RUPEE:        is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
+        RC_ZR_BENEATH_WATERFALL_LEFT_RUPEE:         is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_BENEATH_WATERFALL_MIDDLE_LEFT_RUPEE:  is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_BENEATH_WATERFALL_MIDDLE_RIGHT_RUPEE: is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_BENEATH_WATERFALL_RIGHT_RUPEE:        is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
     }
 }
 
+extend region RR_GANONS_CASTLE_SHADOW_TRIAL_END {
+    locations {
+        RC_GANONS_CASTLE_SHADOW_TRIAL_HEART_1: trick(RT_VOIDOUT_COLLECTION) and (bunny_hovers() or can_megajump() or can_bomb_recoil_hover() or can_recoil_hover_from_actor(ARECOIL_SHORT))
+    }
+}
+
+extend region RR_GANONS_CASTLE_SHADOW_TRIAL_RUSTED_SWITCH {
+    locations {
+        RC_GANONS_CASTLE_SHADOW_TRIAL_HEART_1: can_use(RG_BOOMERANG)
+        RC_GANONS_CASTLE_SHADOW_TRIAL_HEART_2: can_use(RG_BOOMERANG)
+        RC_GANONS_CASTLE_SHADOW_TRIAL_HEART_3: can_use(RG_BOOMERANG)
+    }
+}

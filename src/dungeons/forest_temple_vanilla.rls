@@ -42,7 +42,8 @@ region RR_FOREST_TEMPLE_LOBBY {
         RR_FOREST_TEMPLE_NW_COURTYARD_LOWER:      can_use(RG_SONG_OF_TIME) or is_child()
         RR_FOREST_TEMPLE_NE_COURTYARD_LOWER:      can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT)
         RR_FOREST_TEMPLE_RED_DOORMAT_HALLWAY:     small_keys(SCENE_FOREST_TEMPLE, 1)
-        RR_FOREST_TEMPLE_BLUE_DOORMAT_HALLWAY:    never
+        # RECOIL_HAMMER works but is probably too much for simple
+        RR_FOREST_TEMPLE_LOBBY_LEDGE:             is_adult() and can_bomb_recoil_hover()
         RR_FOREST_TEMPLE_BASEMENT:                flag(LOGIC_FOREST_MEG)
         RR_FOREST_TEMPLE_BOSS_ENTRYWAY:           never
     }
@@ -83,8 +84,7 @@ region RR_FOREST_TEMPLE_NW_COURTYARD_LOWER {
 
     exits {
         RR_FOREST_TEMPLE_LOBBY:                     always
-        RR_FOREST_TEMPLE_NW_COURTYARD_UPPER:        (has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and can_use(RG_HOVER_BOOTS) and ((trick(RT_HOVER_BOOST_SIMPLE) 
-                                                    and (trick(RT_DAMAGE_BOOST_SIMPLE) and has_explosives())) or can_middair_ground_jump())
+        RR_FOREST_TEMPLE_NW_COURTYARD_UPPER:        (has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and ((is_adult() and can_megajump()) or can_midair_ground_jump())
         RR_FOREST_TEMPLE_NW_COURTYARD_UPPER_ALCOVE: has(RG_CLIMB) or can_use(RG_LONGSHOT)
         RR_FOREST_TEMPLE_SEWER:                     has(RG_GOLDEN_SCALE) or can_use(RG_IRON_BOOTS)
         RR_FOREST_TEMPLE_DRAINED_SEWER:             flag(LOGIC_FOREST_DRAINED_WELL)
@@ -99,7 +99,8 @@ region RR_FOREST_TEMPLE_NW_COURTYARD_UPPER_ALCOVE {
     exits {
         RR_FOREST_TEMPLE_NW_COURTYARD_LOWER: always
         RR_FOREST_TEMPLE_MAP_ROOM:           always
-        RR_FOREST_TEMPLE_NW_COURTYARD_UPPER: trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER)
+        # needs 3 megajumps, 1 to doorframe, 1 to the well ledge, then 1 to the main ledge
+        RR_FOREST_TEMPLE_NW_COURTYARD_UPPER: can_melee_recoil_hover(RECOIL_HAMMER) or (is_adult() and can_megajump(true) and effective_health() > 24)
     }
 }
 
@@ -131,7 +132,7 @@ region RR_FOREST_TEMPLE_NE_COURTYARD_LOWER {
 
     exits {
         RR_FOREST_TEMPLE_LOBBY:               always
-        RR_FOREST_TEMPLE_NE_COURTYARD_UPPER:  can_use(RG_LONGSHOT) or (trick(RT_FOREST_VINES) and can_use(RG_HOOKSHOT) and has(RG_CLIMB))
+        RR_FOREST_TEMPLE_NE_COURTYARD_SWITCH: can_use(RG_LONGSHOT) or (trick(RT_FOREST_VINES) and can_use(RG_HOOKSHOT) and has(RG_CLIMB))
         RR_FOREST_TEMPLE_NE_COURTYARD_ISLAND: can_use(RG_HOOKSHOT)
         RR_FOREST_TEMPLE_SEWER:               (((can_use(RG_IRON_BOOTS) or can_use(RG_LONGSHOT) or (trick(RT_FOREST_WELL_SWIM) and can_use(RG_HOOKSHOT))) 
                                               and has(RG_BRONZE_SCALE)) or has(RG_GOLDEN_SCALE)) and water_timer() >= 16
@@ -144,16 +145,35 @@ region RR_FOREST_TEMPLE_NE_COURTYARD_UPPER {
     scene: SCENE_FOREST_TEMPLE
 
     events {
-        LOGIC_STICK_ACCESS:        can_get_deku_baba_sticks()
-        LOGIC_NUT_ACCESS:          can_get_deku_baba_nuts()
-        LOGIC_FOREST_DRAINED_WELL: always
+        LOGIC_STICK_ACCESS: can_get_deku_baba_sticks()
+        LOGIC_NUT_ACCESS:   can_get_deku_baba_nuts()
     }
 
     exits {
         RR_FOREST_TEMPLE_NE_COURTYARD_LOWER:     always
-        RR_FOREST_TEMPLE_NE_COURTYARD_ISLAND:    is_adult() and trick(RT_FOREST_COURTYARD_LEDGE) and can_use(RG_HOVER_BOOTS)
-        RR_FOREST_TEMPLE_NE_COURTYARD_DOORFRAME: can_hammer_recoil_hover(false) or ((trick(RT_FOREST_DOORFRAME) and can_use(RG_HOVER_BOOTS) and can_jumpslash()))
+        RR_FOREST_TEMPLE_NE_COURTYARD_SWITCH:    bunny_hood() or has(RG_CLIMB) or (is_adult() and trick(RT_UNINTUITIVE_JUMPS)) or can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS)
+        RR_FOREST_TEMPLE_NE_COURTYARD_DOORFRAME: can_melee_recoil_hover(RECOIL_HAMMER) or (trick(RT_FOREST_DOORFRAME) and can_use(RG_HOVER_BOOTS) and (bunny_hood() or can_jumpslash())) or
+                                                 can_megajump() or can_bomb_recoil_hover()
         RR_FOREST_TEMPLE_MAP_ROOM:               always
+    }
+}
+
+region RR_FOREST_TEMPLE_NE_COURTYARD_SWITCH {
+    name: "Forest Temple NE Courtyard Switch"
+    scene: SCENE_FOREST_TEMPLE
+
+    events {
+        LOGIC_FOREST_DRAINED_WELL: always
+    }
+
+    exits {
+        RR_FOREST_TEMPLE_NE_COURTYARD_LOWER:           always
+        # child can make the jump without bunny, but it's awkward and precise with a nasty reset. Much easier for adult
+        RR_FOREST_TEMPLE_NE_COURTYARD_UPPER:           bunny_hood() or (is_adult() and trick(RT_UNINTUITIVE_JUMPS)) or can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS)
+        RR_FOREST_TEMPLE_NE_COURTYARD_DOORFRAME:       can_melee_recoil_hover(RECOIL_HAMMER) or (can_bomb_recoil_hover() and can_jumpslash())
+        # adult can make this with bunny and a jumpslash, but the jump is too awkward for unintuitive jumps
+        RR_FOREST_TEMPLE_NE_COURTYARD_ISLAND:          (((is_adult() and trick(RT_FOREST_COURTYARD_LEDGE)) or bunny_hood()) and can_use(RG_HOVER_BOOTS)) or can_megajump() or can_bomb_recoil_hover()
+        RR_FOREST_TEMPLE_NE_COURTYARD_SCARECROW_LEDGE: can_megajump(true)
     }
 }
 
@@ -167,7 +187,8 @@ region RR_FOREST_TEMPLE_NE_COURTYARD_DOORFRAME {
 
     exits {
         RR_FOREST_TEMPLE_NE_COURTYARD_LOWER:  always
-        RR_FOREST_TEMPLE_NE_COURTYARD_ISLAND: can_hammer_recoil_hover(false)
+        RR_FOREST_TEMPLE_NE_COURTYARD_SWITCH: can_use(RG_LONGSHOT)
+        RR_FOREST_TEMPLE_NE_COURTYARD_ISLAND: can_melee_recoil_hover(RECOIL_HAMMER) or (can_bomb_recoil_hover() and can_jumpslash()) or can_megajump(not can_jumpslash())
     }
 }
 
@@ -200,8 +221,8 @@ region RR_FOREST_TEMPLE_MAP_ROOM {
     scene: SCENE_FOREST_TEMPLE
 
     exits {
-        RR_FOREST_TEMPLE_NW_COURTYARD_LOWER: any_age(can_kill(RE_BLUE_BUBBLE))
-        RR_FOREST_TEMPLE_NE_COURTYARD_UPPER: any_age(can_kill(RE_BLUE_BUBBLE))
+        RR_FOREST_TEMPLE_NW_COURTYARD_UPPER_ALCOVE: any_age(can_kill(RE_BLUE_BUBBLE))
+        RR_FOREST_TEMPLE_NE_COURTYARD_UPPER:        any_age(can_kill(RE_BLUE_BUBBLE))
     }
 }
 
@@ -216,7 +237,7 @@ region RR_FOREST_TEMPLE_SEWER {
 }
 
 region RR_FOREST_TEMPLE_DRAINED_SEWER {
-    name: "Forest Temple Drained Well"
+    name: "Forest Temple Drained Sewer"
     scene: SCENE_FOREST_TEMPLE
 
     exits {
@@ -281,7 +302,7 @@ region RR_FOREST_TEMPLE_LOWER_BLOCK_PUSH_ROOM {
         RR_FOREST_TEMPLE_BLOCK_PUSH_FLOOR:                 always
         RR_FOREST_TEMPLE_MIDDLE_BLOCK_PUSH_ROOM:           has(RG_CLIMB) and has(RG_GORONS_BRACELET)
         RR_FOREST_TEMPLE_UPPER_BLOCK_PUSH_ROOM:            is_adult() and can_ground_jump() and has(RG_GORONS_BRACELET) and can_use(RG_HOVER_BOOTS)
-        RR_FOREST_TEMPLE_BLOCK_PUSH_ROOM_COURTYARD_ALCOVE: can_use(RG_HOVER_BOOTS)
+        RR_FOREST_TEMPLE_BLOCK_PUSH_ROOM_COURTYARD_ALCOVE: can_use(RG_HOVER_BOOTS) or can_megajump()
     }
 }
 
@@ -291,7 +312,8 @@ region RR_FOREST_TEMPLE_MIDDLE_BLOCK_PUSH_ROOM {
 
     exits {
         RR_FOREST_TEMPLE_LOWER_BLOCK_PUSH_ROOM:            always
-        RR_FOREST_TEMPLE_BLOCK_PUSH_ROOM_COURTYARD_ALCOVE: trick(RT_FOREST_OUTSIDE_BACKDOOR) and can_jumpslash_except_hammer()
+        RR_FOREST_TEMPLE_BLOCK_PUSH_ROOM_COURTYARD_ALCOVE: (trick(RT_FOREST_OUTSIDE_BACKDOOR) and can_jumpslash_except_hammer()) or
+                                                           ((is_adult() or can_jumpslash()) and bunny_hood())
         RR_FOREST_TEMPLE_UPPER_BLOCK_PUSH_ROOM:            is_adult() and has(RG_GORONS_BRACELET)
     }
 }
@@ -458,7 +480,17 @@ region RR_FOREST_TEMPLE_BLUE_DOORMAT_HALLWAY {
 
     exits {
         RR_FOREST_TEMPLE_BLUE_DOORMAT_HALLWAY_DOORMAT: can_pass(RE_BIG_SKULLTULA)
-        RR_FOREST_TEMPLE_LOBBY:                        always
+        RR_FOREST_TEMPLE_LOBBY_LEDGE:                  always
+    }
+}
+
+region RR_FOREST_TEMPLE_LOBBY_LEDGE {
+    name: "Forest Temple Lobby Ledge"
+    scene: SCENE_FOREST_TEMPLE
+
+    exits {
+        RR_FOREST_TEMPLE_BLUE_DOORMAT_HALLWAY: always
+        RR_FOREST_TEMPLE_LOBBY:                always
     }
 }
 

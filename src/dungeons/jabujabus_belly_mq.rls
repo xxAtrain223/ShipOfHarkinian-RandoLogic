@@ -24,7 +24,8 @@ region RR_JABU_JABUS_BELLY_MQ_LIFT_ROOM {
         RR_JABU_JABUS_BELLY_MQ_BEGINNING:                     always
         RR_JABU_JABUS_BELLY_MQ_UNDERWATER_ALCOVE:             has(RG_SILVER_SCALE) or (has(RG_BRONZE_SCALE) and (is_child() or can_use(RG_IRON_BOOTS) or trick(RT_UNINTUITIVE_JUMPS)))
         RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM:                    flag(LOGIC_JABU_MQ_HOLES_ROOM_DOOR)
-        RR_JABU_JABUS_BELLY_MQ_LIFT_ROOM_EAST_LEDGE:          flag(LOGIC_JABU_LOWERED_PATH) or can_use(RG_HOVER_BOOTS) or (can_use(RG_HOOKSHOT) and flag(LOGIC_JABU_MQ_LIFT_ROOM_COW))
+        RR_JABU_JABUS_BELLY_MQ_LIFT_ROOM_EAST_LEDGE:          flag(LOGIC_JABU_LOWERED_PATH) or can_use(RG_HOVER_BOOTS) or (trick(RT_UNINTUITIVE_JUMPS) and bunny_hood()) or
+                                                              can_megajump() or (can_use(RG_HOOKSHOT) and flag(LOGIC_JABU_MQ_LIFT_ROOM_COW)) or can_midair_damage_boost()
         RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_PAST_GEYSER: flag(LOGIC_JABU_MQ_WATER_SWITCH_LIFT_ACCESS)
     }
 }
@@ -47,7 +48,8 @@ region RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM {
     scene: SCENE_JABU_JABU
 
     events {
-        LOGIC_JABU_MQ_FORKED_ROOM_DOOR: (has_explosives() or trick(RT_DISTANT_BOULDER_COLLISION)) and can_use(RG_FAIRY_SLINGSHOT)
+        LOGIC_JABU_RUTO_IN_B1:          always
+        LOGIC_JABU_MQ_FORKED_ROOM_DOOR: (has_explosives() or trick(RT_BOULDER_COLLISION)) and can_use(RG_FAIRY_SLINGSHOT)
     }
 
     exits {
@@ -61,6 +63,10 @@ region RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM_PAST_JIGGLY {
     name: "Jabu Jabus Belly MQ Holes Room Past Jiggly"
     scene: SCENE_JABU_JABU
 
+    events {
+        LOGIC_JABU_MQ_FORKED_ROOM_DOOR: trick(RT_BOULDER_COLLISION) and can_use(RG_FAIRY_SLINGSHOT)
+    }
+
     exits {
         RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM:      can_use(RG_BOOMERANG)
         # It is possible to open the door here without crossing the jiggly using RT_DISTANT_BOULDER and good timing
@@ -73,15 +79,15 @@ region RR_JABU_JABUS_BELLY_MQ_HOLES_BASEMENT {
     scene: SCENE_JABU_JABU
 
     exits {
-        RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM:           has(RG_CLIMB)
-        RR_JABU_JABUS_BELLY_MQ_TO_BIGOCTO:           flag(LOGIC_JABU_WEST_TENTACLE)
-        RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM:    has(RG_SPEAK_ZORA) and has(RG_POWER_BRACELET)
-        RR_JABU_JABUS_BELLY_MQ_INVISIBLE_KEESE_ROOM: flag(LOGIC_JABU_NORTH_TENTACLE)
+        RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM:              has(RG_CLIMB)
+        RR_JABU_JABUS_BELLY_MQ_TO_BIGOCTO:              flag(LOGIC_JABU_WEST_TENTACLE)
+        RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_NORTH: has(RG_SPEAK_ZORA) and has(RG_POWER_BRACELET) and flag(LOGIC_JABU_RUTO_IN_B1)
+        RR_JABU_JABUS_BELLY_MQ_HOLES_B1_SW_DOOR:        always
     }
 }
 
-region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM {
-    name: "Jabu Jabus Belly MQ Water Switch Room"
+region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_NORTH {
+    name: "Jabu Jabus Belly MQ Water Switch Room North"
     scene: SCENE_JABU_JABU
 
     events {
@@ -89,9 +95,36 @@ region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM {
     }
 
     exits {
-        # without swim, jump from rang chest to the other side
-        RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_PAST_GEYSER: any_age(can_kill(RE_LIZALFOS))
-        RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM:                    (is_adult() or has(RG_BRONZE_SCALE)) and any_age(can_kill(RE_LIZALFOS))
+        RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM:               always
+        RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_SOUTH:  is_adult() or has(RG_BRONZE_SCALE) or can_megajump(true) or can_bomb_recoil_hover()
+        RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_ALCOVE: is_adult() or has(RG_CLIMB) or (flag(LOGIC_JABU_MQ_WATER_SWITCH_LIFT_ACCESS) and can_use(RG_HOOKSHOT))
+    }
+}
+
+region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_ALCOVE {
+    name: "Jabu Jabus Belly MQ Water Switch Room Alcove"
+    scene: SCENE_JABU_JABU
+
+    exits {
+        RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_NORTH: always
+        RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_SOUTH: always
+    }
+}
+
+region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_SOUTH {
+    name: "Jabu Jabus Belly MQ Water Switch Room South"
+    scene: SCENE_JABU_JABU
+
+    events {
+        LOGIC_JABU_MQ_WATER_SWITCH_LIFT_ACCESS: can_kill(RE_LIZALFOS)
+    }
+
+    exits {
+        RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_NORTH:       is_adult() or has(RG_BRONZE_SCALE) or can_megajump(true) or can_bomb_recoil_hover()
+        RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_ALCOVE:      ((has(RG_BRONZE_SCALE) or can_use(RG_HOVER_BOOTS) or can_megajump()) and has(RG_CLIMB)) or
+                                                              (flag(LOGIC_JABU_MQ_WATER_SWITCH_LIFT_ACCESS) and can_use(RG_HOOKSHOT))
+        # you can also bunnyhovers to force your way through but that's a trick
+        RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_PAST_GEYSER: flag(LOGIC_JABU_MQ_WATER_SWITCH_LIFT_ACCESS) or can_bomb_recoil_hover()
     }
 }
 
@@ -100,8 +133,9 @@ region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_PAST_GEYSER {
     scene: SCENE_JABU_JABU
 
     exits {
-        RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM: flag(LOGIC_JABU_MQ_WATER_SWITCH_LIFT_ACCESS)
-        RR_JABU_JABUS_BELLY_MQ_LIFT_ROOM:         always
+        # you can also bunnyhovers to force your way through but that's a trick
+        RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_SOUTH: flag(LOGIC_JABU_MQ_WATER_SWITCH_LIFT_ACCESS) or can_bomb_recoil_hover()
+        RR_JABU_JABUS_BELLY_MQ_LIFT_ROOM:               always
     }
 }
 
@@ -209,12 +243,22 @@ region RR_JABU_JABUS_BELLY_MQ_FORK_EAST {
     }
 }
 
+region RR_JABU_JABUS_BELLY_MQ_HOLES_B1_SW_DOOR {
+    name: "Jabu Jabus Belly MQ Holes B1 Southwest Door"
+    scene: SCENE_JABU_JABU
+
+    exits {
+        RR_JABU_JABUS_BELLY_MQ_HOLES_BASEMENT:       flag(LOGIC_JABU_NORTH_TENTACLE) or take_damage()
+        RR_JABU_JABUS_BELLY_MQ_INVISIBLE_KEESE_ROOM: flag(LOGIC_JABU_NORTH_TENTACLE)
+    }
+}
+
 region RR_JABU_JABUS_BELLY_MQ_INVISIBLE_KEESE_ROOM {
     name: "Jabu Jabus Belly MQ Invisible Keese Room"
     scene: SCENE_JABU_JABU
 
     exits {
-        RR_JABU_JABUS_BELLY_MQ_HOLES_BASEMENT: (flag(LOGIC_JABU_NORTH_TENTACLE) or take_damage()) and has(RG_BRONZE_SCALE)
+        RR_JABU_JABUS_BELLY_MQ_HOLES_B1_SW_DOOR: has(RG_BRONZE_SCALE)
     }
 }
 
@@ -251,7 +295,7 @@ region RR_JABU_JABUS_BELLY_MQ_ABOVE_BIGOCTO {
 }
 
 region RR_JABU_JABUS_BELLY_MQ_JIGGLIES_ROOM {
-    name: "Jabu Jabus Belly MQ Cubes Room"
+    name: "Jabu Jabus Belly MQ Jigglies Room"
     scene: SCENE_JABU_JABU
 
     exits {

@@ -1,5 +1,5 @@
 region RR_SPIRIT_TEMPLE_MQ_FOYER {
-    name: "Spirit Temple MQ Lobby"
+    name: "Spirit Temple MQ Foyer"
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
@@ -11,7 +11,8 @@ region RR_SPIRIT_TEMPLE_MQ_FOYER {
     exits {
         RR_SPIRIT_TEMPLE_ENTRYWAY:           always
         RR_SPIRIT_TEMPLE_MQ_CHILD_SIDE_HUB:  (is_adult() or has(RG_SPEAK_GERUDO) or flag(LOGIC_SPIRIT_NABOORU_KIDNAPPED)) and can_use(RG_CRAWL)
-        RR_SPIRIT_TEMPLE_MQ_BEHIND_GEYSER:   trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and (can_use(RG_MEGATON_HAMMER) or (can_standing_shield() and (can_use_sword() or can_use(RG_STICKS))))
+        # You can use the boulder over the eye target to do this with just sword, but it cannot be logical as the boulder is a perm flag
+        RR_SPIRIT_TEMPLE_MQ_BEHIND_GEYSER:   can_recoil_hover(RECOIL_SWORD_AND_SHIELD)
         RR_SPIRIT_TEMPLE_MQ_BIG_BLOCKS_HOLE: can_use(RG_LONGSHOT) and can_use(RG_BOMBCHU_5)
     }
 }
@@ -21,12 +22,10 @@ region RR_SPIRIT_TEMPLE_MQ_CHILD_SIDE_HUB {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
-        # not technically a rusted switch, but a boulder through a wall, but is part of the same trick on N64
         LOGIC_SPIRIT_MQ_CRAWL_BOULDER: can_use(RG_BOMBCHU_5) or (trick(RT_VISIBLE_COLLISION) and can_use(RG_MEGATON_HAMMER))
     }
 
     exits {
-        # Nabooru's legs are technically visible one way collision here, but I'm not sure if this counts
         RR_SPIRIT_TEMPLE_MQ_FOYER:               can_use(RG_CRAWL)
         RR_SPIRIT_TEMPLE_MQ_GIBDO_GRAVES:        any_age(can_kill(RE_TORCH_SLUG))
         RR_SPIRIT_TEMPLE_MQ_ANUBIS_BRIDGE_CHEST: any_age(can_kill(RE_TORCH_SLUG))
@@ -39,16 +38,19 @@ region RR_SPIRIT_TEMPLE_MQ_GIBDO_GRAVES {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
+        # possible to trigger switch without pulling grave, but too precise for RT_VISIBLE_COLLISION
         LOGIC_SPIRIT_MQ_GIBDOS_CLEARED: has(RG_POWER_BRACELET) and
-                                        ((can_use(RG_BOMBCHU_5) and can_hit_eye_targets()) or can_use(RG_HOVER_BOOTS)) and
+                                        ((can_use(RG_BOMBCHU_5) and can_hit_eye_targets()) or
+                                         can_use(RG_HOVER_BOOTS) or (is_adult() and bunny_hood()) or can_megajump()) and
                                         can_kill(RE_GIBDO, ED_CLOSE, true, 3)
     }
 
     exits {
         RR_SPIRIT_TEMPLE_MQ_CHILD_SIDE_HUB: always
+        # possible to trigger switch without pulling grave, but too precise for RT_VISIBLE_COLLISION
         RR_SPIRIT_TEMPLE_MQ_GIBDO_POTS:     has(RG_POWER_BRACELET) and
-                                            (can_use(RG_BOMBCHU_5) and can_hit_eye_targets()) or
-                                            can_use(RG_HOVER_BOOTS)
+                                            ((can_use(RG_BOMBCHU_5) and can_hit_eye_targets()) or
+                                             can_use(RG_HOVER_BOOTS) or (is_adult() and bunny_hood()) or can_megajump())
     }
 }
 
@@ -57,6 +59,7 @@ region RR_SPIRIT_TEMPLE_MQ_GIBDO_POTS {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
+        # climbing the grate through the ceiling allows you to go backwards here, but that's a clip not visible collision
         RR_SPIRIT_TEMPLE_MQ_TURNTABLE: flag(LOGIC_SPIRIT_MQ_GIBDOS_CLEARED)
     }
 }
@@ -92,13 +95,14 @@ region RR_SPIRIT_TEMPLE_MQ_ANUBIS_BRIDGE_GRAVE {
 
     events {
         LOGIC_SPIRIT_MQ_MAP_ROOM_ENEMIES: (can_kill(RE_ANUBIS) and can_kill(RE_KEESE)) and
-                                          (has(RG_POWER_BRACELET) or can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT)) or
+                                          (has(RG_POWER_BRACELET) or can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT) or (is_adult() and bunny_hood())) or
                                           (can_kill(RE_ANUBIS, ED_BOOMERANG) and can_kill(RE_KEESE, ED_FAR))
     }
 
     exits {
         RR_SPIRIT_TEMPLE_MQ_TURNTABLE:           always
-        RR_SPIRIT_TEMPLE_MQ_ANUBIS_BRIDGE_CHEST: has(RG_POWER_BRACELET) or can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT)
+        RR_SPIRIT_TEMPLE_MQ_ANUBIS_BRIDGE_CHEST: has(RG_POWER_BRACELET) or can_use(RG_HOVER_BOOTS) or
+                                                 can_use(RG_HOOKSHOT) or (is_adult() and bunny_hood()) or can_megajump()
     }
 }
 
@@ -113,13 +117,13 @@ region RR_SPIRIT_TEMPLE_MQ_ANUBIS_BRIDGE_CHEST {
 
     exits {
         # The bridge is a temp flag, so not a way to cross south to north in logic
-        RR_SPIRIT_TEMPLE_MQ_ANUBIS_BRIDGE_GRAVE: can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS)
+        RR_SPIRIT_TEMPLE_MQ_ANUBIS_BRIDGE_GRAVE: can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or (is_adult() and bunny_hood()) or can_megajump()
         RR_SPIRIT_TEMPLE_MQ_CHILD_SIDE_HUB:      always
     }
 }
 
 region RR_SPIRIT_TEMPLE_MQ_1F_CHEST_SWITCH {
-    name: "Spirit Temple MQ West 1F Rusted Switch"
+    name: "Spirit Temple MQ 1F Chest Switch"
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
@@ -130,7 +134,10 @@ region RR_SPIRIT_TEMPLE_MQ_1F_CHEST_SWITCH {
     exits {
         RR_SPIRIT_TEMPLE_MQ_CHILD_SIDE_HUB:  can_use(RG_CRAWL) and flag(LOGIC_SPIRIT_MQ_CRAWL_BOULDER)
         # This tracks possible child access, if adult has not entered STATUE_ROOM. Certain Child Access is checked for separately as 7 Keys
-        RR_SPIRIT_TEMPLE_MQ_UNDER_LIKE_LIKE: small_keys(SCENE_SPIRIT_TEMPLE, 1)
+        # Needs 2 keys if hover recoils are on because you can recoil past the jet and waste a key without having Statue Room Access.
+        # If the clip through the grate in 3 suns room is added to logic, being able to perform that will reduce the requirement as well.
+        RR_SPIRIT_TEMPLE_MQ_UNDER_LIKE_LIKE: small_keys(SCENE_SPIRIT_TEMPLE,
+                                                        (trick(RT_HOVER_BOOST_SIMPLE) and not ((flag(LOGIC_SPIRIT_MQ_3SUNS_ENEMIES) and (has(RG_CLIMB) or can_use(RG_LONGSHOT))) or flag(LOGIC_REVERSE_SPIRIT_ADULT))) ? 2 : 1)
     }
 }
 
@@ -152,7 +159,8 @@ region RR_SPIRIT_TEMPLE_MQ_SUN_ON_FLOOR {
     exits {
         RR_SPIRIT_TEMPLE_MQ_UNDER_LIKE_LIKE:   can_hit_switch()
         # This exit only governs child forwards access, adult and reverse access starts on the other side so never checks this
-        RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_CHILD: small_keys(SCENE_SPIRIT_TEMPLE, 2)
+        RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_CHILD: small_keys(SCENE_SPIRIT_TEMPLE,
+                                                          (trick(RT_HOVER_BOOST_SIMPLE) and not ((flag(LOGIC_SPIRIT_MQ_3SUNS_ENEMIES) and (has(RG_CLIMB) or can_use(RG_LONGSHOT))) or flag(LOGIC_REVERSE_SPIRIT_ADULT))) ? 3 : 2)
     }
 }
 
@@ -171,11 +179,12 @@ region RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_CHILD {
                                                  small_keys(SCENE_SPIRIT_TEMPLE, 6) and mq_spirit_statue_to_sun_block() and
                                                  (can_use(RG_BOMBCHU_5) or (trick(RT_VISIBLE_COLLISION) and any_age(can_use(RG_MEGATON_HAMMER))))
         RR_SPIRIT_TEMPLE_MQ_SUN_ON_FLOOR:        small_keys(SCENE_SPIRIT_TEMPLE, 6)
-        RR_SPIRIT_TEMPLE_MQ_POT_LEDGE:           can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME)
-        RR_SPIRIT_TEMPLE_MQ_INNER_RIGHT_HAND:    is_adult() or can_jumpslash() or can_use(RG_HOVER_BOOTS)
+        RR_SPIRIT_TEMPLE_MQ_POT_LEDGE:           can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME) or can_megajump()
+        RR_SPIRIT_TEMPLE_MQ_INNER_RIGHT_HAND:    is_adult() or can_jumpslash() or can_use(RG_HOVER_BOOTS) or bunny_hood()
         RR_SPIRIT_TEMPLE_MQ_FLAMETHROWER_STAIRS: mq_spirit_statue_to_sun_block()
         # explicit adult check here is a precaution against possible child logic leaking, child with a hookshot can do this
-        RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_ADULT:   is_adult() and can_use(RG_HOOKSHOT)
+        RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_ADULT:   is_adult() and (can_use(RG_HOOKSHOT) or can_melee_recoil_hover(RECOIL_HAMMER_AND_SHIELD) or
+                                                                 (can_bomb_recoil_hover() and can_jumpslash()) or can_bunny_mega_jumpslash())
     }
 }
 
@@ -203,9 +212,7 @@ region RR_SPIRIT_TEMPLE_MQ_INNER_RIGHT_HAND {
         # Land on the SoT block
         RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_CHILD: always
         RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM:       always
-        RR_SPIRIT_TEMPLE_MQ_POT_LEDGE:         is_adult() and trick(RT_SPIRIT_STATUE_JUMP)
-        RR_SPIRIT_TEMPLE_MQ_PLATFORM:          flag(LOGIC_SPIRIT_PLATFORM_LOWERED) and
-                                               (can_use(RG_LONGSHOT) or (trick(RT_SPIRIT_PLATFORM_HOOKSHOT) and can_use(RG_HOOKSHOT)))
+        RR_SPIRIT_TEMPLE_MQ_POT_LEDGE:         is_adult() and (trick(RT_SPIRIT_STATUE_JUMP) or bunny_hood())
     }
 }
 
@@ -221,6 +228,7 @@ region RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM {
     }
 
     exits {
+        # Adult can use bunnyhovers to reach the SoT block from the statues legs, but that's unintuitive
         RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_CHILD: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
         RR_SPIRIT_TEMPLE_MQ_BIG_BLOCKS_DOOR:   flag(LOGIC_SPIRIT_STATUE_SOUTH_DOOR)
         # explicit adult check here is a precaution against possible Child logic leaking, Child with a hookshot can do this
@@ -288,9 +296,10 @@ region RR_SPIRIT_TEMPLE_MQ_OUTER_RIGHT_HAND {
     }
 
     exits {
-        # If it is ever relevent for 1 age to spawn the mirror shield chest for the other can longshot across, it needs an eventAccess
-        RR_SPIRIT_TEMPLE_MQ_RIGHT_HAND_EXIT: always
-        RR_DESERT_COLOSSUS:                  spirit_certain_access(RR_SPIRIT_TEMPLE_MQ_OUTER_RIGHT_HAND)
+        # If it is ever relevant for 1 age to spawn the mirror shield chest for the other can longshot across, it needs an eventAccess
+        RR_SPIRIT_TEMPLE_MQ_RIGHT_HAND_EXIT:  always
+        RR_DESERT_COLOSSUS:                   spirit_certain_access(RR_SPIRIT_TEMPLE_MQ_OUTER_RIGHT_HAND)
+        RR_DESERT_COLOSSUS_ARCH_FROM_SPIRIT:  (can_jumpslash() and can_megajump(true) and effective_health() > 24) or can_bunny_mega_jumpslash()
     }
 }
 
@@ -322,27 +331,29 @@ region RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_ADULT {
 
     exits {
         RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM:            always
-        RR_SPIRIT_TEMPLE_MQ_INNER_LEFT_HAND:        is_adult() or can_jumpslash() or can_use(RG_HOVER_BOOTS)
-        RR_SPIRIT_TEMPLE_MQ_CHEST_LEDGE:            can_use(RG_HOVER_BOOTS) or
+        RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_CHILD:      can_use(RG_HOOKSHOT) or can_melee_recoil_hover(RECOIL_HAMMER_AND_SHIELD) or (can_bomb_recoil_hover() and can_jumpslash()) or can_bunny_mega_jumpslash()
+        RR_SPIRIT_TEMPLE_MQ_INNER_LEFT_HAND:        is_adult() or can_jumpslash() or can_use(RG_HOVER_BOOTS) or bunny_hood()
+        RR_SPIRIT_TEMPLE_MQ_CHEST_LEDGE:            can_use(RG_HOVER_BOOTS) or can_megajump() or
                                                     ((trick(RT_LENS_SPIRIT_MQ) or can_use(RG_LENS_OF_TRUTH)) and can_use(RG_LONGSHOT))
         RR_SPIRIT_TEMPLE_MQ_3_SUNS_ROOM_2F:         flag(LOGIC_SPIRIT_MQ_STATUE_ROOM_TORCHES)
         RR_DESERT_COLOSSUS:                         small_keys(SCENE_SPIRIT_TEMPLE, 4) and mq_spirit_4_key_colossus()
         RR_SPIRIT_TEMPLE_MQ_OUTER_RIGHT_HAND:       small_keys(SCENE_SPIRIT_TEMPLE, 4) and mq_spirit_4_key_west_hand()
         RR_SPIRIT_TEMPLE_MQ_FIRE_WALL_STAIRS_LOWER: small_keys(SCENE_SPIRIT_TEMPLE, 5)
+        # RT_SPIRIT_PLATFORM_HOOKSHOT is currently disabled
         RR_SPIRIT_TEMPLE_MQ_PLATFORM:               flag(LOGIC_SPIRIT_PLATFORM_LOWERED) and
                                                     (can_use(RG_LONGSHOT) or (trick(RT_SPIRIT_PLATFORM_HOOKSHOT) and can_use(RG_HOOKSHOT)))
     }
 }
 
 region RR_SPIRIT_TEMPLE_MQ_INNER_LEFT_HAND {
-    name: "Spirit Temple MQ Inner East Hand"
+    name: "Spirit Temple MQ Inner Left Hand"
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
         RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM:       always
-        RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_ADULT: can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT)
+        RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_ADULT: can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT) or bunny_hood()
         RR_SPIRIT_TEMPLE_MQ_CHEST_LEDGE:       ((is_adult() or trick(RT_SPIRIT_WEST_LEDGE)) and (trick(RT_LENS_SPIRIT_MQ) or can_use(RG_LENS_OF_TRUTH)) and can_use(RG_HOOKSHOT)) or
-                                               (is_adult() and trick(RT_SPIRIT_STATUE_JUMP))
+                                               (is_adult() and (trick(RT_SPIRIT_STATUE_JUMP) or bunny_hood()))
     }
 }
 
@@ -352,7 +363,7 @@ region RR_SPIRIT_TEMPLE_MQ_CHEST_LEDGE {
 
     exits {
         RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM:       always
-        RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_ADULT: can_use(RG_HOVER_BOOTS) or can_use(RG_LONGSHOT)
+        RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_ADULT: can_use(RG_HOVER_BOOTS) or can_use(RG_LONGSHOT) or bunny_hood()
         RR_SPIRIT_TEMPLE_MQ_INNER_LEFT_HAND:   always
     }
 }
@@ -384,16 +395,16 @@ region RR_SPIRIT_TEMPLE_MQ_3_SUNS_ROOM_1F {
 }
 
 region RR_SPIRIT_TEMPLE_MQ_BEHIND_GEYSER {
-    name: "Spirit Temple MQ 1F East"
+    name: "Spirit Temple MQ Behind Geyser"
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
         # Assumes RR_SPIRIT_TEMPLE_MQ_FOYER access
-        LOGIC_SPIRIT_1F_SILVER_RUPEES: can_use(RG_MEGATON_HAMMER)
+        LOGIC_SPIRIT_MQ_SILVER_LOBBY: can_use(RG_MEGATON_HAMMER)
     }
 
     exits {
-        RR_SPIRIT_TEMPLE_MQ_FOYER:               can_use(RG_MEGATON_HAMMER) or (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_standing_shield() and (can_use_sword() or can_use(RG_STICKS)))
+        RR_SPIRIT_TEMPLE_MQ_FOYER:               can_use(RG_MEGATON_HAMMER) or can_recoil_hover(RECOIL_SWORD_AND_SHIELD)
         RR_SPIRIT_TEMPLE_MQ_3_SUNS_ROOM_1F:      always
         RR_SPIRIT_TEMPLE_MQ_SAND_PIT:            always
         RR_SPIRIT_TEMPLE_MQ_SYMPHONY_ROOM_UPPER: small_keys(SCENE_SPIRIT_TEMPLE, 7)
@@ -451,7 +462,7 @@ region RR_SPIRIT_TEMPLE_MQ_FIRE_WALL_STAIRS_LOWER {
 
     exits {
         RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_ADULT:      small_keys(SCENE_SPIRIT_TEMPLE, 5)
-        RR_SPIRIT_TEMPLE_MQ_FIRE_WALL_STAIRS_UPPER: can_use(RG_HOOKSHOT) or (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))
+        RR_SPIRIT_TEMPLE_MQ_FIRE_WALL_STAIRS_UPPER: can_use(RG_HOOKSHOT) or can_melee_recoil_hover(RECOIL_HAMMER)
     }
 }
 
@@ -460,7 +471,7 @@ region RR_SPIRIT_TEMPLE_MQ_FIRE_WALL_STAIRS_UPPER {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_MQ_FIRE_WALL_STAIRS_LOWER: can_use(RG_HOOKSHOT) or (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))
+        RR_SPIRIT_TEMPLE_MQ_FIRE_WALL_STAIRS_LOWER: can_use(RG_HOOKSHOT) or can_melee_recoil_hover(RECOIL_HAMMER)
         RR_SPIRIT_TEMPLE_MQ_BEAMOS_PITS:            always
     }
 }
@@ -470,8 +481,8 @@ region RR_SPIRIT_TEMPLE_MQ_BEAMOS_PITS {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_MQ_FIRE_WALL_STAIRS_UPPER: can_avoid(RE_BEAMOS, true, 4) and can_use(RG_SONG_OF_TIME) and has(RG_POWER_BRACELET)
-        RR_SPIRIT_TEMPLE_MQ_SOT_SUN_ROOM:           can_avoid(RE_BEAMOS, true, 4) and can_use(RG_SONG_OF_TIME) and has(RG_POWER_BRACELET)
+        RR_SPIRIT_TEMPLE_MQ_FIRE_WALL_STAIRS_UPPER: can_avoid(RE_BEAMOS, ED_CLOSE, true, 4) and can_use(RG_SONG_OF_TIME) and has(RG_POWER_BRACELET)
+        RR_SPIRIT_TEMPLE_MQ_SOT_SUN_ROOM:           can_avoid(RE_BEAMOS, ED_CLOSE, true, 4) and can_use(RG_SONG_OF_TIME) and has(RG_POWER_BRACELET)
         RR_SPIRIT_TEMPLE_MQ_BIG_WALL_BASE:          small_keys(SCENE_SPIRIT_TEMPLE, 6)
     }
 }
@@ -525,6 +536,7 @@ region RR_SPIRIT_TEMPLE_MQ_OUTER_LEFT_HAND {
         RR_SPIRIT_TEMPLE_MQ_OUTER_RIGHT_HAND: can_use(RG_LONGSHOT)
         RR_SPIRIT_TEMPLE_MQ_ADULT_THRONE:     always
         RR_DESERT_COLOSSUS:                   always
+        RR_DESERT_COLOSSUS_ARCH_FROM_SPIRIT:  (can_jumpslash() and can_megajump(true) and effective_health() > 24) or can_bunny_mega_jumpslash()
     }
 }
 
@@ -553,13 +565,13 @@ region RR_SPIRIT_TEMPLE_MQ_BIG_WALL_UPPER {
     scene: SCENE_SPIRIT_TEMPLE
 
     events {
-        # Getting some of these with just climbing downwards is theoretically possible but definitely a trick
-        LOGIC_SPIRIT_MQ_BIG_WALL_SILVERS: (can_kill(RE_KEESE) or can_use(RG_SKULL_MASK)) and (has(RG_CLIMB) or can_use(RG_LONGSHOT))
+        # You can easily get any 1 silver dropping down, but getting them all only going down is likely impossible
+        LOGIC_SPIRIT_MQ_SILVER_BIG_WALL: (can_kill(RE_KEESE) or can_use(RG_SKULL_MASK)) and (has(RG_CLIMB) or can_use(RG_LONGSHOT))
     }
 
     exits {
         RR_SPIRIT_TEMPLE_MQ_BIG_WALL_BASE: always
-        RR_SPIRIT_TEMPLE_MQ_4F_CENTRAL:    flag(LOGIC_SPIRIT_MQ_BIG_WALL_SILVERS)
+        RR_SPIRIT_TEMPLE_MQ_4F_CENTRAL:    has(RG_SPIRIT_MQ_SILVER_BIG_WALL)
     }
 }
 
@@ -618,7 +630,7 @@ region RR_SPIRIT_TEMPLE_MQ_PLATFORM {
     scene: SCENE_SPIRIT_TEMPLE
 
     exits {
-        RR_SPIRIT_TEMPLE_MQ_STATUE_HEAD:       flag(LOGIC_SPIRIT_PUSHED_4F_MIRRORS) and can_use(RG_MIRROR_SHIELD) and can_use(RG_HOOKSHOT)
+        RR_SPIRIT_TEMPLE_MQ_STATUE_HEAD:       flag(LOGIC_SPIRIT_PUSHED_4F_MIRRORS) and any_age(can_use(RG_MIRROR_SHIELD)) and can_use(RG_HOOKSHOT)
         RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM_CHILD: always
         RR_SPIRIT_TEMPLE_MQ_INNER_RIGHT_HAND:  always
         RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM:       always
@@ -639,11 +651,12 @@ region RR_SPIRIT_TEMPLE_MQ_STATUE_HEAD {
 
     exits {
         RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM:      always
-        # CanBunnyJump with a jumpslash can reach either hand and with good timing the platform as child. the latter is definitely a trick, the former may not be
+        # Bunny hood jumps with a jumpslash can reach either hand and with good timing the platform as child.
+        # The latter is definitely a trick, the former may not be but is disallowed as it would need a new branch of spirit key logic.
         # If this interaction with the hands is added, SpiritSharedLogic needs updating for it
-        RR_SPIRIT_TEMPLE_MQ_INNER_RIGHT_HAND: can_use(RG_HOVER_BOOTS)
-        RR_SPIRIT_TEMPLE_MQ_INNER_LEFT_HAND:  can_use(RG_HOVER_BOOTS)
-        RR_SPIRIT_TEMPLE_MQ_PLATFORM:         flag(LOGIC_SPIRIT_PLATFORM_LOWERED) and (can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT))
+        RR_SPIRIT_TEMPLE_MQ_INNER_RIGHT_HAND: can_use(RG_HOVER_BOOTS) or (bunny_hood() and can_jumpslash() and is_adult()) or can_megajump()
+        RR_SPIRIT_TEMPLE_MQ_INNER_LEFT_HAND:  can_use(RG_HOVER_BOOTS) or (bunny_hood() and can_jumpslash() and is_adult())
+        RR_SPIRIT_TEMPLE_MQ_PLATFORM:         flag(LOGIC_SPIRIT_PLATFORM_LOWERED) and (can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT) or (is_adult() and bunny_hood()))
         RR_SPIRIT_TEMPLE_BOSS_ENTRYWAY:       always
     }
 }

@@ -1,0 +1,19 @@
+# overworld/kakariko
+
+extend region RR_KAKARIKO_VILLAGE {
+    locations {
+        RC_KAK_BEGGAR_BUGS:      is_adult() and can_use(RG_BOTTLE_WITH_BUGS)
+        RC_KAK_BEGGAR_FISH:      is_adult() and can_use(RG_BOTTLE_WITH_FISH)
+        RC_KAK_BEGGAR_BLUE_FIRE: is_adult() and can_use(RG_BOTTLE_WITH_BLUE_FIRE)
+    }
+}
+
+# overworld/market
+
+extend region RR_THE_MARKET {
+    locations {
+        RC_MK_BEGGAR_BUGS:      is_child() and at_day() and can_use(RG_BOTTLE_WITH_BUGS)
+        RC_MK_BEGGAR_FISH:      is_child() and at_day() and can_use(RG_BOTTLE_WITH_FISH)
+        RC_MK_BEGGAR_BLUE_FIRE: is_child() and at_day() and can_use(RG_BOTTLE_WITH_BLUE_FIRE)
+    }
+}

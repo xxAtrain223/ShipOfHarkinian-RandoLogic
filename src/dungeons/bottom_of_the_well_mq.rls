@@ -11,7 +11,7 @@ region RR_BOTW_MQ_PERIMETER {
                                     (trick(RT_ITEM_EXTENSION) and
                                      (setting(RSK_SHUFFLE_POTS) is RO_SHUFFLE_POTS_OFF or setting(RSK_SHUFFLE_POTS) is RO_SHUFFLE_POTS_OVERWORLD) and
                                      can_hit_eye_targets()) or
-                                    (trick(RT_VISIBLE_COLLISION) and is_child() ? can_hit_eye_targets() : can_use(RG_FAIRY_SLINGSHOT))
+                                    (trick(RT_BOULDER_COLLISION) and is_child() ? can_hit_eye_targets() : can_use(RG_FAIRY_SLINGSHOT))
         # It is possible to hit the water switch with a pot from RR_BOTW_MQ_MIDDLE, however the hitbox for making it
         # activate is very unintuitive. You have to throw the pot from further back to hit the switch from the front
         # instead of the top, trying to hit the "fingers" directly. This unintuitiveness means it should be a trick.
@@ -23,7 +23,7 @@ region RR_BOTW_MQ_PERIMETER {
     exits {
         RR_BOTW_ENTRYWAY:             can_use(RG_CRAWL) and (has(RG_CLIMB) or can_use(RG_HOOKSHOT))
         RR_BOTW_MQ_MIDDLE:            flag(LOGIC_BOTW_MQ_OPENED_GATES)
-        RR_BOTW_MQ_PIT_CAGE:          any_age(blast_or_smash()) and can_pass(RE_BIG_SKULLTULA)
+        RR_BOTW_MQ_PIT_CAGE:          any_age(blast_or_smash()) and (can_pass(RE_BIG_SKULLTULA) or can_use(RG_HOVER_BOOTS))
         # Climb always needed in case water is lowered out of logic
         RR_BOTW_MQ_BEHIND_MOAT:       (flag(LOGIC_BOTW_LOWERED_WATER) and (has(RG_CLIMB) or can_use(RG_HOOKSHOT))) or has(RG_BRONZE_SCALE) or
                                       (is_adult() and can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT))
@@ -39,7 +39,7 @@ region RR_BOTW_MQ_MIDDLE {
 
     exits {
         RR_BOTW_MQ_PERIMETER:      flag(LOGIC_BOTW_MQ_OPENED_GATES)
-        RR_BOTW_MQ_PIT_CAGE:       trick(RT_BOTW_PITS)
+        RR_BOTW_MQ_PIT_CAGE:       trick(RT_BOTW_PITS) or can_use(RG_HOVER_BOOTS)
         RR_BOTW_MQ_B3_PLATFORM:    flag(LOGIC_BOTW_MQ_OPENED_MIDDLE_HOLE)
         RR_BOTW_MQ_B3:             always
         RR_BOTW_MQ_INVISIBLE_PATH: any_age(has(RG_POWER_BRACELET) or can_hit_switch(ED_BOMB_THROW))
@@ -64,7 +64,7 @@ region RR_BOTW_MQ_INVISIBLE_PATH {
 }
 
 region RR_BOTW_MQ_GRAVE_ROOM {
-    name: "Bottom of the Well Grave Room"
+    name: "Bottom of the Well MQ Grave Room"
     scene: SCENE_BOTTOM_OF_THE_WELL
 
     exits {
@@ -81,8 +81,8 @@ region RR_BOTW_MQ_PIT_CAGE {
     }
 
     exits {
-        RR_BOTW_MQ_PERIMETER: blast_or_smash() and (can_pass(RE_BIG_SKULLTULA) or trick(RT_BOTW_PITS))
-        RR_BOTW_MQ_MIDDLE:    trick(RT_BOTW_PITS)
+        RR_BOTW_MQ_PERIMETER: blast_or_smash() and (can_pass(RE_BIG_SKULLTULA) or trick(RT_BOTW_PITS) or can_use(RG_HOVER_BOOTS))
+        RR_BOTW_MQ_MIDDLE:    trick(RT_BOTW_PITS) or can_use(RG_HOVER_BOOTS)
         RR_BOTW_MQ_B3:        always
     }
 }

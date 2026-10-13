@@ -33,7 +33,7 @@ extend region RR_BOTW_LOCKED_CAGE {
 
 extend region RR_BOTW_PIT_CAGE {
     locations {
-        RC_BOTTOM_OF_THE_WELL_COMPASS_CHEST: has(RG_OPEN_CHEST)
+        RC_BOTTOM_OF_THE_WELL_COMPASS_CHEST: can_open_large_chest()
     }
 }
 
@@ -45,33 +45,33 @@ extend region RR_BOTW_BEHIND_MOAT {
 
 extend region RR_BOTW_DEAD_HAND_ROOM {
     locations {
-        RC_BOTTOM_OF_THE_WELL_LENS_OF_TRUTH_CHEST: can_kill(RE_DEAD_HAND) and has(RG_OPEN_CHEST)
+        RC_BOTTOM_OF_THE_WELL_LENS_OF_TRUTH_CHEST: can_kill(RE_DEAD_HAND) and can_open_large_chest()
         RC_BOTTOM_OF_THE_WELL_INVISIBLE_CHEST:     (trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
     }
 }
 
 extend region RR_BOTW_B3_CHEST_AREA {
     locations {
-        RC_BOTTOM_OF_THE_WELL_MAP_CHEST: has(RG_OPEN_CHEST)
+        RC_BOTTOM_OF_THE_WELL_MAP_CHEST: can_open_large_chest()
     }
 }
 
 extend region RR_BOTW_MQ_MIDDLE {
     locations {
-        RC_BOTTOM_OF_THE_WELL_MQ_MAP_CHEST: has(RG_OPEN_CHEST)
+        RC_BOTTOM_OF_THE_WELL_MQ_MAP_CHEST: can_open_large_chest()
     }
 }
 
 extend region RR_BOTW_MQ_DEAD_HAND_ROOM {
     locations {
-        RC_BOTTOM_OF_THE_WELL_MQ_COMPASS_CHEST: can_kill(RE_DEAD_HAND) and has(RG_OPEN_CHEST)
+        RC_BOTTOM_OF_THE_WELL_MQ_COMPASS_CHEST: can_kill(RE_DEAD_HAND) and can_open_large_chest()
     }
 }
 
 extend region RR_BOTW_MQ_B3_PLATFORM {
     locations {
         # Assumes RR_BOTW_MQ_B3 access
-        RC_BOTTOM_OF_THE_WELL_MQ_LENS_OF_TRUTH_CHEST: can_pass(RE_REDEAD) and has(RG_OPEN_CHEST)
+        RC_BOTTOM_OF_THE_WELL_MQ_LENS_OF_TRUTH_CHEST: can_pass(RE_REDEAD) and can_open_large_chest()
     }
 }
 
@@ -79,20 +79,20 @@ extend region RR_BOTW_MQ_B3_PLATFORM {
 
 extend region RR_DEKU_TREE_LOBBY_2F {
     locations {
-        RC_DEKU_TREE_MAP_CHEST: has(RG_OPEN_CHEST)
+        RC_DEKU_TREE_MAP_CHEST: can_open_large_chest()
     }
 }
 
 extend region RR_DEKU_TREE_SLINGSHOT_ROOM {
     locations {
-        RC_DEKU_TREE_SLINGSHOT_CHEST:           has(RG_OPEN_CHEST)
-        RC_DEKU_TREE_SLINGSHOT_ROOM_SIDE_CHEST: (has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and has(RG_OPEN_CHEST)
+        RC_DEKU_TREE_SLINGSHOT_CHEST:           can_open_large_chest()
+        RC_DEKU_TREE_SLINGSHOT_ROOM_SIDE_CHEST: (has(RG_CLIMB) or can_use(RG_HOOKSHOT) or (is_adult() and can_megajump())) and has(RG_OPEN_CHEST)
     }
 }
 
 extend region RR_DEKU_TREE_COMPASS_ROOM {
     locations {
-        RC_DEKU_TREE_COMPASS_CHEST:           has(RG_OPEN_CHEST)
+        RC_DEKU_TREE_COMPASS_CHEST:           can_open_large_chest()
         RC_DEKU_TREE_COMPASS_ROOM_SIDE_CHEST: has(RG_OPEN_CHEST)
     }
 }
@@ -105,20 +105,20 @@ extend region RR_DEKU_TREE_BASEMENT_LOWER {
 
 extend region RR_DEKU_TREE_MQ_2F {
     locations {
-        RC_DEKU_TREE_MQ_MAP_CHEST: has(RG_OPEN_CHEST)
+        RC_DEKU_TREE_MQ_MAP_CHEST: can_open_large_chest()
     }
 }
 
 extend region RR_DEKU_TREE_MQ_SLINGSHOT_ROOM {
     locations {
-        RC_DEKU_TREE_MQ_SLINGSHOT_CHEST:           can_kill(RE_DEKU_BABA) and has(RG_OPEN_CHEST)
+        RC_DEKU_TREE_MQ_SLINGSHOT_CHEST:           can_kill(RE_DEKU_BABA) and can_open_large_chest()
         RC_DEKU_TREE_MQ_SLINGSHOT_ROOM_BACK_CHEST: (has_fire_source_with_torch() or (is_adult() and can_use(RG_FAIRY_BOW))) and has(RG_OPEN_CHEST)
     }
 }
 
 extend region RR_DEKU_TREE_MQ_COMPASS_ROOM {
     locations {
-        RC_DEKU_TREE_MQ_COMPASS_CHEST: has(RG_OPEN_CHEST)
+        RC_DEKU_TREE_MQ_COMPASS_CHEST: can_open_large_chest()
     }
 }
 
@@ -145,13 +145,13 @@ extend region RR_DEKU_TREE_MQ_BASEMENT_WATER_ROOM_BACK {
 
 extend region RR_DODONGOS_CAVERN_LOBBY {
     locations {
-        RC_DODONGOS_CAVERN_MAP_CHEST: (can_break_mud_walls() or has(RG_GORONS_BRACELET)) and has(RG_OPEN_CHEST)
+        RC_DODONGOS_CAVERN_MAP_CHEST: (can_break_mud_walls() or has(RG_GORONS_BRACELET)) and can_open_large_chest()
     }
 }
 
 extend region RR_DODONGOS_CAVERN_COMPASS_ROOM {
     locations {
-        RC_DODONGOS_CAVERN_COMPASS_CHEST: has(RG_OPEN_CHEST)
+        RC_DODONGOS_CAVERN_COMPASS_CHEST: can_open_large_chest()
     }
 }
 
@@ -163,7 +163,7 @@ extend region RR_DODONGOS_CAVERN_BOMB_ROOM_LOWER {
 
 extend region RR_DODONGOS_CAVERN_BOMB_ROOM_UPPER {
     locations {
-        RC_DODONGOS_CAVERN_BOMB_BAG_CHEST: has(RG_OPEN_CHEST)
+        RC_DODONGOS_CAVERN_BOMB_BAG_CHEST: can_open_large_chest()
     }
 }
 
@@ -181,19 +181,19 @@ extend region RR_DODONGOS_CAVERN_BOSS_ROOM {
 
 extend region RR_DODONGOS_CAVERN_MQ_LOBBY {
     locations {
-        RC_DODONGOS_CAVERN_MQ_MAP_CHEST: (can_break_mud_walls() or has(RG_GORONS_BRACELET)) and has(RG_OPEN_CHEST)
+        RC_DODONGOS_CAVERN_MQ_MAP_CHEST: (can_break_mud_walls() or has(RG_GORONS_BRACELET)) and can_open_large_chest()
     }
 }
 
 extend region RR_DODONGOS_CAVERN_MQ_OUTSIDE_POES_ROOM {
     locations {
-        RC_DODONGOS_CAVERN_MQ_BOMB_BAG_CHEST: has(RG_OPEN_CHEST)
+        RC_DODONGOS_CAVERN_MQ_BOMB_BAG_CHEST: can_open_large_chest()
     }
 }
 
 extend region RR_DODONGOS_CAVERN_MQ_DODONGO_ROOM {
     locations {
-        RC_DODONGOS_CAVERN_MQ_COMPASS_CHEST: (can_kill(RE_DODONGO) or (has(RG_GORONS_BRACELET) and can_climb_ladder())) and has(RG_OPEN_CHEST)
+        RC_DODONGOS_CAVERN_MQ_COMPASS_CHEST: (can_kill(RE_DODONGO) or (has(RG_GORONS_BRACELET) and can_climb_ladder())) and can_open_large_chest()
     }
 }
 
@@ -237,7 +237,7 @@ extend region RR_FIRE_TEMPLE_LOOP_FLARE_DANCER {
 
 extend region RR_FIRE_TEMPLE_LOOP_GORON_CAGE {
     locations {
-        RC_FIRE_TEMPLE_BOSS_KEY_CHEST: has(RG_OPEN_CHEST)
+        RC_FIRE_TEMPLE_BOSS_KEY_CHEST: can_open_large_chest()
     }
 }
 
@@ -274,7 +274,7 @@ extend region RR_FIRE_TEMPLE_3F_CURVED_CAGE {
 #firetimer for entering this area from RR_FIRE_TEMPLE_FIRE_WALL_CHASE is handled there
 extend region RR_FIRE_TEMPLE_FIRE_WALL_CAGE {
     locations {
-        RC_FIRE_TEMPLE_MAP_CHEST: fire_timer() >= 8 and has(RG_OPEN_CHEST)
+        RC_FIRE_TEMPLE_MAP_CHEST: fire_timer() >= 8 and can_open_large_chest()
     }
 }
 
@@ -292,7 +292,7 @@ extend region RR_FIRE_TEMPLE_5F_RUINS {
 
 extend region RR_FIRE_TEMPLE_CAGELESS_CHEST_ROOM {
     locations {
-        RC_FIRE_TEMPLE_COMPASS_CHEST: has(RG_OPEN_CHEST)
+        RC_FIRE_TEMPLE_COMPASS_CHEST: can_open_large_chest()
     }
 }
 
@@ -305,7 +305,7 @@ extend region RR_FIRE_TEMPLE_SOT_CAGE_SWITCH {
 
 extend region RR_FIRE_TEMPLE_NARROW_STAIRS {
     locations {
-        RC_FIRE_TEMPLE_MEGATON_HAMMER_CHEST: has(RG_OPEN_CHEST)
+        RC_FIRE_TEMPLE_MEGATON_HAMMER_CHEST: can_open_large_chest()
     }
 }
 
@@ -317,14 +317,14 @@ extend region RR_FIRE_TEMPLE_MQ_LOOP_CAGE_FOYER_SIDE {
 
 extend region RR_FIRE_TEMPLE_MQ_LOOP_FLARE_DANCER {
     locations {
-        RC_FIRE_TEMPLE_MQ_MEGATON_HAMMER_CHEST: (is_adult() or can_use(RG_HOOKSHOT) or can_ground_jump()) and any_age(can_kill(RE_FLARE_DANCER)) and 
-                                                has(RG_OPEN_CHEST)
+        RC_FIRE_TEMPLE_MQ_MEGATON_HAMMER_CHEST: (is_adult() or can_use(RG_HOOKSHOT) or can_ground_jump()) and any_age(can_kill(RE_FLARE_DANCER)) and
+                                                can_open_large_chest()
     }
 }
 
 extend region RR_FIRE_TEMPLE_MQ_LOOP_GORON_CAGE {
     locations {
-        RC_FIRE_TEMPLE_MQ_MAP_CHEST: has(RG_OPEN_CHEST)
+        RC_FIRE_TEMPLE_MQ_MAP_CHEST: can_open_large_chest()
     }
 }
 
@@ -336,10 +336,10 @@ extend region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_TARGET {
         #The Damage logic here is for jumping down and running across the lava to get in dins range of the south torch
         #Fairies cannot be used for this as it is time sensetive, and NL is only useful with sticks as it disables other magic while in use, so it's tunic or raw damage taking ability.
         #testing tells me you take 3 ticks of lava damage, which is 12 internal damage or 3/4 of a heart at x1 damage multiplier, performing this run
-        #effective_health() works in half hearts for whatever reason, meaning this needs a deeper refactor to be perfect, but it should be good enough for now
-        RC_FIRE_TEMPLE_MQ_NEAR_BOSS_CHEST:      can_use(RG_DINS_FIRE) and (can_use(RG_HOVER_BOOTS) or can_use(RG_LONGSHOT) or (is_adult() and 
-                                                (can_use(RG_FAIRY_BOW) or can_use(RG_GORON_TUNIC) or effective_health() >= 2 or (can_use(RG_NAYRUS_LOVE) and 
-                                                can_use(RG_STICKS))))) and has(RG_OPEN_CHEST)
+        RC_FIRE_TEMPLE_MQ_NEAR_BOSS_CHEST:      can_use(RG_DINS_FIRE) and has(RG_OPEN_CHEST) and
+                                                (can_use(RG_HOVER_BOOTS) or can_use(RG_LONGSHOT) or can_megajump() or
+                                                (is_adult() and (can_use(RG_FAIRY_BOW) or can_use(RG_GORON_TUNIC) or bunny_hood() or effective_health() > 12 or
+                                                (can_use(RG_NAYRUS_LOVE) and can_use(RG_STICKS)))))
     }
 }
 
@@ -347,7 +347,7 @@ extend region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_TARGET {
 extend region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM_UPPER {
     locations {
         #If we have FAs, we can just remove the crate and use those to light the torches.
-        #otherwise, with Dins, we first light them with dins and then use a bow shot 
+        #otherwise, with Dins, we first light them with dins and then use a bow shot
         RC_FIRE_TEMPLE_MQ_NEAR_BOSS_CHEST:      (can_use(RG_FIRE_ARROWS) or (can_use(RG_DINS_FIRE) and can_use(RG_FAIRY_BOW))) and has(RG_OPEN_CHEST)
     }
 }
@@ -360,7 +360,7 @@ extend region RR_FIRE_TEMPLE_MQ_TORCH_LOCKED_CAGE {
 
 extend region RR_FIRE_TEMPLE_MQ_TORCH_FIREWALL_ROOM {
     locations {
-        RC_FIRE_TEMPLE_MQ_BOSS_KEY_CHEST:   can_use(RG_HOOKSHOT) and has(RG_OPEN_CHEST)
+        RC_FIRE_TEMPLE_MQ_BOSS_KEY_CHEST:   can_use(RG_HOOKSHOT) and can_open_large_chest()
     }
 }
 
@@ -385,7 +385,7 @@ extend region RR_FIRE_TEMPLE_MQ_MAZE_BOX_CAGE {
 
 extend region RR_FIRE_TEMPLE_MQ_SHORTCUT_CAGE {
     locations {
-        RC_FIRE_TEMPLE_MQ_COMPASS_CHEST: has(RG_OPEN_CHEST)
+        RC_FIRE_TEMPLE_MQ_COMPASS_CHEST: can_open_large_chest()
     }
 }
 
@@ -394,7 +394,7 @@ extend region RR_FIRE_TEMPLE_MQ_NARROW_STAIRS_ROOM {
         #This requires nothing in N64 logic, but is tight enough to need rollspam with the one-point on which is stricter than I would normally consider in 
         #logic
         #Child basically needs the scarecrow or a bunny hood though due to a worse ledge grab.
-        RC_FIRE_TEMPLE_MQ_CHEST_ON_FIRE: (is_adult() or reach_scarecrow()) and has(RG_OPEN_CHEST)
+        RC_FIRE_TEMPLE_MQ_CHEST_ON_FIRE: (is_adult() or bunny_hood() or reach_scarecrow()) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -428,7 +428,7 @@ extend region RR_FOREST_TEMPLE_NE_COURTYARD_ISLAND {
 
 extend region RR_FOREST_TEMPLE_MAP_ROOM {
     locations {
-        RC_FOREST_TEMPLE_MAP_CHEST: can_kill(RE_BLUE_BUBBLE) and has(RG_OPEN_CHEST)
+        RC_FOREST_TEMPLE_MAP_CHEST: can_kill(RE_BLUE_BUBBLE) and can_open_large_chest()
     }
 }
 
@@ -458,7 +458,7 @@ extend region RR_FOREST_TEMPLE_MIDDLE_BLOCK_PUSH_ROOM {
 
 extend region RR_FOREST_TEMPLE_NW_HALLWAY_STRAIGHTENED {
     locations {
-        RC_FOREST_TEMPLE_BOSS_KEY_CHEST: has(RG_OPEN_CHEST)
+        RC_FOREST_TEMPLE_BOSS_KEY_CHEST: can_open_large_chest()
     }   
 }
 
@@ -470,13 +470,13 @@ extend region RR_FOREST_TEMPLE_RED_POE_ROOM {
 
 extend region RR_FOREST_TEMPLE_UPPER_STALFOS {
     locations {
-        RC_FOREST_TEMPLE_BOW_CHEST: flag(LOGIC_FOREST_CLEAR_BETWEEN_JOELLE_AND_BETH) and can_kill(RE_STALFOS, ED_CLOSE, true, 3) and has(RG_OPEN_CHEST)
+        RC_FOREST_TEMPLE_BOW_CHEST: flag(LOGIC_FOREST_CLEAR_BETWEEN_JOELLE_AND_BETH) and can_kill(RE_STALFOS, ED_CLOSE, true, 3) and can_open_large_chest()
     }
 }
 
 extend region RR_FOREST_TEMPLE_BLUE_POE_ROOM {
     locations {
-        RC_FOREST_TEMPLE_BLUE_POE_CHEST: flag(LOGIC_FOREST_BETH) and has(RG_OPEN_CHEST)
+        RC_FOREST_TEMPLE_BLUE_POE_CHEST: flag(LOGIC_FOREST_BETH) and can_open_large_chest()
     }
 }
 
@@ -494,8 +494,8 @@ extend region RR_FOREST_TEMPLE_BASEMENT {
 
 extend region RR_FOREST_TEMPLE_MQ_TREES {
     locations {
-        RC_FOREST_TEMPLE_MQ_FIRST_ROOM_CHEST: (has(RG_CLIMB) or can_use(RG_LONGSHOT)) and (can_pass(RE_BIG_SKULLTULA, ED_SHORT_JUMPSLASH, false) or 
-                                              can_use(RG_HOVER_BOOTS)) and has(RG_OPEN_CHEST)
+        RC_FOREST_TEMPLE_MQ_FIRST_ROOM_CHEST: (has(RG_CLIMB) or can_use(RG_LONGSHOT)) and (can_pass(RE_BIG_SKULLTULA, ED_SHORT_JUMPSLASH, false) or
+                                              can_use(RG_HOVER_BOOTS) or bunny_hood()) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -507,7 +507,7 @@ extend region RR_FOREST_TEMPLE_MQ_WOLFOS_ROOM {
 
 extend region RR_FOREST_TEMPLE_MQ_STRAIGHT_HALLWAY {
     locations {
-        RC_FOREST_TEMPLE_MQ_BOSS_KEY_CHEST: small_keys(SCENE_FOREST_TEMPLE, 3) and has(RG_OPEN_CHEST)
+        RC_FOREST_TEMPLE_MQ_BOSS_KEY_CHEST: small_keys(SCENE_FOREST_TEMPLE, 3) and can_open_large_chest()
     }
 }
 
@@ -523,7 +523,7 @@ extend region RR_FOREST_TEMPLE_MQ_NE_COURTYARD {
     }
 }
 
-extend region RR_FOREST_TEMPLE_MQ_COURTYARD_TOP_LEDGES {
+extend region RR_FOREST_TEMPLE_MQ_COURTYARD_TOP_CHEST {
     locations {
         RC_FOREST_TEMPLE_MQ_RAISED_ISLAND_COURTYARD_UPPER_CHEST: has(RG_OPEN_CHEST)
     }
@@ -537,20 +537,20 @@ extend region RR_FOREST_TEMPLE_MQ_NE_COURTYARD_ISLAND {
 
 extend region RR_FOREST_TEMPLE_MQ_JOELLE_ROOM {
     locations {
-        RC_FOREST_TEMPLE_MQ_MAP_CHEST: flag(LOGIC_FOREST_JOELLE) and has(RG_OPEN_CHEST)
+        RC_FOREST_TEMPLE_MQ_MAP_CHEST: flag(LOGIC_FOREST_JOELLE) and can_open_large_chest()
     }
 }
 
 
 extend region RR_FOREST_TEMPLE_MQ_3_STALFOS_ROOM {
     locations {
-        RC_FOREST_TEMPLE_MQ_BOW_CHEST: flag(LOGIC_FOREST_CLEAR_BETWEEN_JOELLE_AND_BETH) and can_kill(RE_STALFOS, ED_CLOSE, true, 3) and has(RG_OPEN_CHEST)
+        RC_FOREST_TEMPLE_MQ_BOW_CHEST: flag(LOGIC_FOREST_CLEAR_BETWEEN_JOELLE_AND_BETH) and can_kill(RE_STALFOS, ED_CLOSE, true, 3) and can_open_large_chest()
     }
 }
 
 extend region RR_FOREST_TEMPLE_MQ_BETH_ROOM {
     locations {
-        RC_FOREST_TEMPLE_MQ_COMPASS_CHEST: flag(LOGIC_FOREST_BETH) and has(RG_OPEN_CHEST)
+        RC_FOREST_TEMPLE_MQ_COMPASS_CHEST: flag(LOGIC_FOREST_BETH) and can_open_large_chest()
     }
 }
 
@@ -570,7 +570,7 @@ extend region RR_FOREST_TEMPLE_MQ_BASEMENT {
 
 extend region RR_GANONS_TOWER_FLOOR_2 {
     locations {
-        RC_GANONS_TOWER_BOSS_KEY_CHEST: can_kill(RE_STALFOS, ED_CLOSE, true, 2) and has(RG_OPEN_CHEST)
+        RC_GANONS_TOWER_BOSS_KEY_CHEST: can_kill(RE_STALFOS, ED_CLOSE, true, 2) and can_open_large_chest()
     }
 }
 
@@ -589,14 +589,13 @@ extend region RR_GANONS_CASTLE_WATER_TRIAL_BLUE_FIRE_ROOM {
 
 extend region RR_GANONS_CASTLE_SHADOW_TRIAL_START {
     locations {
-        RC_GANONS_CASTLE_SHADOW_TRIAL_FRONT_CHEST: (can_use(RG_FIRE_ARROWS) or can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or
-                                                   can_use(RG_SONG_OF_TIME) or is_child()) and has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_SHADOW_TRIAL_FRONT_CHEST: has(RG_OPEN_CHEST)
     }
 }
 
 extend region RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM {
     locations {
-        RC_GANONS_CASTLE_SHADOW_TRIAL_GOLDEN_GAUNTLETS_CHEST: flag(LOGIC_SHADOW_TRIAL_LOWER_SWITCH) and has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_SHADOW_TRIAL_GOLDEN_GAUNTLETS_CHEST: flag(LOGIC_SHADOW_TRIAL_LATE_CHEST) and can_open_large_chest()
     }
 }
 
@@ -657,9 +656,9 @@ extend region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_CHEST_PLATFORM {
     }
 }
 
-extend region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_FAR_SIDE {
+extend region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_BEAMOS_CHEST {
     locations {
-        RC_GANONS_CASTLE_MQ_SHADOW_TRIAL_EYE_SWITCH_CHEST: can_hit_eye_targets() and has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_MQ_SHADOW_TRIAL_EYE_SWITCH_CHEST: flag(LOGIC_SHADOW_TRIAL_LATE_CHEST) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -674,7 +673,7 @@ extend region RR_GANONS_CASTLE_MQ_SPIRIT_TRIAL_AFTER_SWITCH {
         RC_GANONS_CASTLE_MQ_SPIRIT_TRIAL_INVISIBLE_CHEST:        (trick(RT_LENS_GANON_MQ) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
         RC_GANONS_CASTLE_MQ_SPIRIT_TRIAL_SUN_FRONT_LEFT_CHEST:   ((can_use(RG_FIRE_ARROWS) and can_use(RG_MIRROR_SHIELD)) or sunlight_arrows()) and has(RG_OPEN_CHEST)
         RC_GANONS_CASTLE_MQ_SPIRIT_TRIAL_SUN_BACK_LEFT_CHEST:    ((can_use(RG_FIRE_ARROWS) and can_use(RG_MIRROR_SHIELD)) or sunlight_arrows()) and has(RG_OPEN_CHEST)
-        RC_GANONS_CASTLE_MQ_SPIRIT_TRIAL_GOLDEN_GAUNTLETS_CHEST: ((can_use(RG_FIRE_ARROWS) and can_use(RG_MIRROR_SHIELD)) or sunlight_arrows()) and has(RG_OPEN_CHEST)
+        RC_GANONS_CASTLE_MQ_SPIRIT_TRIAL_GOLDEN_GAUNTLETS_CHEST: ((can_use(RG_FIRE_ARROWS) and can_use(RG_MIRROR_SHIELD)) or sunlight_arrows()) and can_open_large_chest()
         RC_GANONS_CASTLE_MQ_SPIRIT_TRIAL_SUN_BACK_RIGHT_CHEST:   ((can_use(RG_FIRE_ARROWS) and can_use(RG_MIRROR_SHIELD)) or sunlight_arrows()) and has(RG_OPEN_CHEST)
     }
 }
@@ -705,7 +704,7 @@ extend region RR_GERUDO_TRAINING_GROUND_CENTRAL_MAZE {
         RC_GERUDO_TRAINING_GROUND_MAZE_PATH_FIRST_CHEST:  small_keys(SCENE_GERUDO_TRAINING_GROUND, 4) and has(RG_OPEN_CHEST)
         RC_GERUDO_TRAINING_GROUND_MAZE_PATH_SECOND_CHEST: small_keys(SCENE_GERUDO_TRAINING_GROUND, 6) and has(RG_OPEN_CHEST)
         RC_GERUDO_TRAINING_GROUND_MAZE_PATH_THIRD_CHEST:  small_keys(SCENE_GERUDO_TRAINING_GROUND, 7) and has(RG_OPEN_CHEST)
-        RC_GERUDO_TRAINING_GROUND_MAZE_PATH_FINAL_CHEST:  small_keys(SCENE_GERUDO_TRAINING_GROUND, 9) and has(RG_OPEN_CHEST)
+        RC_GERUDO_TRAINING_GROUND_MAZE_PATH_FINAL_CHEST:  small_keys(SCENE_GERUDO_TRAINING_GROUND, 9) and can_open_large_chest()
     }
 }
 
@@ -752,7 +751,7 @@ extend region RR_GERUDO_TRAINING_GROUND_HAMMER_ROOM {
 
 extend region RR_GERUDO_TRAINING_GROUND_UNDERWATER {
     locations {
-        RC_GERUDO_TRAINING_GROUND_UNDERWATER_SILVER_RUPEE_CHEST: can_use(RG_SONG_OF_TIME) and can_use(RG_IRON_BOOTS) and has(RG_BRONZE_SCALE) and water_timer() >= 24 and has(RG_OPEN_CHEST)
+        RC_GERUDO_TRAINING_GROUND_UNDERWATER_SILVER_RUPEE_CHEST: has(RG_GTG_SILVER_WATER) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -803,7 +802,7 @@ extend region RR_GERUDO_TRAINING_GROUND_MQ_ROOM_BEHIND_BLOCK {
 
 extend region RR_GERUDO_TRAINING_GROUND_MQ_MAGENTA_FIRE_ROOM {
     locations {
-        RC_GERUDO_TRAINING_GROUND_MQ_ICE_ARROWS_CHEST: flag(LOGIC_GTG_MQ_MAZE_SWITCH) and has(RG_OPEN_CHEST)
+        RC_GERUDO_TRAINING_GROUND_MQ_ICE_ARROWS_CHEST: flag(LOGIC_GTG_MQ_MAZE_SWITCH) and can_open_large_chest()
     }
 }
 
@@ -822,7 +821,7 @@ extend region RR_GERUDO_TRAINING_GROUND_MQ_TORCH_SLUG_ROOM {
 
 extend region RR_GERUDO_TRAINING_GROUND_MQ_UNDERWATER {
     locations {
-        RC_GERUDO_TRAINING_GROUND_MQ_UNDERWATER_SILVER_RUPEE_CHEST: (has_fire_source() and can_use(RG_IRON_BOOTS) and water_timer() >= 24 and has(RG_BRONZE_SCALE) and take_damage()) and has(RG_OPEN_CHEST)
+        RC_GERUDO_TRAINING_GROUND_MQ_UNDERWATER_SILVER_RUPEE_CHEST: has(RG_GTG_SILVER_WATER) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -845,37 +844,37 @@ extend region RR_GERUDO_TRAINING_GROUND_MQ_DINOLFOS_ROOM {
 
 extend region RR_ICE_CAVERN_MAP_ROOM {
     locations {
-        RC_ICE_CAVERN_MAP_CHEST: blue_fire() and has(RG_OPEN_CHEST)
+        RC_ICE_CAVERN_MAP_CHEST: blue_fire() and can_open_large_chest()
     }
 }
 
 extend region RR_ICE_CAVERN_COMPASS_ROOM {
     locations {
-        RC_ICE_CAVERN_COMPASS_CHEST: (is_child() or can_clear_stalagmite() or trick(RT_ICE_STALAGMITE_CLIP)) and blue_fire() and has(RG_OPEN_CHEST)
+        RC_ICE_CAVERN_COMPASS_CHEST: (is_child() or can_clear_stalagmite() or trick(RT_ICE_STALAGMITE_CLIP)) and blue_fire() and can_open_large_chest()
     }
 }
 
 extend region RR_ICE_CAVERN_FINAL_ROOM {
     locations {
-        RC_ICE_CAVERN_IRON_BOOTS_CHEST: any_age(can_kill(RE_WOLFOS)) and has(RG_OPEN_CHEST)
+        RC_ICE_CAVERN_IRON_BOOTS_CHEST: any_age(can_kill(RE_WOLFOS)) and can_open_large_chest()
     }
 }
 
 extend region RR_ICE_CAVERN_MQ_MAP_ROOM {
     locations {
-        RC_ICE_CAVERN_MQ_MAP_CHEST: blue_fire() and any_age(can_hit_switch()) and has(RG_OPEN_CHEST)
+        RC_ICE_CAVERN_MQ_MAP_CHEST: blue_fire() and any_age(can_hit_switch()) and can_open_large_chest()
     }
 }
 
 extend region RR_ICE_CAVERN_MQ_COMPASS_ROOM {
     locations {
-        RC_ICE_CAVERN_MQ_COMPASS_CHEST: has(RG_OPEN_CHEST)
+        RC_ICE_CAVERN_MQ_COMPASS_CHEST: can_open_large_chest()
     }
 }
 
 extend region RR_ICE_CAVERN_MQ_STALFOS_ROOM {
     locations {
-        RC_ICE_CAVERN_MQ_IRON_BOOTS_CHEST: can_kill(RE_STALFOS) and has(RG_OPEN_CHEST)
+        RC_ICE_CAVERN_MQ_IRON_BOOTS_CHEST: can_kill(RE_STALFOS) and can_open_large_chest()
     }
 }
 
@@ -883,27 +882,27 @@ extend region RR_ICE_CAVERN_MQ_STALFOS_ROOM {
 
 extend region RR_JABU_JABUS_BELLY_FORK_WEST {
     locations {
-        RC_JABU_JABUS_BELLY_MAP_CHEST: flag(LOGIC_JABU_WEST_TENTACLE) and has(RG_OPEN_CHEST)
+        RC_JABU_JABUS_BELLY_MAP_CHEST: flag(LOGIC_JABU_WEST_TENTACLE) and can_open_large_chest()
     }
 }
 
 extend region RR_JABU_JABUS_BELLY_FORK_NORTH_WEST {
     locations {
         # ruto could theoretically clear this room, but it's hard because of the timer and she doesn't appear with you when you respawn after failing, which would force a savewarp
-        RC_JABU_JABUS_BELLY_COMPASS_CHEST: can_kill(RE_SHABOM, ED_CLOSE, false, 9) and has(RG_OPEN_CHEST)
+        RC_JABU_JABUS_BELLY_COMPASS_CHEST: can_kill(RE_SHABOM, ED_CLOSE, false, 9) and can_open_large_chest()
     }
 }
 
 extend region RR_JABU_JABUS_BELLY_FORK_EAST {
     locations {
         # We can kill the Stingers with ruto
-        RC_JABU_JABUS_BELLY_BOOMERANG_CHEST: (flag(LOGIC_JABU_RUTO_IN_1F) or can_kill(RE_STINGER, ED_CLOSE, true, 4)) and has(RG_OPEN_CHEST)
+        RC_JABU_JABUS_BELLY_BOOMERANG_CHEST: (flag(LOGIC_JABU_RUTO_IN_1F) or can_kill(RE_STINGER, ED_CLOSE, true, 4)) and can_open_large_chest()
     }
 }
 
 extend region RR_JABU_JABUS_BELLY_MQ_BEGINNING {
     locations {
-        RC_JABU_JABUS_BELLY_MQ_MAP_CHEST:             blast_or_smash() and has(RG_OPEN_CHEST)
+        RC_JABU_JABUS_BELLY_MQ_MAP_CHEST:             blast_or_smash() and can_open_large_chest()
         RC_JABU_JABUS_BELLY_MQ_FIRST_ROOM_SIDE_CHEST: can_use(RG_FAIRY_SLINGSHOT) and has(RG_OPEN_CHEST)
     }
 }
@@ -916,7 +915,7 @@ extend region RR_JABU_JABUS_BELLY_MQ_LIFT_ROOM {
 
 extend region RR_JABU_JABUS_BELLY_MQ_UNDERWATER_ALCOVE {
     locations {
-        RC_JABU_JABUS_BELLY_MQ_COMPASS_CHEST: (can_hit_switch(ED_HOOKSHOT, true) or (trick(RT_JABU_MQ_RANG_JUMP) and can_use(RG_BOOMERANG) and has(RG_BRONZE_SCALE))) and has(RG_OPEN_CHEST)
+        RC_JABU_JABUS_BELLY_MQ_COMPASS_CHEST: (can_hit_switch(ED_HOOKSHOT, true) or (trick(RT_JABU_MQ_RANG_JUMP) and can_use(RG_BOOMERANG) and has(RG_BRONZE_SCALE))) and can_open_large_chest()
     }
 }
 
@@ -927,10 +926,22 @@ extend region RR_JABU_JABUS_BELLY_MQ_HOLES_BASEMENT {
     }
 }
 
-extend region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM {
+extend region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_NORTH {
     locations {
+        # you can reach the pots with boomerang from here, but it's indirect
         RC_JABU_JABUS_BELLY_MQ_BOOMERANG_ROOM_SMALL_CHEST: has(RG_OPEN_CHEST)
-        RC_JABU_JABUS_BELLY_MQ_BOOMERANG_CHEST:            (is_adult() or has(RG_CLIMB)) and can_kill(RE_LIZALFOS) and has(RG_OPEN_CHEST)
+    }
+}
+
+extend region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_ALCOVE {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_BOOMERANG_CHEST: flag(LOGIC_JABU_MQ_WATER_SWITCH_LIFT_ACCESS) and can_open_large_chest()
+    }
+}
+
+extend region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_SOUTH {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_BOOMERANG_CHEST: (is_adult() or has(RG_CLIMB)) and can_kill(RE_LIZALFOS) and can_open_large_chest()
     }
 }
 
@@ -957,25 +968,25 @@ extend region RR_JABU_JABUS_BELLY_MQ_NEAR_BOSS_ROOM {
 
 extend region RR_SHADOW_TEMPLE_WHISPERING_WALLS_SIDE_ROOM {
     locations {
-        RC_SHADOW_TEMPLE_MAP_CHEST:       can_kill(RE_REDEAD) and can_kill(RE_KEESE) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_MAP_CHEST:       can_kill(RE_REDEAD) and can_kill(RE_KEESE) and can_open_large_chest()
     } 
 }
 
 extend region RR_SHADOW_TEMPLE_DEAD_HAND {
     locations {
-        RC_SHADOW_TEMPLE_HOVER_BOOTS_CHEST: can_kill(RE_DEAD_HAND) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_HOVER_BOOTS_CHEST: can_kill(RE_DEAD_HAND) and can_open_large_chest()
     } 
 }
 
 extend region RR_SHADOW_TEMPLE_COMPASS_ROOM {
     locations {
-        RC_SHADOW_TEMPLE_COMPASS_CHEST: can_kill(RE_GIBDO) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_COMPASS_CHEST: can_kill(RE_GIBDO) and can_open_large_chest()
     }
 }
 
 extend region RR_SHADOW_TEMPLE_SPINNING_BLADES {
     locations {
-        RC_SHADOW_TEMPLE_EARLY_SILVER_RUPEE_CHEST: ((is_adult() and (can_use(RG_HOVER_BOOTS) or can_ground_jump())) or can_use(RG_HOOKSHOT)) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_EARLY_SILVER_RUPEE_CHEST: has(RG_SHADOW_SILVER_BLADES) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -999,9 +1010,9 @@ extend region RR_SHADOW_TEMPLE_INVISIBLE_SPINNING_BLADES {
     }
 }
 
-extend region RR_SHADOW_TEMPLE_INVISIBLE_SPIKES {
+extend region RR_SHADOW_TEMPLE_FLOOR_SPIKES_ROOM {
     locations {
-        RC_SHADOW_TEMPLE_INVISIBLE_SPIKES_CHEST: can_kill(RE_REDEAD) and (trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH) or take_damage() or can_use(RG_GORON_TUNIC)) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_INVISIBLE_SPIKES_CHEST: can_kill(RE_REDEAD) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -1027,19 +1038,19 @@ extend region RR_SHADOW_TEMPLE_X_CROSS {
 extend region RR_SHADOW_TEMPLE_WOODEN_SPIKES {
     locations {
         RC_SHADOW_TEMPLE_SPIKE_WALLS_LEFT_CHEST:       can_use(RG_DINS_FIRE) and has(RG_OPEN_CHEST)
-        RC_SHADOW_TEMPLE_BOSS_KEY_CHEST:               can_use(RG_DINS_FIRE) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_BOSS_KEY_CHEST:               can_use(RG_DINS_FIRE) and can_open_large_chest()
     }
 }
 
 extend region RR_SHADOW_TEMPLE_MQ_WHISPERING_WALLS_SIDE_ROOM {
     locations {
-        RC_SHADOW_TEMPLE_MQ_COMPASS_CHEST:         can_kill(RE_REDEAD) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_MQ_COMPASS_CHEST:         can_kill(RE_REDEAD) and can_open_large_chest()
     }
 }
 
 extend region RR_SHADOW_TEMPLE_MQ_WHISPERING_WALLS_DEAD_HAND {
     locations {
-        RC_SHADOW_TEMPLE_MQ_HOVER_BOOTS_CHEST: can_kill(RE_DEAD_HAND) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_MQ_HOVER_BOOTS_CHEST: can_kill(RE_DEAD_HAND) and can_open_large_chest()
     }
 }
 
@@ -1052,7 +1063,7 @@ extend region RR_SHADOW_TEMPLE_MQ_B2_GIBDO_ROOM {
 
 extend region RR_SHADOW_TEMPLE_MQ_B2_SPINNING_BLADE_ROOM {
     locations {
-        RC_SHADOW_TEMPLE_MQ_MAP_CHEST: can_pass(RE_BIG_SKULLTULA) and (can_use(RG_HOOKSHOT) or (is_adult() and (can_use(RG_HOVER_BOOTS) or can_ground_jump()))) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_MQ_MAP_CHEST: can_pass(RE_BIG_SKULLTULA) and has(RG_SHADOW_SILVER_BLADES) and can_open_large_chest()
     }
 }
 
@@ -1065,18 +1076,16 @@ extend region RR_SHADOW_TEMPLE_MQ_SHORTCUT_PATH {
 extend region RR_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_ROOM {
     locations {
         # RT_SHADOW_MQ_INVISIBLE_BLADES does not work with NL as like-likes will not swallow you, likewise like-likes will not spit you with a fairy revive
-        # you take half a heart base from a spit out, double check EffectiveHealth when damage logic gets reworked
+        # you take half a heart from a spit out
         # Child is too small to get hit by the blades doesn't need the trick or lens for dodging them
-        RC_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_VISIBLE_CHEST:   (can_use(RG_SONG_OF_TIME) or (trick(RT_SHADOW_MQ_INVISIBLE_BLADES) and effective_health() > 1)) and
-                                                              (trick(RT_LENS_SHADOW_MQ_INVISIBLE_BLADES) or is_child() or can_use(RG_NAYRUS_LOVE) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
-        RC_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_INVISIBLE_CHEST: (can_use(RG_SONG_OF_TIME) or (trick(RT_SHADOW_MQ_INVISIBLE_BLADES) and effective_health() > 1)) and
-                                                              ((trick(RT_LENS_SHADOW_MQ) and (trick(RT_LENS_SHADOW_MQ_INVISIBLE_BLADES) or is_child() or can_use(RG_NAYRUS_LOVE))) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_VISIBLE_CHEST:   has(RG_SHADOW_MQ_SILVER_INVISIBLE_BLADES) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_INVISIBLE_CHEST: has(RG_SHADOW_MQ_SILVER_INVISIBLE_BLADES) and (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and has(RG_OPEN_CHEST)
     }
 }
 
 extend region RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT {
     locations {
-        RC_SHADOW_TEMPLE_MQ_BEAMOS_SILVER_RUPEES_CHEST: can_use(RG_LONGSHOT) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_MQ_BEAMOS_SILVER_RUPEES_CHEST: has(RG_SHADOW_SILVER_PIT) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -1095,7 +1104,7 @@ extend region RR_SHADOW_TEMPLE_MQ_UPPER_STONE_UMBRELLA {
 
 extend region RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_ROOM {
     locations {
-        RC_SHADOW_TEMPLE_MQ_INVISIBLE_SPIKES_CHEST: can_kill(RE_REDEAD) and (trick(RT_LENS_SHADOW_MQ) or take_damage() or can_use(RG_LENS_OF_TRUTH) or can_use(RG_GORON_TUNIC)) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_MQ_INVISIBLE_SPIKES_CHEST: can_kill(RE_REDEAD) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -1128,7 +1137,7 @@ extend region RR_SHADOW_TEMPLE_MQ_X_CROSS {
 extend region RR_SHADOW_TEMPLE_MQ_SPIKE_WALLS_ROOM {
     locations {
         RC_SHADOW_TEMPLE_MQ_SPIKE_WALLS_LEFT_CHEST: can_use(RG_DINS_FIRE) and has(RG_OPEN_CHEST)
-        RC_SHADOW_TEMPLE_MQ_BOSS_KEY_CHEST:         can_use(RG_DINS_FIRE) and has(RG_OPEN_CHEST)
+        RC_SHADOW_TEMPLE_MQ_BOSS_KEY_CHEST:         can_use(RG_DINS_FIRE) and can_open_large_chest()
     }
 }
 
@@ -1155,7 +1164,9 @@ extend region RR_SPIRIT_TEMPLE_SUN_ON_FLOOR_2F {
 
 extend region RR_SPIRIT_TEMPLE_SAND_PIT {
     locations {
-        RC_SPIRIT_TEMPLE_COMPASS_CHEST: can_use(RG_ZELDAS_LULLABY) and (can_use(RG_HOOKSHOT) or (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))) and has(RG_OPEN_CHEST)
+        # bunnyhovers works as adult if you run against the wall, but it's unintuitive
+        RC_SPIRIT_TEMPLE_COMPASS_CHEST: can_use(RG_ZELDAS_LULLABY) and can_open_large_chest() and
+                                        (can_use(RG_HOOKSHOT) or can_recoil_hover(RECOIL_HAMMER) or can_megajump(true))
     }
 }
 
@@ -1176,14 +1187,15 @@ extend region RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD {
     locations {
         # Assumes RR_SPIRIT_TEMPLE_STATUE_ROOM access
         RC_SPIRIT_TEMPLE_MAP_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD, has_fire_source_with_torch() or (trick(RT_SPIRIT_MAP_CHEST) and can_use(RG_FAIRY_BOW)), false,
-                                                  RR_SPIRIT_TEMPLE_STATUE_ROOM, has_fire_source()) and has(RG_OPEN_CHEST)
+                                                  RR_SPIRIT_TEMPLE_STATUE_ROOM_ADULT, has_fire_source_with_torch(),
+                                                  RR_SPIRIT_TEMPLE_STATUE_ROOM, has_fire_source()) and can_open_large_chest()
     }
 }
 
 extend region RR_SPIRIT_TEMPLE_STATUE_ROOM {
     locations {
         RC_SPIRIT_TEMPLE_MAP_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_STATUE_ROOM, has_fire_source(), false,
-                                                  RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD, has_fire_source_with_torch() or (trick(RT_SPIRIT_MAP_CHEST) and can_use(RG_FAIRY_BOW))) and has(RG_OPEN_CHEST)
+                                                  RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD, has_fire_source_with_torch() or (trick(RT_SPIRIT_MAP_CHEST) and can_use(RG_FAIRY_BOW))) and can_open_large_chest()
     }
 }
 
@@ -1191,33 +1203,29 @@ extend region RR_SPIRIT_TEMPLE_SUN_BLOCK_CHEST_LEDGE {
     locations {
         RC_SPIRIT_TEMPLE_SUN_BLOCK_ROOM_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_SUN_BLOCK_CHEST_LEDGE,
                                                              has_fire_source() or
-                                                             (flag(LOGIC_SPIRIT_SUN_BLOCK_TORCH) and
+                                                             (has(RG_SPIRIT_SILVER_SUN) and
                                                               (can_use(RG_STICKS) or (trick(RT_SPIRIT_SUN_CHEST) and can_use(RG_FAIRY_BOW))))) and has(RG_OPEN_CHEST)
     }
 }
 
 extend region RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND {
     locations {
-        RC_SPIRIT_TEMPLE_SILVER_GAUNTLETS_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND, has(RG_OPEN_CHEST))
+        RC_SPIRIT_TEMPLE_SILVER_GAUNTLETS_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_OUTER_RIGHT_HAND, can_open_large_chest())
     }
 }
 
 extend region RR_SPIRIT_TEMPLE_INNER_LEFT_HAND {
     locations {
         # Assumes RR_SPIRIT_TEMPLE_INNER_WEST_HAND access via RR_SPIRIT_TEMPLE_STATUE_ROOM_CHILD and RR_SPIRIT_TEMPLE_STATUE_ROOM.
-        RC_SPIRIT_TEMPLE_STATUE_ROOM_HAND_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_INNER_LEFT_HAND, can_use(RG_ZELDAS_LULLABY) and (has(RG_CLIMB) or can_use(RG_HOOKSHOT)) and has(RG_OPEN_CHEST))
-    }
-}
-
-extend region RR_SPIRIT_TEMPLE_SHORTCUT_SWITCH {
-    locations {
-        RC_SPIRIT_TEMPLE_STATUE_ROOM_NORTHEAST_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_SHORTCUT_SWITCH, can_use(RG_ZELDAS_LULLABY) and has(RG_OPEN_CHEST))
-    }
-}
-
-extend region RR_SPIRIT_TEMPLE_4_ARMOS {
-    locations {
-        RC_SPIRIT_TEMPLE_NEAR_FOUR_ARMOS_CHEST: (can_use(RG_MIRROR_SHIELD) or sunlight_arrows()) and has_explosives() and has(RG_OPEN_CHEST)
+        # If entering via the statue's head, there's a scenario where RC_SPIRIT_TEMPLE_STATUE_ROOM_HAND_CHEST can be reached without being able to go from 1 hand to the other
+        # This involves using limited means to reach the left hand, playing ZL, dying, then on respawn jumping to the other hand for the chest
+        # Both reloading a save and using FW reload the temp flags and despawn the chest.
+        # In addition to being obtuse however there is no reliable, itemless way to die in this room, as the only enemies that can be reached with no items are pots that do 1 hit, break and likely give you a heart to replace it
+        # because of all of this, it would be a trick
+        RC_SPIRIT_TEMPLE_STATUE_ROOM_HAND_CHEST:      spirit_shared(RR_SPIRIT_TEMPLE_INNER_LEFT_HAND, can_use(RG_ZELDAS_LULLABY) and has(RG_OPEN_CHEST) and
+                                                                    (has(RG_CLIMB) or can_use(RG_HOOKSHOT) or can_bunny_mega_jumpslash() or can_recoil_hover_from_actor(ARECOIL_SHORT) or (can_bomb_recoil_hover() and can_jumpslash())))
+        RC_SPIRIT_TEMPLE_STATUE_ROOM_NORTHEAST_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_INNER_LEFT_HAND, can_use(RG_ZELDAS_LULLABY) and has(RG_OPEN_CHEST) and
+                                                                    ((is_adult() and (trick(RT_SPIRIT_STATUE_JUMP) or bunny_hood())) or can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS)))
     }
 }
 
@@ -1236,15 +1244,15 @@ extend region RR_SPIRIT_TEMPLE_CHEST_STAIRS {
 
 extend region RR_SPIRIT_TEMPLE_OUTER_LEFT_HAND {
     locations {
-        RC_SPIRIT_TEMPLE_MIRROR_SHIELD_CHEST: has(RG_OPEN_CHEST)
+        RC_SPIRIT_TEMPLE_MIRROR_SHIELD_CHEST: can_open_large_chest()
     }
 }
 
 extend region RR_SPIRIT_TEMPLE_FAKE_DOORS_ROOM {
     locations {
         RC_SPIRIT_TEMPLE_BOSS_KEY_CHEST: ((take_damage() and trick(RT_FIRE_RINGS)) or
-                                          (any_age(can_hit_eye_targets() and can_avoid(RE_TORCH_SLUG, true, 4)) and can_use(RG_HOOKSHOT))) and
-                                         has(RG_OPEN_CHEST)
+                                          (any_age(can_hit_eye_targets() and can_avoid(RE_TORCH_SLUG, ED_CLOSE, true, 4)) and can_use(RG_HOOKSHOT))) and
+                                         can_open_large_chest()
     }
 }
 
@@ -1257,9 +1265,10 @@ extend region RR_SPIRIT_TEMPLE_BIG_MIRROR_CAVE {
 extend region RR_SPIRIT_TEMPLE_MQ_FOYER {
     locations {
         RC_SPIRIT_TEMPLE_MQ_ENTRANCE_FRONT_LEFT_CHEST:  has(RG_OPEN_CHEST)
-        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_BACK_LEFT_CHEST:   any_age(blast_or_smash()) and can_hit_eye_targets() and has(RG_OPEN_CHEST)
+        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_BACK_LEFT_CHEST:   has(RG_OPEN_CHEST) and
+                                                        ((any_age(blast_or_smash()) and can_hit_eye_targets()) or ((trick(RT_BOULDER_COLLISION) and is_child()) ? can_hit_eye_targets() : can_use(RG_FAIRY_SLINGSHOT)))
         RC_SPIRIT_TEMPLE_MQ_ENTRANCE_BACK_RIGHT_CHEST:  can_hit_switch(ED_BOOMERANG) and has(RG_OPEN_CHEST)
-        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_FRONT_RIGHT_CHEST: flag(LOGIC_SPIRIT_1F_SILVER_RUPEES) and has(RG_OPEN_CHEST)
+        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_FRONT_RIGHT_CHEST: has(RG_SPIRIT_MQ_SILVER_LOBBY) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -1277,7 +1286,7 @@ extend region RR_SPIRIT_TEMPLE_MQ_ANUBIS_BRIDGE_GRAVE {
 
 extend region RR_SPIRIT_TEMPLE_MQ_ANUBIS_BRIDGE_CHEST {
     locations {
-        RC_SPIRIT_TEMPLE_MQ_MAP_CHEST: has(RG_OPEN_CHEST)
+        RC_SPIRIT_TEMPLE_MQ_MAP_CHEST: can_open_large_chest()
     }
 }
 
@@ -1292,7 +1301,7 @@ extend region RR_SPIRIT_TEMPLE_MQ_SUN_ON_FLOOR {
 
 extend region RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM {
     locations {
-        RC_SPIRIT_TEMPLE_MQ_COMPASS_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM, can_hit_eye_targets() and has(RG_OPEN_CHEST))
+        RC_SPIRIT_TEMPLE_MQ_COMPASS_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_MQ_STATUE_ROOM, can_hit_eye_targets() and can_open_large_chest())
     }
 }
 
@@ -1304,7 +1313,7 @@ extend region RR_SPIRIT_TEMPLE_MQ_SUN_BLOCK_ROOM {
 
 extend region RR_SPIRIT_TEMPLE_MQ_OUTER_RIGHT_HAND {
     locations {
-        RC_SPIRIT_TEMPLE_SILVER_GAUNTLETS_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_MQ_OUTER_RIGHT_HAND, has(RG_OPEN_CHEST))
+        RC_SPIRIT_TEMPLE_SILVER_GAUNTLETS_CHEST: spirit_shared(RR_SPIRIT_TEMPLE_MQ_OUTER_RIGHT_HAND, can_open_large_chest())
     }
 }
 
@@ -1330,7 +1339,9 @@ extend region RR_SPIRIT_TEMPLE_MQ_CHEST_LEDGE {
 
 extend region RR_SPIRIT_TEMPLE_MQ_SAND_PIT {
     locations {
-        RC_SPIRIT_TEMPLE_MQ_LEEVER_ROOM_CHEST: can_kill(RE_PURPLE_LEEVER) and (can_use(RG_HOOKSHOT) or (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and can_use(RG_MEGATON_HAMMER))) and has(RG_OPEN_CHEST)
+        # bunnyhovers works as adult if you run against the wall, but it's unintuitive
+        RC_SPIRIT_TEMPLE_MQ_LEEVER_ROOM_CHEST: can_kill(RE_PURPLE_LEEVER) and has(RG_OPEN_CHEST) and
+                                               (can_use(RG_HOOKSHOT) or can_recoil_hover(RECOIL_HAMMER) or can_megajump(true))
     }
 }
 
@@ -1354,13 +1365,13 @@ extend region RR_SPIRIT_TEMPLE_MQ_SOT_SUN_ROOM {
 
 extend region RR_SPIRIT_TEMPLE_MQ_OUTER_LEFT_HAND {
     locations {
-        RC_SPIRIT_TEMPLE_MIRROR_SHIELD_CHEST: has(RG_OPEN_CHEST)
+        RC_SPIRIT_TEMPLE_MIRROR_SHIELD_CHEST: can_open_large_chest()
     }
 }
 
 extend region RR_SPIRIT_TEMPLE_MQ_3F_GIBDO_ROOM {
     locations {
-        RC_SPIRIT_TEMPLE_MQ_BOSS_KEY_CHEST: has(RG_OPEN_CHEST)
+        RC_SPIRIT_TEMPLE_MQ_BOSS_KEY_CHEST: can_open_large_chest()
     }
 }
 
@@ -1370,17 +1381,17 @@ extend region RR_SPIRIT_TEMPLE_MQ_BIG_MIRROR_CAVE {
     }
 }
 
-# overworld/water_temple
+# dungeons/water_temple
 
 extend region RR_WATER_TEMPLE_4_SPIKES_ROOM {
     locations {
-        RC_WATER_TEMPLE_MAP_CHEST: any_age(can_kill(RE_SPIKE, ED_CLOSE, true, 4)) and has(RG_OPEN_CHEST)
+        RC_WATER_TEMPLE_MAP_CHEST: any_age(can_kill(RE_SPIKE, ED_CLOSE, true, 4)) and can_open_large_chest()
     }
 }
 
 extend region RR_WATER_TEMPLE_CRACKED_WALL {
     locations {
-        RC_WATER_TEMPLE_CRACKED_WALL_CHEST: (water_level(WL_LOW_OR_MID) and has(RG_OPEN_CHEST)) or can_open_underwater_chest()
+        RC_WATER_TEMPLE_CRACKED_WALL_CHEST: (water_level(WL_LOW_OR_MID) or can_open_underwater_chest()) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -1393,7 +1404,7 @@ extend region RR_WATER_TEMPLE_TORCH_ROOM {
 
 extend region RR_WATER_TEMPLE_BOSS_KEY_ROOM {
     locations {
-        RC_WATER_TEMPLE_BOSS_KEY_CHEST: has(RG_OPEN_CHEST)
+        RC_WATER_TEMPLE_BOSS_KEY_CHEST: can_open_large_chest()
     }
 }
 
@@ -1414,7 +1425,7 @@ extend region RR_WATER_TEMPLE_PILLAR_B1 {
 
 extend region RR_WATER_TEMPLE_JET_CHEST_ROOM {
     locations { 
-        RC_WATER_TEMPLE_COMPASS_CHEST: can_use_projectile() and has(RG_OPEN_CHEST)
+        RC_WATER_TEMPLE_COMPASS_CHEST: can_use_projectile() and can_open_large_chest()
     }
 }
 
@@ -1426,7 +1437,7 @@ extend region RR_WATER_TEMPLE_BLOCK_LOOP_BACK {
 
 extend region RR_WATER_TEMPLE_SOT_PIT_ROOM {
     locations {
-        RC_WATER_TEMPLE_LONGSHOT_CHEST: has(RG_OPEN_CHEST)
+        RC_WATER_TEMPLE_LONGSHOT_CHEST: can_open_large_chest()
     }
 }
 
@@ -1441,19 +1452,19 @@ extend region RR_WATER_TEMPLE_ABOVE_DRAGON {
 
 extend region RR_WATER_TEMPLE_MQ_SIDE_TOWER_2F {
     locations {
-        RC_WATER_TEMPLE_MQ_LONGSHOT_CHEST: can_use(RG_HOOKSHOT) and ((water_level(WL_MID) and has(RG_OPEN_CHEST)) or can_open_underwater_chest())
+        RC_WATER_TEMPLE_MQ_LONGSHOT_CHEST: can_use(RG_HOOKSHOT) and (water_level(WL_MID) or can_open_underwater_chest()) and can_open_large_chest()
     }
 }
 
 extend region RR_WATER_TEMPLE_MQ_3_STALFOS_ROOM {
     locations {
-        RC_WATER_TEMPLE_MQ_MAP_CHEST: can_use(RG_HOOKSHOT) and has(RG_OPEN_CHEST)
+        RC_WATER_TEMPLE_MQ_MAP_CHEST: can_use(RG_HOOKSHOT) and can_open_large_chest()
     }
 }
 
 extend region RR_WATER_TEMPLE_MQ_TOWER_TARGET_ROOM {
     locations {
-        RC_WATER_TEMPLE_MQ_COMPASS_CHEST: flag(LOGIC_WATER_MQ_SIDE_TOWER_TARGETS) and has(RG_OPEN_CHEST)
+        RC_WATER_TEMPLE_MQ_COMPASS_CHEST: flag(LOGIC_WATER_MQ_SIDE_TOWER_TARGETS) and can_open_large_chest()
     }
 }
 
@@ -1465,7 +1476,7 @@ extend region RR_WATER_TEMPLE_MQ_PILLAR_B1_FINAL {
 
 extend region RR_WATER_TEMPLE_MQ_BOSS_KEY_ROOM_CHEST {
     locations {
-        RC_WATER_TEMPLE_MQ_BOSS_KEY_CHEST: has(RG_OPEN_CHEST)
+        RC_WATER_TEMPLE_MQ_BOSS_KEY_CHEST: can_open_large_chest()
     }
 }
 
@@ -1481,7 +1492,7 @@ extend region RR_DMC_UPPER_GROTTO {
 
 extend region RR_DEATH_MOUNTAIN_TRAIL {
     locations {
-        RC_DMT_CHEST: (blast_or_smash() or (trick(RT_DMT_BOMBABLE) and is_child() and has(RG_GORONS_BRACELET))) and has(RG_OPEN_CHEST)
+        RC_DMT_CHEST: (blast_or_smash() or (is_child() and (trick(RT_DMT_BOMBABLE) or bunny_hood()) and has(RG_GORONS_BRACELET))) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -1495,7 +1506,7 @@ extend region RR_DMT_STORMS_GROTTO {
 
 extend region RR_GV_FORTRESS_SIDE {
     locations {
-        RC_GV_CHEST: is_adult() and (can_use(RG_MEGATON_HAMMER) or (trick(RT_DISTANT_BOULDER_COLLISION) and can_use(RG_LONGSHOT))) and has(RG_OPEN_CHEST)
+        RC_GV_CHEST: is_adult() and (can_use(RG_MEGATON_HAMMER) or (trick(RT_BOULDER_COLLISION) and can_use(RG_LONGSHOT))) and has(RG_OPEN_CHEST)
     }
 }
 
@@ -1503,7 +1514,7 @@ extend region RR_GV_FORTRESS_SIDE {
 
 extend region RR_GF_NEAR_CHEST {
     locations {
-        RC_GF_CHEST: has(RG_OPEN_CHEST)
+        RC_GF_CHEST: can_open_large_chest()
     }   
 }
 
@@ -1528,7 +1539,7 @@ extend region RR_GRAVEYARD_SHIELD_GRAVE {
 
 extend region RR_GRAVEYARD_HEART_PIECE_GRAVE {
     locations {
-        RC_GRAVEYARD_HEART_PIECE_GRAVE_CHEST: can_use(RG_SUNS_SONG) and has(RG_OPEN_CHEST)
+        RC_GRAVEYARD_HEART_PIECE_GRAVE_CHEST: can_use(RG_SUNS_SONG) and can_open_large_chest()
     }
 }
 
@@ -1540,7 +1551,7 @@ extend region RR_GRAVEYARD_COMPOSERS_GRAVE {
 
 extend region RR_GRAVEYARD_DAMPES_GRAVE {
     locations {
-        RC_GRAVEYARD_HOOKSHOT_CHEST: has(RG_SPEAK_HYLIAN) and has(RG_OPEN_CHEST)
+        RC_GRAVEYARD_HOOKSHOT_CHEST: has(RG_SPEAK_HYLIAN) and can_open_large_chest()
     }
 }
 
@@ -1590,7 +1601,8 @@ extend region RR_KAK_OPEN_GROTTO {
 
 extend region RR_KF_BOULDER_LOOP {
     locations {
-        RC_KF_KOKIRI_SWORD_CHEST: is_child() and has(RG_OPEN_CHEST)
+        RC_KF_KOKIRI_SWORD_CHEST: is_child() and can_open_large_chest()
+
     }
 }
 
@@ -1629,7 +1641,8 @@ extend region RR_SFM_WOLFOS_GROTTO {
 
 extend region RR_ZORAS_DOMAIN {
     locations {
-        RC_ZD_CHEST: is_child() and can_use(RG_STICKS) and has(RG_OPEN_CHEST)
+        RC_ZD_CHEST: is_child() and can_use(RG_STICKS) and can_open_large_chest()
+
     }
 }
 
@@ -1638,5 +1651,10 @@ extend region RR_ZORAS_DOMAIN {
 extend region RR_ZR_OPEN_GROTTO {
     locations {
         RC_ZR_OPEN_GROTTO_CHEST: has(RG_OPEN_CHEST)
+    }
+}
+extend region RR_GANONS_CASTLE_SHADOW_TRIAL_SOT_PLATFORM {
+    locations {
+        RC_GANONS_CASTLE_SHADOW_TRIAL_FRONT_CHEST: has(RG_OPEN_CHEST)
     }
 }

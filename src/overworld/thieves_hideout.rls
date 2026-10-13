@@ -22,7 +22,7 @@ region RR_TH_1_TORCH_CELL {
     }
 
     locations {
-        RC_TH_1_TORCH_CARPENTER: can_kill(RE_GERUDO_WARRIOR)
+        RC_TH_1_TORCH_CARPENTER: flag(LOGIC_TH_COULD_FREE_1_TORCH_CARPENTER)
         RC_TH_FREED_CARPENTERS:  flag(LOGIC_TH_RESCUED_ALL_CARPENTERS)
     }
 
@@ -44,7 +44,7 @@ region RR_TH_DOUBLE_CELL {
     }
 
     locations {
-        RC_TH_DOUBLE_CELL_CARPENTER: can_kill(RE_GERUDO_WARRIOR)
+        RC_TH_DOUBLE_CELL_CARPENTER: flag(LOGIC_TH_COULD_FREE_DOUBLE_CELL_CARPENTER)
         RC_TH_FREED_CARPENTERS:      flag(LOGIC_TH_RESCUED_ALL_CARPENTERS)
     }
 
@@ -67,7 +67,7 @@ region RR_TH_DEAD_END_CELL {
     }
 
     locations {
-        RC_TH_DEAD_END_CARPENTER: can_kill(RE_GERUDO_WARRIOR)
+        RC_TH_DEAD_END_CARPENTER: flag(LOGIC_TH_COULD_FREE_DEAD_END_CARPENTER)
         RC_TH_FREED_CARPENTERS:   flag(LOGIC_TH_RESCUED_ALL_CARPENTERS)
     }
 
@@ -88,7 +88,7 @@ region RR_TH_STEEP_SLOPE_CELL {
     }
 
     locations {
-        RC_TH_STEEP_SLOPE_CARPENTER: can_kill(RE_GERUDO_WARRIOR)
+        RC_TH_STEEP_SLOPE_CARPENTER: flag(LOGIC_TH_COULD_FREE_SLOPE_CARPENTER)
         RC_TH_FREED_CARPENTERS:      flag(LOGIC_TH_RESCUED_ALL_CARPENTERS)
     }
 
@@ -110,7 +110,7 @@ region RR_TH_KITCHEN_CORRIDOR {
 }
 
 region RR_TH_KITCHEN_MAIN {
-    name: "Thieves Hideout Kitchen Bottom"
+    name: "Thieves Hideout Kitchen Main"
     scene: SCENE_THIEVES_HIDEOUT
 
     exits {
@@ -127,7 +127,7 @@ region RR_TH_KITCHEN_BY_CORRIDOR {
     exits {
         RR_TH_KITCHEN_MAIN:              always
         # hookshot to cross using rafters implied by can_pass(RE_GERUDO_GUARD)
-        RR_TH_KITCHEN_OPPOSITE_CORRIDOR: can_pass(RE_GERUDO_GUARD) or can_use(RG_HOVER_BOOTS)
+        RR_TH_KITCHEN_OPPOSITE_CORRIDOR: can_pass(RE_GERUDO_GUARD) or can_use(RG_HOVER_BOOTS) or bunny_hood()
         RR_GF_TOP_OF_LOWER_VINES:        always
     }
 }
@@ -139,7 +139,7 @@ region RR_TH_KITCHEN_OPPOSITE_CORRIDOR {
     exits {
         RR_TH_KITCHEN_MAIN:        always
         # hookshot to cross using rafters implied by can_pass(RE_GERUDO_GUARD)
-        RR_TH_KITCHEN_BY_CORRIDOR: can_pass(RE_GERUDO_GUARD) or can_use(RG_HOVER_BOOTS)
+        RR_TH_KITCHEN_BY_CORRIDOR: can_pass(RE_GERUDO_GUARD) or can_use(RG_HOVER_BOOTS) or bunny_hood()
         RR_GF_NEAR_GS:             always
     }
 }
@@ -149,18 +149,27 @@ region RR_TH_BREAK_ROOM {
     scene: SCENE_THIEVES_HIDEOUT
 
     exits {
-        RR_GF_BELOW_CHEST:         can_pass(RE_GERUDO_GUARD)
-        # Implies can_pass(RE_GERUDO_GUARD)
-        RR_TH_BREAK_ROOM_CORRIDOR: can_use(RG_HOOKSHOT)
+        RR_GF_BELOW_CHEST:               can_pass(RE_GERUDO_GUARD)
+        RR_TH_BREAK_ROOM_LOWER_CORRIDOR: can_pass(RE_GERUDO_GUARD)
     }
 }
 
-region RR_TH_BREAK_ROOM_CORRIDOR {
-    name: "Thieves Hideout Break Room Corridor"
+region RR_TH_BREAK_ROOM_LOWER_CORRIDOR {
+    name: "Thieves Hideout Break Room Lower Corridor"
     scene: SCENE_THIEVES_HIDEOUT
 
     exits {
-        RR_TH_BREAK_ROOM: can_use(RG_HOOKSHOT)
-        RR_GF_ABOVE_JAIL: always
+        RR_TH_BREAK_ROOM:                can_pass(RE_GERUDO_GUARD)
+        RR_TH_BREAK_ROOM_UPPER_CORRIDOR: can_use(RG_HOOKSHOT)
+    }
+}
+
+region RR_TH_BREAK_ROOM_UPPER_CORRIDOR {
+    name: "Thieves Hideout Break Room Upper Corridor"
+    scene: SCENE_THIEVES_HIDEOUT
+
+    exits {
+        RR_TH_BREAK_ROOM_LOWER_CORRIDOR: can_use(RG_HOOKSHOT)
+        RR_GF_ABOVE_JAIL:                always
     }
 }

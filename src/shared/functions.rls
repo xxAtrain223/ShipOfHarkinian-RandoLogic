@@ -5,24 +5,6 @@ define has_projectile(age: HasProjectileAge):
 	(age is Both and (can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_BOOMERANG)) and (can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW))) or
 	(age is Either and (can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_BOOMERANG) or can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW)))
 
-define has_boss_soul(item: Item):
-	not setting(RSK_SHUFFLE_BOSS_SOULS) or
-	match item {
-		RG_GOHMA_SOUL or
-		RG_KING_DODONGO_SOUL or
-		RG_BARINADE_SOUL or
-		RG_PHANTOM_GANON_SOUL or
-		RG_VOLVAGIA_SOUL or
-		RG_MORPHA_SOUL or
-		RG_BONGO_BONGO_SOUL or
-		RG_TWINROVA_SOUL: has(item)
-		RG_GANON_SOUL: setting(RSK_SHUFFLE_BOSS_SOULS) is not RO_BOSS_SOULS_ON_PLUS_GANON or has(RG_GANON_SOUL)
-		_: never
-	}
-
-define can_open_overworld_door(key: Item):
-	not setting(RSK_LOCK_OVERWORLD_DOORS) or has(RG_SKELETON_KEY) or has(key)
-
 define can_ground_jump(hasBombflower: Bool = false):
 	trick(RT_GROUND_JUMP) and can_standing_shield() and (can_use(RG_BOMB_BAG) or (hasBombflower and has(RG_GORONS_BRACELET)))
 
@@ -30,9 +12,30 @@ define can_ground_jumpslash(hasBombflower: Bool = false):
 	trick(RT_GROUND_JUMP_HARD) and can_standing_shield() and can_jumpslash() and
 	(can_use(RG_BOMB_BAG) or (hasBombflower and has(RG_GORONS_BRACELET)))
 
-define can_middair_ground_jump(hasBombflower: Bool = false):
+define can_midair_ground_jump(hasBombflower: Bool = false):
 	trick(RT_GROUND_JUMP_HARD) and can_standing_shield() and can_use(RG_HOVER_BOOTS) and
 	(can_use(RG_BOMB_BAG) or (hasBombflower and has(RG_GORONS_BRACELET)))
+
+define can_megajump(needsBunny: Bool = false, hasBombflower: Bool = false):
+	trick(RT_DAMAGE_BOOST_SIMPLE) and take_damage(DAMAGE_NO_FAIRY) and
+	(bunny_hood() or (not needsBunny and trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS))) and
+	(has_explosives() or (hasBombflower and has(RG_GORONS_BRACELET)))
+
+define can_bunny_mega_jumpslash(hasBombflower: Bool = false):
+	trick(RT_DAMAGE_BOOST_SIMPLE) and take_damage(DAMAGE_NO_FAIRY) and bunny_hood() and
+	can_use(RG_HOVER_BOOTS) and can_jumpslash() and
+	(has_explosives() or (hasBombflower and has(RG_GORONS_BRACELET)))
+
+define can_megadive(fallDamage: Bool = true, hasBombflower: Bool = false):
+	trick(RT_DAMAGE_BOOST_SIMPLE) and
+	(has_explosives() or (hasBombflower and has(RG_GORONS_BRACELET))) and
+	(effective_health() > 16 or can_use(RG_NAYRUS_LOVE) or
+	(effective_health() > 8 and (fallDamage or can_use(RG_BOTTLE_WITH_FAIRY))))
+
+define can_midair_damage_boost(hasBombflower: Bool = false):
+	trick(RT_DAMAGE_BOOST_SIMPLE) and can_jumpslash() and take_damage(DAMAGE_NO_FAIRY) and
+	(can_use(RG_BOMBCHU_5) or
+	(can_standing_shield() and (can_use(RG_BOMB_BAG) or (hasBombflower and has(RG_GORONS_BRACELET)))))
 
 define can_open_underwater_chest():
 	trick(RT_OPEN_UNDERWATER_CHEST) and can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT) and has(RG_OPEN_CHEST)
@@ -58,20 +61,50 @@ define can_detonate_bomb_flowers():
 
 define can_detonate_upright_bomb_flower():
 	can_detonate_bomb_flowers() or has(RG_GORONS_BRACELET) or
-	(trick(RT_BLUE_FIRE_MUD_WALLS) and can_use(RG_BOTTLE_WITH_BLUE_FIRE) and (effective_health() != 1 or can_use(RG_NAYRUS_LOVE)))
+	(trick(RT_BLUE_FIRE_MUD_WALLS) and can_use(RG_BOTTLE_WITH_BLUE_FIRE) and (effective_health() > 8 or can_use(RG_NAYRUS_LOVE)))
 
-define can_hammer_recoil_hover(needShield: Bool):
-	can_use(RG_HOVER_BOOTS) and trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_MEGATON_HAMMER) and
-	(not needShield or can_standing_shield())
+# hammer without shield gives better recoils than sword and shield
+define _melee_recoil(req: RecoilRequirements):
+	match req {
+		RECOIL_SWORD:             can_jumpslash()
+		RECOIL_SWORD_AND_SHIELD:  (can_jumpslash() and can_standing_shield()) or
+		RECOIL_HAMMER:            can_use(RG_MEGATON_HAMMER)
+		RECOIL_HAMMER_AND_SHIELD: can_use(RG_MEGATON_HAMMER) and can_standing_shield()
+		_: never
+	}
+
+define can_melee_recoil_hover(req: RecoilRequirements):
+	can_use(RG_HOVER_BOOTS) and trick(RT_HOVER_BOOST_SIMPLE) and _melee_recoil(req)
+
+# some actors seem to normalise recoil distance, so the only thing that can matter is attack range
+define can_recoil_hover_from_actor(req: ActorRecoilRequirements):
+	can_use(RG_HOVER_BOOTS) and trick(RT_HOVER_BOOST_SIMPLE) and
+	match req {
+		ARECOIL_SHORT:           can_use(RG_MEGATON_HAMMER) or can_use(RG_KOKIRI_SWORD) or
+		ARECOIL_MASTER:          can_use(RG_MASTER_SWORD) or
+		ARECOIL_LONG:            can_use(RG_STICKS) or can_use(RG_BIGGORON_SWORD)
+		ARECOIL_LONG_AND_SHIELD: (can_use(RG_STICKS) or can_use(RG_BIGGORON_SWORD)) and can_standing_shield()
+		_: never
+	}
+
+define can_bomb_recoil_hover(bombFlower: Bool = false):
+	trick(RT_DAMAGE_BOOST_SIMPLE) and trick(RT_HOVER_BOOST_SIMPLE) and
+	can_use(RG_HOVER_BOOTS) and has_explosives() and take_damage(DAMAGE_NO_FAIRY)
+
+define can_recoil_hover(req: RecoilRequirements, bombFlower: Bool = false):
+	can_use(RG_HOVER_BOOTS) and trick(RT_HOVER_BOOST_SIMPLE) and
+	(_melee_recoil(req) or
+	(trick(RT_DAMAGE_BOOST_SIMPLE) and take_damage(DAMAGE_NO_FAIRY) and
+	(has_explosives() or (bombFlower and has(RG_GORONS_BRACELET)))))
 
 define water_3f_central_to_high_emblem():
-	(is_adult() and (can_use(RG_HOVER_BOOTS) or
-	(trick(RT_DAMAGE_BOOST_SIMPLE) and can_use(RG_BOMB_BAG) and take_damage()))) or
-	can_middair_ground_jump() or (flag(LOGIC_WATER_SCARECROW) and can_use(RG_HOOKSHOT))
+	(is_adult() and can_use(RG_HOVER_BOOTS)) or can_midair_ground_jump() or can_megajump() or
+	((is_adult() or bunny_hood()) and trick(RT_WATER_HIGH_EMBLEM_JUMP)) or
+	(is_mq(SCENE_WATER_TEMPLE) and can_use(RG_HOOKSHOT)) or
+	(is_vanilla(SCENE_WATER_TEMPLE) and flag(LOGIC_WATER_SCARECROW) and can_use(RG_HOOKSHOT))
 
 define water_rising_target_to_3f_central():
-	can_use(RG_LONGSHOT) or
-	(trick(RT_HOVER_BOOST_SIMPLE) and trick(RT_DAMAGE_BOOST_SIMPLE) and has_explosives() and can_use(RG_HOVER_BOOTS))
+	can_use(RG_LONGSHOT) or can_recoil_hover(RECOIL_HAMMER) or can_megajump(true)
 
 define water_level(level: WaterLevel):
 	match level {
@@ -131,8 +164,8 @@ define hookshot_or_boomerang():
 	can_use(RG_HOOKSHOT) or can_use(RG_BOOMERANG)
 
 define scarecrows_song():
-	(setting(RSK_SKIP_SCARECROWS_SONG) and has(RG_FAIRY_OCARINA) and ocarina_buttons() >= 2) or
-	(flag(LOGIC_CHILD_SCARECROW) and flag(LOGIC_ADULT_SCARECROW))
+	(has(RG_SCARECROWS_SONG) and has(RG_FAIRY_OCARINA) and ocarina_buttons() >= 2) or
+	(not setting(RSK_SHUFFLE_SCARECROWS_SONG) and flag(LOGIC_CHILD_SCARECROW) and flag(LOGIC_ADULT_SCARECROW))
 
 define blue_fire():
 	can_use(RG_BOTTLE_WITH_BLUE_FIRE) or (setting(RSK_BLUE_FIRE_ARROWS) and can_use(RG_ICE_ARROWS))
@@ -156,7 +189,13 @@ define can_break_crates():
 define can_break_small_crates():
 	can_jumpslash() or has_explosives() or has(RG_POWER_BRACELET)
 
+define can_break_rocks():
+	blast_or_smash() or has(RG_POWER_BRACELET)
+
 define can_bonk_trees():
+	always
+
+define can_read():
 	always
 
 define has_explosives():
@@ -185,8 +224,14 @@ define call_gossip_fairy_except_suns():
 define call_gossip_fairy():
 	call_gossip_fairy_except_suns() or can_use(RG_SUNS_SONG)
 
-define take_damage():
-	can_use(RG_BOTTLE_WITH_FAIRY) or effective_health() != 1 or can_use(RG_NAYRUS_LOVE)
+define take_damage(allowance: DamageAllowance = DAMAGE_ANY):
+	(can_use(RG_BOTTLE_WITH_FAIRY) and allowance is not DAMAGE_NO_FAIRY) or effective_health() > 8 or
+	can_use(RG_NAYRUS_LOVE)
+
+# Voiding out costs a heart. It skips the damage multiplier, but double defense still halves it and OHKO still kills.
+define can_void():
+	has(RG_BOTTLE_WITH_FAIRY) or
+	(setting(RSK_DAMAGE_MULTIPLIER) is not RO_DAMAGE_MULTIPLIER_OHKO and health() > (has(RG_DOUBLE_DEFENSE) ? 8 : 16))
 
 define can_open_bomb_grotto():
 	blast_or_smash() and (has(RG_STONE_OF_AGONY) or trick(RT_GROTTOS_WITHOUT_AGONY))
@@ -213,20 +258,13 @@ define has_fire_source_with_torch():
 define sunlight_arrows():
 	setting(RSK_SUNLIGHT_ARROWS) and can_use(RG_LIGHT_ARROWS)
 
-define trade_quest_step(rg: Item):
-	not setting(RSK_SHUFFLE_ADULT_TRADE) and
-	match rg {
-		RG_POCKET_EGG:   has(RG_POCKET_EGG) or
-		RG_COJIRO:       has(RG_COJIRO) or
-		RG_ODD_MUSHROOM: has(RG_ODD_MUSHROOM) or
-		RG_ODD_POTION:   has(RG_ODD_POTION) or
-		RG_POACHERS_SAW: has(RG_POACHERS_SAW) or
-		RG_BROKEN_SWORD: has(RG_BROKEN_SWORD) or
-		RG_PRESCRIPTION: has(RG_PRESCRIPTION) or
-		RG_EYEDROPS:     has(RG_EYEDROPS) or
-		RG_CLAIM_CHECK:  has(RG_CLAIM_CHECK)
-		_: never
-	}
+# Bunny Hood grants the Majora's Mask run speed and jump distance boost
+define bunny_hood():
+	setting(RSK_BUNNY_HOOD) and can_use(RG_BUNNY_HOOD)
+
+# Hovering with the extra speed the hood gives
+define bunny_hovers():
+	can_use(RG_HOVER_BOOTS) and bunny_hood()
 
 define can_standing_shield():
 	can_use(RG_MIRROR_SHIELD) or (is_adult() and has(RG_HYLIAN_SHIELD)) or can_use(RG_DEKU_SHIELD)
@@ -264,14 +302,49 @@ define is_reverse_access_possible():
 	(setting(RSK_MIX_BOSS_ENTRANCES) and (setting(RSK_MIX_OVERWORLD_ENTRANCES) or setting(RSK_MIX_INTERIOR_ENTRANCES))))
 
 define dmc_upper_to_pots():
-	can_use(RG_HOVER_BOOTS) or (is_adult() and (flag(LOGIC_DMC_BOULDER) or trick(RT_DMC_BOULDER_SKIP)))
+	can_use(RG_HOVER_BOOTS) or bunny_hood() or (is_adult() and (flag(LOGIC_DMC_BOULDER) or trick(RT_DMC_BOULDER_SKIP)))
 
 define dmc_pots_to_pad():
-	can_use(RG_HOVER_BOOTS) or can_use(RG_HOOKSHOT) or
-	(is_adult() and can_shield() and trick(RT_DMC_BOLERO_JUMP) and can_use(RG_POWER_BRACELET))
+	can_use(RG_HOVER_BOOTS) or (bunny_hood() and (is_adult() or has(RG_CLIMB))) or can_use(RG_HOOKSHOT) or
+	can_megajump() or
+	(is_adult() and ((can_shield() and trick(RT_DMC_BOLERO_JUMP) and has(RG_POWER_BRACELET)) or
+	(has(RG_CLIMB) and can_midair_damage_boost())))
 
 define dmc_pad_to_pots():
-	(can_use(RG_HOVER_BOOTS) and (is_adult() or has(RG_CLIMB))) or can_use(RG_HOOKSHOT)
+	(can_use(RG_HOVER_BOOTS) and (is_adult() or has(RG_CLIMB))) or can_use(RG_HOOKSHOT) or
+	(is_adult() and bunny_hood() and has(RG_CLIMB))
+
+# via scarecrow or bunny megajump
+define dmc_upper_to_pad():
+	(take_damage() and trick(RT_UNINTUITIVE_JUMPS) and
+	((is_adult() and reach_distant_scarecrow()) or
+	(((is_adult() and can_megajump(true)) or can_bomb_recoil_hover() or can_bunny_mega_jumpslash()) and
+	effective_health() > 24))) or
+	can_megajump(true)
+
+define dmc_hover_to_poh():
+	(trick(RT_DMC_HOVER_BEAN_POH) and can_use(RG_HOVER_BOOTS)) or can_megajump() or
+	(is_adult() and
+	(can_midair_damage_boost() or (can_use(RG_BOMB_BAG) and can_use(RG_BOMBCHU_5) and can_standing_shield())))
+
+# child can go this way with a bunny megajump, but not the reverse
+define dmc_pad_to_far_platform():
+	(is_adult() and (reach_distant_scarecrow() or can_bomb_recoil_hover())) or can_megajump(true)
+
+# adult + hookshot may be unintuitive
+define forest_mq_ne_to_nw_via_well():
+	(((has(RG_CLIMB) and (flag(LOGIC_FOREST_DRAINED_WELL) or has(RG_BRONZE_SCALE))) or
+	(is_adult() and can_use(RG_HOOKSHOT)) or can_use(RG_LONGSHOT)) and
+	(flag(LOGIC_FOREST_DRAINED_WELL) or (can_use(RG_IRON_BOOTS) and water_timer() >= 16))) or
+	(has(RG_GOLDEN_SCALE) and has(RG_CLIMB) and water_timer() >= 16)
+
+define forest_mq_nw_to_ne_via_well():
+	has(RG_CLIMB) and
+	(flag(LOGIC_FOREST_DRAINED_WELL) or
+	(water_timer() >= 16 and
+	(has(RG_GOLDEN_SCALE) or
+	(has(RG_BRONZE_SCALE) and (can_use(RG_IRON_BOOTS) or can_use(RG_LONGSHOT) or
+	(trick(RT_FOREST_WELL_SWIM) and can_use(RG_HOOKSHOT)))))))
 
 # `small_keys(scene, n ? a : b)` upstream; a rule can't be a ternary condition in the AP target,
 # so each branch is spelled out. `keys >= b` implies `keys >= a` whenever a < b, so this is equivalent.
@@ -279,31 +352,36 @@ define spirit_explosive_key_logic():
 	(has_explosives() and small_keys(SCENE_SPIRIT_TEMPLE, 1)) or small_keys(SCENE_SPIRIT_TEMPLE, 2)
 
 define spirit_west_to_skull():
-	(is_adult() and trick(RT_SPIRIT_STATUE_JUMP)) or can_use(RG_HOVER_BOOTS) or reach_scarecrow()
+	(is_adult() and (trick(RT_SPIRIT_STATUE_JUMP) or bunny_hood())) or can_use(RG_HOVER_BOOTS) or
+	reach_scarecrow() or can_megajump()
 
+# also possible to do a backwalk hover + backflip if you equip hovers as you start backwalk to accelerate faster
 define spirit_sun_block_south_ledge():
-	has(RG_POWER_BRACELET) or is_adult() or can_kill(RE_BEAMOS) or
+	has(RG_POWER_BRACELET) or is_adult() or can_kill(RE_BEAMOS) or bunny_hovers() or
 	(can_use(RG_HOOKSHOT) and
 	(has_fire_source() or
 	(flag(LOGIC_SPIRIT_SUN_BLOCK_TORCH) and
 	(can_use(RG_STICKS) or (trick(RT_SPIRIT_SUN_CHEST) and can_use(RG_FAIRY_BOW))))))
 
 define spirit_east_to_switch():
-	(is_adult() and trick(RT_SPIRIT_STATUE_JUMP)) or can_use(RG_HOVER_BOOTS) or
-	(can_use(RG_ZELDAS_LULLABY) and can_use(RG_HOOKSHOT))
+	(is_adult() and (trick(RT_SPIRIT_STATUE_JUMP) or bunny_hood())) or can_use(RG_HOVER_BOOTS) or
+	(can_use(RG_ZELDAS_LULLABY) and can_use(RG_HOOKSHOT)) or can_megajump()
 
+# Combines crossing the ledge directly and the jump from the hand
 define mq_spirit_west_to_pots():
-	(is_adult() and trick(RT_SPIRIT_STATUE_JUMP)) or can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME)
+	(is_adult() and (trick(RT_SPIRIT_STATUE_JUMP) or bunny_hood())) or can_use(RG_HOVER_BOOTS) or
+	can_use(RG_SONG_OF_TIME)
 
 define mq_spirit_statue_to_sun_block():
-	(is_adult() or trick(RT_SPIRIT_MQ_SUN_BLOCK_SOT) or can_use(RG_SONG_OF_TIME)) and has(RG_POWER_BRACELET)
+	(is_adult() or trick(RT_SPIRIT_MQ_SUN_BLOCK_SOT) or can_use(RG_SONG_OF_TIME) or
+	can_use(RG_HOVER_BOOTS) or bunny_hood()) and has(RG_POWER_BRACELET)
 
 define mq_spirit_statue_south_door():
 	has_fire_source() or (trick(RT_SPIRIT_MQ_FROZEN_EYE) and can_use(RG_FAIRY_BOW) and
 	can_use(RG_SONG_OF_TIME) and (has(RG_CLIMB) or can_use(RG_HOOKSHOT)))
 
 define mq_spirit_4_key_colossus():
-	can_avoid(RE_BEAMOS, true, 4) and can_use(RG_SONG_OF_TIME) and can_jumpslash() and
+	can_avoid(RE_BEAMOS, ED_CLOSE, true, 4) and can_use(RG_SONG_OF_TIME) and can_jumpslash() and
 	(has(RG_POWER_BRACELET) or sunlight_arrows()) and
 	(trick(RT_LENS_SPIRIT_MQ) or can_use(RG_LENS_OF_TRUTH)) and can_kill(RE_IRON_KNUCKLE) and can_use(RG_HOOKSHOT)
 
@@ -311,7 +389,7 @@ define mq_spirit_4_key_west_hand():
 	can_use(RG_LONGSHOT) and mq_spirit_4_key_colossus()
 
 define could_mq_spirit_4_key_west_hand():
-	can_avoid(RE_BEAMOS, true, 4) and can_use(RG_SONG_OF_TIME) and
+	can_avoid(RE_BEAMOS, ED_CLOSE, true, 4) and can_use(RG_SONG_OF_TIME) and
 	(has(RG_MASTER_SWORD) or has(RG_BIGGORON_SWORD) or has(RG_MEGATON_HAMMER)) and
 	(has(RG_POWER_BRACELET) or sunlight_arrows()) and
 	(trick(RT_LENS_SPIRIT_MQ) or can_use(RG_LENS_OF_TRUTH)) and has(RG_LONGSHOT)
@@ -323,6 +401,12 @@ define outer_west_hand_logic():
 define outer_west_hand_mq_logic():
 	mq_spirit_statue_to_sun_block() and
 	((could_mq_spirit_4_key_west_hand() and small_keys(SCENE_SPIRIT_TEMPLE, 4)) or small_keys(SCENE_SPIRIT_TEMPLE, 7))
+
+define spirit_hand_to_arch():
+	((can_jumpslash() and can_megajump(true) and effective_health() > 24) or can_bunny_mega_jumpslash()) and
+	((is_mq(SCENE_SPIRIT_TEMPLE) and can_hit_switch() and outer_west_hand_mq_logic() and
+	(has(RG_CLIMB) or can_use(RG_LONGSHOT)) and has(RG_POWER_BRACELET)) or
+	(is_vanilla(SCENE_SPIRIT_TEMPLE) and outer_west_hand_logic()))
 
 define statue_room_mq_key_logic():
 	((is_child() and flag(LOGIC_REVERSE_SPIRIT_CHILD) and can_hit_switch() and

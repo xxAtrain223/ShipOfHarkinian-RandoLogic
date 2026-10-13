@@ -1,0 +1,307 @@
+# overworld/castle_grounds
+
+extend region RR_HC_PAST_GATE {
+    locations {
+        RC_HC_DEAD_END_RECTANGLE_SIGN: can_read()
+    }
+}
+
+# overworld/death_mountain_crater
+
+extend region RR_DMC_POTS {
+    locations {
+        RC_DMC_BRIDGE_EXIT_ARROW_SIGN: can_read()
+    }
+}
+
+# overworld/death_mountain_trail
+
+extend region RR_DEATH_MOUNTAIN_TRAIL {
+    locations {
+        RC_DMT_ABOVE_DODONGO_RECTANGLE_SIGN:     is_child() and can_read()
+        RC_DMT_ADULT_CENTER_EXIT_ARROW_SIGN:     is_adult() and can_read()
+        RC_DMT_CHILD_CENTER_EXIT_RECTANGLE_SIGN: is_child() and can_read()
+        RC_DMT_DODONGOS_CAVERN_RECTANGLE_SIGN:   can_read()
+        RC_DMT_CENTER_TRAIL_RECTANGLE_SIGN:      can_read()
+        RC_DMT_TO_UPPER_TRAIL_ARROW_SIGN:        can_read()
+        RC_DMT_TO_CENTER_EXIT_ARROW_SIGN:        can_read()
+        RC_DMT_LOWER_EXIT_ARROW_SIGN:            can_read()
+    }
+}
+
+extend region RR_DEATH_MOUNTAIN_SUMMIT {
+    locations {
+        RC_DMT_UPPER_EXIT_ARROW_SIGN: can_read()
+    }
+}
+
+# overworld/gerudo_fortress
+
+extend region RR_GF_OUTSKIRTS {
+    locations {
+        RC_GF_EAST_EXIT_ARROW_SIGN: can_read()
+    }
+}
+
+extend region RR_GF_OUTSIDE_GTG {
+    locations {
+        RC_GF_GTG_ENTRANCE_RECTANGLE_SIGN: is_adult() and can_read()
+    }
+}
+
+extend region RR_GF_HBA_RANGE {
+    locations {
+        RC_GF_HBA_RECTANGLE_SIGN: is_adult() and can_read()
+    }
+}
+
+extend region RR_GF_OUTSIDE_GATE {
+    locations {
+        RC_GF_GATE_EXIT_RECTANGLE_SIGN: is_adult() and can_read()
+    }
+}
+
+# overworld/gerudo_valley
+
+extend region RR_GERUDO_VALLEY {
+    locations {
+        RC_GV_BRIDGE_RECTANGLE_SIGN: can_read()
+        RC_GV_EAST_EXIT_ARROW_SIGN:  can_read()
+    }
+}
+
+# overworld/goron_city
+
+extend region RR_GORON_CITY {
+    locations {
+        RC_GC_CHILD_ROLLING_GORON_RECTANGLE_SIGN: is_child() and can_read()
+    }
+}
+
+# overworld/graveyard
+
+extend region RR_THE_GRAVEYARD {
+    locations {
+        RC_GY_ENTRANCE_RECTANGLE_SIGN:   can_read()
+        RC_GY_ENTRANCE_PLINTH:           can_read()
+        RC_GY_RIGHT_OF_ROYAL_TOMB_GRAVE: can_read()
+        RC_GY_LEFT_OF_ROYAL_TOMB_GRAVE:  can_read()
+        RC_GY_ROYAL_TOMB_GRAVE:          can_read() or can_use(RG_ZELDAS_LULLABY)
+    }
+}
+
+# overworld/haunted_wasteland
+
+extend region RR_HAUNTED_WASTELAND {
+    locations {
+        RC_HW_CARPET_SALESMAN_ARROW_SIGN: can_read()
+        RC_HW_POE_ALTAR:                  can_read()
+    }
+}
+
+# overworld/hyrule_field
+
+extend region RR_HYRULE_FIELD {
+    locations {
+        RC_HF_CASTLE_EXIT_ARROW_SIGN:     can_read()
+        RC_HF_WOODED_EXIT_ARROW_SIGN:     can_read()
+        RC_HF_ROCKY_PATH_EXIT_ARROW_SIGN: can_read()
+        RC_HF_FENCED_ARROW_SIGN:          can_read()
+        RC_HF_CENTER_EXIT_ARROW_SIGN:     can_read()
+        RC_HF_RIVER_EXIT_ARROW_SIGN:      can_read()
+        RC_HF_STAIRS_EXIT_ARROW_SIGN:     can_read()
+    }
+}
+
+
+# overworld/kakariko
+
+extend region RR_KAKARIKO_VILLAGE {
+    locations {
+        RC_KAK_GUARD_GATE_RECTANGLE_SIGN: is_child() and can_read()
+        RC_KAK_WELL_RECTANGLE_SIGN:       is_child() and can_read()
+        RC_KAK_SOUTHEAST_EXIT_ARROW_SIGN: can_read()
+        RC_KAK_FRONT_GATE_ARROW_SIGN:     can_read()
+    }
+}
+
+extend region RR_KAK_SHOOTING_GALLERY {
+    locations {
+        RC_KAK_SHOOTING_GALLERY_RECTANGLE_SIGN: is_adult() and can_read()
+    }
+}
+
+# overworld/kokiri_forest
+
+extend region RR_KOKIRI_FOREST {
+    locations {
+        RC_KF_DEKU_TREE_RECTANGLE_SIGN:              can_read()
+        RC_KF_STEPPING_STONES_RECTANGLE_SIGN:        can_read()
+        RC_KF_LINKS_HOUSE_RECTANGLE_SIGN:            can_read()
+        RC_KF_FIRST_TRAINING_CENTER_RECTANGLE_SIGN:  is_child() and can_read()
+        RC_KF_SECOND_TRAINING_CENTER_RECTANGLE_SIGN: is_child() and can_read()
+        RC_KF_CRAWL_RECTANGLE_RECTANGLE_SIGN:        is_child() and can_read()
+        RC_KF_LOST_WOODS_RECTANGLE_SIGN:             can_read()
+        RC_KF_HOUSE_OF_TWINS_ARROW_SIGN:             can_read()
+        RC_KF_SHOP_ARROW_SIGN:                       can_read()
+        RC_KF_SARIAS_HOUSE_ARROW_SIGN:               can_read()
+        RC_KF_MIDOS_HOUSE_ARROW_SIGN:                can_read()
+        RC_KF_TRAINING_CENTER_ENTRANCE_ARROW_SIGN:   is_child() and can_read()
+        RC_KF_INNER_TRAINING_CENTER_ARROW_SIGN:      is_child() and can_read()
+        RC_KF_KNOW_IT_ALL_BROTHERS_HOUSE_ARROW_SIGN: can_read()
+    }
+}
+
+extend region RR_KF_OUTSIDE_LOST_WOODS {
+    locations {
+        RC_KF_LOST_WOODS_ARROW_SIGN: is_child() and can_read()
+    }
+}
+
+extend region RR_KF_BOULDER_LOOP {
+    locations {
+        RC_KF_AFTER_CRAWLSPACE_RECTANGLE_SIGN: is_child() and can_read()
+        RC_KF_BOULDER_MAZE_RECTANGLE_SIGN:     is_child() and can_read()
+    }
+}
+
+extend region RR_KF_LINKS_HOUSE {
+    locations {
+        RC_KF_LINKS_HOUSE_SIGN: can_read()
+    }
+}
+
+# overworld/lake_hylia
+
+extend region RR_LAKE_HYLIA {
+    locations {
+        RC_LH_LAB_RECTANGLE_SIGN:    can_read()
+        RC_LH_NORTH_EXIT_ARROW_SIGN: can_read()
+        RC_LH_ISLAND_PEDESTAL:       can_read()
+        RC_LH_WATER_SWITCH_SIGN:     is_adult() and can_read()
+    }
+}
+
+extend region RR_LH_FISHING_ISLAND {
+    locations {
+        RC_LH_FISHING_SIGN:                     can_read()
+        RC_LH_FISHING_ISLAND_WATER_SWITCH_SIGN: is_adult() and can_read()
+    }
+}
+
+extend region RR_LH_FISHING_POND {
+    locations {
+        RC_LH_FISHING_POND_RECTANGLE_SIGN: can_read()
+    }
+}
+
+# overworld/lost_woods
+
+extend region RR_DEKU_THEATER {
+    locations {
+        RC_LW_THEATER_RECTANGLE_SIGN: can_read()
+    }
+}
+
+# overworld/market
+
+extend region RR_MARKET_MASK_SHOP {
+    locations {
+        RC_MK_MASK_SHOP_SIGN: can_read()
+    }
+}
+
+extend region RR_MARKET_SHOOTING_GALLERY {
+    locations {
+        RC_MK_SHOOTING_GALLERY_RECTANGLE_SIGN: is_child() and can_read()
+    }
+}
+
+# overworld/temple_of_time
+
+extend region RR_TEMPLE_OF_TIME {
+    locations {
+        RC_TOT_ALTAR: can_read()
+    }
+}
+
+# overworld/zoras_domain
+
+extend region RR_ZORAS_DOMAIN {
+    locations {
+        RC_ZD_SHOP_RECTANGLE_SIGN:           can_read()
+        RC_ZD_ENTRANCE_RECTANGLE_SIGN:       can_read()
+        RC_ZD_KING_ZORA_PATH_ARROW_SIGN:     can_read()
+        RC_ZD_NEAR_KING_ZORA_RECTANGLE_SIGN: can_read()
+        RC_ZD_NEAR_KING_ZORA_ARROW_SIGN:     can_read()
+    }
+}
+
+# overworld/zoras_fountain
+
+extend region RR_ZORAS_FOUNTAIN {
+    locations {
+        RC_ZF_JABU_JABU_PLATFORM_RECTANGLE_SIGN: is_child() and can_read()
+        RC_ZF_ENTRANCE_ARROW_SIGN:               can_read()
+    }
+}
+
+# overworld/zoras_river
+
+extend region RR_ZORAS_RIVER {
+    locations {
+        RC_ZR_SLEEPLESS_WATERFALL_PLAQUE: can_read()
+    }
+}
+
+# dungeons/dodongos_cavern
+
+extend region RR_DODONGOS_CAVERN_FAR_BRIDGE {
+    locations {
+        RC_DODONGOS_CAVERN_TOP_FLOOR_PEDESTAL: can_read()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_MOUTH_SIDE_BRIDGE {
+    locations {
+        RC_DODONGOS_CAVERN_TOP_FLOOR_PEDESTAL: can_read()
+    }
+}
+extend region RR_SHADOW_TEMPLE_BEGINNING {
+    locations {
+        RC_SHADOW_TEMPLE_TRUTHSPINNER_RECTANGLE_SIGN: can_read()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_LOWER_PIT_RECTANGLE_SIGN: can_read()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_UPPER_STONE_UMBRELLA {
+    locations {
+        RC_SHADOW_TEMPLE_FALLING_SPIKES_RECTANGLE_SIGN: can_read()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_STONE_UMBRELLA {
+    locations {
+        RC_SHADOW_TEMPLE_FALLING_SPIKES_RECTANGLE_SIGN: can_read()
+    }
+}
+
+
+extend region RR_SPIRIT_TEMPLE_FOYER {
+    locations {
+        RC_SPIRIT_TEMPLE_LEFT_SNAKE_STATUE: can_read()
+        RC_SPIRIT_TEMPLE_RIGHT_SNAKE_STATUE: can_read()
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_FOYER {
+    locations {
+        RC_SPIRIT_TEMPLE_LEFT_SNAKE_STATUE: can_read()
+        RC_SPIRIT_TEMPLE_RIGHT_SNAKE_STATUE: can_read()
+    }
+}

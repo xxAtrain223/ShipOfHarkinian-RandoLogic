@@ -101,12 +101,14 @@ extend region RR_DODONGOS_CAVERN_SE_ROOM {
 
 extend region RR_DODONGOS_CAVERN_STAIRS_LOWER {
     locations {
-        RC_DODONGOS_CAVERN_GS_VINES_ABOVE_STAIRS: trick(RT_DC_VINES_GS) and can_get_drop(RE_GOLD_SKULLTULA, ED_LONGSHOT)
+        RC_DODONGOS_CAVERN_GS_ALCOVE_ABOVE_STAIRS: trick(RT_DC_ALCOVE_GS) and can_get_drop(RE_GOLD_SKULLTULA, ED_LONGSHOT)
+        RC_DODONGOS_CAVERN_GS_VINES_ABOVE_STAIRS:  trick(RT_DC_VINES_GS) and can_get_drop(RE_GOLD_SKULLTULA, ED_LONGSHOT)
     }
 }
 
 extend region RR_DODONGOS_CAVERN_STAIRS_UPPER {
     locations {
+        # Jump from vines can reach stairs without climb
         RC_DODONGOS_CAVERN_GS_ALCOVE_ABOVE_STAIRS: can_get_drop(RE_GOLD_SKULLTULA, flag(LOGIC_DC_LIFT_PLATFORM) ? ED_BOOMERANG : ED_LONGSHOT)
         RC_DODONGOS_CAVERN_GS_VINES_ABOVE_STAIRS:  (has(RG_CLIMB) and has(RG_POWER_BRACELET)) or can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
     }
@@ -147,11 +149,11 @@ extend region RR_DODONGOS_CAVERN_MQ_BEHIND_MOUTH {
     locations {
         # This can be gotten with only str0 as adult by using 1 pot to kill the skull from the top of a nearby grave,
         # then another to hit the switch to turn of the fire then running up the ledge to grab it. This assumes RR_DODONGOS_CAVERN_MQ_BACK_BEHIND_FIRE access
-        # Alternatively, the grave can be pulled and roll jumped off of.
+        # Alternatively, the grave can be pulled and roll jumped off of, or bunny hood can be used.
         # This may be trickworthy, but it can only come up with doorsanity or decoupled boss door rando, making it too niche to be it's own trick
         RC_DODONGOS_CAVERN_MQ_GS_BACK_AREA: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or
                                             (is_adult() and has(RG_POWER_BRACELET) and
-                                             (can_pass(RE_ARMOS) or can_use(RG_HOVER_BOOTS) or (trick(RT_UNINTUITIVE_JUMPS))))
+                                             (can_pass(RE_ARMOS) or can_use(RG_HOVER_BOOTS) or trick(RT_UNINTUITIVE_JUMPS) or bunny_hood()))
     }
 }
 
@@ -217,9 +219,9 @@ extend region RR_FIRE_TEMPLE_MQ_GS_GORON_CAGE {
 
 extend region RR_FIRE_TEMPLE_MQ_BURNING_BLOCK {
     locations {
-        #There's definitely ways to do this hammerless, but with one points on it's a trick
-        #you can just hook through the block while next to it to kill the skull and get the token
-        RC_FIRE_TEMPLE_MQ_GS_SKULL_ON_FIRE: can_use(RG_MEGATON_HAMMER) and can_use(RG_HOOKSHOT) and (has(RG_POWER_BRACELET) or trick(RT_VISIBLE_COLLISION))
+        #There's definitely other ways to do this hammerless, but with one points on it's a trick
+        RC_FIRE_TEMPLE_MQ_GS_SKULL_ON_FIRE: ((can_use(RG_MEGATON_HAMMER) and can_use(RG_HOOKSHOT)) or (bunny_hood() and can_kill(RE_GOLD_SKULLTULA))) and
+                                            (has(RG_POWER_BRACELET) or trick(RT_VISIBLE_COLLISION))
     }
 }
 
@@ -251,9 +253,9 @@ extend region RR_FIRE_TEMPLE_MQ_ABOVE_FIRE_MAZE {
 
 extend region RR_FOREST_TEMPLE_TREES {
     locations {
-        RC_FOREST_TEMPLE_GS_FIRST_ROOM: (has(RG_CLIMB) or can_use(RG_LONGSHOT)) and ((is_adult() and can_use(RG_BOMB_BAG) or can_use(RG_FAIRY_BOW) or 
-                                        can_use(RG_HOOKSHOT) or can_use(RG_BOOMERANG) or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_BOMBCHU_5) or can_use(RG_DINS_FIRE) or
-                                        (trick(RT_FOREST_FIRST_GS) and (can_jumpslash_except_hammer() or (is_child() and can_use(RG_BOMB_BAG))))))
+        RC_FOREST_TEMPLE_GS_FIRST_ROOM: (has(RG_CLIMB) or can_use(RG_LONGSHOT)) and
+                                        (can_kill(RE_GOLD_SKULLTULA, ED_BOOMERANG) or ((is_adult() or trick(RT_BOMB_DETONATION)) and can_use(RG_BOMB_BAG)) or
+                                        (trick(RT_FOREST_FIRST_GS) and can_jumpslash_except_hammer()))
     }
 }
 
@@ -278,6 +280,12 @@ extend region RR_FOREST_TEMPLE_NW_COURTYARD_UPPER {
 extend region RR_FOREST_TEMPLE_NE_COURTYARD_LOWER {
     locations {
         RC_FOREST_TEMPLE_GS_RAISED_ISLAND_COURTYARD: can_use(RG_HOOKSHOT) or (trick(RT_FOREST_COURTYARD_EAST_GS) and can_use(RG_BOOMERANG))
+    }
+}
+
+extend region RR_FOREST_TEMPLE_NE_COURTYARD_SWITCH {
+    locations {
+        RC_FOREST_TEMPLE_GS_RAISED_ISLAND_COURTYARD: can_kill(RE_GOLD_SKULLTULA, ED_FAR) and (can_megajump(not can_jumpslash()) or can_bomb_recoil_hover())
     }
 }
 
@@ -320,7 +328,7 @@ extend region RR_FOREST_TEMPLE_MQ_NW_COURTYARD_WELL_LEDGE {
 extend region RR_FOREST_TEMPLE_MQ_NE_COURTYARD {
     locations {
         RC_FOREST_TEMPLE_MQ_GS_RAISED_ISLAND_COURTYARD: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
-        RC_FOREST_TEMPLE_MQ_GS_WELL:                    flag(LOGIC_FOREST_DRAINED_WELL) or (can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT))
+        RC_FOREST_TEMPLE_MQ_GS_WELL:                    flag(LOGIC_FOREST_DRAINED_WELL) or (can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT) and water_timer() >= 16)
     }
 }
 
@@ -348,13 +356,15 @@ extend region RR_ICE_CAVERN_COMPASS_ROOM {
 extend region RR_ICE_CAVERN_BLOCK_ROOM {
     locations {
         # trick involves backflip, could be merged into general trick
-        RC_ICE_CAVERN_GS_PUSH_BLOCK_ROOM: hookshot_or_boomerang() or (trick(RT_ICE_BLOCK_GS) and is_adult() and can_use(RG_HOVER_BOOTS) and can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH))
+        # is also possible with bunnyhovers and a jumpslash, but unintuitive
+        RC_ICE_CAVERN_GS_PUSH_BLOCK_ROOM: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or
+                                          (can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH) and
+                                           ((trick(RT_ICE_BLOCK_GS) and is_adult() and can_use(RG_HOVER_BOOTS)) or can_megajump(not is_adult())))
     }
 }
 
-extend region RR_ICE_CAVERN_BEFORE_FINAL_ROOM {
+extend region RR_ICE_CAVERN_AFTER_BLOCK_ROOM {
     locations {
-        # Assumes RR_ICE_CAVERN_BLOCK_ROOM access
         RC_ICE_CAVERN_GS_PUSH_BLOCK_ROOM: trick(RT_ICE_BLOCK_GS) and is_adult() and can_use(RG_HOVER_BOOTS) and blue_fire() and has(RG_POWER_BRACELET)
     }
 }
@@ -363,7 +373,13 @@ extend region RR_ICE_CAVERN_MQ_SCARECROW_ROOM {
     locations {
         # Implies being able to kill the skull if you hit the switch
         RC_ICE_CAVERN_MQ_GS_ICE_BLOCK: (blue_fire() and has(RG_POWER_BRACELET) and can_kill(RE_GOLD_SKULLTULA)) or can_hit_switch(is_adult() ? ED_LONG_JUMPSLASH : ED_BOMB_THROW)
-        RC_ICE_CAVERN_MQ_GS_SCARECROW: reach_scarecrow() or (is_adult() and (can_use(RG_LONGSHOT) or can_ground_jump() or trick(RT_SLIDE_JUMP)))
+        RC_ICE_CAVERN_MQ_GS_SCARECROW: (is_adult() or can_use(RG_HOVER_BOOTS)) and can_use(RG_LONGSHOT)
+    }
+}
+
+extend region RR_ICE_CAVERN_MQ_SCARECROW_NOOK {
+    locations {
+        RC_ICE_CAVERN_MQ_GS_SCARECROW: can_kill(RE_GOLD_SKULLTULA)
     }
 }
 
@@ -385,19 +401,23 @@ extend region RR_JABU_JABUS_BELLY_HOLES_BASEMENT {
 
 extend region RR_JABU_JABUS_BELLY_WATER_SWITCH_ROOM_NORTH {
     locations {
-        RC_JABU_JABUS_BELLY_GS_WATER_SWITCH_ROOM: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+        # RUTO_IN_1F is not the proper flag for this, we only need to bring Ruto into the room,
+        # however as it takes 2 ruto throws to kill the skull you need to go into and out of the pit anyway, lining up with RUTO_IN_1F's requirements
+        RC_JABU_JABUS_BELLY_GS_WATER_SWITCH_ROOM: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or
+                                                  ((can_kill(RE_GOLD_SKULLTULA, ED_BOMB_THROW) or flag(LOGIC_JABU_RUTO_IN_1F)) and (can_megajump() or (is_adult() and can_use(RG_HOVER_BOOTS))))
     }
 }
 
 extend region RR_JABU_JABUS_BELLY_WATER_SWITCH_ROOM_SOUTH {
     locations {
-        RC_JABU_JABUS_BELLY_GS_WATER_SWITCH_ROOM: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+        RC_JABU_JABUS_BELLY_GS_WATER_SWITCH_ROOM: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or
+                                                  ((can_kill(RE_GOLD_SKULLTULA, ED_BOMB_THROW) or flag(LOGIC_JABU_RUTO_IN_1F)) and (can_megajump() or (is_adult() and can_use(RG_HOVER_BOOTS))))
     }
 }
 
 extend region RR_JABU_JABUS_BELLY_WATER_SWITCH_ROOM_LEDGE {
     locations {
-        # this is for climbing back and forth to use pots (or ruto) to kill skull...
+        # this is for climbing back and forth to use pots to kill skull...
         RC_JABU_JABUS_BELLY_GS_WATER_SWITCH_ROOM: has(RG_POWER_BRACELET) and (has(RG_BRONZE_SCALE) or (is_adult() and can_use(RG_HOVER_BOOTS))) or
                                                   # or killing the skull before climbing to grab the token
                                                   can_kill(RE_GOLD_SKULLTULA, ED_BOMB_THROW)
@@ -409,6 +429,8 @@ extend region RR_JABU_JABUS_BELLY_BIGOCTO_LEDGE {
         # Only adult can get the token without assistance
         RC_JABU_JABUS_BELLY_GS_LOBBY_BASEMENT_UPPER: is_adult() and can_get_drop(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH)
         # You can get the LOWER skull token from here as adult with hovers backwalk and a backflip, but it's trickworthy and not relevant unless you can beat tentacles without rang
+        # a hover boots megajump is probably possible, but this ledge sucks.
+        RC_JABU_JABUS_BELLY_GS_LOBBY_BASEMENT_LOWER: is_adult() and can_megajump(true) and can_kill(RE_GOLD_SKULLTULA, trick(RT_BOMB_DETONATION) ? ED_BOMB_THROW : ED_BOOMERANG)
     }
 }
 
@@ -418,7 +440,13 @@ extend region RR_JABU_JABUS_BELLY_NEAR_BOSS_ROOM {
     }
 }
 
-extend region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM {
+extend region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_NORTH {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_GS_BOOMERANG_CHEST_ROOM: (can_use(RG_SONG_OF_TIME) and can_get_drop(RE_GOLD_SKULLTULA)) or (trick(RT_JABU_MQ_SOT_GS) and can_use(RG_BOOMERANG))
+    }
+}
+
+extend region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM_SOUTH {
     locations {
         RC_JABU_JABUS_BELLY_MQ_GS_BOOMERANG_CHEST_ROOM: (can_use(RG_SONG_OF_TIME) and can_get_drop(RE_GOLD_SKULLTULA)) or (trick(RT_JABU_MQ_SOT_GS) and can_use(RG_BOOMERANG))
     }
@@ -426,7 +454,8 @@ extend region RR_JABU_JABUS_BELLY_MQ_WATER_SWITCH_ROOM {
 
 extend region RR_JABU_JABUS_BELLY_MQ_FORK_NORTH_WEST {
     locations {
-        RC_JABU_JABUS_BELLY_MQ_GS_TAILPASARAN_ROOM: has_explosives() and can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+        RC_JABU_JABUS_BELLY_MQ_GS_TAILPASARAN_ROOM: any_age(blast_or_smash()) and
+                                                    (can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or can_use(RG_SONG_OF_TIME) or (is_adult() and can_megajump()))
     }
 }
 
@@ -436,15 +465,16 @@ extend region RR_JABU_JABUS_BELLY_MQ_INVISIBLE_KEESE_ROOM {
                                                           can_use(RG_FIRE_ARROWS) and can_get_drop(RE_GOLD_SKULLTULA, ED_LONGSHOT) or
                                                           # Otherwise, we have to cross the gap and kill the skull.
                                                           ((can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or (is_adult() and can_ground_jumpslash())) and
-                                                          # We can cheese the gap with hovers
-                                                           ((can_use(RG_HOVER_BOOTS) or
+                                                          # We can cheese the gap with hovers or a bunny megajump
+                                                           ((can_use(RG_HOVER_BOOTS) or can_megajump() or
                                                           # Otherwise we have to kill the enemies to raise the platform. This persists so we can do it as the other age.
                                                              any_age((trick(RT_LENS_JABU_MQ) or can_use(RG_LENS_OF_TRUTH)) and
                                                                      can_kill(RE_STINGER, ED_BOOMERANG, false, 2, false, true) and
                                                                      # we can hit the keese farthest from the water with irons and hookshot, but we won't be able to see it while doing so
                                                                      (can_kill(RE_KEESE, ED_LONGSHOT, false) or (trick(RT_LENS_JABU_MQ) and can_use(RG_HOOKSHOT) and can_use(RG_IRON_BOOTS)))))
                                                           # If we kill the enemies, we then need to cross the water using the platform. Note that adult cannot do so while swimming because MQ jank.
-                                                            and ((is_child() and has(RG_BRONZE_SCALE)) or (is_adult() and can_use(RG_IRON_BOOTS)))))
+                                                          # we can also reach the platform with bunny to Jumpslash
+                                                            and ((is_child() and has(RG_BRONZE_SCALE)) or (is_adult() and can_use(RG_IRON_BOOTS)) or (bunny_hood() and can_jumpslash()))))
     }
 }
 
@@ -514,23 +544,21 @@ extend region RR_SHADOW_TEMPLE_MQ_WIND_HINT_ROOM {
 
 extend region RR_SHADOW_TEMPLE_MQ_B4_GIBDO_ROOM {
     locations {
-        # The various methods for this can be a bit specific, might be worthy of it's own trick when it becomes relevant with dungeon shortcut settings.
+        # The various methods for this can be a bit specific, might be worthy of its own trick when it becomes relevant with dungeon shortcut settings.
         RC_SHADOW_TEMPLE_MQ_GS_AFTER_WIND:           has_explosives() or (trick(RT_VISIBLE_COLLISION) and can_get_drop(RE_GOLD_SKULLTULA))
     }
 }
 
 extend region RR_SHADOW_TEMPLE_MQ_BEYOND_BOAT {
     locations {
-        # It's a trick on N64 to kill this and drop down to collect this with normal weapons, as doing so without the statue being dropped voids you to before the boat
-        # hilariously, you can hit this with a pot before you bring down statue, but there's no great way to reset it without crossing. the statue's collision is very inconvenient afterwards
-        RC_SHADOW_TEMPLE_MQ_GS_AFTER_SHIP:         can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+        # hilariously, you can hit this with a pot before you bring down statue, but the statue's collision is very inconvenient afterwards and knocking it down cannot be undone
+        RC_SHADOW_TEMPLE_MQ_GS_AFTER_SHIP:         can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or (can_kill(RE_GOLD_SKULLTULA, ED_BOMB_THROW) and (trick(RT_VOIDOUT_COLLECTION) and can_void()))
     }
 }
 
 extend region RR_SHADOW_TEMPLE_MQ_BOSS_DOOR {
     locations {
-        # you can drop onto this and the respawn is reasonable
-        RC_SHADOW_TEMPLE_MQ_GS_NEAR_BOSS:  (can_kill(RE_GOLD_SKULLTULA, ED_BOMB_THROW) or can_use(RG_MEGATON_HAMMER)) and (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH))
+        RC_SHADOW_TEMPLE_MQ_GS_NEAR_BOSS:  (hookshot_or_boomerang() or ((can_kill(RE_GOLD_SKULLTULA, ED_BOMB_THROW) or can_use(RG_MEGATON_HAMMER)) and (trick(RT_VOIDOUT_COLLECTION) and can_void()))) and (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH))
     }
 }
 
@@ -538,14 +566,16 @@ extend region RR_SHADOW_TEMPLE_MQ_BOSS_DOOR {
 
 extend region RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH {
     locations {
-        # possible to collect without lowering fence, should be a trick
-        RC_SPIRIT_TEMPLE_GS_METAL_FENCE: flag(LOGIC_SPIRIT_SILVER_RUPEE_BRIDGE) and can_kill(RE_GOLD_SKULLTULA, ED_BOMB_THROW) and has(RG_CLIMB)
+        # possible to collect by climbing around token without lowering fence, should be a trick. boomerang can grab through fence
+        RC_SPIRIT_TEMPLE_GS_METAL_FENCE: has(RG_SPIRIT_SILVER_CHILD) and can_kill(RE_GOLD_SKULLTULA, ED_BOMB_THROW) and has(RG_CLIMB)
     }
 }
 
 extend region RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_SOUTH {
     locations {
-        RC_SPIRIT_TEMPLE_GS_METAL_FENCE: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG)
+        # if you try to walk over with hover boots you fall down, but recoil momentum seems to make you stick.
+        RC_SPIRIT_TEMPLE_GS_METAL_FENCE: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or
+                                         (can_kill(RE_GOLD_SKULLTULA, ED_BOMB_THROW) and has(RG_CLIMB) and (can_megajump() or can_bomb_recoil_hover() or can_recoil_hover_from_actor(ARECOIL_SHORT)))
     }
 }
 
@@ -603,7 +633,7 @@ extend region RR_SPIRIT_TEMPLE_SKULLTULA_STAIRS {
 extend region RR_SPIRIT_TEMPLE_MQ_SUN_BLOCK_ROOM {
     locations {
         # RT_SPIRIT_MQ_SUN_BLOCK_GS should probably be expanded to cover all ground based methods, as it can be hit with longshot because the skull hitbox is larger than the model
-        RC_SPIRIT_TEMPLE_MQ_GS_SUN_BLOCK_ROOM: spirit_shared(RR_SPIRIT_TEMPLE_MQ_SUN_BLOCK_ROOM, (can_use(RG_HOOKSHOT) and (has(RG_POWER_BRACELET) or sunlight_arrows())) or
+        RC_SPIRIT_TEMPLE_MQ_GS_SUN_BLOCK_ROOM: spirit_shared(RR_SPIRIT_TEMPLE_MQ_SUN_BLOCK_ROOM, (can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) and (has(RG_POWER_BRACELET) or sunlight_arrows())) or
                                                                                                  (trick(RT_SPIRIT_MQ_SUN_BLOCK_GS) and can_use(RG_BOOMERANG)))
     }
 }
@@ -638,11 +668,19 @@ extend region RR_WATER_TEMPLE_BOULDERS_SOUTH {
 
 extend region RR_WATER_TEMPLE_CANAL_ALCOVE {
     locations {
+        #Can we grab the token at range?
         RC_WATER_TEMPLE_GS_NEAR_BOSS_KEY_CHEST: can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or
+        #Otherwise we need to be able to reach it...
         #child can also do a hovers backwalk backflip to reach the token after killing the skull
-                                                (((is_adult() and can_use(RG_HOVER_BOOTS)) or can_middair_ground_jump()) and
+                                                (((is_adult() and can_use(RG_HOVER_BOOTS)) or bunny_hovers() or can_midair_ground_jump() or
+                                                  can_megajump() or can_recoil_hover(RECOIL_SWORD_AND_SHIELD)) and
+        #survive the landing, or don't care if we void
+                                                 (has(RG_BRONZE_SCALE) or (trick(RT_VOIDOUT_COLLECTION) and can_void())) and
+        #and of course kill the skulltula to spawn the token
+        #Adult can kill with a bomb from the canal, and climb back up, handled here for simplicity
         #killing with bombchu from here is hard due to the terrain, but adult can do it much easier from the river so it's only relevant for child
-                                                can_kill(RE_GOLD_SKULLTULA, has(RG_BRONZE_SCALE) and is_adult() ? ED_SHORT_JUMPSLASH : ED_BOOMERANG))
+                                                 can_kill(RE_GOLD_SKULLTULA, has(RG_BRONZE_SCALE) and (is_adult() or can_use(RG_HOVER_BOOTS) or bunny_hood()) ?
+                                                          ED_SHORT_JUMPSLASH : (is_adult() ? ED_BOMB_THROW : ED_BOOMERANG)))
     }
 }
 
@@ -688,13 +726,15 @@ extend region RR_WATER_TEMPLE_WATERFALL {
 
 extend region RR_WATER_TEMPLE_RIVER {
     locations {
-        RC_WATER_TEMPLE_GS_RIVER: (can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT) and water_timer() >= 16)
+        #You can use backflips to surface and reset the timer without taking off irons.
+        #this is simple as Adult, but Child has a corner they can do this roo
+        RC_WATER_TEMPLE_GS_RIVER: (can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT) and water_timer() >= 8)
     }
 }
 
-extend region RR_WATER_TEMPLE_RIVER_POTS {
+extend region RR_WATER_TEMPLE_RIVER_PLATFORM {
     locations {
-        RC_WATER_TEMPLE_GS_RIVER: trick(RT_WATER_RIVER_GS) and can_use(RG_LONGSHOT)
+        RC_WATER_TEMPLE_GS_RIVER: trick(RT_WATER_RIVER_GS) and is_adult() and can_kill(RE_GOLD_SKULLTULA, ED_FAR) and can_use(RG_LONGSHOT)
     }
 }
 
@@ -715,7 +755,8 @@ extend region RR_WATER_TEMPLE_MQ_LIZALFOS_CAGE {
 
 extend region RR_WATER_TEMPLE_MQ_RIVER_SKULL {
     locations {
-        RC_WATER_TEMPLE_MQ_GS_RIVER: can_use(RG_LONGSHOT) or (can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT))
+        RC_WATER_TEMPLE_MQ_GS_RIVER: can_use(RG_LONGSHOT) or (can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT)) or
+                                     (is_adult() and can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG))
     }
 }
 
@@ -753,7 +794,8 @@ extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
 
 extend region RR_GANONS_CASTLE_GROUNDS {
     locations {
-        RC_OGC_GS: can_jumpslash_except_hammer() or can_use_projectile() or (can_shield() and can_use(RG_MEGATON_HAMMER)) or can_use(RG_DINS_FIRE)
+        RC_OGC_GS: hookshot_or_boomerang() or ((can_jumpslash_except_hammer() or can_use_projectile() or (can_shield() and can_use(RG_MEGATON_HAMMER)) or
+                     can_use(RG_DINS_FIRE)) and (trick(RT_VOIDOUT_COLLECTION) and can_void()))
     }
 }
 
@@ -781,25 +823,27 @@ extend region RR_DEATH_MOUNTAIN_TRAIL {
         RC_DMT_GS_NEAR_KAK:              blast_or_smash() and (has(RG_CLIMB) or can_use(RG_HOOKSHOT) or can_use(RG_BOOMERANG))
         RC_DMT_GS_ABOVE_DODONGOS_CAVERN: is_adult() and can_get_night_time_gs() and
                                          ((can_use(RG_MEGATON_HAMMER) or (trick(RT_ITEM_EXTENSION) and can_use(RG_HOOKSHOT)) or
-                                           (trick(RT_DISTANT_BOULDER_COLLISION) and can_use(RG_LONGSHOT)) or
+                                           (trick(RT_BOULDER_COLLISION) and can_use(RG_LONGSHOT)) or
                                            (trick(RT_DMT_JS_LOWER_GS) and can_jumpslash())) or
-                                          (trick(RT_DMT_BEAN_LOWER_GS) and can_plant_bean(RR_DEATH_MOUNTAIN_TRAIL, RG_DEATH_MOUNTAIN_TRAIL_BEAN_SOUL)) or
-                                          ((trick(RT_DMT_HOVERS_LOWER_GS) and can_use(RG_HOVER_BOOTS)) and
-                                           (has_explosives() or can_use(RG_DINS_FIRE) or can_jumpslash() or
-                                            ((trick(RT_DISTANT_BOULDER_COLLISION) or trick(RT_ITEM_EXTENSION)) and
-                                             (can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT))))))
+                                          (((trick(RT_DMT_BEAN_LOWER_GS) and bean_planted(LOGIC_PLANT_DEATH_MOUNTAIN_TRAIL_BEAN)) or
+                                            (trick(RT_DMT_HOVERS_LOWER_GS) and can_use(RG_HOVER_BOOTS)) or
+                                            (can_megajump() and effective_health() > 16)) and
+                                           (has_explosives() or can_use(RG_DINS_FIRE) or
+                                            ((trick(RT_BOULDER_COLLISION) or trick(RT_ITEM_EXTENSION)) and
+                                             (can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT))) or
+                                            can_jumpslash())))
     }
 }
 
 extend region RR_DEATH_MOUNTAIN_ROCKFALL {
     locations {
         RC_DMT_GS_FALLING_ROCKS_PATH: is_adult() and can_get_night_time_gs() and
-                                      (can_use(RG_MEGATON_HAMMER) or (trick(RT_DISTANT_BOULDER_COLLISION) and can_use(RG_LONGSHOT)) or
+                                      (can_use(RG_MEGATON_HAMMER) or (trick(RT_BOULDER_COLLISION) and can_use(RG_LONGSHOT)) or
                                        (trick(RT_ITEM_EXTENSION) and can_use(RG_HOOKSHOT)) or
                                        (trick(RT_DMT_UPPER_GS) and
                                         (can_jumpslash() or can_use(RG_DINS_FIRE) or has_explosives() or
                                          (trick(RT_ITEM_EXTENSION) and can_use(RG_FAIRY_SLINGSHOT)) or
-                                         (trick(RT_DISTANT_BOULDER_COLLISION) and can_kill(RE_GOLD_SKULLTULA, ED_LONGSHOT)))))
+                                         (trick(RT_BOULDER_COLLISION) and can_kill(RE_GOLD_SKULLTULA, ED_LONGSHOT)))))
     }
 }
 
@@ -810,7 +854,7 @@ extend region RR_DESERT_COLOSSUS {
         RC_COLOSSUS_GS_BEAN_PATCH: can_spawn_soil_skull(RG_DESERT_COLOSSUS_BEAN_SOUL) and can_attack()
         RC_COLOSSUS_GS_TREE:       is_adult() and hookshot_or_boomerang() and can_get_night_time_gs()
         RC_COLOSSUS_GS_HILL:       is_adult() and
-                                   ((can_plant_bean(RR_DESERT_COLOSSUS, RG_DESERT_COLOSSUS_BEAN_SOUL) and can_attack()) or
+                                   ((bean_planted(LOGIC_PLANT_DESERT_COLOSSUS_BEAN) and can_attack()) or
                                     can_use(RG_LONGSHOT) or (trick(RT_COLOSSUS_GS) and can_use(RG_HOOKSHOT))) and
                                    can_get_night_time_gs()
     }
@@ -944,7 +988,9 @@ extend region RR_KOKIRI_FOREST {
         RC_KF_GS_BEAN_PATCH:        can_spawn_soil_skull(RG_KOKIRI_FOREST_BEAN_SOUL) and can_kill(RE_GOLD_SKULLTULA, ED_CLOSE)
         RC_KF_GS_HOUSE_OF_TWINS:    is_adult() and can_get_night_time_gs() and
                                     (can_get_drop(RE_GOLD_SKULLTULA, ED_BOOMERANG) or
-                                     (trick(RT_KF_ADULT_GS) and can_use(RG_HOVER_BOOTS) and can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH)))
+                                     (((trick(RT_KF_ADULT_GS) and can_use(RG_HOVER_BOOTS)) or (trick(RT_DAMAGE_BOOST_SIMPLE) and has_explosives() and take_damage(DAMAGE_NO_FAIRY))) and
+                                      can_kill(RE_GOLD_SKULLTULA, ED_SHORT_JUMPSLASH)))
+
     }
 }
 
@@ -961,9 +1007,10 @@ extend region RR_LAKE_HYLIA {
     }
 }
 
-extend region RR_LH_LAB {
+extend region RR_LH_LAB_UNDERWATER {
     locations {
-        RC_LH_GS_LAB_CRATE: can_use(RG_IRON_BOOTS) and can_use(RG_HOOKSHOT) and can_break_crates()
+        RC_LH_GS_LAB_CRATE: can_use(RG_HOOKSHOT) and can_break_crates()
+
     }
 }
 
@@ -988,7 +1035,8 @@ extend region RR_THE_LOST_WOODS {
 
 extend region RR_LW_BEYOND_MIDO {
     locations {
-        RC_LW_GS_ABOVE_THEATER:           is_adult() and ((can_plant_bean(RR_LW_BEYOND_MIDO, RG_LOST_WOODS_BEAN_SOUL) and can_get_drop(RE_GOLD_SKULLTULA))
+        RC_LW_GS_ABOVE_THEATER:           is_adult() and ((bean_planted(LOGIC_PLANT_LOST_WOODS_THEATER_BEAN) and
+ can_get_drop(RE_GOLD_SKULLTULA))
                                           or trick(RT_LW_GS_BEAN) and can_use(RG_HOOKSHOT) and (can_use(RG_LONGSHOT) or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT)
                                           or can_use(RG_BOMBCHU_5) or can_use(RG_DINS_FIRE))) and can_get_night_time_gs()
         RC_LW_GS_BEAN_PATCH_NEAR_THEATER: can_spawn_soil_skull(RG_LOST_WOODS_BEAN_SOUL) and (can_get_drop(RE_GOLD_SKULLTULA) or (setting(RSK_SHUFFLE_SCRUBS) is RO_SCRUBS_OFF and can_reflect_nuts()))
@@ -1015,7 +1063,10 @@ extend region RR_SFM_ABOVE_MAZE {
 
 extend region RR_ZORAS_DOMAIN {
     locations {
-        RC_ZD_GS_FROZEN_WATERFALL: is_adult() and (hookshot_or_boomerang() or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW) or (can_use(RG_MAGIC_SINGLE) and (can_use(RG_MASTER_SWORD) or can_use(RG_KOKIRI_SWORD) or can_use(RG_BIGGORON_SWORD))) or (trick(RT_ZD_GS) and can_jumpslash_except_hammer())) and can_get_night_time_gs()
+        # bad terrain blocks bomb throws, so in_water is set to simulate that
+        # melee needs spin attack or RT_ZD_GS, ED_SHORT_JUMPSLASH stands in for that as it also rules out hammer
+        RC_ZD_GS_FROZEN_WATERFALL: is_adult() and can_kill(RE_GOLD_SKULLTULA, (can_use(RG_MAGIC_SINGLE) or trick(RT_ZD_GS)) ? ED_SHORT_JUMPSLASH : ED_BOOMERANG, true, 1, false, true) and can_get_night_time_gs()
+
     }
 }
 

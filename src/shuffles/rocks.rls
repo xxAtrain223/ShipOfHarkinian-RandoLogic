@@ -1,0 +1,614 @@
+# overworld/castle_grounds
+
+extend region RR_HC_GATE {
+    locations {
+        RC_HC_ROCK_1: can_break_rocks()
+        RC_HC_ROCK_2: can_break_rocks()
+        RC_HC_ROCK_3: can_break_rocks()
+    }
+}
+
+extend region RR_HC_PAST_GATE {
+    locations {
+        RC_HC_BOULDER: blast_or_smash()
+    }
+}
+
+extend region RR_HC_STORMS_GROTTO_BEHIND_WALLS {
+    locations {
+        RC_HC_STORMS_GROTTO_ROCK_1: can_break_rocks()
+        RC_HC_STORMS_GROTTO_ROCK_2: can_break_rocks()
+        RC_HC_STORMS_GROTTO_ROCK_3: can_break_rocks()
+        RC_HC_STORMS_GROTTO_ROCK_4: can_break_rocks()
+        RC_HC_STORMS_GROTTO_ROCK_5: can_break_rocks()
+        RC_HC_STORMS_GROTTO_ROCK_6: can_break_rocks()
+        RC_HC_STORMS_GROTTO_ROCK_7: can_break_rocks()
+        RC_HC_STORMS_GROTTO_ROCK_8: can_break_rocks()
+    }
+}
+
+extend region RR_GANONS_CASTLE_GROUNDS {
+    locations {
+        RC_OGC_BRONZE_BOULDER_1: can_use(RG_MEGATON_HAMMER)
+        RC_OGC_BRONZE_BOULDER_2: can_use(RG_MEGATON_HAMMER)
+        RC_OGC_BRONZE_BOULDER_3: can_use(RG_MEGATON_HAMMER)
+        RC_OGC_SILVER_BOULDER_1: can_use(RG_SILVER_GAUNTLETS)
+        RC_OGC_SILVER_BOULDER_2: can_use(RG_SILVER_GAUNTLETS)
+        RC_OGC_SILVER_BOULDER_3: can_use(RG_SILVER_GAUNTLETS)
+        RC_OGC_SILVER_BOULDER_4: can_use(RG_SILVER_GAUNTLETS)
+    }
+}
+
+# overworld/death_mountain_crater
+
+extend region RR_DMC_ROCK_GROTTO {
+    locations {
+        RC_DMC_CIRCLE_ROCK_1: fire_timer() >= 8 and can_break_rocks()
+        RC_DMC_CIRCLE_ROCK_2: fire_timer() >= 8 and can_break_rocks()
+        RC_DMC_CIRCLE_ROCK_3: fire_timer() >= 8 and can_break_rocks()
+        RC_DMC_CIRCLE_ROCK_4: fire_timer() >= 8 and can_break_rocks()
+        RC_DMC_CIRCLE_ROCK_5: fire_timer() >= 8 and can_break_rocks()
+        RC_DMC_CIRCLE_ROCK_6: fire_timer() >= 8 and can_break_rocks()
+        RC_DMC_CIRCLE_ROCK_7: fire_timer() >= 8 and can_break_rocks()
+        RC_DMC_CIRCLE_ROCK_8: fire_timer() >= 8 and can_break_rocks()
+        # boulders 1 and 2 are a bit separate, but are in 8 seconds from upper entry and closer or the same
+        # distance from all ways to reach upper grotto otherwise, so it works
+        RC_DMC_BOULDER_1:     fire_timer() >= 8 and blast_or_smash()
+        RC_DMC_BOULDER_2:     fire_timer() >= 8 and blast_or_smash()
+        RC_DMC_BOULDER_3:     fire_timer() >= 8 and blast_or_smash()
+    }
+}
+
+extend region RR_DMC_CRACKED_WALL {
+    locations {
+        RC_DMC_GOSSIP_ROCK_1: is_child()
+        RC_DMC_GOSSIP_ROCK_2: is_child()
+    }
+}
+
+extend region RR_DMC_POTS {
+    locations {
+        RC_DMC_BRONZE_BOULDER_1:        can_use(RG_MEGATON_HAMMER)
+        RC_DMC_BRONZE_BOULDER_2:        can_use(RG_MEGATON_HAMMER)
+        RC_DMC_BRONZE_BOULDER_3:        can_use(RG_MEGATON_HAMMER)
+        RC_DMC_BRONZE_BOULDER_SHORTCUT: can_use(RG_MEGATON_HAMMER)
+    }
+}
+
+extend region RR_DMC_CENTRAL {
+    locations {
+        RC_DMC_ROCK_BY_FIRE_TEMPLE_1: is_adult()
+        RC_DMC_ROCK_BY_FIRE_TEMPLE_2: is_adult()
+        RC_DMC_ROCK_BY_FIRE_TEMPLE_3: is_adult()
+        RC_DMC_ROCK_BY_FIRE_TEMPLE_4: is_adult()
+        RC_DMC_ROCK_BY_FIRE_TEMPLE_5: is_adult()
+    }
+}
+
+# overworld/death_mountain_trail
+
+extend region RR_DEATH_MOUNTAIN_TRAIL {
+    locations {
+        RC_DMT_ROCK_1:            can_break_rocks()
+        RC_DMT_ROCK_2:            can_break_rocks()
+        RC_DMT_ROCK_3:            can_break_rocks()
+        RC_DMT_ROCK_4:            can_break_rocks()
+        RC_DMT_ROCK_5:            can_break_rocks()
+        RC_DMT_CIRCLE_ROCK_1:     can_break_rocks()
+        RC_DMT_CIRCLE_ROCK_2:     can_break_rocks()
+        RC_DMT_CIRCLE_ROCK_3:     can_break_rocks()
+        RC_DMT_CIRCLE_ROCK_4:     can_break_rocks()
+        RC_DMT_CIRCLE_ROCK_5:     can_break_rocks()
+        RC_DMT_CIRCLE_ROCK_6:     can_break_rocks()
+        RC_DMT_CIRCLE_ROCK_7:     can_break_rocks()
+        RC_DMT_CIRCLE_ROCK_8:     can_break_rocks()
+        RC_DMT_CHILD_BOULDER:     is_child() and blast_or_smash()
+        RC_DMT_BOULDER_1:         blast_or_smash()
+        RC_DMT_BOULDER_2:         blast_or_smash()
+        RC_DMT_BRONZE_BOULDER_1:  is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_DMT_BRONZE_BOULDER_2:  is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_DMT_BRONZE_BOULDER_3:  is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_DMT_BRONZE_BOULDER_4:  is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_DMT_BRONZE_BOULDER_5:  is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_DMT_BRONZE_BOULDER_6:  is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_DMT_BRONZE_BOULDER_7:  is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_DMT_BRONZE_BOULDER_11: is_adult() and can_use(RG_MEGATON_HAMMER)
+    }
+}
+
+extend region RR_DEATH_MOUNTAIN_ROCKFALL {
+    locations {
+        RC_DMT_BRONZE_BOULDER_8:  is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_DMT_BRONZE_BOULDER_9:  is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_DMT_BRONZE_BOULDER_10: is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_DMT_COW_BOULDER:       blast_or_smash()
+    }
+}
+
+extend region RR_DEATH_MOUNTAIN_SUMMIT {
+    locations {
+        RC_DMT_SUMMIT_ROCK: is_child() and can_break_rocks()
+    }
+}
+
+# overworld/desert_colossus
+
+extend region RR_DESERT_COLOSSUS {
+    locations {
+        RC_COLOSSUS_SILVER_BOULDER:  can_use(RG_SILVER_GAUNTLETS)
+        RC_COLOSSUS_ROCK:            can_break_rocks()
+        RC_COLOSSUS_CIRCLE_1_ROCK_1: can_break_rocks()
+        RC_COLOSSUS_CIRCLE_1_ROCK_2: can_break_rocks()
+        RC_COLOSSUS_CIRCLE_1_ROCK_3: can_break_rocks()
+        RC_COLOSSUS_CIRCLE_1_ROCK_4: can_break_rocks()
+        RC_COLOSSUS_CIRCLE_1_ROCK_5: can_break_rocks()
+        RC_COLOSSUS_CIRCLE_1_ROCK_6: can_break_rocks()
+        RC_COLOSSUS_CIRCLE_1_ROCK_7: can_break_rocks()
+        RC_COLOSSUS_CIRCLE_1_ROCK_8: can_break_rocks()
+        RC_COLOSSUS_CIRCLE_2_ROCK_1: can_break_rocks()
+        RC_COLOSSUS_CIRCLE_2_ROCK_2: can_break_rocks()
+        RC_COLOSSUS_CIRCLE_2_ROCK_3: can_break_rocks()
+        RC_COLOSSUS_CIRCLE_2_ROCK_4: can_break_rocks()
+        RC_COLOSSUS_CIRCLE_2_ROCK_5: can_break_rocks()
+        RC_COLOSSUS_CIRCLE_2_ROCK_6: can_break_rocks()
+        RC_COLOSSUS_CIRCLE_2_ROCK_7: can_break_rocks()
+        RC_COLOSSUS_CIRCLE_2_ROCK_8: can_break_rocks()
+    }
+}
+
+# overworld/gerudo_valley
+
+extend region RR_GERUDO_VALLEY {
+    locations {
+        RC_GV_ROCK_1:            can_break_rocks()
+        RC_GV_ROCK_2:            can_break_rocks()
+        RC_GV_ROCK_3:            can_break_rocks()
+        RC_GV_UNDERWATER_ROCK_1: (can_use(RG_BOMBCHU_5) or (can_use(RG_BOMB_BAG) and trick(RT_BOMB_DETONATION)) or (is_adult() and
+                                   has(RG_POWER_BRACELET))) and (is_adult() or has(RG_BRONZE_SCALE) or can_use(RG_BOOMERANG) or
+                                  ((trick(RT_VOIDOUT_COLLECTION) and can_void()) and has(RG_POWER_BRACELET)))
+        RC_GV_UNDERWATER_ROCK_2: (can_use(RG_BOMBCHU_5) or (can_use(RG_BOMB_BAG) and trick(RT_BOMB_DETONATION)) or (is_adult() and
+                                   has(RG_POWER_BRACELET))) and (is_adult() or has(RG_BRONZE_SCALE) or can_use(RG_BOOMERANG) or
+                                  ((trick(RT_VOIDOUT_COLLECTION) and can_void()) and has(RG_POWER_BRACELET)))
+        RC_GV_UNDERWATER_ROCK_3: (can_use(RG_BOMBCHU_5) or (can_use(RG_BOMB_BAG) and trick(RT_BOMB_DETONATION)) or (is_adult() and
+                                   has(RG_POWER_BRACELET))) and (is_adult() or has(RG_BRONZE_SCALE) or can_use(RG_BOOMERANG) or
+                                  ((trick(RT_VOIDOUT_COLLECTION) and can_void()) and has(RG_POWER_BRACELET)))
+        RC_GV_BOULDER_1:         is_adult() and blast_or_smash()
+        RC_GV_BOULDER_2:         is_adult() and blast_or_smash()
+        RC_GV_BRONZE_BOULDER_1:  is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_GV_BRONZE_BOULDER_2:  is_adult() and can_use(RG_MEGATON_HAMMER)
+    }
+}
+
+extend region RR_GV_GROTTO_LEDGE {
+    locations {
+        RC_GV_SILVER_BOULDER: can_use(RG_SILVER_GAUNTLETS)
+    }
+}
+
+extend region RR_GV_FORTRESS_SIDE {
+    locations {
+        RC_GV_ROCK_ACROSS_BRIDGE_1:           is_adult()
+        RC_GV_ROCK_ACROSS_BRIDGE_2:           is_adult()
+        RC_GV_ROCK_ACROSS_BRIDGE_3:           is_adult()
+        RC_GV_ROCK_ACROSS_BRIDGE_4:           is_adult()
+        RC_GV_BOULDER_ACROSS_BRIDGE:          is_adult() and blast_or_smash()
+        RC_GV_BRONZE_BOULDER_ACROSS_BRIDGE_1: is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_GV_BRONZE_BOULDER_ACROSS_BRIDGE_2: is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_GV_BRONZE_BOULDER_ACROSS_BRIDGE_3: is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_GV_BRONZE_BOULDER_ACROSS_BRIDGE_4: is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_GV_BRONZE_BOULDER_ACROSS_BRIDGE_5: is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_GV_BRONZE_BOULDER_ACROSS_BRIDGE_6: is_adult() and can_use(RG_MEGATON_HAMMER)
+    }
+}
+
+# overworld/goron_city
+
+extend region RR_GORON_CITY {
+    locations {
+        RC_GC_ENTRANCE_BOULDER_1:     blast_or_smash()
+        RC_GC_ENTRANCE_BOULDER_2:     blast_or_smash()
+        RC_GC_ENTRANCE_BOULDER_3:     blast_or_smash()
+        RC_GC_LW_BOULDER_1:           flag(LOGIC_GORON_CITY_WOODS_WARP_OPEN)
+        RC_GC_LW_BOULDER_2:           flag(LOGIC_GORON_CITY_WOODS_WARP_OPEN)
+        RC_GC_LW_BOULDER_3:           flag(LOGIC_GORON_CITY_WOODS_WARP_OPEN)
+        RC_GC_MAZE_SILVER_BOULDER_1:  can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_2:  can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_3:  can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_4:  can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_5:  can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_6:  can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_7:  can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_8:  can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_9:  can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_10: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_11: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_12: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_13: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_14: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_15: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_16: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_17: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_18: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_19: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_20: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_21: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_22: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_23: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_24: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_25: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_26: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_27: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_28: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_SILVER_BOULDER_29: can_use(RG_SILVER_GAUNTLETS)
+        RC_GC_MAZE_BOULDER_1:         blast_or_smash()
+        RC_GC_MAZE_BOULDER_2:         blast_or_smash()
+        RC_GC_MAZE_BOULDER_3:         blast_or_smash()
+        RC_GC_MAZE_BOULDER_4:         blast_or_smash()
+        RC_GC_MAZE_BOULDER_5:         blast_or_smash()
+        RC_GC_MAZE_BOULDER_6:         blast_or_smash()
+        RC_GC_MAZE_BOULDER_7:         blast_or_smash()
+        RC_GC_MAZE_BOULDER_8:         blast_or_smash()
+        RC_GC_MAZE_BOULDER_9:         blast_or_smash()
+        RC_GC_MAZE_BOULDER_10:        blast_or_smash()
+        RC_GC_MAZE_BRONZE_BOULDER_1:  can_use(RG_MEGATON_HAMMER)
+        RC_GC_MAZE_BRONZE_BOULDER_2:  can_use(RG_MEGATON_HAMMER)
+        RC_GC_MAZE_BRONZE_BOULDER_3:  can_use(RG_MEGATON_HAMMER)
+        RC_GC_MAZE_BRONZE_BOULDER_4:  can_use(RG_MEGATON_HAMMER)
+        RC_GC_MAZE_BRONZE_BOULDER_5:  can_use(RG_MEGATON_HAMMER)
+        RC_GC_MAZE_ROCK:              blast_or_smash() or can_use(RG_SILVER_GAUNTLETS)
+    }
+}
+
+# overworld/graveyard
+
+extend region RR_THE_GRAVEYARD {
+    locations {
+        RC_GY_ROCK: can_break_rocks()
+    }
+}
+
+# overworld/hyrule_field
+
+extend region RR_HYRULE_FIELD {
+    locations {
+        RC_HF_SILVER_BOULDER:    can_use(RG_SILVER_GAUNTLETS)
+        RC_HF_ROCK_1:            can_break_rocks()
+        RC_HF_ROCK_2:            can_break_rocks()
+        RC_HF_ROCK_3:            can_break_rocks()
+        RC_HF_ROCK_4:            can_break_rocks()
+        RC_HF_ROCK_5:            can_break_rocks()
+        RC_HF_ROCK_6:            can_break_rocks()
+        RC_HF_ROCK_7:            can_break_rocks()
+        RC_HF_ROCK_8:            can_break_rocks()
+        RC_HF_BOULDER_NORTH:     blast_or_smash()
+        RC_HF_BOULDER_BY_MARKET: blast_or_smash()
+        RC_HF_BOULDER_SOUTH:     blast_or_smash()
+        RC_HF_BRONZE_BOULDER_1:  is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_HF_BRONZE_BOULDER_2:  is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_HF_BRONZE_BOULDER_3:  is_adult() and can_use(RG_MEGATON_HAMMER)
+        RC_HF_BRONZE_BOULDER_4:  is_adult() and can_use(RG_MEGATON_HAMMER)
+    }
+}
+
+
+# overworld/kakariko
+
+extend region RR_KAKARIKO_VILLAGE {
+    locations {
+        RC_KAK_ROCK_1: can_break_rocks()
+        RC_KAK_ROCK_2: can_break_rocks()
+    }
+}
+
+extend region RR_KAK_HILL {
+    locations {
+        RC_KAK_SILVER_BOULDER: is_adult() and can_use(RG_SILVER_GAUNTLETS)
+    }
+}
+
+# overworld/kokiri_forest
+
+extend region RR_KOKIRI_FOREST {
+    locations {
+        RC_KF_CIRCLE_ROCK_1:              can_break_rocks()
+        RC_KF_CIRCLE_ROCK_2:              can_break_rocks()
+        RC_KF_CIRCLE_ROCK_3:              can_break_rocks()
+        RC_KF_CIRCLE_ROCK_4:              can_break_rocks()
+        RC_KF_CIRCLE_ROCK_5:              can_break_rocks()
+        RC_KF_CIRCLE_ROCK_6:              can_break_rocks()
+        RC_KF_CIRCLE_ROCK_7:              can_break_rocks()
+        RC_KF_CIRCLE_ROCK_8:              can_break_rocks()
+        RC_KF_ROCK_BY_SARIAS_HOUSE:       is_child() and can_break_rocks()
+        RC_KF_ROCK_BEHIND_SARIAS_HOUSE:   is_child() and can_break_rocks()
+        RC_KF_ROCK_BY_MIDOS_HOUSE:        is_child() and can_break_rocks()
+        RC_KF_ROCK_BY_KNOW_IT_ALLS_HOUSE: is_child() and can_break_rocks()
+    }
+}
+
+# overworld/lake_hylia
+
+extend region RR_LH_FISHING_ISLAND {
+    locations {
+        RC_LH_ROCK: can_break_rocks()
+    }
+}
+
+# overworld/lost_woods
+
+extend region RR_THE_LOST_WOODS {
+    locations {
+        RC_LW_BOULDER_BY_GORON_CITY: blast_or_smash()
+    }
+}
+
+extend region RR_LW_BEYOND_MIDO {
+    locations {
+        RC_LW_BOULDER_BY_SACRED_FOREST_MEADOW: blast_or_smash()
+        RC_LW_RUPEE_BOULDER:                   blast_or_smash()
+    }
+}
+
+# overworld/zoras_domain
+
+extend region RR_ZORAS_DOMAIN {
+    locations {
+        RC_ZD_CIRCLE_ROCK_1: can_break_rocks()
+        RC_ZD_CIRCLE_ROCK_2: can_break_rocks()
+        RC_ZD_CIRCLE_ROCK_3: can_break_rocks()
+        RC_ZD_CIRCLE_ROCK_4: can_break_rocks()
+        RC_ZD_CIRCLE_ROCK_5: can_break_rocks()
+        RC_ZD_CIRCLE_ROCK_6: can_break_rocks()
+        RC_ZD_CIRCLE_ROCK_7: can_break_rocks()
+        RC_ZD_CIRCLE_ROCK_8: can_break_rocks()
+    }
+}
+
+# overworld/zoras_fountain
+
+extend region RR_ZORAS_FOUNTAIN {
+    locations {
+        RC_ZF_BOULDER:             blast_or_smash()
+        RC_ZF_SILVER_BOULDER:      can_use(RG_SILVER_GAUNTLETS)
+        RC_ZF_UNDERGROUND_BOULDER: can_use(RG_SILVER_GAUNTLETS) and blast_or_smash()
+    }
+}
+
+# overworld/zoras_river
+
+extend region RR_ZR_FRONT {
+    locations {
+        RC_ZR_BOULDER_1: is_child() and blast_or_smash()
+        RC_ZR_BOULDER_2: is_child() and blast_or_smash()
+        RC_ZR_BOULDER_3: is_child() and blast_or_smash()
+        RC_ZR_BOULDER_4: is_child() and blast_or_smash()
+    }
+}
+
+extend region RR_ZORAS_RIVER {
+    locations {
+        RC_ZR_CIRCLE_ROCK_1:     can_break_rocks()
+        RC_ZR_CIRCLE_ROCK_2:     can_break_rocks()
+        RC_ZR_CIRCLE_ROCK_3:     can_break_rocks()
+        RC_ZR_CIRCLE_ROCK_4:     can_break_rocks()
+        RC_ZR_CIRCLE_ROCK_5:     can_break_rocks()
+        RC_ZR_CIRCLE_ROCK_6:     can_break_rocks()
+        RC_ZR_CIRCLE_ROCK_7:     can_break_rocks()
+        RC_ZR_CIRCLE_ROCK_8:     can_break_rocks()
+        RC_ZR_ROCK:              can_break_rocks()
+        RC_ZR_UNDERWATER_ROCK_1: (can_use(RG_BOMBCHU_5) or (can_use(RG_BOMB_BAG) and trick(RT_BOMB_DETONATION)) or (is_adult() and has(RG_POWER_BRACELET))) and
+                                 (is_adult() or has(RG_BRONZE_SCALE) or can_use(RG_BOOMERANG) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_UNDERWATER_ROCK_2: (can_use(RG_BOMBCHU_5) or (can_use(RG_BOMB_BAG) and trick(RT_BOMB_DETONATION)) or (is_adult() and has(RG_POWER_BRACELET))) and
+                                 (is_adult() or has(RG_BRONZE_SCALE) or can_use(RG_BOOMERANG) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_UNDERWATER_ROCK_3: (can_use(RG_BOMBCHU_5) or (can_use(RG_BOMB_BAG) and trick(RT_BOMB_DETONATION)) or (is_adult() and has(RG_POWER_BRACELET))) and
+                                 (is_adult() or has(RG_BRONZE_SCALE) or can_use(RG_BOOMERANG) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_UNDERWATER_ROCK_4: (can_use(RG_BOMBCHU_5) or (can_use(RG_BOMB_BAG) and trick(RT_BOMB_DETONATION)) or (is_adult() and has(RG_POWER_BRACELET))) and
+                                 (is_adult() or has(RG_BRONZE_SCALE) or can_use(RG_BOOMERANG) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+    }
+}
+
+extend region RR_ZR_ATOP_LADDER {
+    locations {
+        RC_ZR_UPPER_CIRCLE_BOULDER: blast_or_smash()
+        RC_ZR_UPPER_CIRCLE_ROCK_1:  can_break_rocks()
+        RC_ZR_UPPER_CIRCLE_ROCK_2:  can_break_rocks()
+        RC_ZR_UPPER_CIRCLE_ROCK_3:  can_break_rocks()
+        RC_ZR_UPPER_CIRCLE_ROCK_4:  can_break_rocks()
+        RC_ZR_UPPER_CIRCLE_ROCK_5:  can_break_rocks()
+        RC_ZR_UPPER_CIRCLE_ROCK_6:  can_break_rocks()
+        RC_ZR_UPPER_CIRCLE_ROCK_7:  can_break_rocks()
+        RC_ZR_UPPER_CIRCLE_ROCK_8:  can_break_rocks()
+    }
+}
+
+# dungeons/deku_tree
+
+extend region RR_DEKU_TREE_MQ_COMPASS_ROOM {
+    locations {
+        RC_DEKU_TREE_MQ_BOULDER_1: can_use(RG_BOOMERANG) and any_age(can_use(RG_BOMBCHU_5) or (can_use(RG_BOMB_BAG) and ((can_use(RG_SONG_OF_TIME) or bunny_hood()) or is_adult() or can_use(RG_HOVER_BOOTS))))
+        RC_DEKU_TREE_MQ_BOULDER_2: can_use(RG_BOOMERANG) and any_age(can_use(RG_BOMBCHU_5) or (can_use(RG_BOMB_BAG) and ((can_use(RG_SONG_OF_TIME) or bunny_hood()) or is_adult() or can_use(RG_HOVER_BOOTS))))
+        RC_DEKU_TREE_MQ_BOULDER_3: can_use(RG_BOOMERANG) and any_age(can_use(RG_BOMBCHU_5) or (can_use(RG_BOMB_BAG) and ((can_use(RG_SONG_OF_TIME) or bunny_hood()) or is_adult() or can_use(RG_HOVER_BOOTS))))
+    }
+}
+
+extend region RR_DEKU_TREE_MQ_PAST_BOULDER_VINES {
+    locations {
+        RC_DEKU_TREE_MQ_BOULDER_1: blast_or_smash()
+        RC_DEKU_TREE_MQ_BOULDER_2: blast_or_smash()
+        RC_DEKU_TREE_MQ_BOULDER_3: blast_or_smash()
+    }
+}
+
+# dungeons/dodongos_cavern
+
+extend region RR_DODONGOS_CAVERN_MQ_LOBBY {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_LOBBY_BOULDER_1: blast_or_smash() or has(RG_GORONS_BRACELET)
+        RC_DODONGOS_CAVERN_MQ_LOBBY_BOULDER_2: blast_or_smash() or has(RG_GORONS_BRACELET)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_MOUTH_SIDE_BRIDGE {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_MOUTH_SIDE_BRIDGE_BOULDER_1: flag(LOGIC_DC_MQ_CLEAR_UPPER_LOBBY_ROCKS)
+        RC_DODONGOS_CAVERN_MQ_MOUTH_SIDE_BRIDGE_BOULDER_2: flag(LOGIC_DC_MQ_CLEAR_UPPER_LOBBY_ROCKS)
+        RC_DODONGOS_CAVERN_MQ_MOUTH_SIDE_BRIDGE_BOULDER_3: flag(LOGIC_DC_MQ_CLEAR_UPPER_LOBBY_ROCKS)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_UPPER_LIZALFOS {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_BOULDER_1:  blast_or_smash() and (take_damage() or can_use(RG_GORON_TUNIC) or can_use(RG_BOOMERANG))
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_BOULDER_2:  blast_or_smash() and (take_damage() or can_use(RG_GORON_TUNIC) or can_use(RG_BOOMERANG))
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_BOULDER_3:  blast_or_smash() and (take_damage() or can_use(RG_GORON_TUNIC) or can_use(RG_BOOMERANG))
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_BOULDER_4:  blast_or_smash()
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_BOULDER_5:  blast_or_smash()
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_BOULDER_6:  blast_or_smash() and (take_damage() or can_use(RG_GORON_TUNIC) or can_use(RG_BOOMERANG))
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_BOULDER_7:  blast_or_smash() and (take_damage() or can_use(RG_GORON_TUNIC) or can_use(RG_BOOMERANG))
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_BOULDER_8:  blast_or_smash() and (take_damage() or can_use(RG_GORON_TUNIC) or can_use(RG_BOOMERANG))
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_BOULDER_9:  blast_or_smash() and (take_damage() or can_use(RG_GORON_TUNIC) or can_use(RG_BOOMERANG))
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_BOULDER_10: blast_or_smash() and (take_damage() or can_use(RG_GORON_TUNIC) or can_use(RG_BOOMERANG))
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_BOULDER_11: blast_or_smash() and (take_damage() or can_use(RG_GORON_TUNIC) or can_use(RG_BOOMERANG))
+        RC_DODONGOS_CAVERN_MQ_LIZALFOS_ROOM_BOULDER_12: blast_or_smash() and (take_damage() or can_use(RG_GORON_TUNIC) or can_use(RG_BOOMERANG))
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_TWO_FIRES_ROOM {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_TWO_FLAMES_BOULDER: blast_or_smash()
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_TWO_FIRES_FLOWER {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_TWO_FLAMES_BOULDER: has(RG_GORONS_BRACELET)
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_LOWER_RIGHT_SIDE {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_RIGHT_SIDE_BOULDER_1: blast_or_smash() or has(RG_GORONS_BRACELET) or can_use(RG_DINS_FIRE) or (trick(RT_BOULDER_COLLISION) and can_use(RG_FAIRY_BOW))
+        RC_DODONGOS_CAVERN_MQ_RIGHT_SIDE_BOULDER_2: can_detonate_bomb_flowers() or has(RG_GORONS_BRACELET) or (trick(RT_BLUE_FIRE_MUD_WALLS) and can_use(RG_BOTTLE_WITH_BLUE_FIRE) and (effective_health() > 8 or can_use(RG_NAYRUS_LOVE)))
+    }
+}
+
+# dungeons/jabujabus_belly
+
+extend region RR_JABU_JABUS_BELLY_MQ_BEGINNING {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_ENTRANCE_BOULDER: blast_or_smash()
+    }
+}
+
+extend region RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_HOLES_ROOM_BOULDER_1:      blast_or_smash()
+        RC_JABU_JABUS_BELLY_MQ_HOLES_ROOM_BOULDER_2:      blast_or_smash()
+        RC_JABU_JABUS_BELLY_MQ_HOLES_ROOM_WALL_BOULDER_1: has_explosives()
+        RC_JABU_JABUS_BELLY_MQ_HOLES_ROOM_WALL_BOULDER_2: has_explosives()
+        RC_JABU_JABUS_BELLY_MQ_HOLES_ROOM_WALL_BOULDER_3: has_explosives()
+    }
+}
+
+extend region RR_JABU_JABUS_BELLY_MQ_FORKED_CORRIDOR {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_FORKED_CORRIDOR_BOULDER_1: blast_or_smash()
+        RC_JABU_JABUS_BELLY_MQ_FORKED_CORRIDOR_BOULDER_2: blast_or_smash()
+    }
+}
+
+extend region RR_JABU_JABUS_BELLY_MQ_FORK_NORTH_WEST {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_TAILPASARAN_BOULDER:      blast_or_smash()
+        RC_JABU_JABUS_BELLY_MQ_TAILPASARAN_WALL_BOULDER: blast_or_smash()
+    }
+}
+extend region RR_BOTW_B3_BOMB_FLOWERS {
+    locations {
+        RC_BOTW_BOULDER_1: has(RG_GORONS_BRACELET)
+        RC_BOTW_BOULDER_2: has(RG_GORONS_BRACELET)
+        RC_BOTW_BOULDER_3: can_detonate_upright_bomb_flower()
+        RC_BOTW_BOULDER_4: has(RG_GORONS_BRACELET)
+        RC_BOTW_BOULDER_5: has(RG_GORONS_BRACELET)
+        RC_BOTW_BOULDER_6: has(RG_GORONS_BRACELET)
+    }
+}
+
+extend region RR_BOTW_B3_OOZE {
+    locations {
+        RC_BOTW_BOULDER_1: blast_or_smash()
+        RC_BOTW_BOULDER_2: blast_or_smash()
+        RC_BOTW_BOULDER_3: blast_or_smash() or can_use(RG_DINS_FIRE) or (can_use(RG_STICKS) and trick(RT_BOTW_BASEMENT)) or (trick(RT_BOULDER_COLLISION) and can_use(RG_FAIRY_BOW))
+        RC_BOTW_BOULDER_4: blast_or_smash()
+        RC_BOTW_BOULDER_5: blast_or_smash()
+        RC_BOTW_BOULDER_6: blast_or_smash()
+    }
+}
+
+extend region RR_BOTW_MQ_PERIMETER {
+    locations {
+        RC_BOTW_MQ_BOULDER_1: blast_or_smash()
+        RC_BOTW_MQ_BOULDER_2: blast_or_smash()
+        RC_BOTW_MQ_BOULDER_3: blast_or_smash()
+    }
+}
+
+extend region RR_BOTW_MQ_PIT_CAGE {
+    locations {
+        RC_BOTW_MQ_BOULDER_2: blast_or_smash()
+        RC_BOTW_MQ_BOULDER_3: blast_or_smash()
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM {
+    locations {
+        RC_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM_LEFT_STALACTITE: always
+        RC_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM_RIGHT_STALACTITE_1: always
+        RC_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM_RIGHT_STALACTITE_2: always
+        RC_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM_RIGHT_STALACTITE_3: always
+        RC_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM_RIGHT_STALACTITE_4: always
+        RC_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM_STALAGMITE_1: can_clear_stalagmite()
+        RC_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM_STALAGMITE_2: can_clear_stalagmite()
+        RC_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM_STALAGMITE_3: can_clear_stalagmite()
+        RC_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM_STALAGMITE_4: can_clear_stalagmite()
+        RC_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM_STALAGMITE_5: can_clear_stalagmite()
+        RC_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM_TOP_RIGHT_STALACTITE_1: always
+        RC_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM_TOP_RIGHT_STALACTITE_2: always
+        RC_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM_TOP_RIGHT_STALACTITE_3: always
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_BEHIND_GEYSER {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_EARLY_ADULT_BOULDER: blast_or_smash()
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_CHILD_SIDE_HUB {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_CRAWLSPACE_BOULDER: flag(LOGIC_SPIRIT_MQ_CRAWL_BOULDER) and can_use(RG_CRAWL)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_FOYER {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_BOULDER_1: blast_or_smash()
+        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_BOULDER_2: blast_or_smash()
+        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_CEILING_BOULDER: can_use(RG_BOMBCHU_5)
+        RC_SPIRIT_TEMPLE_MQ_ENTRANCE_EYE_BOULDER: blast_or_smash()
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_GIBDO_GRAVES {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_GIBDO_BOULDER_HIGH: blast_or_smash()
+        RC_SPIRIT_TEMPLE_MQ_GIBDO_BOULDER_LOW: blast_or_smash()
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_GIBDO_POTS {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_GIBDO_BOULDER: blast_or_smash()
+    }
+}
+
+

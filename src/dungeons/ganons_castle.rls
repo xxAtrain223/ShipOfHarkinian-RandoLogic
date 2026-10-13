@@ -86,7 +86,17 @@ region RR_GANONS_TOWER_STAIRS_4 {
     scene: SCENE_GANONS_TOWER
 
     exits {
-        RR_GANONS_TOWER_FLOOR_3:               always
+        RR_GANONS_TOWER_FLOOR_3:  always
+        RR_GANONS_TOWER_POT_ROOM: always
+    }
+}
+
+region RR_GANONS_TOWER_POT_ROOM {
+    name: "Ganon's Tower Pot Room"
+    scene: SCENE_GANONS_TOWER
+
+    exits {
+        RR_GANONS_TOWER_STAIRS_4:              always
         RR_GANONS_TOWER_BEFORE_GANONDORF_LAIR: always
     }
 }
@@ -96,7 +106,7 @@ region RR_GANONS_TOWER_BEFORE_GANONDORF_LAIR {
     scene: SCENE_GANONS_TOWER
 
     exits {
-        RR_GANONS_TOWER_FLOOR_3:        any_age(always)
+        RR_GANONS_TOWER_POT_ROOM:       never
         RR_GANONS_TOWER_GANONDORF_LAIR: any_age(has(RG_GANONS_CASTLE_BOSS_KEY))
     }
 }

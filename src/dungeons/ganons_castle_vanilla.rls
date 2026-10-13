@@ -21,6 +21,8 @@ region RR_GANONS_CASTLE_MAIN {
         RR_GANONS_CASTLE_SPIRIT_TRIAL_BEAMOS_ROOM:   not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_SPIRIT_MEDALLION)
         RR_GANONS_CASTLE_LIGHT_TRIAL_CHESTS_ROOM:    (not setting(RSK_MEDALLION_LOCKED_TRIALS) or has(RG_LIGHT_MEDALLION)) and
                                                      can_use(RG_GOLDEN_GAUNTLETS)
+        # It's possible to use bunny megajumps to trial skip, though adult needs a shield to shrink their hitbox
+        # but no trial skip without an explicit trick due to win condition implications.
         RR_GANONS_TOWER_ENTRYWAY:                    (flag(LOGIC_FOREST_TRIAL_CLEAR) or trial_skipped(TK_FOREST_TRIAL)) and
                                                      (flag(LOGIC_FIRE_TRIAL_CLEAR) or trial_skipped(TK_FIRE_TRIAL)) and
                                                      (flag(LOGIC_WATER_TRIAL_CLEAR) or trial_skipped(TK_WATER_TRIAL)) and
@@ -56,22 +58,23 @@ region RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM {
 
     events {
         # child can get these by voiding after switch
-        LOGIC_FOREST_TRIAL_SILVER_RUPEES: is_adult() or can_use(RG_HOOKSHOT)
+        LOGIC_GANONS_CASTLE_SILVER_FOREST: is_adult() or can_use(RG_HOOKSHOT) or (is_child() and trick(RT_VOIDOUT_COLLECTION) and can_void())
     }
 
     exits {
-        RR_GANONS_CASTLE_FOREST_TRIAL_WOLFOS_ROOM:     always
-        RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_END: always
+        RR_GANONS_CASTLE_FOREST_TRIAL_WOLFOS_ROOM:        always
+        RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_MIDDLE: always
     }
 }
 
-region RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_END {
-    name: "Ganon's Castle Forest Trial Beamos Room End"
+region RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_MIDDLE {
+    name: "Ganon's Castle Forest Trial Beamos Room Middle"
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM:            can_use(RG_LONGSHOT)
-        RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_FINAL_DOOR: is_adult() or can_ground_jump() or trick(RT_UNINTUITIVE_JUMPS)
+        RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM:            can_use(RG_LONGSHOT) or (is_adult() and can_use(RG_HOVER_BOOTS)) or
+                                                              can_midair_ground_jump() or can_megajump(not is_adult())
+        RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_FINAL_DOOR: is_adult() or can_ground_jump() or trick(RT_UNINTUITIVE_JUMPS) or can_megajump()
     }
 }
 
@@ -80,8 +83,8 @@ region RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_FINAL_DOOR {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_END: always
-        RR_GANONS_CASTLE_FOREST_TRIAL_FINAL_ROOM:      flag(LOGIC_FOREST_TRIAL_SILVER_RUPEES)
+        RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_MIDDLE: always
+        RR_GANONS_CASTLE_FOREST_TRIAL_FINAL_ROOM:         has(RG_GANONS_CASTLE_SILVER_FOREST)
     }
 }
 
@@ -112,8 +115,7 @@ region RR_GANONS_CASTLE_FIRE_TRIAL_FROM_OPEN {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     events {
-        # backwalking hoverboots with backflip reaches silver rupee without needing str3
-        LOGIC_FIRE_TRIAL_SILVER_RUPEES: fire_timer() >= 48 and can_use(RG_GOLDEN_GAUNTLETS)
+        LOGIC_GANONS_CASTLE_SILVER_FIRE: fire_timer() >= 48 and can_use(RG_GOLDEN_GAUNTLETS)
     }
 
     exits {
@@ -127,12 +129,12 @@ region RR_GANONS_CASTLE_FIRE_TRIAL_FROM_BARRED {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     events {
-        # backwalking hoverboots with backflip reaches silver rupee without needing str3
-        LOGIC_FIRE_TRIAL_SILVER_RUPEES: fire_timer() >= 56 and can_use(RG_GOLDEN_GAUNTLETS)
+        LOGIC_GANONS_CASTLE_SILVER_FIRE: (can_use(RG_LONGSHOT) or can_melee_recoil_hover(RECOIL_HAMMER) or (is_adult() and can_megajump(true)) or can_bunny_mega_jumpslash()) and
+                                         fire_timer() >= 56 and can_use(RG_GOLDEN_GAUNTLETS)
     }
 
     exits {
-        RR_GANONS_CASTLE_FIRE_TRIAL_OPEN_DOOR:   can_use(RG_LONGSHOT) and fire_timer() >= 24
+        RR_GANONS_CASTLE_FIRE_TRIAL_OPEN_DOOR:   (can_use(RG_LONGSHOT) or can_melee_recoil_hover(RECOIL_HAMMER) or (is_adult() and can_megajump(true)) or can_bunny_mega_jumpslash()) and fire_timer() >= 24
         RR_GANONS_CASTLE_FIRE_TRIAL_BARRED_DOOR: always
     }
 }
@@ -142,7 +144,7 @@ region RR_GANONS_CASTLE_FIRE_TRIAL_BARRED_DOOR {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_FIRE_TRIAL_FINAL_ROOM: flag(LOGIC_FIRE_TRIAL_SILVER_RUPEES)
+        RR_GANONS_CASTLE_FIRE_TRIAL_FINAL_ROOM: has(RG_GANONS_CASTLE_SILVER_FIRE)
     }
 }
 
@@ -178,15 +180,27 @@ region RR_GANONS_CASTLE_WATER_TRIAL_BLOCK_ROOM {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     events {
-        LOGIC_FAIRY_ACCESS:              can_break_pots()
-        LOGIC_WATER_TRIAL_RUSTED_SWITCH: is_adult() and (has(RG_POWER_BRACELET) or can_middair_ground_jump()) and
-                                         (blue_fire() or trick(RT_VISIBLE_COLLISION)) and
-                                         can_use(RG_MEGATON_HAMMER)
+        LOGIC_FAIRY_ACCESS: can_break_pots()
     }
 
     exits {
-        RR_GANONS_CASTLE_WATER_TRIAL_BLUE_FIRE_ROOM: always
-        RR_GANONS_CASTLE_WATER_TRIAL_BLOCK_ROOM_END: is_adult() or (has(RG_POWER_BRACELET) and can_use(RG_HOVER_BOOTS)) or can_ground_jump() or trick(RT_SLIDE_JUMP)
+        RR_GANONS_CASTLE_WATER_TRIAL_BLUE_FIRE_ROOM:    always
+        RR_GANONS_CASTLE_WATER_TRIAL_BLOCK_ROOM_SWITCH: is_adult() and (has(RG_POWER_BRACELET) or can_midair_ground_jump())
+        RR_GANONS_CASTLE_WATER_TRIAL_BLOCK_ROOM_END:    is_adult() or can_use(RG_HOVER_BOOTS) or can_ground_jump() or trick(RT_SLIDE_JUMP) or
+                                                        ((bunny_hood() or has(RG_POWER_BRACELET)) and trick(RT_UNINTUITIVE_JUMPS))
+    }
+}
+
+region RR_GANONS_CASTLE_WATER_TRIAL_BLOCK_ROOM_SWITCH {
+    name: "Ganon's Castle Water Trial Block Room Switch"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_WATER_TRIAL_RUSTED_SWITCH: (blue_fire() or trick(RT_VISIBLE_COLLISION)) and can_use(RG_MEGATON_HAMMER)
+    }
+
+    exits {
+        RR_GANONS_CASTLE_WATER_TRIAL_BLOCK_ROOM: always
     }
 }
 
@@ -218,10 +232,34 @@ region RR_GANONS_CASTLE_SHADOW_TRIAL_START {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_MAIN:                        always
-        RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM:  can_use(RG_FIRE_ARROWS) or can_use(RG_LONGSHOT)
-        # shortcut for longshot to torch, dins, longshot to like like, run to chest platform
-        RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM: can_use(RG_DINS_FIRE) and can_use(RG_LONGSHOT)
+        RR_GANONS_CASTLE_MAIN:                       always
+        RR_GANONS_CASTLE_SHADOW_TRIAL_SOT_PLATFORM:  is_child() or can_use(RG_FIRE_ARROWS) or can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME) or can_megajump()
+        # start the recoil away from the wall
+        RR_GANONS_CASTLE_SHADOW_TRIAL_TORCH:         can_use(RG_LONGSHOT) or (is_adult() and can_melee_recoil_hover(RECOIL_HAMMER)) or can_bunny_mega_jumpslash() or
+                                                     (can_use(RG_FIRE_ARROWS) and ((is_adult() and bunny_hood()) or can_use(RG_HOVER_BOOTS)))
+        RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM: can_use(RG_FIRE_ARROWS)
+    }
+}
+
+region RR_GANONS_CASTLE_SHADOW_TRIAL_SOT_PLATFORM {
+    name: "Ganon's Castle Shadow Trial SoT Platform"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_SHADOW_TRIAL_START:         can_use(RG_FIRE_ARROWS) or can_use(RG_LONGSHOT) or can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME) or is_child()
+        RR_GANONS_CASTLE_SHADOW_TRIAL_TORCH:         can_use(RG_LONGSHOT)
+        RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM: can_use(RG_FIRE_ARROWS)
+    }
+}
+
+region RR_GANONS_CASTLE_SHADOW_TRIAL_TORCH {
+    name: "Ganon's Castle Shadow Trial Torch"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    exits {
+        RR_GANONS_CASTLE_SHADOW_TRIAL_START:          can_use(RG_LONGSHOT) or (has_fire_source() and can_use(RG_HOVER_BOOTS))
+        RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM:  can_use(RG_LONGSHOT) or (has_fire_source() and can_use(RG_HOVER_BOOTS))
+        RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM: can_use(RG_LONGSHOT) or (has_fire_source() and can_use(RG_HOVER_BOOTS))
     }
 }
 
@@ -230,9 +268,11 @@ region RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_SHADOW_TRIAL_START:          can_use(RG_FIRE_ARROWS) or can_use(RG_LONGSHOT)
+        RR_GANONS_CASTLE_SHADOW_TRIAL_START:          can_use(RG_FIRE_ARROWS)
+        RR_GANONS_CASTLE_SHADOW_TRIAL_TORCH:          can_use(RG_LONGSHOT) or (can_use(RG_FIRE_ARROWS) and ((is_adult() and bunny_hood()) or can_use(RG_HOVER_BOOTS)))
+        RR_GANONS_CASTLE_SHADOW_TRIAL_SOT_PLATFORM:   can_use(RG_LONGSHOT) or can_use(RG_FIRE_ARROWS)
         RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM: can_use(RG_FIRE_ARROWS) or can_use(RG_HOVER_BOOTS) or
-                                                      (flag(LOGIC_SHADOW_TRIAL_LOWER_SWITCH) and can_use(RG_HOOKSHOT))
+                                                      (flag(LOGIC_SHADOW_TRIAL_LATE_CHEST) and can_use(RG_HOOKSHOT)) or can_megajump()
     }
 }
 
@@ -240,15 +280,13 @@ region RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM {
     name: "Ganon's Castle Shadow Chest Platform"
     scene: SCENE_INSIDE_GANONS_CASTLE
 
-    events {
-        LOGIC_SHADOW_TRIAL_RUSTED_SWITCH: (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_HOVER_BOOTS)) and
-                                          can_use(RG_MEGATON_HAMMER)
-    }
-
     exits {
-        RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM: can_use(RG_FIRE_ARROWS) or can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS)
-        RR_GANONS_CASTLE_SHADOW_TRIAL_LOWER_SWITCH:  can_use(RG_FIRE_ARROWS) or trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_HOVER_BOOTS)
-        RR_GANONS_CASTLE_SHADOW_TRIAL_END:           trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH)
+        RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM:  can_use(RG_FIRE_ARROWS) or can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or can_megajump()
+        RR_GANONS_CASTLE_SHADOW_TRIAL_LOWER_SWITCH:   can_use(RG_FIRE_ARROWS) or trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_HOVER_BOOTS) or
+                                                      (is_adult() and bunny_hood() and can_jumpslash()) or can_megajump()
+        # bunny barely makes it without the path but it's tight enough to not be trickless or unintuitive
+        RR_GANONS_CASTLE_SHADOW_TRIAL_RUSTED_SWITCH:  trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_HOVER_BOOTS) or can_megajump()
+        RR_GANONS_CASTLE_SHADOW_TRIAL_END:            trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH)
     }
 }
 
@@ -257,11 +295,26 @@ region RR_GANONS_CASTLE_SHADOW_TRIAL_LOWER_SWITCH {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     events {
-        LOGIC_SHADOW_TRIAL_LOWER_SWITCH: always
+        LOGIC_SHADOW_TRIAL_LATE_CHEST: always
     }
 
     exits {
-        RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM: can_use(RG_FIRE_ARROWS) or (flag(LOGIC_SHADOW_TRIAL_LOWER_SWITCH) and can_use(RG_LONGSHOT))
+        RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM: can_use(RG_FIRE_ARROWS) or (flag(LOGIC_SHADOW_TRIAL_LATE_CHEST) and can_use(RG_LONGSHOT))
+    }
+}
+
+region RR_GANONS_CASTLE_SHADOW_TRIAL_RUSTED_SWITCH {
+    name: "Ganon's Castle Shadow Trial Rusted Switch"
+    scene: SCENE_INSIDE_GANONS_CASTLE
+
+    events {
+        LOGIC_SHADOW_TRIAL_RUSTED_SWITCH: can_use(RG_MEGATON_HAMMER)
+    }
+
+    exits {
+        RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM: trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH) or (flag(LOGIC_SHADOW_TRIAL_LATE_CHEST) and can_use(RG_LONGSHOT)) or
+                                                      can_use(RG_HOVER_BOOTS) or (is_adult() and bunny_hood()) or can_megajump()
+        RR_GANONS_CASTLE_SHADOW_TRIAL_END:            can_use(RG_LONGSHOT) or (is_adult() and (can_megajump(true) or can_bomb_recoil_hover()))
     }
 }
 
@@ -270,12 +323,14 @@ region RR_GANONS_CASTLE_SHADOW_TRIAL_END {
     scene: SCENE_INSIDE_GANONS_CASTLE
 
     exits {
-        RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM: (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH)) or
-                                                      (can_use(RG_HOVER_BOOTS) and has_fire_source()) or
-                                                      (flag(LOGIC_SHADOW_TRIAL_LOWER_SWITCH) and can_use(RG_LONGSHOT))
-        RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM:  can_use(RG_LONGSHOT) and can_use(RG_DINS_FIRE) and (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH))
-        RR_GANONS_CASTLE_SHADOW_TRIAL_LOWER_SWITCH:   can_use(RG_HOVER_BOOTS)
-        RR_GANONS_CASTLE_SHADOW_TRIAL_FINAL_ROOM:     flag(LOGIC_SHADOW_TRIAL_RUSTED_SWITCH)
+        RR_GANONS_CASTLE_SHADOW_TRIAL_CHEST_PLATFORM:  (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH)) or
+                                                       ((can_use(RG_HOVER_BOOTS) or ((is_adult() or can_jumpslash()) and bunny_hood()) or can_megajump()) and has_fire_source()) or
+                                                       (flag(LOGIC_SHADOW_TRIAL_LATE_CHEST) and can_use(RG_LONGSHOT))
+        RR_GANONS_CASTLE_SHADOW_TRIAL_POTS_PLATFORM:   can_use(RG_DINS_FIRE) and
+                                                       (trick(RT_LENS_GANON) or can_use(RG_LENS_OF_TRUTH) or ((is_adult() or can_jumpslash()) and bunny_hood()))
+        RR_GANONS_CASTLE_SHADOW_TRIAL_LOWER_SWITCH:    can_use(RG_HOVER_BOOTS) or ((is_adult() or can_jumpslash()) and bunny_hood()) or can_megajump()
+        RR_GANONS_CASTLE_SHADOW_TRIAL_RUSTED_SWITCH:   (can_use(RG_HOVER_BOOTS) and (has_fire_source() or bunny_hood())) or can_megajump()
+        RR_GANONS_CASTLE_SHADOW_TRIAL_FINAL_ROOM:      flag(LOGIC_SHADOW_TRIAL_RUSTED_SWITCH)
     }
 }
 
@@ -296,9 +351,13 @@ region RR_GANONS_CASTLE_SPIRIT_TRIAL_BEAMOS_ROOM {
     name: "Ganon's Castle Spirit Trial Beamos Room"
     scene: SCENE_INSIDE_GANONS_CASTLE
 
+    events {
+        LOGIC_GANONS_CASTLE_SILVER_SPIRIT: (trick(RT_GANON_SPIRIT_TRIAL_HOOKSHOT) and can_jumpslash() and has(RG_POWER_BRACELET)) or can_use(RG_HOOKSHOT)
+    }
+
     exits {
         RR_GANONS_CASTLE_MAIN:                       always
-        RR_GANONS_CASTLE_SPIRIT_TRIAL_BEFORE_SWITCH: trick(RT_GANON_SPIRIT_TRIAL_HOOKSHOT) or can_use(RG_HOOKSHOT)
+        RR_GANONS_CASTLE_SPIRIT_TRIAL_BEFORE_SWITCH: has(RG_GANONS_CASTLE_SILVER_SPIRIT)
     }
 }
 
@@ -361,9 +420,13 @@ region RR_GANONS_CASTLE_LIGHT_TRIAL_BOULDER_ROOM {
     name: "Ganon's Castle Light Trial Boulder Room"
     scene: SCENE_INSIDE_GANONS_CASTLE
 
+    events {
+        LOGIC_GANONS_CASTLE_SILVER_LIGHT: can_use(RG_HOOKSHOT) or (is_adult() and can_ground_jump())
+    }
+
     exits {
         RR_GANONS_CASTLE_LIGHT_TRIAL_TRIFORCE_ROOM: small_keys(SCENE_INSIDE_GANONS_CASTLE, 2)
-        RR_GANONS_CASTLE_LIGHT_TRIAL_FINAL_ROOM:    can_use(RG_HOOKSHOT) or (is_adult() and can_ground_jump())
+        RR_GANONS_CASTLE_LIGHT_TRIAL_FINAL_ROOM:    has(RG_GANONS_CASTLE_SILVER_LIGHT)
     }
 }
 

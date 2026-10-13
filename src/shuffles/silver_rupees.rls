@@ -1,0 +1,510 @@
+# dungeons/dodongos_cavern
+
+extend region RR_DODONGOS_CAVERN_MQ_STAIRS_LOWER {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_BEAMOS_SILVER:   always
+        RC_DODONGOS_CAVERN_MQ_1F_CRATE_SILVER: can_break_crates() or has(RG_GORONS_BRACELET) or (trick(RT_VISIBLE_COLLISION) and is_child())
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_STAIRS_UPPER {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_LOWER_2F_CRATE_SILVER: can_break_crates() or (trick(RT_VISIBLE_COLLISION) and (is_child() or can_use(RG_HOOKSHOT)))
+        # possible with the hookshot method and longshot, but precise and would be its own trick
+        RC_DODONGOS_CAVERN_MQ_UPPER_2F_CRATE_SILVER: can_break_crates() or (trick(RT_VISIBLE_COLLISION) and is_child())
+    }
+}
+
+extend region RR_DODONGOS_CAVERN_MQ_STAIRS_PAST_BIG_SKULLTULAS {
+    locations {
+        RC_DODONGOS_CAVERN_MQ_VINES_SILVER: has(RG_CLIMB)
+    }
+}
+extend region RR_BOTW_B3_OOZE {
+    locations {
+        RC_BOTW_B2_LADDER_SILVER: can_climb_ladder()
+        RC_BOTW_B3_LADDER_SILVER: always
+        RC_BOTW_NW_OOZE_SILVER: always
+        RC_BOTW_SE_OOZE_SILVER: always
+    }
+}
+
+extend region RR_BOTW_LADDER_DOOR {
+    locations {
+        RC_BOTW_B1_LADDER_SILVER: always
+        RC_BOTW_B2_LADDER_SILVER: always
+    }
+}
+
+extend region RR_GANONS_CASTLE_FIRE_TRIAL_FROM_BARRED {
+    locations {
+        RC_GANONS_CASTLE_CLOSE_PLATFORM_FIRE_SILVER: (can_use(RG_LONGSHOT) or can_melee_recoil_hover(RECOIL_HAMMER) or (is_adult() and can_megajump(true)) or can_bunny_mega_jumpslash()) and fire_timer() >= 16
+        RC_GANONS_CASTLE_DISTANT_PLATFORM_FIRE_SILVER: (can_use(RG_LONGSHOT) or can_melee_recoil_hover(RECOIL_HAMMER) or (is_adult() and can_megajump(true)) or can_bunny_mega_jumpslash()) and fire_timer() >= 32 and (can_use(RG_GOLDEN_GAUNTLETS) or bunny_hovers() or can_megajump() or can_bomb_recoil_hover())
+        RC_GANONS_CASTLE_FLAME_JETS_FIRE_SILVER: (can_use(RG_LONGSHOT) or can_melee_recoil_hover(RECOIL_HAMMER) or (is_adult() and can_megajump(true)) or can_bunny_mega_jumpslash()) and fire_timer() >= 16
+        RC_GANONS_CASTLE_TORCH_SLUG_FIRE_SILVER: (can_use(RG_LONGSHOT) or can_melee_recoil_hover(RECOIL_HAMMER) or (is_adult() and can_megajump(true)) or can_bunny_mega_jumpslash()) and fire_timer() >= 8
+        RC_GANONS_GANONS_CASTLE_UNDER_PILLAR_FIRE_SILVER: (can_use(RG_LONGSHOT) or can_melee_recoil_hover(RECOIL_HAMMER) or (is_adult() and can_megajump(true)) or can_bunny_mega_jumpslash()) and fire_timer() >= 24 and can_use(RG_GOLDEN_GAUNTLETS)
+    }
+}
+
+extend region RR_GANONS_CASTLE_FIRE_TRIAL_FROM_OPEN {
+    locations {
+        RC_GANONS_CASTLE_CLOSE_PLATFORM_FIRE_SILVER: fire_timer() >= 8
+        RC_GANONS_CASTLE_DISTANT_PLATFORM_FIRE_SILVER: fire_timer() >= 32 and (can_use(RG_GOLDEN_GAUNTLETS) or bunny_hovers() or can_megajump() or can_bomb_recoil_hover())
+        RC_GANONS_CASTLE_FLAME_JETS_FIRE_SILVER: fire_timer() >= 16
+        RC_GANONS_CASTLE_TORCH_SLUG_FIRE_SILVER: fire_timer() >= 16
+        RC_GANONS_GANONS_CASTLE_UNDER_PILLAR_FIRE_SILVER: fire_timer() >= 24 and can_use(RG_GOLDEN_GAUNTLETS)
+    }
+}
+
+extend region RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM {
+    locations {
+        RC_GANONS_CASTLE_ON_TARGET_FOREST_SILVER: (trick(RT_VOIDOUT_COLLECTION) and can_void()) or (can_midair_ground_jump())
+        RC_GANONS_CASTLE_SOT_BLOCK_FOREST_SILVER: always
+    }
+}
+
+extend region RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_FINAL_DOOR {
+    locations {
+        RC_GANONS_CASTLE_SMALL_PLATFORM_FOREST_SILVER: always
+    }
+}
+
+extend region RR_GANONS_CASTLE_FOREST_TRIAL_BEAMOS_ROOM_MIDDLE {
+    locations {
+        RC_GANONS_CASTLE_LARGE_PLATFORM_FOREST_SILVER: always
+        RC_GANONS_CASTLE_ON_TARGET_FOREST_SILVER: is_adult() or can_use(RG_HOOKSHOT)
+        RC_GANONS_CASTLE_UNDER_LEDGE_FOREST_SILVER: always
+    }
+}
+
+extend region RR_GANONS_CASTLE_LIGHT_TRIAL_BOULDER_ROOM {
+    locations {
+        RC_GANONS_CASTLE_INNER_LEFT_LIGHT_SILVER: always
+        RC_GANONS_CASTLE_INNER_RIGHT_LIGHT_SILVER: always
+        RC_GANONS_CASTLE_OUTER_LEFT_LIGHT_SILVER: always
+        RC_GANONS_CASTLE_OUTER_RIGHT_LIGHT_SILVER: always
+        RC_GANONS_CASTLE_UPPER_LIGHT_SILVER: can_use(RG_HOOKSHOT) or (is_adult() and can_ground_jump())
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_FIRE_TRIAL_FROM_BARRED {
+    locations {
+        RC_GANONS_CASTLE_MQ_JET_PLATFORM_FIRE_SILVER: (can_recoil_hover(RECOIL_HAMMER) or can_megajump(true)) and fire_timer() >= 24
+        RC_GANONS_CASTLE_MQ_LAUNCH_PLATFORM_FIRE_SILVER: (can_recoil_hover(RECOIL_HAMMER) or can_megajump(true)) and fire_timer() >= 16
+        RC_GANONS_CASTLE_MQ_NEAR_TARGET_FIRE_SILVER: (can_recoil_hover(RECOIL_HAMMER) or can_megajump(true)) and fire_timer() >= 24
+        RC_GANONS_CASTLE_MQ_ON_PILLAR_FIRE_SILVER: (can_recoil_hover(RECOIL_HAMMER) or can_megajump(true)) and ((fire_timer() >= 32 and can_use(RG_GOLDEN_GAUNTLETS)) or (fire_timer() >= 8 and trick(RT_VOIDOUT_COLLECTION)))
+        RC_GANONS_CASTLE_MQ_UNDER_PILLAR_FIRE_SILVER: (can_recoil_hover(RECOIL_HAMMER) or can_megajump(true)) and fire_timer() >= 24 and can_use(RG_GOLDEN_GAUNTLETS)
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_FIRE_TRIAL_FROM_OPEN {
+    locations {
+        RC_GANONS_CASTLE_MQ_JET_PLATFORM_FIRE_SILVER: fire_timer() >= 40
+        RC_GANONS_CASTLE_MQ_LAUNCH_PLATFORM_FIRE_SILVER: fire_timer() >= 16
+        RC_GANONS_CASTLE_MQ_NEAR_TARGET_FIRE_SILVER: fire_timer() >= 32
+        RC_GANONS_CASTLE_MQ_ON_PILLAR_FIRE_SILVER: (fire_timer() >= 48 and can_use(RG_GOLDEN_GAUNTLETS)) or (fire_timer() >= 32 and trick(RT_VOIDOUT_COLLECTION) and can_void())
+        RC_GANONS_CASTLE_MQ_UNDER_PILLAR_FIRE_SILVER: fire_timer() >= 24 and can_use(RG_GOLDEN_GAUNTLETS)
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_BARRED_DOOR {
+    locations {
+        RC_GANONS_CASTLE_MQ_GUILLOTINE_SHADOW_SILVER: (trick(RT_LENS_GANON_MQ) or can_use(RG_LENS_OF_TRUTH)) or (trick(RT_VOIDOUT_COLLECTION) and can_void() and (can_use(RG_HOVER_BOOTS) or can_megajump())) or (trick(RT_ITEM_EXTENSION) and flag(LOGIC_SHADOW_TRIAL_LATE_CHEST) and can_use(RG_LONGSHOT))
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_BEAMOS_TORCH {
+    locations {
+        RC_GANONS_CASTLE_MQ_NEAR_TORCH_SHADOW_SILVER: always
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_BOMB_FLOWER {
+    locations {
+        RC_GANONS_CASTLE_MQ_BOMB_FLOWER_SHADOW_SILVER: always
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_FAR_BEAMOS {
+    locations {
+        RC_GANONS_CASTLE_MQ_BEAMOS_PLATFORM_SHADOW_SILVER: always
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_MOVING_PLATFORM {
+    locations {
+        RC_GANONS_CASTLE_MQ_MOVING_PLATFORM_SHADOW_SILVER: always
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_WATER_TRIAL_BLOCK_ROOM {
+    locations {
+        RC_GANONS_CASTLE_MQ_AIRBORNE_WATER_SILVER: is_adult() or has(RG_POWER_BRACELET) or (trick(RT_UNINTUITIVE_JUMPS)) or (can_use(RG_HOVER_BOOTS)) or can_megajump()
+        RC_GANONS_CASTLE_MQ_IN_HOLE_WATER_SILVER: always
+        RC_GANONS_CASTLE_MQ_NOOK_WATER_SILVER: always
+        RC_GANONS_CASTLE_MQ_OVER_PIT_WATER_SILVER: always
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_WATER_TRIAL_BLOCK_ROOM_HIGH {
+    locations {
+        RC_GANONS_CASTLE_MQ_FROZEN_WATER_SILVER: (blue_fire() or (trick(RT_VISIBLE_COLLISION) and can_jumpslash()))
+        RC_GANONS_CASTLE_MQ_WATER_TRIAL_SILVER_RUPEE_RED_ICE: blue_fire()
+    }
+}
+
+extend region RR_GANONS_CASTLE_SPIRIT_TRIAL_BEAMOS_ROOM {
+    locations {
+        RC_GANONS_CASTLE_AIRBORNE_SPIRIT_SILVER: (trick(RT_GANON_SPIRIT_TRIAL_HOOKSHOT) and can_jumpslash() and has(RG_POWER_BRACELET)) or can_use(RG_HOOKSHOT)
+        RC_GANONS_CASTLE_CORNER_SPIRIT_SILVER: always
+        RC_GANONS_CASTLE_LOWER_MIDDLE_SPIRIT_SILVER: always
+        RC_GANONS_CASTLE_NEAR_BARRED_DOOR_SPIRIT_SILVER: always
+        RC_GANONS_CASTLE_NEAR_DOORMAT_SPIRIT_SILVER: always
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_BOULDER_ROOM {
+    locations {
+        RC_GTG_FIRE_WALL_SLOPE_SILVER: always
+        RC_GTG_JUMPDOWN_SLOPE_SILVER: always
+        RC_GTG_LOWER_BOULDER_SLOPE_SILVER: always
+        RC_GTG_TARGET_SLOPE_SILVER: (is_adult() and can_use(RG_HOOKSHOT)) or (is_child() and can_use(RG_LONGSHOT)) or trick(RT_GTG_WITHOUT_HOOKSHOT)
+        RC_GTG_UPPER_BOULDER_SLOPE_SILVER: always
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_CENTRAL_MAZE_RIGHT {
+    locations {
+        RC_GTG_FIRE_RING_LAVA_SILVER: trick(RT_FIRE_RINGS)
+        RC_GTG_UNDER_LEDGE_LAVA_SILVER: always
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_LAVA_ROOM {
+    locations {
+        RC_GTG_FIRE_RING_LAVA_SILVER: can_use(RG_HOVER_BOOTS) or bunny_hood() or can_use(RG_SONG_OF_TIME) or is_child()
+        RC_GTG_NEAR_BARRED_DOOR_LAVA_SILVER: always
+        RC_GTG_NEAR_SWITCH_LAVA_SILVER: always
+        RC_GTG_UNDER_LEDGE_LAVA_SILVER: can_use(RG_HOVER_BOOTS) or bunny_hood() or can_use(RG_SONG_OF_TIME) or is_child()
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_LAVA_ROOM_UPPER_LEDGE {
+    locations {
+        RC_GTG_UNDER_LEDGE_LAVA_SILVER: always
+        RC_GTG_UPPER_LAVA_SILVER: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_MQ_BOULDER_ROOM {
+    locations {
+        RC_GTG_MQ_FREEZARD_SLOPE_SILVER: always
+        RC_GTG_MQ_HIGH_SLOPE_SILVER: can_use(RG_LONGSHOT) or trick(RT_GTG_MQ_WITHOUT_HOOKSHOT) or (trick(RT_GTG_MQ_WITH_HOOKSHOT) and is_adult() and can_jumpslash() and can_use(RG_HOOKSHOT))
+        RC_GTG_MQ_ICICLES_SLOPE_SILVER: always
+        RC_GTG_MQ_JUMPDOWN_SLOPE_SILVER: always
+        RC_GTG_MQ_PIT_SLOPE_SILVER: always
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_MQ_FURTHEST_PLATFORM {
+    locations {
+        RC_GTG_MQ_FAR_LAVA_SILVER: always
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_MQ_LEDGE_SIDE_PLATFORMS {
+    locations {
+        RC_GTG_MQ_MIDDLE_LAVA_SILVER: always
+        RC_GTG_MQ_NEAR_SWITCH_LAVA_SILVER: always
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_MQ_PLATFORMS_UNLIT_TORCH {
+    locations {
+        RC_GTG_MQ_NEAR_BARRED_DOOR_LAVA_SILVER: has_fire_source()
+        RC_GTG_MQ_NEAR_LIT_TORCH_LAVA_SILVER: has_fire_source()
+        RC_GTG_MQ_NEAR_MAZE_LEDGE_LAVA_SILVER: has_fire_source()
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_MQ_TORCH_SIDE_PLATFORMS {
+    locations {
+        RC_GTG_MQ_NEAR_BARRED_DOOR_LAVA_SILVER: always
+        RC_GTG_MQ_NEAR_LIT_TORCH_LAVA_SILVER: always
+        RC_GTG_MQ_NEAR_MAZE_LEDGE_LAVA_SILVER: always
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_MQ_UNDERWATER {
+    locations {
+        RC_GTG_MQ_BACK_WATER_SILVER: has_fire_source() and has(RG_BRONZE_SCALE) and can_use(RG_IRON_BOOTS) and water_timer() >= 24 and take_damage()
+        RC_GTG_MQ_FRONT_WATER_SILVER: has_fire_source() and has(RG_BRONZE_SCALE) and can_use(RG_IRON_BOOTS) and water_timer() >= 24 and take_damage()
+        RC_GTG_MQ_MIDDLE_WATER_SILVER: has_fire_source() and has(RG_BRONZE_SCALE) and can_use(RG_IRON_BOOTS) and water_timer() >= 24 and take_damage()
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_UNDERWATER {
+    locations {
+        RC_GTG_ABOVE_TARGET_WATER_SILVER: can_use(RG_SONG_OF_TIME) and ((can_use(RG_IRON_BOOTS) and water_timer() >= 16) or has(RG_GOLDEN_SCALE))
+        RC_GTG_LEFT_WATER_SILVER: can_use(RG_SONG_OF_TIME) and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_GTG_MIDDLE_WATER_SILVER: can_use(RG_SONG_OF_TIME) and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_GTG_RIGHT_WATER_SILVER: can_use(RG_SONG_OF_TIME) and can_use(RG_IRON_BOOTS) and water_timer() >= 16
+        RC_GTG_UNDER_TARGET_WATER_SILVER: can_use(RG_SONG_OF_TIME) and can_use(RG_IRON_BOOTS) and (has(RG_BRONZE_SCALE) or can_use(RG_HOOKSHOT)) and water_timer() >= 16
+    }
+}
+
+extend region RR_ICE_CAVERN_BLOCK_ROOM {
+    locations {
+        RC_ICE_CAVERN_LOWER_BLOCK_SILVER: always
+        RC_ICE_CAVERN_NEAR_BLOCK_SILVER: is_adult() or has(RG_POWER_BRACELET) or can_use(RG_HOVER_BOOTS) or bunny_hood()
+        RC_ICE_CAVERN_NEAR_GS_BLOCK_SILVER: is_adult() or has(RG_POWER_BRACELET) or can_use(RG_HOVER_BOOTS) or bunny_hood()
+    }
+}
+
+extend region RR_ICE_CAVERN_FIRE_NOOK {
+    locations {
+        RC_ICE_CAVERN_NEAR_FIRE_BLOCK_SILVER: always
+    }
+}
+
+extend region RR_ICE_CAVERN_HUB {
+    locations {
+        RC_ICE_CAVERN_AIRBORNE_BLADE_SILVER: is_adult()
+        RC_ICE_CAVERN_E_INNER_BLADE_SILVER: always
+        RC_ICE_CAVERN_ICICLES_BLADE_SILVER: can_clear_stalagmite()
+        RC_ICE_CAVERN_OUTER_BLADE_SILVER: always
+        RC_ICE_CAVERN_W_INNER_BLADE_SILVER: always
+    }
+}
+
+extend region RR_ICE_CAVERN_ICE_NOOK {
+    locations {
+        RC_ICE_CAVERN_FROZEN_BLOCK_SILVER: blue_fire() or (trick(RT_VISIBLE_COLLISION) and can_jumpslash())
+        RC_ICE_CAVERN_SILVER_RUPEE_RED_ICE: blue_fire()
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_FLOOR_SPIKES_ROOM {
+    locations {
+        RC_SHADOW_E_TARGET_SPIKES_SILVER: can_use(RG_HOOKSHOT)
+        RC_SHADOW_FLOOR_SPIKES_SILVER: always
+        RC_SHADOW_W_TARGET_SPIKES_SILVER: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_FLOOR_SPIKES_S_DOOR {
+    locations {
+        RC_SHADOW_E_TARGET_SPIKES_SILVER: can_use(RG_LONGSHOT)
+        RC_SHADOW_W_TARGET_SPIKES_SILVER: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_FLOOR_SPIKES_W_DOOR {
+    locations {
+        RC_SHADOW_W_TARGET_SPIKES_SILVER: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_LOWER_HUGE_PIT {
+    locations {
+        RC_SHADOW_BEAMOS_PIT_SILVER: always
+        RC_SHADOW_E_PIT_SILVER: always
+        RC_SHADOW_N_PIT_SILVER: always
+        RC_SHADOW_S_PIT_SILVER: always
+        RC_SHADOW_W_PIT_SILVER: always
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_B2_SPINNING_BLADE_ROOM {
+    locations {
+        RC_SHADOW_MQ_NE_UNDER_BLADE_SILVER: always
+        RC_SHADOW_MQ_N_NOOK_BLADE_SILVER: can_pass(RE_BIG_SKULLTULA)
+        RC_SHADOW_MQ_S_UNDER_BLADE_SILVER: always
+        RC_SHADOW_MQ_TALL_BLOCK_BLADE_SILVER: can_use(RG_HOOKSHOT) or (can_megajump() and effective_health() > 12) or (is_adult() and (can_use(RG_HOVER_BOOTS) or can_ground_jump() or bunny_hood()))
+        RC_SHADOW_MQ_W_NOOK_SILVER: can_pass(RE_BIG_SKULLTULA)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_ROOM {
+    locations {
+        RC_SHADOW_MQ_CENTRAL_SPIKES_SILVER: always
+        RC_SHADOW_MQ_CENTRAL_TARGET_SPIKES_SILVER: (is_adult() and can_use(RG_HOOKSHOT)) or (is_child() and can_use(RG_LONGSHOT))
+        RC_SHADOW_MQ_E_TARGET_SPIKES_SILVER: can_use(RG_HOOKSHOT)
+        RC_SHADOW_MQ_INSIDE_SPIKES_SILVER: can_use(RG_HOVER_BOOTS) or can_use(RG_GORON_TUNIC) or take_damage()
+        RC_SHADOW_MQ_N_TARGET_SPIKES_SILVER: (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and can_use(RG_LONGSHOT)
+        RC_SHADOW_MQ_S_TARGET_SPIKES_SILVER: (is_adult() and can_use(RG_HOOKSHOT)) or (is_child() and can_use(RG_LONGSHOT))
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_S_DOOR {
+    locations {
+        RC_SHADOW_MQ_E_TARGET_SPIKES_SILVER: can_use(RG_LONGSHOT)
+        RC_SHADOW_MQ_W_TARGET_SPIKES_SILVER: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_FLOOR_SPIKES_W_DOOR {
+    locations {
+        RC_SHADOW_MQ_CENTRAL_TARGET_SPIKES_SILVER: can_use(RG_LONGSHOT)
+        RC_SHADOW_MQ_N_TARGET_SPIKES_SILVER: (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and can_use(RG_LONGSHOT)
+        RC_SHADOW_MQ_S_TARGET_SPIKES_SILVER: can_use(RG_LONGSHOT)
+        RC_SHADOW_MQ_W_TARGET_SPIKES_SILVER: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_ROOM {
+    locations {
+        RC_SHADOW_MQ_E_INVISIBLE_BLADE_SILVER: trick(RT_LENS_SHADOW_MQ_INVISIBLE_BLADES) or is_child() or can_use(RG_NAYRUS_LOVE) or can_use(RG_LENS_OF_TRUTH)
+        RC_SHADOW_MQ_INNER_NE_INVISIBLE_BLADE_SILVER: trick(RT_LENS_SHADOW_MQ_INVISIBLE_BLADES) or is_child() or can_use(RG_NAYRUS_LOVE) or can_use(RG_LENS_OF_TRUTH)
+        RC_SHADOW_MQ_NW_INVISIBLE_BLADE_SILVER: trick(RT_LENS_SHADOW_MQ_INVISIBLE_BLADES) or is_child() or can_use(RG_NAYRUS_LOVE) or can_use(RG_LENS_OF_TRUTH)
+        RC_SHADOW_MQ_OUTER_NE_INVISIBLE_BLADE_SILVER: trick(RT_LENS_SHADOW_MQ_INVISIBLE_BLADES) or is_child() or can_use(RG_NAYRUS_LOVE) or can_use(RG_LENS_OF_TRUTH)
+        RC_SHADOW_MQ_OUTSIDE_CIRCLE_INVISIBLE_BLADE_SILVER: trick(RT_LENS_SHADOW_MQ_INVISIBLE_BLADES) or is_child() or can_use(RG_NAYRUS_LOVE) or can_use(RG_LENS_OF_TRUTH)
+        RC_SHADOW_MQ_SE_INVISIBLE_BLADE_SILVER: trick(RT_LENS_SHADOW_MQ_INVISIBLE_BLADES) or is_child() or can_use(RG_NAYRUS_LOVE) or can_use(RG_LENS_OF_TRUTH)
+        RC_SHADOW_MQ_SOT_BLOCK_INVISIBLE_BLADE_SILVER: can_use(RG_SONG_OF_TIME) or (trick(RT_SHADOW_MQ_INVISIBLE_BLADES) and effective_health() > 8)
+        RC_SHADOW_MQ_SW_INVISIBLE_BLADE_SILVER: trick(RT_LENS_SHADOW_MQ_INVISIBLE_BLADES) or is_child() or can_use(RG_NAYRUS_LOVE) or can_use(RG_LENS_OF_TRUTH)
+        RC_SHADOW_MQ_S_INVISIBLE_BLADE_SILVER: trick(RT_LENS_SHADOW_MQ_INVISIBLE_BLADES) or is_child() or can_use(RG_NAYRUS_LOVE) or can_use(RG_LENS_OF_TRUTH)
+        RC_SHADOW_MQ_W_INVISIBLE_BLADE_SILVER: trick(RT_LENS_SHADOW_MQ_INVISIBLE_BLADES) or is_child() or can_use(RG_NAYRUS_LOVE) or can_use(RG_LENS_OF_TRUTH)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_LOWER_HUGE_PIT {
+    locations {
+        RC_SHADOW_MQ_E_PIT_SILVER: always
+        RC_SHADOW_MQ_HIGHEST_PIT_SILVER: has(RG_LONGSHOT)
+        RC_SHADOW_MQ_HIGH_PIT_SILVER: has(RG_LONGSHOT)
+        RC_SHADOW_MQ_N_PIT_SILVER: always
+        RC_SHADOW_MQ_W_PIT_SILVER: always
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_SPIKES_CORNER_PLATFORM {
+    locations {
+        RC_SHADOW_MQ_PLATFORM_SPIKES_SILVER: always
+        RC_SHADOW_MQ_W_AIRBORNE_SPIKES_SILVER: always
+        RC_SHADOW_MQ_W_TARGET_SPIKES_SILVER: (bunny_hovers() and can_jumpslash()) or can_use(RG_HOOKSHOT) or can_recoil_hover(RECOIL_SWORD_AND_SHIELD) or can_megajump(not can_jumpslash())
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_SPIKES_DOOR_PLATFORM {
+    locations {
+        RC_SHADOW_MQ_CENTRAL_TARGET_SPIKES_SILVER: can_use(RG_HOOKSHOT)
+        RC_SHADOW_MQ_E_AIRBORNE_SPIKES_SILVER: can_use(RG_HOVER_BOOTS) or can_jumpslash() or bunny_hood()
+        RC_SHADOW_MQ_E_TARGET_SPIKES_SILVER: (bunny_hovers() and can_jumpslash()) or can_use(RG_LONGSHOT) or can_recoil_hover(RECOIL_HAMMER) or can_megajump(not can_jumpslash())
+        RC_SHADOW_MQ_W_AIRBORNE_SPIKES_SILVER: always
+        RC_SHADOW_MQ_W_TARGET_SPIKES_SILVER: can_use(RG_LONGSHOT) or ((can_megajump() or can_bomb_recoil_hover()) and can_jumpslash()) or can_melee_recoil_hover(RECOIL_HAMMER)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_SPIKES_GLASS_PLATFORMS {
+    locations {
+        RC_SHADOW_MQ_CENTRAL_TARGET_SPIKES_SILVER: can_use(RG_HOOKSHOT)
+        RC_SHADOW_MQ_E_AIRBORNE_SPIKES_SILVER: (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and can_use(RG_HOOKSHOT)
+        RC_SHADOW_MQ_N_TARGET_SPIKES_SILVER: (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and can_use(RG_HOOKSHOT)
+        RC_SHADOW_MQ_S_TARGET_SPIKES_SILVER: can_use(RG_HOOKSHOT)
+        RC_SHADOW_MQ_W_AIRBORNE_SPIKES_SILVER: (trick(RT_LENS_SHADOW_MQ) or can_use(RG_LENS_OF_TRUTH)) and can_use(RG_HOOKSHOT)
+        RC_SHADOW_MQ_W_TARGET_SPIKES_SILVER: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_SPIKES_CORNER_PLATFORM {
+    locations {
+        RC_SHADOW_AIRBORNE_SPIKES_SILVER: trick(RT_LENS_SHADOW) or can_use(RG_LENS_OF_TRUTH) or can_use(RG_HOVER_BOOTS) or can_use(RG_GORON_TUNIC) or take_damage()
+        RC_SHADOW_PLATFORM_SPIKES_SILVER: always
+        RC_SHADOW_W_TARGET_SPIKES_SILVER: (bunny_hovers() and can_jumpslash()) or can_use(RG_HOOKSHOT) or can_recoil_hover(RECOIL_SWORD_AND_SHIELD) or can_megajump(not can_jumpslash())
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_SPIKES_DOOR_PLATFORM {
+    locations {
+        RC_SHADOW_AIRBORNE_SPIKES_SILVER: always
+        RC_SHADOW_E_TARGET_SPIKES_SILVER: (bunny_hovers() and can_jumpslash()) or can_use(RG_LONGSHOT) or can_recoil_hover(RECOIL_HAMMER) or can_megajump(not can_jumpslash())
+        RC_SHADOW_W_TARGET_SPIKES_SILVER: can_use(RG_LONGSHOT) or ((can_megajump() or can_bomb_recoil_hover()) and can_jumpslash()) or can_melee_recoil_hover(RECOIL_HAMMER)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_SPINNING_BLADES {
+    locations {
+        RC_SHADOW_N_NOOK_BLADE_SILVER: always
+        RC_SHADOW_N_UNDER_BLADE_SILVER: always
+        RC_SHADOW_S_UNDER_BLADE_SILVER: always
+        RC_SHADOW_TALL_BLOCK_BLADE_SILVER: (is_adult() and (can_use(RG_HOVER_BOOTS) or can_ground_jump() or bunny_hood())) or can_use(RG_HOOKSHOT) or (can_megajump() and effective_health() > 12)
+        RC_SHADOW_W_NOOK_BLADE_SILVER: always
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_ABOVE_BOULDERS {
+    locations {
+        RC_SPIRIT_AIRBORNE_BOULDER_SILVER: can_use(RG_HOVER_BOOTS) or can_jumpslash() or can_use(RG_LONGSHOT) or bunny_hood()
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_BOULDERS {
+    locations {
+        RC_SPIRIT_NE_BOULDER_SILVER: always
+        RC_SPIRIT_NW_BOULDER_SILVER: always
+        RC_SPIRIT_SE_BOULDER_SILVER: always
+        RC_SPIRIT_SW_BOULDER_SILVER: always
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_BEHIND_GEYSER {
+    locations {
+        RC_SPIRIT_MQ_CORNER_LOBBY_SILVER: always
+        RC_SPIRIT_MQ_JET_LOBBY_SILVER: can_use(RG_MEGATON_HAMMER)
+        RC_SPIRIT_MQ_STAIRS_LOBBY_SILVER: always
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_BIG_WALL_BASE {
+    locations {
+        RC_SPIRIT_MQ_HIGHEST_WALL_SILVER: can_use(RG_LONGSHOT) or (has(RG_CLIMB) and (can_kill(RE_KEESE) or can_use(RG_SKULL_MASK)))
+        RC_SPIRIT_MQ_LOWEST_WALL_SILVER: can_use(RG_HOOKSHOT) or has(RG_CLIMB)
+        RC_SPIRIT_MQ_MIDDLE_WALL_SILVER: can_use(RG_LONGSHOT) or (has(RG_CLIMB) and (can_kill(RE_KEESE) or can_use(RG_SKULL_MASK)))
+        RC_SPIRIT_MQ_MID_HIGH_WALL_SILVER: can_use(RG_HOOKSHOT) or has(RG_CLIMB)
+        RC_SPIRIT_MQ_MID_LOW_WALL_SILVER: can_use(RG_HOOKSHOT) or has(RG_CLIMB)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_BIG_WALL_UPPER {
+    locations {
+        RC_SPIRIT_MQ_HIGHEST_WALL_SILVER: always
+        RC_SPIRIT_MQ_LOWEST_WALL_SILVER: always
+        RC_SPIRIT_MQ_MIDDLE_WALL_SILVER: always
+        RC_SPIRIT_MQ_MID_HIGH_WALL_SILVER: always
+        RC_SPIRIT_MQ_MID_LOW_WALL_SILVER: always
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_FOYER {
+    locations {
+        RC_SPIRIT_MQ_E_BOULDER_LOBBY_SILVER: blast_or_smash()
+        RC_SPIRIT_MQ_W_BOULDER_LOBBY_SILVER: blast_or_smash()
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_RUPEE_BRIDGE_NORTH {
+    locations {
+        RC_SPIRIT_E_HIGH_CHILD_SILVER: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
+        RC_SPIRIT_E_LOW_CHILD_SILVER: always
+        RC_SPIRIT_TORCH_CHILD_SILVER: always
+        RC_SPIRIT_W_HIGH_CHILD_SILVER: has(RG_CLIMB) or can_use(RG_HOOKSHOT)
+        RC_SPIRIT_W_LOW_CHILD_SILVER: always
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_SUN_BLOCK_CHEST_LEDGE {
+    locations {
+        RC_SPIRIT_NEAR_CHEST_SUN_SILVER: spirit_shared(RR_SPIRIT_TEMPLE_SUN_BLOCK_CHEST_LEDGE, always, true)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_SUN_BLOCK_ROOM {
+    locations {
+        RC_SPIRIT_AIRBORNE_SUN_SILVER: always
+        RC_SPIRIT_MID_PLATFORM_SUN_SILVER: always
+        RC_SPIRIT_NEAR_DOOR_SUN_SILVER: always
+        RC_SPIRIT_NEAR_LIGHT_SUN_SILVER: always
+    }
+}
+
+

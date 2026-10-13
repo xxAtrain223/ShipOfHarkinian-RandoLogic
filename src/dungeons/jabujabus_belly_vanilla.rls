@@ -16,13 +16,18 @@ region RR_JABU_JABUS_BELLY_LIFT_ROOM {
         RR_JABU_JABUS_BELLY_BEGINNING:               always
         RR_JABU_JABUS_BELLY_HOLES_ROOM:              always
         RR_JABU_JABUS_BELLY_WATER_SWITCH_ROOM_SOUTH: always
-        RR_JABU_JABUS_BELLY_NEAR_BOSS_ROOM:          (flag(LOGIC_JABU_LOWERED_PATH) or (trick(RT_JABU_BOSS_HOVER) and can_use(RG_HOVER_BOOTS))) and has(RG_POWER_BRACELET)
+        RR_JABU_JABUS_BELLY_LIFT_ROOM_LEDGE:         flag(LOGIC_JABU_LOWERED_PATH) or can_use(RG_HOVER_BOOTS) or can_midair_damage_boost() or can_megajump() or
+                                                     (bunny_hood() and trick(RT_UNINTUITIVE_JUMPS))
     }
 }
 
 region RR_JABU_JABUS_BELLY_HOLES_ROOM {
     name: "Jabu Jabus Belly Holes Room"
     scene: SCENE_JABU_JABU
+
+    events {
+        LOGIC_JABU_RUTO_IN_B1: always
+    }
 
     exits {
         RR_JABU_JABUS_BELLY_LIFT_ROOM:              always
@@ -54,15 +59,25 @@ region RR_JABU_JABUS_BELLY_HOLES_LOWER_DOOR_LEDGE {
 }
 
 region RR_JABU_JABUS_BELLY_B1_JIGGLY {
-    name: "Jabu Jabus Belly B1 Cube"
+    name: "Jabu Jabus Belly B1 Jiggly"
     scene: SCENE_JABU_JABU
-
-    events {
-        LOGIC_FAIRY_ACCESS: can_use(RG_BOOMERANG) or (can_break_pots() and trick(RT_JABU_B1_CUBE_HOVER) and can_use(RG_HOVER_BOOTS))
-    }
 
     exits {
         RR_JABU_JABUS_BELLY_HOLES_BASEMENT: always
+        RR_JABU_JABUS_BELLY_B1_JIGGLY_POTS: ((trick(RT_JABU_B1_CUBE_HOVER) or bunny_hood()) and can_use(RG_HOVER_BOOTS)) or can_megajump() or can_bomb_recoil_hover()
+    }
+}
+
+region RR_JABU_JABUS_BELLY_B1_JIGGLY_POTS {
+    name: "Jabu Jabus Belly B1 Jiggly Pots"
+    scene: SCENE_JABU_JABU
+
+    events {
+        LOGIC_FAIRY_ACCESS: can_break_pots()
+    }
+
+    exits {
+        RR_JABU_JABUS_BELLY_B1_JIGGLY: (has(RG_BRONZE_SCALE) and has(RG_CLIMB)) or ((trick(RT_JABU_B1_CUBE_HOVER) or bunny_hood()) and can_use(RG_HOVER_BOOTS)) or can_megajump() or can_bomb_recoil_hover()
     }
 }
 
@@ -71,14 +86,15 @@ region RR_JABU_JABUS_BELLY_WATER_SWITCH_ROOM_NORTH {
     scene: SCENE_JABU_JABU
 
     events {
-        LOGIC_JABU_RUTO_IN_1F: (is_adult() or has(RG_BRONZE_SCALE)) and has(RG_SPEAK_ZORA) and has(RG_POWER_BRACELET)
+        # RANDOTODO check how doorsanity handles ruto
+        LOGIC_JABU_RUTO_IN_1F: flag(LOGIC_JABU_RUTO_IN_B1) and (is_adult() or has(RG_BRONZE_SCALE)) and has(RG_SPEAK_ZORA) and has(RG_POWER_BRACELET)
     }
 
     exits {
         # there's tricks for getting here with bunny-jumps or just side-hops
-        RR_JABU_JABUS_BELLY_WATER_SWITCH_ROOM_LEDGE: (has(RG_BRONZE_SCALE) or can_use(RG_HOVER_BOOTS)) and has(RG_CLIMB)
-        RR_JABU_JABUS_BELLY_WATER_SWITCH_ROOM_SOUTH: is_adult() or has(RG_BRONZE_SCALE)
-        RR_JABU_JABUS_BELLY_HOLES_BASEMENT:          always
+        RR_JABU_JABUS_BELLY_WATER_SWITCH_ROOM_LEDGE: (has(RG_BRONZE_SCALE) or can_use(RG_HOVER_BOOTS) or can_megajump()) and has(RG_CLIMB)
+        RR_JABU_JABUS_BELLY_WATER_SWITCH_ROOM_SOUTH: is_adult() or has(RG_BRONZE_SCALE) or can_bunny_mega_jumpslash()
+        RR_JABU_JABUS_BELLY_HOLES_LOWER_DOOR_LEDGE:  always
     }
 }
 
@@ -87,8 +103,8 @@ region RR_JABU_JABUS_BELLY_WATER_SWITCH_ROOM_SOUTH {
     scene: SCENE_JABU_JABU
 
     exits {
-        RR_JABU_JABUS_BELLY_WATER_SWITCH_ROOM_NORTH: is_adult() or has(RG_BRONZE_SCALE)
-        RR_JABU_JABUS_BELLY_WATER_SWITCH_ROOM_LEDGE: (has(RG_BRONZE_SCALE) or can_use(RG_HOVER_BOOTS)) and has(RG_CLIMB)
+        RR_JABU_JABUS_BELLY_WATER_SWITCH_ROOM_NORTH: is_adult() or has(RG_BRONZE_SCALE) or can_bunny_mega_jumpslash()
+        RR_JABU_JABUS_BELLY_WATER_SWITCH_ROOM_LEDGE: (has(RG_BRONZE_SCALE) or can_use(RG_HOVER_BOOTS) or can_megajump()) and has(RG_CLIMB)
         # Adult can barely reach it with BGS, but it's finnicky enough to be a trick, and too niche to be worth adding yet (only relevant in doorsanity)
         RR_JABU_JABUS_BELLY_LIFT_ROOM:               can_hit_switch(ED_BOMB_THROW)
     }
@@ -139,7 +155,7 @@ region RR_JABU_JABUS_BELLY_FORK_WEST {
 
 # this handles spawning in tentacle
 region RR_JABU_JABUS_BELLY_TO_FORK_NORTH_WEST {
-    name: "Jabu Jabus Belly To Fork West"
+    name: "Jabu Jabus Belly To Fork North West"
     scene: SCENE_JABU_JABU
 
     exits {
@@ -255,8 +271,18 @@ region RR_JABU_JABUS_BELLY_JIGGLIES_ROOM {
     scene: SCENE_JABU_JABU
 
     exits {
-        RR_JABU_JABUS_BELLY_ABOVE_BIGOCTO: always
-        RR_JABU_JABUS_BELLY_LIFT_UPPER:    can_use(RG_BOOMERANG) or (is_adult() and can_ground_jump())
+        RR_JABU_JABUS_BELLY_ABOVE_BIGOCTO:  always
+        RR_JABU_JABUS_BELLY_JIGGLIES_LEDGE: can_use(RG_BOOMERANG) or (is_adult() and can_ground_jump()) or can_bomb_recoil_hover() or can_megajump(true)
+    }
+}
+
+region RR_JABU_JABUS_BELLY_JIGGLIES_LEDGE {
+    name: "Jabu Jabus Belly Jigglies Ledge"
+    scene: SCENE_JABU_JABU
+
+    exits {
+        RR_JABU_JABUS_BELLY_JIGGLIES_ROOM: always
+        RR_JABU_JABUS_BELLY_LIFT_UPPER:    always
     }
 }
 
@@ -274,14 +300,25 @@ region RR_JABU_JABUS_BELLY_LIFT_UPPER {
     }
 }
 
+region RR_JABU_JABUS_BELLY_LIFT_ROOM_LEDGE {
+    name: "Jabu Jabus Belly Lift Room Ledge"
+    scene: SCENE_JABU_JABU
+
+    exits {
+        RR_JABU_JABUS_BELLY_LIFT_ROOM:      always
+        # assumes access to the previous room to get the box
+        RR_JABU_JABUS_BELLY_NEAR_BOSS_ROOM: (flag(LOGIC_JABU_LOWERED_PATH) or ((trick(RT_JABU_BOSS_HOVER) or bunny_hood()) and can_use(RG_HOVER_BOOTS))) and has(RG_POWER_BRACELET)
+    }
+}
+
 region RR_JABU_JABUS_BELLY_NEAR_BOSS_ROOM {
     name: "Jabu Jabus Belly Near Boss Room"
     scene: SCENE_JABU_JABU
 
     exits {
-        RR_JABU_JABUS_BELLY_LIFT_ROOM:     always
-        RR_JABU_JABUS_BELLY_BOSS_ENTRYWAY: (has(RG_CLIMB) and can_use(RG_BOOMERANG)) or
-                                           (trick(RT_JABU_NEAR_BOSS_RANGED) and (can_use(has(RG_CLIMB) ? RG_HOOKSHOT : RG_LONGSHOT) or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT))) or
-                                           (trick(RT_JABU_NEAR_BOSS_EXPLOSIVES) and (can_use(RG_BOMBCHU_5) or (can_use(RG_HOVER_BOOTS) and can_use(RG_BOMB_BAG) and has(RG_CLIMB))))
+        RR_JABU_JABUS_BELLY_LIFT_ROOM_LEDGE: always
+        RR_JABU_JABUS_BELLY_BOSS_ENTRYWAY:   (has(RG_CLIMB) and can_use(RG_BOOMERANG)) or
+                                             (trick(RT_JABU_NEAR_BOSS_RANGED) and (can_use(has(RG_CLIMB) ? RG_HOOKSHOT : RG_LONGSHOT) or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT))) or
+                                             (trick(RT_JABU_NEAR_BOSS_EXPLOSIVES) and (can_use(RG_BOMBCHU_5) or (can_use(RG_HOVER_BOOTS) and can_use(RG_BOMB_BAG) and has(RG_CLIMB))))
     }
 }

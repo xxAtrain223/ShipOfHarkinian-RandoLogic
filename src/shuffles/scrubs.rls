@@ -29,13 +29,14 @@ extend region RR_DODONGOS_CAVERN_2F_SIDE_ROOM {
 
 extend region RR_DODONGOS_CAVERN_MQ_LOBBY {
     locations {
-        RC_DODONGOS_CAVERN_MQ_DEKU_SCRUB_LOBBY_REAR:  can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
-        RC_DODONGOS_CAVERN_MQ_DEKU_SCRUB_LOBBY_FRONT: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_DODONGOS_CAVERN_MQ_DEKU_SCRUB_LOBBY_REAR:  (can_stun_deku() or (has(RG_GORONS_BRACELET) and bunny_hood())) and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
+        RC_DODONGOS_CAVERN_MQ_DEKU_SCRUB_LOBBY_FRONT: (can_stun_deku() or (has(RG_GORONS_BRACELET) and bunny_hood())) and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
     }
 }
 
 extend region RR_DODONGOS_CAVERN_MQ_STAIRS_UPPER {
     locations {
+        # Jump from vines can reach stairs without climb
         RC_DODONGOS_CAVERN_MQ_DEKU_SCRUB_STAIRCASE: can_stun_deku() and has(RG_SPEAK_DEKU) and check_price() <= wallet_capacity()
     }
 }

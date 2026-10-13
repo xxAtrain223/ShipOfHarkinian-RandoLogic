@@ -4,7 +4,8 @@ region RR_WASTELAND_NEAR_FORTRESS {
 
     exits {
         RR_GF_OUTSIDE_GATE:   always
-        RR_HAUNTED_WASTELAND: can_use(RG_HOVER_BOOTS) or can_use(RG_LONGSHOT) or trick(RT_HW_CROSSING)
+        RR_HAUNTED_WASTELAND: can_use(RG_HOVER_BOOTS) or can_use(RG_LONGSHOT) or trick(RT_HW_CROSSING) or (trick(RT_HW_BUNNY_CROSSING) and
+                               bunny_hood())
     }
 }
 
@@ -15,13 +16,14 @@ region RR_HAUNTED_WASTELAND {
     events {
         LOGIC_FAIRY_ACCESS:    can_break_pots()
         LOGIC_NUT_ACCESS:      can_break_pots()
-        LOGIC_CARPET_MERCHANT: has(RG_ADULT_WALLET) and check_price(RC_WASTELAND_BOMBCHU_SALESMAN) <= wallet_capacity() and 
-                               (can_jumpslash() or can_use(RG_HOVER_BOOTS))
+        LOGIC_CARPET_MERCHANT: has(RG_ADULT_WALLET) and check_price(RC_WASTELAND_BOMBCHU_SALESMAN) <= wallet_capacity() and (can_jumpslash() or
+                                can_use(RG_HOVER_BOOTS) or bunny_hood())
     }
 
     exits {
         RR_WASTELAND_NEAR_COLOSSUS: trick(RT_LENS_HW) or can_use(RG_LENS_OF_TRUTH)
-        RR_WASTELAND_NEAR_FORTRESS: can_use(RG_HOVER_BOOTS) or can_use(RG_LONGSHOT) or trick(RT_HW_CROSSING)
+        RR_WASTELAND_NEAR_FORTRESS: can_use(RG_HOVER_BOOTS) or can_use(RG_LONGSHOT) or trick(RT_HW_CROSSING) or (trick(RT_HW_BUNNY_CROSSING) and
+                                     bunny_hood())
     }
 }
 

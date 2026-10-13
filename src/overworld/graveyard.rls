@@ -3,13 +3,15 @@ region RR_THE_GRAVEYARD {
     scene: SCENE_GRAVEYARD
 
     events {
-        LOGIC_FAIRY_ACCESS:      (at_day() and can_use(RG_STICKS)) or (is_child() and can_use(RG_MAGIC_BEAN) and can_use(RG_SONG_OF_STORMS))
-        LOGIC_BUG_ACCESS:        has(RG_POWER_BRACELET)
-        LOGIC_BORROW_BUNNY_HOOD: is_child() and at_day() and flag(LOGIC_BORROW_SPOOKY_MASK) and has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN)
+        LOGIC_PLANT_GRAVEYARD_BEAN: can_plant_bean(RG_GRAVEYARD_BEAN_SOUL)
+        LOGIC_FAIRY_ACCESS:         (at_day() and can_use(RG_STICKS)) or (is_child() and bean_planted(LOGIC_PLANT_GRAVEYARD_BEAN) and
+                                     can_use(RG_SONG_OF_STORMS))
+        LOGIC_BUG_ACCESS:           has(RG_POWER_BRACELET)
+        LOGIC_SOLD_SPOOKY_MASK:     is_child() and at_day() and has(RG_SPOOKY_MASK) and has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN)
     }
 
     locations {
-        RC_GRAVEYARD_FREESTANDING_POH:        (((is_adult() and can_plant_bean(RR_THE_GRAVEYARD, RG_GRAVEYARD_BEAN_SOUL)) or can_use(RG_LONGSHOT)) and can_break_crates()) or
+        RC_GRAVEYARD_FREESTANDING_POH:        (((is_adult() and bean_planted(LOGIC_PLANT_GRAVEYARD_BEAN)) or can_use(RG_LONGSHOT)) and can_break_crates()) or
                                               (trick(RT_GY_POH) and can_use(RG_BOOMERANG))
         RC_GRAVEYARD_DAMPE_GRAVEDIGGING_TOUR: has(RG_CHILD_WALLET) and has(RG_SPEAK_HYLIAN) and is_child() and at_night()
     }
@@ -19,7 +21,7 @@ region RR_THE_GRAVEYARD {
         RR_GRAVEYARD_COMPOSERS_GRAVE:   can_use(RG_ZELDAS_LULLABY)
         RR_GRAVEYARD_HEART_PIECE_GRAVE: (is_adult() or at_night()) and has(RG_POWER_BRACELET)
         RR_GRAVEYARD_DAMPES_GRAVE:      is_adult() and has(RG_POWER_BRACELET)
-        RR_GRAVEYARD_DAMPES_HOUSE:      is_adult() and can_open_overworld_door(RG_DAMPES_HUT_KEY)
+        RR_GRAVEYARD_DAMPES_HOUSE:      is_adult() and has(RG_DAMPES_HUT_KEY)
         RR_KAKARIKO_VILLAGE:            always
         RR_GRAVEYARD_WARP_PAD_REGION:   never
     }
@@ -75,7 +77,7 @@ region RR_GRAVEYARD_DAMPES_GRAVE {
     }
 
     locations {
-        RC_GRAVEYARD_DAMPE_RACE_FREESTANDING_POH: (is_adult() or trick(RT_GY_CHILD_DAMPE_RACE_POH)) and has(RG_SPEAK_HYLIAN)
+        RC_GRAVEYARD_DAMPE_RACE_FREESTANDING_POH: (is_adult() or trick(RT_GY_CHILD_DAMPE_RACE_POH) or bunny_hood()) and has(RG_SPEAK_HYLIAN)
     }
 
     exits {

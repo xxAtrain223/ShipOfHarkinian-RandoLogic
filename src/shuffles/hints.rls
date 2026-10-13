@@ -12,11 +12,27 @@ extend region RR_DODONGOS_CAVERN_MQ_GOSSIP_STONE {
     }
 }
 
+# dungeons/fire_temple
+
+extend region RR_FIRE_TEMPLE_BOSS_ENTRYWAY {
+    locations {
+        RC_FIRE_BOSS_KEY_HINT: always
+    }
+}
+
+# dungeons/forest_temple
+
+extend region RR_FOREST_TEMPLE_BOSS_ENTRYWAY {
+    locations {
+        RC_FOREST_BOSS_KEY_HINT: always
+    }
+}
+
 # dungeons/ganons_castle
 
 extend region RR_GANONS_TOWER_GANONDORF_LAIR {
     locations {
-        RC_GANONDORF_HINT: has_boss_soul(RG_GANON_SOUL)
+        RC_GANONDORF_HINT: has(RG_GANON_SOUL)
     }
 }
 
@@ -29,6 +45,20 @@ extend region RR_GANONS_CASTLE_MAIN {
 extend region RR_GANONS_CASTLE_MQ_MAIN {
     locations {
         RC_SHEIK_HINT_MQ_GC: has(RG_SPEAK_HYLIAN)
+    }
+}
+
+# dungeons/water_temple
+
+extend region RR_WATER_TEMPLE_TRAPPED_SLOPE {
+    locations {
+        RC_WATER_BOSS_KEY_HINT: always
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_BOSS_DOOR {
+    locations {
+        RC_WATER_BOSS_KEY_HINT: always
     }
 }
 
@@ -162,7 +192,21 @@ extend region RR_KAK_OPEN_GROTTO {
 
 # overworld/kokiri_forest
 
+extend region RR_KOKIRI_FOREST {
+    locations {
+        # technically bad logic, as Mido can be moved out of logic, but then we already have the Kokiri Sword
+        RC_MIDO_HINT: setting(RSK_FOREST) is not RO_CLOSED_FOREST_OFF and is_child() and has(RG_SPEAK_KOKIRI)
+    }
+}
+
+extend region RR_KF_MIDOS_HOUSE {
+    locations {
+        RC_MIDO_HINT: flag(LOGIC_SHOWED_MIDO_SWORD_AND_SHIELD) and is_child() and has(RG_SPEAK_KOKIRI)
+    }
+}
+
 extend region RR_KF_OUTSIDE_DEKU_TREE {
+
     locations {
         RC_KF_DEKU_TREE_LEFT_GOSSIP_STONE:  always
         RC_KF_DEKU_TREE_RIGHT_GOSSIP_STONE: always
@@ -293,5 +337,34 @@ extend region RR_ZR_ATOP_LADDER {
 extend region RR_ZR_OPEN_GROTTO {
     locations {
         RC_ZR_OPEN_GROTTO_GOSSIP_STONE: always
+    }
+}
+extend region RR_GANONS_TOWER_BEFORE_GANONDORF_LAIR {
+    locations {
+        RC_GANONS_BOSS_KEY_HINT: always
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_BOSS_DOOR {
+    locations {
+        RC_SHADOW_BOSS_KEY_HINT: always
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_BOSS_DOOR {
+    locations {
+        RC_SHADOW_BOSS_KEY_HINT: always
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_STATUE_HEAD {
+    locations {
+        RC_SPIRIT_BOSS_KEY_HINT: always
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_STATUE_HEAD {
+    locations {
+        RC_SPIRIT_BOSS_KEY_HINT: always
     }
 }

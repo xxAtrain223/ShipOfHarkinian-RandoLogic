@@ -1,4 +1,3 @@
-#potentially dangerous temp flag on the first room's torches, should be made permanent if possible
 region RR_FIRE_TEMPLE_MQ_FOYER_LOWER {
     name: "Fire Temple MQ Foyer Lower"
     scene: SCENE_FIRE_TEMPLE
@@ -6,8 +5,7 @@ region RR_FIRE_TEMPLE_MQ_FOYER_LOWER {
     exits {
         RR_FIRE_TEMPLE_ENTRYWAY:                always
         RR_FIRE_TEMPLE_MQ_LOOP_CAGE_FOYER_SIDE: always
-        #child can easilly pass the flame wall with a well timed sidehop, but that's a generic version of RT_FIRE_FLAME_MAZE
-        RR_FIRE_TEMPLE_MQ_FOYER_UPPER:          is_adult() or can_use(RG_HOOKSHOT) or trick(RT_FIRE_SKIP_FLAME_WALLS)
+        RR_FIRE_TEMPLE_MQ_FOYER_UPPER:          is_adult() or can_use(RG_HOOKSHOT) or trick(RT_FIRE_SKIP_FLAME_WALLS) or can_recoil_hover(RECOIL_HAMMER)
         RR_FIRE_TEMPLE_MQ_LOOP_HEXAGON_ROOM:    small_keys(SCENE_FIRE_TEMPLE, 5)
     }
 }
@@ -18,7 +16,7 @@ region RR_FIRE_TEMPLE_MQ_FOYER_UPPER {
 
     exits {
         RR_FIRE_TEMPLE_MQ_FOYER_LOWER:    always
-        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM: has_fire_source()
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM: any_age(has_fire_source())
         RR_FIRE_TEMPLE_MQ_BIG_LAVA_ROOM:  any_age(can_use(RG_MEGATON_HAMMER))
     }
 }
@@ -96,11 +94,33 @@ region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_MQ_FOYER_UPPER:      (is_adult() or can_use(RG_HOVER_BOOTS)) and (fire_timer() >= 16 or (flag(LOGIC_FIRE_HIT_PLATFORM) and 
-                                            fire_timer() >= 8))
-        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_TARGET: fire_timer() >= 32 and (can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS))
-        RR_FIRE_TEMPLE_BOSS_ENTRYWAY:       fire_timer() >= 16 and (can_use(RG_HOVER_BOOTS) or (is_adult() and (trick(RT_UNINTUITIVE_JUMPS) or 
-                                            flag(LOGIC_FIRE_HIT_PLATFORM))))
+        RR_FIRE_TEMPLE_MQ_FOYER_UPPER:      always
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_PILLAR: fire_timer() >= 8 and flag(LOGIC_FIRE_HIT_PLATFORM)
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_TARGET: fire_timer() >= 32 and (can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or can_megajump())
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_DOOR:   fire_timer() >= 16 and (can_use(RG_HOVER_BOOTS) or (is_adult() and (trick(RT_UNINTUITIVE_JUMPS) or bunny_hood())))
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_PILLAR {
+    name: "Fire Temple Near Boss Pillar"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM:   fire_timer() >= 8
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_TARGET: fire_timer() >= 8 and can_use(RG_LONGSHOT)
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_DOOR:   fire_timer() >= 8 and (is_adult() or bunny_hood() or can_use(RG_HOVER_BOOTS))
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_DOOR {
+    name: "Fire Temple MQ Near Boss Door"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM:   fire_timer() >= 8 and (is_adult() or can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or can_megajump())
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_PILLAR: fire_timer() >= 8 and flag(LOGIC_FIRE_HIT_PLATFORM) and (is_adult() or bunny_hood() or can_use(RG_HOVER_BOOTS))
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_TARGET: fire_timer() >= 8 and (can_use(RG_HOOKSHOT) or (is_adult() and bunny_hood()))
+        RR_FIRE_TEMPLE_BOSS_ENTRYWAY:       always
     }
 }
 
@@ -110,8 +130,9 @@ region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_TARGET {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM:       always
-        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM_UPPER: is_adult() or can_use(RG_HOOKSHOT)
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM:       is_adult() and take_damage()
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_DOOR:       fire_timer() >= 8 and (can_use(RG_HOVER_BOOTS) or (is_adult() and bunny_hood()) or can_megajump())
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM_UPPER: is_adult() or can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or bunny_hood() or trick(RT_UNINTUITIVE_JUMPS)
     }
 }
 
@@ -121,6 +142,7 @@ region RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM_UPPER {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM:   always
         RR_FIRE_TEMPLE_MQ_NEAR_BOSS_TARGET: always
     }
 }
@@ -130,14 +152,15 @@ region RR_FIRE_TEMPLE_MQ_BIG_LAVA_ROOM {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_MQ_FOYER_UPPER:           fire_timer() >= 32
-        RR_FIRE_TEMPLE_MQ_GS_GORON_CAGE:         fire_timer() >= 32
-        RR_FIRE_TEMPLE_MQ_BIG_LAVA_BLOCKED_DOOR: fire_timer() >= 48 and (can_use(RG_HOOKSHOT) or ((is_adult() or can_ground_jump()) and 
-                                                 trick(RT_FIRE_MQ_BLOCKED_CHEST)))
+        RR_FIRE_TEMPLE_MQ_FOYER_UPPER:                fire_timer() >= 32
+        RR_FIRE_TEMPLE_MQ_GS_GORON_CAGE:              fire_timer() >= 32
+        RR_FIRE_TEMPLE_MQ_BIG_LAVA_BLOCKED_DOOR:      fire_timer() >= 48 and (can_use(RG_HOOKSHOT) or ((is_adult() or can_ground_jump()) and
+                                                      trick(RT_FIRE_MQ_BLOCKED_CHEST)))
         # Fewer tunic requirements ends here
-        RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_1F:        can_use(RG_GORON_TUNIC) and small_keys(SCENE_FIRE_TEMPLE, 2)
-        RR_FIRE_TEMPLE_MQ_TORCH_FIREWALL_ROOM:   has_fire_source() and ((can_use(RG_FAIRY_BOW) and fire_timer() >= 32) or (trick(RT_FIRE_MQ_BK_CHEST) and 
-                                                 fire_timer() >= 56)) and (can_use(RG_HOOKSHOT) or (is_adult() and trick(RT_FIRE_SOT)))
+        RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_1F:             can_use(RG_GORON_TUNIC) and small_keys(SCENE_FIRE_TEMPLE, 2)
+        RR_FIRE_TEMPLE_MQ_BIG_LAVA_BARRED_DOOR_LEDGE: can_use(RG_HOOKSHOT) or (is_adult() and trick(RT_FIRE_SOT)) or can_megajump(true)
+        RR_FIRE_TEMPLE_MQ_BIG_LAVA_BARRED_DOOR:       has_fire_source() and ((can_use(RG_FAIRY_BOW) and fire_timer() >= 32) or (trick(RT_FIRE_MQ_BK_CHEST) and
+                                                      fire_timer() >= 56)) and (can_use(RG_HOOKSHOT) or (is_adult() and trick(RT_FIRE_SOT)) or can_megajump(true))
     }
 }
 
@@ -148,7 +171,28 @@ region RR_FIRE_TEMPLE_MQ_BIG_LAVA_BLOCKED_DOOR {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
+        RR_FIRE_TEMPLE_MQ_BIG_LAVA_ROOM:     always
         RR_FIRE_TEMPLE_MQ_TORCH_LOCKED_CAGE: has_explosives()
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_BIG_LAVA_BARRED_DOOR_LEDGE {
+    name: "Fire Temple MQ Big Lava Barred Door Ledge"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_BIG_LAVA_ROOM:        always
+        RR_FIRE_TEMPLE_MQ_BIG_LAVA_BARRED_DOOR: fire_timer() >= 8 and can_use(RG_FIRE_ARROWS)
+    }
+}
+
+#combined region for doorsanity reasons
+region RR_FIRE_TEMPLE_MQ_BIG_LAVA_BARRED_DOOR {
+    name: "Fire Temple MQ Big Lava Barred Door"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_TORCH_FIREWALL_ROOM: always
     }
 }
 
@@ -166,7 +210,7 @@ region RR_FIRE_TEMPLE_MQ_TORCH_LOCKED_CAGE {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_MQ_BIG_LAVA_ROOM: always
+        RR_FIRE_TEMPLE_MQ_BIG_LAVA_BLOCKED_DOOR: always
     }
 }
 
@@ -236,8 +280,10 @@ region RR_FIRE_TEMPLE_MQ_SHORTCUT_ROOM_LOWER {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_MQ_SHORTCUT_ROOM_MID: (has_fire_source() and (is_adult() or (can_use(RG_HOOKSHOT) and has(RG_CLIMB)))) or 
-                                                    (trick(RT_FIRE_MQ_CLIMB) and can_use(RG_HOVER_BOOTS) and has(RG_CLIMB))
+        # RT_FIRE_MQ_CLIMB is free with bunny hovers
+        RR_FIRE_TEMPLE_MQ_SHORTCUT_ROOM_MID: (has_fire_source() and (is_adult() or (can_use(RG_HOOKSHOT) and has(RG_CLIMB)))) or
+                                             (trick(RT_FIRE_MQ_CLIMB) and is_adult() and can_use(RG_HOVER_BOOTS) and has(RG_CLIMB)) or
+                                             (has(RG_CLIMB) and is_adult() and (bunny_hovers() or can_recoil_hover(RECOIL_HAMMER) or can_megajump(true)))
         RR_FIRE_TEMPLE_MQ_LAVA_GEYSER_2F:    always
         RR_FIRE_TEMPLE_MQ_SHORTCUT_CAGE:     flag(LOGIC_FIRE_OPENED_UPPER_SHORTCUT)
     }
@@ -271,8 +317,8 @@ region RR_FIRE_TEMPLE_MQ_LOWER_LIZALFOS_MAZE {
     exits {
         RR_FIRE_TEMPLE_MQ_SHORTCUT_ROOM_LOWER: always
         #Explosives can also reach this room. Chus is relatively simple, they need to detonate on the first horizontal bar up from the floor while horizontally near the switch, but bombs are much harder
-        RR_FIRE_TEMPLE_MQ_MAZE_CRATE_CAGE:     any_age(can_jumpslash())
-        #it's possible to make the RT_FIRE_MQ_MAZE_HOVERS as child using bunny hood jumps, but not adult as adult bonks
+        RR_FIRE_TEMPLE_MQ_MAZE_CRATE_CAGE:     any_age(can_jumpslash() or (trick(RT_VISIBLE_COLLISION) and can_use(RG_BOMBCHU_5)) or
+                                               (trick(RT_BOMB_DETONATION) and can_use(RG_BOMB_BAG)))
         RR_FIRE_TEMPLE_MQ_UPPER_LIZALFOS_MAZE: (has_explosives() or trick(RT_VISIBLE_COLLISION)) and can_use(RG_MEGATON_HAMMER) and can_use(RG_HOOKSHOT)
         RR_FIRE_TEMPLE_MQ_MAZE_SWITCH_DOOR:    has_explosives() and trick(RT_FIRE_MQ_MAZE_SIDE_ROOM)
         RR_FIRE_TEMPLE_MQ_NARROW_PATH_ROOM:    false
@@ -305,8 +351,9 @@ region RR_FIRE_TEMPLE_MQ_MAZE_CRATE_CAGE {
 
     exits {
         RR_FIRE_TEMPLE_MQ_LOWER_LIZALFOS_MAZE: always
-        #it's possible to make the RT_FIRE_MQ_MAZE_HOVERS as child using bunny hood jumps, but not adult as adult bonks
-        RR_FIRE_TEMPLE_MQ_UPPER_LIZALFOS_MAZE: is_adult() and ((trick(RT_FIRE_MQ_MAZE_HOVERS) and can_use(RG_HOVER_BOOTS)) or trick(RT_FIRE_MQ_MAZE_JUMP))
+        #it's possible to make the RT_FIRE_MQ_MAZE_JUMP as child using bunny hood jumps, but not adult as adult bonks. Might be easy enough to be unintuitive.
+        RR_FIRE_TEMPLE_MQ_UPPER_LIZALFOS_MAZE: (is_adult() and ((trick(RT_FIRE_MQ_MAZE_HOVERS) and can_use(RG_HOVER_BOOTS)) or trick(RT_FIRE_MQ_MAZE_JUMP))) or
+                                               (is_child() and trick(RT_FIRE_MQ_MAZE_JUMP) and bunny_hood())
     }
 }
 
@@ -420,11 +467,12 @@ region RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM {
     }
 
     exits {
-        RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM_ABOVE_CAGE: (is_adult() or can_use(RG_HOOKSHOT)) and fire_timer() >= 24
-        RR_FIRE_TEMPLE_MQ_UPPER_LIZALFOS_MAZE:        small_keys(SCENE_FIRE_TEMPLE, 3) and fire_timer() >= 24
-        RR_FIRE_TEMPLE_MQ_NARROW_PATH_ROOM:           fire_timer() >= 24
+        RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM_ABOVE_CAGE:  (is_adult() or can_use(RG_HOOKSHOT)) and fire_timer() >= 24
+        RR_FIRE_TEMPLE_MQ_UPPER_LIZALFOS_MAZE:         small_keys(SCENE_FIRE_TEMPLE, 3) and fire_timer() >= 24
+        RR_FIRE_TEMPLE_MQ_NARROW_PATH_ROOM:            fire_timer() >= 24
         #Child has issues navigating the higher points of this room without an equip swapped hookshot
-        RR_FIRE_TEMPLE_MQ_CORRIDOR:                   flag(LOGIC_FIRE_MQ_HIGH_TORCH_LIT) and (is_adult() or can_use(RG_HOOKSHOT)) and fire_timer() >= 16
+        RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM_BARRED_DOOR: (is_adult() or can_use(RG_HOOKSHOT) or (can_midair_damage_boost() and can_use(RG_BOTTLE_WITH_FAIRY))) and
+                                                       fire_timer() >= 16
     }
 }
 
@@ -477,11 +525,15 @@ region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MAIN {
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM:      flag(LOGIC_FIRE_HIT_PLATFORM)
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_PILLAR:    flag(LOGIC_FIRE_HIT_PLATFORM)
+        # sidehop towards foyer door
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_ROOM:      flag(LOGIC_FIRE_HIT_PLATFORM) and fire_timer() >= 8 and take_damage()
+        # sidehop towards boss door
+        RR_FIRE_TEMPLE_MQ_NEAR_BOSS_DOOR:      flag(LOGIC_FIRE_HIT_PLATFORM) and fire_timer() >= 8 and take_damage()
         RR_FIRE_TEMPLE_MQ_CORRIDOR:            always
-        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PLATFORMS: is_adult() or can_use(RG_SONG_OF_TIME) or can_use(RG_HOVER_BOOTS)
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PLATFORMS: is_adult() or can_use(RG_SONG_OF_TIME) or can_use(RG_HOVER_BOOTS) or can_megajump()
         #Hover boots get there via the platforms
-        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MIDDLE:    trick(RT_FIRE_SKIP_FLAME_WALLS)
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MIDDLE:    trick(RT_FIRE_SKIP_FLAME_WALLS) or can_recoil_hover(RECOIL_HAMMER) or (is_adult() and can_ground_jump() and can_megajump())
         RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER:  always
     }
 }
@@ -496,10 +548,13 @@ region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PLATFORMS {
 
     exits {
         RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MAIN:          always
-        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MIDDLE:        can_use(RG_SONG_OF_TIME) or can_use(RG_HOVER_BOOTS)
+        #child can do the bunny hood + damage strat without a jumpslash, but it's inconsistent
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MIDDLE:        can_use(RG_SONG_OF_TIME) or can_use(RG_HOVER_BOOTS) or can_megajump() or
+                                                   (bunny_hood() and (is_adult() or can_jumpslash()) and take_damage())
         RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_UPPER_DOOR: always
-        #This one might be a bit too hard for base logic, but is only relevent in doorsanity or with RT_FIRE_MQ_MAZE_HOVERS
-        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_SWITCH:        can_use(RG_SONG_OF_TIME) and can_use(RG_HOVER_BOOTS) and (take_damage() or can_jumpslash())
+        #This one might be a bit too hard for base logic, but is only relevant in doorsanity or with RT_FIRE_MQ_MAZE_HOVERS
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_SWITCH:        (((can_use(RG_SONG_OF_TIME) and can_use(RG_HOVER_BOOTS)) or bunny_hovers()) and (take_damage() or can_jumpslash())) or
+                                                   (can_use(RG_SONG_OF_TIME) and bunny_hovers()) or can_megajump() or can_bomb_recoil_hover()
     }
 }
 
@@ -510,7 +565,7 @@ region RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_UPPER_DOOR {
     exits {
         RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PLATFORMS: always
         RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_SWITCH: can_use(RG_HOOKSHOT)
-        RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER:  false
+        RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER:  can_recoil_hover(RECOIL_HAMMER) or can_midair_damage_boost()
     }
 }
 
@@ -524,7 +579,7 @@ region RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_SWITCH {
 
     exits {
         RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_UPPER_DOOR: can_use(RG_HOOKSHOT)
-        RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER:      false
+        RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER:      trick(RT_UNINTUITIVE_JUMPS) or trick(RT_FIRE_RINGS)
     }
 }
 
@@ -544,8 +599,8 @@ region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MIDDLE {
 
     exits {
         RR_FIRE_TEMPLE_MQ_GS_LIZALFOS_ROOM: always
-        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MAIN:   is_adult() or trick(RT_FIRE_SKIP_FLAME_WALLS)
-        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_SWITCH: trick(RT_FIRE_SKIP_FLAME_WALLS)
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MAIN:   is_adult() or trick(RT_FIRE_SKIP_FLAME_WALLS) or can_recoil_hover(RECOIL_HAMMER)
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_SWITCH: trick(RT_FIRE_SKIP_FLAME_WALLS) or can_recoil_hover(RECOIL_HAMMER)
     }
 }
 
@@ -555,7 +610,9 @@ region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_SWITCH {
 
     exits {
         RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PAST_WALL: always
-        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MIDDLE:    trick(RT_FIRE_SKIP_FLAME_WALLS)
+        #this "midair ground jump" is actually a normal ground jump into a hovers run across the poles
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MIDDLE:    trick(RT_FIRE_SKIP_FLAME_WALLS) or can_midair_ground_jump() or can_recoil_hover(RECOIL_SWORD_AND_SHIELD) or
+                                               can_megajump()
         RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER:  always
     }
 }
@@ -598,17 +655,27 @@ region RR_FIRE_TEMPLE_MQ_ABOVE_3F_FLARE_DANCER {
 
     exits {
         RR_FIRE_TEMPLE_MQ_3F_FLARE_DANCER: always
-        RR_FIRE_TEMPLE_MQ_LOCKED_CLIMB:    always
+        RR_FIRE_TEMPLE_MQ_LOCKED_CLIMB_4F: always
     }
 }
 
-region RR_FIRE_TEMPLE_MQ_LOCKED_CLIMB {
-    name: "Fire Temple MQ Locked Climb"
+region RR_FIRE_TEMPLE_MQ_LOCKED_CLIMB_4F {
+    name: "Fire Temple MQ Locked Climb 4F"
     scene: SCENE_FIRE_TEMPLE
 
     exits {
-        RR_FIRE_TEMPLE_MQ_3F_FLARE_DANCER:    always
-        RR_FIRE_TEMPLE_MQ_NARROW_STAIRS_ROOM: small_keys(SCENE_FIRE_TEMPLE, 4) and has(RG_CLIMB)
+        RR_FIRE_TEMPLE_MQ_3F_FLARE_DANCER: always
+        RR_FIRE_TEMPLE_MQ_LOCKED_CLIMB_5F: has(RG_CLIMB)
+    }
+}
+
+region RR_FIRE_TEMPLE_MQ_LOCKED_CLIMB_5F {
+    name: "Fire Temple MQ Locked Climb 5F"
+    scene: SCENE_FIRE_TEMPLE
+
+    exits {
+        RR_FIRE_TEMPLE_MQ_LOCKED_CLIMB_4F:    always
+        RR_FIRE_TEMPLE_MQ_NARROW_STAIRS_ROOM: small_keys(SCENE_FIRE_TEMPLE, 4)
     }
 }
 
@@ -623,11 +690,11 @@ region RR_FIRE_TEMPLE_MQ_NARROW_STAIRS_ROOM {
     exits {
         #The dropdown here is unusual in that it hits 1 of 3 locations: RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER, RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_UPPER_DOOR, and
         #RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_SWITCH
-        #Using this dropdown is in N64 logic elsewhere, but not here, probably because it requires good foreknowlege to determine where to land
+        #Using this dropdown is in N64 logic elsewhere, but not here, probably because it requires good foreknowledge to determine where to land
         RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_LOWER:      take_damage()
         RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_UPPER_DOOR: take_damage()
         RR_FIRE_TEMPLE_MQ_2_FIRE_WALLS_SWITCH:     take_damage()
-        RR_FIRE_TEMPLE_MQ_3F_FLARE_DANCER:         small_keys(SCENE_FIRE_TEMPLE, 4)
+        RR_FIRE_TEMPLE_MQ_LOCKED_CLIMB_5F:         small_keys(SCENE_FIRE_TEMPLE, 4)
         RR_FIRE_TEMPLE_MQ_NARROW_STAIRS_4F:        flag(LOGIC_FIRE_MQ_HIT_SCARECROW_ROOM_PLATFORM)
     }
 }
@@ -672,9 +739,7 @@ region RR_FIRE_TEMPLE_MQ_ABOVE_FIRE_MAZE {
 
     exits {
         RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MAIN:            any_age(can_use(RG_MEGATON_HAMMER))
-        #it's possible to land directly on the upper platform as child and even avoid fall damage, but it's not intuitive (you have to ledge grab, drop down 
-        #and then air drift with enough momentum to roll)
-        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PLATFORMS:       any_age(can_use(RG_MEGATON_HAMMER)) and can_jumpslash() and take_damage()
+        RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PLATFORMS:       any_age(can_use(RG_MEGATON_HAMMER))
         RR_FIRE_TEMPLE_MQ_BASE_OF_COLLAPSING_STAIRS: false
     }
 }

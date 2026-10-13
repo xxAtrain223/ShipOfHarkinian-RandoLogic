@@ -1,0 +1,642 @@
+# dungeons/fire_temple
+
+extend region RR_FIRE_TEMPLE_MQ_TORCH_FIREWALL_ROOM {
+    locations {
+        RC_FIRE_TEMPLE_MQ_WONDER_BOSS_KEY_ROOM_HOOKSHOT: can_use(RG_HOOKSHOT)
+        RC_FIRE_TEMPLE_MQ_WONDER_BOSS_KEY_ROOM_BOW:      hookshot_or_boomerang() and can_use(RG_FAIRY_BOW)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_SHORTCUT_ROOM_LOWER {
+    locations {
+        RC_FIRE_TEMPLE_MQ_WONDER_SHORTCUT_ROOM_1: can_use(RG_MEGATON_HAMMER)
+        RC_FIRE_TEMPLE_MQ_WONDER_SHORTCUT_ROOM_2: can_use(RG_MEGATON_HAMMER)
+        RC_FIRE_TEMPLE_MQ_WONDER_SHORTCUT_ROOM_3: can_use(RG_MEGATON_HAMMER)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_LOWER_LIZALFOS_MAZE {
+    locations {
+        RC_FIRE_TEMPLE_MQ_WONDER_LIZALFOS_MAZE: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_TORCH_SLUG_CLIMB {
+    locations {
+        RC_FIRE_TEMPLE_MQ_WONDER_EAST_TOWER_LARGE_FACE_1: can_use(RG_HOOKSHOT)
+        RC_FIRE_TEMPLE_MQ_WONDER_EAST_TOWER_LARGE_FACE_2: can_use(RG_HOOKSHOT)
+        RC_FIRE_TEMPLE_MQ_WONDER_EAST_TOWER_SMALL_FACE_1: can_use(RG_HOOKSHOT)
+        RC_FIRE_TEMPLE_MQ_WONDER_EAST_TOWER_SMALL_FACE_2: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_HIGH_TORCH_ROOM {
+    locations {
+        RC_FIRE_TEMPLE_MQ_WONDER_TORCH_ROOM: can_use(RG_HOOKSHOT) and fire_timer() >= 16
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_MIDDLE {
+    locations {
+        RC_FIRE_TEMPLE_MQ_WONDER_FIRE_MAZE: can_use(RG_LONGSHOT) and can_use(RG_BOOMERANG)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_FIRE_MAZE_PAST_WALL {
+    locations {
+        RC_FIRE_TEMPLE_MQ_WONDER_FIRE_MAZE: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_LOCKED_CLIMB_4F {
+    locations {
+        RC_FIRE_TEMPLE_MQ_WONDER_AFTER_FLARE_DANCER: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_FIRE_TEMPLE_MQ_BASE_OF_COLLAPSING_STAIRS {
+    locations {
+        RC_FIRE_TEMPLE_MQ_WONDER_STAIRCASE: flag(LOGIC_FIRE_HIT_STAIRS) and can_use(RG_HOOKSHOT)
+    }
+}
+
+# overworld/castle_grounds
+
+extend region RR_HC_MOAT {
+    locations {
+        RC_HC_WONDER_LEFT_TORCH:  can_use(RG_FAIRY_SLINGSHOT) and (has(RG_BRONZE_SCALE) or can_use(RG_BOOMERANG) or
+                                   (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_HC_WONDER_RIGHT_TORCH: can_use(RG_FAIRY_SLINGSHOT) and (has(RG_BRONZE_SCALE) or can_use(RG_BOOMERANG) or
+                                   (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_HC_WONDER_MOAT_1:      has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void())
+        RC_HC_WONDER_MOAT_2:      has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void())
+        RC_HC_WONDER_MOAT_3:      has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void())
+        RC_HC_WONDER_MOAT_4:      has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void())
+        RC_HC_WONDER_MOAT_5:      has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void())
+        RC_HC_WONDER_MOAT_6:      has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void())
+        RC_HC_WONDER_MOAT_7:      has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void())
+        RC_HC_WONDER_MOAT_8:      has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void())
+        RC_HC_WONDER_MOAT_9:      has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void())
+        RC_HC_WONDER_MOAT_10:     has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void())
+    }
+}
+
+extend region RR_HC_GARDEN {
+    locations {
+        RC_HC_WONDER_COURTYARD_RIGHT_WINDOW: can_use(RG_FAIRY_SLINGSHOT)
+        RC_HC_WONDER_COURTYARD_LEFT_WINDOW:  can_use(RG_FAIRY_SLINGSHOT)
+    }
+}
+
+# overworld/death_mountain_crater
+
+extend region RR_DMC_CENTRAL {
+    locations {
+        # RANDOTODO: a number of tricks reach this: sidehop jumpslash or hookshot + jumpslash from the
+        # bridge platform, chu + shield damage boost. Also does hover need roll/bunny
+        RC_DMC_WONDER_BENEATH_BRIDGE_PLATFORM: is_adult() and (can_use(RG_LONGSHOT) or can_use(RG_HOVER_BOOTS) or can_megajump())
+    }
+}
+
+# overworld/desert_colossus
+
+extend region RR_DESERT_COLOSSUS {
+    locations {
+        RC_COLOSSUS_WONDER_OASIS_TREE_1:     (is_adult() and can_use(RG_FAIRY_BOW)) or (is_child() and can_use(RG_FAIRY_SLINGSHOT))
+        RC_COLOSSUS_WONDER_OASIS_TREE_2:     (is_adult() and can_use(RG_FAIRY_BOW)) or (is_child() and can_use(RG_FAIRY_SLINGSHOT))
+        RC_COLOSSUS_WONDER_OASIS_CHILD_TREE: is_child() and can_use(RG_FAIRY_SLINGSHOT)
+        RC_COLOSSUS_WONDER_GF_TREE_1:        (is_adult() and can_use(RG_FAIRY_BOW)) or (is_child() and can_use(RG_FAIRY_SLINGSHOT))
+        RC_COLOSSUS_WONDER_GF_TREE_2:        (is_adult() and can_use(RG_FAIRY_BOW)) or (is_child() and can_use(RG_FAIRY_SLINGSHOT))
+    }
+}
+
+# overworld/gerudo_fortress
+
+extend region RR_GF_OUTSKIRTS {
+    locations {
+        RC_GF_WONDER_ENTRANCE_SIGN: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_GF_HBA_RANGE {
+    locations {
+        RC_GF_WONDER_ARCHERY_SIGN: can_use(RG_HOOKSHOT)
+    }
+}
+
+# overworld/gerudo_valley
+
+extend region RR_GV_UPPER_STREAM {
+    locations {
+        RC_GV_WONDER_LOWER_WATERFALL: is_adult() and (bean_planted(LOGIC_PLANT_GERUDO_VALLEY_BEAN) or has(RG_BRONZE_SCALE) or
+                                       can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_GV_WONDER_UPPER_WATERFALL: is_adult() and bean_planted(LOGIC_PLANT_GERUDO_VALLEY_BEAN)
+    }
+}
+
+extend region RR_GV_WATERFALL_ALCOVE {
+    locations {
+        RC_GV_WONDER_UPPER_WATERFALL: is_adult() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+    }
+}
+
+# overworld/graveyard
+
+extend region RR_GRAVEYARD_DAMPES_GRAVE {
+    locations {
+        RC_GY_WONDER_DAMPE_RACE_1:  always
+        RC_GY_WONDER_DAMPE_RACE_2:  always
+        RC_GY_WONDER_DAMPE_RACE_3:  always
+        RC_GY_WONDER_DAMPE_RACE_4:  always
+        RC_GY_WONDER_DAMPE_RACE_5:  always
+        RC_GY_WONDER_DAMPE_RACE_6:  always
+        RC_GY_WONDER_DAMPE_RACE_7:  always
+        RC_GY_WONDER_DAMPE_RACE_8:  always
+        RC_GY_WONDER_DAMPE_RACE_9:  always
+        RC_GY_WONDER_DAMPE_RACE_10: always
+        RC_GY_WONDER_DAMPE_RACE_11: always
+        RC_GY_WONDER_DAMPE_RACE_12: always
+        RC_GY_WONDER_DAMPE_RACE_13: always
+        RC_GY_WONDER_DAMPE_RACE_14: always
+        RC_GY_WONDER_DAMPE_RACE_15: always
+    }
+}
+
+# overworld/hyrule_field
+
+extend region RR_HYRULE_FIELD {
+    locations {
+        RC_HF_WONDER_BRIDGE_1: is_child()
+        RC_HF_WONDER_BRIDGE_2: is_child()
+        RC_HF_WONDER_BRIDGE_3: is_child()
+    }
+}
+
+
+# overworld/kakariko
+
+extend region RR_KAKARIKO_VILLAGE {
+    locations {
+        RC_KAK_WONDER_UNDER_CONSTRUCTION: is_child()
+    }
+}
+
+extend region RR_KAK_IMPAS_HOUSE {
+    locations {
+        RC_KAK_WONDER_ABOVE_COW: always
+    }
+}
+
+# overworld/kokiri_forest
+
+extend region RR_KOKIRI_FOREST {
+    locations {
+        RC_KF_WONDER_TRAINING_1:  is_child()
+        RC_KF_WONDER_TRAINING_2:  is_child()
+        RC_KF_WONDER_TRAINING_3:  is_child()
+        RC_KF_WONDER_SIGN:        is_child() and can_use_sword()
+        RC_KF_WONDER_PLATFORMS_1: is_child()
+        RC_KF_WONDER_PLATFORMS_2: is_child()
+    }
+}
+
+extend region RR_KF_BOULDER_LOOP {
+    locations {
+        RC_KF_WONDER_CRAWL_GRASS_1: is_child()
+        RC_KF_WONDER_CRAWL_GRASS_2: is_child()
+    }
+}
+
+extend region RR_KF_KOKIRI_SHOP {
+    locations {
+        RC_KF_WONDER_SHOP: always
+    }
+}
+
+# overworld/lon_lon_ranch
+
+extend region RR_LON_LON_RANCH {
+    locations {
+        RC_LLR_WONDER_BIG_FENCE:   is_adult() and can_use(RG_EPONAS_SONG) and (has(RG_CHILD_WALLET) or flag(LOGIC_FREED_EPONA))
+        RC_LLR_WONDER_SMALL_FENCE: is_adult() and can_use(RG_EPONAS_SONG) and (has(RG_CHILD_WALLET) or flag(LOGIC_FREED_EPONA))
+    }
+}
+
+# overworld/lost_woods
+
+extend region RR_THE_LOST_WOODS {
+    locations {
+        RC_LW_WONDER_BACK_SKULL_KIDS_GRASS_1: is_child()
+        RC_LW_WONDER_BACK_SKULL_KIDS_GRASS_2: is_child()
+        RC_LW_WONDER_FRONT_SKULL_KIDS_GRASS:  is_child()
+    }
+}
+
+# overworld/market
+
+extend region RR_THE_MARKET {
+    locations {
+        RC_MKT_WONDER_DAY_1:   is_child() and at_day()
+        RC_MKT_WONDER_DAY_2:   is_child() and at_day()
+        RC_MKT_WONDER_DAY_3:   is_child() and at_day()
+        RC_MKT_WONDER_DAY_4:   is_child() and at_day()
+        RC_MKT_WONDER_DAY_5:   is_child() and at_day()
+        RC_MKT_WONDER_NIGHT_1: is_child() and at_night()
+        RC_MKT_WONDER_NIGHT_2: is_child() and at_night()
+    }
+}
+
+# overworld/sacred_forest_meadow
+
+extend region RR_SFM_ENTRYWAY {
+    locations {
+        RC_SFM_WONDER_ENTRANCE: always
+    }
+}
+
+extend region RR_SACRED_FOREST_MEADOW {
+    locations {
+        RC_SFM_WONDER_MAZE_1: always
+        RC_SFM_WONDER_MAZE_2: always
+        RC_SFM_WONDER_MAZE_3: always
+        RC_SFM_WONDER_MAZE_4: always
+        RC_SFM_WONDER_MAZE_5: always
+    }
+}
+
+# overworld/thieves_hideout
+
+extend region RR_TH_1_TORCH_CELL {
+    locations {
+        RC_TH_WONDER_1_TORCH_1: can_use(RG_FAIRY_BOW)
+        RC_TH_WONDER_1_TORCH_2: can_use(RG_FAIRY_BOW)
+    }
+}
+
+extend region RR_TH_DOUBLE_CELL {
+    locations {
+        RC_TH_WONDER_DOUBLE_JAIL_LOWER_EXIT: can_use(RG_FAIRY_BOW)
+        RC_TH_WONDER_DOUBLE_JAIL_UPPER_EXIT: can_use(RG_FAIRY_BOW)
+    }
+}
+
+extend region RR_TH_DEAD_END_CELL {
+    locations {
+        RC_TH_WONDER_DEAD_END_SKULL_ENTRANCE:  can_use(RG_FAIRY_BOW)
+        RC_TH_WONDER_DEAD_END_SKULL_NEAR_JAIL: can_use(RG_FAIRY_BOW)
+    }
+}
+
+extend region RR_TH_STEEP_SLOPE_CELL {
+    locations {
+        RC_TH_WONDER_STEEP_SLOPE_LOWER_EXIT: can_use(RG_FAIRY_BOW)
+        RC_TH_WONDER_STEEP_SLOPE_UPPER_EXIT: can_use(RG_FAIRY_BOW)
+    }
+}
+
+extend region RR_TH_KITCHEN_MAIN {
+    locations {
+        RC_TH_WONDER_KITCHEN_SKULL: can_use(RG_FAIRY_BOW)
+        RC_TH_WONDER_KITCHEN_SOUP:  (take_damage() or is_adult() or can_use(RG_GORON_TUNIC)) and can_pass(RE_GERUDO_GUARD)
+    }
+}
+
+extend region RR_TH_KITCHEN_BY_CORRIDOR {
+    locations {
+        RC_TH_WONDER_KITCHEN_SOUP: trick(RT_VOIDOUT_COLLECTION) and (bunny_hovers() or can_megajump() or can_recoil_hover(RECOIL_HAMMER))
+    }
+}
+
+extend region RR_TH_KITCHEN_OPPOSITE_CORRIDOR {
+    locations {
+        RC_TH_WONDER_KITCHEN_SOUP: trick(RT_VOIDOUT_COLLECTION) and (bunny_hovers() or can_megajump() or can_recoil_hover(RECOIL_HAMMER))
+    }
+}
+
+extend region RR_TH_BREAK_ROOM_LOWER_CORRIDOR {
+    locations {
+        RC_TH_WONDER_BREAK_ROOM_BOTTOM_SKULL: can_use(RG_FAIRY_BOW)
+    }
+}
+
+extend region RR_TH_BREAK_ROOM_UPPER_CORRIDOR {
+    locations {
+        RC_TH_WONDER_BREAK_ROOM_TOP_SKULL: can_use(RG_FAIRY_BOW)
+    }
+}
+
+# overworld/zoras_fountain
+
+extend region RR_ZORAS_FOUNTAIN {
+    locations {
+        RC_ZF_WONDER_ROCK: is_adult() and reach_scarecrow()
+    }
+}
+
+# overworld/zoras_river
+
+extend region RR_ZR_FRONT {
+    locations {
+        # needs backflip with iron boots
+        RC_ZR_WONDER_LOWER_RIVER_1: is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_LOWER_RIVER_2: is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_LOWER_RIVER_3: is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_LOWER_RIVER_4: is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+    }
+}
+
+extend region RR_ZORAS_RIVER {
+    locations {
+        RC_ZR_WONDER_NEAR_DOMAIN_1:       is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_NEAR_DOMAIN_2:       is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_NEAR_DOMAIN_3:       is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_NEAR_DOMAIN_4:       is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_BEFORE_LADDER_1:     is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_BEFORE_LADDER_2:     is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_BEFORE_LADDER_3:     is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_BEFORE_LADDER_4:     is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_BEFORE_LADDER_5:     is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_BEFORE_LADDER_6:     is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_AFTER_LADDER_1:      is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_AFTER_LADDER_2:      is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_AFTER_LADDER_3:      is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_FROG_BRIDGE_1:       is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_FROG_BRIDGE_2:       is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_FROG_BRIDGE_3:       is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_PILLARS_1:           is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_PILLARS_2:           is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_PILLARS_3:           is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_PILLARS_4:           is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_LOWER_LAND_BRIDGE_1: is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void())) # needs backflip with iron boots
+        RC_ZR_WONDER_LOWER_LAND_BRIDGE_2: is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_LOWER_LAND_BRIDGE_3: is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_LOWER_LAND_BRIDGE_4: is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+        RC_ZR_WONDER_NEAR_CUCCO_1:        is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void())) # needs backflip with iron boots
+        RC_ZR_WONDER_NEAR_CUCCO_2:        is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void())) # needs backflip with iron boots
+        RC_ZR_WONDER_NEAR_CUCCO_3:        is_child() and (has(RG_BRONZE_SCALE) or can_use(RG_IRON_BOOTS) or (trick(RT_VOIDOUT_COLLECTION) and can_void()))
+    }
+}
+
+# dungeons/deku_tree
+
+extend region RR_DEKU_TREE_MQ_BASEMENT_GRAVE_ROOM {
+    locations {
+        RC_DEKU_TREE_MQ_WONDER_BASEMENT_GRAVE_1: can_jumpslash_except_hammer()
+        RC_DEKU_TREE_MQ_WONDER_BASEMENT_GRAVE_2: can_jumpslash_except_hammer()
+        RC_DEKU_TREE_MQ_WONDER_BASEMENT_GRAVE_3: can_jumpslash_except_hammer()
+        RC_DEKU_TREE_MQ_WONDER_BASEMENT_GRAVE_4: can_jumpslash_except_hammer()
+    }
+}
+
+# dungeons/jabujabus_belly
+
+extend region RR_JABU_JABUS_BELLY_MQ_BEGINNING {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_WONDER_ENTRANCE_LEFT_COW:  can_use(RG_FAIRY_SLINGSHOT)
+        RC_JABU_JABUS_BELLY_MQ_WONDER_ENTRANCE_RIGHT_COW: can_use(RG_FAIRY_SLINGSHOT)
+    }
+}
+
+extend region RR_JABU_JABUS_BELLY_MQ_LIFT_ROOM {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_WONDER_ELEVATOR_COW: can_use(RG_FAIRY_SLINGSHOT) and (has(RG_SILVER_SCALE) or can_use(RG_IRON_BOOTS) or can_use(RG_BOOMERANG))
+    }
+}
+
+extend region RR_JABU_JABUS_BELLY_MQ_HOLES_ROOM {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_HOLES_COW: (has_explosives() or trick(RT_BOULDER_COLLISION)) and can_use(RG_FAIRY_SLINGSHOT)
+    }
+}
+
+extend region RR_JABU_JABUS_BELLY_MQ_HOLES_BASEMENT {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_WONDER_BASEMENT_RIGHT_COW_1: can_use(RG_FAIRY_SLINGSHOT)
+        RC_JABU_JABUS_BELLY_MQ_WONDER_BASEMENT_RIGHT_COW_2: can_use(RG_FAIRY_SLINGSHOT)
+        RC_JABU_JABUS_BELLY_MQ_WONDER_BASEMENT_RIGHT_COW_3: can_use(RG_FAIRY_SLINGSHOT)
+        RC_JABU_JABUS_BELLY_MQ_WONDER_BASEMENT_LEFT_COW_1:  can_use(RG_FAIRY_SLINGSHOT)
+        RC_JABU_JABUS_BELLY_MQ_WONDER_BASEMENT_LEFT_COW_2:  can_use(RG_FAIRY_SLINGSHOT)
+        RC_JABU_JABUS_BELLY_MQ_WONDER_BASEMENT_LEFT_COW_3:  can_use(RG_FAIRY_SLINGSHOT)
+    }
+}
+
+extend region RR_JABU_JABUS_BELLY_MQ_FORK_NORTH_EAST {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_WONDER_FALLING_LIKE_LIKES_COW_RIGHT_1: can_use(RG_FAIRY_SLINGSHOT)
+        RC_JABU_JABUS_BELLY_MQ_WONDER_FALLING_LIKE_LIKES_COW_RIGHT_2: can_use(RG_FAIRY_SLINGSHOT)
+        RC_JABU_JABUS_BELLY_MQ_WONDER_FALLING_LIKE_LIKES_COW_RIGHT_3: can_use(RG_FAIRY_SLINGSHOT)
+        RC_JABU_JABUS_BELLY_MQ_WONDER_FALLING_LIKE_LIKES_COW_LEFT_1:  can_use(RG_FAIRY_SLINGSHOT)
+        RC_JABU_JABUS_BELLY_MQ_WONDER_FALLING_LIKE_LIKES_COW_LEFT_2:  can_use(RG_FAIRY_SLINGSHOT)
+        RC_JABU_JABUS_BELLY_MQ_WONDER_FALLING_LIKE_LIKES_COW_LEFT_3:  can_use(RG_FAIRY_SLINGSHOT)
+        RC_JABU_JABUS_BELLY_MQ_WONDER_FALLING_LIKE_LIKES_EXPLOSION_1: has_explosives()
+        RC_JABU_JABUS_BELLY_MQ_WONDER_FALLING_LIKE_LIKES_EXPLOSION_2: has_explosives()
+        RC_JABU_JABUS_BELLY_MQ_WONDER_FALLING_LIKE_LIKES_EXPLOSION_3: has_explosives()
+    }
+}
+
+extend region RR_JABU_JABUS_BELLY_MQ_ABOVE_BIGOCTO {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_WONDER_AFTER_BIG_OCTO: can_use(RG_FAIRY_SLINGSHOT)
+    }
+}
+
+extend region RR_JABU_JABUS_BELLY_MQ_JIGGLIES_ROOM {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_WONDER_JIGGLIES_COW: can_use(RG_FAIRY_SLINGSHOT)
+    }
+}
+
+extend region RR_JABU_JABUS_BELLY_MQ_NEAR_BOSS_ROOM {
+    locations {
+        RC_JABU_JABUS_BELLY_MQ_WONDER_BEFORE_BOSS_LEFT_COW:    can_use(RG_FAIRY_SLINGSHOT)
+        RC_JABU_JABUS_BELLY_MQ_WONDER_BEFORE_BOSS_RIGHT_COW_1: can_use(RG_FAIRY_SLINGSHOT)
+        RC_JABU_JABUS_BELLY_MQ_WONDER_BEFORE_BOSS_RIGHT_COW_2: can_use(RG_FAIRY_SLINGSHOT)
+    }
+}
+extend region RR_BOTW_MQ_INVISIBLE_PATH {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_MQ_WONDER_SIDE_ROOM_1: can_use(RG_FAIRY_SLINGSHOT)
+        RC_BOTTOM_OF_THE_WELL_MQ_WONDER_SIDE_ROOM_2: can_use(RG_FAIRY_SLINGSHOT)
+        RC_BOTTOM_OF_THE_WELL_MQ_WONDER_SIDE_ROOM_3: can_use(RG_FAIRY_SLINGSHOT)
+        RC_BOTTOM_OF_THE_WELL_MQ_WONDER_SIDE_ROOM_4: can_use(RG_FAIRY_SLINGSHOT)
+    }
+}
+
+extend region RR_BOTW_MQ_PERIMETER {
+    locations {
+        RC_BOTTOM_OF_THE_WELL_MQ_WONDER_MAIN_ROOM_LEFT_1: can_use(RG_FAIRY_SLINGSHOT)
+        RC_BOTTOM_OF_THE_WELL_MQ_WONDER_MAIN_ROOM_LEFT_2: can_use(RG_FAIRY_SLINGSHOT)
+        RC_BOTTOM_OF_THE_WELL_MQ_WONDER_MAIN_ROOM_LEFT_3: can_use(RG_FAIRY_SLINGSHOT)
+        RC_BOTTOM_OF_THE_WELL_MQ_WONDER_MAIN_ROOM_LEFT_4: can_use(RG_FAIRY_SLINGSHOT)
+        RC_BOTTOM_OF_THE_WELL_MQ_WONDER_MAIN_ROOM_RIGHT_1: can_use(RG_FAIRY_SLINGSHOT)
+        RC_BOTTOM_OF_THE_WELL_MQ_WONDER_MAIN_ROOM_RIGHT_2: can_use(RG_FAIRY_SLINGSHOT)
+        RC_BOTTOM_OF_THE_WELL_MQ_WONDER_MAIN_ROOM_RIGHT_3: can_use(RG_FAIRY_SLINGSHOT)
+        RC_BOTTOM_OF_THE_WELL_MQ_WONDER_MAIN_ROOM_RIGHT_4: can_use(RG_FAIRY_SLINGSHOT)
+    }
+}
+
+extend region RR_GANONS_CASTLE_MQ_SHADOW_TRIAL_BOMB_FLOWER {
+    locations {
+        RC_GANONS_CASTLE_MQ_WONDER_SHADOW_TRIAL: (can_detonate_bomb_flowers() or (trick(RT_BLUE_FIRE_MUD_WALLS) and can_use(RG_BOTTLE_WITH_BLUE_FIRE))) and take_damage()
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_DINALFOS {
+    locations {
+        RC_GERUDO_TRAINING_GROUND_WONDER_BEAMOS_ROOM: can_use(RG_FAIRY_BOW)
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_EYE_STATUE_UPPER {
+    locations {
+        RC_GERUDO_TRAINING_GROUND_WONDER_EYE_STATUE_ROOM: can_use(RG_HOVER_BOOTS) or bunny_hood() or (is_adult() and trick(RT_GTG_STATUE_JUMP))
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_HAMMER_ROOM {
+    locations {
+        RC_GERUDO_TRAINING_GROUND_WONDER_TORCH_SLUGS_ROOM: can_use(RG_FAIRY_BOW)
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_MQ_DINOLFOS_ROOM {
+    locations {
+        RC_GERUDO_TRAINING_GROUND_MQ_WONDER_DINOLFOS_ROOM: can_use(RG_FAIRY_BOW)
+    }
+}
+
+extend region RR_GERUDO_TRAINING_GROUND_MQ_STATUE_ROOM_LEDGE {
+    locations {
+        RC_GERUDO_TRAINING_GROUND_MQ_WONDER_EYE_STATUE: can_use(RG_LONGSHOT) or can_use(RG_HOVER_BOOTS) or bunny_hood() or (is_adult() and trick(RT_GTG_STATUE_JUMP))
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_MQ_THREE_SKULL_JARS {
+    locations {
+        RC_SHADOW_TEMPLE_MQ_WONDER_THREE_POTS: can_use(RG_FAIRY_BOW)
+    }
+}
+
+extend region RR_SHADOW_TEMPLE_THREE_SKULL_JARS {
+    locations {
+        RC_SHADOW_TEMPLE_WONDER_THREE_POTS: can_use(RG_FAIRY_BOW)
+    }
+}
+
+extend region RR_SPIRIT_TEMPLE_MQ_SOT_SUN_ROOM {
+    locations {
+        RC_SPIRIT_TEMPLE_MQ_WONDER_CHEST_HAMMER: can_use(RG_MEGATON_HAMMER)
+        RC_SPIRIT_TEMPLE_MQ_WONDER_CHEST_SLASH: can_jumpslash_except_hammer()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_3_JETS_ROOM_NO_SWITCH_SIDE {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_WATER_SPROUTS_2: is_adult() or bunny_hood()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_3_JETS_ROOM_SWITCH_SIDE {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_WATER_SPROUTS_1: always
+        RC_WATER_TEMPLE_MQ_WONDER_WATER_SPROUTS_2: can_hit_switch()
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_3_STALFOS_ROOM {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_STALFOS_ROOM: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_BOSS_DOOR_RAMP {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_BEFORE_BOSS_1: can_use(RG_HOOKSHOT)
+        RC_WATER_TEMPLE_MQ_WONDER_BEFORE_BOSS_2: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_DRAGON_ROOM_ALCOVE {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_DRAGON_ROOM_PORTRAIT: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_DRAGON_ROOM_BOTTOM {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_DRAGON_ROOM_LEFT_EYE: can_use(RG_HOOKSHOT)
+        RC_WATER_TEMPLE_MQ_WONDER_DRAGON_ROOM_RIGHT_EYE: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_FREESTANDING_ROOM {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_FREESTANDING_ROOM: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_GATED_PIT {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_AFTER_DARK_LINK: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_HIDDEN_SWITCH_2F {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_GS_STORAGE_ROOM: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_LIZALFOS_LOOP_A {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_LIZALFOS_HALLWAY: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_PILLAR_B1_FINAL {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_UNDER_PILLAR_ROOM: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_SIDE_TOWER_2F {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_LONGSHOT_ROOM: can_use(RG_HOOKSHOT) and (water_level(WL_MID) or can_use(RG_IRON_BOOTS))
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_TOWER_TARGET_ROOM {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_LIZALFOS_ROOM: can_use(RG_HOOKSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_TRIANGLE_TORCH_CAGE {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_TRIPLE_TORCHES: can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_WATERFALL {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_HOOKSHOT_STAIRCASE_LEFT_1: can_use(RG_LONGSHOT)
+        RC_WATER_TEMPLE_MQ_WONDER_HOOKSHOT_STAIRCASE_LEFT_2: can_use(RG_LONGSHOT)
+        RC_WATER_TEMPLE_MQ_WONDER_HOOKSHOT_STAIRCASE_LEFT_3: can_use(RG_LONGSHOT)
+        RC_WATER_TEMPLE_MQ_WONDER_HOOKSHOT_STAIRCASE_RIGHT_1: can_use(RG_LONGSHOT)
+        RC_WATER_TEMPLE_MQ_WONDER_HOOKSHOT_STAIRCASE_RIGHT_2: can_use(RG_LONGSHOT)
+        RC_WATER_TEMPLE_MQ_WONDER_HOOKSHOT_STAIRCASE_RIGHT_3: can_use(RG_LONGSHOT)
+    }
+}
+
+extend region RR_WATER_TEMPLE_MQ_WATERFALL_TOP {
+    locations {
+        RC_WATER_TEMPLE_MQ_WONDER_HOOKSHOT_STAIRCASE_LEFT_1: can_use(RG_HOOKSHOT)
+        RC_WATER_TEMPLE_MQ_WONDER_HOOKSHOT_STAIRCASE_LEFT_2: can_use(RG_HOOKSHOT)
+        RC_WATER_TEMPLE_MQ_WONDER_HOOKSHOT_STAIRCASE_LEFT_3: can_use(RG_HOOKSHOT)
+        RC_WATER_TEMPLE_MQ_WONDER_HOOKSHOT_STAIRCASE_RIGHT_1: can_use(RG_HOOKSHOT)
+        RC_WATER_TEMPLE_MQ_WONDER_HOOKSHOT_STAIRCASE_RIGHT_2: can_use(RG_HOOKSHOT)
+        RC_WATER_TEMPLE_MQ_WONDER_HOOKSHOT_STAIRCASE_RIGHT_3: can_use(RG_HOOKSHOT)
+    }
+}
+
+

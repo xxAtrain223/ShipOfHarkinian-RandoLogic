@@ -35,7 +35,7 @@ region RR_BOTW_PERIMETER {
     }
 }
 
-# This region combines the Middle with the perimeter's hidden areas. If a warp puts link into the middle
+# This region combines the Middle with the perimeter's hidden areas. If a warp puts Link into the middle
 # without crossing the perimeter or using lens, it will need it's own region
 region RR_BOTW_MIDDLE {
     name: "Bottom of the Well Middle"
@@ -43,7 +43,7 @@ region RR_BOTW_MIDDLE {
 
     exits {
         RR_BOTW_PERIMETER:       trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)
-        RR_BOTW_PIT_CAGE:        trick(RT_BOTW_PITS) and (trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH))
+        RR_BOTW_PIT_CAGE:        (trick(RT_BOTW_PITS) or can_use(RG_HOVER_BOOTS)) and (trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH))
         RR_BOTW_SKULL_WALL_ROOM: small_keys(SCENE_BOTTOM_OF_THE_WELL, 3)
         RR_BOTW_INVISIBLE_PATH:  small_keys(SCENE_BOTTOM_OF_THE_WELL, 3)
         RR_BOTW_B3_OOZE:         always
@@ -99,13 +99,13 @@ region RR_BOTW_PIT_CAGE {
 
     exits {
         RR_BOTW_PERIMETER: trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH)
-        RR_BOTW_MIDDLE:    trick(RT_BOTW_PITS) and (trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH))
+        RR_BOTW_MIDDLE:    (trick(RT_BOTW_PITS) or can_use(RG_HOVER_BOOTS)) and (trick(RT_LENS_BOTW) or can_use(RG_LENS_OF_TRUTH))
         RR_BOTW_B3_OOZE:   always
     }
 }
 
 region RR_BOTW_SKULL_WALL_ROOM {
-    name: "Bottom of the Well SKull Wall Room"
+    name: "Bottom of the Well Skull Wall Room"
     scene: SCENE_BOTTOM_OF_THE_WELL
 
     events {
@@ -190,14 +190,28 @@ region RR_BOTW_B3_OOZE {
     scene: SCENE_BOTTOM_OF_THE_WELL
 
     exits {
-        RR_BOTW_HIDDEN_POTS:      can_climb_high_ladder()
+        RR_BOTW_LADDER_DOOR:      can_climb_high_ladder()
         # It's possible to abuse boulder's limited range of collision detection to detonate the flowers through
         # the boulder with bow, but this is a glitch. The exact range is just past the furthest away plank in
         # the green goo section
         RR_BOTW_B3_BOMB_FLOWERS:  any_age(blast_or_smash() or can_use(RG_DINS_FIRE) or (trick(RT_BOTW_BASEMENT) and can_use(RG_STICKS)) or
-                                          (trick(RT_DISTANT_BOULDER_COLLISION) and can_use(RG_FAIRY_BOW)))
+                                          (trick(RT_BOULDER_COLLISION) and can_use(RG_FAIRY_BOW)))
         RR_BOTW_B3_BLOCKED_GRASS: any_age(blast_or_smash())
         RR_BOTW_B3_CHEST_AREA:    any_age(blast_or_smash())
+    }
+}
+
+region RR_BOTW_LADDER_DOOR {
+    name: "Bottom of the Well Ladder Door"
+    scene: SCENE_BOTTOM_OF_THE_WELL
+
+    events {
+        LOGIC_BOTW_SILVER: always
+    }
+
+    exits {
+        RR_BOTW_B3_OOZE:     always
+        RR_BOTW_HIDDEN_POTS: has(RG_BOTW_SILVER)
     }
 }
 

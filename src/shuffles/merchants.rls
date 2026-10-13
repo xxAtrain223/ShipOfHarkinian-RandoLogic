@@ -18,8 +18,9 @@ extend region RR_HAUNTED_WASTELAND {
 
 extend region RR_KAK_ODD_POTION_BUILDING {
     locations {
-        RC_KAK_GRANNYS_SHOP: is_adult() and has(RG_SPEAK_HYLIAN) and
-            (can_use(RG_ODD_MUSHROOM) or trade_quest_step(RG_ODD_MUSHROOM)) and check_price() <= wallet_capacity()
+        RC_KAK_GRANNYS_SHOP: is_adult() and has(RG_SPEAK_HYLIAN) and (can_use(RG_ODD_MUSHROOM) or
+                              (setting(RSK_SHUFFLE_ADULT_TRADE) is RO_GENERIC_OFF and (has(RG_CLAIM_CHECK) or setting(RSK_EARLY_GRANNYS_SHOP))) and
+                              check_price() <= wallet_capacity())
     }
 }
 

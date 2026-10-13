@@ -21,10 +21,12 @@ region RR_GERUDO_TRAINING_GROUND_SAND_ROOM {
 region RR_GERUDO_TRAINING_GROUND_BOULDER_ROOM {
     name: "Gerudo Training Ground Boulder Room"
     scene: SCENE_GERUDO_TRAINING_GROUND
-    
+    events {
+        LOGIC_GTG_SILVER_SLOPE: can_use(is_adult() ? RG_HOOKSHOT : RG_LONGSHOT) or trick(RT_GTG_WITHOUT_HOOKSHOT)
+    }
     exits {
         RR_GERUDO_TRAINING_GROUND_SAND_ROOM:        always
-        RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM: any_age(can_use(is_adult() ? RG_HOOKSHOT : RG_LONGSHOT) or trick(RT_GTG_WITHOUT_HOOKSHOT))
+        RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM: has(RG_GTG_SILVER_SLOPE)
     }
 }
 
@@ -55,7 +57,7 @@ region RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM {
     }
     exits {
         RR_GERUDO_TRAINING_GROUND_HEAVY_BLOCK_ROOM_UPPER: (trick(RT_LENS_GTG) or can_use(RG_LENS_OF_TRUTH)) and
-                                                          (can_use(RG_HOOKSHOT) or (trick(RT_GTG_FAKE_WALL) and is_adult() and can_use(RG_HOVER_BOOTS)) or 
+                                                          (can_use(RG_HOOKSHOT) or ((trick(RT_GTG_FAKE_WALL) or bunny_hood()) and is_adult() and can_use(RG_HOVER_BOOTS)) or 
                                                           (is_adult() and can_ground_jump()))
         RR_GERUDO_TRAINING_GROUND_BEHIND_HEAVY_BLOCK:     flag(LOGIC_GTG_PUSHED_HEAVY_BLOCK)
         RR_GERUDO_TRAINING_GROUND_BOULDER_ROOM:           always
@@ -124,8 +126,8 @@ region RR_GERUDO_TRAINING_GROUND_HAMMER_ROOM {
     name: "Gerudo Training Ground Hammer Room"
     scene: SCENE_GERUDO_TRAINING_GROUND
     exits {
-        RR_GERUDO_TRAINING_GROUND_EYE_STATUE_LOWER: can_use(RG_MEGATON_HAMMER) and can_use(RG_FAIRY_BOW)
-        RR_GERUDO_TRAINING_GROUND_LAVA_ROOM:        always
+        RR_GERUDO_TRAINING_GROUND_EYE_STATUE_LOWER:      can_use(RG_MEGATON_HAMMER) and can_use(RG_FAIRY_BOW)
+        RR_GERUDO_TRAINING_GROUND_LAVA_ROOM_UPPER_LEDGE: always
     }
 }
 
@@ -133,15 +135,14 @@ region RR_GERUDO_TRAINING_GROUND_LAVA_ROOM {
     name: "Gerudo Training Ground Lava Room"
     scene: SCENE_GERUDO_TRAINING_GROUND
     events {
-        LOGIC_GTG_PLATFORM_SILVER_RUPEES: can_use(RG_HOOKSHOT) and (can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME) or is_child())
+        LOGIC_GTG_SILVER_LAVA: can_use(RG_HOOKSHOT) and (can_use(RG_HOVER_BOOTS) or bunny_hood() or can_use(RG_SONG_OF_TIME) or is_child())
     }
     exits {
         RR_GERUDO_TRAINING_GROUND_DINALFOS:              always
         RR_GERUDO_TRAINING_GROUND_CENTRAL_MAZE_RIGHT:    can_use(RG_SONG_OF_TIME) or is_child()
-        RR_GERUDO_TRAINING_GROUND_LAVA_ROOM_UPPER_LEDGE: can_use(RG_LONGSHOT) or (can_use(RG_HOOKSHOT) and (can_use(RG_HOVER_BOOTS) or
-                                                         can_use(RG_SONG_OF_TIME) or is_child() or (is_adult() and trick(RT_GTG_LAVA_JUMP)) or
-                                                         (trick(RT_DAMAGE_BOOST_SIMPLE) and can_use(RG_BOMB_BAG) and take_damage())))
-        RR_GERUDO_TRAINING_GROUND_UNDERWATER:            flag(LOGIC_GTG_PLATFORM_SILVER_RUPEES)
+        RR_GERUDO_TRAINING_GROUND_LAVA_ROOM_UPPER_LEDGE: can_use(RG_LONGSHOT) or (can_use(RG_HOOKSHOT) and (can_use(RG_HOVER_BOOTS) or bunny_hood() or
+                                                         can_use(RG_SONG_OF_TIME) or is_child() or (is_adult() and trick(RT_GTG_LAVA_JUMP))))
+        RR_GERUDO_TRAINING_GROUND_UNDERWATER:            has(RG_GTG_SILVER_LAVA)
     }
 }
 
@@ -149,15 +150,19 @@ region RR_GERUDO_TRAINING_GROUND_LAVA_ROOM_UPPER_LEDGE {
     name: "Gerudo Training Ground Lava Room Upper Ledge"
     scene: SCENE_GERUDO_TRAINING_GROUND
     exits {
-        RR_GERUDO_TRAINING_GROUND_LAVA_ROOM:   can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or can_use(RG_SONG_OF_TIME) or is_child()
-            or (is_adult() and trick(RT_GTG_LAVA_JUMP)) or (trick(RT_DAMAGE_BOOST_SIMPLE) and can_use(RG_BOMB_BAG) and take_damage())
-        RR_GERUDO_TRAINING_GROUND_HAMMER_ROOM: always
+        RR_GERUDO_TRAINING_GROUND_LAVA_ROOM:          can_use(RG_HOOKSHOT) or can_use(RG_HOVER_BOOTS) or bunny_hood() or can_use(RG_SONG_OF_TIME) or is_child()
+            or (is_adult() and trick(RT_GTG_LAVA_JUMP))
+        RR_GERUDO_TRAINING_GROUND_CENTRAL_MAZE_RIGHT: is_adult() and can_recoil_hover_from_actor(ARECOIL_SHORT)
+        RR_GERUDO_TRAINING_GROUND_HAMMER_ROOM:        always
     }
 }
 
 region RR_GERUDO_TRAINING_GROUND_UNDERWATER {
     name: "Gerudo Training Ground Underwater"
     scene: SCENE_GERUDO_TRAINING_GROUND
+    events {
+        LOGIC_GTG_SILVER_WATER: can_use(RG_SONG_OF_TIME) and can_use(RG_IRON_BOOTS) and has(RG_BRONZE_SCALE) and water_timer() >= 24
+    }
     exits {
         RR_GERUDO_TRAINING_GROUND_LAVA_ROOM: always
     }

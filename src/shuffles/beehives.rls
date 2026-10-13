@@ -32,7 +32,7 @@ extend region RR_DMT_STORMS_GROTTO {
 
 extend region RR_COLOSSUS_GROTTO {
     locations {
-        RC_COLOSSUS_GROTTO_BEEHIVE: can_break_upper_beehives()
+        RC_COLOSSUS_DEKU_SCRUB_GROTTO_BEEHIVE: can_break_upper_beehives()
     }
 }
 
@@ -134,7 +134,8 @@ extend region RR_LW_SCRUBS_GROTTO {
 
 extend region RR_SFM_STORMS_GROTTO {
     locations {
-        RC_SFM_STORMS_GROTTO_BEEHIVE: can_break_upper_beehives()
+        RC_SFM_DEKU_SCRUB_GROTTO_BEEHIVE: can_break_upper_beehives()
+
     }
 }
 
@@ -164,6 +165,7 @@ extend region RR_ZR_OPEN_GROTTO {
 
 extend region RR_ZR_STORMS_GROTTO {
     locations {
-        RC_ZR_STORMS_GROTTO_BEEHIVE: can_break_upper_beehives()
+        RC_ZR_DEKU_SCRUB_GROTTO_BEEHIVE: can_break_upper_beehives()
+
     }
 }

@@ -14,7 +14,8 @@ region RR_DODONGOS_CAVERN_LOBBY {
 
     events {
         LOGIC_FAIRY_ACCESS: (any_age(can_break_mud_walls()) or has(RG_GORONS_BRACELET)) and call_gossip_fairy()
-        LOGIC_DC_EYES_LIT:  trick(RT_DC_EYES_CHU) and can_use(RG_BOMBCHU_5)
+        LOGIC_DC_EYES_LIT:  (trick(RT_DC_EYES_CHU) and can_use(RG_BOMBCHU_5)) or
+                            (trick(RT_DC_EYES_BUNNYHOVERS) and has(RG_GORONS_BRACELET) and bunny_hovers())
     }
 
     exits {
@@ -147,17 +148,29 @@ region RR_DODONGOS_CAVERN_ARMOS_ROOM {
     }
 }
 
+region RR_DODONGOS_CAVERN_ENTRANCE_SIDE_BRIDGE {
+    name: "Dodongos Cavern Entrance Side Bridge"
+    scene: SCENE_DODONGOS_CAVERN
+
+    exits {
+        RR_DODONGOS_CAVERN_LOBBY:           take_damage()
+        RR_DODONGOS_CAVERN_LOBBY_SWITCH:    can_megajump(true)
+        RR_DODONGOS_CAVERN_ARMOS_ROOM:      always
+        RR_DODONGOS_CAVERN_BOMB_ROOM_UPPER: ((is_adult() or bunny_hood()) and trick(RT_UNINTUITIVE_JUMPS)) or can_use(RG_HOVER_BOOTS) or
+                                            can_midair_damage_boost() or can_megajump()
+    }
+}
+
 region RR_DODONGOS_CAVERN_BOMB_ROOM_LOWER {
     name: "Dodongos Cavern Bomb Room Lower"
     scene: SCENE_DODONGOS_CAVERN
 
     exits {
-        RR_DODONGOS_CAVERN_ARMOS_ROOM:           has(RG_CLIMB) or can_use(RG_HOOKSHOT)
-        RR_DODONGOS_CAVERN_2F_SIDE_ROOM:         any_age(can_break_mud_walls() or (trick(RT_DC_SCRUB_ROOM) and has(RG_GORONS_BRACELET)))
+        RR_DODONGOS_CAVERN_ENTRANCE_SIDE_BRIDGE: can_climb_ladder() or ((is_adult() or can_midair_ground_jump(true)) and bunny_hovers())
+        RR_DODONGOS_CAVERN_2F_SIDE_ROOM:         any_age(can_break_mud_walls() or (trick(RT_DC_SCRUB_ROOM) and (is_adult() or bunny_hood()) and has(RG_GORONS_BRACELET)))
         RR_DODONGOS_CAVERN_FIRST_SLINGSHOT_ROOM: any_age(can_break_mud_walls() or has(RG_GORONS_BRACELET))
-        RR_DODONGOS_CAVERN_BOMB_ROOM_UPPER:      (is_adult() and (trick(RT_UNINTUITIVE_JUMPS) or can_ground_jump())) or
-                                                 can_use(RG_HOVER_BOOTS) or can_use(RG_LONGSHOT) or
-                                                 (trick(RT_DAMAGE_BOOST_SIMPLE) and has_explosives() and can_jumpslash())
+        RR_DODONGOS_CAVERN_BOMB_ROOM_UPPER:      (is_adult() and ((trick(RT_UNINTUITIVE_JUMPS) and bunny_hood()) or can_ground_jump(true) or can_use(RG_HOVER_BOOTS))) or
+                                                 can_use(RG_LONGSHOT) or can_midair_ground_jump() or can_megajump(false, true)
     }
 }
 
@@ -176,9 +189,7 @@ region RR_DODONGOS_CAVERN_FIRST_SLINGSHOT_ROOM {
 
     exits {
         RR_DODONGOS_CAVERN_BOMB_ROOM_LOWER: always
-        RR_DODONGOS_CAVERN_UPPER_LIZALFOS:  can_hit_eye_targets() or trick(RT_DC_SLINGSHOT_SKIP) or (is_adult() and can_ground_jump()) or
-                                            (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and
-                                             (can_use(RG_MEGATON_HAMMER) or (can_standing_shield() and can_jumpslash())))
+        RR_DODONGOS_CAVERN_UPPER_LIZALFOS:  can_hit_eye_targets() or trick(RT_DC_SLINGSHOT_SKIP) or (is_adult() and can_ground_jump()) or can_use(RG_HOVER_BOOTS) or can_megajump()
     }
 }
 
@@ -200,8 +211,9 @@ region RR_DODONGOS_CAVERN_SECOND_SLINGSHOT_ROOM {
 
     exits {
         RR_DODONGOS_CAVERN_UPPER_LIZALFOS:  always
-        RR_DODONGOS_CAVERN_BOMB_ROOM_UPPER: can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW) or trick(RT_DC_SLINGSHOT_SKIP) or (is_adult() and can_ground_jump()) or
-                                            (trick(RT_HOVER_BOOST_SIMPLE) and can_use(RG_HOVER_BOOTS) and (can_use(RG_MEGATON_HAMMER) or (can_standing_shield() and can_jumpslash())))
+        # barely possible as adult with just hover boots and rolls, but hard enough to be a trick
+        RR_DODONGOS_CAVERN_BOMB_ROOM_UPPER: can_hit_eye_targets() or trick(RT_DC_SLINGSHOT_SKIP) or (is_adult() and can_ground_jump()) or
+                                            can_recoil_hover(RECOIL_SWORD_AND_SHIELD) or bunny_hovers() or can_megajump()
     }
 }
 
@@ -210,6 +222,7 @@ region RR_DODONGOS_CAVERN_BOMB_ROOM_UPPER {
     scene: SCENE_DODONGOS_CAVERN
 
     exits {
+        RR_DODONGOS_CAVERN_ENTRANCE_SIDE_BRIDGE:  always
         RR_DODONGOS_CAVERN_BOMB_ROOM_LOWER:       always
         RR_DODONGOS_CAVERN_SECOND_SLINGSHOT_ROOM: always
         RR_DODONGOS_CAVERN_FAR_BRIDGE:            always
@@ -227,7 +240,23 @@ region RR_DODONGOS_CAVERN_FAR_BRIDGE {
 
     exits {
         RR_DODONGOS_CAVERN_LOBBY:           always
+        # Bunny hood jump + jumpslash can also make it directly from the raising platform, but it's too tight for unintuitive and overlaps with the recoil trick
+        RR_DODONGOS_CAVERN_LOBBY_SWITCH:    can_use(RG_HOVER_BOOTS) or can_megajump() or (trick(RT_DC_CHILD_LOBBY) and can_jumpslash_except_hammer() and take_damage())
         RR_DODONGOS_CAVERN_BOMB_ROOM_UPPER: always
+    }
+}
+
+# This region only exists when the mouth is closed, so should only leave to lobby and set EYES_LIT
+region RR_DODONGOS_CAVERN_SKULL_CHIN {
+    name: "Dodongos Cavern Skull Chin"
+    scene: SCENE_DODONGOS_CAVERN
+
+    events {
+        LOGIC_DC_EYES_LIT: can_use(RG_BOMB_BAG)
+    }
+
+    exits {
+        RR_DODONGOS_CAVERN_LOBBY: always
     }
 }
 
@@ -240,7 +269,7 @@ region RR_DODONGOS_CAVERN_BOSS_AREA {
     }
 
     exits {
-        RR_DODONGOS_CAVERN_LOBBY:         always
+        RR_DODONGOS_CAVERN_SKULL_CHIN:    always
         RR_DODONGOS_CAVERN_BACK_ROOM:     any_age(can_break_mud_walls())
         RR_DODONGOS_CAVERN_BOSS_ENTRYWAY: has(RG_POWER_BRACELET)
     }

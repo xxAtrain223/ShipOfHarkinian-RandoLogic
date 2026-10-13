@@ -49,16 +49,16 @@ define can_kill(e: Enemy, distance = ED_CLOSE, wall_or_floor = true, quantity = 
         RE_STINGER: _can_kill_stinger(distance, wall_or_floor, in_water)
         RE_BIG_OCTO: can_use(RG_KOKIRI_SWORD) or can_use(RG_STICKS) or can_use(RG_MASTER_SWORD)
 
-        RE_GOHMA: has_boss_soul(RG_GOHMA_SOUL) and can_jumpslash() and (can_use(RG_NUTS) or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW) or hookshot_or_boomerang())
-        RE_KING_DODONGO: has_boss_soul(RG_KING_DODONGO_SOUL) and can_jumpslash() and (can_use(RG_BOMB_BAG) or has(RG_GORONS_BRACELET) or (trick(RT_DC_DODONGO_CHU) and is_adult() and can_use(RG_BOMBCHU_5)))
-        RE_BARINADE: has_boss_soul(RG_BARINADE_SOUL) and can_use(RG_BOOMERANG) and (can_jumpslash_except_hammer() or (trick(RT_JABU_BARINADE_POTS) and has(RG_POWER_BRACELET)))
-        RE_PHANTOM_GANON: has_boss_soul(RG_PHANTOM_GANON_SOUL) and can_use_sword() and (can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT))
-        RE_VOLVAGIA: has_boss_soul(RG_VOLVAGIA_SOUL) and can_use(RG_MEGATON_HAMMER)
-        RE_MORPHA: has_boss_soul(RG_MORPHA_SOUL) and (can_use(RG_HOOKSHOT) or (trick(RT_WATER_MORPHA_WITHOUT_HOOKSHOT) and has(RG_BRONZE_SCALE))) and (can_use_sword() or can_use(RG_MEGATON_HAMMER))
-        RE_BONGO_BONGO: has_boss_soul(RG_BONGO_BONGO_SOUL) and (can_use(RG_LENS_OF_TRUTH) or trick(RT_LENS_BONGO)) and can_use_sword() and (can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT) or trick(RT_SHADOW_BONGO))
-        RE_TWINROVA: has_boss_soul(RG_TWINROVA_SOUL) and can_use(RG_MIRROR_SHIELD) and (can_use_sword() or can_use(RG_MEGATON_HAMMER))
-        RE_GANONDORF: has_boss_soul(RG_GANON_SOUL) and can_use(RG_LIGHT_ARROWS) and can_use_sword()
-        RE_GANON: has_boss_soul(RG_GANON_SOUL) and can_use(RG_MASTER_SWORD)
+        RE_GOHMA: has(RG_GOHMA_SOUL) and can_jumpslash() and (can_use(RG_NUTS) or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW) or hookshot_or_boomerang())
+        RE_KING_DODONGO: has(RG_KING_DODONGO_SOUL) and can_jumpslash() and (can_use(RG_BOMB_BAG) or has(RG_GORONS_BRACELET) or (trick(RT_DC_DODONGO_CHU) and is_adult() and can_use(RG_BOMBCHU_5)))
+        RE_BARINADE: has(RG_BARINADE_SOUL) and can_use(RG_BOOMERANG) and (can_jumpslash_except_hammer() or (trick(RT_JABU_BARINADE_POTS) and has(RG_POWER_BRACELET)))
+        RE_PHANTOM_GANON: has(RG_PHANTOM_GANON_SOUL) and can_use_sword() and (can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT))
+        RE_VOLVAGIA: has(RG_VOLVAGIA_SOUL) and can_use(RG_MEGATON_HAMMER)
+        RE_MORPHA: has(RG_MORPHA_SOUL) and (can_use(RG_HOOKSHOT) or (trick(RT_WATER_MORPHA_WITHOUT_HOOKSHOT) and has(RG_BRONZE_SCALE))) and (can_use_sword() or can_use(RG_MEGATON_HAMMER))
+        RE_BONGO_BONGO: has(RG_BONGO_BONGO_SOUL) and (can_use(RG_LENS_OF_TRUTH) or trick(RT_LENS_BONGO)) and can_use_sword() and (can_use(RG_HOOKSHOT) or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT) or trick(RT_SHADOW_BONGO))
+        RE_TWINROVA: has(RG_TWINROVA_SOUL) and can_use(RG_MIRROR_SHIELD) and (can_use_sword() or can_use(RG_MEGATON_HAMMER))
+        RE_GANONDORF: has(RG_GANON_SOUL) and can_use(RG_LIGHT_ARROWS) and can_use_sword()
+        RE_GANON: has(RG_GANON_SOUL) and can_use(RG_MASTER_SWORD)
 
         RE_DARK_LINK: can_use_sword() or (can_use(RG_BOOMERANG) and (can_use(RG_FAIRY_BOW) or can_use(RG_STICKS) or can_use(RG_MEGATON_HAMMER) or has_explosives())) or (can_use(RG_NUTS) and (can_use(RG_STICKS) or can_use(RG_MEGATON_HAMMER)))
         RE_ANUBIS: has_fire_source()
@@ -66,7 +66,7 @@ define can_kill(e: Enemy, distance = ED_CLOSE, wall_or_floor = true, quantity = 
         RE_PURPLE_LEEVER: can_use(RG_MASTER_SWORD) or can_use(RG_BIGGORON_SWORD)
         RE_TENTACLE: can_use(RG_BOOMERANG)
         RE_BARI: hookshot_or_boomerang() or can_use(RG_FAIRY_BOW) or has_explosives() or can_use(RG_MEGATON_HAMMER) or can_use(RG_STICKS) or can_use(RG_DINS_FIRE) or (take_damage() and can_use_sword())
-        RE_SHABOM: can_use(RG_BOOMERANG) or can_use(RG_NUTS) or can_jumpslash() or can_use(RG_DINS_FIRE) or can_use(RG_ICE_ARROWS) or effective_health() >= quantity / 2 + 1
+        RE_SHABOM: can_use(RG_BOOMERANG) or can_use(RG_NUTS) or can_jumpslash() or can_use(RG_DINS_FIRE) or can_use(RG_ICE_ARROWS) or effective_health() > quantity * 4
         RE_OCTOROK: can_reflect_nuts() or hookshot_or_boomerang() or can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_BOMB_BAG) or (wall_or_floor and can_use(RG_BOMBCHU_5))
         RE_WALLTULA: _can_kill_walltula(distance, in_water)
 
@@ -119,8 +119,10 @@ define can_pass(e: Enemy, distance = ED_CLOSE, wall_or_floor = true):
         _: never
     }
 
-define can_avoid(e: Enemy, grounded = false, quantity = 1):
-    can_kill(e, ED_CLOSE, true, quantity) or
+# Can we avoid this enemy while climbing up a wall, or doing a difficult platforming challenge?
+# use grounded if the enemy interferes even if it cannot hit link out of the air
+define can_avoid(e: Enemy, distance = ED_CLOSE, grounded = false, quantity = 1):
+    can_kill(e, distance, true, quantity) or
     match e {
         RE_GOLD_SKULLTULA or
         RE_GOHMA_LARVA or
@@ -152,7 +154,7 @@ define can_avoid(e: Enemy, grounded = false, quantity = 1):
         RE_PURPLE_LEEVER or
         RE_WALLTULA: always
 
-        RE_BEAMOS: not grounded or can_use(RG_NUTS) or can_use(RG_DINS_FIRE) or (quantity == 1 and (can_use(RG_FAIRY_BOW) or can_use(RG_FAIRY_SLINGSHOT)))
+        RE_BEAMOS: not grounded or _can_avoid_beamos(distance)
         RE_MAD_SCRUB: not grounded or can_use(RG_NUTS)
 
         RE_KEESE or
@@ -252,6 +254,20 @@ define _can_kill_walltula(distance: Distance, in_water: Bool):
         ED_BOMB_THROW:             (not in_water and can_use(RG_BOMB_BAG)) or can_use(RG_DINS_FIRE) or
         ED_BOOMERANG:              can_use(RG_BOOMERANG) or
         ED_HOOKSHOT:               can_use(RG_HOOKSHOT) or can_use(RG_BOMBCHU_5) or can_use(RG_MEGATON_HAMMER) or
+        ED_LONGSHOT:               can_use(RG_LONGSHOT) or
+        ED_FAR:                    can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW)
+    }
+
+# melee can stun, but doing so means getting close anyway
+define _can_avoid_beamos(distance: Distance):
+    match distance {
+        ED_CLOSE or
+        ED_SHORT_JUMPSLASH or
+        ED_MASTER_SWORD_JUMPSLASH or
+        ED_LONG_JUMPSLASH or
+        ED_BOMB_THROW:             can_use(RG_DINS_FIRE) or can_use(RG_NUTS) or
+        ED_BOOMERANG:              can_use(RG_BOOMERANG) or
+        ED_HOOKSHOT:               can_use(RG_HOOKSHOT) or
         ED_LONGSHOT:               can_use(RG_LONGSHOT) or
         ED_FAR:                    can_use(RG_FAIRY_SLINGSHOT) or can_use(RG_FAIRY_BOW)
     }
