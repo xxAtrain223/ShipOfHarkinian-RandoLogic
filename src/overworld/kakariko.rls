@@ -16,7 +16,6 @@ region RR_KAKARIKO_VILLAGE {
     }
 
     locations {
-        RC_SHEIK_IN_KAKARIKO: is_adult() and has(RG_FOREST_MEDALLION) and has(RG_FIRE_MEDALLION) and has(RG_WATER_MEDALLION)
         RC_KAK_ANJU_AS_CHILD: is_child() and at_day() and has(RG_CLIMB) and has(RG_POWER_BRACELET) and can_break_crates() and has(RG_SPEAK_HYLIAN)
         RC_KAK_ANJU_AS_ADULT: is_adult() and at_day() and has(RG_SPEAK_HYLIAN)
     }
@@ -180,7 +179,6 @@ region RR_KAK_WINDMILL_LOWER {
 
     locations {
         RC_KAK_WINDMILL_FREESTANDING_POH: can_use(RG_BOOMERANG)
-        RC_SONG_FROM_WINDMILL:            is_adult() and has(RG_FAIRY_OCARINA)
     }
 
     exits {
