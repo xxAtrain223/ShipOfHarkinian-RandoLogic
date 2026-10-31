@@ -36,6 +36,7 @@ function(rls_add_logic_generation)
         LOGIC_DIR
         COMPILER_DIR
         OUTPUT_DIR
+        TRACKER_OUTPUT_DIR
         TRANSPILER
         TARGET_PREFIX
     )
@@ -260,6 +261,22 @@ function(rls_add_logic_generation)
         )
     endif()
 
+    set(RLS_GENERATED_INCLUDE_DIRS "${RLS_OUTPUT_DIR}")
+    set(RLS_GENERATION_ARGS --transpiler "${RLS_TRANSPILER}" --output "${RLS_OUTPUT_DIR}")
+    if(RLS_TRACKER_OUTPUT_DIR)
+        if(NOT RLS_TRANSPILER STREQUAL "soh")
+            message(FATAL_ERROR "Tracker generation requires matching soh output")
+        endif()
+        get_filename_component(RLS_TRACKER_OUTPUT_DIR "${RLS_TRACKER_OUTPUT_DIR}" ABSOLUTE)
+        if(RLS_TRACKER_OUTPUT_DIR STREQUAL RLS_OUTPUT_DIR)
+            message(FATAL_ERROR "Gameplay and tracker output directories must be separate")
+        endif()
+        list(APPEND RLS_GENERATED_HEADERS "${RLS_TRACKER_OUTPUT_DIR}/logic_tracker.gen.h")
+        list(APPEND RLS_GENERATED_SOURCES "${RLS_TRACKER_OUTPUT_DIR}/logic_tracker.gen.cpp")
+        list(APPEND RLS_GENERATED_INCLUDE_DIRS "${RLS_TRACKER_OUTPUT_DIR}")
+        list(APPEND RLS_GENERATION_ARGS --transpiler soh_tracker --output "${RLS_TRACKER_OUTPUT_DIR}")
+    endif()
+
     set(
         RLS_GENERATED_FILES
         ${RLS_GENERATED_HEADERS}
@@ -276,8 +293,7 @@ function(rls_add_logic_generation)
         COMMAND
             "${RLS_COMPILER_EXECUTABLE}"
             --project "${RLS_MANIFEST}"
-            --transpiler "${RLS_TRANSPILER}"
-            --output "${RLS_OUTPUT_DIR}"
+            ${RLS_GENERATION_ARGS}
 
         DEPENDS
             "${RLS_COMPILER_TARGET}"
@@ -338,6 +354,8 @@ function(rls_add_logic_generation)
         "${RLS_GENERATED_SOURCES}"
         PARENT_SCOPE
     )
+
+    set(RLS_GENERATED_INCLUDE_DIRS "${RLS_GENERATED_INCLUDE_DIRS}" PARENT_SCOPE)
 
     set(
         RLS_GENERATED_HEADERS

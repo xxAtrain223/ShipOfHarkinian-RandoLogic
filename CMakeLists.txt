@@ -13,6 +13,13 @@ set(
     "Directory where RLS writes Shipwright C++ sources"
 )
 
+set(
+    RLS_TRACKER_OUTPUT_DIR
+    "${CMAKE_CURRENT_SOURCE_DIR}/generated/soh_tracker"
+    CACHE PATH
+    "Directory where RLS writes logic tracker C++ sources"
+)
+
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/RandoLogic.cmake")
 
 rls_add_logic_generation(
@@ -24,6 +31,9 @@ rls_add_logic_generation(
 
     OUTPUT_DIR
         "${RLS_LOGIC_OUTPUT_DIR}"
+
+    TRACKER_OUTPUT_DIR
+        "${RLS_TRACKER_OUTPUT_DIR}"
 
     TRANSPILER
         "soh"
