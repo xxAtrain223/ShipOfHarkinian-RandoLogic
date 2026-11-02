@@ -87,6 +87,7 @@ extend region RR_LH_FISHING_POND {
         RC_LH_ADULT_FISH_14: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
         RC_LH_ADULT_FISH_15: can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
         RC_LH_ADULT_LOACH:   can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN) and is_adult() and setting(RSK_FISHSANITY_AGE_SPLIT)
+        RC_LH_HYRULE_LOACH:  can_use(RG_FISHING_POLE) and has(RG_SPEAK_HYLIAN)
     }
 }
 
