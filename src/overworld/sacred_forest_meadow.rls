@@ -32,11 +32,6 @@ region RR_SACRED_FOREST_MEADOW {
         LOGIC_FAIRY_ACCESS: call_gossip_fairy_except_suns()
     }
 
-    locations {
-        RC_SONG_FROM_SARIA: is_child() and has(RG_ZELDAS_LETTER)
-        RC_SHEIK_IN_FOREST: is_adult()
-    }
-
     exits {
         RR_FOREST_TEMPLE_ENTRYWAY: can_use(RG_HOOKSHOT)
         RR_SFM_ENTRYWAY:           always

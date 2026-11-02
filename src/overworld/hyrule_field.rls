@@ -11,7 +11,6 @@ region RR_HYRULE_FIELD {
 
     locations {
         RC_HF_OCARINA_OF_TIME_ITEM:   is_child() and stone_count() == 3 and has(RG_BRONZE_SCALE)
-        RC_SONG_FROM_OCARINA_OF_TIME: is_child() and stone_count() == 3 and has(RG_BRONZE_SCALE)
     }
 
     exits {

@@ -36,10 +36,6 @@ region RR_DESERT_COLOSSUS_OUTSIDE_TEMPLE {
     name: "Desert Colossus From Spirit Entryway"
     scene: SCENE_DESERT_COLOSSUS
 
-    locations {
-        RC_SHEIK_AT_COLOSSUS: always
-    }
-
     exits {
         RR_DESERT_COLOSSUS: always
     }
