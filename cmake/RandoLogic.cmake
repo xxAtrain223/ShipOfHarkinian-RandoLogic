@@ -16,6 +16,7 @@ include(CMakeParseArguments)
 #   RLS_GENERATION_TARGET
 #   RLS_COMPILER_TARGET
 #   RLS_GENERATED_DIR
+#   RLS_GENERATED_INCLUDE_DIRS
 #   RLS_GENERATED_SOURCES
 #   RLS_GENERATED_HEADERS
 #   RLS_GENERATED_FILES
@@ -36,6 +37,7 @@ function(rls_add_logic_generation)
         LOGIC_DIR
         COMPILER_DIR
         OUTPUT_DIR
+        TRACKER_OUTPUT_DIR
         TRANSPILER
         TARGET_PREFIX
     )
@@ -92,6 +94,16 @@ function(rls_add_logic_generation)
         "${RLS_OUTPUT_DIR}"
         ABSOLUTE
     )
+
+    if(RLS_TRACKER_OUTPUT_DIR)
+        get_filename_component(
+            RLS_TRACKER_OUTPUT_DIR
+            "${RLS_TRACKER_OUTPUT_DIR}"
+            ABSOLUTE
+        )
+    endif()
+
+    set(RLS_GENERATED_INCLUDE_DIRS "${RLS_OUTPUT_DIR}")
 
     set(RLS_MANIFEST "${RLS_LOGIC_DIR}/rls.json")
 
@@ -294,6 +306,45 @@ function(rls_add_logic_generation)
         VERBATIM
     )
 
+    if(RLS_TRACKER_OUTPUT_DIR)
+        set(RLS_TRACKER_HEADER "${RLS_TRACKER_OUTPUT_DIR}/logic_tracker.gen.h")
+        set(RLS_TRACKER_SOURCE "${RLS_TRACKER_OUTPUT_DIR}/logic_tracker.gen.cpp")
+
+        add_custom_command(
+            OUTPUT
+                "${RLS_TRACKER_HEADER}"
+                "${RLS_TRACKER_SOURCE}"
+
+            COMMAND
+                "${CMAKE_COMMAND}" -E make_directory "${RLS_TRACKER_OUTPUT_DIR}"
+
+            COMMAND
+                "${RLS_COMPILER_EXECUTABLE}"
+                --project "${RLS_MANIFEST}"
+                --transpiler soh_tracker
+                --output "${RLS_TRACKER_OUTPUT_DIR}"
+
+            DEPENDS
+                "${RLS_COMPILER_TARGET}"
+                ${RLS_LOGIC_INPUTS}
+                ${RLS_COMPILER_INPUTS}
+
+            WORKING_DIRECTORY
+                "${RLS_LOGIC_DIR}"
+
+            COMMENT
+                "Generating soh_tracker expressions with RandoLogicScript"
+
+            COMMAND_EXPAND_LISTS
+            VERBATIM
+        )
+
+        list(APPEND RLS_GENERATED_HEADERS "${RLS_TRACKER_HEADER}")
+        list(APPEND RLS_GENERATED_SOURCES "${RLS_TRACKER_SOURCE}")
+        list(APPEND RLS_GENERATED_FILES "${RLS_TRACKER_HEADER}" "${RLS_TRACKER_SOURCE}")
+        list(APPEND RLS_GENERATED_INCLUDE_DIRS "${RLS_TRACKER_OUTPUT_DIR}")
+    endif()
+
     add_custom_target(
         "${RLS_GENERATION_TARGET}"
         DEPENDS ${RLS_GENERATED_FILES}
@@ -330,6 +381,12 @@ function(rls_add_logic_generation)
     set(
         RLS_GENERATED_DIR
         "${RLS_OUTPUT_DIR}"
+        PARENT_SCOPE
+    )
+
+    set(
+        RLS_GENERATED_INCLUDE_DIRS
+        "${RLS_GENERATED_INCLUDE_DIRS}"
         PARENT_SCOPE
     )
 
